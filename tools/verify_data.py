@@ -132,7 +132,7 @@ for s in songs:
         assert not s['videoUrl'], s['id']
 
 # 10) 메타 집계
-assert meta['seedVersion'] == 4
+assert meta['seedVersion'] == 5
 assert meta['playlistCollectedCount'] == 210
 assert meta['playlistPublicVideoCount'] == 168
 assert meta['playlistInaccessibleVideoCount'] == 42
@@ -155,7 +155,21 @@ def pc_of(chord):
 
 ready = [s for s in songs if s.get('chartStatus') == 'ready']
 partial = [s for s in songs if s.get('chartStatus') == 'partial']
-pending = [s for s in songs if s.get('chartStatus') not in ('ready', 'partial')]
+pending = [s for s in songs if s.get('chartStatus') == 'pending']
+assert len(ready) + len(partial) + len(pending) + meta['nonMusicCount'] + meta['originalWorkCount'] == len(songs), '분류 누락'
+for s in songs:
+    assert s.get('category') in ('chart', 'partial', 'pending', 'reference', 'original'), (s['id'], s.get('category'))
+assert len([s for s in songs if s['category'] == 'reference']) == meta['nonMusicCount']
+assert len([s for s in songs if s['category'] == 'original']) == meta['originalWorkCount']
+for s in songs:
+    if s['category'] == 'reference':
+        assert not s.get('chart') and s['chartStatus'] == 'reference', s['id']
+    if s['category'] == 'original':
+        assert not s.get('chart') and s['chartStatus'] == 'original', s['id']
+    if s['category'] in ('chart', 'partial'):
+        assert s.get('workTitle') or not s['id'].startswith('playlist-'), s['id']
+    if s['id'].startswith('playlist-'):
+        assert s.get('playlistKind'), s['id']
 assert len(ready) >= 25, len(ready)
 for s in ready:
     c = s['chart']
@@ -202,9 +216,9 @@ for s in ready:
 print('OK: 곡 200 (기존 25 + 복원·확인 19 + 공개 영상 155 + 추천 1)')
 entry = [s for s in songs if s['id'].startswith(('verified-', 'restored-')) or s['verification'] in ('added-by-user', 'imported')]
 assert len(entry) == 44, len(entry)
-assert len([s for s in entry if s['chartStatus'] == 'ready']) == len(ready)
-print(f"OK: 곡으로 등록된 {len(entry)}곡 중 악보 준비 {len(ready)}곡 · 부분 확인 {len(partial)}곡 · 검수 대기 {len(entry) - len(ready) - len(partial)}곡 "
-      f"(나머지 {len(songs) - len(entry)}개는 유튜브 영상 제목 항목)")
+print(f"OK: 전체 {len(songs)}개 항목 — 악보 완료 {len(ready)}(서로 다른 곡 {meta['uniqueChartSongCount']}) · 부분 확인 {len(partial)} · 검수 대기 {len(pending)} · "
+      f"비음악·참고 {meta['nonMusicCount']} · 자작곡 {meta['originalWorkCount']}")
+print(f"OK: 곡으로 등록된 {len(entry)}곡 중 악보 준비 {len([s for s in entry if s['chartStatus'] == 'ready'])}곡")
 print('OK: 박자 4/4·3/4·6/8, BPM 40~180, 남자키 이조·카포 0~7, 원터치 버튼(10개) 음정 일치, SimplifyChord 슬롯 ≤5, 근거 URL 존재')
 print('OK: 슬롯 211 (공개 168 · 접근 불가 42 · 제외 1 · 미확인 1), #6 7곡 · #65 2곡 · #163 제외 · #172 가수 미확인 유지')
 print('OK: 복원 17 + 사용자 확인 2, 접근 불가 사유 계정해지 37/비공개 3/저작권 1/업로더 1, 공개 영상 URL 168개')

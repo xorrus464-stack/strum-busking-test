@@ -577,6 +577,7 @@ CHARTS = {
 
 # 남자키 변환 기본값(반음): 여성 보컬 원곡 -4, 남성 보컬 원곡 -2 (곡별 shift가 우선)
 FEMALE_ORIGINAL = {
-    "verified-002", "verified-007", "verified-009", "verified-010", "verified-011",
+    # 원곡 보컬이 여성인 곡 → 남자키 -5반음(2026-11-22 사용자 기준)
+    "verified-002", "verified-007", "verified-010",
     "restored-096", "restored-119", "restored-130", "restored-131", "restored-132", "restored-151",
 }

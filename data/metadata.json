@@ -12,15 +12,255 @@
   "additionalRecommendedSongCount": 1,
   "originalPlaylist": "https://www.youtube.com/playlist?list=PLdOy20BJp9XElDHDvAJI6mUG48BmfDX-y",
   "playlistId": "PLdOy20BJp9XElDHDvAJI6mUG48BmfDX-y",
-  "seedVersion": 4,
+  "seedVersion": 5,
   "playlistCollectedCount": 210,
   "playlistPublicVideoCount": 168,
   "playlistInaccessibleVideoCount": 42,
   "restoredSongCount": 19,
   "songEntryCount": 200,
   "chartVersion": "2026-11-22",
-  "chartReadyCount": 27,
-  "chartPartialCount": 4,
-  "chartPendingCount": 13,
-  "chartDisclosure": "남자키·박자·BPM·코드 진행은 2026-11-22 웹 검색으로 확인한 코드표·악보 메타데이터에서 옮겼습니다. 악보 준비 완료 27곡, 부분 확인 4곡, 검수 대기 13곡. 마디 배치는 코드표 순서를 4박 카드로 정리한 연습용이며, 원곡 세부 마디와 다를 수 있습니다. 원터치 버튼에 없는 코드는 SimplifyChord 슬롯(최대 5개)으로 안내합니다."
+  "chartReadyCount": 116,
+  "chartPartialCount": 6,
+  "chartPendingCount": 38,
+  "chartDisclosure": "남자키는 여성 원곡 -5반음, 남성 원곡 -2반음을 기본으로 하고 AeroBand 원터치 버튼에 맞춰 카포를 골랐습니다. 남자키·박자·BPM·코드 진행은 2026-11-22 웹 검색으로 확인한 코드표·악보 메타데이터에서 옮겼습니다. 악보 준비 완료 116곡(서로 다른 곡 98곡), 부분 확인 6곡, 검수 대기 38곡, 비음악·참고 영상 39개, 자작곡 1개. 마디 배치는 코드표 순서를 4박 카드로 정리한 연습용이며, 원곡 세부 마디와 다를 수 있습니다. 원터치 버튼에 없는 코드는 SimplifyChord 슬롯(최대 5개)으로 안내합니다.",
+  "nonMusicCount": 39,
+  "originalWorkCount": 1,
+  "uniqueChartSongCount": 98,
+  "categoryCounts": {
+    "chart": 116,
+    "partial": 6,
+    "pending": 38,
+    "reference": 39,
+    "original": 1
+  },
+  "originalWorks": [
+    {
+      "id": "verified-004",
+      "title": "Ten Thousand Hours",
+      "artist": "Macklemore & Ryan Lewis",
+      "note": ""
+    },
+    {
+      "id": "verified-017",
+      "title": "나는 버려질 장난감",
+      "artist": "아소 · 아날로그소년",
+      "note": ""
+    },
+    {
+      "id": "verified-021",
+      "title": "날씨가 좋고 바람도 좋아",
+      "artist": "가수 미확인",
+      "note": ""
+    },
+    {
+      "id": "verified-024",
+      "title": "닮은사람",
+      "artist": "이기찬",
+      "note": ""
+    },
+    {
+      "id": "playlist-001",
+      "title": "운명의 상대를 만난다면 머릿속에서 이 노래가 들릴 겁니다 | Past Lives (cover by Jon Poppii)",
+      "artist": "MUFLIX 뮤플릭스",
+      "note": ""
+    },
+    {
+      "id": "playlist-016",
+      "title": "so low",
+      "artist": "Shiloh Dynasty",
+      "note": ""
+    },
+    {
+      "id": "playlist-024",
+      "title": "에아오 (AEAO)",
+      "artist": "다이나믹듀오",
+      "note": "다이나믹듀오 원곡 커버"
+    },
+    {
+      "id": "playlist-025",
+      "title": "될 대로 되라고 해",
+      "artist": "개코",
+      "note": "개코 라이브"
+    },
+    {
+      "id": "playlist-034",
+      "title": "한계",
+      "artist": "넬",
+      "note": "넬 원곡, 비교듣기"
+    },
+    {
+      "id": "playlist-038",
+      "title": "영원해",
+      "artist": "도경수 (D.O.)",
+      "note": "도경수 원곡"
+    },
+    {
+      "id": "playlist-042",
+      "title": "미워",
+      "artist": "크러쉬 (Crush)",
+      "note": "크러쉬 라이브"
+    },
+    {
+      "id": "playlist-047",
+      "title": "향기",
+      "artist": "샘김 (Sam Kim)",
+      "note": "샘김 원곡"
+    },
+    {
+      "id": "playlist-050",
+      "title": "Love Me Like That",
+      "artist": "샘김 (Sam Kim)",
+      "note": "샘김 원곡"
+    },
+    {
+      "id": "playlist-051",
+      "title": "Love Me Like That",
+      "artist": "샘김 (Sam Kim)",
+      "note": "샘김 원곡"
+    },
+    {
+      "id": "playlist-069",
+      "title": "꿈의 등불 (夢の灯り)",
+      "artist": "RADWIMPS",
+      "note": "너의 이름은 OST 커버"
+    },
+    {
+      "id": "playlist-073",
+      "title": "真夜中のドア〜Stay With Me",
+      "artist": "松原みき",
+      "note": "松原みき 원곡 커버"
+    },
+    {
+      "id": "playlist-075",
+      "title": "すずめ",
+      "artist": "RADWIMPS",
+      "note": "스즈메의 문단속 OST 커버"
+    },
+    {
+      "id": "playlist-077",
+      "title": "사랑이라 믿었던 것들은",
+      "artist": "BIG Naughty X 권진아",
+      "note": "BIG Naughty X 권진아"
+    },
+    {
+      "id": "playlist-086",
+      "title": "힙합보단 사랑, 사랑보단 돈",
+      "artist": "노아주다 feat. 베이식",
+      "note": "노아주다 커버"
+    },
+    {
+      "id": "playlist-116",
+      "title": "Somebody",
+      "artist": "도경수 (D.O.)",
+      "note": "도경수 원곡"
+    },
+    {
+      "id": "playlist-118",
+      "title": "나의 아버지 (Dad)",
+      "artist": "도경수 (D.O.)",
+      "note": "도경수 원곡"
+    },
+    {
+      "id": "playlist-124",
+      "title": "영원해",
+      "artist": "도경수 (D.O.)",
+      "note": "도경수 원곡"
+    },
+    {
+      "id": "playlist-126",
+      "title": "내일을 너에게 (I'll Be There)",
+      "artist": "도경수 (D.O.)",
+      "note": "도경수 원곡"
+    },
+    {
+      "id": "playlist-139",
+      "title": "기대",
+      "artist": "도경수 (D.O.)",
+      "note": "도경수 원곡"
+    },
+    {
+      "id": "playlist-143",
+      "title": "기적 (Wonder)",
+      "artist": "도경수 (D.O.)",
+      "note": "도경수 원곡"
+    },
+    {
+      "id": "playlist-152",
+      "title": "기억의 온기 (Where You Were)",
+      "artist": "도경수 (D.O.)",
+      "note": "도경수 원곡"
+    },
+    {
+      "id": "playlist-153",
+      "title": "다시, 별 아래",
+      "artist": "임한별",
+      "note": "임한별 원곡"
+    },
+    {
+      "id": "playlist-154",
+      "title": "다시, 별 아래",
+      "artist": "임한별",
+      "note": "임한별 원곡 커버"
+    },
+    {
+      "id": "playlist-157",
+      "title": "픽픽",
+      "artist": "로꼬",
+      "note": "로꼬 원곡"
+    },
+    {
+      "id": "playlist-159",
+      "title": "30 (서, 어른)",
+      "artist": "키썸 (Kisum)",
+      "note": "키썸 원곡"
+    },
+    {
+      "id": "playlist-161",
+      "title": "지금 이대로만",
+      "artist": "박재정 X 설윤",
+      "note": "박재정 X 설윤 원곡, 테이 커버"
+    },
+    {
+      "id": "playlist-166",
+      "title": "Feel Special",
+      "artist": "TWICE",
+      "note": "TWICE 원곡"
+    },
+    {
+      "id": "playlist-173",
+      "title": "괜히 보고 싶은 사실이 조금은 다행인 시간",
+      "artist": "jehoda",
+      "note": "jehoda 자작곡"
+    },
+    {
+      "id": "playlist-186",
+      "title": "오늘도 날씨는 흐리네",
+      "artist": "정영원",
+      "note": "정영원 원곡"
+    },
+    {
+      "id": "playlist-190",
+      "title": "어떤이별",
+      "artist": "임승부",
+      "note": "임승부 원곡"
+    },
+    {
+      "id": "playlist-205",
+      "title": "안녕 너희",
+      "artist": "유영우 X 허각",
+      "note": "유영우 X 허각"
+    },
+    {
+      "id": "playlist-206",
+      "title": "나를 사랑하지 말아요",
+      "artist": "유영우 X 허각",
+      "note": "유영우 X 허각"
+    },
+    {
+      "id": "suggested-stand-by-me",
+      "title": "Stand by Me",
+      "artist": "Ben E. King",
+      "note": ""
+    }
+  ]
 }

@@ -41,15 +41,21 @@ function act(handlers, cmd) { handlers.click({ target: { dataset: { act: cmd }, 
 let { root, handlers } = boot(null);
 assert(root.innerHTML.includes('STRUM'));
 assert(root.innerHTML.includes(`${ready}곡 준비 완료`), '홈: 준비 완료 곡 수');
+assert(root.innerHTML.includes('비음악'), '홈: 분류 요약');
 assert(root.innerHTML.includes('성장 로드맵'));
 
 // 2) 곡 라이브러리: 전체 곡 행 + 남자키 배지 + 필터
 nav(handlers, 'songs');
-assert(root.innerHTML.includes(`남자키·박자·BPM·원터치 악보 <b>${ready}곡</b>`), '곡 수 표기');
+assert(root.innerHTML.includes(`<b>${ready}개</b>`), '곡 수 표기');
+assert(root.innerHTML.includes('자작·AI곡') && root.innerHTML.includes('비음악·참고'), '분류 필터 칩');
 assert((root.innerHTML.match(/class="song-row"/g) || []).length === curated + recommended, '곡 행 수');
 assert(root.innerHTML.includes('남자키 <b>'), '남자키 배지');
-assert(root.innerHTML.includes('코드 검수 대기'), '검수 대기 배지');
-assert(root.innerHTML.includes('악보 준비 완료') && root.innerHTML.includes('코드 검수 대기</option>'), '필터 옵션');
+assert(root.innerHTML.includes('코드 검수 대기') || root.innerHTML.includes('남자키 <b>'), '분류 배지');
+assert(root.innerHTML.includes('악보 완료</option>') && root.innerHTML.includes('비음악·참고 영상</option>'), '필터 옵션');
+act(handlers, 'filter-cat:reference');
+assert((root.innerHTML.match(/비음악·참고 영상/g) || []).length >= meta.nonMusicCount, '비음악 필터 결과');
+act(handlers, 'filter-cat:chart-ready');
+assert((root.innerHTML.match(/class="song-row"/g) || []).length === ready, '악보 완료 필터 결과');
 
 // 3) 원터치 컬러 악보 모달
 nav(handlers, 'songs');
@@ -101,7 +107,7 @@ nav(handlers, 'settings');
 assert(root.innerHTML.includes('전체 JSON 백업') && root.innerHTML.includes('악보 설정 CSV'));
 assert(root.innerHTML.includes(`${ready}곡`), '설정: 악보 곡 수');
 
-// 11) seedVersion 3 → 4 병합: 기존 연습 기록·숙련도·메모 보존 + 악보 채움
+// 11) seedVersion 3 → 5 병합: 기존 연습 기록·숙련도·메모 보존 + 악보 채움
 const legacy = {
   version: 2, seedVersion: 3, removedSeedIds: [],
   songs: [{ id: 'verified-001', title: '오늘', artist: '오왠 (O.WHEN)', sourceIndices: [21], verification: 'site-top3', videoUrl: '', audioUrl: '', key: '미확정', maleKey: '미확정', bpm: null, chords: '', chordStatus: '미확인', strumming: '', level: '거의 가능', tags: [], notes: '내가 직접 쓴 메모', setlist: true }],
@@ -110,7 +116,7 @@ const legacy = {
 };
 ({ root, handlers } = boot(legacy));
 const saved = JSON.parse(store['strum-busking-v2']);
-assert(saved.seedVersion === 4, 'seedVersion 4 로 업그레이드');
+assert(saved.seedVersion === 5, 'seedVersion 5 로 업그레이드');
 assert(saved.logs.length === 1 && saved.logs[0].minutes === 33, '기존 연습 기록 보존');
 const mine = saved.songs.find(s => s.id === 'verified-001');
 assert(mine.level === '거의 가능', '숙련도 보존');

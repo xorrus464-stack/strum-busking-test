@@ -1,0 +1,4095 @@
+{
+ "apeungeon": {
+  "title": "나는 아픈 건 딱 질색이니까",
+  "singer": "(여자)아이들",
+  "originalKey": "C",
+  "timeSignature": "4/4",
+  "bpm": 115,
+  "sections": [
+   {
+    "name": "A · 1–4마디",
+    "bars": [
+     [
+      "F",
+      "G"
+     ],
+     [
+      "C",
+      "Am"
+     ],
+     [
+      "F",
+      "G"
+     ],
+     [
+      "C",
+      "Am"
+     ]
+    ]
+   },
+   {
+    "name": "B · 5–8마디",
+    "bars": [
+     [
+      "F",
+      "G"
+     ],
+     [
+      "C"
+     ],
+     [
+      "F",
+      "G"
+     ],
+     [
+      "Am"
+     ]
+    ]
+   }
+  ],
+  "scoreId": 15526
+ },
+ "bamhaneul": {
+  "title": "밤하늘의 별을",
+  "singer": "경서",
+  "originalKey": "Eb",
+  "timeSignature": "4/4",
+  "bpm": 77,
+  "sections": [
+   {
+    "name": "A · 1–4마디",
+    "bars": [
+     [
+      "Eb",
+      "G"
+     ],
+     [
+      "Cm",
+      "Eb"
+     ],
+     [
+      "Ab",
+      "Eb"
+     ],
+     [
+      "Fm",
+      "Bb"
+     ]
+    ]
+   },
+   {
+    "name": "B · 5–8마디",
+    "bars": [
+     [
+      "Eb",
+      "Bb"
+     ],
+     [
+      "Ab",
+      "Eb"
+     ],
+     [
+      "Ab",
+      "C"
+     ],
+     [
+      "Fm",
+      "Bb"
+     ]
+    ]
+   },
+   {
+    "name": "C · 9–11마디",
+    "bars": [
+     [
+      "Eb",
+      "G"
+     ],
+     [
+      "Cm",
+      "A"
+     ],
+     [
+      "Ab",
+      "Cm"
+     ]
+    ]
+   }
+  ],
+  "scoreId": 955
+ },
+ "barabwajwo": {
+  "title": "바라봐줘요",
+  "singer": "죠지",
+  "originalKey": "Db",
+  "timeSignature": "4/4",
+  "bpm": 62,
+  "sections": [
+   {
+    "name": "A · 1–4마디",
+    "bars": [
+     [
+      "Db"
+     ],
+     [
+      "Gbm"
+     ],
+     [
+      "Db",
+      "Bbm"
+     ],
+     [
+      "Eb",
+      "Ab"
+     ]
+    ]
+   },
+   {
+    "name": "B · 5–8마디",
+    "bars": [
+     [
+      "Db"
+     ],
+     [
+      "Gb",
+      "B"
+     ],
+     [
+      "Db"
+     ],
+     [
+      "Gb",
+      "A"
+     ]
+    ]
+   },
+   {
+    "name": "C · 9–10마디",
+    "bars": [
+     [
+      "Db",
+      "Bb"
+     ],
+     [
+      "Ebm",
+      "Gbm"
+     ]
+    ]
+   }
+  ],
+  "scoreId": 2124
+ },
+ "beautiful": {
+  "title": "Beautiful",
+  "singer": "Crush (크러쉬)",
+  "originalKey": "Bb",
+  "timeSignature": "4/4",
+  "bpm": 55,
+  "sections": [
+   {
+    "name": "A · 1–4마디",
+    "bars": [
+     [
+      "Bb"
+     ],
+     [
+      "Dm"
+     ],
+     [
+      "Gm"
+     ],
+     [
+      "F"
+     ]
+    ]
+   },
+   {
+    "name": "B · 5–8마디",
+    "bars": [
+     [
+      "Bb"
+     ],
+     [
+      "Dm"
+     ],
+     [
+      "Gm"
+     ],
+     [
+      "F"
+     ]
+    ]
+   },
+   {
+    "name": "C · 9–11마디",
+    "bars": [
+     [
+      "Bb"
+     ],
+     [
+      "Dm"
+     ],
+     [
+      "Gm"
+     ]
+    ]
+   }
+  ],
+  "scoreId": 1912
+ },
+ "blue": {
+  "title": "Blue",
+  "singer": "빅뱅 (BIGBANG)",
+  "originalKey": "Em",
+  "timeSignature": "4/4",
+  "bpm": 125,
+  "sections": [
+   {
+    "name": "A · 1–4마디",
+    "bars": [
+     [
+      "C"
+     ],
+     [
+      "G"
+     ],
+     [
+      "B"
+     ],
+     [
+      "Em",
+      "G"
+     ]
+    ]
+   },
+   {
+    "name": "B · 5–8마디",
+    "bars": [
+     [
+      "C"
+     ],
+     [
+      "G"
+     ],
+     [
+      "B"
+     ],
+     [
+      "Em",
+      "G"
+     ]
+    ]
+   },
+   {
+    "name": "C · 9–12마디",
+    "bars": [
+     [
+      "C"
+     ],
+     [
+      "G"
+     ],
+     [
+      "B"
+     ],
+     [
+      "Em",
+      "G"
+     ]
+    ]
+   }
+  ],
+  "scoreId": 11476
+ },
+ "boat": {
+  "title": "Boat",
+  "singer": "죠지",
+  "originalKey": "A",
+  "timeSignature": "4/4",
+  "bpm": 70,
+  "sections": [
+   {
+    "name": "A · 1–4마디",
+    "bars": [
+     [
+      "C#m"
+     ],
+     [
+      "Em",
+      "C#m"
+     ],
+     [
+      "D",
+      "C#m"
+     ],
+     [
+      "Em",
+      "Bm"
+     ]
+    ]
+   },
+   {
+    "name": "B · 5–8마디",
+    "bars": [
+     [
+      "D",
+      "C#m"
+     ],
+     [
+      "Em",
+      "C#m"
+     ],
+     [
+      "D",
+      "C#m"
+     ],
+     [
+      "Em",
+      "C#m"
+     ]
+    ]
+   }
+  ],
+  "scoreId": 14981
+ },
+ "bom-yeoreum": {
+  "title": "봄여름가을겨울(Still Life)",
+  "singer": "빅뱅 (BIGBANG)",
+  "originalKey": "Ab",
+  "timeSignature": "4/4",
+  "bpm": 59,
+  "sections": [
+   {
+    "name": "A · 1–4마디",
+    "bars": [
+     [
+      "Ab",
+      "Cm"
+     ],
+     [
+      "Db",
+      "Eb"
+     ],
+     [
+      "Fm",
+      "Bb"
+     ],
+     [
+      "Dbm",
+      "Eb"
+     ]
+    ]
+   },
+   {
+    "name": "B · 5–7마디",
+    "bars": [
+     [
+      "Ab",
+      "Cm"
+     ],
+     [
+      "Db",
+      "Eb"
+     ],
+     [
+      "Fm",
+      "Bb"
+     ]
+    ]
+   }
+  ],
+  "scoreId": 14557
+ },
+ "bomnaeeum": {
+  "title": "봄 내음보다 너를",
+  "singer": "김나영",
+  "originalKey": "G",
+  "timeSignature": "4/4",
+  "bpm": 68,
+  "sections": [
+   {
+    "name": "A · 1–4마디",
+    "bars": [
+     [
+      "G",
+      "B"
+     ],
+     [
+      "Em",
+      "Dm"
+     ],
+     [
+      "C",
+      "G"
+     ],
+     [
+      "Am"
+     ]
+    ]
+   },
+   {
+    "name": "B · 5–8마디",
+    "bars": [
+     [
+      "G",
+      "B"
+     ],
+     [
+      "Em",
+      "A"
+     ],
+     [
+      "Am",
+      "D"
+     ],
+     [
+      "G"
+     ]
+    ]
+   }
+  ],
+  "scoreId": 7118
+ },
+ "byeol-tteoreojinda": {
+  "title": "별 떨어진다(I Do)",
+  "singer": "디오 (D.O.)",
+  "originalKey": "B",
+  "timeSignature": "4/4",
+  "bpm": 105,
+  "sections": [
+   {
+    "name": "A · 1–4마디",
+    "bars": [
+     [
+      "B",
+      "C#m"
+     ],
+     [
+      "E"
+     ],
+     [
+      "B",
+      "C#m"
+     ],
+     [
+      "E"
+     ]
+    ]
+   },
+   {
+    "name": "B · 5–6마디",
+    "bars": [
+     [
+      "B",
+      "C#m"
+     ],
+     [
+      "E"
+     ]
+    ]
+   }
+  ],
+  "scoreId": 15603
+ },
+ "cheongchunmanhwa": {
+  "title": "청춘만화",
+  "singer": "이무진",
+  "originalKey": "G",
+  "timeSignature": "4/4",
+  "bpm": 95,
+  "sections": [
+   {
+    "name": "A · 1–4마디",
+    "bars": [
+     [
+      "G",
+      "C"
+     ],
+     [
+      "D",
+      "Em"
+     ],
+     [
+      "G",
+      "C"
+     ],
+     [
+      "B",
+      "Em"
+     ]
+    ]
+   },
+   {
+    "name": "B · 5–8마디",
+    "bars": [
+     [
+      "G",
+      "C"
+     ],
+     [
+      "B",
+      "Em"
+     ],
+     [
+      "Am",
+      "Cm"
+     ],
+     [
+      "D"
+     ]
+    ]
+   },
+   {
+    "name": "C · 9–12마디",
+    "bars": [
+     [
+      "G"
+     ],
+     [
+      "D"
+     ],
+     [
+      "B"
+     ],
+     [
+      "Em"
+     ]
+    ]
+   },
+   {
+    "name": "D · 13–15마디",
+    "bars": [
+     [
+      "C"
+     ],
+     [
+      "G",
+      "Gm"
+     ],
+     [
+      "Am"
+     ]
+    ]
+   }
+  ],
+  "scoreId": 15644
+ },
+ "chueok": {
+  "title": "추억이면",
+  "singer": "부활",
+  "originalKey": "Ab",
+  "timeSignature": "4/4",
+  "bpm": 74,
+  "sections": [
+   {
+    "name": "A · 1–4마디",
+    "bars": [
+     [
+      "Db",
+      "Eb"
+     ],
+     [
+      "Ab"
+     ],
+     [
+      "Db",
+      "Eb"
+     ],
+     [
+      "Ab"
+     ]
+    ]
+   },
+   {
+    "name": "B · 5–8마디",
+    "bars": [
+     [
+      "Db",
+      "Eb"
+     ],
+     [
+      "Bb"
+     ],
+     [
+      "Db"
+     ],
+     [
+      "Ab",
+      "Eb"
+     ]
+    ]
+   },
+   {
+    "name": "C · 9–11마디",
+    "bars": [
+     [
+      "Fm",
+      "Cm"
+     ],
+     [
+      "Db",
+      "Cm"
+     ],
+     [
+      "Bbm",
+      "Db"
+     ]
+    ]
+   }
+  ],
+  "scoreId": 15210
+ },
+ "chukga": {
+  "title": "축가",
+  "singer": "전우성 (노을)",
+  "originalKey": "F",
+  "timeSignature": "4/4",
+  "bpm": 68,
+  "sections": [
+   {
+    "name": "A · 1–4마디",
+    "bars": [
+     [
+      "F"
+     ],
+     [
+      "C"
+     ],
+     [
+      "Dm",
+      "Am"
+     ],
+     [
+      "Bb",
+      "C"
+     ]
+    ]
+   },
+   {
+    "name": "B · 5–8마디",
+    "bars": [
+     [
+      "F"
+     ],
+     [
+      "Bb"
+     ],
+     [
+      "F",
+      "Dm"
+     ],
+     [
+      "Gm",
+      "C"
+     ]
+    ]
+   },
+   {
+    "name": "C · 9–11마디",
+    "bars": [
+     [
+      "F"
+     ],
+     [
+      "Bb",
+      "Bbm"
+     ],
+     [
+      "F",
+      "Dm"
+     ]
+    ]
+   }
+  ],
+  "scoreId": 5069
+ },
+ "chunghon": {
+  "title": "청혼",
+  "singer": "노을",
+  "originalKey": "E",
+  "timeSignature": "4/4",
+  "bpm": 70,
+  "sections": [
+   {
+    "name": "A · 1–4마디",
+    "bars": [
+     [
+      "A#m",
+      "Am"
+     ],
+     [
+      "E",
+      "D#"
+     ],
+     [
+      "F#m"
+     ],
+     [
+      "B"
+     ]
+    ]
+   },
+   {
+    "name": "B · 5–8마디",
+    "bars": [
+     [
+      "F#m"
+     ],
+     [
+      "E"
+     ],
+     [
+      "E"
+     ],
+     [
+      "Am"
+     ]
+    ]
+   },
+   {
+    "name": "C · 9–12마디",
+    "bars": [
+     [
+      "E"
+     ],
+     [
+      "Am"
+     ],
+     [
+      "E"
+     ],
+     [
+      "Am"
+     ]
+    ]
+   }
+  ],
+  "scoreId": 1298
+ },
+ "congratulations": {
+  "title": "Congratulations",
+  "singer": "DAY6 (데이식스)",
+  "originalKey": "Eb",
+  "timeSignature": "4/4",
+  "bpm": 85,
+  "sections": [
+   {
+    "name": "A · 1–4마디",
+    "bars": [
+     [
+      "Ab"
+     ],
+     [
+      "Bb"
+     ],
+     [
+      "Eb"
+     ],
+     [
+      "Eb"
+     ]
+    ]
+   },
+   {
+    "name": "B · 5–8마디",
+    "bars": [
+     [
+      "Ab"
+     ],
+     [
+      "Bb"
+     ],
+     [
+      "Eb"
+     ],
+     [
+      "Eb"
+     ]
+    ]
+   }
+  ],
+  "scoreId": 11797
+ },
+ "dalli": {
+  "title": "달리 표현할 수 없어요",
+  "singer": "로이킴",
+  "originalKey": "Db",
+  "timeSignature": "4/4",
+  "bpm": 68,
+  "sections": [
+   {
+    "name": "A · 1–4마디",
+    "bars": [
+     [
+      "Db"
+     ],
+     [
+      "Db",
+      "Ab"
+     ],
+     [
+      "Db"
+     ],
+     [
+      "Bbm"
+     ]
+    ]
+   },
+   {
+    "name": "B · 5–8마디",
+    "bars": [
+     [
+      "Gb",
+      "Db"
+     ],
+     [
+      "Ebm",
+      "Ab"
+     ],
+     [
+      "Db",
+      "Ab"
+     ],
+     [
+      "Bbm"
+     ]
+    ]
+   }
+  ],
+  "scoreId": 16498
+ },
+ "dasi-sarang": {
+  "title": "다시 사랑한다면 (니글니글 버터플라이)",
+  "singer": "김필",
+  "originalKey": "Ab",
+  "timeSignature": "4/4",
+  "bpm": 75,
+  "sections": [
+   {
+    "name": "A · 1–4마디",
+    "bars": [
+     [
+      "Ab"
+     ],
+     [
+      "Eb"
+     ],
+     [
+      "Fm",
+      "Ab"
+     ],
+     [
+      "Db"
+     ]
+    ]
+   },
+   {
+    "name": "B · 5–8마디",
+    "bars": [
+     [
+      "Ab"
+     ],
+     [
+      "Eb"
+     ],
+     [
+      "Fm"
+     ],
+     [
+      "Cm"
+     ]
+    ]
+   },
+   {
+    "name": "C · 9–11마디",
+    "bars": [
+     [
+      "Db"
+     ],
+     [
+      "Ab"
+     ],
+     [
+      "Bbm",
+      "Db"
+     ]
+    ]
+   }
+  ],
+  "scoreId": 6595
+ },
+ "datunsaram": {
+  "title": "닮은 사람",
+  "singer": "테이 (Tei)",
+  "originalKey": "Eb",
+  "timeSignature": "4/4",
+  "bpm": 65,
+  "sections": [
+   {
+    "name": "A · 1–4마디",
+    "bars": [
+     [
+      "Fm",
+      "Eb"
+     ],
+     [
+      "Ab",
+      "Eb"
+     ],
+     [
+      "Db",
+      "Eb"
+     ],
+     [
+      "Eb",
+      "Bb"
+     ]
+    ]
+   },
+   {
+    "name": "B · 5–8마디",
+    "bars": [
+     [
+      "Eb",
+      "Gm"
+     ],
+     [
+      "Fm"
+     ],
+     [
+      "Bb",
+      "Bbm"
+     ],
+     [
+      "C"
+     ]
+    ]
+   },
+   {
+    "name": "C · 9–12마디",
+    "bars": [
+     [
+      "Fm",
+      "Eb"
+     ],
+     [
+      "Ab",
+      "Eb"
+     ],
+     [
+      "Fm",
+      "Bb"
+     ],
+     [
+      "Bb"
+     ]
+    ]
+   }
+  ],
+  "scoreId": 17055
+ },
+ "deo-areumdawo": {
+  "title": "더 아름다워져",
+  "singer": "소수빈",
+  "originalKey": "Eb",
+  "timeSignature": "4/4",
+  "bpm": 62,
+  "sections": [
+   {
+    "name": "A · 1–4마디",
+    "bars": [
+     [
+      "E"
+     ],
+     [
+      "A"
+     ],
+     [
+      "C#m"
+     ],
+     [
+      "F#m"
+     ]
+    ]
+   },
+   {
+    "name": "B · 5–8마디",
+    "bars": [
+     [
+      "B"
+     ],
+     [
+      "E"
+     ],
+     [
+      "A"
+     ],
+     [
+      "E"
+     ]
+    ]
+   },
+   {
+    "name": "C · 9–12마디",
+    "bars": [
+     [
+      "G#m"
+     ],
+     [
+      "A",
+      "F#"
+     ],
+     [
+      "G#",
+      "C#m"
+     ],
+     [
+      "F#m"
+     ]
+    ]
+   }
+  ],
+  "scoreId": 16521
+ },
+ "drowning": {
+  "title": "Drowning",
+  "singer": "WOODZ",
+  "originalKey": "Ab",
+  "timeSignature": "4/4",
+  "bpm": 114,
+  "sections": [
+   {
+    "name": "A · 1–4마디",
+    "bars": [
+     [
+      "Ab"
+     ],
+     [
+      "Cm"
+     ],
+     [
+      "Fm"
+     ],
+     [
+      "Eb"
+     ]
+    ]
+   },
+   {
+    "name": "B · 5–8마디",
+    "bars": [
+     [
+      "Db"
+     ],
+     [
+      "Ab"
+     ],
+     [
+      "Cm"
+     ],
+     [
+      "Fm"
+     ]
+    ]
+   },
+   {
+    "name": "C · 9–11마디",
+    "bars": [
+     [
+      "Eb"
+     ],
+     [
+      "Db"
+     ],
+     [
+      "Db",
+      "Dbm"
+     ]
+    ]
+   }
+  ],
+  "scoreId": 15899
+ },
+ "eoddeoke": {
+  "title": "어떻게 이별까지 사랑하겠어, 널 사랑하는 거지",
+  "singer": "악동뮤지션(AKMU)",
+  "originalKey": "F",
+  "timeSignature": "4/4",
+  "bpm": 65,
+  "sections": [
+   {
+    "name": "A · 1–4마디",
+    "bars": [
+     [
+      "F",
+      "C"
+     ],
+     [
+      "Dm",
+      "Bb"
+     ],
+     [
+      "F",
+      "C"
+     ],
+     [
+      "Bb",
+      "C"
+     ]
+    ]
+   },
+   {
+    "name": "B · 5–8마디",
+    "bars": [
+     [
+      "Bb"
+     ],
+     [
+      "F",
+      "C"
+     ],
+     [
+      "Dm"
+     ],
+     [
+      "Bb"
+     ]
+    ]
+   },
+   {
+    "name": "C · 9–12마디",
+    "bars": [
+     [
+      "C"
+     ],
+     [
+      "F",
+      "C"
+     ],
+     [
+      "Dm"
+     ],
+     [
+      "Bb"
+     ]
+    ]
+   }
+  ],
+  "scoreId": 11705
+ },
+ "eonjenga": {
+  "title": "언젠가는",
+  "singer": "이상은",
+  "originalKey": "G",
+  "timeSignature": "4/4",
+  "bpm": 66,
+  "sections": [
+   {
+    "name": "A · 1–4마디",
+    "bars": [
+     [
+      "G",
+      "D"
+     ],
+     [
+      "C",
+      "G"
+     ],
+     [
+      "C",
+      "D"
+     ],
+     [
+      "G"
+     ]
+    ]
+   },
+   {
+    "name": "B · 5–8마디",
+    "bars": [
+     [
+      "C",
+      "D"
+     ],
+     [
+      "Bm",
+      "Em"
+     ],
+     [
+      "C",
+      "G"
+     ],
+     [
+      "Am",
+      "D"
+     ]
+    ]
+   },
+   {
+    "name": "C · 9–12마디",
+    "bars": [
+     [
+      "G",
+      "D"
+     ],
+     [
+      "Em"
+     ],
+     [
+      "C",
+      "D"
+     ],
+     [
+      "G"
+     ]
+    ]
+   },
+   {
+    "name": "D · 13–15마디",
+    "bars": [
+     [
+      "C",
+      "D"
+     ],
+     [
+      "Bm",
+      "Em"
+     ],
+     [
+      "Am",
+      "C"
+     ]
+    ]
+   }
+  ],
+  "scoreId": 13885
+ },
+ "eoreun": {
+  "title": "어른",
+  "singer": "Sondia",
+  "originalKey": "A",
+  "timeSignature": "4/4",
+  "bpm": 61,
+  "sections": [
+   {
+    "name": "A · 1–4마디",
+    "bars": [
+     [
+      "F#m",
+      "A"
+     ],
+     [
+      "D"
+     ],
+     [
+      "F#m",
+      "A"
+     ],
+     [
+      "A",
+      "D"
+     ]
+    ]
+   },
+   {
+    "name": "B · 5–8마디",
+    "bars": [
+     [
+      "F#m",
+      "A"
+     ],
+     [
+      "D"
+     ],
+     [
+      "F#m",
+      "A"
+     ],
+     [
+      "D"
+     ]
+    ]
+   }
+  ],
+  "scoreId": 5950
+ },
+ "episode": {
+  "title": "에피소드",
+  "singer": "이무진",
+  "originalKey": "D",
+  "timeSignature": "4/4",
+  "bpm": 118,
+  "sections": [
+   {
+    "name": "A · 1–4마디",
+    "bars": [
+     [
+      "D"
+     ],
+     [
+      "G"
+     ],
+     [
+      "A"
+     ],
+     [
+      "F#m",
+      "A#"
+     ]
+    ]
+   },
+   {
+    "name": "B · 5–7마디",
+    "bars": [
+     [
+      "Bm",
+      "D"
+     ],
+     [
+      "G",
+      "A"
+     ],
+     [
+      "F#m",
+      "Bm"
+     ]
+    ]
+   }
+  ],
+  "scoreId": 15239
+ },
+ "geori": {
+  "title": "거리에서",
+  "singer": "김광석",
+  "originalKey": "Am",
+  "timeSignature": "4/4",
+  "bpm": 65,
+  "sections": [
+   {
+    "name": "A · 1–4마디",
+    "bars": [
+     [
+      "Am",
+      "G#"
+     ],
+     [
+      "C",
+      "F#m"
+     ],
+     [
+      "Dm"
+     ],
+     [
+      "E"
+     ]
+    ]
+   },
+   {
+    "name": "B · 5–8마디",
+    "bars": [
+     [
+      "E"
+     ],
+     [
+      "Am"
+     ],
+     [
+      "Dm"
+     ],
+     [
+      "G"
+     ]
+    ]
+   },
+   {
+    "name": "C · 9–12마디",
+    "bars": [
+     [
+      "C",
+      "E"
+     ],
+     [
+      "Am"
+     ],
+     [
+      "Dm"
+     ],
+     [
+      "E"
+     ]
+    ]
+   }
+  ],
+  "scoreId": 1268
+ },
+ "geu-apeum": {
+  "title": "그 아픔까지 사랑한거야",
+  "singer": "조정현",
+  "originalKey": "Bb",
+  "timeSignature": "4/4",
+  "bpm": 74,
+  "sections": [
+   {
+    "name": "A · 1–4마디",
+    "bars": [
+     [
+      "Bb"
+     ],
+     [
+      "Eb"
+     ],
+     [
+      "F"
+     ],
+     [
+      "Bb"
+     ]
+    ]
+   },
+   {
+    "name": "B · 5–8마디",
+    "bars": [
+     [
+      "Eb"
+     ],
+     [
+      "F"
+     ],
+     [
+      "Bb"
+     ],
+     [
+      "Eb"
+     ]
+    ]
+   },
+   {
+    "name": "C · 9–12마디",
+    "bars": [
+     [
+      "F"
+     ],
+     [
+      "Dm",
+      "Gm"
+     ],
+     [
+      "Cm",
+      "F"
+     ],
+     [
+      "Dm",
+      "Gm"
+     ]
+    ]
+   },
+   {
+    "name": "D · 13–13마디",
+    "bars": [
+     [
+      "Cm"
+     ]
+    ]
+   }
+  ],
+  "scoreId": 15231
+ },
+ "geu-yeoreumbam": {
+  "title": "그 여름밤",
+  "singer": "샘김",
+  "originalKey": "G",
+  "timeSignature": "4/4",
+  "bpm": 63,
+  "sections": [
+   {
+    "name": "A · 1–4마디",
+    "bars": [
+     [
+      "Am",
+      "F#"
+     ],
+     [
+      "G",
+      "B"
+     ],
+     [
+      "Em",
+      "G"
+     ],
+     [
+      "G"
+     ]
+    ]
+   },
+   {
+    "name": "B · 5–7마디",
+    "bars": [
+     [
+      "Am",
+      "D"
+     ],
+     [
+      "G",
+      "B"
+     ],
+     [
+      "Em",
+      "G"
+     ]
+    ]
+   }
+  ],
+  "scoreId": 3943
+ },
+ "gidae": {
+  "title": "기대",
+  "singer": "나윤권",
+  "originalKey": "Eb",
+  "timeSignature": "4/4",
+  "bpm": 100,
+  "sections": [
+   {
+    "name": "A · 1–4마디",
+    "bars": [
+     [
+      "Eb"
+     ],
+     [
+      "Dm",
+      "G"
+     ],
+     [
+      "Cm"
+     ],
+     [
+      "F"
+     ]
+    ]
+   },
+   {
+    "name": "B · 5–8마디",
+    "bars": [
+     [
+      "Fm",
+      "Eb"
+     ],
+     [
+      "Ab"
+     ],
+     [
+      "Cm",
+      "Eb"
+     ],
+     [
+      "Ab"
+     ]
+    ]
+   },
+   {
+    "name": "C · 9–10마디",
+    "bars": [
+     [
+      "Ab"
+     ],
+     [
+      "Bb"
+     ]
+    ]
+   }
+  ],
+  "scoreId": 5869
+ },
+ "gijeok": {
+  "title": "기적",
+  "singer": "김동률. 이소은",
+  "originalKey": "Eb",
+  "timeSignature": "4/4",
+  "bpm": 60,
+  "sections": [
+   {
+    "name": "A · 1–4마디",
+    "bars": [
+     [
+      "Eb",
+      "Abm"
+     ],
+     [
+      "Eb",
+      "Abm"
+     ],
+     [
+      "Eb",
+      "Abm"
+     ],
+     [
+      "Eb",
+      "Abm"
+     ]
+    ]
+   },
+   {
+    "name": "B · 5–8마디",
+    "bars": [
+     [
+      "Eb",
+      "C"
+     ],
+     [
+      "F",
+      "G"
+     ],
+     [
+      "Cm",
+      "Ab"
+     ],
+     [
+      "Eb",
+      "D"
+     ]
+    ]
+   }
+  ],
+  "scoreId": 12957
+ },
+ "gwaenchana": {
+  "title": "괜찮아도 괜찮아 (That's okay)",
+  "singer": "디오 (D.O.)",
+  "originalKey": "G",
+  "timeSignature": "4/4",
+  "bpm": 65,
+  "sections": [
+   {
+    "name": "A · 1–4마디",
+    "bars": [
+     [
+      "G",
+      "D"
+     ],
+     [
+      "Em",
+      "G"
+     ],
+     [
+      "C",
+      "Bm"
+     ],
+     [
+      "Am",
+      "D"
+     ]
+    ]
+   },
+   {
+    "name": "B · 5–7마디",
+    "bars": [
+     [
+      "G",
+      "D"
+     ],
+     [
+      "Em",
+      "G"
+     ],
+     [
+      "C",
+      "Bm"
+     ]
+    ]
+   }
+  ],
+  "scoreId": 1198
+ },
+ "gwajegok": {
+  "title": "과제곡",
+  "singer": "이무진",
+  "originalKey": "Am",
+  "timeSignature": "4/4",
+  "bpm": 126,
+  "sections": [
+   {
+    "name": "A · 1–4마디",
+    "bars": [
+     [
+      "Am"
+     ],
+     [
+      "F"
+     ],
+     [
+      "F"
+     ],
+     [
+      "C"
+     ]
+    ]
+   },
+   {
+    "name": "B · 5–8마디",
+    "bars": [
+     [
+      "E"
+     ],
+     [
+      "E"
+     ],
+     [
+      "Am"
+     ],
+     [
+      "F"
+     ]
+    ]
+   },
+   {
+    "name": "C · 9–11마디",
+    "bars": [
+     [
+      "F"
+     ],
+     [
+      "C"
+     ],
+     [
+      "E"
+     ]
+    ]
+   }
+  ],
+  "scoreId": 4967
+ },
+ "haengbok": {
+  "title": "행복",
+  "singer": "오반(OVAN)",
+  "originalKey": "E",
+  "timeSignature": "4/4",
+  "bpm": 120,
+  "sections": [
+   {
+    "name": "A · 1–4마디",
+    "bars": [
+     [
+      "E"
+     ],
+     [
+      "C#m"
+     ],
+     [
+      "F#m"
+     ],
+     [
+      "B"
+     ]
+    ]
+   },
+   {
+    "name": "B · 5–6마디",
+    "bars": [
+     [
+      "E"
+     ],
+     [
+      "C#m"
+     ]
+    ]
+   }
+  ],
+  "scoreId": 8762
+ },
+ "hanbeon": {
+  "title": "한번 더 이별",
+  "singer": "성시경",
+  "originalKey": "B",
+  "timeSignature": "4/4",
+  "bpm": 66,
+  "sections": [
+   {
+    "name": "A · 1–4마디",
+    "bars": [
+     [
+      "F#m",
+      "B"
+     ],
+     [
+      "E"
+     ],
+     [
+      "Em",
+      "A"
+     ],
+     [
+      "F#"
+     ]
+    ]
+   },
+   {
+    "name": "B · 5–8마디",
+    "bars": [
+     [
+      "B"
+     ],
+     [
+      "E",
+      "Em"
+     ],
+     [
+      "C#m",
+      "F#"
+     ],
+     [
+      "B"
+     ]
+    ]
+   },
+   {
+    "name": "C · 9–12마디",
+    "bars": [
+     [
+      "E",
+      "F#"
+     ],
+     [
+      "D#m",
+      "G#m"
+     ],
+     [
+      "C#m",
+      "F#"
+     ],
+     [
+      "B"
+     ]
+    ]
+   }
+  ],
+  "scoreId": 6369
+ },
+ "hangye": {
+  "title": "한계",
+  "singer": "백예린",
+  "originalKey": "A",
+  "timeSignature": "4/4",
+  "bpm": 70,
+  "sections": [
+   {
+    "name": "A · 1–4마디",
+    "bars": [
+     [
+      "A"
+     ],
+     [
+      "C#"
+     ],
+     [
+      "F#m",
+      "A"
+     ],
+     [
+      "D"
+     ]
+    ]
+   },
+   {
+    "name": "B · 5–7마디",
+    "bars": [
+     [
+      "Bm"
+     ],
+     [
+      "E"
+     ],
+     [
+      "A",
+      "E"
+     ]
+    ]
+   }
+  ],
+  "scoreId": 12864
+ },
+ "hurai": {
+  "title": "후라이의 꿈",
+  "singer": "악동뮤지션, 아이유",
+  "originalKey": "D",
+  "timeSignature": "4/4",
+  "bpm": 125,
+  "sections": [
+   {
+    "name": "A · 1–4마디",
+    "bars": [
+     [
+      "Gm"
+     ],
+     [
+      "G"
+     ],
+     [
+      "F#"
+     ],
+     [
+      "Bm"
+     ]
+    ]
+   },
+   {
+    "name": "B · 5–8마디",
+    "bars": [
+     [
+      "Am",
+      "D"
+     ],
+     [
+      "G"
+     ],
+     [
+      "F#"
+     ],
+     [
+      "Bm"
+     ]
+    ]
+   }
+  ],
+  "scoreId": 10558
+ },
+ "hyanggi": {
+  "title": "향기로운 추억",
+  "singer": "박학기",
+  "originalKey": "Am",
+  "timeSignature": "4/4",
+  "bpm": 93,
+  "sections": [
+   {
+    "name": "A · 1–4마디",
+    "bars": [
+     [
+      "Am"
+     ],
+     [
+      "Dm"
+     ],
+     [
+      "G"
+     ],
+     [
+      "C"
+     ]
+    ]
+   },
+   {
+    "name": "B · 5–7마디",
+    "bars": [
+     [
+      "F"
+     ],
+     [
+      "Bb"
+     ],
+     [
+      "Bm"
+     ]
+    ]
+   }
+  ],
+  "scoreId": 12469
+ },
+ "ibam": {
+  "title": "이 밤을 빌려 말해요(바른연애 길잡이 X 10CM)",
+  "singer": "10cm",
+  "originalKey": "D",
+  "timeSignature": "4/4",
+  "bpm": 67,
+  "sections": [
+   {
+    "name": "A · 1–4마디",
+    "bars": [
+     [
+      "D",
+      "A"
+     ],
+     [
+      "Bm",
+      "Gm"
+     ],
+     [
+      "D"
+     ],
+     [
+      "Gm"
+     ]
+    ]
+   },
+   {
+    "name": "B · 5–8마디",
+    "bars": [
+     [
+      "D",
+      "A"
+     ],
+     [
+      "Bm",
+      "D"
+     ],
+     [
+      "G",
+      "D"
+     ],
+     [
+      "Em",
+      "Gm"
+     ]
+    ]
+   }
+  ],
+  "scoreId": 1341
+ },
+ "ijeobeorijima": {
+  "title": "잊어버리지마 (Feat. 태연)",
+  "singer": "Crush (크러쉬)",
+  "originalKey": "C",
+  "timeSignature": "4/4",
+  "bpm": 94,
+  "sections": [
+   {
+    "name": "A · 1–4마디",
+    "bars": [
+     [
+      "C"
+     ],
+     [
+      "Gm"
+     ],
+     [
+      "Gm",
+      "C"
+     ],
+     [
+      "F"
+     ]
+    ]
+   },
+   {
+    "name": "B · 5–5마디",
+    "bars": [
+     [
+      "Fm"
+     ]
+    ]
+   }
+  ],
+  "scoreId": 1196
+ },
+ "ipchun": {
+  "title": "입춘",
+  "singer": "한로로",
+  "originalKey": "F",
+  "timeSignature": "4/4",
+  "bpm": 80,
+  "sections": [
+   {
+    "name": "A · 1–3마디",
+    "bars": [
+     [
+      "F"
+     ],
+     [
+      "G"
+     ],
+     [
+      "Am"
+     ]
+    ]
+   }
+  ],
+  "scoreId": 15641
+ },
+ "jal-jinaenja": {
+  "title": "잘 지내자, 우리",
+  "singer": "로이킴",
+  "originalKey": "B",
+  "timeSignature": "4/4",
+  "bpm": 75,
+  "sections": [
+   {
+    "name": "A · 1–4마디",
+    "bars": [
+     [
+      "B"
+     ],
+     [
+      "F#"
+     ],
+     [
+      "G#m"
+     ],
+     [
+      "F#"
+     ]
+    ]
+   },
+   {
+    "name": "B · 5–7마디",
+    "bars": [
+     [
+      "F#",
+      "E"
+     ],
+     [
+      "B"
+     ],
+     [
+      "C#m"
+     ]
+    ]
+   }
+  ],
+  "scoreId": 15789
+ },
+ "jamkkan": {
+  "title": "잠깐 시간 될까",
+  "singer": "이무진",
+  "originalKey": "C",
+  "timeSignature": "4/4",
+  "bpm": 106,
+  "sections": [
+   {
+    "name": "A · 1–4마디",
+    "bars": [
+     [
+      "C"
+     ],
+     [
+      "F"
+     ],
+     [
+      "G",
+      "E"
+     ],
+     [
+      "Am",
+      "Gb"
+     ]
+    ]
+   },
+   {
+    "name": "B · 5–7마디",
+    "bars": [
+     [
+      "F",
+      "G"
+     ],
+     [
+      "E",
+      "Am"
+     ],
+     [
+      "Dm"
+     ]
+    ]
+   }
+  ],
+  "scoreId": 14988
+ },
+ "jinsim": {
+  "title": "진심이 담긴 노래 ( True Song)",
+  "singer": "케이시 (Kassy)",
+  "originalKey": "Bb",
+  "timeSignature": "4/4",
+  "bpm": 70,
+  "sections": [
+   {
+    "name": "A · 1–4마디",
+    "bars": [
+     [
+      "Eb",
+      "F#"
+     ],
+     [
+      "Gm",
+      "Dm"
+     ],
+     [
+      "Eb",
+      "F"
+     ],
+     [
+      "Dm",
+      "Gm"
+     ]
+    ]
+   }
+  ],
+  "scoreId": 858
+ },
+ "johahae": {
+  "title": "좋아해..(바른연애 길잡이 X 죠지)",
+  "singer": "죠지",
+  "originalKey": "A",
+  "timeSignature": "4/4",
+  "bpm": 65,
+  "sections": [
+   {
+    "name": "A · 1–4마디",
+    "bars": [
+     [
+      "A",
+      "D"
+     ],
+     [
+      "A",
+      "Dm"
+     ],
+     [
+      "C#m",
+      "F#"
+     ],
+     [
+      "Bm"
+     ]
+    ]
+   },
+   {
+    "name": "B · 5–8마디",
+    "bars": [
+     [
+      "E"
+     ],
+     [
+      "A"
+     ],
+     [
+      "E"
+     ],
+     [
+      "D"
+     ]
+    ]
+   },
+   {
+    "name": "C · 9–12마디",
+    "bars": [
+     [
+      "Em",
+      "A"
+     ],
+     [
+      "D"
+     ],
+     [
+      "C#m",
+      "F#"
+     ],
+     [
+      "Bm"
+     ]
+    ]
+   }
+  ],
+  "scoreId": 2259
+ },
+ "kkotgil": {
+  "title": "꽃 길",
+  "singer": "빅뱅 (BIGBANG)",
+  "originalKey": "E",
+  "timeSignature": "4/4",
+  "bpm": 95,
+  "sections": [
+   {
+    "name": "A · 1–4마디",
+    "bars": [
+     [
+      "F#m"
+     ],
+     [
+      "B"
+     ],
+     [
+      "E"
+     ],
+     [
+      "A"
+     ]
+    ]
+   },
+   {
+    "name": "B · 5–7마디",
+    "bars": [
+     [
+      "F#m"
+     ],
+     [
+      "B"
+     ],
+     [
+      "E"
+     ]
+    ]
+   }
+  ],
+  "scoreId": 1116
+ },
+ "kkumkkudeon": {
+  "title": "꿈꾸던 어른이 되었나요? (The Adult I Dreamed Of)",
+  "singer": "머무르",
+  "originalKey": "Gb",
+  "timeSignature": "4/4",
+  "bpm": 71,
+  "sections": [
+   {
+    "name": "A · 1–4마디",
+    "bars": [
+     [
+      "Gb",
+      "Bb"
+     ],
+     [
+      "Ebm",
+      "Gb"
+     ],
+     [
+      "B"
+     ],
+     [
+      "Db"
+     ]
+    ]
+   },
+   {
+    "name": "B · 5–8마디",
+    "bars": [
+     [
+      "Gb"
+     ],
+     [
+      "Bbm"
+     ],
+     [
+      "Ebm",
+      "Db"
+     ],
+     [
+      "B"
+     ]
+    ]
+   }
+  ],
+  "scoreId": 17130
+ },
+ "makeup": {
+  "title": "Make Up(Feat. Crush)",
+  "singer": "샘김",
+  "originalKey": "C",
+  "timeSignature": "4/4",
+  "bpm": 62,
+  "sections": [
+   {
+    "name": "A · 1–4마디",
+    "bars": [
+     [
+      "F"
+     ],
+     [
+      "Em"
+     ],
+     [
+      "Dm"
+     ],
+     [
+      "C"
+     ]
+    ]
+   },
+   {
+    "name": "B · 5–7마디",
+    "bars": [
+     [
+      "F"
+     ],
+     [
+      "Em"
+     ],
+     [
+      "Eb",
+      "Ab"
+     ]
+    ]
+   }
+  ],
+  "scoreId": 13963
+ },
+ "manchan": {
+  "title": "만찬가",
+  "singer": "tuki.",
+  "originalKey": "Ab",
+  "timeSignature": "4/4",
+  "bpm": 102,
+  "sections": [
+   {
+    "name": "A · 1–4마디",
+    "bars": [
+     [
+      "Ab",
+      "Db"
+     ],
+     [
+      "Eb",
+      "Fm"
+     ],
+     [
+      "Ab",
+      "Db"
+     ],
+     [
+      "Eb",
+      "Fm"
+     ]
+    ]
+   },
+   {
+    "name": "B · 5–8마디",
+    "bars": [
+     [
+      "Ab",
+      "Db"
+     ],
+     [
+      "Eb",
+      "Fm"
+     ],
+     [
+      "Ab",
+      "Db"
+     ],
+     [
+      "Eb",
+      "Fm"
+     ]
+    ]
+   },
+   {
+    "name": "C · 9–12마디",
+    "bars": [
+     [
+      "Ab",
+      "Db"
+     ],
+     [
+      "Eb",
+      "Fm"
+     ],
+     [
+      "Ab",
+      "Db"
+     ],
+     [
+      "Eb",
+      "Fm"
+     ]
+    ]
+   }
+  ],
+  "scoreId": 15767
+ },
+ "miwo": {
+  "title": "미안해 미워해 사랑해",
+  "singer": "Crush (크러쉬)",
+  "originalKey": "E",
+  "timeSignature": "4/4",
+  "bpm": 67,
+  "sections": [
+   {
+    "name": "A · 1–4마디",
+    "bars": [
+     [
+      "E"
+     ],
+     [
+      "E",
+      "C#m"
+     ],
+     [
+      "B"
+     ],
+     [
+      "A"
+     ]
+    ]
+   },
+   {
+    "name": "B · 5–5마디",
+    "bars": [
+     [
+      "Am",
+      "E"
+     ]
+    ]
+   }
+  ],
+  "scoreId": 15740
+ },
+ "muje": {
+  "title": "무제",
+  "singer": "G-Dragon (지드래곤)",
+  "originalKey": "E",
+  "timeSignature": "4/4",
+  "bpm": 80,
+  "sections": [
+   {
+    "name": "A · 1–4마디",
+    "bars": [
+     [
+      "E",
+      "G#m"
+     ],
+     [
+      "A",
+      "B"
+     ],
+     [
+      "E",
+      "G#m"
+     ],
+     [
+      "A",
+      "B"
+     ]
+    ]
+   },
+   {
+    "name": "B · 5–8마디",
+    "bars": [
+     [
+      "E",
+      "G#m"
+     ],
+     [
+      "A",
+      "B"
+     ],
+     [
+      "E",
+      "G#m"
+     ],
+     [
+      "A",
+      "B"
+     ]
+    ]
+   }
+  ],
+  "scoreId": 3079
+ },
+ "mworahalkka": {
+  "title": "뭐라할까",
+  "singer": "브리즈 (The Breeze)",
+  "originalKey": "Bm",
+  "timeSignature": "4/4",
+  "bpm": 78,
+  "sections": [
+   {
+    "name": "A · 1–4마디",
+    "bars": [
+     [
+      "Bm",
+      "G"
+     ],
+     [
+      "D",
+      "A"
+     ],
+     [
+      "Bm",
+      "G"
+     ],
+     [
+      "D",
+      "A"
+     ]
+    ]
+   },
+   {
+    "name": "B · 5–8마디",
+    "bars": [
+     [
+      "Bm",
+      "G"
+     ],
+     [
+      "D",
+      "A"
+     ],
+     [
+      "Bm",
+      "G"
+     ],
+     [
+      "D",
+      "A"
+     ]
+    ]
+   },
+   {
+    "name": "C · 9–12마디",
+    "bars": [
+     [
+      "Bm",
+      "G"
+     ],
+     [
+      "D",
+      "A"
+     ],
+     [
+      "Bm",
+      "G"
+     ],
+     [
+      "D",
+      "A"
+     ]
+    ]
+   }
+  ],
+  "scoreId": 4188
+ },
+ "myeoljong": {
+  "title": "멸종위기사랑",
+  "singer": "이찬혁",
+  "originalKey": "Ab",
+  "timeSignature": "4/4",
+  "bpm": 115,
+  "sections": [
+   {
+    "name": "A · 1–4마디",
+    "bars": [
+     [
+      "Db",
+      "Eb"
+     ],
+     [
+      "Cm",
+      "Fm"
+     ],
+     [
+      "Bbm",
+      "Eb"
+     ],
+     [
+      "Ab",
+      "Ab"
+     ]
+    ]
+   },
+   {
+    "name": "B · 5–8마디",
+    "bars": [
+     [
+      "Db",
+      "Eb"
+     ],
+     [
+      "Cm",
+      "Fm"
+     ],
+     [
+      "Bbm",
+      "Eb"
+     ],
+     [
+      "Ab"
+     ]
+    ]
+   },
+   {
+    "name": "C · 9–12마디",
+    "bars": [
+     [
+      "Db",
+      "Eb"
+     ],
+     [
+      "Cm",
+      "Fm"
+     ],
+     [
+      "Bbm",
+      "Eb"
+     ],
+     [
+      "Ab",
+      "Ab"
+     ]
+    ]
+   },
+   {
+    "name": "D · 13–15마디",
+    "bars": [
+     [
+      "Db",
+      "Eb"
+     ],
+     [
+      "Cm",
+      "Fm"
+     ],
+     [
+      "Bbm",
+      "Eb"
+     ]
+    ]
+   }
+  ],
+  "scoreId": 16248
+ },
+ "myeongdong": {
+  "title": "명동콜링",
+  "singer": "크라잉넛",
+  "originalKey": "Bb",
+  "timeSignature": "4/4",
+  "bpm": 96,
+  "sections": [
+   {
+    "name": "A · 1–4마디",
+    "bars": [
+     [
+      "Bb"
+     ],
+     [
+      "D"
+     ],
+     [
+      "Gm"
+     ],
+     [
+      "Eb"
+     ]
+    ]
+   },
+   {
+    "name": "B · 5–8마디",
+    "bars": [
+     [
+      "Bb"
+     ],
+     [
+      "F"
+     ],
+     [
+      "Bb",
+      "Eb"
+     ],
+     [
+      "Bb",
+      "F"
+     ]
+    ]
+   },
+   {
+    "name": "C · 9–12마디",
+    "bars": [
+     [
+      "Bb"
+     ],
+     [
+      "D"
+     ],
+     [
+      "Gm"
+     ],
+     [
+      "Eb"
+     ]
+    ]
+   }
+  ],
+  "scoreId": 852
+ },
+ "nae-saeng": {
+  "title": "내 생에 아름다운",
+  "singer": "케이윌 (K.Will)",
+  "originalKey": "Eb",
+  "timeSignature": "4/4",
+  "bpm": 64,
+  "sections": [
+   {
+    "name": "A · 1–4마디",
+    "bars": [
+     [
+      "Cm",
+      "Ab"
+     ],
+     [
+      "Eb",
+      "Bb"
+     ],
+     [
+      "Cm",
+      "Ab"
+     ],
+     [
+      "Eb",
+      "Bb"
+     ]
+    ]
+   },
+   {
+    "name": "B · 5–8마디",
+    "bars": [
+     [
+      "Cm",
+      "Ab"
+     ],
+     [
+      "Eb"
+     ],
+     [
+      "Cm",
+      "Ab"
+     ],
+     [
+      "Eb",
+      "Bb"
+     ]
+    ]
+   },
+   {
+    "name": "C · 9–12마디",
+    "bars": [
+     [
+      "Cm",
+      "Ab"
+     ],
+     [
+      "Eb",
+      "Bb"
+     ],
+     [
+      "Cm",
+      "Ab"
+     ],
+     [
+      "Eb"
+     ]
+    ]
+   }
+  ],
+  "scoreId": 10258
+ },
+ "nae-soneul": {
+  "title": "내 손을 잡아",
+  "singer": "아이유 (IU)",
+  "originalKey": "A",
+  "timeSignature": "4/4",
+  "bpm": 96,
+  "sections": [
+   {
+    "name": "A · 1–4마디",
+    "bars": [
+     [
+      "A",
+      "E"
+     ],
+     [
+      "D",
+      "E"
+     ],
+     [
+      "A",
+      "E"
+     ],
+     [
+      "D",
+      "E"
+     ]
+    ]
+   },
+   {
+    "name": "B · 5–8마디",
+    "bars": [
+     [
+      "A",
+      "E"
+     ],
+     [
+      "D",
+      "E"
+     ],
+     [
+      "F#m",
+      "C#m"
+     ],
+     [
+      "D",
+      "E"
+     ]
+    ]
+   }
+  ],
+  "scoreId": 2604
+ },
+ "naui-abeoji": {
+  "title": "사랑하는 나의 아버지",
+  "singer": "Gina",
+  "originalKey": "Bb",
+  "timeSignature": "4/4",
+  "bpm": 116,
+  "sections": [
+   {
+    "name": "A · 1–4마디",
+    "bars": [
+     [
+      "Eb"
+     ],
+     [
+      "Eb",
+      "D"
+     ],
+     [
+      "D"
+     ],
+     [
+      "Gm"
+     ]
+    ]
+   },
+   {
+    "name": "B · 5–8마디",
+    "bars": [
+     [
+      "Cm"
+     ],
+     [
+      "F"
+     ],
+     [
+      "Bb"
+     ],
+     [
+      "Bb"
+     ]
+    ]
+   },
+   {
+    "name": "C · 9–12마디",
+    "bars": [
+     [
+      "Bb"
+     ],
+     [
+      "Bb"
+     ],
+     [
+      "Cm"
+     ],
+     [
+      "Cm"
+     ]
+    ]
+   },
+   {
+    "name": "D · 13–16마디",
+    "bars": [
+     [
+      "F"
+     ],
+     [
+      "F"
+     ],
+     [
+      "Bb"
+     ],
+     [
+      "F"
+     ]
+    ]
+   }
+  ],
+  "scoreId": 17697
+ },
+ "naui-x": {
+  "title": "나의 X에게",
+  "singer": "경서",
+  "originalKey": "Eb",
+  "timeSignature": "4/4",
+  "bpm": 94,
+  "sections": [
+   {
+    "name": "A · 1–4마디",
+    "bars": [
+     [
+      "Eb",
+      "Bb"
+     ],
+     [
+      "Cm",
+      "Eb"
+     ],
+     [
+      "Ab",
+      "Eb"
+     ],
+     [
+      "Fm",
+      "Bb"
+     ]
+    ]
+   },
+   {
+    "name": "B · 5–7마디",
+    "bars": [
+     [
+      "Eb",
+      "G"
+     ],
+     [
+      "Cm",
+      "Eb"
+     ],
+     [
+      "Ab",
+      "Eb"
+     ]
+    ]
+   }
+  ],
+  "scoreId": 14559
+ },
+ "neoreul-saenggakhae": {
+  "title": "너를 생각해",
+  "singer": "주시크",
+  "originalKey": "Bb",
+  "timeSignature": "4/4",
+  "bpm": 92,
+  "sections": [
+   {
+    "name": "A · 1–4마디",
+    "bars": [
+     [
+      "Bb",
+      "Dm"
+     ],
+     [
+      "Eb",
+      "F"
+     ],
+     [
+      "Gm",
+      "C"
+     ],
+     [
+      "Cm",
+      "F"
+     ]
+    ]
+   },
+   {
+    "name": "B · 5–7마디",
+    "bars": [
+     [
+      "Bb",
+      "D"
+     ],
+     [
+      "Eb",
+      "F"
+     ],
+     [
+      "Gm",
+      "C"
+     ]
+    ]
+   }
+  ],
+  "scoreId": 11853
+ },
+ "neoui-modeun-sungan": {
+  "title": "너의 모든 순간",
+  "singer": "성시경",
+  "originalKey": "Bb",
+  "timeSignature": "4/4",
+  "bpm": 70,
+  "sections": [
+   {
+    "name": "A · 1–4마디",
+    "bars": [
+     [
+      "C",
+      "G"
+     ],
+     [
+      "C",
+      "Db"
+     ],
+     [
+      "F"
+     ],
+     [
+      "Bb",
+      "Cm"
+     ]
+    ]
+   },
+   {
+    "name": "B · 5–8마디",
+    "bars": [
+     [
+      "Bb"
+     ],
+     [
+      "Eb",
+      "F"
+     ],
+     [
+      "Dm",
+      "Gm"
+     ],
+     [
+      "Cm",
+      "A"
+     ]
+    ]
+   },
+   {
+    "name": "C · 9–11마디",
+    "bars": [
+     [
+      "Dm",
+      "G"
+     ],
+     [
+      "Cm",
+      "F"
+     ],
+     [
+      "Bb",
+      "Bb"
+     ]
+    ]
+   }
+  ],
+  "scoreId": 5392
+ },
+ "ordinary-days": {
+  "title": "내일의 우리(Ordinary Days)",
+  "singer": "디오 (D.O.)",
+  "originalKey": "Gb",
+  "timeSignature": "4/4",
+  "bpm": 67,
+  "sections": [
+   {
+    "name": "A · 1–4마디",
+    "bars": [
+     [
+      "Bm"
+     ],
+     [
+      "Gb",
+      "Bb"
+     ],
+     [
+      "Ebm",
+      "B"
+     ],
+     [
+      "Gb",
+      "Bb"
+     ]
+    ]
+   },
+   {
+    "name": "B · 5–8마디",
+    "bars": [
+     [
+      "Ebm",
+      "B"
+     ],
+     [
+      "Gb",
+      "Bb"
+     ],
+     [
+      "Ebm",
+      "B"
+     ],
+     [
+      "Gb",
+      "Bb"
+     ]
+    ]
+   }
+  ],
+  "scoreId": 15817
+ },
+ "pet": {
+  "title": "pet",
+  "singer": "10cm",
+  "originalKey": "D",
+  "timeSignature": "4/4",
+  "bpm": 106,
+  "sections": [
+   {
+    "name": "A · 1–4마디",
+    "bars": [
+     [
+      "Em"
+     ],
+     [
+      "D"
+     ],
+     [
+      "Em"
+     ],
+     [
+      "D"
+     ]
+    ]
+   },
+   {
+    "name": "B · 5–7마디",
+    "bars": [
+     [
+      "Em"
+     ],
+     [
+      "D"
+     ],
+     [
+      "Em",
+      "A"
+     ]
+    ]
+   }
+  ],
+  "scoreId": 1409
+ },
+ "popcorn": {
+  "title": "Popcorn",
+  "singer": "도경수 (D.O.)",
+  "originalKey": "D",
+  "timeSignature": "4/4",
+  "bpm": 132,
+  "sections": [
+   {
+    "name": "A · 1–3마디",
+    "bars": [
+     [
+      "D"
+     ],
+     [
+      "Bm"
+     ],
+     [
+      "Em"
+     ]
+    ]
+   }
+  ],
+  "scoreId": 15823
+ },
+ "saenggak": {
+  "title": "생각을 멈추다 보면",
+  "singer": "최유리, 진영(GOT7)",
+  "originalKey": "C",
+  "timeSignature": "6/8",
+  "bpm": 129,
+  "sections": [
+   {
+    "name": "A · 1–4마디",
+    "bars": [
+     [
+      "C",
+      "G"
+     ],
+     [
+      "Am",
+      "C"
+     ],
+     [
+      "F",
+      "C"
+     ],
+     [
+      "Dm",
+      "G"
+     ]
+    ]
+   },
+   {
+    "name": "B · 5–7마디",
+    "bars": [
+     [
+      "C",
+      "G"
+     ],
+     [
+      "Am",
+      "C"
+     ],
+     [
+      "F",
+      "C"
+     ]
+    ]
+   }
+  ],
+  "scoreId": 16479
+ },
+ "samak": {
+  "title": "사막에서 꽃을 피우듯",
+  "singer": "우지(Woody)",
+  "originalKey": "Db",
+  "timeSignature": "4/4",
+  "bpm": 62,
+  "sections": [
+   {
+    "name": "A · 1–4마디",
+    "bars": [
+     [
+      "Db"
+     ],
+     [
+      "Bbm",
+      "Db"
+     ],
+     [
+      "Gb",
+      "Db"
+     ],
+     [
+      "Ebm",
+      "Ab"
+     ]
+    ]
+   },
+   {
+    "name": "B · 5–8마디",
+    "bars": [
+     [
+      "Ab",
+      "Db"
+     ],
+     [
+      "Ab"
+     ],
+     [
+      "Bbm"
+     ],
+     [
+      "Fm",
+      "Gb"
+     ]
+    ]
+   },
+   {
+    "name": "C · 9–12마디",
+    "bars": [
+     [
+      "Ab",
+      "Db"
+     ],
+     [
+      "Ab"
+     ],
+     [
+      "Bbm"
+     ],
+     [
+      "Db",
+      "Gb"
+     ]
+    ]
+   }
+  ],
+  "scoreId": 15249
+ },
+ "saranghanda": {
+  "title": "사랑한다 말해도 (Feat. 이소라)",
+  "singer": "김동률",
+  "originalKey": "E",
+  "timeSignature": "4/4",
+  "bpm": 64,
+  "sections": [
+   {
+    "name": "A · 1–4마디",
+    "bars": [
+     [
+      "E"
+     ],
+     [
+      "F#"
+     ],
+     [
+      "D#m"
+     ],
+     [
+      "G#"
+     ]
+    ]
+   },
+   {
+    "name": "B · 5–7마디",
+    "bars": [
+     [
+      "C#m"
+     ],
+     [
+      "F#"
+     ],
+     [
+      "B"
+     ]
+    ]
+   }
+  ],
+  "scoreId": 7262
+ },
+ "sawol": {
+  "title": "사월이 지나면 우리 헤어져요",
+  "singer": "첸 (CHEN)",
+  "originalKey": "Eb",
+  "timeSignature": "4/4",
+  "bpm": 65,
+  "sections": [
+   {
+    "name": "A · 1–4마디",
+    "bars": [
+     [
+      "Eb"
+     ],
+     [
+      "Abm"
+     ],
+     [
+      "Eb"
+     ],
+     [
+      "Abm"
+     ]
+    ]
+   },
+   {
+    "name": "B · 5–8마디",
+    "bars": [
+     [
+      "Eb"
+     ],
+     [
+      "Abm"
+     ],
+     [
+      "Eb"
+     ],
+     [
+      "Bbm",
+      "Eb"
+     ]
+    ]
+   }
+  ],
+  "scoreId": 6537
+ },
+ "sigani-deulggetji": {
+  "title": "시간이 들겠지",
+  "singer": "로꼬",
+  "originalKey": "Eb",
+  "timeSignature": "4/4",
+  "bpm": 120,
+  "sections": [
+   {
+    "name": "A · 1–4마디",
+    "bars": [
+     [
+      "Eb"
+     ],
+     [
+      "Eb"
+     ],
+     [
+      "Bm"
+     ],
+     [
+      "Cm"
+     ]
+    ]
+   },
+   {
+    "name": "B · 5–8마디",
+    "bars": [
+     [
+      "Bbm",
+      "Eb"
+     ],
+     [
+      "Ab"
+     ],
+     [
+      "G"
+     ],
+     [
+      "Fm"
+     ]
+    ]
+   },
+   {
+    "name": "C · 9–12마디",
+    "bars": [
+     [
+      "Fm"
+     ],
+     [
+      "Eb"
+     ],
+     [
+      "G"
+     ],
+     [
+      "Cm"
+     ]
+    ]
+   },
+   {
+    "name": "D · 13–16마디",
+    "bars": [
+     [
+      "Bbm",
+      "Eb"
+     ],
+     [
+      "Ab"
+     ],
+     [
+      "Gm"
+     ],
+     [
+      "Fm"
+     ]
+    ]
+   }
+  ],
+  "scoreId": 18349
+ },
+ "signal": {
+  "title": "신호등",
+  "singer": "이무진",
+  "originalKey": "B",
+  "timeSignature": "4/4",
+  "bpm": 97,
+  "sections": [
+   {
+    "name": "A · 1–4마디",
+    "bars": [
+     [
+      "B"
+     ],
+     [
+      "A"
+     ],
+     [
+      "E"
+     ],
+     [
+      "G",
+      "A"
+     ]
+    ]
+   },
+   {
+    "name": "B · 5–8마디",
+    "bars": [
+     [
+      "B"
+     ],
+     [
+      "A"
+     ],
+     [
+      "G#m"
+     ],
+     [
+      "G",
+      "F#"
+     ]
+    ]
+   },
+   {
+    "name": "C · 9–12마디",
+    "bars": [
+     [
+      "B"
+     ],
+     [
+      "G#m"
+     ],
+     [
+      "E"
+     ],
+     [
+      "F#"
+     ]
+    ]
+   },
+   {
+    "name": "D · 13–16마디",
+    "bars": [
+     [
+      "B"
+     ],
+     [
+      "G#m"
+     ],
+     [
+      "E"
+     ],
+     [
+      "F#"
+     ]
+    ]
+   }
+  ],
+  "scoreId": 6129
+ },
+ "somebody": {
+  "title": "Somebody To Love",
+  "singer": "Queen",
+  "originalKey": "Ab",
+  "timeSignature": "6/8",
+  "bpm": 216,
+  "sections": [
+   {
+    "name": "A · 1–4마디",
+    "bars": [
+     [
+      "Ab",
+      "Db"
+     ],
+     [
+      "Eb",
+      "Db"
+     ],
+     [
+      "Ab",
+      "Eb"
+     ],
+     [
+      "Ab",
+      "Eb"
+     ]
+    ]
+   },
+   {
+    "name": "B · 5–5마디",
+    "bars": [
+     [
+      "Fm"
+     ]
+    ]
+   }
+  ],
+  "scoreId": 10896
+ },
+ "sup": {
+  "title": "숲",
+  "singer": "최유리",
+  "originalKey": "D",
+  "timeSignature": "6/8",
+  "bpm": 115,
+  "sections": [
+   {
+    "name": "A · 1–4마디",
+    "bars": [
+     [
+      "D",
+      "Am"
+     ],
+     [
+      "D",
+      "G"
+     ],
+     [
+      "D",
+      "Em"
+     ],
+     [
+      "A",
+      "D"
+     ]
+    ]
+   },
+   {
+    "name": "B · 5–7마디",
+    "bars": [
+     [
+      "Am",
+      "D"
+     ],
+     [
+      "G",
+      "D"
+     ],
+     [
+      "Em",
+      "A"
+     ]
+    ]
+   }
+  ],
+  "scoreId": 15108
+ },
+ "un-i-jowatji": {
+  "title": "운이 좋았지",
+  "singer": "권진아",
+  "originalKey": "A",
+  "timeSignature": "4/4",
+  "bpm": 66,
+  "sections": [
+   {
+    "name": "A · 1–4마디",
+    "bars": [
+     [
+      "A"
+     ],
+     [
+      "A"
+     ],
+     [
+      "A"
+     ],
+     [
+      "E"
+     ]
+    ]
+   },
+   {
+    "name": "B · 5–8마디",
+    "bars": [
+     [
+      "A"
+     ],
+     [
+      "Bm"
+     ],
+     [
+      "C#m"
+     ],
+     [
+      "Bm",
+      "E"
+     ]
+    ]
+   },
+   {
+    "name": "C · 9–12마디",
+    "bars": [
+     [
+      "A"
+     ],
+     [
+      "Bm"
+     ],
+     [
+      "C#m",
+      "F#m"
+     ],
+     [
+      "Bm",
+      "E"
+     ]
+    ]
+   }
+  ],
+  "scoreId": 14839
+ },
+ "vancouver": {
+  "title": "Vancouver2",
+  "singer": "BIG Naughty(서동현)",
+  "originalKey": "C#m",
+  "timeSignature": "4/4",
+  "bpm": 90,
+  "sections": [
+   {
+    "name": "A · 1–4마디",
+    "bars": [
+     [
+      "C#m"
+     ],
+     [
+      "A"
+     ],
+     [
+      "E"
+     ],
+     [
+      "B"
+     ]
+    ]
+   },
+   {
+    "name": "B · 5–8마디",
+    "bars": [
+     [
+      "C#m"
+     ],
+     [
+      "A"
+     ],
+     [
+      "E"
+     ],
+     [
+      "B"
+     ]
+    ]
+   },
+   {
+    "name": "C · 9–12마디",
+    "bars": [
+     [
+      "C#m"
+     ],
+     [
+      "A"
+     ],
+     [
+      "E"
+     ],
+     [
+      "B"
+     ]
+    ]
+   },
+   {
+    "name": "D · 13–16마디",
+    "bars": [
+     [
+      "C#m"
+     ],
+     [
+      "A"
+     ],
+     [
+      "E"
+     ],
+     [
+      "B"
+     ]
+    ]
+   }
+  ],
+  "scoreId": 15530
+ },
+ "whatislove": {
+  "title": "What is Love?",
+  "singer": "트와이스 (TWICE)",
+  "originalKey": "Ab",
+  "timeSignature": "4/4",
+  "bpm": 85,
+  "sections": [
+   {
+    "name": "A · 1–4마디",
+    "bars": [
+     [
+      "Ab"
+     ],
+     [
+      "Ab"
+     ],
+     [
+      "Fm"
+     ],
+     [
+      "Dbm"
+     ]
+    ]
+   },
+   {
+    "name": "B · 5–8마디",
+    "bars": [
+     [
+      "Ab"
+     ],
+     [
+      "Ab"
+     ],
+     [
+      "Fm"
+     ],
+     [
+      "Dbm"
+     ]
+    ]
+   }
+  ],
+  "scoreId": 12707
+ },
+ "whoareyou": {
+  "title": "Who Are You",
+  "singer": "샘김",
+  "originalKey": "A",
+  "timeSignature": "4/4",
+  "bpm": 66,
+  "sections": [
+   {
+    "name": "A · 1–4마디",
+    "bars": [
+     [
+      "A",
+      "C#m"
+     ],
+     [
+      "C#m"
+     ],
+     [
+      "A",
+      "C#m"
+     ],
+     [
+      "C#m"
+     ]
+    ]
+   },
+   {
+    "name": "B · 5–8마디",
+    "bars": [
+     [
+      "A",
+      "C#m"
+     ],
+     [
+      "C#m"
+     ],
+     [
+      "A",
+      "C#m"
+     ],
+     [
+      "C#m"
+     ]
+    ]
+   },
+   {
+    "name": "C · 9–12마디",
+    "bars": [
+     [
+      "D"
+     ],
+     [
+      "F#m",
+      "C#m"
+     ],
+     [
+      "D"
+     ],
+     [
+      "Dm"
+     ]
+    ]
+   }
+  ],
+  "scoreId": 10614
+ },
+ "yeoreumbi": {
+  "title": "여름비",
+  "singer": "샘김",
+  "originalKey": "Gb",
+  "timeSignature": "6/8",
+  "bpm": 108,
+  "sections": [
+   {
+    "name": "A · 1–4마디",
+    "bars": [
+     [
+      "Gb",
+      "Ebm"
+     ],
+     [
+      "B",
+      "Gb"
+     ],
+     [
+      "B",
+      "Gb"
+     ],
+     [
+      "Ebm",
+      "B"
+     ]
+    ]
+   },
+   {
+    "name": "B · 5–5마디",
+    "bars": [
+     [
+      "Db"
+     ]
+    ]
+   }
+  ],
+  "scoreId": 14978
+ },
+ "yeppeo": {
+  "title": "예뻤어",
+  "singer": "DAY6 (데이식스)",
+  "originalKey": "Eb",
+  "timeSignature": "4/4",
+  "bpm": 84,
+  "sections": [
+   {
+    "name": "A · 1–4마디",
+    "bars": [
+     [
+      "Am",
+      "F"
+     ],
+     [
+      "Eb"
+     ],
+     [
+      "Am",
+      "F"
+     ],
+     [
+      "Eb"
+     ]
+    ]
+   },
+   {
+    "name": "B · 5–8마디",
+    "bars": [
+     [
+      "Am",
+      "F"
+     ],
+     [
+      "Eb"
+     ],
+     [
+      "Am",
+      "F"
+     ],
+     [
+      "Eb"
+     ]
+    ]
+   },
+   {
+    "name": "C · 9–12마디",
+    "bars": [
+     [
+      "Am",
+      "F"
+     ],
+     [
+      "Eb",
+      "Ebm"
+     ],
+     [
+      "Fm"
+     ],
+     [
+      "Bb"
+     ]
+    ]
+   }
+  ],
+  "scoreId": 5976
+ }
+}

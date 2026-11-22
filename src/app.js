@@ -49,7 +49,8 @@
   const songEntry = s => /^(verified|restored)-/.test(s.id) || ['added-by-user','imported'].includes(s.verification);
   const chartSongs = () => state.songs.filter(s=>chartOf(s));
   const readySongs = () => state.songs.filter(s=>s.chartStatus==='ready');
-  const pendingSongs = () => state.songs.filter(s=>songEntry(s) && s.chartStatus!=='ready' && s.chartStatus!=='partial');
+  const pendingSongs = () => state.songs.filter(s=>s.category==='pending' || (songEntry(s) && !s.category && s.chartStatus!=='ready' && s.chartStatus!=='partial'));
+  const categoryCount = n => state.songs.filter(s=>s.category===n).length;
   const entrySongs = () => state.songs.filter(songEntry);
   const navs = [['home','대시보드'],['songs','곡 라이브러리'],['roadmap','성장 로드맵'],['playlist','유튜브 재생목록'],['practice','오늘의 연습'],['logs','연습 기록'],['sources','211개 원본'],['settings','백업·설정']];
   const action = (cmd,label,klass='btn small') => `<button type="button" class="${klass}" data-act="${cmd}">${label}</button>`;
@@ -74,29 +75,46 @@
   const beatCount = ts => ts==='3/4' ? 3 : ts==='6/8' ? 6 : 4;
   const stageChip = n => n ? `<span class="stage-chip s${n}">STAGE ${n}</span>` : '';
   function chartBadge(s){const c=chartOf(s);
-    if(!c) return `<span class="tag muted">코드 검수 대기</span>`;
-    return `<span class="tag chart-tag">남자키 <b>${esc(c.maleKey||s.maleKey||'—')}</b>${Number.isFinite(c.capo)?` · Capo +${c.capo}`:''} · ${esc(c.timeSignature||'—')}${c.bpm?` · ${c.bpm}BPM`:''}</span>`;}
+    if(s.category==='reference') return `<span class="tag muted">비음악·참고 영상</span>`;
+    if(s.category==='original') return `<span class="tag muted">자작곡 · 채보 필요</span>`;
+    if(!c) return `<span class="tag muted">${s.category==='pending'?'코드 검수 대기':'코드 검수 대기'}</span>`;
+    return `<span class="tag chart-tag">남자키 <b>${esc(c.maleKey||s.maleKey||'—')}</b>${Number.isFinite(c.capo)?` · Capo +${c.capo}`:''} · ${esc(c.timeSignature||'—')}${c.bpm?` · ${c.bpm}BPM`:''}${c.status==='partial'?' · 부분 확인':''}</span>`;}
 
   function home(){let w=weekStats(), curated=songCount(), ready=buskingCount(),setlist=state.songs.filter(s=>s.setlist).slice(0,5);
     const charted=readySongs().length, pending=pendingSongs().length;
     return `<section class="hero"><div><div class="eyebrow">MAKE A LITTLE PROGRESS, EVERY DAY</div><h1>오늘도, 한 곡에<br>가까워지는 시간.</h1><p>하루 25분의 작은 연습이 낯선 도시의 첫 무대가 됩니다. 남자키로 바꾼 원터치 악보와 4단계 커리큘럼으로 쌓아갑니다.</p>${action('start-practice','오늘의 연습 시작 ↗','btn accent')}</div><div class="hero-badge"><div class="hero-num">${ready}<span> / 3</span></div><p>나의 첫 무대 준비된 곡</p></div></section>
-    <div class="playlist-callout"><div><b>🎸 남자키 원터치 악보 ${charted}곡 준비 완료</b><p class="tiny">원키 → 남자키 이조 · AeroBand Capo 값 · 4/4·3/4·6/8 박자 · BPM까지 넣었습니다. 곡으로 등록된 ${entrySongs().length}곡 중 검수 대기 ${pending}곡은 코드표 확인 후 채웁니다.</p></div>${action('go-roadmap','로드맵 열기','btn outline small')}</div>
+    <div class="playlist-callout"><div><b>🎸 남자키 원터치 악보 ${charted}곡 준비 완료</b><p class="tiny">원키 → 남자키 이조(여자키 곡 -5키) · AeroBand Capo 값 · 4/4·3/4·6/8 박자 · BPM까지 넣었습니다. 코드 검수 대기 ${pending}곡은 코드표 확인 후 채웁니다.</p></div>${action('go-roadmap','로드맵 열기','btn outline small')}</div>
     ${head('THIS WEEK','이번 주의 리듬','주 5일 연습을 목표로, 적게라도 꾸준히.')}<section class="cards3"><div class="card"><div class="metric-label">이번 주 연습일</div><div class="metric">${w.days} <span>/ ${state.settings.weeklyGoal}일</span></div><div class="progress"><i style="width:${Math.min(100,Math.round(w.days/state.settings.weeklyGoal*100))}%"></i></div></div><div class="card"><div class="metric-label">누적 연습 시간</div><div class="metric">${w.total} <span>분</span></div></div><div class="card"><div class="metric-label">악보 준비된 곡</div><div class="metric">${charted} <span>/ ${curated}곡 정보</span></div><div class="tiny">원본 재생목록 210개 항목 반영</div></div></section>
     <section class="dashboard-grid" style="margin-top:15px"><div class="card"><div class="row between"><h3>이번 주 출석</h3><span class="tiny">오늘 ${new Intl.DateTimeFormat('ko-KR',{dateStyle:'medium'}).format(new Date())}</span></div><div class="weekdays">${daysView()}</div><div class="divider"></div><p class="tiny">오늘 단 20분이어도 기록하면 출석이 쌓입니다.</p></div><div class="card"><div class="eyebrow">YOUR NEXT FOCUS</div><h3 style="margin:5px 0 12px">지금 먼저 연습할 것</h3><div class="stack"><div>01 · <b>원터치 버튼 4개</b> <span class="muted">— Capo +2, C폼으로 5분</span></div><div>02 · <b>2·4박 척킹</b> <span class="muted">— 60 BPM에서 손날 뮤트 5분</span></div><div>03 · <b>후렴 연결</b> <span class="muted">— 멈추지 않고 4마디 10분</span></div></div></div></section>
     ${head('YOUR FIRST SETLIST','나의 첫 세트리스트','실제로 연주할 곡 3개부터 준비하세요.',action('go-songs','전체 곡 보기','btn outline small'))}
     <div class="card">${setlist.length?setlist.map((s,i)=>`<div class="setrow"><div><b>${i+1}. ${esc(s.title)}</b> <span class="tiny">${esc(s.artist)}</span></div>${stat(s.level)}</div>`).join(''):`<div class="empty"><strong>아직 선택한 세트리스트가 없습니다.</strong>곡 목록에서 무대에 올릴 노래를 선택하세요.</div>`}<div class="row between" style="margin-top:13px"><span class="tiny">전체 버스킹 가능 ${ready}곡 · 목표 최소 3곡</span>${action('go-songs','곡 선택하기','btn primary small')}</div></div>
-    <p class="alert" style="margin-top:16px"><b>데이터 반영 안내</b> · 곡 라이브러리 ${curated}개 중 <b>${charted}곡</b>은 남자키·박자·BPM·원터치 악보가 들어갔고, 나머지 <b>${pending}곡</b>은 코드 검수 대기입니다. 확인 전 값을 임의로 채우지 않습니다. <button class="btn small outline" data-nav="settings">JSON/CSV 가져오기</button></p>`;
+    <p class="alert" style="margin-top:16px"><b>데이터 반영 안내</b> · 200개 항목 기준 <b>악보 완료 ${categoryCount('chart')}</b> · 부분 확인 ${categoryCount('partial')} · 코드 검수 대기 ${categoryCount('pending')} · 비음악·참고 ${categoryCount('reference')} · 자작곡 ${categoryCount('original')}. 확인 전 값을 임의로 채우지 않습니다. <button class="btn small outline" data-nav="settings">JSON/CSV 가져오기</button></p>`;
   }
+  const displayTitle = s => s.workTitle || s.title;
+  const displayArtist = s => s.workArtist || s.artist;
   function songRow(s,i){const c=chartOf(s);
-    return `<article class="song-row"><div class="song-num">${String(i+1).padStart(2,'0')}</div><div><div class="song-name">${esc(s.title)} ${c?stageChip(c.stage):''}</div><div class="song-artist">${esc(s.artist)}${s.sourceIndices?.length?` · 원본 #${s.sourceIndices.join(', #')}`:''}</div><div class="taglist">${chartBadge(s)}${s.videoStatus&&s.videoStatus!=='공개 영상'?`<span class="tag">${esc(s.videoStatus)}</span>`:''}${s.tags?.slice(0,2).map(t=>`<span class="tag">${esc(t)}</span>`).join('')||''}${s.verification.startsWith('learning-')?'<span class="tag">외부 추천곡</span>':''}</div></div>${stat(s.level)}<div class="song-actions">${c?action('chart:'+s.id,'악보','btn primary small'):action('chart:'+s.id,'정보','btn outline small')}${action('video:'+s.id,'영상')}${action('music:'+s.id,'음악')}${action('edit:'+s.id,'수정','btn outline small')}</div></article>`}
+    return `<article class="song-row"><div class="song-num">${String(i+1).padStart(2,'0')}</div><div><div class="song-name">${esc(displayTitle(s))} ${c?stageChip(c.stage):''}</div><div class="song-artist">${esc(displayArtist(s))}${s.sourceIndices?.length?` · 원본 #${s.sourceIndices.join(', #')}`:''}</div><div class="taglist">${chartBadge(s)}${s.videoStatus&&s.videoStatus!=='공개 영상'?`<span class="tag">${esc(s.videoStatus)}</span>`:''}${s.tags?.slice(0,2).map(t=>`<span class="tag">${esc(t)}</span>`).join('')||''}${s.verification.startsWith('learning-')?'<span class="tag">외부 추천곡</span>':''}</div></div>${stat(s.level)}<div class="song-actions">${c?action('chart:'+s.id,'악보','btn primary small'):action('chart:'+s.id,'정보','btn outline small')}${action('video:'+s.id,'영상')}${action('music:'+s.id,'음악')}${action('edit:'+s.id,'수정','btn outline small')}</div></article>`}
   const songQuery = () => {const raw=String(searchQuery).trim().replace(/\s*번$/,'');const hash=raw.startsWith('#');const body=hash?raw.slice(1).trim():raw;return {q:norm(body),n:/^\d{1,3}$/.test(body)?+body:null,hash};};
-  function filterSongs(){const {q,n,hash}=songQuery();return ordered().filter(s=>{const fields=[s.title,s.artist,s.notes,s.chords,...(s.tags||[]),...(s.sourceIndices||[]),s.maleKey,s.key];let hit;if(n!==null){hit=(s.sourceIndices||[]).includes(n)||(!hash&&[s.title,s.artist].some(v=>new RegExp('(^|[^0-9])'+n+'([^0-9]|$)').test(norm(v))));}else{hit=!q||fields.some(v=>norm(v).includes(q));}
-      const st=statusFilter;const stateHit=st==='all'?true:st==='setlist'?s.setlist:st==='chart-ready'?s.chartStatus==='ready':st==='chart-pending'?(songEntry(s)&&s.chartStatus!=='ready'&&s.chartStatus!=='partial'):st==='chart-partial'?(songEntry(s)&&s.chartStatus==='partial'):s.level===st;
+  function filterSongs(){const {q,n,hash}=songQuery();return ordered().filter(s=>{const fields=[s.title,s.artist,s.workTitle,s.workArtist,s.notes,s.chords,...(s.tags||[]),...(s.sourceIndices||[]),s.maleKey,s.key];let hit;if(n!==null){hit=(s.sourceIndices||[]).includes(n)||(!hash&&[s.title,s.artist].some(v=>new RegExp('(^|[^0-9])'+n+'([^0-9]|$)').test(norm(v))));}else{hit=!q||fields.some(v=>norm(v).includes(q));}
+      const st=statusFilter;const cat=s.category||'';
+      const stateHit=st==='all'?true:st==='setlist'?s.setlist
+        :st==='chart-ready'?cat==='chart'
+        :st==='chart-partial'?cat==='partial'
+        :st==='chart-pending'?(cat==='pending'||s.chartStatus==='pending')
+        :st==='original'?(cat==='original'||!!s.needsChart)
+        :st==='reference'?cat==='reference'
+        :s.level===st;
       return hit&&stateHit;});}
   function songsPage(){const filtered=filterSongs();
+    const m=seed.meta||{}, cat=n=>state.songs.filter(x=>(x.category||'')===n).length;
+    const chips=[['chart-ready','악보 완료',cat('chart')],['chart-partial','부분 확인',cat('partial')],['chart-pending','검수 대기',cat('pending')],['original','자작·AI곡',cat('original')],['reference','비음악·참고',cat('reference')]];
     return `${head('MY SONG LIBRARY','나의 버스킹곡','곡 검색 · 남자키/카포 · 원터치 악보 · 숙련도를 한곳에서',action('new-song','+ 새 곡 등록','btn primary'))}
-    <div class="alert" style="margin-bottom:14px">곡으로 등록된 <b>${entrySongs().length}곡</b> 중 남자키·박자·BPM·원터치 악보 <b>${readySongs().length}곡</b> 준비 완료 · 부분 확인 ${state.songs.filter(s=>s.chartStatus==='partial').length}곡 · 코드 검수 대기 <b>${pendingSongs().length}곡</b>. 나머지 ${state.songs.length-entrySongs().length}개는 유튜브 영상 제목 항목입니다. 악보는 2026-11-22 확인한 코드표·악보 메타데이터에서 옮겼고, 마디 배치는 코드표 순서를 4박 카드로 정리한 연습용입니다.</div>
-    <div class="toolbar" style="margin-bottom:13px"><div class="search-wrap"><span class="search-mark">⌕</span><input id="song-search" class="input" aria-label="곡 검색" placeholder="곡명, 가수, 남자키, 원본 번호 검색" value="${esc(searchQuery)}" /></div><select id="song-filter" class="select"><option value="all">모든 곡</option><option value="chart-ready" ${statusFilter==='chart-ready'?'selected':''}>악보 준비 완료</option><option value="chart-partial" ${statusFilter==='chart-partial'?'selected':''}>부분 확인</option><option value="chart-pending" ${statusFilter==='chart-pending'?'selected':''}>코드 검수 대기</option><option value="setlist" ${statusFilter==='setlist'?'selected':''}>내 세트리스트</option>${levels.map(l=>`<option value="${l}" ${statusFilter===l?'selected':''}>${l}</option>`).join('')}</select></div><div class="tiny" id="song-result-count" style="margin-bottom:8px">검색 결과 ${filtered.length}곡 · 데이터가 추가되면 즉시 반영됩니다.</div><section class="song-list" id="song-list">${filtered.length?filtered.map(songRow).join(''):'<div class="empty">검색된 곡이 없습니다.</div>'}</section>`;
+    <div class="alert" style="margin-bottom:12px"><b>전체 ${state.songs.length}개 항목 정리</b> — 남자키·박자·BPM·원터치 악보 <b>${cat('chart')}개</b>(서로 다른 곡 ${m.uniqueChartSongCount||'—'}곡) · 부분 확인 ${cat('partial')} · 코드 검수 대기 ${cat('pending')} · 비음악·참고 ${cat('reference')} · 자작곡 ${cat('original')}. 여자키 원곡은 <b>-5키</b>, 남자키 원곡은 -2키를 기본 남자키로 잡고 AeroBand Capo로 맞췄습니다. 마디 배치는 공개된 코드표를 4박 카드로 정리한 연습용입니다.</div>
+    <div class="row" style="flex-wrap:wrap;gap:6px;margin-bottom:12px">${chips.map(([v,l,n])=>`<button class="btn small ${statusFilter===v?'primary':'outline'}" data-act="filter-cat:${v}">${l} ${n}</button>`).join('')}</div>
+    <div class="toolbar" style="margin-bottom:13px"><div class="search-wrap"><span class="search-mark">⌕</span><input id="song-search" class="input" aria-label="곡 검색" placeholder="곡명, 가수, 남자키, 원본 번호 검색" value="${esc(searchQuery)}" /></div><select id="song-filter" class="select"><option value="all">모든 항목</option><option value="chart-ready" ${statusFilter==='chart-ready'?'selected':''}>악보 완료</option><option value="chart-partial" ${statusFilter==='chart-partial'?'selected':''}>부분 확인</option><option value="chart-pending" ${statusFilter==='chart-pending'?'selected':''}>검수 대기</option><option value="original" ${statusFilter==='original'?'selected':''}>자작·AI곡(채보 필요)</option><option value="reference" ${statusFilter==='reference'?'selected':''}>비음악·참고 영상</option><option value="setlist" ${statusFilter==='setlist'?'selected':''}>내 세트리스트</option>${levels.map(l=>`<option value="${l}" ${statusFilter===l?'selected':''}>${l}</option>`).join('')}</select></div>
+    <div class="tiny" id="song-result-count" style="margin-bottom:8px">검색 결과 ${filtered.length}개 · 데이터가 추가되면 즉시 반영됩니다.</div>
+    <section class="song-list" id="song-list">${filtered.length?filtered.map(songRow).join(''):'<div class="empty">검색된 항목이 없습니다.</div>'}</section>
+    <div class="card" style="margin-top:16px"><div class="row between"><h3>채보가 필요한 자작·AI곡</h3><span class="tiny">음원을 주시면 채보 대상</span></div><p class="tiny">인터넷에 악보가 확인되지 않아 코드를 지어내지 않은 항목입니다. 주성 님이 음원이나 fal 채보를 붙이면 여기에 악보를 추가합니다.</p><div class="stack" style="margin-top:10px">${state.songs.filter(s=>s.category==='original'||(s.category==='pending'&&s.needsChart)).map(s=>`<div class="tiny">· <b>${esc(displayTitle(s))}</b> ${esc(displayArtist(s))} — ${esc(s.categoryNote||s.chartNote||'코드 확인 필요')}</div>`).join('')||'<div class="tiny">해당 항목이 없습니다.</div>'}</div></div>`;
   }
   function playlistPage(){
     const direct=safeHttp(PLAYLIST_URL);
@@ -272,7 +290,7 @@
       <p class="tiny">${esc(c.basis||'')} 남자키는 원곡 보컬 성별에 따라 −2~−4반음 범위에서 정했고, 카포는 원터치 10버튼에 가장 많이 들어가도록 골랐습니다. 에어로밴드 공식 안내에 따르면 CAPO+/CAPO− 버튼으로 조옮김하며 카포는 25키까지 지원됩니다(2026-11-22 확인).</p></div>`;
   }
   function chartModalShell(s){
-    return `<div class="modal-layer" data-act="dismiss"><section class="modal chart-modal" role="dialog" aria-modal="true" aria-label="${esc(s.title)} 악보"><header class="modal-head"><div><div class="eyebrow">ONE-TOUCH CHART</div><h2>${esc(s.title)}</h2><div class="tiny">${esc(s.artist)}${s.sourceIndices?.length?` · 원본 #${s.sourceIndices.join(', #')}`:''}</div></div><button class="icon-btn" aria-label="닫기" data-act="close">×</button></header>${chartModal(s)}</section></div>`;
+    return `<div class="modal-layer" data-act="dismiss"><section class="modal chart-modal" role="dialog" aria-modal="true" aria-label="${esc(displayTitle(s))} 악보"><header class="modal-head"><div><div class="eyebrow">ONE-TOUCH CHART</div><h2>${esc(displayTitle(s))}</h2><div class="tiny">${esc(displayArtist(s))}${s.sourceIndices?.length?` · 원본 #${s.sourceIndices.join(', #')}`:''}</div></div><button class="icon-btn" aria-label="닫기" data-act="close">×</button></header>${chartModal(s)}</section></div>`;
   }
 
   function centerActiveNav(){try{if(!document.querySelector)return;const nav=document.querySelector('.nav');if(!nav)return;const btn=nav.querySelector('button.active');if(!btn)return;if(nav.scrollWidth<=nav.clientWidth+1)return;const n=nav.getBoundingClientRect(),b=btn.getBoundingClientRect();if(b.left>=n.left-1&&b.right<=n.right+1)return;const reduce=!!(window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches);btn.scrollIntoView({inline:'center',block:'nearest',behavior:reduce?'auto':'smooth'});}catch{}}
@@ -311,6 +329,10 @@
         /* 악보 병합: 사용자가 비워 둔 값만 채우고, 직접 고친 값은 그대로 둔다 */
         if(!cur.chart && seedSong.chart) cur.chart=clone(seedSong.chart);
         if(seedSong.chartStatus && (!cur.chartStatus || cur.chartStatus==='미확인' || cur.chartStatus==='pending')) cur.chartStatus=seedSong.chartStatus;
+        for(const k of ['category','workTitle','workArtist','categoryNote','playlistKind']){
+          if(seedSong[k] && !cur[k]) cur[k]=seedSong[k];
+        }
+        if(seedSong.category) cur.category=seedSong.category;
         for(const k of ['key','maleKey','timeSignature','chordStatus','strumming','chords']){
           const empty=!cur[k] || ['미확정','미확인',''].includes(cur[k]);
           if(empty && seedSong[k]) cur[k]=seedSong[k];
@@ -388,6 +410,7 @@
   function handleAction(act){let [cmd,...rest]=act.split(':'),value=rest.join(':');switch(cmd){
     case 'start-practice':case 'go-practice':setTab('practice');return;
     case 'go-songs':setTab('songs');return;
+    case 'filter-cat':statusFilter=value;setTab('songs');return;
     case 'go-roadmap':setTab('roadmap');return;
     case 'go-playlist':setTab('playlist');return;
     case 'go-sources':setTab('sources');return;
