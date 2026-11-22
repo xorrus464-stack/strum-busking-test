@@ -132,7 +132,7 @@ for s in songs:
         assert not s['videoUrl'], s['id']
 
 # 10) 메타 집계
-assert meta['seedVersion'] == 10
+assert meta['seedVersion'] == 11
 assert meta['playlistCollectedCount'] == 210
 assert meta['playlistPublicVideoCount'] == 168
 assert meta['playlistInaccessibleVideoCount'] == 42
@@ -269,7 +269,7 @@ for s in ready:
 NEW11 = {
     'playlist-157': ('Eb', 'Eb', 83, 3, 4),
     'playlist-025': ('Em', 'Em', 127, 0, 8),
-    'playlist-190': ('C', 'C', 62, 0, 4),
+    'playlist-190': ('C', 'C', 62, 0, 5),
     'playlist-186': ('C', 'C', 65, 0, 5),
     'added-10000-hours': ('A', 'A', 86, 2, 10),
     'playlist-205': ('A', 'A', 81, 2, 6),
@@ -294,6 +294,18 @@ for sid in ('playlist-157', 'playlist-025', 'playlist-190', 'playlist-186', 'add
             'playlist-205', 'playlist-118', 'playlist-173', 'playlist-206'):
     assert by_id[sid]['chart']['maleShift'] == 0, sid
 # 10,000 Hours는 Macklemore ‘Ten Thousand Hours’와 별개 레코드
+# 2026-11-22 오디오 재검수 반영: 10,000 Hours 구절 32개 = 64마디, 어떤이별 후반 G 전조 구간 분리, jehoda 후반 C 전조 표기
+c10 = by_id['added-10000-hours']['chart']
+assert sum(len(x['bars']) for x in c10['sections']) == 64, sum(len(x['bars']) for x in c10['sections'])
+assert [x['name'] for x in c10['sections']][3].startswith('후렴 1') and '1:01' in c10['sections'][3]['name']
+c190 = by_id['playlist-190']['chart']
+assert any('후반 G 전조' in x['name'] for x in c190['sections'])
+assert len([x for x in c190['sections'] if 'G 전조' in x['name'] or x['name'].endswith('· G')]) == 2
+c173 = by_id['playlist-173']['chart']
+assert c173['sections'][-1]['name'].endswith('후반 전조 C') and '옮겨 적음' not in c173['sections'][-2]['name']
+assert 'C장조' in c173['note'] and 'D♭장조' in by_id['playlist-072']['chart']['note']
+for sid in NEW11:
+    assert '2026-11-22 오디오 재검수' in by_id[sid]['chart']['basis'], sid
 assert by_id['added-10000-hours']['verification'] == 'added-by-user'
 assert by_id['added-10000-hours']['sourceIndices'] == [] and by_id['added-10000-hours']['title'] == '10,000 Hours'
 assert by_id['verified-004']['title'] == 'Ten Thousand Hours' and by_id['verified-004']['artist'].startswith('Macklemore')

@@ -588,7 +588,7 @@ def main():
     pending = sum(1 for s in songs if s.get('category') == 'pending')
     references = sum(1 for s in songs if s.get('category') == 'reference')
     originals = sum(1 for s in songs if s.get('category') == 'original')
-    meta['seedVersion'] = 10
+    meta['seedVersion'] = 11
     meta['songEntryCount'] = len(songs)
     meta['chartVersion'] = '2026-11-22'
     meta['chartReadyCount'] = ready
