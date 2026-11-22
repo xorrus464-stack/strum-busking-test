@@ -350,6 +350,8 @@
         if(seedSong.chart && !cur.chartEdited) cur.chart=clone(seedSong.chart);
         else if(!cur.chart && seedSong.chart) cur.chart=clone(seedSong.chart);
         if(seedSong.chartStatus && !cur.chartEdited) cur.chartStatus=seedSong.chartStatus;
+        /* 악보 설명(chartNote)도 시드가 갱신하면 함께 바꾼다. 사용자가 직접 고친 곡(chartEdited)은 그대로 둔다. */
+        if(seedSong.chartNote && !cur.chartEdited) cur.chartNote=seedSong.chartNote;
         for(const k of ['category','workTitle','workArtist','categoryNote','playlistKind']){
           if(seedSong[k] && !cur[k]) cur[k]=seedSong[k];
         }

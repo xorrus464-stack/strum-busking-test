@@ -391,6 +391,8 @@ def run_merge(pw):
     check('merge: #163 제외 유지', state['sources'][162]['status'] == '제외')
     pik = [s for s in state['songs'] if s['id'] == 'playlist-157'][0]
     check('merge: MR 음원 파일 병합(픽픽)', pik.get('mrAudioUrl') == 'media/pikpik-mr.mp3', str(pik.get('mrAudioUrl')))
+    check('merge: 악보 설명 갱신(순수 MR)', '순수 MR' in ([x for x in state['songs'] if x['id'] == 'verified-017'][0].get('chartNote') or ''),
+          ([x for x in state['songs'] if x['id'] == 'verified-017'][0].get('chartNote') or '')[:40])
     for sid, fname in (('playlist-173', 'media/jehoda-mr.mp3'), ('playlist-072', 'media/coffee-mr.mp3'),
                        ('verified-017', 'media/toy-mr.mp3'), ('verified-021', 'media/weather-mr.mp3')):
         item = [s for s in state['songs'] if s['id'] == sid][0]

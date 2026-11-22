@@ -220,6 +220,7 @@ for (const [sid, file] of [['verified-017', 'media/toy-mr.mp3'], ['verified-021'
   assert(!item.mrUrl, `MR 음원으로 연결한 곡은 YouTube MR 비움 ${sid}`);
 }
 const toy = saved.songs.find(s => s.id === 'verified-017');
+assert(/순수 MR/.test(toy.chartNote || ''), '악보 설명(chartNote)도 새 시드로 병합');
 assert(toy.chart.sections.reduce((n, x) => n + x.bars.length, 0) === 49, '나는 버려질 장난감 49마디(MR 전체 길이)');
 assert(saved.songs.find(s => s.id === 'playlist-072').bpm === 98, '커피 BPM 98 정정');
 assert(saved.songs.find(s => s.id === 'playlist-173').bpm === 74, 'jehoda BPM 74 정정');
