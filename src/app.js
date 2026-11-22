@@ -176,6 +176,7 @@
       <div class="divider"></div>
       <div class="row between"><div><h3>나의 메트로놈</h3><p class="tiny">${esc(state.settings.timeSignature)} · ${state.settings.timeSignature==='6/8'?'8분음표 6번, 1·4박 강세':'1박 강세'}</p></div><span id="bpm-label" style="font-size:23px;font-weight:900">${state.settings.bpm} BPM</span></div>
       <div class="segmented ts-pick" style="margin-top:10px">${['4/4','3/4','6/8'].map(t=>`<button data-act="ts:${t}" class="${state.settings.timeSignature===t?'selected':''}">${t}</button>`).join('')}</div>
+      <p class="tiny" style="margin:6px 0 0">확인한 27곡은 모두 4/4입니다. 3/4·6/8은 왈츠·겹박자 기본 스트로크를 따로 연습할 때 쓰세요.</p>
       <div class="beat-dots" id="beat-dots">${Array.from({length:beatCount(state.settings.timeSignature)},(_,i)=>`<i class="${i===0?'accent':''}"></i>`).join('')}</div>
       <input id="bpm-range" type="range" min="40" max="180" step="1" value="${state.settings.bpm}" aria-label="BPM" style="width:100%;margin:12px 0" /><div class="row between">${action('bpm-down','−5','btn outline small')}${action('metro-toggle',metronome?'메트로놈 정지':'메트로놈 켜기','btn primary small')}${action('bpm-up','+5','btn outline small')}</div></div>
       <div class="card"><h3>원터치 버튼 10개</h3><p class="tiny" style="margin:4px 0 12px">에어로밴드 앱과 같은 색으로 표시합니다.</p><div class="ot-grid">${BTNS.map(b=>`<div class="ot-btn" style="--c:${BTN_COLOR[b]}">${b}</div>`).join('')}</div></div></div></section>
