@@ -25,6 +25,7 @@ PC = {'C': 0, 'C#': 1, 'Db': 1, 'D': 2, 'D#': 3, 'Eb': 3, 'E': 4, 'F': 5, 'F#': 
 SHAPES = {'C': (0, 'maj'), 'D': (2, 'maj'), 'E': (4, 'maj'), 'F': (5, 'maj'), 'G': (7, 'maj'),
           'Cm': (0, 'min'), 'Dm': (2, 'min'), 'Em': (4, 'min'), 'Fm': (5, 'min'), 'Gm': (7, 'min')}
 ONE_TOUCH_ORDER = ['C', 'Dm', 'Em', 'F', 'G', 'Cm', 'D', 'E', 'Fm', 'Gm']
+MAX_SLOTS = 8  # SimplifyChord는 프렛마다 1개(공식 안내 최대 12개) → 화면에는 8개까지 안내
 # 원터치 버튼에 없는 코드를 슬롯에 넣을 때 흔히 쓰는 약식 대안(사실 기반 제안, 연주자 선택)
 EASY_ALT = {
     'B': 'B7(x21202) 약식', 'Bm': 'Bm7(x20202)', 'Bb': 'Bb(6프렛 바레) 또는 A# 약식',
@@ -58,6 +59,8 @@ def name(pc, prefer_flat=False):
         return FLAT_OF[s]
     if prefer_flat and s == 'C#':
         return 'Db'
+    if prefer_flat and s == 'F#':
+        return 'Gb'
     return s
 
 
@@ -95,10 +98,10 @@ WORK_IDS = {}  # build 단계에서 채운다
 
 
 def ideal_shift(sid):
-    """남자키 기본값: 여성 원곡 -5반음, 남성 원곡 -2반음(곡별 지정이 우선)."""
+    """남자키 목표: 남성 원곡은 원키 그대로(0반음), 여성 원곡만 -5반음."""
     if sid in FEMALE_ORIGINAL or WORK_IDS.get(sid) in FEMALE_SLUGS:
         return 5
-    return 2
+    return 0
 
 
 def plan(sid, data):
@@ -115,8 +118,8 @@ def plan(sid, data):
     parsed = [(c, parse_chord(c)) for c in uniq]
     ideal = ideal_shift(sid)
     best = None
-    # 여성 원곡은 -5반음 고정(사용자 기준), 남성 원곡은 -2반음에서 ±1까지만 조정
-    shifts = [5] if ideal == 5 else [1, 2, 3]
+    # 남성 원곡은 원키 고정(이조 0반음), 여성 원곡은 -5반음 고정. 카포만으로 원터치 버튼에 맞춘다.
+    shifts = [5] if ideal == 5 else [0]
     for shift in shifts:
         male = {c: shift_name(p['root'], shift, prefer_flat) + p['suffix'] for c, p in parsed}
         male_pc = {c: PC[shift_name(p['root'], shift, prefer_flat)] for c, p in parsed}
@@ -126,8 +129,7 @@ def plan(sid, data):
             mapped_occ = sum(weight[c] for c, p in parsed if find_button(male_pc[c], p['quality'], capo))
             tonic = parse_chord(orig)
             tonic_ok = find_button((PC[tonic['root']] - shift) % 12, tonic['quality'], capo) is not None
-            # ① 슬롯(원터치에 없는 코드) 수를 가장 작게 ② 카포는 낮게 ③ 남자키는 기본값에 가깝게
-            # ① 슬롯 수 최소 ② 남자키는 보컬 기준값 유지 ③ 카포는 낮은 쪽
+            # ① 슬롯(원터치에 없는 코드) 수를 가장 작게 ② 카포는 낮게 ③ 으뜸화음을 버튼으로 잡을 수 있게
             score = (-unmapped * 1000 - abs(shift - ideal) * 40 - capo * 3
                      + (15 if capo <= 5 else 0) + (30 if tonic_ok else 0) + mapped_occ * 0.5)
             if best is None or score > best[0]:
@@ -142,6 +144,20 @@ def plan(sid, data):
 
 def build_chart(sid, data):
     org = data['originalKey']
+    if data.get('transpose'):
+        semis = int(data['transpose'])
+        org = shift_name(parse_chord(org)['root'], -semis, False) + (
+            'm' if parse_chord(org)['quality'] == 'min' else '')
+        data = dict(data)
+        data['originalKey'] = org
+        data['sections'] = [
+            {'name': sec['name'],
+             'bars': [[shift_name(parse_chord(c)['root'], -semis, 'b' in org) + parse_chord(c)['suffix']
+                       + (('/' + shift_name(parse_chord(c)['bass'], -semis, 'b' in org))
+                          if parse_chord(c)['bass'] else '')
+                       for c in bar] for bar in sec['bars']]}
+            for sec in data['sections']
+        ]
     p = plan(sid, data)
     sections = []
     slot_map = {}
@@ -154,9 +170,12 @@ def build_chart(sid, data):
                 pc_ = parse_chord(c)
                 male_chord = p['male'][c]
                 btn = find_button(p['male_pc'][c], pc_['quality'], p['capo'])
+                # 증5화음(aug)·감5화음(dim)은 3화음 버튼으로 대신할 수 없어 슬롯으로 넘긴다
+                if any(k in pc_['suffix'] for k in ('aug', 'dim', 'b5', '°', '-5')):
+                    btn = None
                 if btn is None:
                     if c not in slot_map:
-                        if len(slot_list) >= 5:
+                        if len(slot_list) >= MAX_SLOTS:
                             slot_map[c] = 0
                         else:
                             slot_list.append(c)
@@ -435,7 +454,7 @@ def main():
     pending = sum(1 for s in songs if s.get('category') == 'pending')
     references = sum(1 for s in songs if s.get('category') == 'reference')
     originals = sum(1 for s in songs if s.get('category') == 'original')
-    meta['seedVersion'] = 5
+    meta['seedVersion'] = 6
     meta['chartVersion'] = '2026-11-22'
     meta['chartReadyCount'] = ready
     meta['chartPartialCount'] = partial
@@ -453,12 +472,12 @@ def main():
         for s in songs if s.get('category') == 'pending'
     ]
     meta['chartDisclosure'] = (
-        '남자키는 여성 원곡 -5반음, 남성 원곡 -2반음을 기본으로 하고 AeroBand 원터치 버튼에 맞춰 카포를 골랐습니다. '
+        '남자키는 남성 원곡이면 원키 그대로(이조 0반음), 여성 원곡이면 -5반음으로 잡고 그 목표 키를 AeroBand 원터치 버튼에 맞추도록 카포를 골랐습니다. '
         f'남자키·박자·BPM·코드 진행은 2026-11-22 웹 검색으로 확인한 코드표·악보 메타데이터에서 옮겼습니다. '
         f'악보 준비 완료 {ready}곡(서로 다른 곡 {len(chart_titles)}곡), 부분 확인 {partial}곡, 검수 대기 {pending}곡, '
         f'비음악·참고 영상 {references}개, 자작곡 {originals}개. '
         '마디 배치는 코드표 순서를 4박 카드로 정리한 연습용이며, 원곡 세부 마디와 다를 수 있습니다. '
-        '원터치 버튼에 없는 코드는 SimplifyChord 슬롯(최대 5개)으로 안내합니다.')
+        '원터치 버튼에 없는 코드는 SimplifyChord 슬롯(최대 8개)으로 안내합니다.')
     meta['sourceDisclosure'] = (
         '원본 152곡 전체 데이터는 여전히 미확보입니다. 2026-11-22 확인한 재생목록 공개 168개 영상과 접근 불가 42개 사유를 기록했고, '
         '그중 실제 곡명이 확인된 곡은 남자키·박자·BPM·원터치 악보를 채웠습니다. 확인하지 못한 곡은 검수 대기로 남깁니다.')

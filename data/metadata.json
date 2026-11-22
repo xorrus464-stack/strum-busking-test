@@ -12,24 +12,24 @@
   "additionalRecommendedSongCount": 1,
   "originalPlaylist": "https://www.youtube.com/playlist?list=PLdOy20BJp9XElDHDvAJI6mUG48BmfDX-y",
   "playlistId": "PLdOy20BJp9XElDHDvAJI6mUG48BmfDX-y",
-  "seedVersion": 5,
+  "seedVersion": 6,
   "playlistCollectedCount": 210,
   "playlistPublicVideoCount": 168,
   "playlistInaccessibleVideoCount": 42,
   "restoredSongCount": 19,
   "songEntryCount": 200,
   "chartVersion": "2026-11-22",
-  "chartReadyCount": 116,
-  "chartPartialCount": 6,
-  "chartPendingCount": 38,
-  "chartDisclosure": "남자키는 여성 원곡 -5반음, 남성 원곡 -2반음을 기본으로 하고 AeroBand 원터치 버튼에 맞춰 카포를 골랐습니다. 남자키·박자·BPM·코드 진행은 2026-11-22 웹 검색으로 확인한 코드표·악보 메타데이터에서 옮겼습니다. 악보 준비 완료 116곡(서로 다른 곡 98곡), 부분 확인 6곡, 검수 대기 38곡, 비음악·참고 영상 39개, 자작곡 1개. 마디 배치는 코드표 순서를 4박 카드로 정리한 연습용이며, 원곡 세부 마디와 다를 수 있습니다. 원터치 버튼에 없는 코드는 SimplifyChord 슬롯(최대 5개)으로 안내합니다.",
+  "chartReadyCount": 124,
+  "chartPartialCount": 9,
+  "chartPendingCount": 27,
+  "chartDisclosure": "남자키는 남성 원곡이면 원키 그대로(이조 0반음), 여성 원곡이면 -5반음으로 잡고 그 목표 키를 AeroBand 원터치 버튼에 맞추도록 카포를 골랐습니다. 남자키·박자·BPM·코드 진행은 2026-11-22 웹 검색으로 확인한 코드표·악보 메타데이터에서 옮겼습니다. 악보 준비 완료 124곡(서로 다른 곡 108곡), 부분 확인 9곡, 검수 대기 27곡, 비음악·참고 영상 39개, 자작곡 1개. 마디 배치는 코드표 순서를 4박 카드로 정리한 연습용이며, 원곡 세부 마디와 다를 수 있습니다. 원터치 버튼에 없는 코드는 SimplifyChord 슬롯(최대 8개)으로 안내합니다.",
   "nonMusicCount": 39,
   "originalWorkCount": 1,
-  "uniqueChartSongCount": 98,
+  "uniqueChartSongCount": 108,
   "categoryCounts": {
-    "chart": 116,
-    "partial": 6,
-    "pending": 38,
+    "chart": 124,
+    "partial": 9,
+    "pending": 27,
     "reference": 39,
     "original": 1
   },
@@ -38,18 +38,6 @@
       "id": "verified-004",
       "title": "Ten Thousand Hours",
       "artist": "Macklemore & Ryan Lewis",
-      "note": ""
-    },
-    {
-      "id": "verified-017",
-      "title": "나는 버려질 장난감",
-      "artist": "아소 · 아날로그소년",
-      "note": ""
-    },
-    {
-      "id": "verified-021",
-      "title": "날씨가 좋고 바람도 좋아",
-      "artist": "가수 미확인",
       "note": ""
     },
     {
@@ -93,48 +81,6 @@
       "title": "영원해",
       "artist": "도경수 (D.O.)",
       "note": "도경수 원곡"
-    },
-    {
-      "id": "playlist-042",
-      "title": "미워",
-      "artist": "크러쉬 (Crush)",
-      "note": "크러쉬 라이브"
-    },
-    {
-      "id": "playlist-047",
-      "title": "향기",
-      "artist": "샘김 (Sam Kim)",
-      "note": "샘김 원곡"
-    },
-    {
-      "id": "playlist-050",
-      "title": "Love Me Like That",
-      "artist": "샘김 (Sam Kim)",
-      "note": "샘김 원곡"
-    },
-    {
-      "id": "playlist-051",
-      "title": "Love Me Like That",
-      "artist": "샘김 (Sam Kim)",
-      "note": "샘김 원곡"
-    },
-    {
-      "id": "playlist-069",
-      "title": "꿈의 등불 (夢の灯り)",
-      "artist": "RADWIMPS",
-      "note": "너의 이름은 OST 커버"
-    },
-    {
-      "id": "playlist-073",
-      "title": "真夜中のドア〜Stay With Me",
-      "artist": "松原みき",
-      "note": "松原みき 원곡 커버"
-    },
-    {
-      "id": "playlist-075",
-      "title": "すずめ",
-      "artist": "RADWIMPS",
-      "note": "스즈메의 문단속 OST 커버"
     },
     {
       "id": "playlist-077",
@@ -221,12 +167,6 @@
       "note": "박재정 X 설윤 원곡, 테이 커버"
     },
     {
-      "id": "playlist-166",
-      "title": "Feel Special",
-      "artist": "TWICE",
-      "note": "TWICE 원곡"
-    },
-    {
       "id": "playlist-173",
       "title": "괜히 보고 싶은 사실이 조금은 다행인 시간",
       "artist": "jehoda",
@@ -255,12 +195,6 @@
       "title": "나를 사랑하지 말아요",
       "artist": "유영우 X 허각",
       "note": "유영우 X 허각"
-    },
-    {
-      "id": "suggested-stand-by-me",
-      "title": "Stand by Me",
-      "artist": "Ben E. King",
-      "note": ""
     }
   ]
 }

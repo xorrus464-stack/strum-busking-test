@@ -109,7 +109,7 @@
     const m=seed.meta||{}, cat=n=>state.songs.filter(x=>(x.category||'')===n).length;
     const chips=[['chart-ready','악보 완료',cat('chart')],['chart-partial','부분 확인',cat('partial')],['chart-pending','검수 대기',cat('pending')],['original','자작·AI곡',cat('original')],['reference','비음악·참고',cat('reference')]];
     return `${head('MY SONG LIBRARY','나의 버스킹곡','곡 검색 · 남자키/카포 · 원터치 악보 · 숙련도를 한곳에서',action('new-song','+ 새 곡 등록','btn primary'))}
-    <div class="alert" style="margin-bottom:12px"><b>전체 ${state.songs.length}개 항목 정리</b> — 남자키·박자·BPM·원터치 악보 <b>${cat('chart')}개</b>(서로 다른 곡 ${m.uniqueChartSongCount||'—'}곡) · 부분 확인 ${cat('partial')} · 코드 검수 대기 ${cat('pending')} · 비음악·참고 ${cat('reference')} · 자작곡 ${cat('original')}. 여자키 원곡은 <b>-5키</b>, 남자키 원곡은 -2키를 기본 남자키로 잡고 AeroBand Capo로 맞췄습니다. 마디 배치는 공개된 코드표를 4박 카드로 정리한 연습용입니다.</div>
+    <div class="alert" style="margin-bottom:12px"><b>전체 ${state.songs.length}개 항목 정리</b> — 남자키·박자·BPM·원터치 악보 <b>${cat('chart')}개</b>(서로 다른 곡 ${m.uniqueChartSongCount||'—'}곡) · 부분 확인 ${cat('partial')} · 코드 검수 대기 ${cat('pending')} · 비음악·참고 ${cat('reference')} · 자작곡 ${cat('original')}. 여자키 원곡만 <b>-5키</b>, 남성 원곡은 <b>원키 그대로</b>를 남자키로 잡고 AeroBand Capo를 맞췄습니다. 마디 배치는 공개된 코드표를 4박 카드로 정리한 연습용입니다.</div>
     <div class="row" style="flex-wrap:wrap;gap:6px;margin-bottom:12px">${chips.map(([v,l,n])=>`<button class="btn small ${statusFilter===v?'primary':'outline'}" data-act="filter-cat:${v}">${l} ${n}</button>`).join('')}</div>
     <div class="toolbar" style="margin-bottom:13px"><div class="search-wrap"><span class="search-mark">⌕</span><input id="song-search" class="input" aria-label="곡 검색" placeholder="곡명, 가수, 남자키, 원본 번호 검색" value="${esc(searchQuery)}" /></div><select id="song-filter" class="select"><option value="all">모든 항목</option><option value="chart-ready" ${statusFilter==='chart-ready'?'selected':''}>악보 완료</option><option value="chart-partial" ${statusFilter==='chart-partial'?'selected':''}>부분 확인</option><option value="chart-pending" ${statusFilter==='chart-pending'?'selected':''}>검수 대기</option><option value="original" ${statusFilter==='original'?'selected':''}>자작·AI곡(채보 필요)</option><option value="reference" ${statusFilter==='reference'?'selected':''}>비음악·참고 영상</option><option value="setlist" ${statusFilter==='setlist'?'selected':''}>내 세트리스트</option>${levels.map(l=>`<option value="${l}" ${statusFilter===l?'selected':''}>${l}</option>`).join('')}</select></div>
     <div class="tiny" id="song-result-count" style="margin-bottom:8px">검색 결과 ${filtered.length}개 · 데이터가 추가되면 즉시 반영됩니다.</div>
@@ -189,7 +189,7 @@
       ${c?`<div class="focus-strip"><div><b>오늘의 곡 · ${esc(focus.title)}</b><div class="tiny">${esc(c.maleKey)}키 · Capo +${c.capo} · ${esc(c.timeSignature)} · ${c.bpm}BPM</div></div>${action('chart:'+focus.id,'악보 보기','btn small')}</div>`:''}
       <div class="row between" style="margin-top:14px"><div class="segmented">${[20,25,30].map(v=>`<button data-act="minutes:${v}" class="${state.settings.minutes===v?'selected':''}">${v}분</button>`).join('')}</div><div class="segmented"><button data-act="mode:easy" class="${state.settings.mode==='easy'?'selected':''}">원터치</button><button data-act="mode:standard" class="${state.settings.mode==='standard'?'selected':''}">정식 코드</button></div></div>
       <div class="routine-steps">${tasks.map(([title,description,time],i)=>`<label class="task"><input type="checkbox" data-step="${i}" ${state.completedStages.includes(i)?'checked':''}/><div class="grow"><b>${esc(title)}</b><div class="small-desc">${esc(description)}</div></div><span class="minute">${time}분</span></label>`).join('')}</div>
-      <div class="hint">원터치 코드(Easy Chord)와 SimplifyChord(손가락 수를 줄인 코드)는 서로 다른 기능입니다. 원터치는 화면 버튼 10개, SimplifyChord는 프렛마다 코드 하나를 등록합니다(공식 안내 기준 최대 12개, 화면에는 5칸을 기본 표시).</div></div>
+      <div class="hint">원터치 코드(Easy Chord)와 SimplifyChord(손가락 수를 줄인 코드)는 서로 다른 기능입니다. 원터치는 화면 버튼 10개, SimplifyChord는 프렛마다 코드 하나를 등록합니다(공식 안내 기준 최대 12개, 화면에는 8칸까지 표시).</div></div>
       <div class="stack"><div class="card meter"><div class="eyebrow">FOCUS TIMER</div><h3>나의 집중 타이머</h3><div class="timer" id="timer-display">${mins(remaining)}</div><div class="row" style="justify-content:center;flex-wrap:wrap">${action('timer-toggle',sessionRunning?'일시정지':'연습 시작','btn primary')}${action('timer-reset','초기화','btn outline')}</div>
       <div class="divider"></div>
       <div class="row between"><div><h3>나의 메트로놈</h3><p class="tiny">${esc(state.settings.timeSignature)} · ${state.settings.timeSignature==='6/8'?'8분음표 6번, 1·4박 강세':'1박 강세'}</p></div><span id="bpm-label" style="font-size:23px;font-weight:900">${state.settings.bpm} BPM</span></div>
@@ -269,11 +269,11 @@
       c.sections.forEach(sec=>sec.bars.forEach((bar,bi)=>bar.forEach(x=>{if(x.slot)slotUse.push({sec:sec.name,bar:bi+1,slot:x.slot,chord:x.sound});})));
       return `${head0}${tabs}
         <div class="capo-callout"><b>에어로밴드 앱 → 원손 단순화 → <span class="hl">SimplifyChord 켜기</span></b><span>${slots.length?`${slots.length}개 슬롯에 아래 코드를 등록하세요`:'이 곡은 슬롯 없이 원터치 10버튼만으로 완주할 수 있습니다'}</span></div>
-        <div class="slot-board">${[1,2,3,4,5].map(n=>{const sl=slots.find(x=>x.slot===n);return `<div class="slot ${sl?'filled':''}"><div class="fret">${Array.from({length:5},(_,i)=>`<i></i>`).join('')}</div><div class="slot-no">S${n}</div><b>${sl?esc(sl.chord):'—'}</b><span>${sl?esc(sl.alt||''):'비어 있음'}</span></div>`;}).join('')}</div>
+        <div class="slot-board">${Array.from({length:Math.max(5,slots.length)},(_,i)=>i+1).map(n=>{const sl=slots.find(x=>x.slot===n);return `<div class="slot ${sl?'filled':''}"><div class="fret">${Array.from({length:5},(_,i)=>`<i></i>`).join('')}</div><div class="slot-no">S${n}</div><b>${sl?esc(sl.chord):'—'}</b><span>${sl?esc(sl.alt||''):'비어 있음'}</span></div>`;}).join('')}</div>
         ${slots.length?`<div class="slot-guide"><h4>이렇게 세팅하세요</h4><ol>${slots.map(sl=>`<li><b>S${sl.slot} · ${esc(sl.chord)}</b> <span class="tiny">(원곡 ${esc(sl.orig)})</span> ${sl.alt?`— 약식 대안: ${esc(sl.alt)}`:''}</li>`).join('')}</ol>
           <h4>교체 연습법</h4><p class="tiny">① 슬롯만 단독으로 4마디 반복(코드 잡기 확인) → ② 원터치 버튼 ↔ 슬롯 교차 8마디 → ③ 해당 마디만 30초 반복 → ④ 곡 전체를 70% 템포로. 슬롯에 넣은 코드가 손에 붙으면 같은 코드를 정식 운지로 바꿔 3단계로 넘어갑니다.</p></div>`:''}
         ${slotUse.length?`<div class="hint"><b>슬롯이 나오는 마디</b> · ${slotUse.slice(0,12).map(x=>`${esc(x.sec)} ${x.bar}마디 S${x.slot}(${esc(x.chord)})`).join(' · ')}${slotUse.length>12?' …':''}</div>`:''}
-        <div class="hint" style="margin-top:10px"><b>등록할 때 확인할 것</b> · 슬롯에는 남자키 기준 코드 이름(예: Bm)을 등록하세요. 앱이 카포만큼 자동으로 이조하지 않는다면, 카포 수만큼 낮춘 이름(예: Capo 2에서 Bm → Am)을 등록하면 같은 소리가 납니다. 에어로밴드 공식 안내로는 SimplifyChord를 최대 12개(프렛마다 1개)까지 등록할 수 있어, 화면에 표시한 5칸을 넘겨도 됩니다.</div>
+        <div class="hint" style="margin-top:10px"><b>등록할 때 확인할 것</b> · 슬롯에는 남자키 기준 코드 이름(예: Bm)을 등록하세요. 앱이 카포만큼 자동으로 이조하지 않는다면, 카포 수만큼 낮춘 이름(예: Capo 2에서 Bm → Am)을 등록하면 같은 소리가 납니다. 에어로밴드 공식 안내로는 SimplifyChord를 최대 12개(프렛마다 1개)까지 등록할 수 있어, 화면에 표시한 8칸을 넘겨도 됩니다.</div>
         <p class="tiny">원터치 버튼은 C·Dm·Em·F·G / Cm·D·E·Fm·Gm 10개입니다. 그 밖의 코드는 SimplifyChord 슬롯으로 옮깁니다.</p>`;
     }
     if(tab==='perc'){
@@ -285,9 +285,9 @@
     }
     const ev=c.evidence||[];
     return `${head0}${tabs}
-      <div class="card"><h3>확인한 값</h3><div class="kv"><div><span>원곡 키</span><b>${esc(c.originalKey)}</b></div><div><span>남자키(${c.maleShift}반음 ↓)</span><b>${esc(c.maleKey)}</b></div><div><span>AeroBand Capo</span><b>+${c.capo}</b></div><div><span>운지 폼</span><b>${esc(c.formText)}</b></div><div><span>박자</span><b>${esc(c.timeSignature)}</b><small>${esc(c.timeNote||'')}</small></div><div><span>BPM</span><b>${c.bpm||'—'}</b><small>${esc(c.bpmNote||'')}</small></div><div><span>원터치 매핑</span><b>${c.coverage.mapped}/${c.coverage.total}</b><small>슬롯 ${(c.slots||[]).length}개</small></div></div>
+      <div class="card"><h3>확인한 값</h3><div class="kv"><div><span>원곡 키</span><b>${esc(c.originalKey)}</b></div><div><span>${c.maleShift ? `남자키(${c.maleShift}반음 ↓)` : '남자키(원키 그대로)'}</span><b>${esc(c.maleKey)}</b></div><div><span>AeroBand Capo</span><b>+${c.capo}</b></div><div><span>운지 폼</span><b>${esc(c.formText)}</b></div><div><span>박자</span><b>${esc(c.timeSignature)}</b><small>${esc(c.timeNote||'')}</small></div><div><span>BPM</span><b>${c.bpm||'—'}</b><small>${esc(c.bpmNote||'')}</small></div><div><span>원터치 매핑</span><b>${c.coverage.mapped}/${c.coverage.total}</b><small>슬롯 ${(c.slots||[]).length}개</small></div></div>
       <div class="divider"></div><h4>근거 자료</h4><ul class="ev">${ev.map(e=>`<li><a href="${esc(e.url)}" target="_blank" rel="noopener noreferrer">${esc(e.label)}</a><span class="tiny">${esc(e.note)}</span></li>`).join('')||'<li>근거 링크 없음</li>'}</ul>
-      <p class="tiny">${esc(c.basis||'')} 남자키는 원곡 보컬 성별에 따라 −2~−4반음 범위에서 정했고, 카포는 원터치 10버튼에 가장 많이 들어가도록 골랐습니다. 에어로밴드 공식 안내에 따르면 CAPO+/CAPO− 버튼으로 조옮김하며 카포는 25키까지 지원됩니다(2026-11-22 확인).</p></div>`;
+      <p class="tiny">${esc(c.basis||'')} 남자키는 남성 원곡이면 원키 그대로(이조 0반음), 여성 원곡이면 −5반음으로 잡고, 그 목표 키를 AeroBand 원터치 10버튼(C·Dm·Em·F·G / Cm·D·E·Fm·Gm)에 맞추도록 카포를 골랐습니다. 에어로밴드 공식 안내에 따르면 CAPO+/CAPO− 버튼으로 조옮김하며 카포는 25키까지 지원됩니다(2026-11-22 확인).</p></div>`;
   }
   function chartModalShell(s){
     return `<div class="modal-layer" data-act="dismiss"><section class="modal chart-modal" role="dialog" aria-modal="true" aria-label="${esc(displayTitle(s))} 악보"><header class="modal-head"><div><div class="eyebrow">ONE-TOUCH CHART</div><h2>${esc(displayTitle(s))}</h2><div class="tiny">${esc(displayArtist(s))}${s.sourceIndices?.length?` · 원본 #${s.sourceIndices.join(', #')}`:''}</div></div><button class="icon-btn" aria-label="닫기" data-act="close">×</button></header>${chartModal(s)}</section></div>`;
@@ -326,18 +326,27 @@
           if(!cur.sourceIndices.length && seedSong.sourceIndices.length)cur.sourceIndices=seedSong.sourceIndices.slice();
           else for(const n of seedSong.sourceIndices) if(!cur.sourceIndices.includes(n)) cur.sourceIndices.push(n);
         }
-        /* 악보 병합: 사용자가 비워 둔 값만 채우고, 직접 고친 값은 그대로 둔다 */
-        if(!cur.chart && seedSong.chart) cur.chart=clone(seedSong.chart);
-        if(seedSong.chartStatus && (!cur.chartStatus || cur.chartStatus==='미확인' || cur.chartStatus==='pending')) cur.chartStatus=seedSong.chartStatus;
+        /* 악보 병합: 사용자가 직접 고친 곡(chartEdited)은 그대로 두고, 나머지는 새 시드 악보로 갱신한다
+           (2026-11-22 남자키 규칙 변경처럼 시드 계산 자체가 바뀐 경우에도 기존 기록·숙련도는 그대로 유지) */
+        if(seedSong.chart && !cur.chartEdited) cur.chart=clone(seedSong.chart);
+        else if(!cur.chart && seedSong.chart) cur.chart=clone(seedSong.chart);
+        if(seedSong.chartStatus && !cur.chartEdited) cur.chartStatus=seedSong.chartStatus;
         for(const k of ['category','workTitle','workArtist','categoryNote','playlistKind']){
           if(seedSong[k] && !cur[k]) cur[k]=seedSong[k];
         }
         if(seedSong.category) cur.category=seedSong.category;
-        for(const k of ['key','maleKey','timeSignature','chordStatus','strumming','chords']){
-          const empty=!cur[k] || ['미확정','미확인',''].includes(cur[k]);
-          if(empty && seedSong[k]) cur[k]=seedSong[k];
+        if(!cur.chartEdited){
+          for(const k of ['key','maleKey','timeSignature','chordStatus','strumming','chords']){
+            if(seedSong[k]) cur[k]=seedSong[k];
+          }
+          if(seedSong.bpm) cur.bpm=seedSong.bpm;
+        }else{
+          for(const k of ['key','maleKey','timeSignature','chordStatus','strumming','chords']){
+            const empty=!cur[k] || ['미확정','미확인',''].includes(cur[k]);
+            if(empty && seedSong[k]) cur[k]=seedSong[k];
+          }
+          if((cur.bpm==null||cur.bpm==='') && seedSong.bpm) cur.bpm=seedSong.bpm;
         }
-        if((cur.bpm==null||cur.bpm==='') && seedSong.bpm) cur.bpm=seedSong.bpm;
         if(Array.isArray(cur.tags)&&Array.isArray(seedSong.tags)){
           for(const t of seedSong.tags) if(!cur.tags.includes(t)) cur.tags.push(t);
         }
@@ -403,8 +412,9 @@
     try{const text=await file.text();let parsed=file.name.toLowerCase().endsWith('.csv')?parseCsv(text):JSON.parse(text);if(file.name.toLowerCase().endsWith('.csv')&&parsed.some(r=>r.index&&!r.title))throw new Error('원본 영상 CSV는 곡 CSV와 형식이 달라 이 화면에서 가져올 수 없습니다. 전체 JSON 백업을 이용하세요.');let res=importJson(parsed,mode);save();render();notice(`가져오기 완료: 신규 ${res.added}곡, 갱신 ${res.updated}곡`);}catch(e){notice('가져오기 실패: '+e.message);}
   }
   function saveSongForm(form){let values=Object.fromEntries(new FormData(form));let title=String(values.title||'').trim(),artist=String(values.artist||'').trim();if(!title||!artist){notice('제목과 가수를 입력하세요.');return;}let s=modal.id? song(modal.id):null;
+    const prev=s?{key:s.key,maleKey:s.maleKey,chords:s.chords,strumming:s.strumming,bpm:s.bpm}:null;
     let nums=String(values.sourceIndices||'').split(',').map(n=>+n.trim()).filter(i=>Number.isInteger(i)&&i>=1&&i<=211);
-    if(!s){s={...clone(seed.songs.at(-1)),id:uniqueId(),verification:'added-by-user',tags:[]};state.songs.push(s);}Object.assign(s,{title,artist,sourceIndices:[...new Set(nums)],level:values.level,videoUrl:safeHttp(values.videoUrl)||'',audioUrl:safeHttp(values.audioUrl)||'',key:values.key||'미확정',maleKey:values.maleKey||'미확정',bpm:values.bpm?+values.bpm:null,chords:values.chords||'',chordStatus:values.chordStatus,strumming:values.strumming||'',notes:values.notes||'',setlist:form.querySelector('[name="setlist"]')?.checked||false});updateSongRecords();save();modal=null;render();notice('곡 정보가 저장되었습니다.');}
+    if(!s){s={...clone(seed.songs.at(-1)),id:uniqueId(),verification:'added-by-user',tags:[]};state.songs.push(s);}Object.assign(s,{title,artist,sourceIndices:[...new Set(nums)],level:values.level,videoUrl:safeHttp(values.videoUrl)||'',audioUrl:safeHttp(values.audioUrl)||'',key:values.key||'미확정',maleKey:values.maleKey||'미확정',bpm:values.bpm?+values.bpm:null,chords:values.chords||'',chordStatus:values.chordStatus,strumming:values.strumming||'',notes:values.notes||'',setlist:form.querySelector('[name="setlist"]')?.checked||false});if(prev&&s.chart&&(prev.key!==s.key||prev.maleKey!==s.maleKey||prev.chords!==s.chords||prev.strumming!==s.strumming||prev.bpm!==s.bpm))s.chartEdited=true;updateSongRecords();save();modal=null;render();notice('곡 정보가 저장되었습니다.');}
   function saveSourceForm(form){let ex=state.sources.find(s=>s.index===modal.index),data=new FormData(form);ex.url=safeHttp(data.get('url'));ex.status=ex.index===163?'제외':(SOURCE_STATES.includes(data.get('status'))?data.get('status'):'미확인');ex.note=String(data.get('note')||'');save();modal=null;render();notice('원본 영상 정보를 저장했습니다.');}
   function saveLogForm(form){const d=new FormData(form);const m=Math.max(1,Math.min(480,+d.get('minutes')||0));state.logs.push({id:'log-'+Date.now()+'-'+Math.random().toString(36).slice(2,5),date:dateKey(),minutes:m,songId:d.get('songId')||'',mode:state.settings.mode,chords:String(d.get('chords')||''),strum:String(d.get('strum')||''),memo:String(d.get('memo')||'')});if(d.get('songId')){let s=song(d.get('songId'));if(s&&s.level==='미착수')s.level='연습 중';}state.completedStages=[];save();resetTimer();notice('오늘 연습 기록을 저장했습니다.');}
   function handleAction(act){let [cmd,...rest]=act.split(':'),value=rest.join(':');switch(cmd){

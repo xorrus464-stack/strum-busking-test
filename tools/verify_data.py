@@ -132,7 +132,7 @@ for s in songs:
         assert not s['videoUrl'], s['id']
 
 # 10) 메타 집계
-assert meta['seedVersion'] == 5
+assert meta['seedVersion'] == 6
 assert meta['playlistCollectedCount'] == 210
 assert meta['playlistPublicVideoCount'] == 168
 assert meta['playlistInaccessibleVideoCount'] == 42
@@ -184,7 +184,7 @@ for s in ready:
     assert c['evidence'] and all(e['url'].startswith('http') for e in c['evidence']), s['id']
     assert s['key'] == c['originalKey'] and s['maleKey'] == c['maleKey'], s['id']
     assert s['bpm'] == c['bpm'], s['id']
-    assert len(c['slots']) <= 5, (s['id'], 'slots')
+    assert len(c['slots']) <= 8, (s['id'], 'slots')
     slot_ids = {x['slot'] for x in c['slots']}
     assert slot_ids == set(range(1, len(c['slots']) + 1)), s['id']
     for sec in c['sections']:
@@ -197,7 +197,7 @@ for s in ready:
                     expect = (BTN_PC[cell['btn']] + c['capo']) % 12
                     assert expect == pc_of(cell['sound']), (s['id'], cell['btn'], cell['sound'], c['capo'])
                 else:
-                    assert 1 <= cell['slot'] <= 5, s['id']
+                    assert 1 <= cell['slot'] <= 8, s['id']
                     assert cell['slot'] in slot_ids, (s['id'], '슬롯 누락')
                     assert cell['sound'] == next(x['chord'] for x in c['slots'] if x['slot'] == cell['slot']), s['id']
 for s in partial:
@@ -219,6 +219,6 @@ assert len(entry) == 44, len(entry)
 print(f"OK: 전체 {len(songs)}개 항목 — 악보 완료 {len(ready)}(서로 다른 곡 {meta['uniqueChartSongCount']}) · 부분 확인 {len(partial)} · 검수 대기 {len(pending)} · "
       f"비음악·참고 {meta['nonMusicCount']} · 자작곡 {meta['originalWorkCount']}")
 print(f"OK: 곡으로 등록된 {len(entry)}곡 중 악보 준비 {len([s for s in entry if s['chartStatus'] == 'ready'])}곡")
-print('OK: 박자 4/4·3/4·6/8, BPM 40~180, 남자키 이조·카포 0~7, 원터치 버튼(10개) 음정 일치, SimplifyChord 슬롯 ≤5, 근거 URL 존재')
+print('OK: 박자 4/4·3/4·6/8, BPM 40~180, 남자키 이조·카포 0~7, 원터치 버튼(10개) 음정 일치, SimplifyChord 슬롯 ≤8, 근거 URL 존재')
 print('OK: 슬롯 211 (공개 168 · 접근 불가 42 · 제외 1 · 미확인 1), #6 7곡 · #65 2곡 · #163 제외 · #172 가수 미확인 유지')
 print('OK: 복원 17 + 사용자 확인 2, 접근 불가 사유 계정해지 37/비공개 3/저작권 1/업로더 1, 공개 영상 URL 168개')

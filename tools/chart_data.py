@@ -573,6 +573,25 @@ CHARTS = {
             ("mymusic5 4/4 96bpm", "https://www.mymusic5.com/ko/cholunguitar/342100", "♭3개 · 4/4 · 96bpm · 카포 3"),
         ],
     },
+    "suggested-stand-by-me": {  # Stand by Me / Ben E. King (추천곡)
+        "originalKey": "A", "timeSignature": "4/4", "timeNote": "Guitar Space·Lauren Bateman 코드표 표기",
+        "bpm": 119, "shift": 0, "bpmNote": "ChordU 119.35bpm",
+        "stage": 1,
+        "sections": [
+            {"name": "Intro", "bars": [["A"], ["A"], ["F#m"], ["F#m"], ["D"], ["E"], ["A"], ["A"]]},
+            {"name": "Verse", "bars": [["A"], ["A"], ["F#m"], ["F#m"], ["D"], ["E"], ["A"], ["A"]]},
+            {"name": "Chorus", "bars": [["A"], ["A"], ["F#m"], ["F#m"], ["D"], ["E"], ["A"], ["A"]]},
+            {"name": "Interlude", "bars": [["A"], ["A"], ["F#m"], ["F#m"], ["D"], ["E"], ["A"], ["A"]]},
+        ],
+        "stroke": "↓ · ↓↑ · ↓↑ (119bpm, 8분 소울 비트)",
+        "percussive": "2·4박에 손날로 바디를 톡 쳐 백비트를 살린다.",
+        "why": "A–F#m–D–E 네 코드가 곡 전체에서 같은 순서로 반복된다(1–vi–IV–V). 원터치에서는 A·D·E만 눌러도 반주가 되고 F#m은 슬롯으로 넘긴다.",
+        "evidence": [
+            ("Guitar Space 코드 분석(Key A Major · 4/4 · A F#m D E)", "https://guitarspace.org/tips/stand-by-me-guitar-chords/", "Key A Major · 4/4 · A F#m D E (I–vi–IV–V)"),
+            ("Lauren Bateman 코드 차트(파트별 마디 진행)", "https://www.laurenbateman.com/stand-by-me-guitar-chord-chart/", "Intro A A F#m F#m D E A A / Verse 동일 / Chorus 동일"),
+            ("ChordU (119.35bpm · A F#m D E)", "https://chordu.com/chords-tabs-ben-e-king-stand-by-me-audio--id_hwZNL7QVJjE", "Tempo 119.35bpm · A F#m D E 반복"),
+        ],
+    },
 }
 
 # 남자키 변환 기본값(반음): 여성 보컬 원곡 -4, 남성 보컬 원곡 -2 (곡별 shift가 우선)

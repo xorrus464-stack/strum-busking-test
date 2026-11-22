@@ -83,7 +83,7 @@ def run(pw, name, viewport, mobile=False):
     page.locator('.song-row', has_text='Way Back Home').first.locator('button', has_text='악보').click()
     page.wait_for_selector('.chart-modal')
     html = page.content()
-    for token in ['Capo 1', 'G폼', 'ONE-TOUCH', 'bar-cells', 'stroke-strip']:
+    for token in ['Capo +3', 'G폼', 'ONE-TOUCH', 'bar-cells', 'stroke-strip']:
         check(f'{name}: 악보 {token}', token in html)
     colors = page.evaluate("""() => [...document.querySelectorAll('.cc')].map(e => getComputedStyle(e).backgroundColor)""")
     uniq = sorted(set(colors))
@@ -95,7 +95,7 @@ def run(pw, name, viewport, mobile=False):
     # SimplifyChord 슬롯
     page.click('button:has-text("SimplifyChord")')
     page.wait_for_selector('.slot-board')
-    check(f'{name}: 슬롯 5칸', page.locator('.slot').count() == 5)
+    check(f'{name}: 슬롯 보드 5칸 이상', page.locator('.slot').count() >= 5)
     page.click('button:has-text("스트로크·퍼커시브")')
     check(f'{name}: 퍼커시브 단계', '4단계로 만드는 퍼커시브' in page.content())
     page.click('button:has-text("근거")')
@@ -192,11 +192,11 @@ def run_merge(pw):
     check('merge: 남자키 배지 병합', page.locator('.song-row', has_text='오늘').first.inner_text().find('남자키') >= 0)
     state = json.loads(page.evaluate("() => localStorage.getItem('strum-busking-v2')"))
     song = [s for s in state['songs'] if s['id'] == 'verified-001'][0]
-    check('merge: seedVersion 5', state['seedVersion'] == 5, str(state['seedVersion']))
+    check('merge: seedVersion 6', state['seedVersion'] == 6, str(state['seedVersion']))
     check('merge: 숙련도 보존', song['level'] == '버스킹 가능', song['level'])
     check('merge: 사용자 메모 보존', song['notes'] == '내 메모', song['notes'])
     check('merge: 세트리스트 보존', song['setlist'] is True)
-    check('merge: 악보 추가', song.get('chart', {}).get('maleKey') == 'D', str(song.get('chart', {}).get('maleKey')))
+    check('merge: 악보 추가(남성 원곡 원키 E)', song.get('chart', {}).get('maleKey') == 'E' and song.get('chart', {}).get('maleShift') == 0, str(song.get('chart', {}).get('maleKey')))
     check('merge: #163 제외 유지', state['sources'][162]['status'] == '제외')
     browser.close()
 

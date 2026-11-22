@@ -59,8 +59,9 @@ assert((root.innerHTML.match(/class="song-row"/g) || []).length === ready, '악�
 
 // 3) 원터치 컬러 악보 모달
 nav(handlers, 'songs');
+const way=songs.find(x=>x.id==='restored-146').chart;
 act(handlers, 'chart:restored-146');
-['Capo 1', 'G폼', 'Way Back Home', '원터치 악보', 'SimplifyChord', '퍼커시브', '--c:#'].forEach(t => assert(root.innerHTML.includes(t), '악보: ' + t));
+[`Capo ${way.capo}`, way.formButton+'폼', 'Way Back Home', '원터치 악보', 'SimplifyChord', '퍼커시브', '--c:#'].forEach(t => assert(root.innerHTML.includes(t), '악보: ' + t));
 assert(/class="cc /.test(root.innerHTML), '마디 카드');
 // 4) SimplifyChord 탭 — 슬롯이 없는 곡은 '완주 가능' 안내
 act(handlers, 'chart-tab:slots');
@@ -116,15 +117,15 @@ const legacy = {
 };
 ({ root, handlers } = boot(legacy));
 const saved = JSON.parse(store['strum-busking-v2']);
-assert(saved.seedVersion === 5, 'seedVersion 5 로 업그레이드');
+assert(saved.seedVersion === 6, 'seedVersion 6 으로 업그레이드');
 assert(saved.logs.length === 1 && saved.logs[0].minutes === 33, '기존 연습 기록 보존');
 const mine = saved.songs.find(s => s.id === 'verified-001');
 assert(mine.level === '거의 가능', '숙련도 보존');
 assert(mine.notes === '내가 직접 쓴 메모', '사용자 메모 보존');
 assert(mine.setlist === true, '세트리스트 보존');
-assert(mine.chart && mine.chart.status === 'ready', '악보 병합');
-assert(mine.maleKey === 'D' && mine.bpm === 70, '남자키·BPM 병합');
+assert(mine.chart && mine.chart.status === 'ready' && mine.chart.maleShift === 0, '악보 병합(원키 기준 재계산)');
+assert(mine.maleKey === 'E' && mine.bpm === 70, '남자키·BPM 병합(남성 원곡 원키 E)');
 assert(mine.sourceIndices.includes(21), '원본 번호 유지');
 assert(saved.sources[162].status === '제외', '#163 제외 유지');
 
-console.log(`PASS: boot ${songs.length}곡(악보 ${ready}·검수대기 ${pending}), 남자키 배지, 원터치 컬러 악보(5색), SimplifyChord 슬롯, 4단계 로드맵, 4/4·3/4·6/8 메트로놈, 원본 슬롯, 백업, seed v4 병합(기존 기록·숙련도 보존)`);
+console.log(`PASS: boot ${songs.length}곡(악보 ${ready}·검수대기 ${pending}), 남자키 배지, 원터치 컬러 악보(5색), SimplifyChord 슬롯, 4단계 로드맵, 4/4·3/4·6/8 메트로놈, 원본 슬롯, 백업, seed v6 병합(기존 기록·숙련도 보존)`);

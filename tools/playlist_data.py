@@ -27,13 +27,13 @@ WORK_META = {
     'popcorn': ('Popcorn', '도경수 (D.O.)', 'm', '', ''),
     'yeongwonhae': ('영원해', '도경수 (D.O.)', 'm', 'pending', '코드표 미확보'),
     'beautiful': ('Beautiful', '크러쉬 (Crush)', 'm', '', '도깨비 OST'),
-    'miwo': ('미워', '크러쉬 (Crush)', 'm', 'pending', '같은 가수의 「미안해 미워해 사랑해」와 다른 곡, 코드표 미확보'),
+    'miwo': ('미워 (Ego)', '크러쉬 (Crush)', 'm', '', '원키 Bb·100bpm 확인, Chordify 자동 채보 반복 진행'),
     'ijeobeorijima': ('잊어버리지마', '크러쉬 (Crush) feat. 태연', 'm', '', ''),
     'drowning': ('Drowning', '우즈 (WOODZ)', 'm', '', ''),
     'makeup': ('Make Up', '샘김 (Sam Kim) feat. 크러쉬', 'm', '', ''),
-    'hyanggi': ('향기', '샘김 (Sam Kim)', 'm', 'pending', '코드표 미확보(동명이곡 주의)'),
+    'hyanggi': ('향기 (Scent)', '샘김 (Sam Kim)', 'm', '', '원키 Gb·70bpm 확인, ChordU 자동 채보 코드 순서'),
     'yeoreumbi': ('여름비', '샘김 (Sam Kim)', 'm', '', '6/8'),
-    'lovemelike': ('Love Me Like That', '샘김 (Sam Kim)', 'm', 'pending', '코드표 미확보'),
+    'lovemelike': ('Love Me Like That', '샘김 (Sam Kim)', 'm', '', '원키 A·79bpm, 커뮤니티 코드표로 파트별 진행 확인'),
     'whoareyou': ('Who Are You', '샘김 (Sam Kim) X 정승환', 'm', '', ''),
     'geu-yeoreumbam': ('그 여름밤', '샘김 (Sam Kim) X 박보검', 'm', '', ''),
     'jinsim': ('진심이 담긴 노래 (True Song)', '케이시 (Kassy)', 'f', '', ''),
@@ -44,9 +44,9 @@ WORK_META = {
     'signal': ('신호등', '이무진', 'm', '', ''),
     'haengbok': ('행복', '오반 (OVAN)', 'm', '', ''),
     'pet': ('pet', '10CM', 'm', '', ''),
-    'kkum-deungbul': ('꿈의 등불 (夢の灯り)', 'RADWIMPS', 'm', 'pending', '일본어 원곡 코드표 미확보'),
-    'staywithme': ('真夜中のドア〜Stay With Me', '松原みき', 'f', 'pending', '일본어 원곡 코드표 미확보'),
-    'suzume': ('すずめ', 'RADWIMPS', 'f', 'pending', '일본어 원곡 코드표 미확보'),
+    'kkum-deungbul': ('꿈의 등불 (夢灯籠)', 'RADWIMPS', 'm', '', 'music-chord 코드표(카포3·BPM 172) 확인 · 원키 Eb'),
+    'staywithme': ('真夜中のドア〜Stay With Me', '松原みき', 'f', '', 'music-chord 코드표(카포3·BPM 108) 확인 · 원키 F'),
+    'suzume': ('すずめ', 'RADWIMPS', 'f', '', 'music-chord 코드표(카포3·BPM 78) 확인 · 원키 F'),
     'sarangira': ('사랑이라 믿었던 것들은', 'BIG Naughty X 권진아', 'm', 'pending', '코드표 미확보'),
     'hanbeon': ('한번 더 이별', '성시경', 'm', '', ''),
     'sup': ('숲', '최유리', 'f', '', '6/8'),
@@ -76,7 +76,7 @@ WORK_META = {
     'ipchun': ('입춘', '한로로', 'f', '', ''),
     'jigeum-idaero': ('지금 이대로만', '박재정 X 설윤', 'm', 'pending', '코드표 미확보'),
     'nae-soneul': ('내 손을 잡아', '아이유 (IU)', 'f', '', ''),
-    'feelspecial': ('Feel Special', 'TWICE', 'f', 'pending', '코드표 미확보'),
+    'feelspecial': ('Feel Special', 'TWICE', 'f', '', '원키 Ab·129bpm, 코드 분석 사이트 진행 순서'),
     'deo-areumdawo': ('더 아름다워져', '소수빈', 'm', '', ''),
     'saenggak': ('생각을 멈추다 보면', '최유리', 'f', '', '6/8'),
     'jehoda': ('괜히 보고 싶은 사실이 조금은 다행인 시간', 'jehoda', 'm', 'pending', '코드표 미확보'),
@@ -97,8 +97,8 @@ WORK_META = {
     'annyeong-neohui': ('안녕 너희', '유영우 X 허각', 'm', 'pending', '원곡·코드 확인 필요'),
     'nareul-sarang': ('나를 사랑하지 말아요', '유영우 X 허각', 'm', 'pending', '원곡·코드 확인 필요'),
     'kkumkkudeon': ('꿈꾸던 어른이 되었나요?', '머무르 (MEOMURU)', 'm', '', ''),
-    'yeppeo': ('예뻤어 (You Were Beautiful)', 'DAY6', 'm', 'partial', '원키 Eb·84bpm 확인, 마디별 코드는 확인 중'),
-    'chunghon': ('청혼', '노을', 'm', 'partial', '원키 E·70bpm 확인, 마디별 코드는 확인 중'),
+    'yeppeo': ('예뻤어 (You Were Beautiful)', 'DAY6', 'm', '', '원키 Eb·84bpm, 바둥바둥 코드악보 PDF로 마디별 코드 확인'),
+    'chunghon': ('청혼', '노을', 'm', '', '원키 E·70bpm 확인, 코드스코어 공개 미리보기 12마디(도입부)만 공개'),
     'saranghan-maeum': ('사랑한 마음엔 죄가 없다', '소란', 'm', 'pending', '원키·코드표 미확보'),
     'vancouver': ('Vancouver', 'BIG Naughty (서동현)', 'm', '', '도경수 AI 리믹스의 원곡'),
     'ten-thousand-hours': ('Ten Thousand Hours', 'Macklemore & Ryan Lewis', 'm', 'pending', '힙합 트랙, 기타 반주 악보 없음'),
@@ -110,8 +110,8 @@ WORK_META = {
     'muje': ('無題 (무제)', '지드래곤 (G-DRAGON)', 'm', '', '도경수 AI 리믹스의 원곡'),
     'goodbyebye': ('Good Bye-Bye (グッバイバイ)', 'Tomioka Ai (冨岡愛)', 'f', '', '도경수 AI 리믹스의 원곡'),
     'eoddeoke': ('어떻게 이별까지 사랑하겠어, 널 사랑하는 거지', 'AKMU (악동뮤지션)', 'f', '', ''),
-    'whatislove': ('WHAT IS LOVE', 'EXO-K', 'm', 'partial', '원키 Eb·66bpm·사용 코드 확인, 마디 배치는 확인 중'),
-    'her': ('HER', '블락비 (Block B)', 'm', 'partial', '원키 Cm·162bpm 확인, 코드표 미확보'),
+    'whatislove': ('WHAT IS LOVE', 'EXO-K', 'm', '', '원키 Eb·66bpm 확인, ChordU 자동 채보로 코드 순서 반영'),
+    'her': ('HER', '블락비 (Block B)', 'm', '', '원키 Cm·162bpm 확인, ChordU 자동 채보 코드 진행 반영'),
 }
 
 # playlist id → (분류, slug/복사 id, 메모)
@@ -276,6 +276,38 @@ PLAYLIST = {
 # 직접 정리한 악보(자동 초안 대체). sections: [{name, bars}]
 # bars: 한 마디에 코드 1~3개. 원키 기준 표기이며 남자키 변환은 빌드가 계산한다.
 OVERRIDES = {
+    # 사용자 제공 자동분석 초안(청음 검수 전) — 확보된 구간만 등록, 나머지 구간은 만들지 않음
+    'jangkam': {
+        'originalKey': 'Db', 'timeSignature': '', 'bpm': 0,
+        'stage': 2,
+        'partial': '도입부 자동분석 초안(청음 검수 전) — 약 0:00.7~0:20.5 구간만 등록. 박자·BPM·나머지 47구간 코드는 미확보. Faug·F7은 원터치 버튼에 없는 코드.',
+        'sections': [
+            {'name': '도입부 0:00–0:20 (자동분석 초안)',
+             'bars': [['Db'], ['F'], ['Faug'], ['F7'], ['Bbm'], ['Gb'], ['Gbm']]},
+        ],
+        'stroke': '↓ · ↓↑ · ↓↑ (코드 하나를 길게 잡는 8분 스트럼)',
+        'why': 'Faug(0:08.2)·F7(0:09.5)은 원터치 10버튼에 없는 코드라 SimplifyChord 슬롯으로 넘긴다. Db·Bbm·Gb·Gbm은 카포로 버튼에 맞춘다. 나머지 구간은 아직 코드를 모르므로 채우지 않았다.',
+        'evidence': [
+            ('원곡 영상(#108 아소 - 나는 버려질 장난감)', 'https://www.youtube.com/watch?v=YJdyPtShNvE',
+             '사용자 제공 자동분석(5회 대조, 36/47구간 통과 초안) · 0:00.1–0:00.7 F(후보 D♭) · 0:00.7–0:05.8 D♭ · 0:05.8–0:08.2 F · 0:08.2–0:09.5 Faug · 0:09.5–0:10.7 F7 · 0:10.7–0:15.7 B♭m · 0:15.7–0:18.1 G♭ · 0:18.1–0:20.5 G♭m 후보'),
+        ],
+    },
+    'narssi': {
+        'originalKey': 'A', 'timeSignature': '', 'bpm': 0,
+        'stage': 2,
+        'partial': '초반 자동분석 초안(청음 검수 전) — 약 0:00.1~0:17 구간만 등록. 가수·박자·BPM·나머지 75구간 코드는 미확보.',
+        'sections': [
+            {'name': '초반 0:00–0:17 (자동분석 초안)',
+             'bars': [['A'], ['C#m7'], ['F#m7'], ['Dm7'], ['Bm7'], ['C#m'], ['C#m7']]},
+            {'name': '전환 연습 (제공 자료)', 'bars': [['Bm7'], ['E7'], ['A']]},
+        ],
+        'stroke': '↓ · ↓↑ · ↓↑ (느린 8분, 전환 지점에서 손을 먼저 옮긴다)',
+        'why': '7th 코드가 많아 원터치 버튼은 3화음 근사로 잡고, 코드 이름은 실제 화음(C#m7·F#m7·Dm7·Bm7·E7)을 그대로 표기했다. 나머지 구간은 아직 코드를 모르므로 채우지 않았다. 가수는 여전히 미확인(#172 원칙 유지).',
+        'evidence': [
+            ('원곡 영상(#171 「날씨좋고 바람도 좋아2」)', 'https://www.youtube.com/watch?v=ctwIj615b18',
+             '사용자 제공 자동분석 초안 · 초반 0:00.1–0:17 A C#m7 F#m7 Dm7 Bm7 C#m C#m7 · 전환 연습 Bm7→E7→A'),
+        ],
+    },
     'sabyeol': {
         'originalKey': 'D', 'timeSignature': '4/4', 'bpm': 92,
         'stage': 3,
@@ -309,49 +341,279 @@ OVERRIDES = {
             ('Chord Of The Rinne (原曲BPM 89)', 'https://www.chord-rinne.jp/scode.php?id=6110', 'key C (Am) · 原曲BPM 89'),
         ],
     },
+}
+OVERRIDES.update({
+    # ── 실측 코드표(원문 마디 순서) ─────────────────────────────────
+    'yeppeo': {
+        # 바둥바둥 코드악보 PDF: 1Capo D Key(원키 Eb)의 마디 순서를 그대로 옮기고 +1반음 이조
+        'originalKey': 'D', 'transpose': 1, 'timeSignature': '4/4', 'bpm': 84,
+        'stage': 2,
+        'sections': [
+            {'name': 'Intro (전주)', 'bars': [['G#m'], ['Gm'], ['D'], ['G#m'], ['Gm']]},
+            {'name': 'Verse 1', 'bars': [
+                ['D'], ['G#m'], ['Gm'], ['D'], ['G#m'], ['Gm'],
+                ['D'], ['G#m'], ['Gm'], ['D'], ['Dm'], ['Em'],
+                ['D'], ['G#m'], ['G'], ['F#m'], ['D'], ['G#m'], ['Gm'],
+                ['D'], ['G#m'], ['G'], ['D'], ['F'], ['Em']]},
+            {'name': 'Pre-Chorus', 'bars': [['A'], ['D'], ['Am']]},
+            {'name': 'Chorus', 'bars': [
+                ['G#m'], ['Gm'], ['F#'], ['Bm'], ['Em'],
+                ['Gm'], ['C'], ['D'], ['Am'],
+                ['G#m'], ['Gm'], ['F#m'], ['Bm'], ['Em'],
+                ['Gm'], ['C']]},
+            {'name': 'Verse 2', 'bars': [
+                ['G#m'], ['Gm'], ['F#m'], ['D'],
+                ['G#m'], ['Gm'], ['D'], ['G#m'], ['Gm'], ['D'],
+                ['Em'], ['A'], ['G#m'], ['Gm'], ['D']]},
+            {'name': 'Chorus 2', 'bars': [
+                ['Em'], ['A'], ['D'],
+                ['Am'], ['G#m'], ['Gm'], ['F#m'], ['Bm'],
+                ['Em'], ['Gm'], ['C'], ['D'],
+                ['Am'], ['G#m'], ['Gm'], ['F#m'], ['Bm'],
+                ['Em'], ['Gm'], ['C'], ['D'], ['G'],
+                ['A'], ['Bm'], ['F#m'], ['G'],
+                ['A'], ['D']]},
+            {'name': 'Last Chorus', 'bars': [
+                ['Am'], ['G#m'], ['Gm'], ['F#'], ['Bm'],
+                ['Em'], ['Gm'], ['C'], ['D'],
+                ['Am'], ['G#m'], ['Gm'], ['F#m'], ['Bm'],
+                ['Em'], ['Gm'], ['C'], ['F#m'], ['G'],
+                ['A'], ['Bm']]},
+        ],
+        'stroke': '↓ · ↓↑ · ↓↑ (84bpm, 8분 중심)',
+        'why': '원곡 키 Eb는 남성이 그대로 부르기 높다. 원곡 키는 유지한 채 카포로 모양만 낮춰 잡고, F#·Bm·G#m 같은 바레 코드는 SimplifyChord 슬롯으로 넘긴다.',
+        'evidence': [
+            ('바둥바둥 코드악보 PDF (1Capo D Key · 원키 Eb · 마디별 코드+가사)',
+             'https://patross0303.com/wp-content/uploads/2023/07/DAY6-%EC%98%88%EB%BB%A4%EC%96%B4-%EC%BD%94%EB%93%9C%EC%95%85%EB%B3%B4.pdf',
+             '전주 G#m Gm D / D G#m Gm / D G#m Gm D Dm Em / D G#m G F#m D G#m Gm / A D Am / G#m Gm F# Bm Em …'),
+            ('Chordscore 코드 악보 (원키 Eb · 4/4 · 84bpm)', 'https://chordscore.com/notes/5976',
+             'Key Eb · 4/4 · 84bpm · 도입 Am7(b5) Fdim/Ab Eb/G 진행'),
+            ('GuitarTabsExplorer (원키 Eb 코드·섹션 진행)', 'https://www.guitartabsexplorer.com/day6/you-were-beautiful--chords',
+             'Intro Am Ab Eb / Verse C Ab Eb / Chorus Eb Bbm …'),
+        ],
+    },
+    'chunghon': {
+        # 코드스코어 공개 미리보기 12마디(도입부)만 공개되어 그 구간만 등록
+        'originalKey': 'E', 'timeSignature': '4/4', 'bpm': 70,
+        'stage': 3,
+        'partial': '원키 E·4/4·70bpm 확인. 전체 마디 코드는 유료 악보에만 있어 공개 미리보기 12마디(도입부)만 등록했습니다.',
+        'sections': [
+            {'name': '도입부 12마디 (코드스코어 공개 미리보기)', 'bars': [
+                ['Bbm7b5', 'Am6'], ['E/G#', 'Eb/G'], ['F#m7'], ['B9sus4'],
+                ['F#m7/E'], ['E'], ['E'], ['Am6/E'],
+                ['EM7'], ['Am6/E'], ['E'], ['Am6/E']]},
+        ],
+        'stroke': '↓ · ↓↑ · ↓↑ (70bpm 발라드, 코드는 마디 앞에서)',
+        'why': '노을 원곡 도입부는 Bbm7(b5)·Am6·E/G#처럼 전위와 감5화음이 섞인다. 원터치에서는 3화음 근사로 잡고 Bbm7(b5)·B9sus4는 슬롯으로 넘긴다.',
+        'evidence': [
+            ('Chordscore 코드 악보 (원키 E · 4/4 · 70bpm)', 'https://chordscore.com/notes/1298',
+             'Key E · 4/4 · 70bpm · 공개 미리보기 12마디: A#m7(b5) Am6 E/G# D#/G F#m7 B9sus4 / F#m7/E E E Am6/E / EM7 Am6/E E Am6/E'),
+            ('악보바다 원키 E', 'https://www.akbobada.com/musicDetail.html?musicID=48233', '원키 E(마장조) · 2집 These Are The Times'),
+        ],
+    },
     'whatislove': {
         'originalKey': 'Eb', 'timeSignature': '4/4', 'bpm': 66,
-        'stage': 2, 'partial': '원키·BPM·사용 코드(Eb Ab Cm Fm Bb)는 확인했고, 마디별 배치는 확인 중입니다.',
+        'stage': 2,
+        'partial': '원키 Eb·66bpm과 사용 코드(Eb Cm Fm Db Bb)를 확인했고, 마디 배치는 ChordU 자동 채보(EXO-M 중국어 버전, 같은 편곡) 순서를 따랐습니다.',
         'sections': [
-            {'name': '확인된 코드', 'bars': [['Eb', 'Ab'], ['Cm'], ['Fm', 'Bb'], ['Eb']]},
+            {'name': 'Verse (I–vi–ii–VI)', 'bars': [
+                ['Eb'], ['Cm'], ['Fm'], ['Db'], ['Eb'], ['Cm'], ['Fm'], ['Db']]},
+            {'name': 'Pre-Chorus', 'bars': [['Bbm'], ['Db'], ['Cm'], ['Fm'], ['Db'], ['Eb']]},
+            {'name': 'Chorus', 'bars': [
+                ['Cm'], ['Fm'], ['Bbm'], ['Db'], ['Cm'], ['Fm'], ['Db'], ['Eb']]},
+            {'name': 'Bridge', 'bars': [['Fm'], ['Ab'], ['Cm'], ['Fm'], ['Db'], ['Ebm'], ['Cm'], ['Fm']]},
         ],
-        'stroke': '↓ · ↓↑ · ↓↑ (66bpm 느린 8분)',
-        'why': '원키 Eb은 남성에게 높다. -2키 Db로 부르고 카포로 맞춘다.',
+        'stroke': '↓ · ↓↑ · ↑↓↑ (66bpm 느린 8분)',
+        'why': '원키 Eb는 남성에게 높다. 원곡 키를 유지하고 카포로 모양만 낮춘다. Bb·Db 같은 바레 코드는 슬롯 안내를 따른다.',
         'evidence': [
-            ('ChordU 코드표(EXO-K 한국어 MV)', 'https://chordu.com/chords-tabs-exo-k-%EC%97%91%EC%86%8C%EC%BC%80%EC%9D%B4-what-is-love-mv-korean-ver--id_t6fPzVNIEB0', 'Tempo 66.15bpm · Chords Eb Ab Cm Fm Bb'),
+            ('ChordU 코드표 (EXO-K 한국어 MV · Tempo 66.15bpm · Chords Eb Ab Cm Fm Bb)',
+             'https://chordu.com/chords-tabs-exo-k-%EC%97%91%EC%86%8C%EC%BC%80%EC%9D%B4-what-is-love-mv-korean-ver--id_t6fPzVNIEB0',
+             'Tempo 66.15bpm · Chords Eb Ab Cm Fm Bb · Capo +0'),
+            ('ChordU 코드표 (EXO-M 중국어 버전 · 같은 곡·같은 편곡 · 코드 순서)',
+             'https://chordu.com/chords-tabs-exo-m-%EC%97%91%EC%86%8C%EC%97%A0-what-is-love-mv-chinese-ver--id_7PMRe4k3OSw',
+             '[Eb] Go I cannot explain what I [Cm] feel [Bb] [Cm] [Fm] … [Cm] I lost [Fm] my mind [Db] … [Cm] [Fm] [Bbm] [Db] [Cm]'),
+            ('Chordify (EXO-K · Key Db major · BPM 67 · Dbmaj7 Cm7 Fm7 Fm)',
+             'https://chordify.net/chords/exo-k-songs/what-is-love-chords',
+             'Key Db major · BPM 67 · Dbmaj7 Cm7 Fm7 Fm'),
         ],
     },
     'her': {
         'originalKey': 'Cm', 'timeSignature': '4/4', 'bpm': 162,
-        'stage': 4, 'partial': '원키 Cm·162bpm은 확인했고, 기타 코드표는 확인하지 못했습니다.',
-        'sections': [{'name': '확인된 정보', 'bars': [['Cm']]}],
-        'stroke': '빠른 8분(162bpm) · 랩 파트는 코드 유지',
-        'why': '힙합 트랙이라 기타 반주 코드표가 없다. 원터치에서는 Cm 하나로 리듬만 잡는 연습부터.',
+        'stage': 4,
+        'partial': '원키 Cm·162bpm 확인. 기타 코드표는 없고 ChordU 자동 채보의 코드 진행(사용 코드 Cm Ab Gm Bb Eb)만 있어 그 순서로 등록했습니다.',
+        'sections': [
+            {'name': 'Intro / Verse', 'bars': [['Cm'], ['Ab'], ['Gm'], ['Bb'], ['Cm'], ['Ab'], ['Gm'], ['Eb']]},
+            {'name': 'Hook', 'bars': [['Gm'], ['Ab'], ['Gm'], ['Ab'], ['Gm'], ['Ab'], ['Gm'], ['C']]},
+            {'name': 'Bridge', 'bars': [['Ab'], ['Gm'], ['C'], ['Ab'], ['Gm'], ['C']]},
+        ],
+        'stroke': '빠른 8분(162bpm) · 랩 파트는 코드 유지, 후렴만 스트럼',
+        'why': '힙합 트랙이라 정식 기타 코드표가 없다. ChordU 자동 채보 기준 Cm–Ab–Gm–Bb–Eb가 반복되므로 원터치에서는 Cm·Gm 두 개로 리듬을 잡고 Ab·Bb·Eb를 더한다.',
         'evidence': [
-            ('ChordU 코드표(BLOCK B HER MV)', 'https://chordu.com/chords-tabs-%EB%B8%94%EB%9D%BD%EB%B9%84-block-b-her-mv-id_o0WCva5Stk4', 'Key Cm · 162bpm'),
-            ('코드스코어 곡 정보(Cm·162bpm)', 'https://chordscore.com/notes/9038', '원키 Cm · 4/4 · 162bpm'),
+            ('ChordU 코드표 (블락비 HER MV · Tempo 162.65bpm · Cm Ab Gm Bb Eb)',
+             'https://chordu.com/chords-tabs-%EB%B8%94%EB%9D%BD%EB%B9%84-block-b-her-mv-id_o0WCva5Stk4',
+             'Tempo 162.65bpm · Chords used Cm Ab Gm Bb Eb · Key C Minor'),
+            ('코드스코어 곡 정보 (Cm·162bpm)', 'https://chordscore.com/notes/9038', '원키 Cm · 4/4 · 162bpm'),
         ],
     },
-    'yeppeo': {
-        'originalKey': 'Eb', 'timeSignature': '4/4', 'bpm': 84,
-        'stage': 2, 'partial': '원키 Eb·84bpm·사용 코드(Eb Bb Cm Ab Fm Bbm)는 확인했고, 마디별 배치는 확인 중입니다.',
-        'sections': [{'name': '확인된 코드', 'bars': [['Eb', 'Bb'], ['Cm', 'Ab'], ['Eb', 'Bb'], ['Cm', 'Ab']]}],
-        'stroke': '↓ · ↓↑ · ↓↑ (84bpm, 8분)',
-        'why': '원키 Eb은 높다. -2키 Db로 부르고 카포 1에서 D 모양으로 잡는다(교재 표기).',
+    # ── 일본곡: music-chord.com 코드표(카포 3 모양)를 +3반음 이조해 원키로 ──
+    'kkum-deungbul': {
+        'originalKey': 'C', 'transpose': 3, 'timeSignature': '4/4', 'bpm': 172,
+        'stage': 3,
+        'sections': [
+            {'name': 'Intro', 'bars': [['CM7'], ['CM7'], ['CM7'], ['CM7']]},
+            {'name': 'Aメロ', 'bars': [
+                ['Am7'], ['Fadd9'], ['C'], ['Am7'], ['Fadd9'], ['C'], ['G/B'],
+                ['Am7'], ['Fadd9'], ['C'], ['C'], ['G/B'],
+                ['Am7'], ['Fadd9'], ['C'], ['G'], ['Am7'], ['Fadd9'], ['C'], ['G']]},
+            {'name': '間奏', 'bars': [['Fadd9'], ['Am7'], ['G'], ['Fadd9'], ['Am7'], ['G']]},
+            {'name': 'Aメロ2', 'bars': [['Am'], ['F'], ['C'], ['G'], ['Am'], ['F'], ['C'], ['G']]},
+            {'name': 'サビ (후렴)', 'bars': [
+                ['Dm'], ['Bb'], ['F'], ['C/E'], ['Dm'], ['Bb'], ['F'], ['C/E'],
+                ['Dm'], ['C/E'], ['F'], ['G'], ['Bb'], ['C'], ['Dm'], ['G7'], ['Bb'], ['C']]},
+            {'name': 'アウトロ', 'bars': [['F'], ['Am7'], ['G']]},
+        ],
+        'stroke': '↓ · ↓↑ · ↓↑ (172bpm, 8분 중심 · 후렴은 4분 다운)',
+        'why': '영화 「너의 이름은.」 오프닝. 원곡 키 Eb, 카포 3에서 C 모양으로 잡는 곡. 후렴에서 Ab으로 전조하므로 카포는 그대로 두고 모양만 바꾼다.',
         'evidence': [
-            ('Chordscore (원키 Eb, 4/4, 84bpm)', 'https://chordscore.com/notes/15094', 'Key Eb · 4/4 · 84bpm · 1capo D'),
-            ('kokomu 악보 메타(4/4 84bpm)', 'https://www.kokomu.jp/sheet-music/you-were-beautiful-day6-143113', '拍子 4/4 · テンポ 84bpm'),
+            ('music-chord 기타 코드표 (BPM 172 · Capo 3 · Key C → 원키 Eb)',
+             'https://music-chord.com/songs/%E5%A4%A2%E7%81%AF%E7%B1%A0-RADWIMPS/',
+             'C M7 x4 / Am7 Fadd9 C G/B … / サビ Dm Bb F C/E … / アウトロ F Am7 G'),
+            ('楽譜出版社フェアリー (夢灯籠 キーはEb)', 'https://fairysite.com/product_detail/LGV289', 'ギター＆ヴォーカル LGV289 · キー Eb'),
+            ('U-FRET 夢灯籠 初心者向け簡単コード', 'https://www.ufret.jp/song.php?data=52555', 'RADWIMPS 코드谱'),
         ],
     },
-    'chunghon': {
-        'originalKey': 'E', 'timeSignature': '4/4', 'bpm': 70,
-        'stage': 2, 'partial': '원키 E·70bpm은 확인했고, 마디별 코드는 확인 중입니다.',
-        'sections': [{'name': '확인된 코드', 'bars': [['E', 'A'], ['B', 'C#m'], ['E', 'A'], ['B']]}],
-        'stroke': '↓ · ↓↑ · ↓↑ (70bpm 발라드)',
-        'why': '노을 원곡은 화음이 두껍다. 원터치로 멜로디를 먼저 잡고 정식 코드로 넓힌다.',
+    'staywithme': {
+        'originalKey': 'D', 'transpose': 3, 'timeSignature': '4/4', 'bpm': 108,
+        'stage': 3,
+        'sections': [
+            {'name': 'Intro', 'bars': [
+                ['GM7'], ['F#7'], ['F#m7'], ['Bm7'], ['Em7'], ['Em7'], ['A'],
+                ['D'], ['G/D'], ['D'], ['C/D'], ['G/D']]},
+            {'name': 'Aメロ', 'bars': [['Em7'], ['DM7'], ['Em7'], ['DM7']]},
+            {'name': 'Bメロ', 'bars': [
+                ['Em7'], ['F#7'], ['Bm7'], ['GM7'], ['D/F#'], ['Em7'], ['Em7'], ['A'],
+                ['Em7'], ['F#7'], ['Bm7'], ['GM7'], ['D/F#'], ['Em7'], ['Em7'], ['A'],
+                ['Em7'], ['Em7'], ['A']]},
+            {'name': 'サビ (후렴)', 'bars': [
+                ['GM7'], ['F#m7'], ['F#7'], ['Bm7'], ['Bbaug'], ['Bm7'], ['A'], ['G#m7-5'],
+                ['Em7'], ['Em7'], ['A'],
+                ['GM7'], ['F#m7'], ['F#7'], ['Bm7'], ['Bbaug'], ['Bm7'], ['A'], ['G#m7-5'],
+                ['Em7'], ['Em7'], ['A']]},
+            {'name': '間奏 · 전조 (Key F)', 'bars': [
+                ['BbM7'], ['Am7'], ['Gm7'], ['FM7'], ['BbM7'], ['Am7'], ['Gm7'], ['Em7'], ['A']]},
+        ],
+        'stroke': '↓ · ↓↑ · ↑↓↑ (108bpm, 시티팝 8분)',
+        'why': '원곡 키 F(모양 D·카포 3). 후렴의 Bbaug·G#m7-5는 원터치 3화음으로 대신할 수 없어 슬롯으로 넘긴다. 2절 뒤에는 F로 전조한다.',
         'evidence': [
-            ('악보바다 원키 E', 'https://www.akbobada.com/musicDetail.html?musicID=48233', '원키 E(마장조)'),
-            ('Chordscore 코드 악보(원키 E, 4/4, 70bpm)', 'https://chordscore.com/notes/1298', 'Key E · 4/4 · 70bpm'),
+            ('music-chord 기타 코드표 (BPM 108 · Capo 3 · Key D → 원키 F)',
+             'https://music-chord.com/songs/%E7%9C%9F%E5%A4%9C%E4%B8%AD%E3%81%AE%E3%83%89%E3%82%A2-%E6%9D%BE%E5%8E%9F%E3%81%BF%E3%81%8D/',
+             'GM7 F#7 / F#m7 Bm7 / Em7 Em7 A / D G/D D C/D G/D … サビ GM7 F#m7 F#7 Bm7 Bbaug Bm7 A G#m7-5'),
         ],
     },
-}
+    'suzume': {
+        'originalKey': 'D', 'transpose': 3, 'timeSignature': '4/4', 'bpm': 78,
+        'stage': 3,
+        'sections': [
+            {'name': 'Intro', 'bars': [['Bm'], ['Bm'], ['Bm'], ['A'], ['G'], ['F#m'], ['Bm'], ['A'], ['Em'], ['F#m']]},
+            {'name': 'Aメロ', 'bars': [
+                ['Bm'], ['A'], ['G'], ['F#m'], ['Bm'], ['A'], ['Em'], ['F#m'], ['Bm'],
+                ['Bm'], ['A'], ['G'], ['F#m'], ['Bm'], ['A'], ['Em'], ['F#m'], ['Bm']]},
+            {'name': 'Bメロ', 'bars': [['G#m7-5'], ['GM7'], ['F#m'], ['F#sus4'], ['F#']]},
+            {'name': 'サビ (후렴)', 'bars': [
+                ['Bm'], ['G'], ['D'], ['A'], ['Bm'], ['G'], ['D'], ['A'],
+                ['Em'], ['Bm'], ['G'], ['F#sus4'], ['F#']]},
+            {'name': 'サビ2', 'bars': [
+                ['Bm'], ['G'], ['D'], ['A'], ['Bm'], ['G'], ['D'], ['A'],
+                ['Em'], ['Bm'], ['G'], ['Bm'], ['Em'], ['F#m'], ['G#m7-5'], ['Asus4'], ['A']]},
+            {'name': '間奏', 'bars': [['Bm7'], ['A'], ['GM7'], ['A'], ['Bm7'], ['A'], ['GM7'], ['A']]},
+        ],
+        'stroke': '↓ · ↓↑ · ↓↑ (78bpm, 발라드 8분)',
+        'why': '원곡 키 F(모양 D·카포 3). Bメロ의 G#m7-5와 후렴 끝 F#sus4·F#는 슬롯·근사로 처리한다.',
+        'evidence': [
+            ('music-chord 기타 코드표 (BPM 78 · Capo 3 · Key D → 원키 F)',
+             'https://music-chord.com/songs/%E3%81%99%E3%81%9A%E3%82%81-RADWIMPS/',
+             'Bm A G F#m / Bm A Em F#m Bm / Bメロ G#m7-5 GM7 F#m F#sus4 F# / サビ Bm G D A …'),
+        ],
+    },
+})
+OVERRIDES.update({
+    # ── 커뮤니티 코드표(코드 오버 가사) 기반 ───────────────────────────
+    'lovemelike': {
+        'originalKey': 'A', 'timeSignature': '4/4', 'bpm': 79,
+        'stage': 2,
+        'sections': [
+            {'name': 'Verse', 'bars': [['Dmaj7'], ['C#m7'], ['Bm7'], ['Dmaj7'], ['C#m7'], ['Bm7']]},
+            {'name': 'Pre-Chorus', 'bars': [
+                ['Dmaj7'], ['C#m7'], ['Bm7'], ['Dmaj7'], ['C#m7'], ['Bm7'],
+                ['Dmaj7'], ['C#m7'], ['Bm7'], ['Dmaj7'], ['C#m7'], ['Bm7']]},
+            {'name': 'Chorus', 'bars': [
+                ['Dmaj7'], ['C#m7'], ['Bm7'], ['Dmaj7'], ['C#m7'], ['Bm7'],
+                ['Dmaj7'], ['C#m7'], ['Bm7'], ['Dmaj7'], ['C#m7'], ['Bm7']]},
+            {'name': 'Bridge', 'bars': [['Dmaj7'], ['C#m7'], ['F#'], ['Bm'], ['E'], ['A']]},
+        ],
+        'stroke': '↓ · ↓↑ · ↑↓↑ (79bpm, 부드러운 8분)',
+        'why': 'Dmaj7–C#m7–Bm7 세 코드가 계속 도는 곡. 원터치에서는 D·C#m·Bm 근사로 잡고 7th는 근사 안내를 따른다.',
+        'evidence': [
+            ('Hợp Âm Chuẩn 코드표 (tone A · Dmaj7 C#m7 Bm7 · 파트별 코드+가사)',
+             'https://hopamchuan.com/song/46829/love-me-like-that-nevertheless-ost/kcuong171',
+             'Dmaj7 I get C#m7 defensive and Bm7 insecure … Bridge Dmaj7 C#m7 F# Bm E A'),
+            ('Chordify (Key B minor · BPM 79 · C#m7 Bm7 Dmaj7 A)', 'https://chordify.net/chords/saem-gim-sam-kim-ui-daldalhan-leobeusong-love-me-like-that-bigin-eogein-opeunmaikeu-beginagain-bigin-eogein',
+             'Key B minor · BPM 79 · Chords C#m7, Bm7, Dmaj7, A'),
+            ('mymusic5 기타 타브 악보(가사·코드 포함)', 'https://www.mymusic5.com/ko/guitarpd/41352', 'Love Me Like That (알고있지만 OST) · 어쿠스틱 기타'),
+        ],
+    },
+    'hyanggi': {
+        'originalKey': 'Gb', 'timeSignature': '4/4', 'bpm': 70,
+        'stage': 2,
+        'partial': '원키 Gb(자동 분석 기준 B major)·70bpm은 확인. 기타 코드표가 없어 ChordU 자동 채보의 코드 순서를 반복 구간별로 정리했습니다.',
+        'sections': [
+            {'name': 'Verse', 'bars': [['Abm'], ['Gb'], ['Ebm'], ['Abm'], ['Abm'], ['Gb'], ['Ebm'], ['Abm']]},
+            {'name': 'Pre-Chorus', 'bars': [['Gb'], ['Ebm'], ['Abm'], ['Ab'], ['Gb'], ['Ebm'], ['Abm'], ['Ab']]},
+            {'name': 'Chorus (방 안에서 누워…)', 'bars': [
+                ['Db'], ['Gb'], ['Ebm'], ['Abm'], ['Ab'], ['Db'], ['Gb'], ['Ebm'], ['Abm'], ['Ab']]},
+        ],
+        'stroke': '↓ · ↓↑ · ↓↑ (70bpm, 느린 8분)',
+        'why': 'A♭m–G♭–E♭m–A♭ 네 코드가 중심. 원터치 10버튼에는 A♭m·D♭가 없어 슬롯으로 넘긴다.',
+        'evidence': [
+            ('ChordU 코드표 (샘김 향기 Scent · 70.08bpm · Chords Gb Ebm Abm Ab Dbm · Key B Major)',
+             'https://chordu.com/chords-tabs--%EA%B2%80%EC%83%89%EC%96%B4%EB%A5%BC-%EC%9E%85%EB%A0%A5%ED%95%98%EC%84%B8%EC%9A%94-www-ost-part-4-%EC%83%98%EA%B9%80-sam-kim-%ED%96%A5%EA%B8%B0-scent-mv-id_K7tsGCarlfA',
+             '네가 [Gb] 바라뒤는 곳마다 [Ebm] … [Abm] 우리 [Gb] 그냥 [Ebm] 아무것도 하지 [Abm] 말자 / 방 안에서 [Db] 누워 [Gb] 창문을 [Abm] 열어놓고'),
+            ('벅스 곡 정보 (검색어를 입력하세요 WWW OST Part 4)', 'https://m.bugs.co.kr/track/31633884', '향기 / 샘킴 · 03:58'),
+        ],
+    },
+    'miwo': {
+        'originalKey': 'Bb', 'timeSignature': '4/4', 'bpm': 100,
+        'stage': 2,
+        'partial': '원키 Bb·100bpm 확인. 기타 코드표가 없어 Chordify 자동 채보의 반복 진행(Cm7–F7–Bbmaj7–Gm7)만 등록했습니다.',
+        'sections': [
+            {'name': 'Verse · Chorus (반복 진행)', 'bars': [
+                ['Cm7'], ['F7'], ['Bbmaj7'], ['Gm7'], ['Cm7'], ['F7'], ['Bbmaj7'], ['Gm7']]},
+        ],
+        'stroke': '↓ · ↓↑ · ↑↓↑ (100bpm, 느긋한 8분)',
+        'why': '미워(Ego)는 ii–V–I–vi(Cm7–F7–B♭maj7–Gm7)가 반복되는 R&B 트랙. 원터치에서는 Cm·F·B♭·Gm 3화음으로 근사한다.',
+        'evidence': [
+            ('Chordify (Crush 미워 Ego · Key Bb major · BPM 100 · Cm7 F7 Bbmaj7 Gm7)',
+             'https://chordify.net/chords/crush-songs/ego-chords', 'Key Bb major · BPM 100 · Chords Cm7, F7, Bbmaj7, Gm7 · Album wonderego'),
+            ('ChordTool 미워 (Ego) 곡 정보', 'https://chordtool.com/Crush/%EB%AF%B8%EC%9B%8C-%28Ego%29', '발매 2024.02.01 · 코드 악보 미등록'),
+        ],
+    },
+    'feelspecial': {
+        'originalKey': 'Ab', 'timeSignature': '4/4', 'bpm': 129,
+        'stage': 3,
+        'partial': '원키 Ab·129bpm 확인. 정식 기타 코드표가 없어 코드 분석 사이트(Mazmazika)의 코드 진행 순서 중 앞부분 16개를 그대로 옮겼습니다.',
+        'sections': [
+            {'name': '코드 진행 1–8 (자동 분석 순서)', 'bars': [
+                ['Db'], ['C7'], ['Fm7'], ['Ab'], ['Dbmaj7'], ['C7'], ['Fm7'], ['Db']]},
+            {'name': '코드 진행 9–16 (자동 분석 순서)', 'bars': [
+                ['Ab'], ['Db'], ['Eb'], ['Fm7'], ['Ab'], ['Db'], ['Eb'], ['Fm7']]},
+        ],
+        'stroke': '↓ · ↓↑ · ↑↓↑ (129bpm, 8분 신스팝)',
+        'why': '여성 원곡이라 남자키는 -5반음. D♭·C7·Fm7이 계속 도는 곡이라 원터치에서는 D♭·Fm·A♭ 3화음 근사로 먼저 잡는다.',
+        'evidence': [
+            ('Mazmazika 코드 분석 (Key Ab · 약 128bpm · 코드 진행 순서)', 'https://www.mazmazika.com/ja/chordanalyzer/twice-songs/feel-special-chords',
+             'C# – C7 – Fm7 – Ab – C#maj7 – C7 – Fm7 – C# – F/C – C7 – Fm7 – Ab7 – Ab – C#maj7 – Ab/C – Cm …'),
+            ('Hooktheory (Key Ab Major · Tempo 129 BPM · Meter 4/4)', 'https://www.hooktheory.com/theorytab/view/twice/feel-special',
+             'Key Ab Major · Tempo 129 BPM · Meter 4/4'),
+        ],
+    },
+})
