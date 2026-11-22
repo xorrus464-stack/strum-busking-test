@@ -1,0 +1,225 @@
+/* STRUM — no external JavaScript dependencies. Works on static hosts and phones. */
+(() => {
+  'use strict';
+  const seed = window.STRUM_SEED;
+  if (!seed) { document.querySelector('#app').textContent = '곡 데이터가 로드되지 않았습니다. src/seed.js를 확인하세요.'; return; }
+  const LS = 'strum-busking-v2';
+  const LEVELS = ['미착수', '연습 중', '거의 가능', '버스킹 가능'];
+  const SOURCE_STATES = ['미확인', '확인', '접근 불가', '제외'];
+  const levels = LEVELS;
+  const MODE_OPTIONS = [['easy','코드 간편화 (Easy Chord)'],['standard','정식 코드']];
+  const esc = v => String(v ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+  const clone = v => JSON.parse(JSON.stringify(v));
+  const norm = v => String(v ?? '').trim().toLocaleLowerCase();
+  const fmt = n => new Intl.NumberFormat('ko-KR').format(n || 0);
+  const dateKey = (d = new Date()) => [d.getFullYear(), String(d.getMonth()+1).padStart(2,'0'), String(d.getDate()).padStart(2,'0')].join('-');
+  const mins = n => String(Math.floor(Math.max(0,n) / 60)).padStart(2,'0')+':'+String(Math.max(0,n)%60).padStart(2,'0');
+  const get = id => document.getElementById(id);
+  const root = get('app');
+  const defaultState = () => ({version:2,songs:clone(seed.songs),sources:clone(seed.sources),logs:[],settings:{mode:'easy',minutes:25,bpm:60,weeklyGoal:5},selectedRoutine:[],completedStages:[],lastChanged:new Date().toISOString()});
+  let state = defaultState(), currentTab='home', modal=null, searchQuery='', statusFilter='all', sourceQuery='', sourceFilter='known', showAllSources=false;
+  let trackAudio=null, trackObjectURL=null, metronome=null, bpmTimer=null, practiceInterval=null, remaining=25*60, sessionRunning=false, lastTime=0, toastTimeout=null;
+  try { const saved=JSON.parse(localStorage.getItem(LS)||'null'); if(saved && Array.isArray(saved.songs) && Array.isArray(saved.sources)) state={...defaultState(),...saved,settings:{...defaultState().settings,...saved.settings}}; }
+  catch(err) { console.warn('기존 데이터 손상. 복원 파일을 가져오세요.',err); }
+  remaining=state.settings.minutes*60;
+  const save = () => { state.lastChanged = new Date().toISOString();try {localStorage.setItem(LS,JSON.stringify(state));} catch(e){notice('저장 공간이 가득 찼습니다. 백업 파일을 다운로드하세요.');} };
+  function notice(msg) { document.querySelector('.toast')?.remove();let el=document.createElement('div');el.className='toast';el.setAttribute('role','status');el.textContent=msg;document.body.appendChild(el);clearTimeout(toastTimeout);toastTimeout=setTimeout(()=>el.remove(),3500); }
+  const song = id => state.songs.find(s=>s.id===id);
+  const ordered = () => [...state.songs].sort((a,b)=>{
+    const ar = a.verification==='learning-recommendation-not-in-original-playlist' ? 1 : 0;
+    const br = b.verification==='learning-recommendation-not-in-original-playlist' ? 1 : 0;
+    return ar-br || a.title.localeCompare(b.title,'ko');
+  });
+  const weekStart = () => {const d=new Date();d.setHours(0,0,0,0);d.setDate(d.getDate() - ((d.getDay()+6)%7));return d;};
+  function weekStats(){const first=weekStart(), end=new Date(first);end.setDate(end.getDate()+7);const ls=state.logs.filter(l=>{const dt=new Date(l.date+'T12:00:00');return dt>=first&&dt<end;});return {ls,days:new Set(ls.map(l=>l.date)).size,total:ls.reduce((s,l)=>s+Number(l.minutes||0),0)};}
+  const buskingCount = () => state.songs.filter(s=>s.level==='버스킹 가능').length;
+  const songCount = () => state.songs.filter(s=>s.verification!=='learning-recommendation-not-in-original-playlist').length;
+  const navs = [['home','대시보드'],['songs','곡 라이브러리'],['playlist','유튜브 재생목록'],['practice','오늘의 연습'],['logs','연습 기록'],['sources','211개 원본'],['settings','백업·설정']];
+  const action = (cmd,label,klass='btn small') => `<button type="button" class="${klass}" data-act="${cmd}">${label}</button>`;
+  const stat = l => `<span class="status" data-level="${esc(l)}">${esc(l)}</span>`;
+  const uniqueId = () => 'song-'+Math.random().toString(36).slice(2,9)+'-'+Date.now();
+  const safeHttp = v => { try{const u=new URL(v);return ['http:','https:'].includes(u.protocol) ? u.href : '';}catch{return '';} };
+  const ytId = value => {
+    const v=safeHttp(value);if(!v) return '';
+    try {const u=new URL(v); if(u.hostname==='youtu.be'||u.hostname==='www.youtu.be')return /^[a-zA-Z0-9_-]{11}$/.test(u.pathname.slice(1))?u.pathname.slice(1):'';
+      if(/(^|\.)youtube\.com$/.test(u.hostname)||u.hostname==='music.youtube.com') {let id=u.searchParams.get('v')||u.pathname.match(/\/(?:shorts|embed|live)\/([a-zA-Z0-9_-]{11})/)?.[1]||'';return /^[a-zA-Z0-9_-]{11}$/.test(id)?id:'';} return '';
+    }catch{return '';}
+  };
+  const PLAYLIST_URL = seed.meta.originalPlaylist;
+  const PLAYLIST_ID = seed.meta.playlistId;
+  const youtubeSearch=s=>`https://www.youtube.com/results?search_query=${encodeURIComponent(s.title+' '+s.artist+' 라이브')}`;
+  const musicSearch=s=>`https://music.youtube.com/search?q=${encodeURIComponent(s.title+' '+s.artist)}`;
+  const openTab = url => {const u=safeHttp(url);if(u)window.open(u,'_blank','noopener,noreferrer');};
+  const selectField = (name,opts,value) => `<select name="${name}" class="input">${opts.map(o=>{const [v,l]=Array.isArray(o)?o:[o,o];return `<option value="${esc(v)}" ${v===value?'selected':''}>${esc(l)}</option>`;}).join('')}</select>`;
+  const bar = () => `<header class="topbar"><a class="brand" href="#home" data-nav="home"><span class="brand-icon">♫</span><span><span class="brand-name">STRUM</span><span class="brand-sub">MY PRACTICE STUDIO</span></span></a><nav class="nav" aria-label="주요 메뉴">${navs.map(([id,label])=>`<button data-nav="${id}" class="${id===currentTab?'active':''}" aria-current="${id===currentTab?'page':'false'}">${label}</button>`).join('')}</nav><div class="top-right"><span class="pill">AeroBand Guitar</span></div></header>`;
+  const head = (sm,title,sub='',right='')=>`<div class="section-heading"><div><div class="eyebrow">${sm}</div><h2>${title}</h2>${sub?`<p>${sub}</p>`:''}</div>${right}</div>`;
+  const daysView=()=>{const first=weekStart(),today=dateKey(),logs=new Set(weekStats().ls.map(l=>l.date));return ['월','화','수','목','금','토','일'].map((lab,i)=>{const d=new Date(first);d.setDate(d.getDate()+i);const key=dateKey(d);return `<div class="day ${logs.has(key)?'done':''} ${key===today?'today':''}"><span>${lab}</span><span class="day-dot">${logs.has(key)?'✓':d.getDate()}</span></div>`;}).join('')};
+  function home(){let w=weekStats(), curated=songCount(), ready=buskingCount(),setlist=state.songs.filter(s=>s.setlist).slice(0,5);
+    return `<section class="hero"><div><div class="eyebrow">MAKE A LITTLE PROGRESS, EVERY DAY</div><h1>오늘도, 한 곡에<br>가까워지는 시간.</h1><p>하루 25분의 작은 연습이 낯선 도시의 첫 무대가 됩니다. 첫 코드부터 나만의 버스킹까지 함께 쌓아갑니다.</p>${action('start-practice','오늘의 연습 시작 ↗','btn accent')}</div><div class="hero-badge"><div class="hero-num">${ready}<span> / 3</span></div><p>나의 첫 무대 준비된 곡</p></div></section>
+    <div class="playlist-callout"><div><b>🎵 원본 유튜브 재생목록 연결됨</b><p class="tiny">211개 영상의 개별 정보는 아직 미복원 · 원본 번호는 그대로 유지</p></div>${action('go-playlist','재생목록 열기 ↗','btn outline small')}</div>
+    ${head('THIS WEEK','이번 주의 리듬','주 5일 연습을 목표로, 적게라도 꾸준히.')}<section class="cards3"><div class="card"><div class="metric-label">이번 주 연습일</div><div class="metric">${w.days} <span>/ ${state.settings.weeklyGoal}일</span></div><div class="progress"><i style="width:${Math.min(100,Math.round(w.days/state.settings.weeklyGoal*100))}%"></i></div></div><div class="card"><div class="metric-label">누적 연습 시간</div><div class="metric">${w.total} <span>분</span></div></div><div class="card"><div class="metric-label">나의 버스킹곡</div><div class="metric">${curated} <span>곡 정보 등록</span></div><div class="tiny">기존 앱 보고치 152곡</div></div></section>
+    <section class="dashboard-grid" style="margin-top:15px"><div class="card"><div class="row between"><h3>이번 주 출석</h3><span class="tiny">오늘 ${new Intl.DateTimeFormat('ko-KR',{dateStyle:'medium'}).format(new Date())}</span></div><div class="weekdays">${daysView()}</div><div class="divider"></div><p class="tiny">오늘 단 20분이어도 기록하면 출석이 쌓입니다.</p></div><div class="card"><div class="eyebrow">YOUR NEXT FOCUS</div><h3 style="margin:5px 0 12px">지금 먼저 연습할 것</h3><div class="stack"><div>01 · <b>코드 전환</b> <span class="muted">— Em ↔ Am 5분</span></div><div>02 · <b>60 BPM 박자</b> <span class="muted">— 다운 스트로크 5분</span></div><div>03 · <b>후렴 연결</b> <span class="muted">— 멈추지 않고 4마디 10분</span></div></div></div></section>
+    ${head('YOUR FIRST SETLIST','나의 첫 세트리스트','실제로 연주할 곡 3개부터 준비하세요.',action('go-songs','전체 곡 보기','btn outline small'))}
+    <div class="card">${setlist.length?setlist.map((s,i)=>`<div class="setrow"><div><b>${i+1}. ${esc(s.title)}</b> <span class="tiny">${esc(s.artist)}</span></div>${stat(s.level)}</div>`).join(''):`<div class="empty"><strong>아직 선택한 세트리스트가 없습니다.</strong>곡 목록에서 무대에 올릴 노래를 선택하세요.</div>`}<div class="row between" style="margin-top:13px"><span class="tiny">전체 버스킹 가능 ${ready}곡 · 목표 최소 3곡</span>${action('go-songs','곡 선택하기','btn primary small')}</div></div>
+    <p class="alert" style="margin-top:16px"><b>데이터 복원 안내</b> · 기존 사이트의 선별 곡 수는 152곡이라고 기록되지만, 원본 데이터 파일을 확보하지 못해 이 복원본에는 대화 기록에 남은 ${curated}곡의 정보만 입력되어 있으며, 일부 가수·영상 정보는 미확인입니다. 임의로 나머지 곡을 만들어 넣지 않았습니다. <button class="btn small outline" data-nav="settings">JSON/CSV 가져오기</button></p>`;
+  }
+  function songRow(s,i){return `<article class="song-row"><div class="song-num">${String(i+1).padStart(2,'0')}</div><div><div class="song-name">${esc(s.title)}</div><div class="song-artist">${esc(s.artist)}${s.sourceIndices?.length?` · 원본 #${s.sourceIndices.join(', #')}`:''}</div><div class="taglist">${s.key&&s.key!=='미확정'?`<span class="tag">키 ${esc(s.key)}</span>`:''}${s.tags?.slice(0,2).map(t=>`<span class="tag">${esc(t)}</span>`).join('')||''}${s.verification.startsWith('learning-')?'<span class="tag">외부 추천곡</span>':''}</div></div>${stat(s.level)}<div class="song-actions">${action('video:'+s.id,'영상')}${action('music:'+s.id,'음악')}${action('edit:'+s.id,'수정','btn outline small')}</div></article>`}
+  const songQuery = () => {const raw=String(searchQuery).trim().replace(/^#/,'').replace(/\s*번$/,'');return {q:norm(raw),n:/^\d{1,3}$/.test(raw)?+raw:null};};
+  function filterSongs(){const {q,n}=songQuery();return ordered().filter(s=>{const fields=[s.title,s.artist,s.notes,s.chords,...(s.tags||[]),...(s.sourceIndices||[])];const hit=n!==null?((s.sourceIndices||[]).includes(n)||fields.slice(0,4).some(v=>norm(v).includes(q))):(!q||fields.some(v=>norm(v).includes(q)));return hit&&(statusFilter==='all'||(statusFilter==='setlist'?s.setlist:s.level===statusFilter));});}
+  function songsPage(){const filtered=filterSongs();
+    return `${head('MY SONG LIBRARY','나의 버스킹곡','곡 검색 · 키/코드 · 숙련도 · 영상/음악을 한곳에서',action('new-song','+ 새 곡 등록','btn primary'))}
+    <div class="alert" style="margin-bottom:14px">기존 원본 선별 목록은 <b>152곡</b>이라고 보고되었으나, 이 복원본은 <b>${songCount()}개 곡 항목(가수 미확인 1개 포함)</b> + 추천곡 ${state.songs.filter(s=>s.verification.startsWith('learning-')).length}곡입니다. 누락된 원본 곡 데이터가 확보되면 CSV/JSON 병합으로 확장할 수 있습니다.</div>
+    <div class="toolbar" style="margin-bottom:13px"><div class="search-wrap"><span class="search-mark">⌕</span><input id="song-search" class="input" aria-label="곡 검색" placeholder="곡명, 가수, 원본 번호 검색" value="${esc(searchQuery)}" /></div><select id="song-filter" class="select"><option value="all">모든 숙련도</option><option value="setlist" ${statusFilter==='setlist'?'selected':''}>내 세트리스트</option>${levels.map(l=>`<option value="${l}" ${statusFilter===l?'selected':''}>${l}</option>`).join('')}</select></div><div class="tiny" id="song-result-count" style="margin-bottom:8px">검색 결과 ${filtered.length}곡 · 데이터가 추가되면 즉시 반영됩니다.</div><section class="song-list" id="song-list">${filtered.length?filtered.map(songRow).join(''):'<div class="empty">검색된 곡이 없습니다.</div>'}</section>`;
+  }
+  function playlistPage(){
+    const direct=safeHttp(PLAYLIST_URL);
+    const embed='https://www.youtube-nocookie.com/embed/videoseries?list='+encodeURIComponent(PLAYLIST_ID);
+    return `${head('ORIGINAL YOUTUBE PLAYLIST','내 버스킹 원본 재생목록','실제 재생목록을 연결했습니다. 곡별 제목·링크 자동 동기화와 원본 152곡 완성은 별도 검증이 필요합니다.')}
+    <div class="alert" style="margin-bottom:14px"><b>중요:</b> 이 화면은 원본 재생목록을 YouTube 공식 플레이어로 재생합니다. 사이트 곡 라이브러리의 미확인 번호를 자동으로 채우거나 확인되지 않은 가수를 추측하지 않습니다.</div>
+    <div class="card"><div class="player playlist-player"><iframe loading="lazy" title="내 버스킹 유튜브 재생목록" src="${embed}" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe></div>
+    <div class="row" style="flex-wrap:wrap;margin-top:15px"><a class="btn primary" href="${esc(direct)}" target="_blank" rel="noopener noreferrer">YouTube에서 재생목록 열기 ↗</a>${action('go-songs','곡별 학습 목록','btn outline')}${action('go-sources','원본 번호 확인','btn outline')}</div>
+    <p class="tiny" style="margin-top:11px">저작권 보호 및 YouTube 재생 정책을 준수합니다. 영상 재생을 숨기고 오디오만 추출하지 않습니다. 모바일에서 임베드가 제한되면 YouTube 직접 열기를 이용하세요.</p></div>`;
+  }
+  function stageTasks(){const mode=state.settings.mode,base=mode==='easy'?'간편 코드 전환':'정식 코드 운지 연습';return [
+    ['손 풀기 & 준비','어깨 힘 빼기 · 에어로밴드 연결 및 볼륨 확인',3],
+    [base,mode==='easy'?'Easy Chord·SimplifyChord 설정 확인, Em↔Am 전환':'정식 Em·Am·C·D의 손가락 위치 연습',5],
+    ['리듬 & 스트로크','60 BPM부터 · 한 박에 한 번 다운',5],
+    ['후렴 네 마디 연결','멈추지 않고 네 마디 연결 · 필요하면 템포 낮추기',Math.max(5,state.settings.minutes-15)],
+    ['오늘의 기록','실수, 코드, 다음 목표 한 줄 기록하기',2]
+  ];}
+  function practicePage(){const tasks=stageTasks(),done=state.completedStages.length;return `${head('TODAY’S SESSION','오늘의 '+state.settings.minutes+'분 루틴','부담 없이 시작하는 AeroBand 기타 기초 연습')}
+    <section class="two-col"><div class="card"><div class="row between"><h3>나의 연습 루틴</h3><span class="pill">${done}/5 완료</span></div><div class="row between" style="margin-top:14px"><div class="segmented">${[20,25,30].map(v=>`<button data-act="minutes:${v}" class="${state.settings.minutes===v?'selected':''}">${v}분</button>`).join('')}</div><div class="segmented"><button data-act="mode:easy" class="${state.settings.mode==='easy'?'selected':''}">코드 간편화</button><button data-act="mode:standard" class="${state.settings.mode==='standard'?'selected':''}">정식 코드</button></div></div>
+      <div class="routine-steps">${tasks.map(([title,description,time],i)=>`<label class="task"><input type="checkbox" data-step="${i}" ${state.completedStages.includes(i)?'checked':''}/><div class="grow"><b>${esc(title)}</b><div class="small-desc">${esc(description)}</div></div><span class="minute">${time}분</span></label>`).join('')}</div>
+      <div class="hint">Easy Chord(원터치 코드)와 SimplifyChord(손가락 수를 줄인 코드)는 서로 다른 기능입니다. 기기 설정과 실제 음색은 에어로밴드 앱에서 확인하세요.</div></div>
+      <div class="stack"><div class="card meter"><div class="eyebrow">FOCUS TIMER</div><h3>나의 집중 타이머</h3><div class="timer" id="timer-display">${mins(remaining)}</div><div class="row" style="justify-content:center;flex-wrap:wrap">${action('timer-toggle',sessionRunning?'일시정지':'연습 시작','btn primary')}${action('timer-reset','초기화','btn outline')}</div><div class="divider"></div><div class="row between"><div><h3>나의 메트로놈</h3><p class="tiny">4/4 · 연습 BPM</p></div><span id="bpm-label" style="font-size:23px;font-weight:900">${state.settings.bpm} BPM</span></div><input id="bpm-range" type="range" min="40" max="180" step="1" value="${state.settings.bpm}" style="width:100%;margin:15px 0" /><div class="row between">${action('bpm-down','−5','btn outline small')}${action('metro-toggle',metronome?'메트로놈 정지':'메트로놈 켜기','btn primary small')}${action('bpm-up','+5','btn outline small')}</div></div>
+      <div class="card"><h3>기초 코드 학습</h3><p class="tiny" style="margin:4px 0 12px">에어로밴드의 운지 배치는 일반 기타와 다를 수 있습니다.</p><div class="codeboard">${[['Em','입문'],['Am','입문'],['C','기초'],['D','기초'],['G','기초'],['Dm','기초'],['F','응용'],['A','응용']].map(c=>`<div class="codechip"><b>${c[0]}</b><span>${c[1]}</span></div>`).join('')}</div></div></div></section>
+    ${head('PRACTICE LOG','오늘의 연습 기록','연습 종료 후 저장하면 이번 주 출석에 반영됩니다.')}
+    <div class="card"><form id="practice-form" class="stack"><div class="field-grid"><div class="field"><label>연습한 곡</label><select name="songId" class="input"><option value="">기초 코드 연습 (곡 선택 없음)</option>${ordered().map(s=>`<option value="${esc(s.id)}">${esc(s.title)} — ${esc(s.artist)}</option>`).join('')}</select></div><div class="field"><label>실제 연습 시간 (분)</label><input type="number" name="minutes" value="${state.settings.minutes}" min="1" max="480" required /></div><div class="field"><label>연습 코드</label><input name="chords" placeholder="예: Em, Am, G, D" /></div><div class="field"><label>오늘 스트로크/리듬</label><input name="strum" placeholder="예: 다운 스트로크 60 BPM" /></div></div><div class="field"><label>잘 안된 부분 · 다음에 할 일</label><textarea name="memo" placeholder="Em→Am 전환할 때 2박 늦음. 내일 55BPM에서 다시 연습"></textarea></div><button class="btn primary" type="submit">오늘 연습 저장하기</button></form></div>`;
+  }
+  function logsPage(){let logs=[...state.logs].sort((a,b)=>(b.date||'').localeCompare(a.date||'')||(b.id||'').localeCompare(a.id||''));let total=state.logs.reduce((s,l)=>s+Number(l.minutes||0),0);
+    return `${head('YOUR PROGRESS','나의 연습 기록','연습일 · 누적 시간 · 실수와 다음 목표를 돌아봅니다.')}<div class="cards3"><div class="card"><div class="metric-label">전체 연습 횟수</div><div class="metric">${state.logs.length}<span>회</span></div></div><div class="card"><div class="metric-label">전체 누적 시간</div><div class="metric">${total}<span>분</span></div></div><div class="card"><div class="metric-label">연습한 날짜</div><div class="metric">${new Set(state.logs.map(l=>l.date)).size}<span>일</span></div></div></div>
+    ${head('PRACTICE HISTORY','날짜별 기록','','')}
+    ${logs.length?`<div class="stack">${logs.map(l=>`<article class="card"><div class="row between"><div><b>${esc(l.date)}</b> <span class="tag">${esc(l.minutes)}분</span><p class="tiny">${esc(song(l.songId)?.title||'기초 코드 연습')} · ${l.mode==='standard'?'정식 코드':'코드 간편화'}</p></div>${action('delete-log:'+l.id,'삭제','btn danger small')}</div><div class="divider"></div><div class="tiny">연습 코드: ${esc(l.chords||'—')} · 스트로크: ${esc(l.strum||'—')}</div>${l.memo?`<p class="pre" style="margin-top:8px">${esc(l.memo)}</p>`:''}</article>`).join('')}</div>`:'<div class="empty"><strong>아직 기록이 없습니다.</strong>오늘 기타를 잡은 시간이 첫 번째 기록이 됩니다.</div>'}`;
+  }
+  function sourcesPage(){const known=state.sources.filter(s=>s.songs?.length).length, unavailable=state.sources.filter(s=>s.status==='접근 불가').length;
+    let q=norm(sourceQuery);let filtered=state.sources.filter(s=>{
+       let ok=(!q||String(s.index).includes(q)||norm(s.url).includes(q)||norm(s.note).includes(q)||s.songs.some(id=>norm(song(id)?.title).includes(q)));
+       return ok&&(sourceFilter==='all'||(sourceFilter==='known'?s.songs.length>0:s.status===sourceFilter));
+    }); const display=showAllSources?filtered:filtered.slice(0,50);
+    return `${head('SOURCE LIBRARY','원본 211개 영상 관리','영상 번호는 유지하고, 묶음 영상의 여러 노래는 따로 관리합니다.')}
+    <div class="alert" style="margin-bottom:15px">211개는 <b>원본 영상 번호 슬롯</b>입니다. 이전 작업에서 42개 영상이 접근 불가였지만 구체적인 번호 목록을 이 복원본에서 확인할 수 없어 임의 지정하지 않았습니다. 현재 대화 기록으로 곡 번호가 대응된 원본 슬롯 ${known}개, ‘접근 불가’로 별도 지정한 번호 ${unavailable}개입니다. #163은 제외 처리했습니다.</div>
+    <div class="toolbar" style="margin-bottom:12px"><div class="search-wrap"><span class="search-mark">⌕</span><input id="source-search" class="input" placeholder="원본 번호 / 곡명 검색" value="${esc(sourceQuery)}" /></div><select id="source-filter" class="select"><option value="known" ${sourceFilter==='known'?'selected':''}>곡이 확인된 번호</option><option value="all" ${sourceFilter==='all'?'selected':''}>211개 전체</option>${SOURCE_STATES.map(l=>`<option value="${l}" ${sourceFilter===l?'selected':''}>${l}</option>`).join('')}</select></div>
+    <div class="card" style="padding:0 10px"><div class="table-scroll"><table class="source-table"><thead><tr><th>번호</th><th>연결된 곡</th><th>상태</th><th>원본 영상</th><th>편집</th></tr></thead><tbody>${display.map(s=>`<tr><td>#${s.index}</td><td class="title-cell">${s.songs.length?s.songs.map(id=>esc(song(id)?.title||'')).join(', '):'<span class="muted">미확인</span>'}</td><td>${stat(s.status)}</td><td>${s.url?`<a href="${esc(safeHttp(s.url))}" target="_blank" rel="noopener noreferrer">열기</a>`:'<span class="muted">미등록</span>'}</td><td>${action('source:'+s.index,'수정','btn small')}</td></tr>`).join('')}</tbody></table></div></div>
+    <div class="row between" style="margin-top:13px"><span class="tiny">${display.length}/${filtered.length}개 표시 중</span>${display.length<filtered.length?action('more-sources','모든 번호 보기','btn outline small'):''}</div>`;
+  }
+  function settingsPage(){return `${head('DATA & SETTINGS','백업·복원·설정','다른 휴대폰 또는 새 서버로 옮길 때 전체 데이터를 보존하세요.')}
+     <div class="two-col"><section class="card stack"><h3>내 데이터 백업</h3><p class="tiny">전체 백업(JSON)은 곡, 211개 원본 번호, 숙련도, 세트리스트, 연습 기록을 모두 포함합니다. 인터넷 서버에 자동 동기화되지는 않습니다.</p><div class="backup-list">${action('export-json','전체 JSON 백업','btn primary')}${action('export-csv','곡 목록 CSV','btn outline')}${action('export-sources','211 원본 CSV','btn outline')}</div><div class="divider"></div><h3>데이터 가져오기</h3><p class="tiny">전체 백업 JSON 또는 CSV(곡명·가수 필수)를 가져옵니다. 기존 자료를 삭제하지 않고 병합하거나 백업 파일로 교체할 수 있습니다.</p><div class="field"><label>JSON 또는 CSV 파일 선택</label><input type="file" id="import-file" accept=".json,.csv,application/json,text/csv" class="input" /></div><div class="field"><label>가져오기 방법</label><select id="import-mode" class="input"><option value="merge">기존 데이터와 병합(추천)</option><option value="replace">가져온 전체 JSON으로 교체</option></select></div>${action('import-file','가져오기 실행','btn primary')}<div class="hint">구버전 Sites의 브라우저 내부 데이터는 출처가 다른 이 사이트로 자동 이전되지 않습니다. 원본 파일이 있다면 이 화면에서 가져오세요.</div></section>
+      <section class="card stack"><h3>사용 환경</h3><div class="field"><label>일주일 연습 목표</label><select id="weekly-goal" class="input">${[3,4,5,6,7].map(n=>`<option ${state.settings.weeklyGoal===n?'selected':''} value="${n}">${n}일</option>`).join('')}</select></div><div class="field"><label>기본 연습 경로</label>${selectField('mode',MODE_OPTIONS,state.settings.mode)}</div><div class="divider"></div><h3>기존 프로젝트 정보</h3><p>기존 게시 사이트: <a class="footer-link" target="_blank" rel="noopener noreferrer" href="${esc(seed.meta.originalSite)}">STRUM 원본 열기</a></p><p class="tiny">원본 211영상 · 선별 152곡 · 접근 불가 42영상 · 이 복원본에 입력된 곡 정보 ${songCount()}개 (가수 미확인 1개 포함)</p><p class="notice tiny">※ 이 파일은 원본 프로젝트의 정확한 소스코드 덤프가 아닌 기능 재구현입니다.</p><div class="divider"></div><h3>기존 연습 데이터 안전하게 관리</h3><p class="tiny">브라우저 저장소가 초기화되면 데이터가 사라질 수 있습니다. 주기적으로 전체 JSON 백업을 받으세요.</p>${action('clear-data','복원본 데이터 초기화','btn danger')}</section></div>`;}
+  function centerActiveNav(){try{if(!document.querySelector)return;const nav=document.querySelector('.nav');if(!nav)return;const btn=nav.querySelector('button.active');if(!btn)return;if(nav.scrollWidth<=nav.clientWidth+1)return;const n=nav.getBoundingClientRect(),b=btn.getBoundingClientRect();if(b.left>=n.left-1&&b.right<=n.right+1)return;const reduce=!!(window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches);btn.scrollIntoView({inline:'center',block:'nearest',behavior:reduce?'auto':'smooth'});}catch{}}
+  function render(){root.innerHTML=`<div class="shell">${bar()}<main>${({home,songs:songsPage,playlist:playlistPage,practice:practicePage,logs:logsPage,sources:sourcesPage,settings:settingsPage}[currentTab]||home)()}</main><footer class="footer">STRUM · PLAY A LITTLE. GO A LITTLE FURTHER. · 독립 백업/복원 버전</footer></div>${modal?renderModal():''}`;centerActiveNav();}
+  function renderModal(){if(!modal)return '';let content='';let s=modal.id&&song(modal.id);
+    if(modal.kind==='edit' || modal.kind==='new'){
+      s=s||{id:'',title:'',artist:'',sourceIndices:[],verification:'added-by-user',videoUrl:'',audioUrl:'',key:'미확정',maleKey:'미확정',bpm:null,chords:'',chordStatus:'미확인',strumming:'',difficultyEasy:'미확인',difficultyStandard:'미확인',vocalDifficulty:'미확인',level:'미착수',tags:[],notes:'',setlist:false};
+      content=`<form id="song-form" class="stack"><div class="field-grid"><div class="field"><label>곡 제목 *</label><input name="title" value="${esc(s.title)}" required maxlength="250" /></div><div class="field"><label>가수 *</label><input name="artist" value="${esc(s.artist)}" required maxlength="250" /></div><div class="field"><label>원본 영상 번호(여러 개면 쉼표)</label><input name="sourceIndices" value="${(s.sourceIndices||[]).join(', ')}" placeholder="6, 65" /></div><div class="field"><label>숙련도</label>${selectField('level',levels,s.level)}</div><div class="field"><label>원곡 키</label><input name="key" value="${esc(s.key)}" /></div><div class="field"><label>나에게 맞는 남자 키</label><input name="maleKey" value="${esc(s.maleKey)}" /></div><div class="field"><label>연습 BPM (확정값만)</label><input name="bpm" type="number" min="30" max="300" value="${s.bpm??''}" /></div><div class="field"><label>코드 검수 상태</label>${selectField('chordStatus',['미확인','자동분석 초안','청음 검수 완료'],s.chordStatus)}</div></div><div class="field"><label>코드 진행</label><input name="chords" value="${esc(s.chords)}" placeholder="예: G, Em, C, D" /></div><div class="field"><label>스트로크 메모</label><input name="strumming" value="${esc(s.strumming)}" /></div><div class="field-grid"><div class="field"><label>영상 보기 YouTube URL</label><input name="videoUrl" type="url" placeholder="https://www.youtube.com/watch?v=..." value="${esc(s.videoUrl)}" /></div><div class="field"><label>음악 직접 재생 URL (합법적 소유·사용 파일)</label><input name="audioUrl" type="url" placeholder="https://example.com/my-audio.mp3" value="${esc(s.audioUrl)}" /></div></div><div class="field"><label>메모 · 검수 근거 · 수정 이력</label><textarea name="notes">${esc(s.notes)}</textarea></div><label class="row"><input type="checkbox" name="setlist" ${s.setlist?'checked':''} /> 첫 버스킹 세트리스트에 포함하기</label><div class="row between"><div>${modal.kind==='edit'?action('delete-song:'+s.id,'곡 삭제','btn danger small'):''}</div><button class="btn primary" type="submit">곡 저장하기</button></div></form>`;
+    }else if(modal.kind==='source'){
+      const item=state.sources.find(v=>v.index===modal.index);content=`<form id="source-form" class="stack"><div class="field"><label>원본 영상 주소</label><input type="url" name="url" value="${esc(item.url)}" placeholder="https://www.youtube.com/watch?v=..." /></div><div class="field"><label>상태</label>${selectField('status',SOURCE_STATES,item.status)}</div><div class="field"><label>비고</label><textarea name="note">${esc(item.note)}</textarea></div><div class="hint">연결 곡: ${item.songs.map(id=>esc(song(id)?.title)).join(', ')||'없음'} · 곡 편집 화면에서 ‘원본 영상 번호’를 저장하면 이 표에 자동으로 연결됩니다.</div><button type="submit" class="btn primary">원본 번호 저장</button></form>`;
+    }else if(modal.kind==='video'){
+      const id=ytId(s.videoUrl);const sourceUrl=s.sourceIndices.map(n=>state.sources.find(v=>v.index===n)?.url).find(v=>ytId(v));const video=id||ytId(sourceUrl);
+      content=video?`<div class="player"><iframe title="${esc(s.title)} 영상 보기" src="https://www.youtube-nocookie.com/embed/${video}?rel=0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe></div><p class="tiny" style="margin-top:11px">재생이 제한되면 YouTube에서 직접 보기를 이용하세요.</p>`:`<div class="empty"><strong>저장된 영상 링크가 없습니다.</strong>검색 후 정확한 유튜브 주소를 곡 편집 화면에 저장하면 여기서 바로 재생됩니다.</div>`;
+      content+=`<div class="row" style="flex-wrap:wrap;margin-top:14px"><button class="btn primary" data-act="youtube-search:${s.id}">YouTube에서 영상 찾기 ↗</button>${video?`<button class="btn outline" data-act="youtube-open:${s.id}">YouTube 직접 보기</button>`:''}${action('edit:'+s.id,'영상 주소 수정','btn outline')}</div>`;
+    }else if(modal.kind==='music'){
+      let url=safeHttp(s.audioUrl);content=`<p class="tiny">음악 듣기는 소유하거나 이용 권한이 있는 MP3·오디오 URL 또는 휴대폰에 저장된 음원 파일로 재생합니다. YouTube 영상에서 음원을 무단 추출하거나 숨김 재생하지 않습니다.</p><div class="field" style="margin:13px 0"><label>휴대폰/PC에 저장한 오디오 파일 재생</label><input id="local-audio" type="file" class="input" accept="audio/*" /></div><div id="audio-mount">${url?`<audio class="audio-player" id="song-audio" controls preload="none" src="${esc(url)}"></audio>`:'<div class="hint">등록된 직접 재생용 음원 링크가 없습니다. 위에서 파일을 선택하거나 아래 버튼으로 음악 서비스를 이용하세요.</div>'}</div><div class="row" style="flex-wrap:wrap;margin-top:15px"><button class="btn primary" data-act="music-search:${s.id}">YouTube Music에서 찾기 ↗</button>${action('edit:'+s.id,'음원 URL 등록','btn outline')}</div>`;
+    }
+    return `<div class="modal-layer" data-act="dismiss"><section class="modal ${modal.kind==='edit'||modal.kind==='new'?'wide':''}" role="dialog" aria-modal="true" aria-label="${esc(s?.title||'편집')}"><header class="modal-head"><div><div class="eyebrow">${modal.kind==='music'?'AUDIO PLAYER':modal.kind==='video'?'WATCH VIDEO':'EDIT DATA'}</div><h2>${modal.kind==='new'?'새 곡 등록':modal.kind==='source'?'원본 #'+modal.index+' 수정':esc(s?.title||'곡 수정')}</h2>${s?.artist?`<div class="tiny">${esc(s.artist)}</div>`:''}</div><button class="icon-btn" aria-label="닫기" data-act="close">×</button></header>${content}</section></div>`;
+  }
+  function setTab(n){if(!navs.some(([id])=>id===n))return;modal=null;currentTab=n;render();window.scrollTo({top:0,behavior:'auto'});}
+  function updateSongRecords(){for (const source of state.sources)source.songs=[];for(const s of state.songs){for(const i of (s.sourceIndices||[])){const r=state.sources[i-1];if(r && !r.songs.includes(s.id))r.songs.push(s.id);}}}
+  function audioStop(){const el=get('song-audio');if(el)el.pause();if(trackObjectURL){URL.revokeObjectURL(trackObjectURL);trackObjectURL=null;}trackAudio=null;}
+  function closeModal(){audioStop();modal=null;render();}
+  function editSong(id){modal={kind:id?'edit':'new',id};render();}
+  function setSettingsField(name,value){state.settings[name]=value;save();render();}
+  function changeBpm(amount){state.settings.bpm=Math.max(40,Math.min(180,state.settings.bpm+amount));save();if(metronome){stopMetro();startMetro();}render();}
+  function metroBeep(accent=false){try{const ctx=metronome.ctx,osc=ctx.createOscillator(),gain=ctx.createGain(),now=ctx.currentTime;osc.type='sine';osc.frequency.setValueAtTime(accent?1000:760,now);gain.gain.setValueAtTime(.001,now);gain.gain.exponentialRampToValueAtTime(.18,now+.008);gain.gain.exponentialRampToValueAtTime(.001,now+.07);osc.connect(gain);gain.connect(ctx.destination);osc.start(now);osc.stop(now+.08);}catch(e){stopMetro();notice('메트로놈 오디오를 사용할 수 없습니다.');}}
+  function startMetro(){const A=window.AudioContext||window.webkitAudioContext;if(!A){notice('이 브라우저는 오디오 타이밍을 지원하지 않습니다.');return;}const ctx=new A();metronome={ctx,beat:0};metroBeep(true);bpmTimer=setInterval(()=>{if(!metronome)return;metronome.beat=(metronome.beat+1)%4;metroBeep(metronome.beat===0);},60000/state.settings.bpm);render();}
+  function stopMetro(){clearInterval(bpmTimer);bpmTimer=null;metronome?.ctx?.close();metronome=null;}
+  function timerTick(){if(!sessionRunning)return;let now=Date.now();let passed=Math.floor((now-lastTime)/1000);if(passed<=0)return;lastTime+=passed*1000;remaining=Math.max(0,remaining-passed);const display=get('timer-display');if(display)display.textContent=mins(remaining);if(remaining===0){sessionRunning=false;clearInterval(practiceInterval);practiceInterval=null;notice('연습 시간이 끝났습니다! 기록을 저장하세요.');render();}}
+  function toggleTimer(){sessionRunning=!sessionRunning;if(sessionRunning){lastTime=Date.now();practiceInterval=setInterval(timerTick,250);}else{clearInterval(practiceInterval);practiceInterval=null;}render();}
+  function resetTimer(){sessionRunning=false;clearInterval(practiceInterval);practiceInterval=null;remaining=state.settings.minutes*60;render();}
+  function download(name,textData,type){const blob=new Blob([textData],{type:type||'text/plain;charset=utf-8'}),url=URL.createObjectURL(blob),a=document.createElement('a');a.href=url;a.download=name;document.body.appendChild(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(url),1000);}
+  const csvEscape=v=>'"'+String(v??'').replace(/"/g,'""')+'"';
+  function exportCsv(records,columns,name){const rows=[columns.join(','),...records.map(r=>columns.map(c=>csvEscape(r[c])).join(','))];download(name,'\uFEFF'+rows.join('\r\n'),'text/csv;charset=utf-8');}
+  function parseCsv(t){const data=[];let row=[],field='',quoted=false;for(let i=0;i<t.length;i++){let c=t[i];if(quoted){if(c==='"'&&t[i+1]==='"'){field+='"';i++;}else if(c==='"')quoted=false;else field+=c;}else if(c==='"')quoted=true;else if(c===','){row.push(field);field='';}else if(c==='\n'){row.push(field.replace(/\r$/,''));data.push(row);row=[];field='';}else field+=c;}if(row.length||field) {row.push(field);data.push(row);}const header=(data.shift()||[]).map(s=>s.replace(/^\uFEFF/,'').trim());return data.filter(x=>x.some(v=>v.trim())).map(row=>Object.fromEntries(header.map((h,i)=>[h,row[i]||''])));}
+  const csvRows=() => state.songs.map(s=>({id:s.id,title:s.title,artist:s.artist,sourceIndices:(s.sourceIndices||[]).join('|'),verification:s.verification,videoUrl:s.videoUrl,audioUrl:s.audioUrl,key:s.key,maleKey:s.maleKey,bpm:s.bpm||'',chords:s.chords,chordStatus:s.chordStatus,strumming:s.strumming,level:s.level,notes:s.notes,setlist:s.setlist?'true':'false'}));
+  const sourceRows=()=>state.sources.map(s=>({index:s.index,status:s.status,url:s.url,note:s.note,songIds:s.songs.join('|')}));
+  function mergedSongs(incoming){let updated=0,added=0;for(const o of incoming){if(!o||!String(o.title||'').trim()||!String(o.artist||'').trim())continue;let id=String(o.id||'').trim(),ex=state.songs.find(s=>s.id===id)||state.songs.find(s=>norm(s.title)===norm(o.title)&&norm(s.artist)===norm(o.artist));let base=ex||{...clone(seed.songs.at(-1)),id:uniqueId(),sourceIndices:[],level:'미착수',verification:'imported',tags:[],notes:'',setlist:false};let indices=Array.isArray(o.sourceIndices)?o.sourceIndices:String(o.sourceIndices||'').split(/[|,]/).map(v=>+v.trim()).filter(n=>n>=1&&n<=211);let filled=Object.fromEntries(Object.entries(o).filter(([k,v])=>v!==''&&v!==null&&v!==undefined));let record={...base,...filled,id:ex?.id||id||base.id,title:String(o.title).trim(),artist:String(o.artist).trim(),sourceIndices:o.sourceIndices!==undefined&&String(o.sourceIndices)!==''?indices:base.sourceIndices,level:LEVELS.includes(o.level)?o.level:base.level,setlist:typeof o.setlist==='boolean'?o.setlist:(o.setlist==='true'?true:o.setlist==='false'?false:base.setlist),tags:Array.isArray(o.tags)?o.tags:base.tags};if(ex){Object.assign(ex,record);updated++;}else{state.songs.push(record);added++;}}
+    updateSongRecords();return {updated,added};
+  }
+  function importJson(parsed,mode){if(Array.isArray(parsed))return mergedSongs(parsed);if(!parsed||!Array.isArray(parsed.songs))throw new Error('songs 배열이 있는 JSON이어야 합니다.');
+    if(mode==='replace'){
+      if(!Array.isArray(parsed.sources) || !Array.isArray(parsed.logs))throw new Error('전체 교체는 sources와 logs를 포함한 STRUM 백업 JSON만 가능합니다.');
+      if(parsed.sources.length!==211||parsed.sources.some((s,i)=>s.index!==i+1)||!parsed.songs.every(s=>s&&typeof s.id==='string'&&typeof s.title==='string'&&typeof s.artist==='string'&&typeof s.verification==='string'&&Array.isArray(s.sourceIndices)))throw new Error('원본 번호 또는 곡 구조가 올바르지 않습니다. 병합을 권장합니다.');
+      if(parsed.sources[162].status!=='제외')throw new Error('원본 #163의 제외 상태가 보존되지 않았습니다. 전체 교체 중단.');
+      state={...defaultState(),...parsed,settings:{...defaultState().settings,...(parsed.settings||{})}};
+      updateSongRecords();return {updated:state.songs.length,added:0};
+    }
+    const res=mergedSongs(parsed.songs);
+    if(Array.isArray(parsed.sources)){for(const s of parsed.sources){let ex=state.sources.find(r=>r.index===+s.index);if(ex){if(s.url)ex.url=s.url;if(s.note)ex.note=s.note;if(SOURCE_STATES.includes(s.status)&&ex.index!==163)ex.status=s.status;else if(ex.index===163)ex.status='제외';}}}
+    if(Array.isArray(parsed.logs)){const ids=new Set(state.logs.map(l=>l.id));for(const l of parsed.logs){if(l.id&&!ids.has(l.id)){state.logs.push(l);ids.add(l.id);}}}
+    updateSongRecords();return res;
+  }
+  async function importFile(){const file=get('import-file')?.files?.[0],mode=get('import-mode')?.value||'merge';if(!file){notice('가져올 JSON 또는 CSV를 선택하세요.');return;}if(mode==='replace'){if(file.name.toLowerCase().endsWith('.csv')){notice('전체 교체는 JSON 백업만 가능합니다. CSV는 병합으로 가져오세요.');return;}if(!confirm('현재 데이터를 백업 다운로드한 후 전체 교체합니다. 계속할까요?'))return;download('STRUM_before_replace_'+dateKey()+'.json',JSON.stringify(state,null,2),'application/json;charset=utf-8');}
+    try{const text=await file.text();let parsed=file.name.toLowerCase().endsWith('.csv')?parseCsv(text):JSON.parse(text);if(file.name.toLowerCase().endsWith('.csv')&&parsed.some(r=>r.index&&!r.title))throw new Error('원본 영상 CSV는 곡 CSV와 형식이 달라 이 화면에서 가져올 수 없습니다. 전체 JSON 백업을 이용하세요.');let res=importJson(parsed,mode);save();render();notice(`가져오기 완료: 신규 ${res.added}곡, 갱신 ${res.updated}곡`);}catch(e){notice('가져오기 실패: '+e.message);}
+  }
+  function saveSongForm(form){let values=Object.fromEntries(new FormData(form));let title=String(values.title||'').trim(),artist=String(values.artist||'').trim();if(!title||!artist){notice('제목과 가수를 입력하세요.');return;}let s=modal.id? song(modal.id):null;
+    let nums=String(values.sourceIndices||'').split(',').map(n=>+n.trim()).filter(i=>Number.isInteger(i)&&i>=1&&i<=211);
+    if(!s){s={...clone(seed.songs.at(-1)),id:uniqueId(),verification:'added-by-user',tags:[]};state.songs.push(s);}Object.assign(s,{title,artist,sourceIndices:[...new Set(nums)],level:values.level,videoUrl:safeHttp(values.videoUrl)||'',audioUrl:safeHttp(values.audioUrl)||'',key:values.key||'미확정',maleKey:values.maleKey||'미확정',bpm:values.bpm?+values.bpm:null,chords:values.chords||'',chordStatus:values.chordStatus,strumming:values.strumming||'',notes:values.notes||'',setlist:form.querySelector('[name="setlist"]')?.checked||false});updateSongRecords();save();modal=null;render();notice('곡 정보가 저장되었습니다.');}
+  function saveSourceForm(form){let ex=state.sources.find(s=>s.index===modal.index),data=new FormData(form);ex.url=safeHttp(data.get('url'));ex.status=ex.index===163?'제외':(SOURCE_STATES.includes(data.get('status'))?data.get('status'):'미확인');ex.note=String(data.get('note')||'');save();modal=null;render();notice('원본 영상 정보를 저장했습니다.');}
+  function saveLogForm(form){const d=new FormData(form);const m=Math.max(1,Math.min(480,+d.get('minutes')||0));state.logs.push({id:'log-'+Date.now()+'-'+Math.random().toString(36).slice(2,5),date:dateKey(),minutes:m,songId:d.get('songId')||'',mode:state.settings.mode,chords:String(d.get('chords')||''),strum:String(d.get('strum')||''),memo:String(d.get('memo')||'')});if(d.get('songId')){let s=song(d.get('songId'));if(s.level==='미착수')s.level='연습 중';}state.completedStages=[];save();resetTimer();notice('오늘 연습 기록을 저장했습니다.');}
+  function handleAction(act){let [cmd,...rest]=act.split(':'),value=rest.join(':');switch(cmd){
+    case 'start-practice':case 'go-practice':setTab('practice');return;
+    case 'go-songs':setTab('songs');return;
+    case 'go-playlist':setTab('playlist');return;
+    case 'go-sources':setTab('sources');return;
+    case 'new-song':editSong(null);return;
+    case 'edit':editSong(value);return;
+    case 'video':case 'music':audioStop();modal={kind:cmd,id:value};render();return;
+    case 'close':case 'dismiss':closeModal();return;
+    case 'source':modal={kind:'source',index:+value};render();return;
+    case 'youtube-search':{const s=song(value);if(s)openTab(youtubeSearch(s));return;}
+    case 'youtube-open':{const s=song(value);if(s){const idx=ytId(s.videoUrl),source=s.sourceIndices.map(n=>state.sources[n-1]?.url).find(u=>ytId(u));openTab(idx?'https://www.youtube.com/watch?v='+idx:(source||youtubeSearch(s)));}return;}
+    case 'music-search':{const s=song(value);if(s)openTab(musicSearch(s));return;}
+    case 'mode':setSettingsField('mode',value);return;
+    case 'minutes':resetTimer();setSettingsField('minutes',+value);remaining=+value*60;render();return;
+    case 'timer-toggle':toggleTimer();return;
+    case 'timer-reset':resetTimer();return;
+    case 'metro-toggle':metronome?stopMetro():startMetro();render();return;
+    case 'bpm-up':changeBpm(5);return;
+    case 'bpm-down':changeBpm(-5);return;
+    case 'more-sources':showAllSources=true;render();return;
+    case 'export-json':download('STRUM_full_backup_'+dateKey()+'.json',JSON.stringify(state,null,2),'application/json;charset=utf-8');notice('전체 백업 파일을 생성했습니다.');return;
+    case 'export-csv':exportCsv(csvRows(),['id','title','artist','sourceIndices','verification','videoUrl','audioUrl','key','maleKey','bpm','chords','chordStatus','strumming','level','notes','setlist'],'STRUM_songs_'+dateKey()+'.csv');return;
+    case 'export-sources':exportCsv(sourceRows(),['index','status','url','note','songIds'],'STRUM_211_sources_'+dateKey()+'.csv');return;
+    case 'import-file':importFile();return;
+    case 'delete-song':if(confirm('이 곡을 목록에서 삭제할까요? 기존 연습 기록은 유지됩니다.')){state.songs=state.songs.filter(s=>s.id!==value);updateSongRecords();save();modal=null;render();notice('삭제했습니다.');}return;
+    case 'delete-log':if(confirm('이 연습 기록을 삭제할까요?')){state.logs=state.logs.filter(l=>l.id!==value);save();render();}return;
+    case 'clear-data':if(confirm('현재 브라우저 데이터를 초기화합니다. 먼저 자동 백업 파일을 다운로드합니다. 계속할까요?')&&confirm('최종 확인: 복원본 기본 데이터로 되돌릴까요?')){download('STRUM_before_reset_'+dateKey()+'.json',JSON.stringify(state,null,2),'application/json;charset=utf-8');state=defaultState();save();resetTimer();render();notice('초기화했습니다.');}return;
+  }}
+  document.addEventListener('click',e=>{const nav=e.target.closest('[data-nav]');if(nav){e.preventDefault();setTab(nav.dataset.nav);return;}const button=e.target.closest('[data-act]');if(!button)return;if(button.dataset.act==='dismiss'){if(e.target!==button)return;e.preventDefault();closeModal();return;}e.preventDefault();handleAction(button.dataset.act);});
+  document.addEventListener('submit',e=>{if(e.target.id==='song-form'){e.preventDefault();saveSongForm(e.target);}else if(e.target.id==='source-form'){e.preventDefault();saveSourceForm(e.target);}else if(e.target.id==='practice-form'){e.preventDefault();saveLogForm(e.target);}});
+  document.addEventListener('input',e=>{
+    if(e.target.id==='song-search'){searchQuery=e.target.value;const filtered=filterSongs();const list=get('song-list');if(list)list.innerHTML=filtered.length?filtered.map(songRow).join(''):'<div class="empty">검색된 곡이 없습니다.</div>';const count=get('song-result-count');if(count)count.textContent='검색 결과 '+filtered.length+'곡 · 데이터가 추가되면 즉시 반영됩니다.';return;}
+    if(e.target.id==='source-search'){sourceQuery=e.target.value;render();get('source-search')?.focus();try{get('source-search').setSelectionRange(sourceQuery.length,sourceQuery.length);}catch{}return;}
+    if(e.target.id==='bpm-range'){const bpm=+e.target.value;if(bpm!==state.settings.bpm){state.settings.bpm=bpm;save();if(metronome){stopMetro();startMetro();}else get('bpm-label').textContent=bpm+' BPM';}return;}
+    if(e.target.id==='local-audio'){const file=e.target.files?.[0];if(!file)return;if(!file.type.startsWith('audio/')){notice('오디오 파일을 선택하세요.');return;}audioStop();trackObjectURL=URL.createObjectURL(file);let mount=get('audio-mount');if(mount){mount.innerHTML='<audio class="audio-player" id="song-audio" controls autoplay></audio>';trackAudio=get('song-audio');trackAudio.src=trackObjectURL;trackAudio.play().catch(()=>{});}return;}
+  });
+  document.addEventListener('change',e=>{
+    if(e.target.dataset.step!==undefined){let i=+e.target.dataset.step;if(e.target.checked&&!state.completedStages.includes(i))state.completedStages.push(i);else if(!e.target.checked)state.completedStages=state.completedStages.filter(v=>v!==i);save();const checked=state.completedStages.length;let pill=e.target.closest('.card')?.querySelector('.pill');if(pill)pill.textContent=checked+'/5 완료';return;}
+    if(e.target.id==='song-filter'){statusFilter=e.target.value;render();return;}
+    if(e.target.id==='source-filter'){sourceFilter=e.target.value;showAllSources=false;render();return;}
+    if(e.target.id==='weekly-goal'){state.settings.weeklyGoal=+e.target.value;save();notice('주간 목표 변경됨.');return;}
+    if(e.target.name==='mode'&&currentTab==='settings'){state.settings.mode=e.target.value;save();return;}
+  });
+  document.addEventListener('keydown',e=>{if(e.key==='Escape'&&modal)closeModal();});
+  window.addEventListener('beforeunload',()=>{stopMetro();});
+  render();
+})();

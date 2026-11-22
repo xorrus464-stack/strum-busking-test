@@ -1,0 +1,15 @@
+{
+  "title": "STRUM · 나의 버스킹 여정",
+  "reconstruction": true,
+  "originalSite": "https://aeroband-busking-jc.actualtide8.chatgpt.site/",
+  "originalVideoCount": 211,
+  "originalReportedCuratedSongCount": 152,
+  "reportedInaccessibleVideoCount": 42,
+  "recoveredOriginalSongCount": 25,
+  "sourceDisclosure": "원본 Sites 소스/DB/152곡 전체를 추출하지 못함. 이전 대화에서 확인된 25개 곡 항목(가수 미확인 1개)과 독립 추천곡 1개만 포함. 211은 원본 영상 번호 슬롯일 뿐 실제 영상 정보가 모두 있는 것은 아님. 42개 접근 불가 영상의 번호는 불명.",
+  "fullyNamedSongCount": 24,
+  "partialNamedSongCount": 1,
+  "additionalRecommendedSongCount": 1,
+  "originalPlaylist": "https://www.youtube.com/playlist?list=PLdOy20BJp9XElDHDvAJI6mUG48BmfDX-y",
+  "playlistId": "PLdOy20BJp9XElDHDvAJI6mUG48BmfDX-y"
+}

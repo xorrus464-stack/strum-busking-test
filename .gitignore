@@ -1,0 +1,16 @@
+# 임시 파일·도구 산출물 (배포 대상 아님)
+.tmp/
+tmp/
+node_modules/
+*.log
+
+# OS / 편집기
+.DS_Store
+Thumbs.db
+desktop.ini
+*.swp
+
+# 테스트 산출물
+e2e/
+test-results/
+playwright-report/

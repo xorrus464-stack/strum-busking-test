@@ -1,0 +1,26 @@
+﻿id,title,artist,sourceIndices,verification,videoUrl,audioUrl,key,maleKey,bpm,chords,chordStatus,strumming,level,notes,setlist
+verified-001,오늘,오왠 (O.WHEN),,site-top3,,,미확정,미확정,,,미확인,,미착수,,false
+verified-002,민들레,우효 (OOHYO),,site-top3,,,미확정,미확정,,,미확인,,미착수,,false
+verified-003,Thank You,Dido,,site-top3,,,미확정,미확정,,,미확인,,미착수,,false
+verified-004,Ten Thousand Hours,Macklemore & Ryan Lewis,2,user-verified,,,미확정,미확정,,,미확인,,미착수,,false
+verified-005,추억이면,부활,6,user-verified,,,미확정,미확정,,,미확인,,미착수,,false
+verified-006,희재,성시경,6,user-verified,,,미확정,미확정,,,미확인,,미착수,,false
+verified-007,한숨,이하이,6,user-verified,,,미확정,미확정,,,미확인,,미착수,,false
+verified-008,내가 너의 곁에 잠시 살았다는 걸,토이,6,user-verified,,,미확정,미확정,,,미확인,,미착수,,false
+verified-009,예뻤어,DAY6,6,user-verified,,,미확정,미확정,,,미확인,,미착수,,false
+verified-010,도망가자,선우정아,6,user-verified,,,미확정,미확정,,,미확인,,미착수,,false
+verified-011,청혼,노을,6,user-verified,,,미확정,미확정,,,미확인,,미착수,,false
+verified-012,TOMBOY,혁오,20,user-verified,,,미확정,미확정,,,미확인,,미착수,,false
+verified-013,Flower,오반,65,user-verified,,,미확정,미확정,,,미확인,,미착수,,false
+verified-014,死別 (feat. GUMI),Shannon,65,user-verified,,,미확정,미확정,,,미확인,,미착수,,false
+verified-015,Englishman in New York,Sting,70,user-verified,,,미확정,미확정,,,미확인,,미착수,,false
+verified-016,How To Cry,Sam Smith,74,user-verified,,,미확정,미확정,,,미확인,,미착수,,false
+verified-017,나는 버려질 장난감,아소 · 아날로그소년,108,user-verified,,,미확정,미확정,,,미확인,,미착수,과거 자동분석 코드 후보: Db → F계열 → Bbm → Gb → Gbm. 청음 검수 미완료. 확정 코드로 사용 금지.,false
+verified-018,たぶん (아마도),YOASOBI,109,user-verified,,,미확정,미확정,,,미확인,,미착수,,false
+verified-019,생각을 멈추다 보면,최유리,165,user-verified,,,미확정,미확정,,,미확인,,미착수,,false
+verified-020,오르막길,윤종신,169,user-verified,,,미확정,미확정,,,미확인,,미착수,,false
+verified-021,날씨가 좋고 바람도 좋아,가수 미확인,172,user-title-only,,,미확정,미확정,,,미확인,,미착수,"이 곡의 가수, 정확한 영상 주소, 코드, 남자 키는 미확인. 이름과 원본 번호만 사용자가 지정함.",false
+verified-022,세상이 그대를 속일지라도,김장훈,197,user-verified,,,미확정,미확정,,,미확인,,미착수,,false
+verified-023,사랑한 마음엔 죄가 없다,소란,201,user-verified,,,미확정,미확정,,,미확인,,미착수,,false
+verified-024,닮은사람,이기찬,203,user-verified,,,미확정,미확정,,,미확인,,미착수,,false
+verified-025,히로인,back number,211,user-verified,,,미확정,미확정,,,미확인,,미착수,,false
