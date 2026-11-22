@@ -248,6 +248,7 @@
         <div><span>BPM</span><b>${c&&c.bpm?c.bpm:'—'}</b></div>
       </div>
       <div class="row" style="flex-wrap:wrap">${c?action('metro-song:'+s.id,'이 곡 템포로 연습','btn primary small'):''}${action('edit:'+s.id,'곡 정보 수정','btn outline small')}</div></div>`;
+    const partialStrip=(s.chartStatus==='partial'&&c&&s.chartNote)?`<div class="alert strip"><b>부분 확인</b> · ${esc(s.chartNote)}</div>`:'';
     const tabs=`<div class="subtabs">${[['chart','원터치 악보'],['slots','SimplifyChord'],['perc','스트로크·퍼커시브'],['basis','근거']].map(([k,l])=>`<button data-act="chart-tab:${k}" class="${tab===k?'active':''}">${l}</button>`).join('')}</div>`;
     if(!c){
       return `${head0}${s.chartStatus==='partial'&&s.chart?`<div class="alert">${esc(s.chartNote||'일부 정보만 확인되었습니다.')}<br>확인된 값: 원키 ${esc(s.chart.originalKey||'—')} · ${esc(s.chart.timeSignature||'—')}${s.chart.bpm?` · ${s.chart.bpm}BPM`:''}</div>`:`<div class="empty"><strong>코드 검수 대기 곡입니다.</strong>${esc(s.chartNote||'원곡 키·박자·코드를 확인한 뒤 악보를 채웁니다. 추측값을 넣지 않습니다.')}</div>`}
@@ -255,7 +256,7 @@
     }
     if(tab==='chart'){
       const used=BTNS.filter(b=>c.sections.some(sec=>sec.bars.some(b_=>b_.some(x=>x.btn===b))));
-      return `${head0}${tabs}
+      return `${head0}${tabs}${partialStrip}
         <div class="capo-callout"><b>에어로밴드 앱 하단 <span class="hl">Capo ${c.capo}</span>로 맞추고, 원터치 코드를 켜세요.</b><span>${esc(c.maleKey)}키 · ${esc(c.formText)} · ${used.length}개 버튼 사용 · CAPO+/CAPO− 버튼으로도 조옮김</span></div>
         <div class="legend">${BTNS.map(b=>`<span class="lg ${used.includes(b)?'on':''}" style="--c:${BTN_COLOR[b]}"><i></i>${b}</span>`).join('')}</div>
         ${chartSections(c,c.timeSignature)}
@@ -284,7 +285,7 @@
         <div class="hint">손목에 힘이 들어가면 소리가 죽습니다. 팔은 고정하고 손목만 돌린다는 느낌으로, 10분 이상 같은 동작을 붙잡지 마세요.</div>`;
     }
     const ev=c.evidence||[];
-    return `${head0}${tabs}
+    return `${head0}${tabs}${partialStrip}
       <div class="card"><h3>확인한 값</h3><div class="kv"><div><span>원곡 키</span><b>${esc(c.originalKey)}</b></div><div><span>${c.maleShift ? `남자키(${c.maleShift}반음 ↓)` : '남자키(원키 그대로)'}</span><b>${esc(c.maleKey)}</b></div><div><span>AeroBand Capo</span><b>+${c.capo}</b></div><div><span>운지 폼</span><b>${esc(c.formText)}</b></div><div><span>박자</span><b>${esc(c.timeSignature)}</b><small>${esc(c.timeNote||'')}</small></div><div><span>BPM</span><b>${c.bpm||'—'}</b><small>${esc(c.bpmNote||'')}</small></div><div><span>원터치 매핑</span><b>${c.coverage.mapped}/${c.coverage.total}</b><small>슬롯 ${(c.slots||[]).length}개</small></div></div>
       <div class="divider"></div><h4>근거 자료</h4><ul class="ev">${ev.map(e=>`<li><a href="${esc(e.url)}" target="_blank" rel="noopener noreferrer">${esc(e.label)}</a><span class="tiny">${esc(e.note)}</span></li>`).join('')||'<li>근거 링크 없음</li>'}</ul>
       <p class="tiny">${esc(c.basis||'')} 남자키는 남성 원곡이면 원키 그대로(이조 0반음), 여성 원곡이면 −5반음으로 잡고, 그 목표 키를 AeroBand 원터치 10버튼(C·Dm·Em·F·G / Cm·D·E·Fm·Gm)에 맞추도록 카포를 골랐습니다. 에어로밴드 공식 안내에 따르면 CAPO+/CAPO− 버튼으로 조옮김하며 카포는 25키까지 지원됩니다(2026-11-22 확인).</p></div>`;

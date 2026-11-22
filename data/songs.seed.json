@@ -653,7 +653,7 @@
           "slot": 1,
           "chord": "C#",
           "orig": "F#",
-          "alt": "F#(244322)",
+          "alt": "Db(x46664) 4프렛 바레",
           "why": "원터치 10버튼에 없는 코드(바레/전위 등)"
         },
         {
@@ -1806,7 +1806,7 @@
           "slot": 1,
           "chord": "Cm7",
           "orig": "Fm7",
-          "alt": "",
+          "alt": "Cm7(x35343)",
           "why": "원터치 10버튼에 없는 코드(바레/전위 등)"
         }
       ],
@@ -3214,7 +3214,7 @@
           "slot": 2,
           "chord": "Gb",
           "orig": "Gb",
-          "alt": "",
+          "alt": "Gb(244322) 2프렛 바레",
           "why": "원터치 10버튼에 없는 코드(바레/전위 등)"
         },
         {
@@ -4627,7 +4627,7 @@
           "slot": 2,
           "chord": "E",
           "orig": "A",
-          "alt": "A(x02220)",
+          "alt": "E(022100)",
           "why": "원터치 10버튼에 없는 코드(바레/전위 등)"
         },
         {
@@ -5150,7 +5150,7 @@
           "slot": 1,
           "chord": "C#m7",
           "orig": "C#m7",
-          "alt": "",
+          "alt": "C#m7(x46454)",
           "why": "원터치 10버튼에 없는 코드(바레/전위 등)"
         }
       ],
@@ -5200,10 +5200,10 @@
     "audioUrl": "",
     "key": "Db",
     "maleKey": "Db",
-    "bpm": null,
-    "chords": "Db / F / Faug / F7 / Bbm / Gb / Gbm",
+    "bpm": 49,
+    "chords": "Db / F Faug F7 / Bbm / Gb Gbm / Db Faug / F / F Db / Gb Bbm / Db / Ab7 / Bbm Db / Gb Eb7 / Db / F / Bbm Eb / Gb / Gb Db / Db Faug / Bbm Db / Gb / Db / Db F / F Bbm / Db / Db / Ab7 Bbm / Db / Db Gb / Db / Ab7 F / Bbm Db / Gb Db / Db / Ab7 F7 / Bbm / Db",
     "chordStatus": "부분 확인",
-    "strumming": "↓ · ↓↑ · ↓↑ (코드 하나를 길게 잡는 8분 스트럼)",
+    "strumming": "↓ · ↓↑ · ↓↑ (3잇단 8분 중심, ♩≈49 · 곡이 매우 느림)",
     "difficultyEasy": "미확인",
     "difficultyStandard": "미확인",
     "vocalDifficulty": "미확인",
@@ -5213,14 +5213,14 @@
     "setlist": false,
     "videoStatus": "공개 영상(원곡)",
     "chartStatus": "partial",
-    "chartNote": "도입부 자동분석 초안(청음 검수 전) — 약 0:00.7~0:20.5 구간만 등록. 박자·BPM·나머지 47구간 코드는 미확보. Faug·F7은 원터치 버튼에 없는 코드.",
+    "chartNote": "오디오 분석 기반(청음 검수 권장) — 제공 음원 kakaotalk_1795329121204-6e4d2b3e8d3143ca974a38850ab6c843.m4a(3:00.74, 16kHz mono)를 ffmpeg로 WAV 변환 후 librosa 크로마(CQT)+코드 템플릿 Viterbi로 마디별 코드를 추정했습니다. 실측 BPM 48.7·4/4·원키 D♭. 도입(0:02–0:22) D♭→F→Faug→F7→B♭m→G♭/G♭m은 기존 자동분석과 일치. 기존 Cdim 후보 구간은 근음이 빠진 A♭7로 판단해 A♭7로 적었고, 마디 내부 패스 코드와 후반부 마디는 청음 검수가 필요합니다.",
     "category": "partial",
     "chart": {
       "status": "partial",
-      "timeSignature": "",
-      "timeNote": "",
-      "bpm": 0,
-      "bpmNote": "",
+      "timeSignature": "4/4",
+      "timeNote": "오디오 실측 ♩≈48.7 · 3잇단 8분(12/8 셔플) 계열",
+      "bpm": 49,
+      "bpmNote": "오디오 실측 48.7 (8분 기준 97.4)",
       "originalKey": "Db",
       "maleKey": "Db",
       "maleShift": 0,
@@ -5230,7 +5230,7 @@
       "formText": "C폼 · Capo +1",
       "sections": [
         {
-          "name": "도입부 0:00–0:20 (자동분석 초안)",
+          "name": "도입 (0:02–0:22)",
           "bars": [
             [
               {
@@ -5248,18 +5248,14 @@
                 "sound": "F",
                 "orig": "F",
                 "quality": "maj"
-              }
-            ],
-            [
+              },
               {
                 "btn": null,
                 "slot": 1,
                 "sound": "Faug",
                 "orig": "Faug",
                 "quality": "maj"
-              }
-            ],
-            [
+              },
               {
                 "btn": "E",
                 "slot": 0,
@@ -5284,15 +5280,460 @@
                 "sound": "Gb",
                 "orig": "Gb",
                 "quality": "maj"
-              }
-            ],
-            [
+              },
               {
                 "btn": "Fm",
                 "slot": 0,
                 "sound": "Gbm",
                 "orig": "Gbm",
                 "quality": "min"
+              }
+            ]
+          ]
+        },
+        {
+          "name": "A1 (0:22–0:42)",
+          "bars": [
+            [
+              {
+                "btn": "C",
+                "slot": 0,
+                "sound": "Db",
+                "orig": "Db",
+                "quality": "maj"
+              },
+              {
+                "btn": null,
+                "slot": 1,
+                "sound": "Faug",
+                "orig": "Faug",
+                "quality": "maj"
+              }
+            ],
+            [
+              {
+                "btn": "E",
+                "slot": 0,
+                "sound": "F",
+                "orig": "F",
+                "quality": "maj"
+              }
+            ],
+            [
+              {
+                "btn": "E",
+                "slot": 0,
+                "sound": "F",
+                "orig": "F",
+                "quality": "maj"
+              },
+              {
+                "btn": "C",
+                "slot": 0,
+                "sound": "Db",
+                "orig": "Db",
+                "quality": "maj"
+              }
+            ],
+            [
+              {
+                "btn": "F",
+                "slot": 0,
+                "sound": "Gb",
+                "orig": "Gb",
+                "quality": "maj"
+              },
+              {
+                "btn": null,
+                "slot": 2,
+                "sound": "Bbm",
+                "orig": "Bbm",
+                "quality": "min"
+              }
+            ]
+          ]
+        },
+        {
+          "name": "A2 (0:42–1:02)",
+          "bars": [
+            [
+              {
+                "btn": "C",
+                "slot": 0,
+                "sound": "Db",
+                "orig": "Db",
+                "quality": "maj"
+              }
+            ],
+            [
+              {
+                "btn": "G",
+                "slot": 0,
+                "sound": "Ab7",
+                "orig": "Ab7",
+                "quality": "maj"
+              }
+            ],
+            [
+              {
+                "btn": null,
+                "slot": 2,
+                "sound": "Bbm",
+                "orig": "Bbm",
+                "quality": "min"
+              },
+              {
+                "btn": "C",
+                "slot": 0,
+                "sound": "Db",
+                "orig": "Db",
+                "quality": "maj"
+              }
+            ],
+            [
+              {
+                "btn": "F",
+                "slot": 0,
+                "sound": "Gb",
+                "orig": "Gb",
+                "quality": "maj"
+              },
+              {
+                "btn": "D",
+                "slot": 0,
+                "sound": "Eb7",
+                "orig": "Eb7",
+                "quality": "maj"
+              }
+            ]
+          ]
+        },
+        {
+          "name": "B1 (1:02–1:22)",
+          "bars": [
+            [
+              {
+                "btn": "C",
+                "slot": 0,
+                "sound": "Db",
+                "orig": "Db",
+                "quality": "maj"
+              }
+            ],
+            [
+              {
+                "btn": "E",
+                "slot": 0,
+                "sound": "F",
+                "orig": "F",
+                "quality": "maj"
+              }
+            ],
+            [
+              {
+                "btn": null,
+                "slot": 2,
+                "sound": "Bbm",
+                "orig": "Bbm",
+                "quality": "min"
+              },
+              {
+                "btn": "D",
+                "slot": 0,
+                "sound": "Eb",
+                "orig": "Eb",
+                "quality": "maj"
+              }
+            ],
+            [
+              {
+                "btn": "F",
+                "slot": 0,
+                "sound": "Gb",
+                "orig": "Gb",
+                "quality": "maj"
+              }
+            ]
+          ]
+        },
+        {
+          "name": "B2 (1:22–1:42)",
+          "bars": [
+            [
+              {
+                "btn": "F",
+                "slot": 0,
+                "sound": "Gb",
+                "orig": "Gb",
+                "quality": "maj"
+              },
+              {
+                "btn": "C",
+                "slot": 0,
+                "sound": "Db",
+                "orig": "Db",
+                "quality": "maj"
+              }
+            ],
+            [
+              {
+                "btn": "C",
+                "slot": 0,
+                "sound": "Db",
+                "orig": "Db",
+                "quality": "maj"
+              },
+              {
+                "btn": null,
+                "slot": 1,
+                "sound": "Faug",
+                "orig": "Faug",
+                "quality": "maj"
+              }
+            ],
+            [
+              {
+                "btn": null,
+                "slot": 2,
+                "sound": "Bbm",
+                "orig": "Bbm",
+                "quality": "min"
+              },
+              {
+                "btn": "C",
+                "slot": 0,
+                "sound": "Db",
+                "orig": "Db",
+                "quality": "maj"
+              }
+            ],
+            [
+              {
+                "btn": "F",
+                "slot": 0,
+                "sound": "Gb",
+                "orig": "Gb",
+                "quality": "maj"
+              }
+            ]
+          ]
+        },
+        {
+          "name": "C1 (1:42–2:02)",
+          "bars": [
+            [
+              {
+                "btn": "C",
+                "slot": 0,
+                "sound": "Db",
+                "orig": "Db",
+                "quality": "maj"
+              }
+            ],
+            [
+              {
+                "btn": "C",
+                "slot": 0,
+                "sound": "Db",
+                "orig": "Db",
+                "quality": "maj"
+              },
+              {
+                "btn": "E",
+                "slot": 0,
+                "sound": "F",
+                "orig": "F",
+                "quality": "maj"
+              }
+            ],
+            [
+              {
+                "btn": "E",
+                "slot": 0,
+                "sound": "F",
+                "orig": "F",
+                "quality": "maj"
+              },
+              {
+                "btn": null,
+                "slot": 2,
+                "sound": "Bbm",
+                "orig": "Bbm",
+                "quality": "min"
+              }
+            ],
+            [
+              {
+                "btn": "C",
+                "slot": 0,
+                "sound": "Db",
+                "orig": "Db",
+                "quality": "maj"
+              }
+            ]
+          ]
+        },
+        {
+          "name": "A3 (2:02–2:22)",
+          "bars": [
+            [
+              {
+                "btn": "C",
+                "slot": 0,
+                "sound": "Db",
+                "orig": "Db",
+                "quality": "maj"
+              }
+            ],
+            [
+              {
+                "btn": "G",
+                "slot": 0,
+                "sound": "Ab7",
+                "orig": "Ab7",
+                "quality": "maj"
+              },
+              {
+                "btn": null,
+                "slot": 2,
+                "sound": "Bbm",
+                "orig": "Bbm",
+                "quality": "min"
+              }
+            ],
+            [
+              {
+                "btn": "C",
+                "slot": 0,
+                "sound": "Db",
+                "orig": "Db",
+                "quality": "maj"
+              }
+            ],
+            [
+              {
+                "btn": "C",
+                "slot": 0,
+                "sound": "Db",
+                "orig": "Db",
+                "quality": "maj"
+              },
+              {
+                "btn": "F",
+                "slot": 0,
+                "sound": "Gb",
+                "orig": "Gb",
+                "quality": "maj"
+              }
+            ]
+          ]
+        },
+        {
+          "name": "B3 (2:22–2:42)",
+          "bars": [
+            [
+              {
+                "btn": "C",
+                "slot": 0,
+                "sound": "Db",
+                "orig": "Db",
+                "quality": "maj"
+              }
+            ],
+            [
+              {
+                "btn": "G",
+                "slot": 0,
+                "sound": "Ab7",
+                "orig": "Ab7",
+                "quality": "maj"
+              },
+              {
+                "btn": "E",
+                "slot": 0,
+                "sound": "F",
+                "orig": "F",
+                "quality": "maj"
+              }
+            ],
+            [
+              {
+                "btn": null,
+                "slot": 2,
+                "sound": "Bbm",
+                "orig": "Bbm",
+                "quality": "min"
+              },
+              {
+                "btn": "C",
+                "slot": 0,
+                "sound": "Db",
+                "orig": "Db",
+                "quality": "maj"
+              }
+            ],
+            [
+              {
+                "btn": "F",
+                "slot": 0,
+                "sound": "Gb",
+                "orig": "Gb",
+                "quality": "maj"
+              },
+              {
+                "btn": "C",
+                "slot": 0,
+                "sound": "Db",
+                "orig": "Db",
+                "quality": "maj"
+              }
+            ]
+          ]
+        },
+        {
+          "name": "아웃트로 (2:42–3:00)",
+          "bars": [
+            [
+              {
+                "btn": "C",
+                "slot": 0,
+                "sound": "Db",
+                "orig": "Db",
+                "quality": "maj"
+              }
+            ],
+            [
+              {
+                "btn": "G",
+                "slot": 0,
+                "sound": "Ab7",
+                "orig": "Ab7",
+                "quality": "maj"
+              },
+              {
+                "btn": "E",
+                "slot": 0,
+                "sound": "F7",
+                "orig": "F7",
+                "quality": "maj"
+              }
+            ],
+            [
+              {
+                "btn": null,
+                "slot": 2,
+                "sound": "Bbm",
+                "orig": "Bbm",
+                "quality": "min"
+              }
+            ],
+            [
+              {
+                "btn": "C",
+                "slot": 0,
+                "sound": "Db",
+                "orig": "Db",
+                "quality": "maj"
               }
             ]
           ]
@@ -5303,7 +5744,7 @@
           "slot": 1,
           "chord": "Faug",
           "orig": "Faug",
-          "alt": "",
+          "alt": "F7(xx3241) 근사 또는 Fmaj7",
           "why": "원터치 10버튼에 없는 코드(바레/전위 등)"
         },
         {
@@ -5314,14 +5755,14 @@
           "why": "원터치 10버튼에 없는 코드(바레/전위 등)"
         }
       ],
-      "stage": 2,
+      "stage": 3,
       "percussiveReady": false,
-      "stroke": "↓ · ↓↑ · ↓↑ (코드 하나를 길게 잡는 8분 스트럼)",
+      "stroke": "↓ · ↓↑ · ↓↑ (3잇단 8분 중심, ♩≈49 · 곡이 매우 느림)",
       "percussive": "",
-      "why": "Faug(0:08.2)·F7(0:09.5)은 원터치 10버튼에 없는 코드라 SimplifyChord 슬롯으로 넘긴다. Db·Bbm·Gb·Gbm은 카포로 버튼에 맞춘다. 나머지 구간은 아직 코드를 모르므로 채우지 않았다.",
+      "why": "Faug·F7은 원터치 10버튼에 없는 코드라 SimplifyChord 슬롯으로 넘긴다. D♭·G♭·A♭7·E♭은 카포로 버튼에 맞추고, B♭m·G♭m은 슬롯/바레로 처리한다. 도입 2마디는 F(2박)→Faug(1박)→F7(1박)으로 색이 바뀐다.",
       "coverage": {
-        "mapped": 6,
-        "total": 7,
+        "mapped": 9,
+        "total": 10,
         "unmapped": 1
       },
       "basis": "코드표 순서를 4박 마디 카드로 정리한 연습용 배치입니다. 원곡의 세부 마디 배치와 다를 수 있습니다.",
@@ -5329,13 +5770,18 @@
         {
           "label": "원곡 영상(#108 아소 - 나는 버려질 장난감)",
           "url": "https://www.youtube.com/watch?v=YJdyPtShNvE",
-          "note": "사용자 제공 자동분석(5회 대조, 36/47구간 통과 초안) · 0:00.1–0:00.7 F(후보 D♭) · 0:00.7–0:05.8 D♭ · 0:05.8–0:08.2 F · 0:08.2–0:09.5 Faug · 0:09.5–0:10.7 F7 · 0:10.7–0:15.7 B♭m · 0:15.7–0:18.1 G♭ · 0:18.1–0:20.5 G♭m 후보"
+          "note": "제공 음원 kakaotalk_1795329121204-….m4a 실측 · ffmpeg WAV 변환 → librosa chroma_cqt + 코드 템플릿 Viterbi · 3:00.74 · 4/4 · ♩48.7 · 원키 D♭"
+        },
+        {
+          "label": "기존 자동분석 대조(도입)",
+          "url": "https://www.youtube.com/watch?v=YJdyPtShNvE",
+          "note": "기존 0:00.7–0:20.5 D♭→F→Faug→F7→B♭m→G♭→G♭m과 순서·길이 일치(이 음원에서는 약 +1.7초 늦게 시작). 마디 경계는 4박 격자에 맞춤"
         }
       ],
-      "note": "도입부 자동분석 초안(청음 검수 전) — 약 0:00.7~0:20.5 구간만 등록. 박자·BPM·나머지 47구간 코드는 미확보. Faug·F7은 원터치 버튼에 없는 코드."
+      "note": "오디오 분석 기반(청음 검수 권장) — 제공 음원 kakaotalk_1795329121204-6e4d2b3e8d3143ca974a38850ab6c843.m4a(3:00.74, 16kHz mono)를 ffmpeg로 WAV 변환 후 librosa 크로마(CQT)+코드 템플릿 Viterbi로 마디별 코드를 추정했습니다. 실측 BPM 48.7·4/4·원키 D♭. 도입(0:02–0:22) D♭→F→Faug→F7→B♭m→G♭/G♭m은 기존 자동분석과 일치. 기존 Cdim 후보 구간은 근음이 빠진 A♭7로 판단해 A♭7로 적었고, 마디 내부 패스 코드와 후반부 마디는 청음 검수가 필요합니다."
     },
-    "timeSignature": "",
-    "chartStage": 2
+    "timeSignature": "4/4",
+    "chartStage": 3
   },
   {
     "id": "verified-018",
@@ -5998,8 +6444,8 @@
     "audioUrl": "",
     "key": "A",
     "maleKey": "A",
-    "bpm": null,
-    "chords": "A / C#m7 / F#m7 / Dm7 / Bm7 / C#m / C#m7 / Bm7 / E7 / A",
+    "bpm": 90,
+    "chords": "A / C#m7 / F#m7 / D / Bm7 / C#m7 / C#m7 / D Bm7 / Bm7 G / D / C#m7 / Bm7 / Bm7 / A / A C#m7 / Bm7 / Bm7 D / A B7 / B7 C#m7 / C#m7 / A / A / C#m7 / D / A / A / C#m7 / C#m7 F#m7 / D / A / C#m7 F#m7 / F#m7 D / A / D / C#m7 / Bm7 / C#m7 / C#m7 Bm7 / Bm7 C#m7 / Bm7 C#7 / C#7 / C#7 A / B7 C#m7 / D A / A / A D / D C#m7 / C#m7 / C#m7 / C#m7 D / D C#m7 / C#m7 Bm7 / Bm7 E / E / A / C#m7 / C#m7 A / Bm7 D / D",
     "chordStatus": "부분 확인",
     "strumming": "↓ · ↓↑ · ↓↑ (느린 8분, 전환 지점에서 손을 먼저 옮긴다)",
     "difficultyEasy": "미확인",
@@ -6011,16 +6457,16 @@
     "setlist": false,
     "videoStatus": "공개 영상(원곡)",
     "chartStatus": "partial",
-    "chartNote": "초반 자동분석 초안(청음 검수 전) — 약 0:00.1~0:17 구간만 등록. 가수·박자·BPM·나머지 75구간 코드는 미확보.",
+    "chartNote": "오디오 분석 기반(청음 검수 권장) — 제공 음원 kakaotalk_1795329116993-0be3d6c919be4bccb508fed4ea1bb50b.m4a(3:09.44, 16kHz mono)를 ffmpeg로 WAV 변환 후 librosa 크로마(CQT)+코드 템플릿 Viterbi로 마디별 코드를 추정했습니다. 실측 BPM 90.0·4/4·원키 A. 도입은 기존 자동분석(A→C#m7→F#m7→D→Bm7→C#m7)과 순서가 같고, 기존 4번째 Dm7은 실측상 D(메이저)로 들립니다. 가수는 여전히 미확인(#172 원칙 유지)이며, 마디별 배치와 패스 코드는 청음 검수가 필요합니다.",
     "category": "partial",
     "workTitle": "날씨가 좋고 바람도 좋아",
     "workArtist": "가수 미확인",
     "chart": {
       "status": "partial",
-      "timeSignature": "",
-      "timeNote": "",
-      "bpm": 0,
-      "bpmNote": "",
+      "timeSignature": "4/4",
+      "timeNote": "오디오 실측 90.0 · 도입은 템포가 느슨한 편",
+      "bpm": 90,
+      "bpmNote": "오디오 실측 90.0",
       "originalKey": "A",
       "maleKey": "A",
       "maleShift": 0,
@@ -6030,7 +6476,7 @@
       "formText": "G폼 · Capo +2",
       "sections": [
         {
-          "name": "초반 0:00–0:17 (자동분석 초안)",
+          "name": "도입 (0:01–0:18)",
           "bars": [
             [
               {
@@ -6061,11 +6507,11 @@
             ],
             [
               {
-                "btn": "Cm",
+                "btn": "C",
                 "slot": 0,
-                "sound": "Dm7",
-                "orig": "Dm7",
-                "quality": "min"
+                "sound": "D",
+                "orig": "D",
+                "quality": "maj"
               }
             ],
             [
@@ -6074,15 +6520,6 @@
                 "slot": 2,
                 "sound": "Bm7",
                 "orig": "Bm7",
-                "quality": "min"
-              }
-            ],
-            [
-              {
-                "btn": null,
-                "slot": 3,
-                "sound": "C#m",
-                "orig": "C#m",
                 "quality": "min"
               }
             ],
@@ -6098,8 +6535,67 @@
           ]
         },
         {
-          "name": "전환 연습 (제공 자료)",
+          "name": "A1 (0:17–0:40)",
           "bars": [
+            [
+              {
+                "btn": null,
+                "slot": 1,
+                "sound": "C#m7",
+                "orig": "C#m7",
+                "quality": "min"
+              }
+            ],
+            [
+              {
+                "btn": "C",
+                "slot": 0,
+                "sound": "D",
+                "orig": "D",
+                "quality": "maj"
+              },
+              {
+                "btn": null,
+                "slot": 2,
+                "sound": "Bm7",
+                "orig": "Bm7",
+                "quality": "min"
+              }
+            ],
+            [
+              {
+                "btn": null,
+                "slot": 2,
+                "sound": "Bm7",
+                "orig": "Bm7",
+                "quality": "min"
+              },
+              {
+                "btn": "F",
+                "slot": 0,
+                "sound": "G",
+                "orig": "G",
+                "quality": "maj"
+              }
+            ],
+            [
+              {
+                "btn": "C",
+                "slot": 0,
+                "sound": "D",
+                "orig": "D",
+                "quality": "maj"
+              }
+            ],
+            [
+              {
+                "btn": null,
+                "slot": 1,
+                "sound": "C#m7",
+                "orig": "C#m7",
+                "quality": "min"
+              }
+            ],
             [
               {
                 "btn": null,
@@ -6111,10 +6607,712 @@
             ],
             [
               {
+                "btn": null,
+                "slot": 2,
+                "sound": "Bm7",
+                "orig": "Bm7",
+                "quality": "min"
+              }
+            ]
+          ]
+        },
+        {
+          "name": "A2 (0:40–1:03)",
+          "bars": [
+            [
+              {
+                "btn": "G",
+                "slot": 0,
+                "sound": "A",
+                "orig": "A",
+                "quality": "maj"
+              }
+            ],
+            [
+              {
+                "btn": "G",
+                "slot": 0,
+                "sound": "A",
+                "orig": "A",
+                "quality": "maj"
+              },
+              {
+                "btn": null,
+                "slot": 1,
+                "sound": "C#m7",
+                "orig": "C#m7",
+                "quality": "min"
+              }
+            ],
+            [
+              {
+                "btn": null,
+                "slot": 2,
+                "sound": "Bm7",
+                "orig": "Bm7",
+                "quality": "min"
+              }
+            ],
+            [
+              {
+                "btn": null,
+                "slot": 2,
+                "sound": "Bm7",
+                "orig": "Bm7",
+                "quality": "min"
+              },
+              {
+                "btn": "C",
+                "slot": 0,
+                "sound": "D",
+                "orig": "D",
+                "quality": "maj"
+              }
+            ],
+            [
+              {
+                "btn": "G",
+                "slot": 0,
+                "sound": "A",
+                "orig": "A",
+                "quality": "maj"
+              },
+              {
+                "btn": null,
+                "slot": 3,
+                "sound": "B7",
+                "orig": "B7",
+                "quality": "maj"
+              }
+            ],
+            [
+              {
+                "btn": null,
+                "slot": 3,
+                "sound": "B7",
+                "orig": "B7",
+                "quality": "maj"
+              },
+              {
+                "btn": null,
+                "slot": 1,
+                "sound": "C#m7",
+                "orig": "C#m7",
+                "quality": "min"
+              }
+            ],
+            [
+              {
+                "btn": null,
+                "slot": 1,
+                "sound": "C#m7",
+                "orig": "C#m7",
+                "quality": "min"
+              }
+            ],
+            [
+              {
+                "btn": "G",
+                "slot": 0,
+                "sound": "A",
+                "orig": "A",
+                "quality": "maj"
+              }
+            ],
+            [
+              {
+                "btn": "G",
+                "slot": 0,
+                "sound": "A",
+                "orig": "A",
+                "quality": "maj"
+              }
+            ]
+          ]
+        },
+        {
+          "name": "B1 (1:03–1:26)",
+          "bars": [
+            [
+              {
+                "btn": null,
+                "slot": 1,
+                "sound": "C#m7",
+                "orig": "C#m7",
+                "quality": "min"
+              }
+            ],
+            [
+              {
+                "btn": "C",
+                "slot": 0,
+                "sound": "D",
+                "orig": "D",
+                "quality": "maj"
+              }
+            ],
+            [
+              {
+                "btn": "G",
+                "slot": 0,
+                "sound": "A",
+                "orig": "A",
+                "quality": "maj"
+              }
+            ],
+            [
+              {
+                "btn": "G",
+                "slot": 0,
+                "sound": "A",
+                "orig": "A",
+                "quality": "maj"
+              }
+            ],
+            [
+              {
+                "btn": null,
+                "slot": 1,
+                "sound": "C#m7",
+                "orig": "C#m7",
+                "quality": "min"
+              }
+            ],
+            [
+              {
+                "btn": null,
+                "slot": 1,
+                "sound": "C#m7",
+                "orig": "C#m7",
+                "quality": "min"
+              },
+              {
+                "btn": "Em",
+                "slot": 0,
+                "sound": "F#m7",
+                "orig": "F#m7",
+                "quality": "min"
+              }
+            ],
+            [
+              {
+                "btn": "C",
+                "slot": 0,
+                "sound": "D",
+                "orig": "D",
+                "quality": "maj"
+              }
+            ],
+            [
+              {
+                "btn": "G",
+                "slot": 0,
+                "sound": "A",
+                "orig": "A",
+                "quality": "maj"
+              }
+            ]
+          ]
+        },
+        {
+          "name": "B2 (1:26–1:50)",
+          "bars": [
+            [
+              {
+                "btn": null,
+                "slot": 1,
+                "sound": "C#m7",
+                "orig": "C#m7",
+                "quality": "min"
+              },
+              {
+                "btn": "Em",
+                "slot": 0,
+                "sound": "F#m7",
+                "orig": "F#m7",
+                "quality": "min"
+              }
+            ],
+            [
+              {
+                "btn": "Em",
+                "slot": 0,
+                "sound": "F#m7",
+                "orig": "F#m7",
+                "quality": "min"
+              },
+              {
+                "btn": "C",
+                "slot": 0,
+                "sound": "D",
+                "orig": "D",
+                "quality": "maj"
+              }
+            ],
+            [
+              {
+                "btn": "G",
+                "slot": 0,
+                "sound": "A",
+                "orig": "A",
+                "quality": "maj"
+              }
+            ],
+            [
+              {
+                "btn": "C",
+                "slot": 0,
+                "sound": "D",
+                "orig": "D",
+                "quality": "maj"
+              }
+            ],
+            [
+              {
+                "btn": null,
+                "slot": 1,
+                "sound": "C#m7",
+                "orig": "C#m7",
+                "quality": "min"
+              }
+            ],
+            [
+              {
+                "btn": null,
+                "slot": 2,
+                "sound": "Bm7",
+                "orig": "Bm7",
+                "quality": "min"
+              }
+            ],
+            [
+              {
+                "btn": null,
+                "slot": 1,
+                "sound": "C#m7",
+                "orig": "C#m7",
+                "quality": "min"
+              }
+            ],
+            [
+              {
+                "btn": null,
+                "slot": 1,
+                "sound": "C#m7",
+                "orig": "C#m7",
+                "quality": "min"
+              },
+              {
+                "btn": null,
+                "slot": 2,
+                "sound": "Bm7",
+                "orig": "Bm7",
+                "quality": "min"
+              }
+            ]
+          ]
+        },
+        {
+          "name": "C1 (1:50–2:10)",
+          "bars": [
+            [
+              {
+                "btn": null,
+                "slot": 2,
+                "sound": "Bm7",
+                "orig": "Bm7",
+                "quality": "min"
+              },
+              {
+                "btn": null,
+                "slot": 1,
+                "sound": "C#m7",
+                "orig": "C#m7",
+                "quality": "min"
+              }
+            ],
+            [
+              {
+                "btn": null,
+                "slot": 2,
+                "sound": "Bm7",
+                "orig": "Bm7",
+                "quality": "min"
+              },
+              {
+                "btn": null,
+                "slot": 4,
+                "sound": "C#7",
+                "orig": "C#7",
+                "quality": "maj"
+              }
+            ],
+            [
+              {
+                "btn": null,
+                "slot": 4,
+                "sound": "C#7",
+                "orig": "C#7",
+                "quality": "maj"
+              }
+            ],
+            [
+              {
+                "btn": null,
+                "slot": 4,
+                "sound": "C#7",
+                "orig": "C#7",
+                "quality": "maj"
+              },
+              {
+                "btn": "G",
+                "slot": 0,
+                "sound": "A",
+                "orig": "A",
+                "quality": "maj"
+              }
+            ],
+            [
+              {
+                "btn": null,
+                "slot": 3,
+                "sound": "B7",
+                "orig": "B7",
+                "quality": "maj"
+              },
+              {
+                "btn": null,
+                "slot": 1,
+                "sound": "C#m7",
+                "orig": "C#m7",
+                "quality": "min"
+              }
+            ],
+            [
+              {
+                "btn": "C",
+                "slot": 0,
+                "sound": "D",
+                "orig": "D",
+                "quality": "maj"
+              },
+              {
+                "btn": "G",
+                "slot": 0,
+                "sound": "A",
+                "orig": "A",
+                "quality": "maj"
+              }
+            ],
+            [
+              {
+                "btn": "G",
+                "slot": 0,
+                "sound": "A",
+                "orig": "A",
+                "quality": "maj"
+              }
+            ]
+          ]
+        },
+        {
+          "name": "A3 (2:10–2:35)",
+          "bars": [
+            [
+              {
+                "btn": "G",
+                "slot": 0,
+                "sound": "A",
+                "orig": "A",
+                "quality": "maj"
+              },
+              {
+                "btn": "C",
+                "slot": 0,
+                "sound": "D",
+                "orig": "D",
+                "quality": "maj"
+              }
+            ],
+            [
+              {
+                "btn": "C",
+                "slot": 0,
+                "sound": "D",
+                "orig": "D",
+                "quality": "maj"
+              },
+              {
+                "btn": null,
+                "slot": 1,
+                "sound": "C#m7",
+                "orig": "C#m7",
+                "quality": "min"
+              }
+            ],
+            [
+              {
+                "btn": null,
+                "slot": 1,
+                "sound": "C#m7",
+                "orig": "C#m7",
+                "quality": "min"
+              }
+            ],
+            [
+              {
+                "btn": null,
+                "slot": 1,
+                "sound": "C#m7",
+                "orig": "C#m7",
+                "quality": "min"
+              }
+            ],
+            [
+              {
+                "btn": null,
+                "slot": 1,
+                "sound": "C#m7",
+                "orig": "C#m7",
+                "quality": "min"
+              },
+              {
+                "btn": "C",
+                "slot": 0,
+                "sound": "D",
+                "orig": "D",
+                "quality": "maj"
+              }
+            ],
+            [
+              {
+                "btn": "C",
+                "slot": 0,
+                "sound": "D",
+                "orig": "D",
+                "quality": "maj"
+              },
+              {
+                "btn": null,
+                "slot": 1,
+                "sound": "C#m7",
+                "orig": "C#m7",
+                "quality": "min"
+              }
+            ],
+            [
+              {
+                "btn": null,
+                "slot": 1,
+                "sound": "C#m7",
+                "orig": "C#m7",
+                "quality": "min"
+              },
+              {
+                "btn": null,
+                "slot": 2,
+                "sound": "Bm7",
+                "orig": "Bm7",
+                "quality": "min"
+              }
+            ],
+            [
+              {
+                "btn": null,
+                "slot": 2,
+                "sound": "Bm7",
+                "orig": "Bm7",
+                "quality": "min"
+              },
+              {
                 "btn": "D",
                 "slot": 0,
-                "sound": "E7",
-                "orig": "E7",
+                "sound": "E",
+                "orig": "E",
+                "quality": "maj"
+              }
+            ]
+          ]
+        },
+        {
+          "name": "아웃트로 (2:35–3:09)",
+          "bars": [
+            [
+              {
+                "btn": "D",
+                "slot": 0,
+                "sound": "E",
+                "orig": "E",
+                "quality": "maj"
+              }
+            ],
+            [
+              {
+                "btn": "G",
+                "slot": 0,
+                "sound": "A",
+                "orig": "A",
+                "quality": "maj"
+              }
+            ],
+            [
+              {
+                "btn": null,
+                "slot": 1,
+                "sound": "C#m7",
+                "orig": "C#m7",
+                "quality": "min"
+              }
+            ],
+            [
+              {
+                "btn": null,
+                "slot": 1,
+                "sound": "C#m7",
+                "orig": "C#m7",
+                "quality": "min"
+              },
+              {
+                "btn": "G",
+                "slot": 0,
+                "sound": "A",
+                "orig": "A",
+                "quality": "maj"
+              }
+            ],
+            [
+              {
+                "btn": null,
+                "slot": 2,
+                "sound": "Bm7",
+                "orig": "Bm7",
+                "quality": "min"
+              },
+              {
+                "btn": "C",
+                "slot": 0,
+                "sound": "D",
+                "orig": "D",
+                "quality": "maj"
+              }
+            ],
+            [
+              {
+                "btn": "C",
+                "slot": 0,
+                "sound": "D",
+                "orig": "D",
+                "quality": "maj"
+              },
+              {
+                "btn": "G",
+                "slot": 0,
+                "sound": "A",
+                "orig": "A",
+                "quality": "maj"
+              }
+            ],
+            [
+              {
+                "btn": null,
+                "slot": 2,
+                "sound": "Bm7",
+                "orig": "Bm7",
+                "quality": "min"
+              }
+            ],
+            [
+              {
+                "btn": null,
+                "slot": 2,
+                "sound": "Bm7",
+                "orig": "Bm7",
+                "quality": "min"
+              },
+              {
+                "btn": "G",
+                "slot": 0,
+                "sound": "A",
+                "orig": "A",
+                "quality": "maj"
+              }
+            ],
+            [
+              {
+                "btn": "G",
+                "slot": 0,
+                "sound": "A",
+                "orig": "A",
+                "quality": "maj"
+              }
+            ],
+            [
+              {
+                "btn": "G",
+                "slot": 0,
+                "sound": "A",
+                "orig": "A",
+                "quality": "maj"
+              }
+            ],
+            [
+              {
+                "btn": null,
+                "slot": 1,
+                "sound": "C#m7",
+                "orig": "C#m7",
+                "quality": "min"
+              }
+            ],
+            [
+              {
+                "btn": null,
+                "slot": 1,
+                "sound": "C#m7",
+                "orig": "C#m7",
+                "quality": "min"
+              },
+              {
+                "btn": "C",
+                "slot": 0,
+                "sound": "D",
+                "orig": "D",
+                "quality": "maj"
+              }
+            ],
+            [
+              {
+                "btn": "C",
+                "slot": 0,
+                "sound": "D",
+                "orig": "D",
+                "quality": "maj"
+              }
+            ],
+            [
+              {
+                "btn": "G",
+                "slot": 0,
+                "sound": "A",
+                "orig": "A",
+                "quality": "maj"
+              }
+            ],
+            [
+              {
+                "btn": null,
+                "slot": 1,
+                "sound": "C#m7",
+                "orig": "C#m7",
+                "quality": "min"
+              }
+            ],
+            [
+              {
+                "btn": "C",
+                "slot": 0,
+                "sound": "D",
+                "orig": "D",
                 "quality": "maj"
               }
             ],
@@ -6135,7 +7333,7 @@
           "slot": 1,
           "chord": "C#m7",
           "orig": "C#m7",
-          "alt": "",
+          "alt": "C#m7(x46454)",
           "why": "원터치 10버튼에 없는 코드(바레/전위 등)"
         },
         {
@@ -6147,34 +7345,46 @@
         },
         {
           "slot": 3,
-          "chord": "C#m",
-          "orig": "C#m",
-          "alt": "C#m7(x46454)",
+          "chord": "B7",
+          "orig": "B7",
+          "alt": "B7(x21202)",
+          "why": "원터치 10버튼에 없는 코드(바레/전위 등)"
+        },
+        {
+          "slot": 4,
+          "chord": "C#7",
+          "orig": "C#7",
+          "alt": "C#7(x43404)",
           "why": "원터치 10버튼에 없는 코드(바레/전위 등)"
         }
       ],
-      "stage": 2,
+      "stage": 3,
       "percussiveReady": false,
       "stroke": "↓ · ↓↑ · ↓↑ (느린 8분, 전환 지점에서 손을 먼저 옮긴다)",
       "percussive": "",
-      "why": "7th 코드가 많아 원터치 버튼은 3화음 근사로 잡고, 코드 이름은 실제 화음(C#m7·F#m7·Dm7·Bm7·E7)을 그대로 표기했다. 나머지 구간은 아직 코드를 모르므로 채우지 않았다. 가수는 여전히 미확인(#172 원칙 유지).",
+      "why": "7th 코드가 많아 원터치 버튼은 3화음 근사로 잡고, 코드 이름은 실제 화음(C#m7·F#m7·Bm7·B7·C#7)을 그대로 표기했다. 1:50–2:10 구간은 C#7(2차 도미넌트)이 길게 이어져 손이 바뀌는 지점이 많다. 가수는 여전히 미확인(#172 원칙 유지).",
       "coverage": {
-        "mapped": 4,
-        "total": 7,
-        "unmapped": 3
+        "mapped": 5,
+        "total": 9,
+        "unmapped": 4
       },
       "basis": "코드표 순서를 4박 마디 카드로 정리한 연습용 배치입니다. 원곡의 세부 마디 배치와 다를 수 있습니다.",
       "evidence": [
         {
           "label": "원곡 영상(#171 「날씨좋고 바람도 좋아2」)",
           "url": "https://www.youtube.com/watch?v=ctwIj615b18",
-          "note": "사용자 제공 자동분석 초안 · 초반 0:00.1–0:17 A C#m7 F#m7 Dm7 Bm7 C#m C#m7 · 전환 연습 Bm7→E7→A"
+          "note": "제공 음원 kakaotalk_1795329116993-….m4a 실측 · ffmpeg WAV 변환 → librosa chroma_cqt + 코드 템플릿 Viterbi · 3:09.44 · 4/4 · ♩90.0 · 원키 A"
+        },
+        {
+          "label": "기존 자동분석 대조(도입)",
+          "url": "https://www.youtube.com/watch?v=ctwIj615b18",
+          "note": "기존 0:00.1–0:17 A→C#m7→F#m7→Dm7→Bm7→C#m→C#m7과 순서 일치(실측 0:04–0:17, 4번째 코드는 D). 0:01–0:18은 6마디로 정리"
         }
       ],
-      "note": "초반 자동분석 초안(청음 검수 전) — 약 0:00.1~0:17 구간만 등록. 가수·박자·BPM·나머지 75구간 코드는 미확보."
+      "note": "오디오 분석 기반(청음 검수 권장) — 제공 음원 kakaotalk_1795329116993-0be3d6c919be4bccb508fed4ea1bb50b.m4a(3:09.44, 16kHz mono)를 ffmpeg로 WAV 변환 후 librosa 크로마(CQT)+코드 템플릿 Viterbi로 마디별 코드를 추정했습니다. 실측 BPM 90.0·4/4·원키 A. 도입은 기존 자동분석(A→C#m7→F#m7→D→Bm7→C#m7)과 순서가 같고, 기존 4번째 Dm7은 실측상 D(메이저)로 들립니다. 가수는 여전히 미확인(#172 원칙 유지)이며, 마디별 배치와 패스 코드는 청음 검수가 필요합니다."
     },
-    "timeSignature": "",
-    "chartStage": 2
+    "timeSignature": "4/4",
+    "chartStage": 3
   },
   {
     "id": "verified-022",
@@ -8333,7 +9543,7 @@
           "slot": 1,
           "chord": "E",
           "orig": "A",
-          "alt": "A(x02220)",
+          "alt": "E(022100)",
           "why": "원터치 10버튼에 없는 코드(바레/전위 등)"
         },
         {
@@ -9679,7 +10889,7 @@
           "slot": 1,
           "chord": "C#",
           "orig": "F#",
-          "alt": "F#(244322)",
+          "alt": "Db(x46664) 4프렛 바레",
           "why": "원터치 10버튼에 없는 코드(바레/전위 등)"
         }
       ],
@@ -10985,7 +12195,7 @@
           "slot": 2,
           "chord": "Gb",
           "orig": "Gb",
-          "alt": "",
+          "alt": "Gb(244322) 2프렛 바레",
           "why": "원터치 10버튼에 없는 코드(바레/전위 등)"
         },
         {
@@ -12923,7 +14133,7 @@
           "slot": 1,
           "chord": "C#",
           "orig": "F#",
-          "alt": "F#(244322)",
+          "alt": "Db(x46664) 4프렛 바레",
           "why": "원터치 10버튼에 없는 코드(바레/전위 등)"
         }
       ],
@@ -18865,7 +20075,7 @@
           "slot": 2,
           "chord": "C#m7",
           "orig": "C#m7",
-          "alt": "",
+          "alt": "C#m7(x46454)",
           "why": "원터치 10버튼에 없는 코드(바레/전위 등)"
         }
       ],
@@ -19305,7 +20515,7 @@
           "slot": 2,
           "chord": "C#m7",
           "orig": "C#m7",
-          "alt": "",
+          "alt": "C#m7(x46454)",
           "why": "원터치 10버튼에 없는 코드(바레/전위 등)"
         }
       ],
@@ -20128,7 +21338,7 @@
           "slot": 1,
           "chord": "E",
           "orig": "E",
-          "alt": "",
+          "alt": "E(022100)",
           "why": "원터치 10버튼에 없는 코드(바레/전위 등)"
         }
       ],
@@ -20315,7 +21525,7 @@
           "slot": 2,
           "chord": "C#",
           "orig": "Gb",
-          "alt": "",
+          "alt": "Db(x46664) 4프렛 바레",
           "why": "원터치 10버튼에 없는 코드(바레/전위 등)"
         }
       ],
@@ -20502,7 +21712,7 @@
           "slot": 2,
           "chord": "C#",
           "orig": "Gb",
-          "alt": "",
+          "alt": "Db(x46664) 4프렛 바레",
           "why": "원터치 10버튼에 없는 코드(바레/전위 등)"
         }
       ],
@@ -22444,7 +23654,7 @@
           "slot": 1,
           "chord": "Cm7",
           "orig": "Cm7",
-          "alt": "",
+          "alt": "Cm7(x35343)",
           "why": "원터치 10버튼에 없는 코드(바레/전위 등)"
         },
         {
@@ -24132,29 +25342,301 @@
     "videoUrl": "https://www.youtube.com/watch?v=rYQ5Hhg3L9U",
     "videoStatus": "공개 영상",
     "audioUrl": "",
-    "key": "미확정",
-    "maleKey": "미확정",
-    "bpm": null,
-    "chords": "",
-    "chordStatus": "미확인",
-    "strumming": "",
+    "key": "C",
+    "maleKey": "C",
+    "bpm": 127,
+    "chords": "C D / F G / C D / F G / C / D / F / G / D7 / Dm / Gsus4 / G / Db / Eb / Gb / Ab / Db",
+    "chordStatus": "부분 확인",
+    "strumming": "↓ · ↓↑ · ↓↑ (8분 중심, 전조 전 4마디에서 손 모양을 미리 바꾼다)",
     "difficultyEasy": "미확인",
     "difficultyStandard": "미확인",
     "vocalDifficulty": "미확인",
     "level": "미착수",
     "tags": [
-      "재생목록 영상",
-      "가수 미확인"
+      "커버 영상"
     ],
     "notes": "원본 재생목록 #77 · 영상 ID rYQ5Hhg3L9U · 채널 스튜디오:D · 유튜브 제목 그대로. 가수 필드는 채널명을 표기했으며 원곡 가수·코드·남자 키·BPM은 확인 전이라 비움.",
     "setlist": false,
-    "chartStatus": "pending",
-    "chartNote": "코드·키·박자 확인 전 — 검수 대기",
+    "chartStatus": "partial",
+    "chartNote": "부분 확인 — 원곡 가수·조성(C→D♭ 후반 반음 전조)·BPM·코드 후보만 확인했습니다. C→D→F→G(추가 D7·Dm·Gsus4)와 후반 D♭·E♭·G♭·A♭는 공개 자동분석 후보이며, 마디별 정확한 배치와 4/4 박자는 원곡 청음/정식 악보 대조 전입니다. 악보 원문은 복제하지 않고 열람 링크만 연결합니다.",
     "playlistKind": "music",
-    "categoryNote": "BIG Naughty X 권진아",
-    "workTitle": "사랑이라 믿었던 것들은",
-    "workArtist": "BIG Naughty X 권진아",
-    "category": "pending"
+    "categoryNote": "원곡 BIG Naughty (서동현) feat. 이수현 (AKMU) · 연결 영상은 SBS 더 리슨 권진아 듀엣 무대",
+    "workTitle": "사랑이라 믿었던 것들은 (Hopeless Romantic)",
+    "workArtist": "BIG Naughty (서동현) feat. 이수현 (AKMU)",
+    "category": "partial",
+    "chart": {
+      "status": "partial",
+      "timeSignature": "4/4",
+      "timeNote": "연습 후보 4/4 (원곡 악보 박자 직접 확인 전)",
+      "bpm": 127,
+      "bpmNote": "SongData 127 / Chordify 64(반속 계열) — 박 세는 단위 차이 가능",
+      "originalKey": "C",
+      "maleKey": "C",
+      "maleShift": 0,
+      "capo": 0,
+      "formButton": "C",
+      "formKey": "C",
+      "formText": "C폼 · Capo +0",
+      "sections": [
+        {
+          "name": "A (C키 · 코드 후보)",
+          "bars": [
+            [
+              {
+                "btn": "C",
+                "slot": 0,
+                "sound": "C",
+                "orig": "C",
+                "quality": "maj"
+              },
+              {
+                "btn": "D",
+                "slot": 0,
+                "sound": "D",
+                "orig": "D",
+                "quality": "maj"
+              }
+            ],
+            [
+              {
+                "btn": "F",
+                "slot": 0,
+                "sound": "F",
+                "orig": "F",
+                "quality": "maj"
+              },
+              {
+                "btn": "G",
+                "slot": 0,
+                "sound": "G",
+                "orig": "G",
+                "quality": "maj"
+              }
+            ],
+            [
+              {
+                "btn": "C",
+                "slot": 0,
+                "sound": "C",
+                "orig": "C",
+                "quality": "maj"
+              },
+              {
+                "btn": "D",
+                "slot": 0,
+                "sound": "D",
+                "orig": "D",
+                "quality": "maj"
+              }
+            ],
+            [
+              {
+                "btn": "F",
+                "slot": 0,
+                "sound": "F",
+                "orig": "F",
+                "quality": "maj"
+              },
+              {
+                "btn": "G",
+                "slot": 0,
+                "sound": "G",
+                "orig": "G",
+                "quality": "maj"
+              }
+            ]
+          ]
+        },
+        {
+          "name": "B (C키 · 코드 후보)",
+          "bars": [
+            [
+              {
+                "btn": "C",
+                "slot": 0,
+                "sound": "C",
+                "orig": "C",
+                "quality": "maj"
+              }
+            ],
+            [
+              {
+                "btn": "D",
+                "slot": 0,
+                "sound": "D",
+                "orig": "D",
+                "quality": "maj"
+              }
+            ],
+            [
+              {
+                "btn": "F",
+                "slot": 0,
+                "sound": "F",
+                "orig": "F",
+                "quality": "maj"
+              }
+            ],
+            [
+              {
+                "btn": "G",
+                "slot": 0,
+                "sound": "G",
+                "orig": "G",
+                "quality": "maj"
+              }
+            ],
+            [
+              {
+                "btn": "D",
+                "slot": 0,
+                "sound": "D7",
+                "orig": "D7",
+                "quality": "maj"
+              }
+            ],
+            [
+              {
+                "btn": "Dm",
+                "slot": 0,
+                "sound": "Dm",
+                "orig": "Dm",
+                "quality": "min"
+              }
+            ],
+            [
+              {
+                "btn": "G",
+                "slot": 0,
+                "sound": "Gsus4",
+                "orig": "Gsus4",
+                "quality": "maj"
+              }
+            ],
+            [
+              {
+                "btn": "G",
+                "slot": 0,
+                "sound": "G",
+                "orig": "G",
+                "quality": "maj"
+              }
+            ]
+          ]
+        },
+        {
+          "name": "후반 전조 (D♭키 · 후보)",
+          "bars": [
+            [
+              {
+                "btn": null,
+                "slot": 1,
+                "sound": "C#",
+                "orig": "Db",
+                "quality": "maj"
+              }
+            ],
+            [
+              {
+                "btn": null,
+                "slot": 2,
+                "sound": "Eb",
+                "orig": "Eb",
+                "quality": "maj"
+              }
+            ],
+            [
+              {
+                "btn": null,
+                "slot": 3,
+                "sound": "F#",
+                "orig": "Gb",
+                "quality": "maj"
+              }
+            ],
+            [
+              {
+                "btn": null,
+                "slot": 4,
+                "sound": "Ab",
+                "orig": "Ab",
+                "quality": "maj"
+              }
+            ],
+            [
+              {
+                "btn": null,
+                "slot": 1,
+                "sound": "C#",
+                "orig": "Db",
+                "quality": "maj"
+              }
+            ]
+          ]
+        }
+      ],
+      "slots": [
+        {
+          "slot": 1,
+          "chord": "C#",
+          "orig": "Db",
+          "alt": "Db(x46664) 4프렛 바레",
+          "why": "원터치 10버튼에 없는 코드(바레/전위 등)"
+        },
+        {
+          "slot": 2,
+          "chord": "Eb",
+          "orig": "Eb",
+          "alt": "Eb(x68886)",
+          "why": "원터치 10버튼에 없는 코드(바레/전위 등)"
+        },
+        {
+          "slot": 3,
+          "chord": "F#",
+          "orig": "Gb",
+          "alt": "F#(244322)",
+          "why": "원터치 10버튼에 없는 코드(바레/전위 등)"
+        },
+        {
+          "slot": 4,
+          "chord": "Ab",
+          "orig": "Ab",
+          "alt": "Ab(466544)",
+          "why": "원터치 10버튼에 없는 코드(바레/전위 등)"
+        }
+      ],
+      "stage": 3,
+      "percussiveReady": false,
+      "stroke": "↓ · ↓↑ · ↓↑ (8분 중심, 전조 전 4마디에서 손 모양을 미리 바꾼다)",
+      "percussive": "",
+      "why": "기존 BIG Naughty X 권진아 표기를 원곡(BIG Naughty (서동현) feat. 이수현 (AKMU))으로 정정했다. 후반에 반음 올라가므로 D♭·E♭·G♭·A♭은 SimplifyChord 슬롯으로 넘긴다. 마디 배치는 자동분석 후보를 4박 카드로 정리한 연습용이다.",
+      "coverage": {
+        "mapped": 7,
+        "total": 11,
+        "unmapped": 4
+      },
+      "basis": "코드표 순서를 4박 마디 카드로 정리한 연습용 배치입니다. 원곡의 세부 마디 배치와 다를 수 있습니다.",
+      "evidence": [
+        {
+          "label": "원곡 악보(악보바다)",
+          "url": "https://www.akbobada.com/musicDetail.html?musicID=88997",
+          "note": "원키 C → D♭ (후반 반음 전조) · 악보 원문은 복제하지 않고 구매/열람 링크만 연결"
+        },
+        {
+          "label": "자동 코드(Chordify)",
+          "url": "https://chordify.net/chords/hopeless-romantic-feat-lee-suhyun-salang-ila-mid-eossdeon-geosdeul-eun-feat-isuhyeon-big-naughty-topic",
+          "note": "C → D → F → G 반복 후보 · D7·Dm·Gsus4 추가 후보"
+        },
+        {
+          "label": "BPM 참조(SongData)",
+          "url": "https://songdata.io/track/0LY4jOJChwNOYUp2dTNEss/Hopeless-Romantic-Feat-LEE-SUHYUN-by-BIG-Naughty-LEE-SUHYUN",
+          "note": "127 BPM (Chordify 64는 반속 계열)"
+        }
+      ],
+      "note": "부분 확인 — 원곡 가수·조성(C→D♭ 후반 반음 전조)·BPM·코드 후보만 확인했습니다. C→D→F→G(추가 D7·Dm·Gsus4)와 후반 D♭·E♭·G♭·A♭는 공개 자동분석 후보이며, 마디별 정확한 배치와 4/4 박자는 원곡 청음/정식 악보 대조 전입니다. 악보 원문은 복제하지 않고 열람 링크만 연결합니다."
+    },
+    "timeSignature": "4/4",
+    "chartStage": 3
   },
   {
     "id": "playlist-078",
@@ -28446,11 +29928,11 @@
     "videoStatus": "공개 영상",
     "audioUrl": "",
     "key": "Eb",
-    "maleKey": "Db",
+    "maleKey": "Eb",
     "bpm": 100,
-    "chords": "Eb / Dm G / Cm / F / Fm Eb / Ab / Cm Eb / Ab / Ab / Bb",
-    "chordStatus": "웹 자료 검수 완료",
-    "strumming": "↓ · ↓↑ · ↓↑ (8분 중심, 코드는 마디 앞에서)",
+    "chords": "Eb / Ab / Bb / Cm / Ab / Bb / Eb / Ebmaj7 / Cm7 / Fm7 / Bb7 / Abmaj7 / Bb7 / Eb / E / A / B / C#m / A / B / E / F#m",
+    "chordStatus": "부분 확인",
+    "strumming": "↓ · ↓↑ · ↓↑ (100bpm 8분, 전조 전 마디에서 손 모양을 미리 바꾼다)",
     "difficultyEasy": "미확인",
     "difficultyStandard": "미확인",
     "vocalDifficulty": "미확인",
@@ -28460,15 +29942,324 @@
     ],
     "notes": "원본 재생목록 #139 · 영상 ID WCDH6uJUwAE · 채널 오이뮤직 - 오늘 이 음악 · 유튜브 제목 그대로. 가수 필드는 채널명을 표기했으며 원곡 가수·코드·남자 키·BPM은 확인 전이라 비움.",
     "setlist": false,
-    "chartStatus": "pending",
-    "chartNote": "코드·키·박자 확인 전 — 검수 대기",
+    "chartStatus": "partial",
+    "chartNote": "부분 확인 — 나윤권 원곡(도경수 앨범 기대와 혼동 정정), 원키 E♭→E 후반 반음 전조, 100bpm·4/4까지 확인했습니다. E♭·A♭·B♭·Cm·Fm(확장 E♭maj7·Cm7·Fm7·B♭7·A♭maj7)는 자동분석 후보이고 마디별 정확한 배치는 정식 악보 대조 전입니다. 악보 원문은 복제하지 않고 열람 링크만 연결합니다.",
     "playlistKind": "music",
-    "categoryNote": "도경수 원곡",
+    "categoryNote": "나윤권 원곡(도경수 표기는 오류로 정정) · 연결 영상은 도경수 커버",
     "workTitle": "기대",
-    "workArtist": "도경수 (D.O.)",
-    "category": "pending",
+    "workArtist": "나윤권",
+    "category": "partial",
     "timeSignature": "4/4",
-    "chartStage": 3
+    "chartStage": 3,
+    "chart": {
+      "status": "partial",
+      "timeSignature": "4/4",
+      "timeNote": "반주 악보 표기 4/4",
+      "bpm": 100,
+      "bpmNote": "Chordify·SongBPM 100",
+      "originalKey": "Eb",
+      "maleKey": "Eb",
+      "maleShift": 0,
+      "capo": 1,
+      "formButton": "D",
+      "formKey": "Db",
+      "formText": "D폼 · Capo +1",
+      "sections": [
+        {
+          "name": "A (E♭키 · 코드 후보)",
+          "bars": [
+            [
+              {
+                "btn": "D",
+                "slot": 0,
+                "sound": "Eb",
+                "orig": "Eb",
+                "quality": "maj"
+              }
+            ],
+            [
+              {
+                "btn": "G",
+                "slot": 0,
+                "sound": "Ab",
+                "orig": "Ab",
+                "quality": "maj"
+              }
+            ],
+            [
+              {
+                "btn": null,
+                "slot": 1,
+                "sound": "Bb",
+                "orig": "Bb",
+                "quality": "maj"
+              }
+            ],
+            [
+              {
+                "btn": null,
+                "slot": 2,
+                "sound": "Cm",
+                "orig": "Cm",
+                "quality": "min"
+              }
+            ],
+            [
+              {
+                "btn": "G",
+                "slot": 0,
+                "sound": "Ab",
+                "orig": "Ab",
+                "quality": "maj"
+              }
+            ],
+            [
+              {
+                "btn": null,
+                "slot": 1,
+                "sound": "Bb",
+                "orig": "Bb",
+                "quality": "maj"
+              }
+            ],
+            [
+              {
+                "btn": "D",
+                "slot": 0,
+                "sound": "Eb",
+                "orig": "Eb",
+                "quality": "maj"
+              }
+            ]
+          ]
+        },
+        {
+          "name": "B (E♭키 · 확장 후보)",
+          "bars": [
+            [
+              {
+                "btn": "D",
+                "slot": 0,
+                "sound": "Ebmaj7",
+                "orig": "Ebmaj7",
+                "quality": "maj"
+              }
+            ],
+            [
+              {
+                "btn": null,
+                "slot": 3,
+                "sound": "Cm7",
+                "orig": "Cm7",
+                "quality": "min"
+              }
+            ],
+            [
+              {
+                "btn": "Em",
+                "slot": 0,
+                "sound": "Fm7",
+                "orig": "Fm7",
+                "quality": "min"
+              }
+            ],
+            [
+              {
+                "btn": null,
+                "slot": 4,
+                "sound": "Bb7",
+                "orig": "Bb7",
+                "quality": "maj"
+              }
+            ],
+            [
+              {
+                "btn": "G",
+                "slot": 0,
+                "sound": "Abmaj7",
+                "orig": "Abmaj7",
+                "quality": "maj"
+              }
+            ],
+            [
+              {
+                "btn": null,
+                "slot": 4,
+                "sound": "Bb7",
+                "orig": "Bb7",
+                "quality": "maj"
+              }
+            ],
+            [
+              {
+                "btn": "D",
+                "slot": 0,
+                "sound": "Eb",
+                "orig": "Eb",
+                "quality": "maj"
+              }
+            ]
+          ]
+        },
+        {
+          "name": "후반 전조 (E키 · 후보)",
+          "bars": [
+            [
+              {
+                "btn": null,
+                "slot": 5,
+                "sound": "E",
+                "orig": "E",
+                "quality": "maj"
+              }
+            ],
+            [
+              {
+                "btn": null,
+                "slot": 6,
+                "sound": "A",
+                "orig": "A",
+                "quality": "maj"
+              }
+            ],
+            [
+              {
+                "btn": null,
+                "slot": 7,
+                "sound": "B",
+                "orig": "B",
+                "quality": "maj"
+              }
+            ],
+            [
+              {
+                "btn": "Cm",
+                "slot": 0,
+                "sound": "Dbm",
+                "orig": "C#m",
+                "quality": "min"
+              }
+            ],
+            [
+              {
+                "btn": null,
+                "slot": 6,
+                "sound": "A",
+                "orig": "A",
+                "quality": "maj"
+              }
+            ],
+            [
+              {
+                "btn": null,
+                "slot": 7,
+                "sound": "B",
+                "orig": "B",
+                "quality": "maj"
+              }
+            ],
+            [
+              {
+                "btn": null,
+                "slot": 5,
+                "sound": "E",
+                "orig": "E",
+                "quality": "maj"
+              }
+            ],
+            [
+              {
+                "btn": "Fm",
+                "slot": 0,
+                "sound": "Gbm",
+                "orig": "F#m",
+                "quality": "min"
+              }
+            ]
+          ]
+        }
+      ],
+      "slots": [
+        {
+          "slot": 1,
+          "chord": "Bb",
+          "orig": "Bb",
+          "alt": "Bb(6프렛 바레) 또는 A# 약식",
+          "why": "원터치 10버튼에 없는 코드(바레/전위 등)"
+        },
+        {
+          "slot": 2,
+          "chord": "Cm",
+          "orig": "Cm",
+          "alt": "Cm7(x35343)",
+          "why": "원터치 10버튼에 없는 코드(바레/전위 등)"
+        },
+        {
+          "slot": 3,
+          "chord": "Cm7",
+          "orig": "Cm7",
+          "alt": "Cm7(x35343)",
+          "why": "원터치 10버튼에 없는 코드(바레/전위 등)"
+        },
+        {
+          "slot": 4,
+          "chord": "Bb7",
+          "orig": "Bb7",
+          "alt": "Bb7(x13131)",
+          "why": "원터치 10버튼에 없는 코드(바레/전위 등)"
+        },
+        {
+          "slot": 5,
+          "chord": "E",
+          "orig": "E",
+          "alt": "E(022100)",
+          "why": "원터치 10버튼에 없는 코드(바레/전위 등)"
+        },
+        {
+          "slot": 6,
+          "chord": "A",
+          "orig": "A",
+          "alt": "A(x02220)",
+          "why": "원터치 10버튼에 없는 코드(바레/전위 등)"
+        },
+        {
+          "slot": 7,
+          "chord": "B",
+          "orig": "B",
+          "alt": "B7(x21202) 약식",
+          "why": "원터치 10버튼에 없는 코드(바레/전위 등)"
+        }
+      ],
+      "stage": 3,
+      "percussiveReady": false,
+      "stroke": "↓ · ↓↑ · ↓↑ (100bpm 8분, 전조 전 마디에서 손 모양을 미리 바꾼다)",
+      "percussive": "",
+      "why": "도경수 표기를 나윤권 원곡으로 정정했다. 후반에 반음 올라가므로 E·A·B·C#m·F#m은 SimplifyChord 슬롯으로 넘긴다. 7th·maj7 확장 코드는 B구간에서만 3화음 근사로 잡는다.",
+      "coverage": {
+        "mapped": 7,
+        "total": 14,
+        "unmapped": 7
+      },
+      "basis": "코드표 순서를 4박 마디 카드로 정리한 연습용 배치입니다. 원곡의 세부 마디 배치와 다를 수 있습니다.",
+      "evidence": [
+        {
+          "label": "원곡 악보(악보바다)",
+          "url": "https://www.akbobada.com/musicDetail.html?musicID=31542",
+          "note": "원키 E♭ → E (후반 반음 전조) · 통기타 반주편곡 6P · 원문 복제 없이 열람 링크만"
+        },
+        {
+          "label": "코드/템포(Chordify)",
+          "url": "https://chordify.net/chords/gidae-na-yoon-kwon-topic-2",
+          "note": "E♭ A♭ B♭ Cm Fm · 100 BPM · 코드 후보"
+        },
+        {
+          "label": "원키 정보(악보바다 앨범)",
+          "url": "https://www.akbobada.com/albumdetailedpage.html?albumID=18370",
+          "note": "나윤권 원곡 · E♭→E 전조 확인"
+        }
+      ],
+      "note": "부분 확인 — 나윤권 원곡(도경수 앨범 기대와 혼동 정정), 원키 E♭→E 후반 반음 전조, 100bpm·4/4까지 확인했습니다. E♭·A♭·B♭·Cm·Fm(확장 E♭maj7·Cm7·Fm7·B♭7·A♭maj7)는 자동분석 후보이고 마디별 정확한 배치는 정식 악보 대조 전입니다. 악보 원문은 복제하지 않고 열람 링크만 연결합니다."
+    }
   },
   {
     "id": "playlist-143",
@@ -28754,7 +30545,7 @@
           "slot": 1,
           "chord": "C#",
           "orig": "F#",
-          "alt": "F#(244322)",
+          "alt": "Db(x46664) 4프렛 바레",
           "why": "원터치 10버튼에 없는 코드(바레/전위 등)"
         }
       ],
@@ -29749,7 +31540,7 @@
           "slot": 1,
           "chord": "Cm7",
           "orig": "Fm7",
-          "alt": "",
+          "alt": "Cm7(x35343)",
           "why": "원터치 10버튼에 없는 코드(바레/전위 등)"
         }
       ],

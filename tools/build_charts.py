@@ -35,6 +35,11 @@ EASY_ALT = {
     'Eb': 'Eb(x68886)', 'Ab': 'Ab(466544)', 'Db': 'Db(x46664)', 'E7': 'E7(020100)',
     'A7': 'A7(x02020)', 'G7': 'G7(320001)', 'D7': 'D7(xx0212)', 'B7': 'B7(x21202)',
     'F#': 'F#(244322)', 'F#m': 'F#m(244222)', 'Bm7': 'Bm7(x20202)', 'Am7': 'Am7(x02010)',
+    'Gb': 'Gb(244322) 2프렛 바레', 'Gbm': 'Gbm(244222) 2프렛 바레', 'Faug': 'F7(xx3241) 근사 또는 Fmaj7',
+    'F7': 'F7(131211)', 'Ab7': 'Ab7(464544)', 'Eb7': 'Eb7(x6564x)', 'C#7': 'C#7(x43404)',
+    'C#m7': 'C#m7(x46454)', 'F#m7': 'F#m7(242222)', 'Cm7': 'Cm7(x35343)', 'Fm7': 'Fm7(131111)',
+    'Bb7': 'Bb7(x13131)', 'Ebmaj7': 'Ebmaj7(xx1333)', 'Abmaj7': 'Abmaj7(465544)', 'Bbm7': 'Bbm7(x13121)',
+    'E': 'E(022100)', 'B': 'B7(x21202) 약식', 'C#': 'Db(x46664) 4프렛 바레',
 }
 
 
@@ -454,7 +459,7 @@ def main():
     pending = sum(1 for s in songs if s.get('category') == 'pending')
     references = sum(1 for s in songs if s.get('category') == 'reference')
     originals = sum(1 for s in songs if s.get('category') == 'original')
-    meta['seedVersion'] = 6
+    meta['seedVersion'] = 7
     meta['chartVersion'] = '2026-11-22'
     meta['chartReadyCount'] = ready
     meta['chartPartialCount'] = partial
@@ -473,10 +478,11 @@ def main():
     ]
     meta['chartDisclosure'] = (
         '남자키는 남성 원곡이면 원키 그대로(이조 0반음), 여성 원곡이면 -5반음으로 잡고 그 목표 키를 AeroBand 원터치 버튼에 맞추도록 카포를 골랐습니다. '
-        f'남자키·박자·BPM·코드 진행은 2026-11-22 웹 검색으로 확인한 코드표·악보 메타데이터에서 옮겼습니다. '
+        f'남자키·박자·BPM·코드 진행은 2026-11-22 웹 검색으로 확인한 코드표·악보 메타데이터와, 주성 님이 직접 올린 음원 2곳의 오디오 분석에서 옮겼습니다. '
         f'악보 준비 완료 {ready}곡(서로 다른 곡 {len(chart_titles)}곡), 부분 확인 {partial}곡, 검수 대기 {pending}곡, '
         f'비음악·참고 영상 {references}개, 자작곡 {originals}개. '
         '마디 배치는 코드표 순서를 4박 카드로 정리한 연습용이며, 원곡 세부 마디와 다를 수 있습니다. '
+        '음원 분석 곡(#108 · #172)은 오디오 분석 기반으로 청음 검수를 권장합니다. '
         '원터치 버튼에 없는 코드는 SimplifyChord 슬롯(최대 8개)으로 안내합니다.')
     meta['sourceDisclosure'] = (
         '원본 152곡 전체 데이터는 여전히 미확보입니다. 2026-11-22 확인한 재생목록 공개 168개 영상과 접근 불가 42개 사유를 기록했고, '

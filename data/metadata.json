@@ -12,7 +12,7 @@
   "additionalRecommendedSongCount": 1,
   "originalPlaylist": "https://www.youtube.com/playlist?list=PLdOy20BJp9XElDHDvAJI6mUG48BmfDX-y",
   "playlistId": "PLdOy20BJp9XElDHDvAJI6mUG48BmfDX-y",
-  "seedVersion": 6,
+  "seedVersion": 7,
   "playlistCollectedCount": 210,
   "playlistPublicVideoCount": 168,
   "playlistInaccessibleVideoCount": 42,
@@ -20,16 +20,16 @@
   "songEntryCount": 200,
   "chartVersion": "2026-11-22",
   "chartReadyCount": 124,
-  "chartPartialCount": 9,
-  "chartPendingCount": 27,
-  "chartDisclosure": "남자키는 남성 원곡이면 원키 그대로(이조 0반음), 여성 원곡이면 -5반음으로 잡고 그 목표 키를 AeroBand 원터치 버튼에 맞추도록 카포를 골랐습니다. 남자키·박자·BPM·코드 진행은 2026-11-22 웹 검색으로 확인한 코드표·악보 메타데이터에서 옮겼습니다. 악보 준비 완료 124곡(서로 다른 곡 108곡), 부분 확인 9곡, 검수 대기 27곡, 비음악·참고 영상 39개, 자작곡 1개. 마디 배치는 코드표 순서를 4박 카드로 정리한 연습용이며, 원곡 세부 마디와 다를 수 있습니다. 원터치 버튼에 없는 코드는 SimplifyChord 슬롯(최대 8개)으로 안내합니다.",
+  "chartPartialCount": 11,
+  "chartPendingCount": 25,
+  "chartDisclosure": "남자키는 남성 원곡이면 원키 그대로(이조 0반음), 여성 원곡이면 -5반음으로 잡고 그 목표 키를 AeroBand 원터치 버튼에 맞추도록 카포를 골랐습니다. 남자키·박자·BPM·코드 진행은 2026-11-22 웹 검색으로 확인한 코드표·악보 메타데이터와, 주성 님이 직접 올린 음원 2곳의 오디오 분석에서 옮겼습니다. 악보 준비 완료 124곡(서로 다른 곡 110곡), 부분 확인 11곡, 검수 대기 25곡, 비음악·참고 영상 39개, 자작곡 1개. 마디 배치는 코드표 순서를 4박 카드로 정리한 연습용이며, 원곡 세부 마디와 다를 수 있습니다. 음원 분석 곡(#108 · #172)은 오디오 분석 기반으로 청음 검수를 권장합니다. 원터치 버튼에 없는 코드는 SimplifyChord 슬롯(최대 8개)으로 안내합니다.",
   "nonMusicCount": 39,
   "originalWorkCount": 1,
-  "uniqueChartSongCount": 108,
+  "uniqueChartSongCount": 110,
   "categoryCounts": {
     "chart": 124,
-    "partial": 9,
-    "pending": 27,
+    "partial": 11,
+    "pending": 25,
     "reference": 39,
     "original": 1
   },
@@ -83,12 +83,6 @@
       "note": "도경수 원곡"
     },
     {
-      "id": "playlist-077",
-      "title": "사랑이라 믿었던 것들은",
-      "artist": "BIG Naughty X 권진아",
-      "note": "BIG Naughty X 권진아"
-    },
-    {
       "id": "playlist-086",
       "title": "힙합보단 사랑, 사랑보단 돈",
       "artist": "노아주다 feat. 베이식",
@@ -115,12 +109,6 @@
     {
       "id": "playlist-126",
       "title": "내일을 너에게 (I'll Be There)",
-      "artist": "도경수 (D.O.)",
-      "note": "도경수 원곡"
-    },
-    {
-      "id": "playlist-139",
-      "title": "기대",
       "artist": "도경수 (D.O.)",
       "note": "도경수 원곡"
     },

@@ -47,7 +47,7 @@ WORK_META = {
     'kkum-deungbul': ('꿈의 등불 (夢灯籠)', 'RADWIMPS', 'm', '', 'music-chord 코드표(카포3·BPM 172) 확인 · 원키 Eb'),
     'staywithme': ('真夜中のドア〜Stay With Me', '松原みき', 'f', '', 'music-chord 코드표(카포3·BPM 108) 확인 · 원키 F'),
     'suzume': ('すずめ', 'RADWIMPS', 'f', '', 'music-chord 코드표(카포3·BPM 78) 확인 · 원키 F'),
-    'sarangira': ('사랑이라 믿었던 것들은', 'BIG Naughty X 권진아', 'm', 'pending', '코드표 미확보'),
+    'sarangira': ('사랑이라 믿었던 것들은 (Hopeless Romantic)', 'BIG Naughty (서동현) feat. 이수현 (AKMU)', 'm', '', '원곡 이수현 피처로 정정(2026-11-22) · 원키 C→D♭ 후반 반음 전조 · BPM 127(SongData)/64(Chordify 반속) · 박자·마디 배치는 부분 확인'),
     'hanbeon': ('한번 더 이별', '성시경', 'm', '', ''),
     'sup': ('숲', '최유리', 'f', '', '6/8'),
     'hiphop': ('힙합보단 사랑, 사랑보단 돈', '노아주다 feat. 베이식', 'm', 'pending', '기타 코드표 미확보'),
@@ -66,7 +66,7 @@ WORK_META = {
     'naeil-neoege': ('내일을 너에게 (I\'ll Be There)', '도경수 (D.O.)', 'm', 'pending', '코드표 미확보'),
     'ordinary-days': ('내일의 우리 (Ordinary Days)', '도경수 (D.O.)', 'm', '', ''),
     'neoui-modeun-sungan': ('너의 모든 순간', '성시경', 'm', '', '도경수가 부른 영상'),
-    'gidae': ('기대', '도경수 (D.O.)', 'm', 'pending', '코드표 미확보(동명이곡 주의)'),
+    'gidae': ('기대', '나윤권', 'm', '', '나윤권 원곡으로 정정(2026-11-22, 도경수 앨범과 혼동 주의) · 원키 E♭→E 후반 반음 전조 · 100bpm · 4/4 · 마디 배치는 부분 확인'),
     'gijeok': ('기적 (Wonder)', '도경수 (D.O.)', 'm', 'pending', '코드표 미확보(동명이곡 주의)'),
     'gieok-onki': ('기억의 온기 (Where You Were)', '도경수 (D.O.)', 'm', 'pending', '코드표 미확보'),
     'dasi-byeol': ('다시, 별 아래', '임한별', 'm', 'pending', '코드표 미확보'),
@@ -185,7 +185,7 @@ PLAYLIST = {
     'playlist-073': ('music', 'staywithme', '松原みき 원곡 커버'),
     'playlist-075': ('music', 'suzume', '스즈메의 문단속 OST 커버'),
     'playlist-076': ('reference', '', '요리 레시피 영상'),
-    'playlist-077': ('music', 'sarangira', 'BIG Naughty X 권진아'),
+    'playlist-077': ('music', 'sarangira', '원곡 BIG Naughty (서동현) feat. 이수현 (AKMU) · 연결 영상은 SBS 더 리슨 권진아 듀엣 무대'),
     'playlist-078': ('reference', '', '기타 추천 숏츠'),
     'playlist-079': ('reference', '', '기타 추천 숏츠'),
     'playlist-080': ('reference', '', '기타 추천 숏츠'),
@@ -217,7 +217,7 @@ PLAYLIST = {
     'playlist-134': ('music', 'ordinary-days', '도경수 원곡'),
     'playlist-136': ('music', 'popcorn', '도경수 MV'),
     'playlist-138': ('music', 'neoui-modeun-sungan', '성시경 원곡, 도경수 커버'),
-    'playlist-139': ('music', 'gidae', '도경수 원곡'),
+    'playlist-139': ('music', 'gidae', '나윤권 원곡(도경수 표기는 오류로 정정) · 연결 영상은 도경수 커버'),
     'playlist-143': ('music', 'gijeok', '도경수 원곡'),
     'playlist-152': ('music', 'gieok-onki', '도경수 원곡'),
     'playlist-153': ('music', 'dasi-byeol', '임한별 원곡'),
@@ -276,36 +276,111 @@ PLAYLIST = {
 # 직접 정리한 악보(자동 초안 대체). sections: [{name, bars}]
 # bars: 한 마디에 코드 1~3개. 원키 기준 표기이며 남자키 변환은 빌드가 계산한다.
 OVERRIDES = {
-    # 사용자 제공 자동분석 초안(청음 검수 전) — 확보된 구간만 등록, 나머지 구간은 만들지 않음
+    # 주성 님 제공 음원(.m4a)을 직접 측정한 악보 — 오디오 분석 기반(청음 검수 권장)
     'jangkam': {
-        'originalKey': 'Db', 'timeSignature': '', 'bpm': 0,
-        'stage': 2,
-        'partial': '도입부 자동분석 초안(청음 검수 전) — 약 0:00.7~0:20.5 구간만 등록. 박자·BPM·나머지 47구간 코드는 미확보. Faug·F7은 원터치 버튼에 없는 코드.',
+        'originalKey': 'Db', 'timeSignature': '4/4', 'bpm': 49,
+        'timeNote': '오디오 실측 ♩≈48.7 · 3잇단 8분(12/8 셔플) 계열',
+        'bpmNote': '오디오 실측 48.7 (8분 기준 97.4)',
+        'stage': 3,
+        'partial': ('오디오 분석 기반(청음 검수 권장) — 제공 음원 kakaotalk_1795329121204-6e4d2b3e8d3143ca974a38850ab6c843.m4a'
+                    '(3:00.74, 16kHz mono)를 ffmpeg로 WAV 변환 후 librosa 크로마(CQT)+코드 템플릿 Viterbi로 마디별 코드를 추정했습니다. '
+                    '실측 BPM 48.7·4/4·원키 D♭. 도입(0:02–0:22) D♭→F→Faug→F7→B♭m→G♭/G♭m은 기존 자동분석과 일치. '
+                    '기존 Cdim 후보 구간은 근음이 빠진 A♭7로 판단해 A♭7로 적었고, 마디 내부 패스 코드와 후반부 마디는 청음 검수가 필요합니다.'),
         'sections': [
-            {'name': '도입부 0:00–0:20 (자동분석 초안)',
-             'bars': [['Db'], ['F'], ['Faug'], ['F7'], ['Bbm'], ['Gb'], ['Gbm']]},
+            {'name': '도입 (0:02–0:22)', 'bars': [['Db'], ['F', 'Faug', 'F7'], ['Bbm'], ['Gb', 'Gbm']]},
+            {'name': 'A1 (0:22–0:42)', 'bars': [['Db', 'Faug'], ['F'], ['F', 'Db'], ['Gb', 'Bbm']]},
+            {'name': 'A2 (0:42–1:02)', 'bars': [['Db'], ['Ab7'], ['Bbm', 'Db'], ['Gb', 'Eb7']]},
+            {'name': 'B1 (1:02–1:22)', 'bars': [['Db'], ['F'], ['Bbm', 'Eb'], ['Gb']]},
+            {'name': 'B2 (1:22–1:42)', 'bars': [['Gb', 'Db'], ['Db', 'Faug'], ['Bbm', 'Db'], ['Gb']]},
+            {'name': 'C1 (1:42–2:02)', 'bars': [['Db'], ['Db', 'F'], ['F', 'Bbm'], ['Db']]},
+            {'name': 'A3 (2:02–2:22)', 'bars': [['Db'], ['Ab7', 'Bbm'], ['Db'], ['Db', 'Gb']]},
+            {'name': 'B3 (2:22–2:42)', 'bars': [['Db'], ['Ab7', 'F'], ['Bbm', 'Db'], ['Gb', 'Db']]},
+            {'name': '아웃트로 (2:42–3:00)', 'bars': [['Db'], ['Ab7', 'F7'], ['Bbm'], ['Db']]},
         ],
-        'stroke': '↓ · ↓↑ · ↓↑ (코드 하나를 길게 잡는 8분 스트럼)',
-        'why': 'Faug(0:08.2)·F7(0:09.5)은 원터치 10버튼에 없는 코드라 SimplifyChord 슬롯으로 넘긴다. Db·Bbm·Gb·Gbm은 카포로 버튼에 맞춘다. 나머지 구간은 아직 코드를 모르므로 채우지 않았다.',
+        'stroke': '↓ · ↓↑ · ↓↑ (3잇단 8분 중심, ♩≈49 · 곡이 매우 느림)',
+        'why': 'Faug·F7은 원터치 10버튼에 없는 코드라 SimplifyChord 슬롯으로 넘긴다. D♭·G♭·A♭7·E♭은 카포로 버튼에 맞추고, B♭m·G♭m은 슬롯/바레로 처리한다. 도입 2마디는 F(2박)→Faug(1박)→F7(1박)으로 색이 바뀐다.',
         'evidence': [
             ('원곡 영상(#108 아소 - 나는 버려질 장난감)', 'https://www.youtube.com/watch?v=YJdyPtShNvE',
-             '사용자 제공 자동분석(5회 대조, 36/47구간 통과 초안) · 0:00.1–0:00.7 F(후보 D♭) · 0:00.7–0:05.8 D♭ · 0:05.8–0:08.2 F · 0:08.2–0:09.5 Faug · 0:09.5–0:10.7 F7 · 0:10.7–0:15.7 B♭m · 0:15.7–0:18.1 G♭ · 0:18.1–0:20.5 G♭m 후보'),
+             '제공 음원 kakaotalk_1795329121204-….m4a 실측 · ffmpeg WAV 변환 → librosa chroma_cqt + 코드 템플릿 Viterbi · 3:00.74 · 4/4 · ♩48.7 · 원키 D♭'),
+            ('기존 자동분석 대조(도입)', 'https://www.youtube.com/watch?v=YJdyPtShNvE',
+             '기존 0:00.7–0:20.5 D♭→F→Faug→F7→B♭m→G♭→G♭m과 순서·길이 일치(이 음원에서는 약 +1.7초 늦게 시작). 마디 경계는 4박 격자에 맞춤'),
         ],
     },
     'narssi': {
-        'originalKey': 'A', 'timeSignature': '', 'bpm': 0,
-        'stage': 2,
-        'partial': '초반 자동분석 초안(청음 검수 전) — 약 0:00.1~0:17 구간만 등록. 가수·박자·BPM·나머지 75구간 코드는 미확보.',
+        'originalKey': 'A', 'timeSignature': '4/4', 'bpm': 90,
+        'timeNote': '오디오 실측 90.0 · 도입은 템포가 느슨한 편',
+        'bpmNote': '오디오 실측 90.0',
+        'stage': 3,
+        'partial': ('오디오 분석 기반(청음 검수 권장) — 제공 음원 kakaotalk_1795329116993-0be3d6c919be4bccb508fed4ea1bb50b.m4a'
+                    '(3:09.44, 16kHz mono)를 ffmpeg로 WAV 변환 후 librosa 크로마(CQT)+코드 템플릿 Viterbi로 마디별 코드를 추정했습니다. '
+                    '실측 BPM 90.0·4/4·원키 A. 도입은 기존 자동분석(A→C#m7→F#m7→D→Bm7→C#m7)과 순서가 같고, 기존 4번째 Dm7은 실측상 D(메이저)로 들립니다. '
+                    '가수는 여전히 미확인(#172 원칙 유지)이며, 마디별 배치와 패스 코드는 청음 검수가 필요합니다.'),
         'sections': [
-            {'name': '초반 0:00–0:17 (자동분석 초안)',
-             'bars': [['A'], ['C#m7'], ['F#m7'], ['Dm7'], ['Bm7'], ['C#m'], ['C#m7']]},
-            {'name': '전환 연습 (제공 자료)', 'bars': [['Bm7'], ['E7'], ['A']]},
+            {'name': '도입 (0:01–0:18)', 'bars': [['A'], ['C#m7'], ['F#m7'], ['D'], ['Bm7'], ['C#m7']]},
+            {'name': 'A1 (0:17–0:40)', 'bars': [['C#m7'], ['D', 'Bm7'], ['Bm7', 'G'], ['D'], ['C#m7'], ['Bm7'], ['Bm7']]},
+            {'name': 'A2 (0:40–1:03)', 'bars': [['A'], ['A', 'C#m7'], ['Bm7'], ['Bm7', 'D'], ['A', 'B7'], ['B7', 'C#m7'], ['C#m7'], ['A'], ['A']]},
+            {'name': 'B1 (1:03–1:26)', 'bars': [['C#m7'], ['D'], ['A'], ['A'], ['C#m7'], ['C#m7', 'F#m7'], ['D'], ['A']]},
+            {'name': 'B2 (1:26–1:50)', 'bars': [['C#m7', 'F#m7'], ['F#m7', 'D'], ['A'], ['D'], ['C#m7'], ['Bm7'], ['C#m7'], ['C#m7', 'Bm7']]},
+            {'name': 'C1 (1:50–2:10)', 'bars': [['Bm7', 'C#m7'], ['Bm7', 'C#7'], ['C#7'], ['C#7', 'A'], ['B7', 'C#m7'], ['D', 'A'], ['A']]},
+            {'name': 'A3 (2:10–2:35)', 'bars': [['A', 'D'], ['D', 'C#m7'], ['C#m7'], ['C#m7'], ['C#m7', 'D'], ['D', 'C#m7'], ['C#m7', 'Bm7'], ['Bm7', 'E']]},
+            {'name': '아웃트로 (2:35–3:09)', 'bars': [['E'], ['A'], ['C#m7'], ['C#m7', 'A'], ['Bm7', 'D'], ['D', 'A'], ['Bm7'], ['Bm7', 'A'], ['A'], ['A'], ['C#m7'], ['C#m7', 'D'], ['D'], ['A'], ['C#m7'], ['D'], ['A']]},
         ],
         'stroke': '↓ · ↓↑ · ↓↑ (느린 8분, 전환 지점에서 손을 먼저 옮긴다)',
-        'why': '7th 코드가 많아 원터치 버튼은 3화음 근사로 잡고, 코드 이름은 실제 화음(C#m7·F#m7·Dm7·Bm7·E7)을 그대로 표기했다. 나머지 구간은 아직 코드를 모르므로 채우지 않았다. 가수는 여전히 미확인(#172 원칙 유지).',
+        'why': '7th 코드가 많아 원터치 버튼은 3화음 근사로 잡고, 코드 이름은 실제 화음(C#m7·F#m7·Bm7·B7·C#7)을 그대로 표기했다. 1:50–2:10 구간은 C#7(2차 도미넌트)이 길게 이어져 손이 바뀌는 지점이 많다. 가수는 여전히 미확인(#172 원칙 유지).',
         'evidence': [
             ('원곡 영상(#171 「날씨좋고 바람도 좋아2」)', 'https://www.youtube.com/watch?v=ctwIj615b18',
-             '사용자 제공 자동분석 초안 · 초반 0:00.1–0:17 A C#m7 F#m7 Dm7 Bm7 C#m C#m7 · 전환 연습 Bm7→E7→A'),
+             '제공 음원 kakaotalk_1795329116993-….m4a 실측 · ffmpeg WAV 변환 → librosa chroma_cqt + 코드 템플릿 Viterbi · 3:09.44 · 4/4 · ♩90.0 · 원키 A'),
+            ('기존 자동분석 대조(도입)', 'https://www.youtube.com/watch?v=ctwIj615b18',
+             '기존 0:00.1–0:17 A→C#m7→F#m7→Dm7→Bm7→C#m→C#m7과 순서 일치(실측 0:04–0:17, 4번째 코드는 D). 0:01–0:18은 6마디로 정리'),
+        ],
+    },
+    # 2026-11-22 정정 자료(9번 #77 · 15번 #139) — 원곡·원키·코드 후보만 반영하고 마디 배치는 부분 확인
+    'sarangira': {
+        'originalKey': 'C', 'timeSignature': '4/4', 'bpm': 127,
+        'timeNote': '연습 후보 4/4 (원곡 악보 박자 직접 확인 전)',
+        'bpmNote': 'SongData 127 / Chordify 64(반속 계열) — 박 세는 단위 차이 가능',
+        'stage': 3,
+        'partial': ('부분 확인 — 원곡 가수·조성(C→D♭ 후반 반음 전조)·BPM·코드 후보만 확인했습니다. '
+                    'C→D→F→G(추가 D7·Dm·Gsus4)와 후반 D♭·E♭·G♭·A♭는 공개 자동분석 후보이며, '
+                    '마디별 정확한 배치와 4/4 박자는 원곡 청음/정식 악보 대조 전입니다. 악보 원문은 복제하지 않고 열람 링크만 연결합니다.'),
+        'sections': [
+            {'name': 'A (C키 · 코드 후보)', 'bars': [['C', 'D'], ['F', 'G'], ['C', 'D'], ['F', 'G']]},
+            {'name': 'B (C키 · 코드 후보)', 'bars': [['C'], ['D'], ['F'], ['G'], ['D7'], ['Dm'], ['Gsus4'], ['G']]},
+            {'name': '후반 전조 (D♭키 · 후보)', 'bars': [['Db'], ['Eb'], ['Gb'], ['Ab'], ['Db']]},
+        ],
+        'stroke': '↓ · ↓↑ · ↓↑ (8분 중심, 전조 전 4마디에서 손 모양을 미리 바꾼다)',
+        'why': '기존 BIG Naughty X 권진아 표기를 원곡(BIG Naughty (서동현) feat. 이수현 (AKMU))으로 정정했다. 후반에 반음 올라가므로 D♭·E♭·G♭·A♭은 SimplifyChord 슬롯으로 넘긴다. 마디 배치는 자동분석 후보를 4박 카드로 정리한 연습용이다.',
+        'evidence': [
+            ('원곡 악보(악보바다)', 'https://www.akbobada.com/musicDetail.html?musicID=88997',
+             '원키 C → D♭ (후반 반음 전조) · 악보 원문은 복제하지 않고 구매/열람 링크만 연결'),
+            ('자동 코드(Chordify)', 'https://chordify.net/chords/hopeless-romantic-feat-lee-suhyun-salang-ila-mid-eossdeon-geosdeul-eun-feat-isuhyeon-big-naughty-topic',
+             'C → D → F → G 반복 후보 · D7·Dm·Gsus4 추가 후보'),
+            ('BPM 참조(SongData)', 'https://songdata.io/track/0LY4jOJChwNOYUp2dTNEss/Hopeless-Romantic-Feat-LEE-SUHYUN-by-BIG-Naughty-LEE-SUHYUN',
+             '127 BPM (Chordify 64는 반속 계열)'),
+        ],
+    },
+    'gidae': {
+        'originalKey': 'Eb', 'timeSignature': '4/4', 'bpm': 100,
+        'timeNote': '반주 악보 표기 4/4',
+        'bpmNote': 'Chordify·SongBPM 100',
+        'stage': 3,
+        'partial': ('부분 확인 — 나윤권 원곡(도경수 앨범 기대와 혼동 정정), 원키 E♭→E 후반 반음 전조, 100bpm·4/4까지 확인했습니다. '
+                    'E♭·A♭·B♭·Cm·Fm(확장 E♭maj7·Cm7·Fm7·B♭7·A♭maj7)는 자동분석 후보이고 마디별 정확한 배치는 정식 악보 대조 전입니다. '
+                    '악보 원문은 복제하지 않고 열람 링크만 연결합니다.'),
+        'sections': [
+            {'name': 'A (E♭키 · 코드 후보)', 'bars': [['Eb'], ['Ab'], ['Bb'], ['Cm'], ['Ab'], ['Bb'], ['Eb']]},
+            {'name': 'B (E♭키 · 확장 후보)', 'bars': [['Ebmaj7'], ['Cm7'], ['Fm7'], ['Bb7'], ['Abmaj7'], ['Bb7'], ['Eb']]},
+            {'name': '후반 전조 (E키 · 후보)', 'bars': [['E'], ['A'], ['B'], ['C#m'], ['A'], ['B'], ['E'], ['F#m']]},
+        ],
+        'stroke': '↓ · ↓↑ · ↓↑ (100bpm 8분, 전조 전 마디에서 손 모양을 미리 바꾼다)',
+        'why': '도경수 표기를 나윤권 원곡으로 정정했다. 후반에 반음 올라가므로 E·A·B·C#m·F#m은 SimplifyChord 슬롯으로 넘긴다. 7th·maj7 확장 코드는 B구간에서만 3화음 근사로 잡는다.',
+        'evidence': [
+            ('원곡 악보(악보바다)', 'https://www.akbobada.com/musicDetail.html?musicID=31542',
+             '원키 E♭ → E (후반 반음 전조) · 통기타 반주편곡 6P · 원문 복제 없이 열람 링크만'),
+            ('코드/템포(Chordify)', 'https://chordify.net/chords/gidae-na-yoon-kwon-topic-2',
+             'E♭ A♭ B♭ Cm Fm · 100 BPM · 코드 후보'),
+            ('원키 정보(악보바다 앨범)', 'https://www.akbobada.com/albumdetailedpage.html?albumID=18370',
+             '나윤권 원곡 · E♭→E 전조 확인'),
         ],
     },
     'sabyeol': {
