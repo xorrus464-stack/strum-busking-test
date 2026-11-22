@@ -135,7 +135,7 @@ for s in songs:
         assert not s['videoUrl'], s['id']
 
 # 10) 메타 집계
-assert meta['seedVersion'] == 17
+assert meta['seedVersion'] == 18
 assert meta['videoLinkCount'] == 201 and meta['videoLinkFilledCount'] == 36
 assert meta['playlistCollectedCount'] == 210
 assert meta['playlistPublicVideoCount'] == 168
@@ -279,8 +279,8 @@ NEW11 = {
     'playlist-205': ('A', 'A', 81, 2, 6),
     'playlist-159': ('C', 'G', 86, 0, 4),
     'playlist-118': ('B', 'B', 70, 4, 4),
-    'playlist-072': ('Db', 'Db', 99, 1, 5),
-    'playlist-173': ('Bb', 'Bb', 76, 5, 6),
+    'playlist-072': ('Db', 'Db', 98, 1, 5),
+    'playlist-173': ('Bb', 'Bb', 74, 5, 6),
     'playlist-206': ('F#', 'F#', 66, 6, 4),
 }
 for sid, (ok, mk, bpm, capo, nsec) in NEW11.items():
@@ -323,12 +323,14 @@ LOCAL_MR_FILES = {
     'playlist-157': ('media/pikpik-mr.mp3', '픽픽', 1_000_000),
     'playlist-173': ('media/jehoda-mr.mp3', '괜히 보고 싶은 사실이 조금은 다행인 시간', 5_000_000),
     'playlist-072': ('media/coffee-mr.mp3', '커피', 2_000_000),
+    'verified-017': ('media/toy-mr.mp3', '나는 버려질 장난감', 3_600_000),
+    'verified-021': ('media/weather-mr.mp3', '날씨가 좋고 바람도 좋아', 2_800_000),
 }
 with_yt = [s for s in songs if s.get('mrUrl')]
 with_local = [s for s in songs if s.get('mrAudioUrl')]
 with_mr = [s for s in songs if s.get('mrUrl') or s.get('mrAudioUrl')]
-assert len(with_mr) == meta['mrLinkCount'] == 160, (len(with_mr), meta['mrLinkCount'])
-assert len(with_yt) == 157 and len(with_local) == 3, (len(with_yt), len(with_local))
+assert len(with_mr) == meta['mrLinkCount'] == 162, (len(with_mr), meta['mrLinkCount'])
+assert len(with_yt) == 157 and len(with_local) == 5, (len(with_yt), len(with_local))
 works = {}
 for s in with_yt:
     m = re.fullmatch(r'https://www\.youtube\.com/watch\?v=([A-Za-z0-9_-]{11})', s['mrUrl'])
@@ -362,8 +364,8 @@ for s in with_local:
     if key in works:
         assert works[key] == sig, (s['id'], '같은 곡은 같은 MR')
     works[key] = sig
-assert len([s for s in with_local if s['id'] in LOCAL_MR_FILES]) == len(LOCAL_MR_FILES) == 3, 'MR 음원 3건 누락'
-assert len(works) == meta['mrWorkCount'] == 133, (len(works), meta['mrWorkCount'])
+assert len([s for s in with_local if s['id'] in LOCAL_MR_FILES]) == len(LOCAL_MR_FILES) == 5, 'MR 음원 5건 누락'
+assert len(works) == meta['mrWorkCount'] == 135, (len(works), meta['mrWorkCount'])
 # 같은 곡이 표기만 달리해 두 항목으로 있는 경우(예: '예뻤어'/'예뻤어 (You were beautiful)')만 같은 MR 허용
 def _nt(t):
     t = unicodedata.normalize('NFKC', t).lower()
@@ -398,8 +400,22 @@ assert 'AI 보컬 제거' in coffee['mrNote'] and 'UVR Online MDX VocFT' in coff
 assert not coffee.get('mrUrl'), 'MR 음원으로 연결한 곡은 YouTube MR 비움'
 assert coffee['category'] == 'original', coffee['category']
 assert meta['mrVersion'] == '2026-11-23'
-for sid in ('verified-017', 'verified-021', 'playlist-125' if 'playlist-125' in by_id else 'verified-017'):
-    assert not by_id[sid].get('mrUrl'), (sid, '확인되지 않은 MR은 비워 둔다')
+# 2026-11-23 순수 MR 재검수(seed v18): AI 보컬 제거 반주 2건을 MR 음원 파일로 연결
+for sid, fname, min_bar in (('verified-017', 'media/toy-mr.mp3', 49), ('verified-021', 'media/weather-mr.mp3', 70)):
+    item = by_id[sid]
+    assert item['mrAudioUrl'] == fname and item['mrSource'] == 'user-recording', (sid, item.get('mrAudioUrl'))
+    assert not item.get('mrUrl'), (sid, 'MR 음원으로 연결한 곡은 YouTube MR 비움')
+    assert 'AI 보컬 제거' in item['mrNote'] and 'UVR Online MDX VocFT' in item['mrNote'] and '2026-11-23' in item['mrNote'], (sid, item['mrNote'])
+    assert '순수 MR' in item['chartNote'] and '순수 MR 실측' in item['chart']['bpmNote'], (sid, '재검수 근거 누락')
+    assert sum(len(x['bars']) for x in item['chart']['sections']) >= min_bar, (sid, '마디 수')
+# 마지막 1분을 채운 #108: 36 → 49마디, 마지막 구간은 MR 기반 반복 구간
+assert sum(len(x['bars']) for x in by_id['verified-017']['chart']['sections']) == 49, '나는 버려질 장난감 49마디'
+assert by_id['verified-017']['chart']['sections'][-1]['name'].startswith('마지막 반복 (3:00')
+# MR 실측 BPM 정정: 커피 98.00 · jehoda 74.1 (표기는 정수 98·74, 실측값은 bpmNote에 남긴다)
+assert by_id['playlist-072']['chart']['bpm'] == 98 and '98.00' in by_id['playlist-072']['chart']['bpmNote']
+assert by_id['playlist-173']['chart']['bpm'] == 74 and '74.1' in by_id['playlist-173']['chart']['bpmNote']
+assert by_id['verified-021']['chart']['bpm'] == 90 and '90.00' in by_id['verified-021']['chart']['bpmNote']
+assert sum(len(x['bars']) for x in by_id['verified-021']['chart']['sections']) == 70
 assert meta['mrDisclosure'] and 'oEmbed' in meta['mrDisclosure']
 print(f"OK: MR 링크 {len(with_mr)}개 곡(서로 다른 곡 {len(works)}) · oEmbed 확인 제목 표기·중복 없음 · 참고 영상 제외")
 

@@ -65,7 +65,7 @@ assert(miniEl, '미니 플레이어 루트 생성');
 nav(handlers, 'songs');
 act(handlers, 'filter-cat:all');
 assert(root.innerHTML.includes('data-act="mr:verified-001"'), 'MR 버튼(있는 곡)');
-assert(root.innerHTML.includes('MR 없음'), 'MR 없음 버튼(없는 곡)');
+assert(songs.filter(s => s.category !== 'reference' && !s.mrUrl && !s.mrAudioUrl).length === 0, '음악 항목 162개 전부 MR 연결(MR 없는 곡 0)');
 assert(root.innerHTML.includes('mr-off') && root.innerHTML.includes('mr-on'), 'MR 상태별 표시');
 act(handlers, 'filter-cat:chart-ready');
 act(handlers, 'mr:verified-001');
@@ -112,10 +112,16 @@ for (const [sid, file] of [['playlist-173', 'media/jehoda-mr.mp3'], ['playlist-0
 }
 act(handlers, 'filter-cat:chart-ready');
 act(handlers, 'close');
-act(handlers, 'mr:verified-017');
-assert(root.innerHTML.includes('MR이 아직 등록되지 않았습니다'), 'MR 없음 안내');
-assert(root.innerHTML.includes('name="mrUrl"'), 'URL 붙여넣기 입력');
-assert(root.innerHTML.includes('youtube.com/results?search_query='), 'YouTube MR 검색 링크');
+// 2-3b) 순수 MR 2건(toy·weather) — 미니 플레이어 <audio>
+act(handlers, 'filter-cat:all');
+for (const [sid, file] of [['verified-017', 'media/toy-mr.mp3'], ['verified-021', 'media/weather-mr.mp3']]) {
+  assert(new RegExp(`data-act="mr:${sid}"[^>]*>MR<`).test(root.innerHTML), `순수 MR 곡 버튼 ${sid}`);
+  act(handlers, `mr:${sid}`);
+  assert(miniEl.innerHTML.includes('<audio') && miniEl.innerHTML.includes(file), `순수 MR 재생 ${sid}`);
+  assert(!miniEl.innerHTML.includes('iframe'), `순수 MR <audio> 재생 ${sid}`);
+  act(handlers, 'mini-close');
+}
+act(handlers, 'filter-cat:chart-ready');
 act(handlers, 'close');
 
 // 3) 원터치 컬러 악보 모달
@@ -182,7 +188,7 @@ const legacy = {
 };
 ({ root, handlers, created } = boot(legacy));
 const saved = JSON.parse(store['strum-busking-v2']);
-assert(saved.seedVersion === 17, 'seedVersion 17 로 업그레이드');
+assert(saved.seedVersion === 18, 'seedVersion 18 로 업그레이드');
 assert(saved.logs.length === 1 && saved.logs[0].minutes === 33, '기존 연습 기록 보존');
 const mine = saved.songs.find(s => s.id === 'verified-001');
 assert(mine.level === '거의 가능', '숙련도 보존');
@@ -207,7 +213,30 @@ for (const [sid, file] of [['playlist-173', 'media/jehoda-mr.mp3'], ['playlist-0
   assert(item.mrSource === 'user-recording' && /AI 보컬 제거/.test(item.mrNote) && /2026-11-23/.test(item.mrNote), `MR 음원 출처·근거 ${sid}`);
   assert(item.level === '연습 중', `MR 음원 병합 중 숙련도 보존 ${sid}`);
 }
+for (const [sid, file] of [['verified-017', 'media/toy-mr.mp3'], ['verified-021', 'media/weather-mr.mp3']]) {
+  const item = saved.songs.find(s => s.id === sid);
+  assert(item.mrAudioUrl === file, `순수 MR 음원 병합 ${sid}`);
+  assert(item.mrSource === 'user-recording' && /AI 보컬 제거/.test(item.mrNote), `순수 MR 출처 ${sid}`);
+  assert(!item.mrUrl, `MR 음원으로 연결한 곡은 YouTube MR 비움 ${sid}`);
+}
+const toy = saved.songs.find(s => s.id === 'verified-017');
+assert(toy.chart.sections.reduce((n, x) => n + x.bars.length, 0) === 49, '나는 버려질 장난감 49마디(MR 전체 길이)');
+assert(saved.songs.find(s => s.id === 'playlist-072').bpm === 98, '커피 BPM 98 정정');
+assert(saved.songs.find(s => s.id === 'playlist-173').bpm === 74, 'jehoda BPM 74 정정');
 const jamkkan = saved.songs.find(s => s.id === 'playlist-057');
 assert(jamkkan.mrUrl === 'https://www.youtube.com/watch?v=_aJasCmlQC8', '잠깐 시간 될까 MR 병합');
 
-console.log(`PASS: boot ${songs.length}곡(악보 ${ready}·검수대기 ${pending}), 남자키 배지, 원터치 컬러 악보(5색), SimplifyChord 슬롯, 4단계 로드맵, 4/4·3/4·6/8 메트로놈, 원본 슬롯, 백업, seed v17 병합(기존 기록·숙련도 보존, MR 링크·MR 음원 파일 병합)·MR 버튼·미니 플레이어(임베드·<audio>)`);
+// 12) MR이 아직 없는 사용자 곡: 'MR 없음' 안내 + YouTube MR 검색 링크(2026-11-23 음악 항목은 전부 MR 연결)
+({ root, handlers, created } = boot({
+  version: 2, seedVersion: 18, removedSeedIds: [],
+  songs: [{ id: 'user-nomr', title: 'MR 없는 곡', artist: '테스트', sourceIndices: [], verification: 'added-by-user', videoUrl: '', audioUrl: '', key: '미확정', maleKey: '미확정', bpm: null, chords: '', chordStatus: '미확인', strumming: '', level: '미착수', tags: [], notes: '', setlist: false }],
+  sources: Array.from({ length: 211 }, (_, i) => ({ index: i + 1, status: i === 162 ? '제외' : '미확인', url: '', note: '', songs: [] })),
+  logs: []
+}));
+nav(handlers, 'songs');
+act(handlers, 'mr:user-nomr');
+assert(root.innerHTML.includes('MR이 아직 등록되지 않았습니다'), 'MR 없음 안내');
+assert(root.innerHTML.includes('name="mrUrl"'), 'URL 붙여넣기 입력');
+assert(root.innerHTML.includes('youtube.com/results?search_query='), 'YouTube MR 검색 링크');
+
+console.log(`PASS: boot ${songs.length}곡(악보 ${ready}·검수대기 ${pending}), 남자키 배지, 원터치 컬러 악보(5색), SimplifyChord 슬롯, 4단계 로드맵, 4/4·3/4·6/8 메트로놈, 원본 슬롯, 백업, seed v18 병합(기존 기록·숙련도 보존, MR 링크·MR 음원 파일 병합)·MR 버튼·미니 플레이어(임베드·<audio>)`);

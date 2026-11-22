@@ -184,9 +184,16 @@ def run(pw, name, viewport, mobile=False):
     check(f'{name}: 미니 플레이어 가로 넘침 없음', o['sw'] <= o['cw'] + 1, str(o))
     page.screenshot(path=str(SHOTS / f'mini-chart-{name}.png'))
     page.click('[data-act="close"]')
-    page.fill('#song-search', '나는 버려질 장난감')
+    # 2026-11-23 음악 항목 162개 전부 MR 연결 → 'MR 없음' 화면은 새로 등록한 곡으로 확인한다
+    page.click('button:has-text("+ 새 곡 등록")')
+    page.wait_for_selector('#song-form')
+    page.fill('#song-form input[name="title"]', 'e2e MR 없는 곡')
+    page.fill('#song-form input[name="artist"]', 'e2e')
+    page.click('#song-form button[type="submit"]')
     page.wait_for_timeout(250)
-    page.locator('.song-row', has_text='나는 버려질 장난감').first.locator('button', has_text='MR 없음').click()
+    page.fill('#song-search', 'e2e MR 없는 곡')
+    page.wait_for_timeout(250)
+    page.locator('.song-row', has_text='e2e MR 없는 곡').first.locator('button', has_text='MR 없음').click()
     page.wait_for_selector('#mr-form')
     check(f'{name}: MR 없음 안내', 'MR이 아직 등록되지 않았습니다' in page.content())
     check(f'{name}: MR 검색 링크', 'youtube.com/results?search_query=' in (page.locator('#mr-form').evaluate("e => e.closest('.modal').innerHTML")))
@@ -195,7 +202,7 @@ def run(pw, name, viewport, mobile=False):
     page.wait_for_selector('.mini-badge')
     page.wait_for_timeout(200)
     st = json.loads(page.evaluate("() => localStorage.getItem('strum-busking-v2')"))
-    edited = [x for x in st['songs'] if x['id'] == 'verified-017'][0]
+    edited = [x for x in st['songs'] if x['title'] == 'e2e MR 없는 곡'][0]
     check(f'{name}: 붙여넣은 MR 저장', edited.get('mrUrl', '').endswith('IkF6QIQ0Q0A') and edited.get('mrEdited') is True, str(edited.get('mrUrl')))
     check(f'{name}: 저장한 MR 미니 재생', page.locator('.mini-badge').inner_text().strip() == 'MR')
     w1 = (page.locator('.mini-frame').bounding_box() or {}).get('width', 0)
@@ -247,7 +254,8 @@ def run(pw, name, viewport, mobile=False):
     page.wait_for_timeout(200)
 
     # 2026-11-23 MR (seed v17): AI 보컬 제거 추출 MR 음원 2건 — jehoda · nanome 커피
-    for fname, expect_sec, label in (('jehoda-mr.mp3', 235, '괜히 보고 싶은 사실'), ('coffee-mr.mp3', 182, '내 첫 자작곡')):
+    for fname, expect_sec, label in (('jehoda-mr.mp3', 235, '괜히 보고 싶은 사실'), ('coffee-mr.mp3', 182, '내 첫 자작곡'),
+                                     ('toy-mr.mp3', 242, '나는 버려질 장난감'), ('weather-mr.mp3', 189, '날씨가 좋고 바람도 좋아')):
         head = page.request.get(f'http://127.0.0.1:{PORT}/media/{fname}')
         check(f'{name}: MR 음원 서빙(media/{fname})',
               head.status == 200 and int(head.headers.get('content-length', 0)) > 1_000_000,
@@ -374,7 +382,7 @@ def run_merge(pw):
     check('merge: 남자키 배지 병합', page.locator('.song-row', has_text='오늘').first.inner_text().find('남자키') >= 0)
     state = json.loads(page.evaluate("() => localStorage.getItem('strum-busking-v2')"))
     song = [s for s in state['songs'] if s['id'] == 'verified-001'][0]
-    check('merge: seedVersion 17', state['seedVersion'] == 17, str(state['seedVersion']))
+    check('merge: seedVersion 18', state['seedVersion'] == 18, str(state['seedVersion']))
     check('merge: MR 링크 병합', song.get('mrUrl', '').endswith('hwZqHCMmjUM'), str(song.get('mrUrl')))
     check('merge: 숙련도 보존', song['level'] == '버스킹 가능', song['level'])
     check('merge: 사용자 메모 보존', song['notes'] == '내 메모', song['notes'])
@@ -383,7 +391,8 @@ def run_merge(pw):
     check('merge: #163 제외 유지', state['sources'][162]['status'] == '제외')
     pik = [s for s in state['songs'] if s['id'] == 'playlist-157'][0]
     check('merge: MR 음원 파일 병합(픽픽)', pik.get('mrAudioUrl') == 'media/pikpik-mr.mp3', str(pik.get('mrAudioUrl')))
-    for sid, fname in (('playlist-173', 'media/jehoda-mr.mp3'), ('playlist-072', 'media/coffee-mr.mp3')):
+    for sid, fname in (('playlist-173', 'media/jehoda-mr.mp3'), ('playlist-072', 'media/coffee-mr.mp3'),
+                       ('verified-017', 'media/toy-mr.mp3'), ('verified-021', 'media/weather-mr.mp3')):
         item = [s for s in state['songs'] if s['id'] == sid][0]
         check(f'merge: MR 음원 병합({sid})', item.get('mrAudioUrl') == fname, str(item.get('mrAudioUrl')))
         check(f'merge: MR 음원 출처({sid})', item.get('mrSource') == 'user-recording' and 'AI 보컬 제거' in (item.get('mrNote') or ''), str(item.get('mrNote')))
