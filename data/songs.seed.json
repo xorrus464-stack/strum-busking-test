@@ -4795,7 +4795,9 @@
     "videoStatus": "공개 영상(원곡)",
     "chartStatus": "pending",
     "chartNote": "가수 미확인 · 코드/키 자료 없음",
-    "category": "pending"
+    "category": "pending",
+    "workTitle": "날씨가 좋고 바람도 좋아",
+    "workArtist": "가수 미확인"
   },
   {
     "id": "verified-022",
@@ -5187,7 +5189,7 @@
     "videoUrl": "",
     "audioUrl": "",
     "key": "Gb",
-    "maleKey": "미확정",
+    "maleKey": "E",
     "bpm": null,
     "chords": "",
     "chordStatus": "부분 확인",
@@ -5207,8 +5209,8 @@
       "bpm": 0,
       "bpmNote": "",
       "originalKey": "Gb",
-      "maleKey": "",
-      "maleShift": 3,
+      "maleKey": "E",
+      "maleShift": 2,
       "capo": null,
       "formButton": "",
       "formKey": "",
@@ -5226,7 +5228,13 @@
       },
       "basis": "",
       "note": "원키 Gb만 확인. 코드표·BPM 미확보로 코드 악보는 검수 대기.",
-      "evidence": []
+      "evidence": [
+        {
+          "label": "악보바다 원키 Gb",
+          "url": "https://www.akbobada.com/musicDetail.html?musicID=97191",
+          "note": "원키 Gb(내림 사장조)"
+        }
+      ]
     },
     "chartStatus": "partial",
     "chartNote": "원키 Gb만 확인. 코드표·BPM 미확보로 코드 악보는 검수 대기.",
@@ -7955,7 +7963,9 @@
       ]
     },
     "timeSignature": "4/4",
-    "chartStage": 1
+    "chartStage": 1,
+    "workTitle": "어떻게 이별까지 사랑하겠어, 널 사랑하는 거지",
+    "workArtist": "AKMU (악동뮤지션)"
   },
   {
     "id": "restored-130",

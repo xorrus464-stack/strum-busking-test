@@ -290,6 +290,10 @@ def main():
             if not data:
                 data = CHARTS.get(s['id'])
         else:
+            if s['id'] in SONG_WORKS and '미확인' in s.get('artist', ''):
+                wt, wa = WORK_META[SONG_WORKS[s['id']]][0], WORK_META[SONG_WORKS[s['id']]][1]
+                s['workTitle'] = wt
+                s['workArtist'] = wa
             data = CHARTS.get(s['id'])
             if s['id'] in SONG_WORKS:
                 wdata = work_chart_data(SONG_WORKS[s['id']])
@@ -327,8 +331,21 @@ def main():
                 'formButton': '', 'formKey': '', 'formText': '',
                 'sections': [], 'slots': [], 'stage': 3, 'stroke': '', 'percussive': '',
                 'why': '', 'coverage': {'mapped': 0, 'total': 0, 'unmapped': 0},
-                'basis': '', 'note': data.get('partial', ''), 'evidence': [],
+                'basis': '', 'note': data.get('partial', ''),
+                'evidence': [{'label': a, 'url': b, 'note': c} for a, b, c in data.get('evidence', [])],
             }
+            if chart['originalKey']:
+                try:
+                    b_ = parse_chord(chart['originalKey'])
+                    pref_ = 'b' in chart['originalKey']
+                    mk_ = name((PC[b_['root']] - ideal_shift(s['id'])) % 12, pref_)
+                    if b_['quality'] == 'min':
+                        mk_ += 'm'
+                    chart['maleKey'] = mk_
+                    chart['maleShift'] = ideal_shift(s['id'])
+                    s['maleKey'] = mk_
+                except (KeyError, ValueError):
+                    pass
             s['chart'] = chart
             s['chartStatus'] = 'partial'
             s['chartNote'] = data.get('partial', '')
