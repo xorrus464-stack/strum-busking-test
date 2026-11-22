@@ -210,6 +210,10 @@
     const sub=isSlot?`${esc(cell.sound)}`:`${esc(cell.btn)}`;
     return `<div class="cc ${isSlot?'is-slot':''}" style="--c:${color};--beats:${beats/cell.__span||beats}"><div class="cc-btn">${esc(label)}</div><div class="cc-sound">${esc(cell.sound)}</div>${cell.orig&&norm(cell.orig)!==norm(cell.sound)?`<div class="cc-orig">원곡 ${esc(cell.orig)}</div>`:''}</div>`;
   }
+  function extraNote(c){
+    const ext=c.sections.some(sec=>sec.bars.some(b=>b.some(x=>/[0-9]|maj|sus|add|dim|aug/i.test(x.orig||''))));
+    return ext?`<p class="tiny" style="margin-top:6px">7th·sus·add·dim 코드는 원터치 버튼의 3화음으로 근사합니다. 각 마디 카드 아래 ‘원곡 …’으로 원래 코드를 함께 적었습니다.</p>`:'';
+  }
   function chartSections(c,ts){
     const beats=beatCount(ts);
     return c.sections.map(sec=>`<div class="chart-sec"><div class="row between sec-head"><h4>${esc(sec.name)}</h4><span class="tiny">${sec.bars.length}마디</span></div>
@@ -237,6 +241,7 @@
         <div class="legend">${BTNS.map(b=>`<span class="lg ${used.includes(b)?'on':''}" style="--c:${BTN_COLOR[b]}"><i></i>${b}</span>`).join('')}</div>
         ${chartSections(c,c.timeSignature)}
         <div class="stroke-strip"><b>오른손</b> ${esc(c.stroke||'↓ ↓↑ ↑↓↑')}</div>
+        ${extraNote(c)}
         <p class="tiny">${esc(c.basis||'')}</p>`;
     }
     if(tab==='slots'){
