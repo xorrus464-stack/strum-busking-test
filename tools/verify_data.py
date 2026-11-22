@@ -135,7 +135,7 @@ for s in songs:
         assert not s['videoUrl'], s['id']
 
 # 10) 메타 집계
-assert meta['seedVersion'] == 14
+assert meta['seedVersion'] == 15
 assert meta['videoLinkCount'] == 201 and meta['videoLinkFilledCount'] == 36
 assert meta['playlistCollectedCount'] == 210
 assert meta['playlistPublicVideoCount'] == 168
@@ -316,6 +316,8 @@ assert by_id['verified-004']['title'] == 'Ten Thousand Hours' and by_id['verifie
 
 # 12) MR(반주) 링크 정합성 (seed v13)
 MR_MARK = re.compile(r'inst|instrumental|karaoke|노래방|카라오케|m\.?\s?r\.?|(?<![a-z])mr(?![a-z])|반주|カラオケ|インスト|オフボーカル', re.I)
+# 주성 님이 직접 지정한 MR 중 제목에 MR·Inst 표기가 없는 링크(피아노 연주 반주 등) — mrNote 에 '주성 님 지정'으로 근거를 남긴 경우만 예외
+USER_PICKED_MR_IDS = {'playlist-166'}
 with_mr = [s for s in songs if s.get('mrUrl')]
 assert len(with_mr) == meta['mrLinkCount'], (len(with_mr), meta['mrLinkCount'])
 assert len(with_mr) >= 145, len(with_mr)
@@ -325,7 +327,9 @@ for s in songs:
         continue
     m = re.fullmatch(r'https://www\.youtube\.com/watch\?v=([A-Za-z0-9_-]{11})', s['mrUrl'])
     assert m, (s['id'], s['mrUrl'])
-    assert s['mrTitle'] and MR_MARK.search(s['mrTitle']), (s['id'], s['mrTitle'])
+    if s['id'] in USER_PICKED_MR_IDS:
+        assert '주성 님 지정' in (s.get('mrNote') or ''), (s['id'], '직접 지정 MR 근거 없음')
+    assert s['mrTitle'] and (MR_MARK.search(s['mrTitle']) or s['id'] in USER_PICKED_MR_IDS), (s['id'], s['mrTitle'])
     assert s['mrChannel'], s['id']
     assert s.get('mrNote') and 'oEmbed' in s['mrNote'] and '임베드 재생 확인' in s['mrNote'], s['id']
     assert s.get('mrSource') in ('youtube', 'zip', 'user'), (s['id'], s.get('mrSource'))

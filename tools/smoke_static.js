@@ -151,7 +151,7 @@ const legacy = {
 };
 ({ root, handlers, created } = boot(legacy));
 const saved = JSON.parse(store['strum-busking-v2']);
-assert(saved.seedVersion === 14, 'seedVersion 14 로 업그레이드');
+assert(saved.seedVersion === 15, 'seedVersion 15 로 업그레이드');
 assert(saved.logs.length === 1 && saved.logs[0].minutes === 33, '기존 연습 기록 보존');
 const mine = saved.songs.find(s => s.id === 'verified-001');
 assert(mine.level === '거의 가능', '숙련도 보존');
@@ -167,4 +167,4 @@ assert(mine.mrTitle && mine.mrChannel, 'MR 제목·채널 병합');
 const han = saved.songs.find(s => s.id === 'verified-007');
 assert(han.mrUrl === 'https://www.youtube.com/watch?v=IkF6QIQ0Q0A', '임베드 막힌 이전 MR을 재생되는 반주로 교체');
 
-console.log(`PASS: boot ${songs.length}곡(악보 ${ready}·검수대기 ${pending}), 남자키 배지, 원터치 컬러 악보(5색), SimplifyChord 슬롯, 4단계 로드맵, 4/4·3/4·6/8 메트로놈, 원본 슬롯, 백업, seed v14 병합(기존 기록·숙련도 보존, MR 병합)·MR 버튼·미니 플레이어`);
+console.log(`PASS: boot ${songs.length}곡(악보 ${ready}·검수대기 ${pending}), 남자키 배지, 원터치 컬러 악보(5색), SimplifyChord 슬롯, 4단계 로드맵, 4/4·3/4·6/8 메트로놈, 원본 슬롯, 백업, seed v15 병합(기존 기록·숙련도 보존, MR 병합)·MR 버튼·미니 플레이어`);
