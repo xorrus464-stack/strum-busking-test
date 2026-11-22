@@ -111,7 +111,9 @@ for s in restored:
     if s['sourceIndices'][-1] == 96:
         assert 17 in s['sourceIndices'] and s['videoUrl']  # 공개 커버 영상 연결
     else:
-        assert not s['videoUrl'] and s['videoStatus'].startswith('영상 불가'), s['id']
+        # 2026-11-22: 삭제된 원본(도경수 AI 리믹스) 대신 원곡 가수의 공식 영상을 새로 연결
+        assert s['videoUrl'] and s['videoStatus'].startswith('공개 영상'), s['id']
+        assert '공식 영상 확인(2026-11-22)' in s['notes'], s['id']
 
 # 8) 공개 영상 곡 수와 중복 처리
 public_songs = [s for s in songs if s['verification'] == 'playlist-public-video']
@@ -123,7 +125,8 @@ assert src[198]['songs'] == ['playlist-198'] and src[207]['songs'] == ['playlist
 
 # 9) 영상 URL 중복 없음(같은 영상은 한 곡에 두 슬롯), 영상 불가 곡에 URL 없음
 urls = [s['videoUrl'] for s in songs if s['videoUrl']]
-assert len(urls) == len(set(urls)) == 165, (len(urls), len(set(urls)))
+assert len(urls) == len(set(urls)) == 201, (len(urls), len(set(urls)))
+assert all(s['videoUrl'] for s in songs), '모든 곡에 영상 링크 연결(2026-11-22 36곡 보강)'
 for s in songs:
     if s['videoUrl']:
         assert re.fullmatch(r'https://www\.youtube\.com/watch\?v=[A-Za-z0-9_-]{11}', s['videoUrl']), s['id']
@@ -132,7 +135,8 @@ for s in songs:
         assert not s['videoUrl'], s['id']
 
 # 10) 메타 집계
-assert meta['seedVersion'] == 11
+assert meta['seedVersion'] == 12
+assert meta['videoLinkCount'] == 201 and meta['videoLinkFilledCount'] == 36
 assert meta['playlistCollectedCount'] == 210
 assert meta['playlistPublicVideoCount'] == 168
 assert meta['playlistInaccessibleVideoCount'] == 42
@@ -319,3 +323,4 @@ print(f"OK: 곡으로 등록된 {len(entry)}곡 중 악보 준비 {len([s for s 
 print('OK: 박자 4/4·3/4·6/8, BPM 40~180, 남자키 이조·카포 0~7, 원터치 버튼(10개) 음정 일치, SimplifyChord 슬롯 ≤8, 근거 URL 존재')
 print('OK: 슬롯 211 (공개 168 · 접근 불가 42 · 제외 1 · 미확인 1), #6 7곡 · #65 2곡 · #163 제외 · #172 가수 미확인 유지')
 print('OK: 복원 17 + 사용자 확인 2, 접근 불가 사유 계정해지 37/비공개 3/저작권 1/업로더 1, 공개 영상 URL 168개')
+print(f"OK: 곡 영상 링크 {len(urls)}개(중복 0) — 2026-11-22 공식 영상 36곡 보강(oEmbed 200 확인)")

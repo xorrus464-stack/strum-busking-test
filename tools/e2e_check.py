@@ -192,6 +192,26 @@ def run(pw, name, viewport, mobile=False):
     page.click('[data-nav="logs"]')
     check(f'{name}: 기록 저장', 'e2e 기록' in page.content())
 
+    # 2026-11-22 영상 링크 보강: 예전에 링크가 없던 곡도 영상 모달에서 바로 재생
+    page.click('[data-nav="songs"]')
+    page.select_option('#song-filter', 'all')
+    page.fill('#song-search', 'Stand by Me')
+    page.wait_for_timeout(200)
+    page.locator('.song-row', has_text='Stand by Me').first.locator('button', has_text='영상').click()
+    page.wait_for_selector('.player iframe')
+    v_src = page.locator('.player iframe').first.get_attribute('src') or ''
+    check(f'{name}: 영상 모달 재생(Stand by Me)', 'youtube-nocookie.com/embed/z5i9vT8wGY8' in v_src, v_src)
+    page.click('[data-act="close"]')
+    page.fill('#song-search', '히로인')
+    page.wait_for_timeout(200)
+    page.locator('.song-row', has_text='히로인').first.locator('button', has_text='영상').click()
+    page.wait_for_selector('.player iframe')
+    v_src = page.locator('.player iframe').first.get_attribute('src') or ''
+    check(f'{name}: 영상 모달 재생(히로인)', 'youtube-nocookie.com/embed/107UoVP2fAA' in v_src, v_src)
+    page.click('[data-act="close"]')
+    page.fill('#song-search', '')
+    page.wait_for_timeout(200)
+
     # 원본 211 + 설정
     page.click('[data-nav="sources"]')
     check(f'{name}: 원본 슬롯 표', page.locator('.source-table tbody tr').count() >= 50)
@@ -204,7 +224,7 @@ def run(pw, name, viewport, mobile=False):
 
 
 def run_merge(pw):
-    """seedVersion 3 사용자 데이터 → 4 병합: 기록·숙련도 보존 + 악보 추가."""
+    """seedVersion 3 사용자 데이터 → 12 병합: 기록·숙련도 보존 + 악보·영상 링크 추가."""
     browser = pw.chromium.launch()
     page = browser.new_page(viewport={'width': 1440, 'height': 900})
     page.on('pageerror', lambda e: errors.append(f'[merge] pageerror: {e}'))
@@ -230,7 +250,7 @@ def run_merge(pw):
     check('merge: 남자키 배지 병합', page.locator('.song-row', has_text='오늘').first.inner_text().find('남자키') >= 0)
     state = json.loads(page.evaluate("() => localStorage.getItem('strum-busking-v2')"))
     song = [s for s in state['songs'] if s['id'] == 'verified-001'][0]
-    check('merge: seedVersion 11', state['seedVersion'] == 11, str(state['seedVersion']))
+    check('merge: seedVersion 12', state['seedVersion'] == 12, str(state['seedVersion']))
     check('merge: 숙련도 보존', song['level'] == '버스킹 가능', song['level'])
     check('merge: 사용자 메모 보존', song['notes'] == '내 메모', song['notes'])
     check('merge: 세트리스트 보존', song['setlist'] is True)
