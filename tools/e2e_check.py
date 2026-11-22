@@ -160,6 +160,7 @@ def run(pw, name, viewport, mobile=False):
     check(f'{name}: 미니 프레임 보이는 크기', (fbox.get('width') or 0) > 90 and (fbox.get('height') or 0) > 50, str(fbox))
     pad = page.evaluate("parseFloat(getComputedStyle(document.body).paddingBottom)||0")
     check(f'{name}: 하단 여백 확보', pad > 60, str(pad))
+    # 로드맵
     page.click('[data-nav="roadmap"]')
     page.wait_for_timeout(200)
     check(f'{name}: 탭 이동 후 미니 플레이어 유지', page.locator('.mini-player').count() == 1)
@@ -245,7 +246,34 @@ def run(pw, name, viewport, mobile=False):
     page.fill('#song-search', '')
     page.wait_for_timeout(200)
 
-    # 로드맵
+    # 2026-11-23 MR (seed v17): AI 보컬 제거 추출 MR 음원 2건 — jehoda · nanome 커피
+    for fname, expect_sec, label in (('jehoda-mr.mp3', 235, '괜히 보고 싶은 사실'), ('coffee-mr.mp3', 182, '내 첫 자작곡')):
+        head = page.request.get(f'http://127.0.0.1:{PORT}/media/{fname}')
+        check(f'{name}: MR 음원 서빙(media/{fname})',
+              head.status == 200 and int(head.headers.get('content-length', 0)) > 1_000_000,
+              f"{head.status} {head.headers.get('content-length')}")
+        page.fill('#song-search', label)
+        page.wait_for_timeout(300)
+        row = page.locator('.song-row', has_text=label).first
+        row.locator('button.mr-on').click()
+        page.wait_for_selector('.mini-player audio#mini-audio')
+        src = page.locator('.mini-player audio#mini-audio').get_attribute('src') or ''
+        check(f'{name}: {label} MR 음원 미니 재생', fname in src, src)
+        check(f'{name}: {label} MR 음원은 <audio> 재생(iframe 없음)', page.locator('.mini-player iframe').count() == 0)
+        page.wait_for_function(
+            "() => { const a = document.querySelector('#mini-audio'); return !!a && a.readyState >= 1 && a.duration > 60; }",
+            timeout=20000)
+        dur = page.evaluate("() => document.querySelector('#mini-audio').duration")
+        check(f'{name}: {label} MR 음원 길이 확인({expect_sec}초)', abs(dur - expect_sec) < 12, str(dur))
+        played = page.evaluate(
+            "() => { const a = document.querySelector('#mini-audio'); "
+            "return a.play().then(() => new Promise(r => setTimeout(() => r({t: a.currentTime, p: a.paused}), 900))) "
+            ".then(v => v).catch(e => ({err: String(e)})); }")
+        check(f'{name}: {label} MR 음원 실제 재생(소리 진행)', not played.get('err') and not played.get('p') and played.get('t', 0) > 0, str(played))
+        page.click('[data-act="mini-close"]')
+        page.fill('#song-search', '')
+        page.wait_for_timeout(150)
+
     page.click('[data-nav="roadmap"]')
     body = page.content()
     for n in (1, 2, 3, 4):
@@ -346,7 +374,7 @@ def run_merge(pw):
     check('merge: 남자키 배지 병합', page.locator('.song-row', has_text='오늘').first.inner_text().find('남자키') >= 0)
     state = json.loads(page.evaluate("() => localStorage.getItem('strum-busking-v2')"))
     song = [s for s in state['songs'] if s['id'] == 'verified-001'][0]
-    check('merge: seedVersion 16', state['seedVersion'] == 16, str(state['seedVersion']))
+    check('merge: seedVersion 17', state['seedVersion'] == 17, str(state['seedVersion']))
     check('merge: MR 링크 병합', song.get('mrUrl', '').endswith('hwZqHCMmjUM'), str(song.get('mrUrl')))
     check('merge: 숙련도 보존', song['level'] == '버스킹 가능', song['level'])
     check('merge: 사용자 메모 보존', song['notes'] == '내 메모', song['notes'])
@@ -355,6 +383,10 @@ def run_merge(pw):
     check('merge: #163 제외 유지', state['sources'][162]['status'] == '제외')
     pik = [s for s in state['songs'] if s['id'] == 'playlist-157'][0]
     check('merge: MR 음원 파일 병합(픽픽)', pik.get('mrAudioUrl') == 'media/pikpik-mr.mp3', str(pik.get('mrAudioUrl')))
+    for sid, fname in (('playlist-173', 'media/jehoda-mr.mp3'), ('playlist-072', 'media/coffee-mr.mp3')):
+        item = [s for s in state['songs'] if s['id'] == sid][0]
+        check(f'merge: MR 음원 병합({sid})', item.get('mrAudioUrl') == fname, str(item.get('mrAudioUrl')))
+        check(f'merge: MR 음원 출처({sid})', item.get('mrSource') == 'user-recording' and 'AI 보컬 제거' in (item.get('mrNote') or ''), str(item.get('mrNote')))
     browser.close()
 
 

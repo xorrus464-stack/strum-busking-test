@@ -101,6 +101,15 @@ act(handlers, 'mini-close');
 act(handlers, 'mr:playlist-057');
 assert(miniEl.innerHTML.includes('youtube-nocookie.com/embed/_aJasCmlQC8'), '잠깐 시간 될까 MR 임베드');
 act(handlers, 'mini-close');
+// 2-3) AI 보컬 제거 추출 MR 음원 2건(jehoda · 커피) — 미니 플레이어 <audio>
+act(handlers, 'filter-cat:all');
+for (const [sid, file] of [['playlist-173', 'media/jehoda-mr.mp3'], ['playlist-072', 'media/coffee-mr.mp3']]) {
+  assert(new RegExp(`data-act="mr:${sid}"[^>]*>MR<`).test(root.innerHTML), `MR 음원 곡 버튼 ${sid}`);
+  act(handlers, `mr:${sid}`);
+  assert(miniEl.innerHTML.includes('<audio') && miniEl.innerHTML.includes(file), `MR 음원 재생 ${sid}`);
+  assert(miniEl.innerHTML.includes('id="mini-audio"') && !miniEl.innerHTML.includes('iframe'), `MR 음원 <audio> 재생 ${sid}`);
+  act(handlers, 'mini-close');
+}
 act(handlers, 'filter-cat:chart-ready');
 act(handlers, 'close');
 act(handlers, 'mr:verified-017');
@@ -165,13 +174,15 @@ const legacy = {
   version: 2, seedVersion: 12, removedSeedIds: [],
   songs: [{ id: 'verified-001', title: '오늘', artist: '오왠 (O.WHEN)', sourceIndices: [21], verification: 'site-top3', videoUrl: '', audioUrl: '', key: '미확정', maleKey: '미확정', bpm: null, chords: '', chordStatus: '미확인', strumming: '', level: '거의 가능', tags: [], notes: '내가 직접 쓴 메모', setlist: true },
            { id: 'playlist-157', title: '나약함을 고백하는 행위가 가장 강인한 행동 #로꼬 #픽픽 #쇼츠', artist: '올데뮤AllDayMusic', sourceIndices: [157], verification: 'playlist-public-video', videoUrl: '', audioUrl: '', key: 'Eb', maleKey: 'Eb', bpm: 83, chords: '', chordStatus: '부분 확인', strumming: '', level: '연습 중', tags: [], notes: '', setlist: false },
+           { id: 'playlist-072', title: '내 첫 자작곡이야ㅎ 제목은 커피', artist: '나의 노래 메모장', sourceIndices: [72], verification: 'playlist-public-video', videoUrl: '', audioUrl: '', key: 'Db', maleKey: 'Db', bpm: 99, chords: '', chordStatus: '자동분석 초안', strumming: '', level: '연습 중', tags: [], notes: '', setlist: false },
+           { id: 'playlist-173', title: '괜히 보고 싶은 사실이 조금은 다행인 시간', artist: 'jehoda', sourceIndices: [173], verification: 'playlist-public-video', videoUrl: '', audioUrl: '', key: 'Bb', maleKey: 'Bb', bpm: 76, chords: '', chordStatus: '부분 확인', strumming: '', level: '연습 중', tags: [], notes: '', setlist: false },
            { id: 'verified-007', title: '한숨', artist: '이하이', sourceIndices: [6], verification: 'user-verified', videoUrl: '', audioUrl: '', key: '미확정', maleKey: '미확정', bpm: null, chords: '', chordStatus: '미확인', strumming: '', level: '미착수', tags: [], notes: '', setlist: false, mrUrl: 'https://www.youtube.com/watch?v=PJwPhFGk0pI', mrTitle: '이전 TJ 반주', mrChannel: 'TJ노래방', mrNote: '이전 시드' }],
   sources: Array.from({ length: 211 }, (_, i) => ({ index: i + 1, status: i === 162 ? '제외' : '미확인', url: '', note: '', songs: [] })),
   logs: [{ id: 'log-old-1', date: '2026-11-20', minutes: 33, songId: 'verified-001', mode: 'easy', chords: 'E A', strum: '8비트', memo: '기존 기록' }]
 };
 ({ root, handlers, created } = boot(legacy));
 const saved = JSON.parse(store['strum-busking-v2']);
-assert(saved.seedVersion === 16, 'seedVersion 16 로 업그레이드');
+assert(saved.seedVersion === 17, 'seedVersion 17 로 업그레이드');
 assert(saved.logs.length === 1 && saved.logs[0].minutes === 33, '기존 연습 기록 보존');
 const mine = saved.songs.find(s => s.id === 'verified-001');
 assert(mine.level === '거의 가능', '숙련도 보존');
@@ -190,7 +201,13 @@ const pik = saved.songs.find(s => s.id === 'playlist-157');
 assert(pik.mrAudioUrl === 'media/pikpik-mr.mp3', 'MR 음원 파일 병합');
 assert(pik.mrSource === 'user-recording' && pik.mrTitle, 'MR 음원 출처·제목 병합');
 assert(pik.level === '연습 중', 'MR 음원 병합 중 숙련도 보존');
+for (const [sid, file] of [['playlist-173', 'media/jehoda-mr.mp3'], ['playlist-072', 'media/coffee-mr.mp3']]) {
+  const item = saved.songs.find(s => s.id === sid);
+  assert(item.mrAudioUrl === file, `MR 음원 병합 ${sid}`);
+  assert(item.mrSource === 'user-recording' && /AI 보컬 제거/.test(item.mrNote) && /2026-11-23/.test(item.mrNote), `MR 음원 출처·근거 ${sid}`);
+  assert(item.level === '연습 중', `MR 음원 병합 중 숙련도 보존 ${sid}`);
+}
 const jamkkan = saved.songs.find(s => s.id === 'playlist-057');
 assert(jamkkan.mrUrl === 'https://www.youtube.com/watch?v=_aJasCmlQC8', '잠깐 시간 될까 MR 병합');
 
-console.log(`PASS: boot ${songs.length}곡(악보 ${ready}·검수대기 ${pending}), 남자키 배지, 원터치 컬러 악보(5색), SimplifyChord 슬롯, 4단계 로드맵, 4/4·3/4·6/8 메트로놈, 원본 슬롯, 백업, seed v16 병합(기존 기록·숙련도 보존, MR 링크·MR 음원 파일 병합)·MR 버튼·미니 플레이어(임베드·<audio>)`);
+console.log(`PASS: boot ${songs.length}곡(악보 ${ready}·검수대기 ${pending}), 남자키 배지, 원터치 컬러 악보(5색), SimplifyChord 슬롯, 4단계 로드맵, 4/4·3/4·6/8 메트로놈, 원본 슬롯, 백업, seed v17 병합(기존 기록·숙련도 보존, MR 링크·MR 음원 파일 병합)·MR 버튼·미니 플레이어(임베드·<audio>)`);

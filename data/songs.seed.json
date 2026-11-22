@@ -27740,7 +27740,11 @@
       "note": "나의 노래 메모장(nanome) 「Coffee」 공식 영상(3분 2초)을 자동 분석한 초안입니다. 99.384 BPM은 공개 표기 99와 맞고, 제 크로마 분석도 A♭·G♭maj7·B♭m7·Fm로 D♭장조 쪽이 나옵니다(2026-11-22 재검수: D♭장조 0.908 대 F단조 0.911로 사실상 동률). 다만 외부 SongData.io는 G장조로 표기해 원키가 충돌하므로 \"D♭ 후보\"로만 적었습니다. Fm/F, A♭maj7/A♭ 같은 장·단·7th 구분과 마디 전환 시각은 확정하지 못했습니다. 이 곡은 채널 제목과 달리 nanome이 2025-08-04 발표한 곡이며 주성 님 자작곡이 아닙니다. 청음 검수 전입니다."
     },
     "timeSignature": "4/4",
-    "chartStage": 3
+    "chartStage": 3,
+    "mrAudioUrl": "media/coffee-mr.mp3",
+    "mrTitle": "나의 노래 메모장(nanome) - 커피 (Coffee) (AI 보컬 제거 반주)",
+    "mrNote": "AI 보컬 제거(UVR Online MDX VocFT) 추출 반주 MP3 · 2026-11-23",
+    "mrSource": "user-recording"
   },
   {
     "id": "playlist-073",
@@ -39687,7 +39691,11 @@
       "note": "공식 영상(3분 55초)을 자동 분석한 초안입니다. 76 BPM은 제 beat 추적(152의 절반)과 같고, 초반 B♭장조·후반 C장조 후보도 코드 분포와 맞습니다. 다만 73개 구간은 4박 격자 근사이고, 전조 시작(2:44~2:57)은 한 박 단위로 확정하지 못했습니다. 후반 52~73마디는 2026-11-22 재검수에서 실제 소리가 C장조(크로마 상관 0.99)로 확인되어, 2반음 내려 적었던 표기를 버리고 원곡 C키 코드(G·Am·F·C·Dm·Em)로 다시 적었습니다. 2:44부터 2반음 올려 잡으세요. major/minor·7th·sus 구분은 모델마다 갈렸습니다. 청음 검수 전입니다."
     },
     "timeSignature": "4/4",
-    "chartStage": 3
+    "chartStage": 3,
+    "mrAudioUrl": "media/jehoda-mr.mp3",
+    "mrTitle": "jehoda - 괜히 보고 싶은 사실이 조금은 다행인 시간 (AI 보컬 제거 반주)",
+    "mrNote": "AI 보컬 제거(vocalremover.org) 추출 반주 MP3 · 2026-11-23",
+    "mrSource": "user-recording"
   },
   {
     "id": "playlist-174",
