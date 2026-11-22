@@ -1,0 +1,210 @@
+#!/usr/bin/env python3
+"""STRUM 브라우저 검증 (PC + 갤럭시 모바일 에뮬레이션).
+
+실행: python3 tools/e2e_check.py
+임시 http.server 를 띄워 실제 페이지를 열고, 콘솔 에러·가로 넘침·핵심 화면을 확인한다.
+스크린샷: docs/screenshots/*.png
+"""
+import http.server
+import json
+import pathlib
+import socketserver
+import threading
+
+from playwright.sync_api import sync_playwright
+
+BASE = pathlib.Path(__file__).resolve().parents[1]
+SHOTS = BASE / 'docs' / 'screenshots'
+SHOTS.mkdir(parents=True, exist_ok=True)
+PORT = 8765
+errors = []
+results = []
+
+
+class Handler(http.server.SimpleHTTPRequestHandler):
+    def __init__(self, *a, **kw):
+        super().__init__(*a, directory=str(BASE), **kw)
+
+    def log_message(self, *a):
+        pass
+
+
+def check(name, cond, detail=''):
+    results.append((name, bool(cond), detail))
+    if not cond:
+        raise AssertionError(f'{name} — {detail}')
+
+
+def overflow(page):
+    return page.evaluate("() => ({sw: document.documentElement.scrollWidth, cw: document.documentElement.clientWidth})")
+
+
+def run(pw, name, viewport, mobile=False):
+    browser = pw.chromium.launch()
+    ctx = browser.new_context(viewport=viewport, device_scale_factor=2 if mobile else 1,
+                              is_mobile=mobile, has_touch=mobile,
+                              user_agent=('Mozilla/5.0 (Linux; Android 14; SM-S911B) AppleWebKit/537.36 '
+                                          '(KHTML, like Gecko) Chrome/126.0.0.0 Mobile Safari/537.36') if mobile else None)
+    page = ctx.new_page()
+    page.on('console', lambda m: errors.append(f'[{name}] console.{m.type}: {m.text}') if m.type == 'error' else None)
+    page.on('pageerror', lambda e: errors.append(f'[{name}] pageerror: {e}'))
+    page.goto(f'http://127.0.0.1:{PORT}/index.html', wait_until='networkidle')
+
+    check(f'{name}: 홈 렌더', 'STRUM' in page.content() and '남자키 원터치 악보' in page.content())
+    o = overflow(page)
+    check(f'{name}: 홈 가로 넘침 없음', o['sw'] <= o['cw'] + 1, str(o))
+
+    # 곡 라이브러리
+    page.click('[data-nav="songs"]')
+    page.wait_for_selector('#song-list')
+    page.select_option('#song-filter', 'chart-ready')
+    rows = page.locator('.song-row').count()
+    check(f'{name}: 악보 준비 완료 필터', rows >= 25, f'{rows} rows')
+    check(f'{name}: 남자키 배지', page.locator('.tag.chart-tag').count() >= 25)
+    o = overflow(page)
+    check(f'{name}: 곡 목록 가로 넘침 없음', o['sw'] <= o['cw'] + 1, str(o))
+
+    # 원터치 컬러 악보
+    page.locator('.song-row', has_text='Way Back Home').first.locator('button', has_text='악보').click()
+    page.wait_for_selector('.chart-modal')
+    html = page.content()
+    for token in ['Capo 1', 'G폼', 'ONE-TOUCH', 'bar-cells', 'stroke-strip']:
+        check(f'{name}: 악보 {token}', token in html)
+    colors = page.evaluate("""() => [...document.querySelectorAll('.cc')].map(e => getComputedStyle(e).backgroundColor)""")
+    uniq = sorted(set(colors))
+    check(f'{name}: 마디 카드 색상 4종 이상', len(uniq) >= 4, str(uniq))
+    o = overflow(page)
+    check(f'{name}: 악보 모달 가로 넘침 없음', o['sw'] <= o['cw'] + 1, str(o))
+    page.screenshot(path=str(SHOTS / f'chart-{name}.png'))
+
+    # SimplifyChord 슬롯
+    page.click('button:has-text("SimplifyChord")')
+    page.wait_for_selector('.slot-board')
+    check(f'{name}: 슬롯 5칸', page.locator('.slot').count() == 5)
+    page.click('button:has-text("스트로크·퍼커시브")')
+    check(f'{name}: 퍼커시브 단계', '4단계로 만드는 퍼커시브' in page.content())
+    page.click('button:has-text("근거")')
+    check(f'{name}: 근거 링크', page.locator('ul.ev a').count() >= 2)
+    page.click('[data-act="close"]')
+
+    # 슬롯 있는 곡
+    page.locator('.song-row', has_text='희재').first.locator('button', has_text='악보').click()
+    page.wait_for_selector('.chart-modal')
+    page.click('button:has-text("SimplifyChord")')
+    check(f'{name}: 슬롯 세팅 가이드', '이렇게 세팅하세요' in page.content())
+    page.screenshot(path=str(SHOTS / f'simplify-{name}.png'))
+    page.click('[data-act="close"]')
+
+    # 로드맵
+    page.click('[data-nav="roadmap"]')
+    body = page.content()
+    for n in (1, 2, 3, 4):
+        check(f'{name}: STAGE {n}', f'STAGE {n}' in body)
+    chips = page.locator('.song-chip').count()
+    check(f'{name}: 단계별 곡 칩', chips >= 15, f'{chips}')
+    o = overflow(page)
+    check(f'{name}: 로드맵 가로 넘침 없음', o['sw'] <= o['cw'] + 1, str(o))
+    page.screenshot(path=str(SHOTS / f'roadmap-{name}.png'), full_page=not mobile)
+
+    # 오늘의 연습 + 박자 메트로놈
+    page.click('[data-nav="practice"]')
+    page.click('[data-act="ts:6/8"]')
+    check(f'{name}: 6/8 선택', '8분음표 6번' in page.content())
+    check(f'{name}: 비트 점 6개', page.locator('#beat-dots i').count() == 6)
+    page.click('[data-act="metro-toggle"]')
+    page.wait_for_timeout(400)
+    page.click('[data-act="metro-toggle"]')
+    page.click('[data-act="ts:3/4"]')
+    check(f'{name}: 3/4 비트 점 3개', page.locator('#beat-dots i').count() == 3)
+    check(f'{name}: 원터치 버튼 10개', page.locator('.ot-btn').count() == 10)
+    o = overflow(page)
+    check(f'{name}: 연습 화면 가로 넘침 없음', o['sw'] <= o['cw'] + 1, str(o))
+    page.screenshot(path=str(SHOTS / f'practice-{name}.png'), full_page=not mobile)
+
+    # 곡 템포로 연습
+    page.click('[data-nav="songs"]')
+    page.locator('.song-row', has_text='Thank You').first.locator('button', has_text='악보').click()
+    page.wait_for_selector('.chart-modal')
+    page.click('button:has-text("이 곡 템포로 연습")')
+    page.wait_for_timeout(200)
+    body = page.content()
+    check(f'{name}: 곡 BPM 넘김', '79 BPM' in body or '79' in body, 'bpm')
+    check(f'{name}: 오늘의 곡 표시', '오늘의 곡' in body)
+
+    # 연습 기록 저장
+    page.fill('input[name="minutes"]', '12')
+    page.fill('textarea[name="memo"]', 'e2e 기록')
+    page.click('button:has-text("오늘 연습 저장하기")')
+    page.wait_for_timeout(300)
+    page.click('[data-nav="logs"]')
+    check(f'{name}: 기록 저장', 'e2e 기록' in page.content())
+
+    # 원본 211 + 설정
+    page.click('[data-nav="sources"]')
+    check(f'{name}: 원본 슬롯 표', page.locator('.source-table tbody tr').count() >= 50)
+    o = overflow(page)
+    check(f'{name}: 원본 표 가로 넘침 없음(내부 스크롤)', o['sw'] <= o['cw'] + 1, str(o))
+    page.click('[data-nav="settings"]')
+    check(f'{name}: 백업 화면', '전체 JSON 백업' in page.content() and '악보 설정 CSV' in page.content())
+
+    browser.close()
+
+
+def run_merge(pw):
+    """seedVersion 3 사용자 데이터 → 4 병합: 기록·숙련도 보존 + 악보 추가."""
+    browser = pw.chromium.launch()
+    page = browser.new_page(viewport={'width': 1440, 'height': 900})
+    page.on('pageerror', lambda e: errors.append(f'[merge] pageerror: {e}'))
+    page.goto(f'http://127.0.0.1:{PORT}/index.html', wait_until='domcontentloaded')
+    legacy = {
+        'version': 2, 'seedVersion': 3, 'removedSeedIds': [],
+        'songs': [{'id': 'verified-001', 'title': '오늘', 'artist': '오왠 (O.WHEN)', 'sourceIndices': [21],
+                   'verification': 'site-top3', 'videoUrl': '', 'audioUrl': '', 'key': '미확정', 'maleKey': '미확정',
+                   'bpm': None, 'chords': '', 'chordStatus': '미확인', 'strumming': '', 'level': '버스킹 가능',
+                   'tags': [], 'notes': '내 메모', 'setlist': True}],
+        'sources': [{'index': i, 'status': '제외' if i == 163 else '미확인', 'url': '', 'note': '', 'songs': []} for i in range(1, 212)],
+        'logs': [{'id': 'log-old', 'date': '2026-11-18', 'minutes': 25, 'songId': 'verified-001', 'mode': 'easy',
+                  'chords': 'E A', 'strum': '8비트', 'memo': '기존 기록 보존 확인'}],
+        'settings': {'mode': 'easy', 'minutes': 25, 'bpm': 60, 'weeklyGoal': 5},
+        'completedStages': [], 'selectedRoutine': []
+    }
+    page.evaluate("s => localStorage.setItem('strum-busking-v2', JSON.stringify(s))", legacy)
+    page.reload(wait_until='networkidle')
+    page.click('[data-nav="logs"]')
+    check('merge: 기존 기록 보존', '기존 기록 보존 확인' in page.content())
+    page.click('[data-nav="songs"]')
+    page.locator('.song-row', has_text='오늘').first.wait_for()
+    check('merge: 남자키 배지 병합', page.locator('.song-row', has_text='오늘').first.inner_text().find('남자키') >= 0)
+    state = json.loads(page.evaluate("() => localStorage.getItem('strum-busking-v2')"))
+    song = [s for s in state['songs'] if s['id'] == 'verified-001'][0]
+    check('merge: seedVersion 4', state['seedVersion'] == 4, str(state['seedVersion']))
+    check('merge: 숙련도 보존', song['level'] == '버스킹 가능', song['level'])
+    check('merge: 사용자 메모 보존', song['notes'] == '내 메모', song['notes'])
+    check('merge: 세트리스트 보존', song['setlist'] is True)
+    check('merge: 악보 추가', song.get('chart', {}).get('maleKey') == 'D', str(song.get('chart', {}).get('maleKey')))
+    check('merge: #163 제외 유지', state['sources'][162]['status'] == '제외')
+    browser.close()
+
+
+def main():
+    socketserver.TCPServer.allow_reuse_address = True
+    httpd = socketserver.TCPServer(('127.0.0.1', PORT), Handler)
+    threading.Thread(target=httpd.serve_forever, daemon=True).start()
+    try:
+        with sync_playwright() as pw:
+            run(pw, 'pc', {'width': 1440, 'height': 900})
+            run(pw, 'galaxy', {'width': 412, 'height': 915}, mobile=True)
+            run_merge(pw)
+    finally:
+        httpd.shutdown()
+    print(f'PASS {len(results)} checks')
+    if errors:
+        print('CONSOLE ERRORS:')
+        for e in errors:
+            print(' -', e)
+        raise SystemExit(1)
+    print('PASS: console error 0')
+
+
+if __name__ == '__main__':
+    main()

@@ -132,13 +132,79 @@ for s in songs:
         assert not s['videoUrl'], s['id']
 
 # 10) 메타 집계
-assert meta['seedVersion'] == 3
+assert meta['seedVersion'] == 4
 assert meta['playlistCollectedCount'] == 210
 assert meta['playlistPublicVideoCount'] == 168
 assert meta['playlistInaccessibleVideoCount'] == 42
 assert meta['restoredSongCount'] == 19
 assert meta['songEntryCount'] == len(songs) == 200
 
+# 11) 악보(남자키·박자·BPM·원터치 매핑) 정합성
+PC = {'C': 0, 'C#': 1, 'Db': 1, 'D': 2, 'D#': 3, 'Eb': 3, 'E': 4, 'F': 5, 'F#': 6,
+      'Gb': 6, 'G': 7, 'G#': 8, 'Ab': 8, 'A': 9, 'A#': 10, 'Bb': 10, 'B': 11}
+BTN_PC = {'C': 0, 'D': 2, 'E': 4, 'F': 5, 'G': 7, 'Cm': 0, 'Dm': 2, 'Em': 4, 'Fm': 5, 'Gm': 7}
+BTNS = set(BTN_PC)
+
+
+def pc_of(chord):
+    i = 1
+    while i < len(chord) and chord[i] in '#b':
+        i += 1
+    return PC[chord[:i]]
+
+
+ready = [s for s in songs if s.get('chartStatus') == 'ready']
+partial = [s for s in songs if s.get('chartStatus') == 'partial']
+pending = [s for s in songs if s.get('chartStatus') not in ('ready', 'partial')]
+assert len(ready) >= 25, len(ready)
+for s in ready:
+    c = s['chart']
+    assert c['status'] == 'ready', s['id']
+    assert c['timeSignature'] in ('4/4', '3/4', '6/8'), (s['id'], c['timeSignature'])
+    assert 40 <= c['bpm'] <= 180, (s['id'], c['bpm'])
+    assert c['originalKey'] and c['maleKey'], s['id']
+    assert 0 <= c['capo'] <= 7, (s['id'], c['capo'])
+    assert 1 <= c['stage'] <= 4, s['id']
+    assert c['sections'], s['id']
+    assert c['stroke'] and c['basis'], s['id']
+    assert c['evidence'] and all(e['url'].startswith('http') for e in c['evidence']), s['id']
+    assert s['key'] == c['originalKey'] and s['maleKey'] == c['maleKey'], s['id']
+    assert s['bpm'] == c['bpm'], s['id']
+    assert len(c['slots']) <= 5, (s['id'], 'slots')
+    slot_ids = {x['slot'] for x in c['slots']}
+    assert slot_ids == set(range(1, len(c['slots']) + 1)), s['id']
+    for sec in c['sections']:
+        assert sec['name'] and sec['bars'], s['id']
+        for bar in sec['bars']:
+            assert bar, s['id']
+            for cell in bar:
+                if cell['btn'] is not None:
+                    assert cell['btn'] in BTNS, (s['id'], cell['btn'])
+                    expect = (BTN_PC[cell['btn']] + c['capo']) % 12
+                    assert expect == pc_of(cell['sound']), (s['id'], cell['btn'], cell['sound'], c['capo'])
+                else:
+                    assert 1 <= cell['slot'] <= 5, s['id']
+                    assert cell['slot'] in slot_ids, (s['id'], '슬롯 누락')
+                    assert cell['sound'] == next(x['chord'] for x in c['slots'] if x['slot'] == cell['slot']), s['id']
+for s in partial:
+    assert s['chart']['status'] == 'partial' and s.get('chartNote'), s['id']
+for s in pending:
+    assert not (s.get('chart') or {}).get('sections'), s['id']
+assert meta['chartReadyCount'] == len(ready)
+assert meta['chartPartialCount'] == len(partial)
+assert meta['chartDisclosure']
+# 남자키는 원곡에서 0~6반음 내려간 값이어야 한다
+for s in ready:
+    c = s['chart']
+    assert (pc_of(c['originalKey']) - pc_of(c['maleKey'])) % 12 == c['maleShift'] % 12, s['id']
+    assert 0 <= c['maleShift'] <= 6, s['id']
+
 print('OK: 곡 200 (기존 25 + 복원·확인 19 + 공개 영상 155 + 추천 1)')
+entry = [s for s in songs if s['id'].startswith(('verified-', 'restored-')) or s['verification'] in ('added-by-user', 'imported')]
+assert len(entry) == 44, len(entry)
+assert len([s for s in entry if s['chartStatus'] == 'ready']) == len(ready)
+print(f"OK: 곡으로 등록된 {len(entry)}곡 중 악보 준비 {len(ready)}곡 · 부분 확인 {len(partial)}곡 · 검수 대기 {len(entry) - len(ready) - len(partial)}곡 "
+      f"(나머지 {len(songs) - len(entry)}개는 유튜브 영상 제목 항목)")
+print('OK: 박자 4/4·3/4·6/8, BPM 40~180, 남자키 이조·카포 0~7, 원터치 버튼(10개) 음정 일치, SimplifyChord 슬롯 ≤5, 근거 URL 존재')
 print('OK: 슬롯 211 (공개 168 · 접근 불가 42 · 제외 1 · 미확인 1), #6 7곡 · #65 2곡 · #163 제외 · #172 가수 미확인 유지')
 print('OK: 복원 17 + 사용자 확인 2, 접근 불가 사유 계정해지 37/비공개 3/저작권 1/업로더 1, 공개 영상 URL 168개')
