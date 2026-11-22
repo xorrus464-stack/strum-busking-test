@@ -91,6 +91,34 @@ def nice_key(k, prefer_flat):
 
 AUTO = json.loads((BASE / 'tools' / 'auto_charts.json').read_text(encoding='utf-8')) \
     if (BASE / 'tools' / 'auto_charts.json').exists() else {}
+# 재생목록 슬롯이 없는 곡(사용자가 올린 MR로만 확인된 곡)은 원본 번호를 비운 채 별도 레코드로 둔다.
+EXTRA_SONGS = [
+    {
+        'id': 'added-10000-hours',
+        'title': '10,000 Hours',
+        'artist': 'Dan + Shay feat. Justin Bieber',
+        'sourceIndices': [],
+        'verification': 'added-by-user',
+        'videoUrl': '',
+        'audioUrl': '',
+        'key': 'A',
+        'maleKey': 'A',
+        'bpm': 86,
+        'chords': '',
+        'chordStatus': '미확인',
+        'strumming': '',
+        'difficultyEasy': '미확인',
+        'difficultyStandard': '미확인',
+        'vocalDifficulty': '미확인',
+        'level': '미착수',
+        'tags': ['음원 분석'],
+        'notes': ('주성 님이 올린 기타 MR 화면 녹화(2026-11-22, 2분 57초)에서 분석한 곡입니다. '
+                  '원본 재생목록 211개 영상 번호와 연결된 것이 확인되지 않아 원본 번호를 비웠습니다. '
+                  'Macklemore & Ryan Lewis의 「Ten Thousand Hours」(verified-004)와는 다른 곡이라 그 항목에 합치지 않았습니다.'),
+        'setlist': False,
+        'videoStatus': '',
+    },
+]
 SONG_WORKS = {
     'verified-009': 'yeppeo', 'restored-140': 'yeppeo', 'verified-011': 'chunghon',
     'verified-019': 'saenggak', 'verified-014': 'sabyeol', 'restored-122': 'vancouver',
@@ -272,6 +300,11 @@ def work_chart_data(slug):
 
 def main():
     songs = json.loads((BASE / 'data' / 'songs.seed.json').read_text(encoding='utf-8'))
+    have = {x['id'] for x in songs}
+    for extra in EXTRA_SONGS:
+        if extra['id'] not in have:
+            songs.append(json.loads(json.dumps(extra)))
+            have.add(extra['id'])
     sources = json.loads((BASE / 'data' / 'source-videos.seed.json').read_text(encoding='utf-8'))
     meta = json.loads((BASE / 'data' / 'metadata.json').read_text(encoding='utf-8'))
     by_id = {s['id']: s for s in songs}
@@ -303,6 +336,33 @@ def main():
                 references += 1
                 continue
             if kind == 'original':
+                data = CHARTS.get(s['id']) or (work_chart_data(target) if target else None)
+                if data and data.get('missing'):
+                    data = None
+                if data and data.get('sections'):
+                    # 자작곡 항목은 'original' 분류를 유지하되, 음원 분석으로 확보한 악보는 함께 보여 준다.
+                    chart, male_key = build_chart(s['id'], data)
+                    chart['status'] = 'partial'
+                    chart['note'] = data.get('partial', '')
+                    s['chart'] = chart
+                    s['chartStatus'] = 'original'
+                    s['category'] = 'original'
+                    s['chartNote'] = data.get('partial', '')
+                    s['key'] = chart['originalKey']
+                    s['maleKey'] = male_key
+                    s['bpm'] = chart['bpm'] or None
+                    s['timeSignature'] = chart['timeSignature']
+                    s['chordStatus'] = '자동분석 초안'
+                    s['strumming'] = chart['stroke']
+                    s['chords'] = ' / '.join(
+                        ' '.join(c['orig'] for c in bar) for sec in chart['sections'] for bar in sec['bars']
+                    )[:400]
+                    s['chartStage'] = chart.get('stage')
+                    if 'nanome' not in (s.get('notes') or ''):
+                        s['notes'] = ((s.get('notes') or '') + ' 2026-11-22: 올린 공식 영상(3분 2초)을 분석해 키·BPM·코드를 채웠습니다. '
+                                      '채널 제목의 “자작곡”은 nanome 본인 곡이라는 뜻이며 주성 님 자작곡이 아닙니다.').strip()
+                    originals += 1
+                    continue
                 s['category'] = 'original'
                 s['chartStatus'] = 'original'
                 s.pop('chart', None)
@@ -312,11 +372,12 @@ def main():
             if kind == 'copy':
                 copies.append((s, target))
                 continue
-            data = work_chart_data(target) if target else None
+            # 이번처럼 음원 분석으로 직접 채운 차트(CHARTS)가 있으면 조사표의 '검수 대기' 초안보다 우선한다.
+            data = CHARTS.get(s['id'])
+            if not data:
+                data = work_chart_data(target) if target else None
             if data and data.get('missing'):
                 data = None
-            if not data:
-                data = CHARTS.get(s['id'])
         else:
             if s['id'] in SONG_WORKS and '미확인' in s.get('artist', ''):
                 wt, wa = WORK_META[SONG_WORKS[s['id']]][0], WORK_META[SONG_WORKS[s['id']]][1]
@@ -500,6 +561,23 @@ def main():
             s['chartNote'] = '연결할 악보를 찾지 못했습니다.'
             pending += 1
 
+    # 이번 음원 분석으로 키·BPM·악보가 채워진 곡: '확인 전이라 비움' 문구와 '가수 미확인' 태그를 실제 상태에 맞춘다.
+    audio_ids = {k for k in CHARTS if k.startswith(('playlist-', 'added-'))}
+    for s in songs:
+        if s['id'] not in audio_ids:
+            continue
+        note = s.get('notes') or ''
+        for old in (' 가수 필드는 채널명을 표기했으며 원곡 가수·코드·남자 키·BPM은 확인 전이라 비움.',
+                    ' 원곡 가수·코드·남자 키·BPM은 확인 전이라 비움.'):
+            note = note.replace(old, '')
+        if '2026-11-22 음원 분석' not in note:
+            note = (note.rstrip() + ' 2026-11-22 음원 분석: 올린 ZIP·화면 녹화에서 키·BPM·코드 후보를 뽑아 4박 마디 악보를 채웠습니다'
+                    '(청음 검수 전).').strip()
+        s['notes'] = note
+        s['tags'] = [t for t in (s.get('tags') or []) if t != '가수 미확인']
+        if '음원 분석' not in s['tags']:
+            s['tags'].append('음원 분석')
+
     chart_titles = {}
     for s in songs:
         if s.get('category') in ('chart', 'partial'):
@@ -510,7 +588,8 @@ def main():
     pending = sum(1 for s in songs if s.get('category') == 'pending')
     references = sum(1 for s in songs if s.get('category') == 'reference')
     originals = sum(1 for s in songs if s.get('category') == 'original')
-    meta['seedVersion'] = 9
+    meta['seedVersion'] = 10
+    meta['songEntryCount'] = len(songs)
     meta['chartVersion'] = '2026-11-22'
     meta['chartReadyCount'] = ready
     meta['chartPartialCount'] = partial
@@ -529,11 +608,11 @@ def main():
     ]
     meta['chartDisclosure'] = (
         '남자키는 남성 원곡이면 원키 그대로(이조 0반음), 여성 원곡이면 -5반음으로 잡고 그 목표 키를 AeroBand 원터치 버튼에 맞추도록 카포를 골랐습니다. '
-        f'남자키·박자·BPM·코드 진행은 2026-11-22 웹 검색으로 확인한 코드표·악보 메타데이터와, 주성 님이 직접 올린 음원 3곳(#108 · #172 · #202 이기찬 ‘닮은 사람’ MR)의 오디오 분석에서 옮겼습니다. '
+        f'남자키·박자·BPM·코드 진행은 2026-11-22 웹 검색으로 확인한 코드표·악보 메타데이터와, 주성 님이 직접 올린 음원·화면 녹화 (#108 · #172 · #202 이기찬 ‘닮은 사람’ MR · 이번 11곡: 픽픽·될 대로 되라고 해·어떤이별·오늘도 날씨는 흐리네·안녕 너희·서, 어른·나의 아버지·괜히 보고 싶은 사실…·나를 사랑하지 말아요·Coffee·10,000 Hours)의 오디오 분석에서 옮겼습니다. '
         f'악보 준비 완료 {ready}곡(서로 다른 곡 {len(chart_titles)}곡), 부분 확인 {partial}곡, 검수 대기 {pending}곡, '
         f'비음악·참고 영상 {references}개, 자작곡 {originals}개. '
         '마디 배치는 코드표 순서를 4박 카드로 정리한 연습용이며, 원곡 세부 마디와 다를 수 있습니다. '
-        '음원 분석 곡(#108 · #172 · #202)과 자동분석 후보 곡은 청음 검수를 권장합니다. '
+        '음원 분석 곡(#108 · #172 · #202 · 이번 11곡)과 자동분석 후보 곡은 청음 검수를 권장합니다. '
         '키·코드가 확인되지 않은 곡은 추측값을 넣지 않고 검수 대기로 두되, 확인된 BPM·키와 근거 링크만 곡 정보 화면에 남겼습니다. '
         '원터치 버튼에 없는 코드는 SimplifyChord 슬롯(최대 8개)으로 안내합니다.')
     meta['sourceDisclosure'] = (

@@ -132,12 +132,12 @@ for s in songs:
         assert not s['videoUrl'], s['id']
 
 # 10) 메타 집계
-assert meta['seedVersion'] == 9
+assert meta['seedVersion'] == 10
 assert meta['playlistCollectedCount'] == 210
 assert meta['playlistPublicVideoCount'] == 168
 assert meta['playlistInaccessibleVideoCount'] == 42
 assert meta['restoredSongCount'] == 19
-assert meta['songEntryCount'] == len(songs) == 200
+assert meta['songEntryCount'] == len(songs) == 201
 
 # 11) 악보(남자키·박자·BPM·원터치 매핑) 정합성
 PC = {'C': 0, 'C#': 1, 'Db': 1, 'D': 2, 'D#': 3, 'Eb': 3, 'E': 4, 'F': 5, 'F#': 6,
@@ -165,7 +165,10 @@ for s in songs:
     if s['category'] == 'reference':
         assert not s.get('chart') and s['chartStatus'] == 'reference', s['id']
     if s['category'] == 'original':
-        assert not s.get('chart') and s['chartStatus'] == 'original', s['id']
+        # 자작·자체 채보 항목: 음원 분석으로 악보를 채운 경우(2026-11-22 Coffee)만 chart를 허용한다.
+        assert s['chartStatus'] == 'original', s['id']
+        if s.get('chart'):
+            assert s['chart']['status'] == 'partial' and s['chart']['sections'] and s['chart']['evidence'], s['id']
     if s['category'] in ('chart', 'partial'):
         assert s.get('workTitle') or not s['id'].startswith('playlist-'), s['id']
     if s['id'].startswith('playlist-'):
@@ -213,18 +216,18 @@ GROUPS = {
     # 27꾸 조사표 inputNumber → seed id, 상태
     1: ('verified-004', 'partial'), 2: ('verified-024', 'partial'),
     3: ('playlist-001', 'partial'), 4: ('playlist-016', 'partial'),
-    5: ('playlist-024', 'partial'), 6: ('playlist-025', 'pending'),
+    5: ('playlist-024', 'partial'), 6: ('playlist-025', 'partial'),
     7: ('playlist-034', 'partial'), 8: ('playlist-038', 'partial'),
     9: ('playlist-077', 'partial'), 10: ('playlist-086', 'partial'),
-    11: ('playlist-116', 'partial'), 12: ('playlist-118', 'pending'),
+    11: ('playlist-116', 'partial'), 12: ('playlist-118', 'partial'),
     13: ('playlist-124', 'partial'), 14: ('playlist-126', 'partial'),
     15: ('playlist-139', 'partial'), 16: ('playlist-143', 'partial'),
     17: ('playlist-152', 'partial'), 18: ('playlist-153', 'partial'),
-    19: ('playlist-154', 'partial'), 20: ('playlist-157', 'pending'),
-    21: ('playlist-159', 'pending'), 22: ('playlist-161', 'partial'),
-    23: ('playlist-173', 'pending'), 24: ('playlist-186', 'pending'),
-    25: ('playlist-190', 'pending'), 26: ('playlist-205', 'pending'),
-    27: ('playlist-206', 'pending'),
+    19: ('playlist-154', 'partial'), 20: ('playlist-157', 'partial'),
+    21: ('playlist-159', 'partial'), 22: ('playlist-161', 'partial'),
+    23: ('playlist-173', 'partial'), 24: ('playlist-186', 'partial'),
+    25: ('playlist-190', 'partial'), 26: ('playlist-205', 'partial'),
+    27: ('playlist-206', 'partial'),
 }
 for n, (sid, status) in GROUPS.items():
     s = by_id[sid]
@@ -248,22 +251,56 @@ assert by_id['playlist-139']['workArtist'] == '나윤권'
 assert by_id['playlist-126']['chart']['capo'] == 4 and by_id['playlist-126']['chart']['originalKey'] == 'B'
 assert by_id['playlist-152']['chart']['capo'] == 1 and by_id['playlist-152']['chart']['originalKey'] == 'F#'
 assert by_id['playlist-159']['workTitle'] == '서, 어른' and by_id['playlist-159']['artist'] == 'GeGee Edu'
-assert by_id['playlist-025']['chart']['bpm'] == 126
+assert by_id['playlist-025']['chart']['bpm'] == 127
 assert by_id['playlist-205']['chart']['originalKey'] == 'A'
 assert by_id['playlist-038']['chart']['maleKey'] == by_id['playlist-124']['chart']['maleKey'] == 'A'
 assert by_id['playlist-153']['chart']['sections'] == by_id['playlist-154']['chart']['sections']
 assert by_id['playlist-072']['category'] == 'original' and by_id['playlist-072']['chartStatus'] == 'original'
-assert len([s for s in songs if s['chartStatus'] == 'partial']) == 27
-assert len([s for s in songs if s['chartStatus'] == 'pending']) == 9
+assert by_id['playlist-072']['chart']['status'] == 'partial' and by_id['playlist-072']['chart']['sections']
+assert len([s for s in songs if s['chartStatus'] == 'partial']) == 37
+assert len([s for s in songs if s['chartStatus'] == 'pending']) == 0
 # 남자키는 원곡에서 0~6반음 내려간 값이어야 한다
 for s in ready:
     c = s['chart']
     assert (pc_of(c['originalKey']) - pc_of(c['maleKey'])) % 12 == c['maleShift'] % 12, s['id']
     assert 0 <= c['maleShift'] <= 6, s['id']
 
+# 11-2) 2026-11-22 올린 11곡 ZIP·녹화 분석 반영 확인
+NEW11 = {
+    'playlist-157': ('Eb', 'Eb', 83, 3, 4),
+    'playlist-025': ('Em', 'Em', 127, 0, 8),
+    'playlist-190': ('C', 'C', 62, 0, 4),
+    'playlist-186': ('C', 'C', 65, 0, 5),
+    'added-10000-hours': ('A', 'A', 86, 2, 10),
+    'playlist-205': ('A', 'A', 81, 2, 6),
+    'playlist-159': ('C', 'G', 86, 0, 4),
+    'playlist-118': ('B', 'B', 70, 4, 4),
+    'playlist-072': ('Db', 'Db', 99, 1, 5),
+    'playlist-173': ('Bb', 'Bb', 76, 5, 6),
+    'playlist-206': ('F#', 'F#', 66, 6, 4),
+}
+for sid, (ok, mk, bpm, capo, nsec) in NEW11.items():
+    s = by_id[sid]
+    c = s.get('chart') or {}
+    assert (c.get('originalKey'), c.get('maleKey'), c.get('bpm'), c.get('capo')) == (ok, mk, bpm, capo), (sid, c.get('originalKey'), c.get('maleKey'), c.get('bpm'), c.get('capo'))
+    assert len(c.get('sections') or []) == nsec, (sid, len(c.get('sections') or []))
+    assert c.get('status') == 'partial' and c.get('note'), sid
+    assert sum(len(x['bars']) for x in c['sections']) >= 50, (sid, '마디 수')
+    assert c['timeSignature'] == '4/4' and c.get('timeNote'), sid
+    assert len(c['slots']) <= 8 and c['evidence'], sid
+# 여성 원곡(키썸)만 -5반음, 남성 원곡·자체 분석 곡은 원키 유지
+assert by_id['playlist-159']['chart']['maleShift'] == 5 and by_id['playlist-159']['maleKey'] == 'G'
+for sid in ('playlist-157', 'playlist-025', 'playlist-190', 'playlist-186', 'added-10000-hours',
+            'playlist-205', 'playlist-118', 'playlist-173', 'playlist-206'):
+    assert by_id[sid]['chart']['maleShift'] == 0, sid
+# 10,000 Hours는 Macklemore ‘Ten Thousand Hours’와 별개 레코드
+assert by_id['added-10000-hours']['verification'] == 'added-by-user'
+assert by_id['added-10000-hours']['sourceIndices'] == [] and by_id['added-10000-hours']['title'] == '10,000 Hours'
+assert by_id['verified-004']['title'] == 'Ten Thousand Hours' and by_id['verified-004']['artist'].startswith('Macklemore')
+
 print('OK: 곡 200 (기존 25 + 복원·확인 19 + 공개 영상 155 + 추천 1)')
 entry = [s for s in songs if s['id'].startswith(('verified-', 'restored-')) or s['verification'] in ('added-by-user', 'imported')]
-assert len(entry) == 44, len(entry)
+assert len(entry) == 45, len(entry)
 print(f"OK: 전체 {len(songs)}개 항목 — 악보 완료 {len(ready)}(서로 다른 곡 {meta['uniqueChartSongCount']}) · 부분 확인 {len(partial)} · 검수 대기 {len(pending)} · "
       f"비음악·참고 {meta['nonMusicCount']} · 자작곡 {meta['originalWorkCount']}")
 print(f"OK: 곡으로 등록된 {len(entry)}곡 중 악보 준비 {len([s for s in entry if s['chartStatus'] == 'ready'])}곡")

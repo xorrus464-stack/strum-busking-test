@@ -666,3 +666,8 @@ FEMALE_ORIGINAL = {
     "verified-002", "verified-007", "verified-010",
     "restored-096", "restored-119", "restored-130", "restored-131", "restored-132", "restored-151",
 }
+
+# 2026-11-22 주성 님이 올린 11곡 ZIP·녹화 자동분석 → 4박 마디 차트
+from audio_charts_2026_11_22 import AUDIO_CHARTS  # noqa: E402
+
+CHARTS.update(AUDIO_CHARTS)

@@ -182,7 +182,7 @@ PLAYLIST = {
     'playlist-069': ('music', 'kkum-deungbul', '너의 이름은 OST 커버'),
     'playlist-070': ('reference', '', '숏츠(곡명 확인 불가)'),
     'playlist-071': ('reference', '', '자작/커버 영상(곡명 확인 불가)'),
-    'playlist-072': ('original', '', '채널 자작곡 「커피」'),
+    'playlist-072': ('original', '', '나의 노래 메모장(nanome)이 2025-08-04 발표한 「Coffee」 — 채널 제목의 “자작곡”은 nanome 본인 곡이라는 뜻(주성 님 자작 아님)'),
     'playlist-073': ('music', 'staywithme', '松原みき 원곡 커버'),
     'playlist-075': ('music', 'suzume', '스즈메의 문단속 OST 커버'),
     'playlist-076': ('reference', '', '요리 레시피 영상'),
