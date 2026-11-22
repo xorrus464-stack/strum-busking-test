@@ -6,10 +6,16 @@
   "originalReportedCuratedSongCount": 152,
   "reportedInaccessibleVideoCount": 42,
   "recoveredOriginalSongCount": 25,
-  "sourceDisclosure": "원본 Sites 소스/DB/152곡 전체를 추출하지 못함. 이전 대화에서 확인된 25개 곡 항목(가수 미확인 1개)과 독립 추천곡 1개만 포함. 211은 원본 영상 번호 슬롯일 뿐 실제 영상 정보가 모두 있는 것은 아님. 42개 접근 불가 영상의 번호는 불명.",
+  "sourceDisclosure": "원본 152곡 전체 데이터는 여전히 미확보. 2026-11-22 확인한 재생목록 210개 항목 중 공개 168개 영상의 제목·URL과 접근 불가 42개의 사유·영상 ID를 슬롯에 기록했고, 아카이브 복원 17곡 + 사용자 확인 2곡을 곡으로 추가했다. 가수·코드·남자 키·BPM은 확인 전 값을 비워 두었다. 211은 원본 영상 번호 슬롯이다.",
   "fullyNamedSongCount": 24,
   "partialNamedSongCount": 1,
   "additionalRecommendedSongCount": 1,
   "originalPlaylist": "https://www.youtube.com/playlist?list=PLdOy20BJp9XElDHDvAJI6mUG48BmfDX-y",
-  "playlistId": "PLdOy20BJp9XElDHDvAJI6mUG48BmfDX-y"
+  "playlistId": "PLdOy20BJp9XElDHDvAJI6mUG48BmfDX-y",
+  "seedVersion": 3,
+  "playlistCollectedCount": 210,
+  "playlistPublicVideoCount": 168,
+  "playlistInaccessibleVideoCount": 42,
+  "restoredSongCount": 19,
+  "songEntryCount": 200
 }

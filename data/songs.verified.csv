@@ -1,26 +1,26 @@
-﻿id,title,artist,sourceIndices,verification,videoUrl,audioUrl,key,maleKey,bpm,chords,chordStatus,strumming,level,notes,setlist
-verified-001,오늘,오왠 (O.WHEN),,site-top3,,,미확정,미확정,,,미확인,,미착수,,false
-verified-002,민들레,우효 (OOHYO),,site-top3,,,미확정,미확정,,,미확인,,미착수,,false
-verified-003,Thank You,Dido,,site-top3,,,미확정,미확정,,,미확인,,미착수,,false
-verified-004,Ten Thousand Hours,Macklemore & Ryan Lewis,2,user-verified,,,미확정,미확정,,,미확인,,미착수,,false
-verified-005,추억이면,부활,6,user-verified,,,미확정,미확정,,,미확인,,미착수,,false
-verified-006,희재,성시경,6,user-verified,,,미확정,미확정,,,미확인,,미착수,,false
-verified-007,한숨,이하이,6,user-verified,,,미확정,미확정,,,미확인,,미착수,,false
-verified-008,내가 너의 곁에 잠시 살았다는 걸,토이,6,user-verified,,,미확정,미확정,,,미확인,,미착수,,false
-verified-009,예뻤어,DAY6,6,user-verified,,,미확정,미확정,,,미확인,,미착수,,false
-verified-010,도망가자,선우정아,6,user-verified,,,미확정,미확정,,,미확인,,미착수,,false
-verified-011,청혼,노을,6,user-verified,,,미확정,미확정,,,미확인,,미착수,,false
-verified-012,TOMBOY,혁오,20,user-verified,,,미확정,미확정,,,미확인,,미착수,,false
-verified-013,Flower,오반,65,user-verified,,,미확정,미확정,,,미확인,,미착수,,false
-verified-014,死別 (feat. GUMI),Shannon,65,user-verified,,,미확정,미확정,,,미확인,,미착수,,false
-verified-015,Englishman in New York,Sting,70,user-verified,,,미확정,미확정,,,미확인,,미착수,,false
-verified-016,How To Cry,Sam Smith,74,user-verified,,,미확정,미확정,,,미확인,,미착수,,false
-verified-017,나는 버려질 장난감,아소 · 아날로그소년,108,user-verified,,,미확정,미확정,,,미확인,,미착수,과거 자동분석 코드 후보: Db → F계열 → Bbm → Gb → Gbm. 청음 검수 미완료. 확정 코드로 사용 금지.,false
-verified-018,たぶん (아마도),YOASOBI,109,user-verified,,,미확정,미확정,,,미확인,,미착수,,false
-verified-019,생각을 멈추다 보면,최유리,165,user-verified,,,미확정,미확정,,,미확인,,미착수,,false
-verified-020,오르막길,윤종신,169,user-verified,,,미확정,미확정,,,미확인,,미착수,,false
-verified-021,날씨가 좋고 바람도 좋아,가수 미확인,172,user-title-only,,,미확정,미확정,,,미확인,,미착수,"이 곡의 가수, 정확한 영상 주소, 코드, 남자 키는 미확인. 이름과 원본 번호만 사용자가 지정함.",false
-verified-022,세상이 그대를 속일지라도,김장훈,197,user-verified,,,미확정,미확정,,,미확인,,미착수,,false
-verified-023,사랑한 마음엔 죄가 없다,소란,201,user-verified,,,미확정,미확정,,,미확인,,미착수,,false
-verified-024,닮은사람,이기찬,203,user-verified,,,미확정,미확정,,,미확인,,미착수,,false
-verified-025,히로인,back number,211,user-verified,,,미확정,미확정,,,미확인,,미착수,,false
+﻿id,title,artist,sourceIndices,verification,videoUrl,videoStatus,audioUrl,key,maleKey,bpm,chords,chordStatus,strumming,level,tags,notes,setlist
+verified-001,오늘,오왠 (O.WHEN),21,site-top3,https://www.youtube.com/watch?v=RE2AgFBJ80E,공개 영상(원곡),,미확정,미확정,,,미확인,,미착수,입문 후보,"공개 영상 확인(2026-11-22): 재생목록 #21 「음원차트 역주행 신화, 감성 보컬 오왠의 자작곡 ‘오늘’」 (RE2AgFBJ80E).",false
+verified-002,민들레,우효 (OOHYO),105,site-top3,https://www.youtube.com/watch?v=Qw48FXivjYY,공개 영상(커버),,미확정,미확정,,,미확인,,미착수,입문 후보,공개 영상 확인(2026-11-22): 재생목록 #105 「우효(OOHYO) - 민들레 (Cover by 하현상 Ha Hyunsang)」 (Qw48FXivjYY). 원곡자가 아닌 커버 영상.,false
+verified-003,Thank You,Dido,28,site-top3,https://www.youtube.com/watch?v=1QmhbcZPZZE,공개 영상(커버),,미확정,미확정,,,미확인,,미착수,입문 후보,공개 영상 확인(2026-11-22): 재생목록 #28 「Dido - Thank You 남자커버」 (1QmhbcZPZZE).,false
+verified-004,Ten Thousand Hours,Macklemore & Ryan Lewis,2,user-verified,,영상 미확인,,미확정,미확정,,,미확인,,미착수,,원본 #2 슬롯의 현재 재생목록 영상은 「나보다 못부르네」(KcTFE8g7UN8)이며 Ten Thousand Hours 영상으로 확인되지 않아 연결하지 않음.,false
+verified-005,추억이면,부활,6,user-verified,,영상 미확인,,미확정,미확정,,,미확인,,미착수,,원본 #6 묶음 영상은 현재 재생목록에서 이 곡으로 확인되지 않아 영상 링크를 연결하지 않음.,false
+verified-006,희재,성시경,6,user-verified,,영상 미확인,,미확정,미확정,,,미확인,,미착수,,원본 #6 묶음 영상은 현재 재생목록에서 이 곡으로 확인되지 않아 영상 링크를 연결하지 않음.,false
+verified-007,한숨,이하이,6,user-verified,,영상 미확인,,미확정,미확정,,,미확인,,미착수,,원본 #6 묶음 영상은 현재 재생목록에서 이 곡으로 확인되지 않아 영상 링크를 연결하지 않음.,false
+verified-008,내가 너의 곁에 잠시 살았다는 걸,토이,6,user-verified,,영상 미확인,,미확정,미확정,,,미확인,,미착수,,원본 #6 묶음 영상은 현재 재생목록에서 이 곡으로 확인되지 않아 영상 링크를 연결하지 않음.,false
+verified-009,예뻤어,DAY6,6,user-verified,,영상 미확인,,미확정,미확정,,,미확인,,미착수,,원본 #6 묶음 영상은 현재 재생목록에서 이 곡으로 확인되지 않아 영상 링크를 연결하지 않음.,false
+verified-010,도망가자,선우정아,6,user-verified,,영상 미확인,,미확정,미확정,,,미확인,,미착수,,원본 #6 묶음 영상은 현재 재생목록에서 이 곡으로 확인되지 않아 영상 링크를 연결하지 않음.,false
+verified-011,청혼,노을,6,user-verified,,영상 미확인,,미확정,미확정,,,미확인,,미착수,,원본 #6 묶음 영상은 현재 재생목록에서 이 곡으로 확인되지 않아 영상 링크를 연결하지 않음.,false
+verified-012,TOMBOY,혁오,20,user-verified,,영상 미확인,,미확정,미확정,,,미확인,,미착수,,"원본 #20 슬롯의 현재 영상은 혁오 곡 커버(카더가든, QYxrJAkD81c)로 TOMBOY 영상인지 확인되지 않아 연결하지 않음.",false
+verified-013,Flower,오반,65,user-verified,,영상 미확인,,미확정,미확정,,,미확인,,미착수,,원본 #65 슬롯의 현재 영상은 死別(8PCQyS6BBmg)이며 Flower 영상으로 확인되지 않음. #29는 로이킴이 부른 Flower 커버(Fn9tOOYXXKs)로 원본 영상이 아님.,false
+verified-014,死別 (feat. GUMI),Shannon,65,user-verified,https://www.youtube.com/watch?v=8PCQyS6BBmg,공개 영상(커버),,미확정,미확정,,,미확인,,미착수,,공개 영상 확인(2026-11-22): 재생목록 #65 「사별 死別」 (8PCQyS6BBmg).,false
+verified-015,Englishman in New York,Sting,70,user-verified,,영상 미확인,,미확정,미확정,,,미확인,,미착수,,원본 #70 슬롯의 현재 영상은 「매너가 사람을 만든다ㄷㄷ」(tr2rrgupEzM)로 Englishman in New York 영상으로 확인되지 않음.,false
+verified-016,How To Cry,Sam Smith,74,user-verified,https://www.youtube.com/watch?v=YRwLtKsgvW4,공개 영상(커버),,미확정,미확정,,,미확인,,미착수,,공개 영상 확인(2026-11-22): 재생목록 #74 「how to cry 커버」 (YRwLtKsgvW4).,false
+verified-017,나는 버려질 장난감,아소 · 아날로그소년,108,user-verified,https://www.youtube.com/watch?v=YJdyPtShNvE,공개 영상(원곡),,미확정,미확정,,,미확인,,미착수,,과거 자동분석 코드 후보: Db → F계열 → Bbm → Gb → Gbm. 청음 검수 미완료. 확정 코드로 사용 금지. 공개 영상 확인(2026-11-22): 재생목록 #108 아소 - 나는 버려질 장난감 (YJdyPtShNvE).,false
+verified-018,たぶん (아마도),YOASOBI,109,user-verified,https://www.youtube.com/watch?v=dvywQM3UqGM,공개 영상(커버),,미확정,미확정,,,미확인,,미착수,,공개 영상 확인(2026-11-22): 재생목록 #109 YOASOBI - 아마도 cover (dvywQM3UqGM).,false
+verified-019,생각을 멈추다 보면,최유리,165,user-verified,,영상 미확인,,미확정,미확정,,,미확인,,미착수,,원본 #165 슬롯의 현재 영상은 「내 손을 잡아 레전드 파트…」로 이 곡이 아님. 관련 영상은 #170·#174(박진영 파트)뿐이며 원곡 영상은 확인되지 않음.,false
+verified-020,오르막길,윤종신,169,user-verified,,영상 미확인,,미확정,미확정,,,미확인,,미착수,,원본 #169 슬롯의 현재 영상은 소수빈 - 더 아름다워져(UAfwlN2__kc)로 오르막길 영상이 아님.,false
+verified-021,날씨가 좋고 바람도 좋아,가수 미확인,171|172,user-title-only,https://www.youtube.com/watch?v=ctwIj615b18,공개 영상(원곡),,미확정,미확정,,,미확인,,미착수,,"이 곡의 가수, 정확한 영상 주소, 코드, 남자 키는 미확인. 이름과 원본 번호만 사용자가 지정함. 공개 영상 확인(2026-11-22): 재생목록 #171 「날씨가좋고 바람도 좋아2」 (ctwIj615b18) — 기존 원본 번호 #172와 1 차이. 가수는 여전히 미확인.",false
+verified-022,세상이 그대를 속일지라도,김장훈,197,user-verified,,영상 미확인,,미확정,미확정,,,미확인,,미착수,,원본 #197 슬롯의 현재 영상은 유영우 숏츠(Uq56vKHRXQI)로 이 곡 영상이 아님.,false
+verified-023,사랑한 마음엔 죄가 없다,소란,201,user-verified,,영상 미확인,,미확정,미확정,,,미확인,,미착수,,"원본 #201 슬롯은 사용자 확인 결과 블락비 - HER 곡으로 밝혀짐. 이 곡(소란)과 같은 번호에 있는 번호 대응 불일치로, 기존 기록을 보존한 채 둘 다 유지. 영상은 재생 불가(업로더 삭제).",false
+verified-024,닮은사람,이기찬,202|203,user-verified,https://www.youtube.com/watch?v=JIEuvqny0yc,공개 영상(원곡),,미확정,미확정,,,미확인,,미착수,,공개 영상 확인(2026-11-22): 재생목록 #202 「X에서 난리 난 엑디즈 주연 '닮은 사람' 라이브 #이기찬 #주연」 (JIEuvqny0yc) — 기존 원본 번호 #203과 1 차이.,false
+verified-025,히로인,back number,211,user-verified,,영상 미확인,,미확정,미확정,,,미확인,,미착수,,현재 재생목록은 210개 항목까지이며 #211 영상은 확인되지 않음. 영상 링크 없음.,false
