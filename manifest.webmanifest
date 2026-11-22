@@ -1,1 +1,41 @@
-{"name":"STRUM · 나의 버스킹 여정","short_name":"STRUM","lang":"ko","start_url":"./","display":"standalone","background_color":"#f8f5ee","theme_color":"#f8f5ee","description":"에어로밴드 기타 연습과 버스킹 곡 관리"}
+{
+  "name": "STRUM · 나의 버스킹 여정",
+  "short_name": "STRUM",
+  "lang": "ko",
+  "dir": "ltr",
+  "description": "에어로밴드 기타 연습과 버스킹 곡 관리 — 원터치 컬러 악보, 남자키, 로드맵.",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "display_override": ["standalone", "minimal-ui"],
+  "orientation": "any",
+  "background_color": "#f8f5ee",
+  "theme_color": "#f8f5ee",
+  "categories": ["education", "music"],
+  "icons": [
+    {
+      "src": "icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
+    },
+    {
+      "src": "icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    }
+  ]
+}

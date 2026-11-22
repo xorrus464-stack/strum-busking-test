@@ -49,6 +49,8 @@
 
 **MR(반주):** 곡 카드와 악보 화면의 `MR` 버튼은 등록된 MR 영상을 미니 플레이어에서 재생합니다. MR이 없는 곡은 `MR 없음`(점선·흐림)으로 표시되고, 누르면 안내와 함께 YouTube MR 검색(`곡명 가수 MR inst`) 링크, URL 붙여넣기 저장 창이 열립니다. 저장한 링크는 그 브라우저에 보관되며 새 시드 병합 때 덮어쓰지 않습니다(`mrEdited`).
 
+**홈 화면에 추가 / 앱 설치(PWA):** Android Chrome에서 주소창 메뉴 → `홈 화면에 추가`(또는 `앱 설치`)로 바탕화면 아이콘을 만들 수 있습니다. 아이콘은 `icon.svg`·`icon-192.png`·`icon-512.png`(maskable 포함)·`icon-180.png`(iOS)이고, `manifest.webmanifest`에 `scope`·`icons`가 들어 있습니다. `sw.js`는 앱 셸만 캐시하는 **network-first** 서비스 워커라 새 배포가 항상 먼저 반영되고, `media/*.mp3` 반주 음원과 구간(Range) 요청은 캐시하지 않습니다. 아이콘을 다시 구울 때는 `python3 tools/make_icons.py`, 설치 요건을 점검할 때는 `python3 tools/pwa_check.py`를 실행합니다(미리보기 `docs/screenshots/icon-preview.png`).
+
 **기록:** localStorage(`strum-busking-v2`)를 사용해 **같은 브라우저**에서는 유지되지만 다른 휴대전화로 자동 동기화되지는 않습니다. 주기적으로 전체 JSON을 백업하십시오. 새 시드는 `seedVersion`으로 한 번만 병합되며, 기존 연습 기록·숙련도·세트리스트·직접 고친 값은 덮어쓰지 않습니다.
 
 ## 실행

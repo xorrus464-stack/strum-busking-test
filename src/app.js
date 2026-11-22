@@ -548,5 +548,12 @@
   document.addEventListener('keydown',e=>{if(e.key==='Escape'&&modal)closeModal();});
   window.addEventListener('resize',()=>{if(mini)syncMiniHeight();});
   window.addEventListener('beforeunload',()=>{stopMetro();});
+  /* 홈 화면에 추가 / 앱 설치(PWA) — 서비스 워커 등록. 실패해도 앱 동작에는 영향 없음. */
+  try {
+    if (typeof navigator !== 'undefined' && navigator.serviceWorker && typeof location !== 'undefined'
+        && (location.protocol === 'https:' || /^(localhost|127\.0\.0\.1|\[::1\])$/.test(location.hostname))) {
+      window.addEventListener('load', () => { navigator.serviceWorker.register('./sw.js').catch(() => {}); });
+    }
+  } catch (err) { console.warn('서비스 워커 등록을 건너뜁니다.', err); }
   render();
 })();
