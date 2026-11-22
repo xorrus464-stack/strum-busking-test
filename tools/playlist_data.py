@@ -318,7 +318,7 @@ OVERRIDES = {
         'stroke': '↓ · ↓↑ · ↓↑ (66bpm 느린 8분)',
         'why': '원키 Eb은 남성에게 높다. -2키 Db로 부르고 카포로 맞춘다.',
         'evidence': [
-            ('ChordU 코드표', 'https://chordu.com/chords-tabs-exo-k-what-is-love-chords-mv-korean-ver--id_', 'Tempo 66.15bpm · Chords Eb Ab Cm Fm Bb'),
+            ('ChordU 코드표(EXO-K 한국어 MV)', 'https://chordu.com/chords-tabs-exo-k-%EC%97%91%EC%86%8C%EC%BC%80%EC%9D%B4-what-is-love-mv-korean-ver--id_t6fPzVNIEB0', 'Tempo 66.15bpm · Chords Eb Ab Cm Fm Bb'),
         ],
     },
     'her': {
@@ -328,7 +328,8 @@ OVERRIDES = {
         'stroke': '빠른 8분(162bpm) · 랩 파트는 코드 유지',
         'why': '힙합 트랙이라 기타 반주 코드표가 없다. 원터치에서는 Cm 하나로 리듬만 잡는 연습부터.',
         'evidence': [
-            ('ChordU 키·BPM', 'https://chordu.com/charts-tabs-her-' , 'Key Cm · 162bpm'),
+            ('ChordU 코드표(BLOCK B HER MV)', 'https://chordu.com/chords-tabs-%EB%B8%94%EB%9D%BD%EB%B9%84-block-b-her-mv-id_o0WCva5Stk4', 'Key Cm · 162bpm'),
+            ('코드스코어 곡 정보(Cm·162bpm)', 'https://chordscore.com/notes/9038', '원키 Cm · 4/4 · 162bpm'),
         ],
     },
     'yeppeo': {
@@ -350,7 +351,7 @@ OVERRIDES = {
         'why': '노을 원곡은 화음이 두껍다. 원터치로 멜로디를 먼저 잡고 정식 코드로 넓힌다.',
         'evidence': [
             ('악보바다 원키 E', 'https://www.akbobada.com/musicDetail.html?musicID=48233', '원키 E(마장조)'),
-            ('Chordscore (4/4, 70bpm)', 'https://chordscore.com/notes/', 'Key E · 4/4 · 70bpm'),
+            ('Chordscore 코드 악보(원키 E, 4/4, 70bpm)', 'https://chordscore.com/notes/1298', 'Key E · 4/4 · 70bpm'),
         ],
     },
 }

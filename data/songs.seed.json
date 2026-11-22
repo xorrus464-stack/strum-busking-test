@@ -2671,8 +2671,8 @@
           "note": "원키 E(마장조)"
         },
         {
-          "label": "Chordscore (4/4, 70bpm)",
-          "url": "https://chordscore.com/notes/",
+          "label": "Chordscore 코드 악보(원키 E, 4/4, 70bpm)",
+          "url": "https://chordscore.com/notes/1298",
           "note": "Key E · 4/4 · 70bpm"
         }
       ],
@@ -9550,8 +9550,8 @@
       "basis": "코드표 순서를 4박 마디 카드로 정리한 연습용 배치입니다. 원곡의 세부 마디 배치와 다를 수 있습니다.",
       "evidence": [
         {
-          "label": "ChordU 코드표",
-          "url": "https://chordu.com/chords-tabs-exo-k-what-is-love-chords-mv-korean-ver--id_",
+          "label": "ChordU 코드표(EXO-K 한국어 MV)",
+          "url": "https://chordu.com/chords-tabs-exo-k-%EC%97%91%EC%86%8C%EC%BC%80%EC%9D%B4-what-is-love-mv-korean-ver--id_t6fPzVNIEB0",
           "note": "Tempo 66.15bpm · Chords Eb Ab Cm Fm Bb"
         }
       ],
@@ -9796,9 +9796,14 @@
       "basis": "코드표 순서를 4박 마디 카드로 정리한 연습용 배치입니다. 원곡의 세부 마디 배치와 다를 수 있습니다.",
       "evidence": [
         {
-          "label": "ChordU 키·BPM",
-          "url": "https://chordu.com/charts-tabs-her-",
+          "label": "ChordU 코드표(BLOCK B HER MV)",
+          "url": "https://chordu.com/chords-tabs-%EB%B8%94%EB%9D%BD%EB%B9%84-block-b-her-mv-id_o0WCva5Stk4",
           "note": "Key Cm · 162bpm"
+        },
+        {
+          "label": "코드스코어 곡 정보(Cm·162bpm)",
+          "url": "https://chordscore.com/notes/9038",
+          "note": "원키 Cm · 4/4 · 162bpm"
         }
       ],
       "note": "원키 Cm·162bpm은 확인했고, 기타 코드표는 확인하지 못했습니다."
