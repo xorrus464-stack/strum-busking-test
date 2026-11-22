@@ -195,6 +195,19 @@ def main():
         if sources[idx]['status'] == '확인':
             sources[idx]['note'] += ' · 기존 기록의 곡도 이 번호에 연결되어 있으나 영상 대응은 확인되지 않음(번호 대응 규칙 미확정).'
 
+    # 2-1) 접근 불가 슬롯에 복원 곡명/미복원 사유를 함께 남긴다.
+    for idx in range(1, 211):
+        if sources[idx]['status'] != '접근 불가':
+            continue
+        if idx in USER_CONFIRMED:
+            title, artist = USER_CONFIRMED[idx]
+            sources[idx]['note'] += f' · 복원된 곡(사용자 확인): {artist} - {title}'
+        elif idx in ARCHIVE:
+            title, artist, _full = ARCHIVE[idx]
+            sources[idx]['note'] += f' · 복원된 곡(아카이브): {artist} - {title}'
+        else:
+            sources[idx]['note'] += ' · 곡명 미복원(공개 출처로 확인 불가)'
+
     # 3) 공개 영상 중 기존 25곡에 없는 것 → 곡 추가
     #    같은 영상이 두 번 들어간 198/199, 208/209는 한 곡에 두 슬롯을 연결한다.
     matched_slots = {slot for slot, _, _ in MATCHED.values()}
