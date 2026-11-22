@@ -323,7 +323,12 @@
     "chartNote": "",
     "timeSignature": "4/4",
     "chartStage": 3,
-    "category": "chart"
+    "category": "chart",
+    "mrUrl": "https://www.youtube.com/watch?v=lZUnv5nimGA",
+    "mrTitle": "[TJ노래방 / 멜로디제거] 오늘 - 오왠 / TJ Karaoke",
+    "mrChannel": "TJ노래방 공식 유튜브채널",
+    "mrNote": "TJ노래방 공식 유튜브채널 · 검색 '오왠 오늘 inst' · YouTube oEmbed 200 확인(2026-11-22)",
+    "mrSource": "youtube"
   },
   {
     "id": "verified-002",
@@ -703,7 +708,12 @@
     "chartNote": "",
     "timeSignature": "4/4",
     "chartStage": 3,
-    "category": "chart"
+    "category": "chart",
+    "mrUrl": "https://www.youtube.com/watch?v=Qu4g966XC-0",
+    "mrTitle": "[TJ노래방] 민들레(Single Ver.) - 우효 / TJ Karaoke",
+    "mrChannel": "TJ노래방 공식 유튜브채널",
+    "mrNote": "TJ노래방 공식 유튜브채널 · 검색 '우효 민들레 inst' · YouTube oEmbed 200 확인(2026-11-22)",
+    "mrSource": "youtube"
   },
   {
     "id": "verified-003",
@@ -952,7 +962,12 @@
     "chartNote": "",
     "timeSignature": "4/4",
     "chartStage": 1,
-    "category": "chart"
+    "category": "chart",
+    "mrUrl": "https://www.youtube.com/watch?v=ot_0Hpc3RSY",
+    "mrTitle": "Thank You (In the Style of Dido) (Karaoke Version)",
+    "mrChannel": "Ameritz Karaoke Band - Topic",
+    "mrNote": "Ameritz Karaoke Band - Topic · 검색 'Dido Thank You MR' · YouTube oEmbed 200 확인(2026-11-22)",
+    "mrSource": "youtube"
   },
   {
     "id": "verified-004",
@@ -1077,7 +1092,12 @@
       "note": "원곡 가수·키(E♭m 참고)·83bpm·4/4·코드 후보(B→G♭→B♭m→E♭m)만 확인한 부분 확인 상태입니다. 힙합 트랙이라 기타 반주 정식 악보가 없고, 코드는 온라인 코드표 후보를 4박 카드로 정리한 연습용입니다. BPM은 사이트별 80~85로 차이가 있어 원음에 맞춰 확인이 필요하고, 악보 원문은 복제하지 않고 열람 링크만 연결합니다."
     },
     "timeSignature": "4/4",
-    "chartStage": 1
+    "chartStage": 1,
+    "mrUrl": "https://www.youtube.com/watch?v=HrhYhV2iulk",
+    "mrTitle": "Ten Thousand Hours Instrumental - Macklemore & Ryan Lewis",
+    "mrChannel": "mclewett23",
+    "mrNote": "mclewett23 · 검색 'Macklemore & Ryan Lewis Ten Thousand Hours inst' · YouTube oEmbed 200 확인(2026-11-22)",
+    "mrSource": "youtube"
   },
   {
     "id": "verified-005",
@@ -1320,7 +1340,12 @@
       ]
     },
     "timeSignature": "4/4",
-    "chartStage": 3
+    "chartStage": 3,
+    "mrUrl": "https://www.youtube.com/watch?v=JwB7RFo-1fI",
+    "mrTitle": "[TJ노래방] 추억이면 - 부활 / TJ Karaoke",
+    "mrChannel": "TJ노래방 공식 유튜브채널",
+    "mrNote": "TJ노래방 공식 유튜브채널 · 검색 '부활 추억이면 inst' · YouTube oEmbed 200 확인(2026-11-22)",
+    "mrSource": "youtube"
   },
   {
     "id": "verified-006",
@@ -1661,7 +1686,12 @@
     "chartNote": "",
     "timeSignature": "4/4",
     "chartStage": 3,
-    "category": "chart"
+    "category": "chart",
+    "mrUrl": "https://www.youtube.com/watch?v=3gfZa__IVEM",
+    "mrTitle": "[TJ노래방 / 멜로디제거] 희재(국화꽃향기OST) - 성시경 / TJ Karaoke",
+    "mrChannel": "TJ노래방 공식 유튜브채널",
+    "mrNote": "TJ노래방 공식 유튜브채널 · 검색 '성시경 희재 inst' · YouTube oEmbed 200 확인(2026-11-22)",
+    "mrSource": "youtube"
   },
   {
     "id": "verified-007",
@@ -1939,7 +1969,12 @@
     "chartNote": "",
     "timeSignature": "4/4",
     "chartStage": 1,
-    "category": "chart"
+    "category": "chart",
+    "mrUrl": "https://www.youtube.com/watch?v=PJwPhFGk0pI",
+    "mrTitle": "[TJ노래방 / 멜로디제거] 한숨 - 이하이 / TJ Karaoke",
+    "mrChannel": "TJ노래방 공식 유튜브채널",
+    "mrNote": "TJ노래방 공식 유튜브채널 · 검색 '이하이 한숨 inst' · YouTube oEmbed 200 확인(2026-11-22)",
+    "mrSource": "youtube"
   },
   {
     "id": "verified-008",
@@ -2206,7 +2241,12 @@
     "chartNote": "",
     "timeSignature": "4/4",
     "chartStage": 3,
-    "category": "chart"
+    "category": "chart",
+    "mrUrl": "https://www.youtube.com/watch?v=V1YsWxRIsXs",
+    "mrTitle": "[TJ노래방 / 멜로디제거] 내가너의곁에잠시살았다는걸 - 토이 / TJ Karaoke",
+    "mrChannel": "TJ노래방 공식 유튜브채널",
+    "mrNote": "TJ노래방 공식 유튜브채널 · 검색 '토이 내가 너의 곁에 잠시 살았다는 걸 inst' · YouTube oEmbed 200 확인(2026-11-22)",
+    "mrSource": "youtube"
   },
   {
     "id": "verified-009",
@@ -3362,7 +3402,12 @@
     "chartNote": "",
     "timeSignature": "4/4",
     "category": "chart",
-    "chartStage": 2
+    "chartStage": 2,
+    "mrUrl": "https://www.youtube.com/watch?v=drJFHUirsEU",
+    "mrTitle": "[TJ노래방] 예뻤어 - 데이식스(DAY6) / TJ Karaoke",
+    "mrChannel": "TJ노래방 공식 유튜브채널",
+    "mrNote": "TJ노래방 공식 유튜브채널 · 검색 'DAY6 예뻤어 inst' · YouTube oEmbed 200 확인(2026-11-22)",
+    "mrSource": "youtube"
   },
   {
     "id": "verified-010",
@@ -3662,7 +3707,12 @@
     "chartNote": "",
     "timeSignature": "4/4",
     "chartStage": 2,
-    "category": "chart"
+    "category": "chart",
+    "mrUrl": "https://www.youtube.com/watch?v=RS-p9j49RkY",
+    "mrTitle": "[TJ노래방 / 멜로디제거] 도망가자 - 선우정아 / TJ Karaoke",
+    "mrChannel": "TJ노래방 공식 유튜브채널",
+    "mrNote": "TJ노래방 공식 유튜브채널 · 검색 '선우정아 도망가자 inst' · YouTube oEmbed 200 확인(2026-11-22)",
+    "mrSource": "youtube"
   },
   {
     "id": "verified-011",
@@ -3875,7 +3925,12 @@
     "chartNote": "원키 E·4/4·70bpm 확인. 전체 마디 코드는 유료 악보에만 있어 공개 미리보기 12마디(도입부)만 등록했습니다.",
     "timeSignature": "4/4",
     "category": "partial",
-    "chartStage": 3
+    "chartStage": 3,
+    "mrUrl": "https://www.youtube.com/watch?v=ifgPY8wg5-k",
+    "mrTitle": "[TJ노래방] 청혼 - 노을 / TJ Karaoke",
+    "mrChannel": "TJ노래방 공식 유튜브채널",
+    "mrNote": "TJ노래방 공식 유튜브채널 · 검색 '청혼 TJ노래방' · YouTube oEmbed 200 확인(2026-11-22)",
+    "mrSource": "youtube"
   },
   {
     "id": "verified-012",
@@ -4176,7 +4231,12 @@
     "chartNote": "",
     "timeSignature": "4/4",
     "chartStage": 2,
-    "category": "chart"
+    "category": "chart",
+    "mrUrl": "https://www.youtube.com/watch?v=bPRhyZ2aiQQ",
+    "mrTitle": "[TJ노래방 / 멜로디제거] Tomboy - 혁오 / TJ Karaoke",
+    "mrChannel": "TJ노래방 공식 유튜브채널",
+    "mrNote": "TJ노래방 공식 유튜브채널 · 검색 '혁오 TOMBOY inst' · YouTube oEmbed 200 확인(2026-11-22)",
+    "mrSource": "youtube"
   },
   {
     "id": "verified-013",
@@ -4376,7 +4436,12 @@
     "chartNote": "",
     "timeSignature": "4/4",
     "chartStage": 1,
-    "category": "chart"
+    "category": "chart",
+    "mrUrl": "https://www.youtube.com/watch?v=iROfGHXyQRc",
+    "mrTitle": "[Instrumental/MR] 오반(OVAN) - Flower MR(멜로디) (원키) | 모든 키 구매 가능 | 노래방 반주 Karaoke | 엠알샵",
+    "mrChannel": "엠알샵 MR SHOP",
+    "mrNote": "엠알샵 MR SHOP · 검색 '오반 Flower inst' · YouTube oEmbed 200 확인(2026-11-22)",
+    "mrSource": "youtube"
   },
   {
     "id": "verified-014",
@@ -4767,7 +4832,12 @@
       ]
     },
     "timeSignature": "4/4",
-    "chartStage": 3
+    "chartStage": 3,
+    "mrUrl": "https://www.youtube.com/watch?v=cLUNCLUE7pk",
+    "mrTitle": "死別(사별) | feat. GUMI - シャノン(샤논)  노래방  カラオケ",
+    "mrChannel": "LKARA",
+    "mrNote": "노래방 カラオケ(LKARA) · YouTube oEmbed 200 확인(2026-11-22)",
+    "mrSource": "youtube"
   },
   {
     "id": "verified-015",
@@ -5049,7 +5119,12 @@
     "chartNote": "",
     "timeSignature": "4/4",
     "chartStage": 2,
-    "category": "chart"
+    "category": "chart",
+    "mrUrl": "https://www.youtube.com/watch?v=WPLsKTPtirU",
+    "mrTitle": "Englishman in New York / Sting Am(남성)키 #MR #노래방 #반주 #karaoke #カラオケ",
+    "mrChannel": "Pop Song MR TV",
+    "mrNote": "Pop Song MR TV · 검색 'Englishman in New York TJ노래방' · YouTube oEmbed 200 확인(2026-11-22)",
+    "mrSource": "youtube"
   },
   {
     "id": "verified-016",
@@ -5283,7 +5358,12 @@
     "chartNote": "",
     "timeSignature": "4/4",
     "chartStage": 2,
-    "category": "chart"
+    "category": "chart",
+    "mrUrl": "https://www.youtube.com/watch?v=5pnTM_0V9HU",
+    "mrTitle": "Sam Smith - How To Cry - Karaoke Instrumental",
+    "mrChannel": "stringnotes",
+    "mrNote": "stringnotes · 검색 'Sam Smith How To Cry inst' · YouTube oEmbed 200 확인(2026-11-22)",
+    "mrSource": "youtube"
   },
   {
     "id": "verified-017",
@@ -6117,7 +6197,12 @@
     "chartNote": "",
     "timeSignature": "4/4",
     "chartStage": 3,
-    "category": "chart"
+    "category": "chart",
+    "mrUrl": "https://www.youtube.com/watch?v=LFl5Z2vl9GE",
+    "mrTitle": "たぶん (カラオケ) (原曲歌手:YOASOBI)",
+    "mrChannel": "歌っちゃ王 - Topic",
+    "mrNote": "カラオケ(歌っちゃ王 - Topic) · YouTube oEmbed 200 확인(2026-11-22)",
+    "mrSource": "youtube"
   },
   {
     "id": "verified-019",
@@ -6312,7 +6397,12 @@
       ]
     },
     "timeSignature": "6/8",
-    "chartStage": 2
+    "chartStage": 2,
+    "mrUrl": "https://www.youtube.com/watch?v=a3zPnhgglFw",
+    "mrTitle": "[TJ노래방 / 멜로디제거] 생각을멈추다보면 - 최유리 / TJ Karaoke",
+    "mrChannel": "TJ노래방 공식 유튜브채널",
+    "mrNote": "TJ노래방 공식 유튜브채널 · 검색 '최유리 생각을 멈추다 보면 inst' · YouTube oEmbed 200 확인(2026-11-22)",
+    "mrSource": "youtube"
   },
   {
     "id": "verified-020",
@@ -6526,7 +6616,12 @@
     "chartNote": "",
     "timeSignature": "4/4",
     "chartStage": 2,
-    "category": "chart"
+    "category": "chart",
+    "mrUrl": "https://www.youtube.com/watch?v=o5Ad8Asr7tg",
+    "mrTitle": "[TJ노래방 / 멜로디제거] 오르막길 - 윤종신 / TJ Karaoke",
+    "mrChannel": "TJ노래방 공식 유튜브채널",
+    "mrNote": "TJ노래방 공식 유튜브채널 · 검색 '윤종신 오르막길 inst' · YouTube oEmbed 200 확인(2026-11-22)",
+    "mrSource": "youtube"
   },
   {
     "id": "verified-021",
@@ -7860,7 +7955,12 @@
     "chartNote": "",
     "timeSignature": "4/4",
     "chartStage": 3,
-    "category": "chart"
+    "category": "chart",
+    "mrUrl": "https://www.youtube.com/watch?v=OodmOD55Cu0",
+    "mrTitle": "[TJ노래방 / 멜로디제거] 세상이그대를속일지라도 - 김장훈 / TJ Karaoke",
+    "mrChannel": "TJ노래방 공식 유튜브채널",
+    "mrNote": "TJ노래방 공식 유튜브채널 · 검색 '김장훈 세상이 그대를 속일지라도 inst' · YouTube oEmbed 200 확인(2026-11-22)",
+    "mrSource": "youtube"
   },
   {
     "id": "verified-023",
@@ -7923,7 +8023,12 @@
     "chartStatus": "partial",
     "chartNote": "원키 Gb만 확인. 코드표·BPM 미확보로 코드 악보는 검수 대기.",
     "timeSignature": "4/4",
-    "category": "partial"
+    "category": "partial",
+    "mrUrl": "https://www.youtube.com/watch?v=pB3YwjNev2A",
+    "mrTitle": "[TJ노래방 / 멜로디제거] 사랑한마음엔죄가없다 - 소란 / TJ Karaoke",
+    "mrChannel": "TJ노래방 공식 유튜브채널",
+    "mrNote": "TJ노래방 공식 유튜브채널 · 검색 '소란 사랑한 마음엔 죄가 없다 inst' · YouTube oEmbed 200 확인(2026-11-22)",
+    "mrSource": "youtube"
   },
   {
     "id": "verified-024",
@@ -8916,7 +9021,12 @@
       "note": "MR 오디오 분석 기반 — 주성 님이 올린 TJ노래방 ‘멜로디제거’ MR 화면 녹화(3분 37초)에서 직접 뽑은 값입니다. 4/4, BPM 64, 원키 D는 화면의 ‘현재음정 남성 D’ 표기와 오디오 실측(킥은 1박과 3박, 스네어는 2박과 4박, 한 마디 3.75초)이 일치합니다. 코드는 8분 격자 크로마와 저역 근음, 박별 스펙트럼 피크를 함께 보고 옮긴 초안이라, 마디 안 패스 코드와 7th/sus 유무는 청음 확인이 필요합니다. 후렴과 후렴 2는 이 MR의 편곡이 서로 달라(저역 진행이 A 중심 / Em 중심) 측정된 코드도 다르게 적었습니다. 이기찬 2025년 버전(작사 조은희, 작곡 조우진)은 테이 2004년 원곡을 다시 부른 곡이라, TJ 화면에도 원곡이 tei로 표기됩니다(테이 원곡 악보 키는 E♭). 마지막 후렴(2:45~)은 반음 올라가 E♭로 조바꿈하므로, 악보는 같은 코드 모양으로 칠 수 있게 D 기준으로 옮겨 적었습니다 — 원키로 부르려면 Capo를 한 칸 더 올리세요. 악보 원문은 복제하지 않고 열람 링크만 연결합니다."
     },
     "timeSignature": "4/4",
-    "chartStage": 3
+    "chartStage": 3,
+    "mrUrl": "https://www.youtube.com/watch?v=o2IIptFFbm8",
+    "mrTitle": "[TJ노래방 / 멜로디제거] 닮은사람 - 이기찬 / TJ Karaoke",
+    "mrChannel": "TJ노래방 공식 유튜브채널",
+    "mrNote": "TJ노래방 공식 · 멜로디제거(ZIP 원본 반주 -qmTiCusjoo는 임베드 제한) · YouTube oEmbed 200 확인(2026-11-22)",
+    "mrSource": "zip"
   },
   {
     "id": "verified-025",
@@ -9272,7 +9382,12 @@
     "chartNote": "",
     "timeSignature": "4/4",
     "chartStage": 3,
-    "category": "chart"
+    "category": "chart",
+    "mrUrl": "https://www.youtube.com/watch?v=_-DpUFmHYx4",
+    "mrTitle": "히로인 - 백넘버(ヒロイン - back number) (KY.43998) / KY Karaoke",
+    "mrChannel": "금영 노래방 공식 유튜브 채널",
+    "mrNote": "금영 노래방 공식 유튜브 채널 · 검색 'back number 히로인 inst' · YouTube oEmbed 200 확인(2026-11-22)",
+    "mrSource": "youtube"
   },
   {
     "id": "restored-093",
@@ -9477,7 +9592,12 @@
       ]
     },
     "timeSignature": "4/4",
-    "chartStage": 1
+    "chartStage": 1,
+    "mrUrl": "https://www.youtube.com/watch?v=lqt4Znd5Hlk",
+    "mrTitle": "[TJ노래방 / 멜로디제거] 무제(Untitled, 2014) - G-DRAGON / TJ Karaoke",
+    "mrChannel": "TJ노래방 공식 유튜브채널",
+    "mrNote": "TJ노래방 공식 · 멜로디제거 · YouTube oEmbed 200 확인(2026-11-22)",
+    "mrSource": "youtube"
   },
   {
     "id": "restored-096",
@@ -9704,7 +9824,12 @@
     "chartNote": "",
     "timeSignature": "4/4",
     "chartStage": 3,
-    "category": "chart"
+    "category": "chart",
+    "mrUrl": "https://www.youtube.com/watch?v=JhbwZA_HHt0",
+    "mrTitle": "[TJ노래방] And July - 헤이즈(Feat.딘,DJ Friz) / TJ Karaoke",
+    "mrChannel": "TJ노래방 공식 유튜브채널",
+    "mrNote": "TJ노래방 공식 유튜브채널 · 검색 '헤이즈 And July inst' · YouTube oEmbed 200 확인(2026-11-22)",
+    "mrSource": "youtube"
   },
   {
     "id": "restored-100",
@@ -10172,7 +10297,12 @@
       ]
     },
     "timeSignature": "4/4",
-    "chartStage": 1
+    "chartStage": 1,
+    "mrUrl": "https://www.youtube.com/watch?v=af7zgjWVBc0",
+    "mrTitle": "[Inst Ver. / MR] Ai Tomioka - Good bye-bye グッバイバイ | 冨岡 愛 | 토미오카 아이",
+    "mrChannel": "Rendezvous 18.6y",
+    "mrNote": "Rendezvous 18.6y · 검색 'Tomioka Ai Good Bye-Bye (グッバイバイ) inst' · YouTube oEmbed 200 확인(2026-11-22)",
+    "mrSource": "youtube"
   },
   {
     "id": "restored-102",
@@ -10389,7 +10519,12 @@
     "chartNote": "",
     "timeSignature": "4/4",
     "chartStage": 3,
-    "category": "chart"
+    "category": "chart",
+    "mrUrl": "https://www.youtube.com/watch?v=p_Q4ZE6YNMo",
+    "mrTitle": "[JW노래방] 눈이 오잖아(When it snows) / 이무진(Feat.헤이즈) / JW Karaoke",
+    "mrChannel": "JWPlay 노래방",
+    "mrNote": "JWPlay 노래방 · 검색 '눈이 오잖아 (When it snows) TJ노래방' · YouTube oEmbed 200 확인(2026-11-22)",
+    "mrSource": "youtube"
   },
   {
     "id": "restored-119",
@@ -10647,7 +10782,12 @@
     "chartNote": "",
     "timeSignature": "4/4",
     "chartStage": 3,
-    "category": "chart"
+    "category": "chart",
+    "mrUrl": "https://www.youtube.com/watch?v=oNLga08VuDk",
+    "mrTitle": "[TJ노래방] 비도오고그래서 - 헤이즈(Feat.신용재) / TJ Karaoke",
+    "mrChannel": "TJ노래방 공식 유튜브채널",
+    "mrNote": "TJ노래방 공식 · YouTube oEmbed 200 확인(2026-11-22)",
+    "mrSource": "youtube"
   },
   {
     "id": "restored-122",
@@ -10886,7 +11026,12 @@
     "chartNote": "",
     "timeSignature": "4/4",
     "category": "chart",
-    "chartStage": 1
+    "chartStage": 1,
+    "mrUrl": "https://www.youtube.com/watch?v=ky0rlgwWDn0",
+    "mrTitle": "[TJ노래방] Vancouver - 빅나티(서동현) / TJ Karaoke",
+    "mrChannel": "TJ노래방 공식 유튜브채널",
+    "mrNote": "TJ노래방 공식 유튜브채널 · 검색 'BIG Naughty Vancouver inst' · YouTube oEmbed 200 확인(2026-11-22)",
+    "mrSource": "youtube"
   },
   {
     "id": "restored-123",
@@ -11116,7 +11261,12 @@
     "chartNote": "",
     "timeSignature": "4/4",
     "chartStage": 2,
-    "category": "chart"
+    "category": "chart",
+    "mrUrl": "https://www.youtube.com/watch?v=IXA3K9q3a30",
+    "mrTitle": "정준일(Mate) - 안아줘(Hug Me) 노래방 Karaoke LaLa Kpop",
+    "mrChannel": "라라노래방LaLa Karaoke",
+    "mrNote": "라라노래방LaLa Karaoke · 검색 '안아줘 (hug me) TJ노래방' · YouTube oEmbed 200 확인(2026-11-22)",
+    "mrSource": "youtube"
   },
   {
     "id": "restored-125",
@@ -11381,7 +11531,12 @@
     "chartNote": "",
     "timeSignature": "4/4",
     "chartStage": 2,
-    "category": "chart"
+    "category": "chart",
+    "mrUrl": "https://www.youtube.com/watch?v=GKjIG_wogsw",
+    "mrTitle": "[TJ노래방] 미안해미워해사랑해(눈물의여왕OST) - 크러쉬 / TJ Karaoke",
+    "mrChannel": "TJ노래방 공식 유튜브채널",
+    "mrNote": "TJ노래방 공식 · YouTube oEmbed 200 확인(2026-11-22)",
+    "mrSource": "youtube"
   },
   {
     "id": "restored-128",
@@ -11615,7 +11770,12 @@
     "timeSignature": "4/4",
     "chartStage": 1,
     "workTitle": "어떻게 이별까지 사랑하겠어, 널 사랑하는 거지",
-    "workArtist": "AKMU (악동뮤지션)"
+    "workArtist": "AKMU (악동뮤지션)",
+    "mrUrl": "https://www.youtube.com/watch?v=PSnlLbTFEqI",
+    "mrTitle": "[TJ노래방] 어떻게이별까지사랑하겠어, 널사랑하는거지 - AKMU(악뮤) / TJ Karaoke",
+    "mrChannel": "TJ노래방 공식 유튜브채널",
+    "mrNote": "TJ노래방 공식 유튜브채널 · 검색 'AKMU 어떻게 이별까지 사랑하겠어, 널 사랑하는 거지 inst' · YouTube oEmbed 200 확인(2026-11-22)",
+    "mrSource": "youtube"
   },
   {
     "id": "restored-130",
@@ -11813,7 +11973,12 @@
     "chartNote": "",
     "timeSignature": "4/4",
     "chartStage": 3,
-    "category": "chart"
+    "category": "chart",
+    "mrUrl": "https://www.youtube.com/watch?v=dqWX5nGJV8w",
+    "mrTitle": "[TJ노래방 / 남자키] 첫눈처럼너에게가겠다(도깨비OST) - 에일리 / TJ Karaoke",
+    "mrChannel": "TJ노래방 공식 유튜브채널",
+    "mrNote": "TJ노래방 공식 · 남자키 · YouTube oEmbed 200 확인(2026-11-22)",
+    "mrSource": "youtube"
   },
   {
     "id": "restored-131",
@@ -11981,7 +12146,12 @@
     "chartNote": "",
     "timeSignature": "4/4",
     "chartStage": 2,
-    "category": "chart"
+    "category": "chart",
+    "mrUrl": "https://www.youtube.com/watch?v=tq5ot3EvzMU",
+    "mrTitle": "[TJ노래방] 0+0 - 한로로 / TJ Karaoke",
+    "mrChannel": "TJ노래방 공식 유튜브채널",
+    "mrNote": "TJ노래방 공식 유튜브채널 · 검색 '한로로 0+0 inst' · YouTube oEmbed 200 확인(2026-11-22)",
+    "mrSource": "youtube"
   },
   {
     "id": "restored-132",
@@ -12148,7 +12318,12 @@
     "chartNote": "",
     "timeSignature": "4/4",
     "chartStage": 1,
-    "category": "chart"
+    "category": "chart",
+    "mrUrl": "https://www.youtube.com/watch?v=DWIiJJLPFNs",
+    "mrTitle": "[TJ노래방] 사랑하게될거야 - 한로로 / TJ Karaoke",
+    "mrChannel": "TJ노래방 공식 유튜브채널",
+    "mrNote": "TJ노래방 공식 유튜브채널 · 검색 '사랑하게 될 거야 TJ노래방' · YouTube oEmbed 200 확인(2026-11-22)",
+    "mrSource": "youtube"
   },
   {
     "id": "restored-140",
@@ -13304,7 +13479,12 @@
       ]
     },
     "timeSignature": "4/4",
-    "chartStage": 2
+    "chartStage": 2,
+    "mrUrl": "https://www.youtube.com/watch?v=alochDeS7Js",
+    "mrTitle": "예뻤어(You Were Beautiful) - DAY6 (KY.49447) / KY Karaoke",
+    "mrChannel": "금영 노래방 공식 유튜브 채널",
+    "mrNote": "금영 노래방 공식 유튜브 채널 · 검색 '예뻤어 (You were beautiful) TJ노래방' · YouTube oEmbed 200 확인(2026-11-22)",
+    "mrSource": "youtube"
   },
   {
     "id": "restored-142",
@@ -13555,7 +13735,12 @@
     "chartNote": "",
     "timeSignature": "4/4",
     "chartStage": 2,
-    "category": "chart"
+    "category": "chart",
+    "mrUrl": "https://www.youtube.com/watch?v=020n1-s11zg",
+    "mrTitle": "[TJ노래방 / 멜로디제거] 청혼하지않을이유를못찾았어 - 이무진 / TJ Karaoke",
+    "mrChannel": "TJ노래방 공식 유튜브채널",
+    "mrNote": "TJ노래방 공식 · 멜로디제거 · YouTube oEmbed 200 확인(2026-11-22)",
+    "mrSource": "youtube"
   },
   {
     "id": "restored-144",
@@ -13848,7 +14033,12 @@
     "chartNote": "",
     "timeSignature": "4/4",
     "chartStage": 1,
-    "category": "chart"
+    "category": "chart",
+    "mrUrl": "https://www.youtube.com/watch?v=qLcOyiaD-nI",
+    "mrTitle": "[TJ노래방] 기억을걷는시간 - 넬 / TJ Karaoke",
+    "mrChannel": "TJ노래방 공식 유튜브채널",
+    "mrNote": "TJ노래방 공식 · YouTube oEmbed 200 확인(2026-11-22)",
+    "mrSource": "youtube"
   },
   {
     "id": "restored-146",
@@ -14105,7 +14295,12 @@
     "chartNote": "",
     "timeSignature": "4/4",
     "chartStage": 1,
-    "category": "chart"
+    "category": "chart",
+    "mrUrl": "https://www.youtube.com/watch?v=Fo8-ZYmNUWo",
+    "mrTitle": "[TJ노래방] Way Back Home - 숀(SHAUN) / TJ Karaoke",
+    "mrChannel": "TJ노래방 공식 유튜브채널",
+    "mrNote": "TJ노래방 공식 유튜브채널 · 검색 'Shaun Way Back Home inst' · YouTube oEmbed 200 확인(2026-11-22)",
+    "mrSource": "youtube"
   },
   {
     "id": "restored-150",
@@ -14486,7 +14681,12 @@
       "note": "원키 Eb·66bpm과 사용 코드(Eb Cm Fm Db Bb)를 확인했고, 마디 배치는 ChordU 자동 채보(EXO-M 중국어 버전, 같은 편곡) 순서를 따랐습니다."
     },
     "timeSignature": "4/4",
-    "chartStage": 2
+    "chartStage": 2,
+    "mrUrl": "https://www.youtube.com/watch?v=V_T3k1Tbp3U",
+    "mrTitle": "[TJ노래방] What Is Love - EXO-K / TJ Karaoke",
+    "mrChannel": "TJ노래방 공식 유튜브채널",
+    "mrNote": "TJ노래방 공식 · YouTube oEmbed 200 확인(2026-11-22)",
+    "mrSource": "youtube"
   },
   {
     "id": "restored-151",
@@ -14652,7 +14852,12 @@
     "chartNote": "",
     "timeSignature": "4/4",
     "chartStage": 2,
-    "category": "chart"
+    "category": "chart",
+    "mrUrl": "https://www.youtube.com/watch?v=JjHJDm2Tw0o",
+    "mrTitle": "[TJ노래방] Lonely - 2NE1 / TJ Karaoke",
+    "mrChannel": "TJ노래방 공식 유튜브채널",
+    "mrNote": "TJ노래방 공식 유튜브채널 · 검색 'Lonely TJ노래방' · YouTube oEmbed 200 확인(2026-11-22)",
+    "mrSource": "youtube"
   },
   {
     "id": "restored-201",
@@ -14951,7 +15156,12 @@
       "note": "원키 Cm·162bpm 확인. 기타 코드표는 없고 ChordU 자동 채보의 코드 진행(사용 코드 Cm Ab Gm Bb Eb)만 있어 그 순서로 등록했습니다."
     },
     "timeSignature": "4/4",
-    "chartStage": 4
+    "chartStage": 4,
+    "mrUrl": "https://www.youtube.com/watch?v=KND3Jb8ghKQ",
+    "mrTitle": "[TJ노래방] HER - 블락비 / TJ Karaoke",
+    "mrChannel": "TJ노래방 공식 유튜브채널",
+    "mrNote": "TJ노래방 공식 유튜브채널 · 검색 '블락비 HER inst' · YouTube oEmbed 200 확인(2026-11-22)",
+    "mrSource": "youtube"
   },
   {
     "id": "playlist-001",
@@ -15074,7 +15284,12 @@
       "note": "원곡 가수·키·BPM·코드 후보만 확인한 부분 확인 상태입니다. 코드는 공개 자동분석/코드표 후보를 4박 마디 카드로 정리한 연습용 배치라 원곡의 세부 마디·박자와 다를 수 있고, 청음/정식 악보 대조 전입니다. 악보 원문은 복제하지 않고 구매·열람 링크만 연결합니다. 연결 영상은 Jon Poppii 커버라 커버의 키·템포가 원곡과 같은지는 아직 확인하지 못했습니다."
     },
     "timeSignature": "4/4",
-    "chartStage": 1
+    "chartStage": 1,
+    "mrUrl": "https://www.youtube.com/watch?v=3GkE9qGO5ws",
+    "mrTitle": "Past lives (Instrumental) - Sapientdream",
+    "mrChannel": "Season Music Mix",
+    "mrNote": "Season Music Mix · 검색 'sapientdream Past Lives inst' · YouTube oEmbed 200 확인(2026-11-22)",
+    "mrSource": "youtube"
   },
   {
     "id": "playlist-002",
@@ -15308,7 +15523,12 @@
       ]
     },
     "timeSignature": "4/4",
-    "chartStage": 2
+    "chartStage": 2,
+    "mrUrl": "https://www.youtube.com/watch?v=HaNAcAT5cHA",
+    "mrTitle": "[TJ노래방 / 멜로디제거] 후라이의꿈 - AKMU(악뮤) / TJ Karaoke",
+    "mrChannel": "TJ노래방 공식 유튜브채널",
+    "mrNote": "TJ노래방 공식 유튜브채널 · 검색 'AKMU 후라이의 꿈 inst' · YouTube oEmbed 200 확인(2026-11-22)",
+    "mrSource": "youtube"
   },
   {
     "id": "playlist-005",
@@ -15684,7 +15904,12 @@
       ]
     },
     "timeSignature": "4/4",
-    "chartStage": 3
+    "chartStage": 3,
+    "mrUrl": "https://www.youtube.com/watch?v=qD3-ARp2994",
+    "mrTitle": "[TJ노래방] 그아픔까지사랑한거야 - 조정현 / TJ Karaoke",
+    "mrChannel": "TJ노래방 공식 유튜브채널",
+    "mrNote": "TJ노래방 공식 유튜브채널 · 검색 '조정현 그 아픔까지 사랑한거야 inst' · YouTube oEmbed 200 확인(2026-11-22)",
+    "mrSource": "youtube"
   },
   {
     "id": "playlist-010",
@@ -15908,7 +16133,12 @@
       ]
     },
     "timeSignature": "4/4",
-    "chartStage": 1
+    "chartStage": 1,
+    "mrUrl": "https://www.youtube.com/watch?v=yubWEwpiQjs",
+    "mrTitle": "[TJ노래방 / 멜로디제거] BLUE - 빅뱅(Big Bang) / TJ Karaoke",
+    "mrChannel": "TJ노래방 공식 유튜브채널",
+    "mrNote": "TJ노래방 공식 유튜브채널 · 검색 'BIGBANG BLUE inst' · YouTube oEmbed 200 확인(2026-11-22)",
+    "mrSource": "youtube"
   },
   {
     "id": "playlist-011",
@@ -16116,7 +16346,12 @@
       ]
     },
     "timeSignature": "4/4",
-    "chartStage": 3
+    "chartStage": 3,
+    "mrUrl": "https://www.youtube.com/watch?v=jzhzoelhV0A",
+    "mrTitle": "[TJ노래방 / 멜로디제거] 봄여름가을겨울(Still Life) - 빅뱅(BIGBANG) / TJ Karaoke",
+    "mrChannel": "TJ노래방 공식 유튜브채널",
+    "mrNote": "TJ노래방 공식 유튜브채널 · 검색 'BIGBANG 봄여름가을겨울 (Still Life) inst' · YouTube oEmbed 200 확인(2026-11-22)",
+    "mrSource": "youtube"
   },
   {
     "id": "playlist-012",
@@ -16324,7 +16559,12 @@
       ]
     },
     "timeSignature": "4/4",
-    "chartStage": 3
+    "chartStage": 3,
+    "mrUrl": "https://www.youtube.com/watch?v=jzhzoelhV0A",
+    "mrTitle": "[TJ노래방 / 멜로디제거] 봄여름가을겨울(Still Life) - 빅뱅(BIGBANG) / TJ Karaoke",
+    "mrChannel": "TJ노래방 공식 유튜브채널",
+    "mrNote": "TJ노래방 공식 유튜브채널 · 검색 'BIGBANG 봄여름가을겨울 (Still Life) inst' · YouTube oEmbed 200 확인(2026-11-22)",
+    "mrSource": "youtube"
   },
   {
     "id": "playlist-014",
@@ -16502,7 +16742,12 @@
       ]
     },
     "timeSignature": "4/4",
-    "chartStage": 1
+    "chartStage": 1,
+    "mrUrl": "https://www.youtube.com/watch?v=QOXRtgvL4cc",
+    "mrTitle": "[TJ노래방 / 멜로디제거] 꽃길 - 빅뱅(Big Bang) / TJ Karaoke",
+    "mrChannel": "TJ노래방 공식 유튜브채널",
+    "mrNote": "TJ노래방 공식 유튜브채널 · 검색 'BIGBANG 꽃길 inst' · YouTube oEmbed 200 확인(2026-11-22)",
+    "mrSource": "youtube"
   },
   {
     "id": "playlist-016",
@@ -16642,7 +16887,12 @@
       "note": "원곡 가수·키·BPM·코드 후보만 확인한 부분 확인 상태입니다. 코드는 공개 자동분석/코드표 후보를 4박 마디 카드로 정리한 연습용 배치라 원곡의 세부 마디·박자와 다를 수 있고, 청음/정식 악보 대조 전입니다. 악보 원문은 복제하지 않고 구매·열람 링크만 연결합니다. 이 곡은 박자표가 확인되지 않아 4/4로 단정하지 않았습니다. 같은 제목의 리믹스·커버가 많아 원곡(Shiloh Dynasty) 기준으로만 적었습니다."
     },
     "timeSignature": "미확인",
-    "chartStage": 2
+    "chartStage": 2,
+    "mrUrl": "https://www.youtube.com/watch?v=oq4CJ9eWgEQ",
+    "mrTitle": "Shiloh Dynasty - So Low Karaoke Instrumental Lower Higher Female Original Key",
+    "mrChannel": "Karaoke All Keys",
+    "mrNote": "Karaoke All Keys · 검색 'Shiloh Dynasty So Low inst' · YouTube oEmbed 200 확인(2026-11-22)",
+    "mrSource": "youtube"
   },
   {
     "id": "playlist-018",
@@ -16801,7 +17051,12 @@
       ]
     },
     "timeSignature": "4/4",
-    "chartStage": 2
+    "chartStage": 2,
+    "mrUrl": "https://www.youtube.com/watch?v=uunQsssk6rM",
+    "mrTitle": "[TJ노래방] 잘지내자, 우리(여름날우리 X 로이킴) - 로이킴 / TJ Karaoke",
+    "mrChannel": "TJ노래방 공식 유튜브채널",
+    "mrNote": "TJ노래방 공식 유튜브채널 · 검색 '로이킴 잘 지내자, 우리 inst' · YouTube oEmbed 200 확인(2026-11-22)",
+    "mrSource": "youtube"
   },
   {
     "id": "playlist-019",
@@ -17064,7 +17319,12 @@
       "note": "원곡 가수·키·BPM·코드 후보만 확인한 부분 확인 상태입니다. 코드는 공개 자동분석/코드표 후보를 4박 마디 카드로 정리한 연습용 배치라 원곡의 세부 마디·박자와 다를 수 있고, 청음/정식 악보 대조 전입니다. 악보 원문은 복제하지 않고 구매·열람 링크만 연결합니다. 코드 앱마다 화음 표기가 달라 A메이저7·D메이저7 계열로 적었고, 악보바다 C키 멜로디 악보는 조옮김본일 수 있어 참고하지 않았습니다."
     },
     "timeSignature": "미확인",
-    "chartStage": 2
+    "chartStage": 2,
+    "mrUrl": "https://www.youtube.com/watch?v=dh0FGfpGq3o",
+    "mrTitle": "[TJ노래방] AEAO - 다이나믹듀오,DJ 프리미어 / TJ Karaoke",
+    "mrChannel": "TJ노래방 공식 유튜브채널",
+    "mrNote": "TJ노래방 공식 · YouTube oEmbed 200 확인(2026-11-22)",
+    "mrSource": "youtube"
   },
   {
     "id": "playlist-025",
@@ -18311,7 +18571,12 @@
       "note": "TJ노래방 멜로디제거 MR 녹화(3분 53초)를 자동 분석한 초안입니다. 127 BPM·4/4·E단조는 공개 자료(125~126 BPM, Chordify E minor)와 제 재측정이 맞습니다. C/Cmaj7/Cm 구분은 혼합 반주에서 완전히 갈리지 않아 연습용 C로 적었고, Cm 실제 시작 시각은 검증되지 않았습니다. 후반 185.9~193.4초 G 계열 구간은 따로 표시하지 않고 코드표에 그대로 두었습니다. 청음 검수 전입니다."
     },
     "timeSignature": "4/4",
-    "chartStage": 2
+    "chartStage": 2,
+    "mrUrl": "https://www.youtube.com/watch?v=tAqVc1SC4cY",
+    "mrTitle": "[TJ노래방] 될대로되라고해(느낌 So Good) - 개코 / TJ Karaoke",
+    "mrChannel": "TJ노래방 공식 유튜브채널",
+    "mrNote": "TJ노래방 공식 유튜브채널 · 검색 '개코 될 대로 되라고 해 inst' · YouTube oEmbed 200 확인(2026-11-22)",
+    "mrSource": "youtube"
   },
   {
     "id": "playlist-027",
@@ -18527,7 +18792,12 @@
       ]
     },
     "timeSignature": "4/4",
-    "chartStage": 2
+    "chartStage": 2,
+    "mrUrl": "https://www.youtube.com/watch?v=1mZ5g9Esspk",
+    "mrTitle": "[TJ노래방] 명동콜링 - 크라잉넛 / TJ Karaoke",
+    "mrChannel": "TJ노래방 공식 유튜브채널",
+    "mrNote": "TJ노래방 공식 유튜브채널 · 검색 '크라잉넛 명동콜링 inst' · YouTube oEmbed 200 확인(2026-11-22)",
+    "mrSource": "youtube"
   },
   {
     "id": "playlist-029",
@@ -18733,7 +19003,12 @@
     },
     "category": "chart",
     "timeSignature": "4/4",
-    "chartStage": 1
+    "chartStage": 1,
+    "mrUrl": "https://www.youtube.com/watch?v=iROfGHXyQRc",
+    "mrTitle": "[Instrumental/MR] 오반(OVAN) - Flower MR(멜로디) (원키) | 모든 키 구매 가능 | 노래방 반주 Karaoke | 엠알샵",
+    "mrChannel": "엠알샵 MR SHOP",
+    "mrNote": "엠알샵 MR SHOP · 검색 '오반 Flower inst' · YouTube oEmbed 200 확인(2026-11-22)",
+    "mrSource": "youtube"
   },
   {
     "id": "playlist-030",
@@ -18941,7 +19216,12 @@
       ]
     },
     "timeSignature": "4/4",
-    "chartStage": 3
+    "chartStage": 3,
+    "mrUrl": "https://www.youtube.com/watch?v=cJJQCJXyE7s",
+    "mrTitle": "[TJ노래방] 너를생각해 - 주시크(Joosiq) / TJ Karaoke",
+    "mrChannel": "TJ노래방 공식 유튜브채널",
+    "mrNote": "TJ노래방 공식 유튜브채널 · 검색 '주시크 너를 생각해 inst' · YouTube oEmbed 200 확인(2026-11-22)",
+    "mrSource": "youtube"
   },
   {
     "id": "playlist-031",
@@ -19218,7 +19498,12 @@
       ]
     },
     "timeSignature": "4/4",
-    "chartStage": 3
+    "chartStage": 3,
+    "mrUrl": "https://www.youtube.com/watch?v=ecRwWYkt4tc",
+    "mrTitle": "[TJ노래방] 밤하늘의별을(2020) - 경서 / TJ Karaoke",
+    "mrChannel": "TJ노래방 공식 유튜브채널",
+    "mrNote": "TJ노래방 공식 유튜브채널 · 검색 '경서 밤하늘의 별을 (2020) inst' · YouTube oEmbed 200 확인(2026-11-22)",
+    "mrSource": "youtube"
   },
   {
     "id": "playlist-032",
@@ -19426,7 +19711,12 @@
       ]
     },
     "timeSignature": "4/4",
-    "chartStage": 3
+    "chartStage": 3,
+    "mrUrl": "https://www.youtube.com/watch?v=TPb2CY1VAlo",
+    "mrTitle": "[TJ노래방 / 멜로디제거] 나의 X에게 - 경서 / TJ Karaoke",
+    "mrChannel": "TJ노래방 공식 유튜브채널",
+    "mrNote": "TJ노래방 공식 유튜브채널 · 검색 '경서 나의 X에게 inst' · YouTube oEmbed 200 확인(2026-11-22)",
+    "mrSource": "youtube"
   },
   {
     "id": "playlist-033",
@@ -19634,7 +19924,12 @@
       ]
     },
     "timeSignature": "4/4",
-    "chartStage": 3
+    "chartStage": 3,
+    "mrUrl": "https://www.youtube.com/watch?v=TPb2CY1VAlo",
+    "mrTitle": "[TJ노래방 / 멜로디제거] 나의 X에게 - 경서 / TJ Karaoke",
+    "mrChannel": "TJ노래방 공식 유튜브채널",
+    "mrNote": "TJ노래방 공식 유튜브채널 · 검색 '경서 나의 X에게 inst' · YouTube oEmbed 200 확인(2026-11-22)",
+    "mrSource": "youtube"
   },
   {
     "id": "playlist-034",
@@ -19774,7 +20069,12 @@
         }
       ],
       "note": "원곡 가수·키·BPM·코드 후보만 확인한 부분 확인 상태입니다. 코드는 공개 자동분석/코드표 후보를 4박 마디 카드로 정리한 연습용 배치라 원곡의 세부 마디·박자와 다를 수 있고, 청음/정식 악보 대조 전입니다. 악보 원문은 복제하지 않고 구매·열람 링크만 연결합니다. 원곡은 144bpm으로 적었지만 반속 72로 세는 표기도 있어, 메트로놈은 원음에 맞춰 확인이 필요합니다. 라이브 편곡(134bpm 등)과는 다릅니다."
-    }
+    },
+    "mrUrl": "https://www.youtube.com/watch?v=mCe1eEmyVvI",
+    "mrTitle": "[멜로디제거] 한계 - NELL (KY.75142) / KY KARAOKE",
+    "mrChannel": "금영 노래방 공식 유튜브 채널",
+    "mrNote": "금영 노래방 공식 유튜브 채널 · 검색 '넬 한계 inst' · YouTube oEmbed 200 확인(2026-11-22)",
+    "mrSource": "youtube"
   },
   {
     "id": "playlist-035",
@@ -19997,7 +20297,12 @@
       ]
     },
     "timeSignature": "4/4",
-    "chartStage": 2
+    "chartStage": 2,
+    "mrUrl": "https://www.youtube.com/watch?v=zWilQXV8P_Y",
+    "mrTitle": "[TJ노래방 / 멜로디제거] 운이좋았지 - 권진아 / TJ Karaoke",
+    "mrChannel": "TJ노래방 공식 유튜브채널",
+    "mrNote": "TJ노래방 공식 유튜브채널 · 검색 '권진아 운이 좋았지 inst' · YouTube oEmbed 200 확인(2026-11-22)",
+    "mrSource": "youtube"
   },
   {
     "id": "playlist-036",
@@ -20220,7 +20525,12 @@
       ]
     },
     "timeSignature": "4/4",
-    "chartStage": 2
+    "chartStage": 2,
+    "mrUrl": "https://www.youtube.com/watch?v=zWilQXV8P_Y",
+    "mrTitle": "[TJ노래방 / 멜로디제거] 운이좋았지 - 권진아 / TJ Karaoke",
+    "mrChannel": "TJ노래방 공식 유튜브채널",
+    "mrNote": "TJ노래방 공식 유튜브채널 · 검색 '권진아 운이 좋았지 inst' · YouTube oEmbed 200 확인(2026-11-22)",
+    "mrSource": "youtube"
   },
   {
     "id": "playlist-037",
@@ -20332,7 +20642,12 @@
       ]
     },
     "timeSignature": "4/4",
-    "chartStage": 1
+    "chartStage": 1,
+    "mrUrl": "https://www.youtube.com/watch?v=TNZdnox2lwE",
+    "mrTitle": "[Instrumental/MR] 도경수(D.O.) - Popcorn MR(코러스) (원키) | 모든 키 구매 가능 | 노래방 반주 Karaoke | 엠알샵",
+    "mrChannel": "엠알샵 MR SHOP",
+    "mrNote": "엠알샵 MR SHOP · 검색 '도경수 Popcorn inst' · YouTube oEmbed 200 확인(2026-11-22)",
+    "mrSource": "youtube"
   },
   {
     "id": "playlist-038",
@@ -20455,7 +20770,12 @@
       "note": "원곡 가수·키·BPM·코드 후보만 확인한 부분 확인 상태입니다. 코드는 공개 자동분석/코드표 후보를 4박 마디 카드로 정리한 연습용 배치라 원곡의 세부 마디·박자와 다를 수 있고, 청음/정식 악보 대조 전입니다. 악보 원문은 복제하지 않고 구매·열람 링크만 연결합니다. 8번·13번(원본 #38·#124) 두 영상이 같은 곡이라 같은 자료를 연결했습니다."
     },
     "timeSignature": "미확인",
-    "chartStage": 2
+    "chartStage": 2,
+    "mrUrl": "https://www.youtube.com/watch?v=xoTAbyEjp00",
+    "mrTitle": "[Instrumental/MR] 도경수(D.O.) - 영원해 MR(원키) | 모든 키 구매 가능 | 노래방 반주 Karaoke | 엠알샵",
+    "mrChannel": "엠알샵 MR SHOP",
+    "mrNote": "엠알샵 MR SHOP · 검색 '도경수 영원해 inst' · YouTube oEmbed 200 확인(2026-11-22)",
+    "mrSource": "youtube"
   },
   {
     "id": "playlist-039",
@@ -20727,7 +21047,12 @@
     },
     "category": "chart",
     "timeSignature": "4/4",
-    "chartStage": 2
+    "chartStage": 2,
+    "mrUrl": "https://www.youtube.com/watch?v=GKjIG_wogsw",
+    "mrTitle": "[TJ노래방] 미안해미워해사랑해(눈물의여왕OST) - 크러쉬 / TJ Karaoke",
+    "mrChannel": "TJ노래방 공식 유튜브채널",
+    "mrNote": "TJ노래방 공식 · YouTube oEmbed 200 확인(2026-11-22)",
+    "mrSource": "youtube"
   },
   {
     "id": "playlist-040",
@@ -20921,7 +21246,12 @@
       ]
     },
     "timeSignature": "4/4",
-    "chartStage": 1
+    "chartStage": 1,
+    "mrUrl": "https://www.youtube.com/watch?v=OpCSmq7CqWw",
+    "mrTitle": "[TJ노래방] Beautiful(도깨비OST) - 크러쉬 / TJ Karaoke",
+    "mrChannel": "TJ노래방 공식 유튜브채널",
+    "mrNote": "TJ노래방 공식 유튜브채널 · 검색 '크러쉬 Beautiful inst' · YouTube oEmbed 200 확인(2026-11-22)",
+    "mrSource": "youtube"
   },
   {
     "id": "playlist-041",
@@ -21115,7 +21445,12 @@
       ]
     },
     "timeSignature": "4/4",
-    "chartStage": 1
+    "chartStage": 1,
+    "mrUrl": "https://www.youtube.com/watch?v=OpCSmq7CqWw",
+    "mrTitle": "[TJ노래방] Beautiful(도깨비OST) - 크러쉬 / TJ Karaoke",
+    "mrChannel": "TJ노래방 공식 유튜브채널",
+    "mrNote": "TJ노래방 공식 유튜브채널 · 검색 '크러쉬 Beautiful inst' · YouTube oEmbed 200 확인(2026-11-22)",
+    "mrSource": "youtube"
   },
   {
     "id": "playlist-042",
@@ -21269,7 +21604,12 @@
         }
       ],
       "note": "원키 Bb·100bpm 확인. 기타 코드표가 없어 Chordify 자동 채보의 반복 진행(Cm7–F7–Bbmaj7–Gm7)만 등록했습니다."
-    }
+    },
+    "mrUrl": "https://www.youtube.com/watch?v=08qZdGbSN0o",
+    "mrTitle": "[TJ노래방] 미워(Ego) - 크러쉬 / TJ Karaoke",
+    "mrChannel": "TJ노래방 공식 유튜브채널",
+    "mrNote": "TJ노래방 공식 유튜브채널 · 검색 '미워 (Ego) 금영노래방' · YouTube oEmbed 200 확인(2026-11-22)",
+    "mrSource": "youtube"
   },
   {
     "id": "playlist-043",
@@ -21403,7 +21743,12 @@
       ]
     },
     "timeSignature": "4/4",
-    "chartStage": 1
+    "chartStage": 1,
+    "mrUrl": "https://www.youtube.com/watch?v=AY7lMIPZLMg",
+    "mrTitle": "[TJ노래방 / 멜로디제거] 잊어버리지마 - 크러쉬(Feat.태연) / TJ Karaoke",
+    "mrChannel": "TJ노래방 공식 유튜브채널",
+    "mrNote": "TJ노래방 공식 유튜브채널 · 검색 '크러쉬   feat. 태연 잊어버리지마 inst' · YouTube oEmbed 200 확인(2026-11-22)",
+    "mrSource": "youtube"
   },
   {
     "id": "playlist-044",
@@ -21537,7 +21882,12 @@
       ]
     },
     "timeSignature": "4/4",
-    "chartStage": 1
+    "chartStage": 1,
+    "mrUrl": "https://www.youtube.com/watch?v=AY7lMIPZLMg",
+    "mrTitle": "[TJ노래방 / 멜로디제거] 잊어버리지마 - 크러쉬(Feat.태연) / TJ Karaoke",
+    "mrChannel": "TJ노래방 공식 유튜브채널",
+    "mrNote": "TJ노래방 공식 유튜브채널 · 검색 '크러쉬   feat. 태연 잊어버리지마 inst' · YouTube oEmbed 200 확인(2026-11-22)",
+    "mrSource": "youtube"
   },
   {
     "id": "playlist-045",
@@ -21737,7 +22087,12 @@
       ]
     },
     "timeSignature": "4/4",
-    "chartStage": 2
+    "chartStage": 2,
+    "mrUrl": "https://www.youtube.com/watch?v=BPr-NdAkmgY",
+    "mrTitle": "[TJ노래방] Drowning - WOODZ(조승연) / TJ Karaoke",
+    "mrChannel": "TJ노래방 공식 유튜브채널",
+    "mrNote": "TJ노래방 공식 유튜브채널 · 검색 'Drowning TJ노래방' · YouTube oEmbed 200 확인(2026-11-22)",
+    "mrSource": "youtube"
   },
   {
     "id": "playlist-046",
@@ -21903,7 +22258,12 @@
       ]
     },
     "timeSignature": "4/4",
-    "chartStage": 3
+    "chartStage": 3,
+    "mrUrl": "https://www.youtube.com/watch?v=radQklU812A",
+    "mrTitle": "[TJ노래방] Make Up - 샘김(Feat.크러쉬) / TJ Karaoke",
+    "mrChannel": "TJ노래방 공식 유튜브채널",
+    "mrNote": "TJ노래방 공식 유튜브채널 · 검색 '샘김   feat. 크러쉬 Make Up inst' · YouTube oEmbed 200 확인(2026-11-22)",
+    "mrSource": "youtube"
   },
   {
     "id": "playlist-047",
@@ -22229,7 +22589,12 @@
         }
       ],
       "note": "원키 Gb(자동 분석 기준 B major)·70bpm은 확인. 기타 코드표가 없어 ChordU 자동 채보의 코드 순서를 반복 구간별로 정리했습니다."
-    }
+    },
+    "mrUrl": "https://www.youtube.com/watch?v=NQZB0yuuCkY",
+    "mrTitle": "샘김(SAM KIM) - 향기(Scent) / LaLa Karaoke 노래방 Kpop",
+    "mrChannel": "라라노래방LaLa Karaoke",
+    "mrNote": "라라노래방LaLa Karaoke · 검색 '샘김 향기 (Scent) inst' · YouTube oEmbed 200 확인(2026-11-22)",
+    "mrSource": "youtube"
   },
   {
     "id": "playlist-048",
@@ -22425,7 +22790,12 @@
       ]
     },
     "timeSignature": "6/8",
-    "chartStage": 1
+    "chartStage": 1,
+    "mrUrl": "https://www.youtube.com/watch?v=SvbqtQbwcdM",
+    "mrTitle": "[TJ노래방] 여름비(그해우리는OST) - 샘김 / TJ Karaoke",
+    "mrChannel": "TJ노래방 공식 유튜브채널",
+    "mrNote": "TJ노래방 공식 유튜브채널 · 검색 '샘김 여름비 inst' · YouTube oEmbed 200 확인(2026-11-22)",
+    "mrSource": "youtube"
   },
   {
     "id": "playlist-050",
@@ -22865,7 +23235,12 @@
       ]
     },
     "timeSignature": "4/4",
-    "chartStage": 2
+    "chartStage": 2,
+    "mrUrl": "https://www.youtube.com/watch?v=G3AvAHYy2A4",
+    "mrTitle": "[TJ노래방] Love Me Like That(알고있지만, OST) - 샘김 / TJ Karaoke",
+    "mrChannel": "TJ노래방 공식 유튜브채널",
+    "mrNote": "TJ노래방 공식 유튜브채널 · 검색 'Love Me Like That TJ노래방' · YouTube oEmbed 200 확인(2026-11-22)",
+    "mrSource": "youtube"
   },
   {
     "id": "playlist-051",
@@ -23305,7 +23680,12 @@
       ]
     },
     "timeSignature": "4/4",
-    "chartStage": 2
+    "chartStage": 2,
+    "mrUrl": "https://www.youtube.com/watch?v=G3AvAHYy2A4",
+    "mrTitle": "[TJ노래방] Love Me Like That(알고있지만, OST) - 샘김 / TJ Karaoke",
+    "mrChannel": "TJ노래방 공식 유튜브채널",
+    "mrNote": "TJ노래방 공식 유튜브채널 · 검색 'Love Me Like That TJ노래방' · YouTube oEmbed 200 확인(2026-11-22)",
+    "mrSource": "youtube"
   },
   {
     "id": "playlist-052",
@@ -23542,7 +23922,12 @@
       ]
     },
     "timeSignature": "4/4",
-    "chartStage": 2
+    "chartStage": 2,
+    "mrUrl": "https://www.youtube.com/watch?v=uD0s6eXDmzs",
+    "mrTitle": "[TJ노래방] Who Are You(도깨비OST) - 샘김 / TJ Karaoke",
+    "mrChannel": "TJ노래방 공식 유튜브채널",
+    "mrNote": "TJ노래방 공식 유튜브채널 · 검색 '샘김   X 정승환 Who Are You inst' · YouTube oEmbed 200 확인(2026-11-22)",
+    "mrSource": "youtube"
   },
   {
     "id": "playlist-053",
@@ -23736,7 +24121,12 @@
       ]
     },
     "timeSignature": "4/4",
-    "chartStage": 2
+    "chartStage": 2,
+    "mrUrl": "https://www.youtube.com/watch?v=ZNW16falaPk",
+    "mrTitle": "[TJ노래방] 그여름밤 - 샘김 / TJ Karaoke",
+    "mrChannel": "TJ노래방 공식 유튜브채널",
+    "mrNote": "TJ노래방 공식 유튜브채널 · 검색 '그 여름밤 TJ노래방' · YouTube oEmbed 200 확인(2026-11-22)",
+    "mrSource": "youtube"
   },
   {
     "id": "playlist-054",
@@ -23891,7 +24281,12 @@
       ]
     },
     "timeSignature": "4/4",
-    "chartStage": 3
+    "chartStage": 3,
+    "mrUrl": "https://www.youtube.com/watch?v=tpipeWYySjQ",
+    "mrTitle": "[inst] Kassy(케이시) '진심이 담긴 노래' (True Song) Acoustic Guitar instrumental mr 기타 반주",
+    "mrChannel": "니즈기타NEEZ GUITAR",
+    "mrNote": "니즈기타NEEZ GUITAR · 검색 '케이시 진심이 담긴 노래 (True Song) inst' · YouTube oEmbed 200 확인(2026-11-22)",
+    "mrSource": "youtube"
   },
   {
     "id": "playlist-055",
@@ -24118,7 +24513,12 @@
       ]
     },
     "timeSignature": "4/4",
-    "chartStage": 1
+    "chartStage": 1,
+    "mrUrl": "https://www.youtube.com/watch?v=yT_IBYBtanI",
+    "mrTitle": "[TJ노래방 / 멜로디제거] 과제곡(교수님죄송합니다) - 이무진 / TJ Karaoke",
+    "mrChannel": "TJ노래방 공식 유튜브채널",
+    "mrNote": "TJ노래방 공식 유튜브채널 · 검색 '이무진 과제곡 inst' · YouTube oEmbed 200 확인(2026-11-22)",
+    "mrSource": "youtube"
   },
   {
     "id": "playlist-057",
@@ -24782,7 +25182,12 @@
       ]
     },
     "timeSignature": "4/4",
-    "chartStage": 3
+    "chartStage": 3,
+    "mrUrl": "https://www.youtube.com/watch?v=ox8UB-yagQ0",
+    "mrTitle": "[TJ노래방 / 멜로디제거] 청춘만화 - 이무진 / TJ Karaoke",
+    "mrChannel": "TJ노래방 공식 유튜브채널",
+    "mrNote": "TJ노래방 공식 유튜브채널 · 검색 '이무진 청춘만화 inst' · YouTube oEmbed 200 확인(2026-11-22)",
+    "mrSource": "youtube"
   },
   {
     "id": "playlist-060",
@@ -24969,7 +25374,12 @@
       ]
     },
     "timeSignature": "4/4",
-    "chartStage": 3
+    "chartStage": 3,
+    "mrUrl": "https://www.youtube.com/watch?v=W8eMnbePtbQ",
+    "mrTitle": "[TJ노래방] 에피소드 - 이무진 / TJ Karaoke",
+    "mrChannel": "TJ노래방 공식 유튜브채널",
+    "mrNote": "TJ노래방 공식 유튜브채널 · 검색 '이무진 에피소드 inst' · YouTube oEmbed 200 확인(2026-11-22)",
+    "mrSource": "youtube"
   },
   {
     "id": "playlist-061",
@@ -25226,7 +25636,12 @@
       ]
     },
     "timeSignature": "4/4",
-    "chartStage": 2
+    "chartStage": 2,
+    "mrUrl": "https://www.youtube.com/watch?v=s47FHLipNNM",
+    "mrTitle": "[TJ노래방 / 멜로디제거] 신호등 - 이무진 / TJ Karaoke",
+    "mrChannel": "TJ노래방 공식 유튜브채널",
+    "mrNote": "TJ노래방 공식 유튜브채널 · 검색 '이무진 신호등 inst' · YouTube oEmbed 200 확인(2026-11-22)",
+    "mrSource": "youtube"
   },
   {
     "id": "playlist-062",
@@ -25399,7 +25814,12 @@
     },
     "category": "chart",
     "timeSignature": "4/4",
-    "chartStage": 1
+    "chartStage": 1,
+    "mrUrl": "https://www.youtube.com/watch?v=DWIiJJLPFNs",
+    "mrTitle": "[TJ노래방] 사랑하게될거야 - 한로로 / TJ Karaoke",
+    "mrChannel": "TJ노래방 공식 유튜브채널",
+    "mrNote": "TJ노래방 공식 유튜브채널 · 검색 '사랑하게 될 거야 TJ노래방' · YouTube oEmbed 200 확인(2026-11-22)",
+    "mrSource": "youtube"
   },
   {
     "id": "playlist-063",
@@ -25543,7 +25963,12 @@
       ]
     },
     "timeSignature": "4/4",
-    "chartStage": 1
+    "chartStage": 1,
+    "mrUrl": "https://www.youtube.com/watch?v=btgs01ll6aY",
+    "mrTitle": "[TJ노래방 / 멜로디제거] 행복 - 오반 / TJ Karaoke",
+    "mrChannel": "TJ노래방 공식 유튜브채널",
+    "mrNote": "TJ노래방 공식 유튜브채널 · 검색 '오반 행복 inst' · YouTube oEmbed 200 확인(2026-11-22)",
+    "mrSource": "youtube"
   },
   {
     "id": "playlist-064",
@@ -25794,7 +26219,12 @@
       ]
     },
     "timeSignature": "4/4",
-    "chartStage": 1
+    "chartStage": 1,
+    "mrUrl": "https://www.youtube.com/watch?v=Hxr9rivaD-w",
+    "mrTitle": "[TJ노래방 / 멜로디제거] pet - 10cm / TJ Karaoke",
+    "mrChannel": "TJ노래방 공식 유튜브채널",
+    "mrNote": "TJ노래방 공식 유튜브채널 · 검색 '10CM pet inst' · YouTube oEmbed 200 확인(2026-11-22)",
+    "mrSource": "youtube"
   },
   {
     "id": "playlist-069",
@@ -26458,7 +26888,12 @@
       ]
     },
     "timeSignature": "4/4",
-    "chartStage": 3
+    "chartStage": 3,
+    "mrUrl": "https://www.youtube.com/watch?v=i0IkX_yd5gA",
+    "mrTitle": "【ガイドなし】夢灯籠/RADWIMPS【カラオケ】",
+    "mrChannel": "カラオケ歌っちゃ王",
+    "mrNote": "カラオケ歌っちゃ王 · 가이드 없음 · YouTube oEmbed 200 확인(2026-11-22)",
+    "mrSource": "youtube"
   },
   {
     "id": "playlist-070",
@@ -28028,7 +28463,12 @@
       ]
     },
     "timeSignature": "4/4",
-    "chartStage": 3
+    "chartStage": 3,
+    "mrUrl": "https://www.youtube.com/watch?v=Sz324IIiuiI",
+    "mrTitle": "練習用カラオケ♬ 真夜中のドア〜stay with me - 松原みき 【ガイドメロディ付】 インスト BGM, 歌詞",
+    "mrChannel": "EdKara",
+    "mrNote": "EdKara · 검색 '真夜中のドア〜Stay With Me カラオケ' · YouTube oEmbed 200 확인(2026-11-22)",
+    "mrSource": "youtube"
   },
   {
     "id": "playlist-075",
@@ -28790,7 +29230,12 @@
       ]
     },
     "timeSignature": "4/4",
-    "chartStage": 3
+    "chartStage": 3,
+    "mrUrl": "https://www.youtube.com/watch?v=2nKNMFrSSno",
+    "mrTitle": "(offvocal )RADWIMPS / すずめ feat. 十明 リアルカラオケ(Instrumental) 映画「すずめの戸締まり」主題歌",
+    "mrChannel": "ミライカラオケ⛤",
+    "mrNote": "ミライカラオケ⛤ · 검색 'RADWIMPS すずめ inst' · YouTube oEmbed 200 확인(2026-11-22)",
+    "mrSource": "youtube"
   },
   {
     "id": "playlist-076",
@@ -29130,7 +29575,12 @@
       "note": "부분 확인 — 원곡 가수·조성(C→D♭ 후반 반음 전조)·BPM·코드 후보만 확인했습니다. C→D→F→G(추가 D7·Dm·Gsus4)와 후반 D♭·E♭·G♭·A♭는 공개 자동분석 후보이며, 마디별 정확한 배치와 4/4 박자는 원곡 청음/정식 악보 대조 전입니다. 악보 원문은 복제하지 않고 열람 링크만 연결합니다."
     },
     "timeSignature": "4/4",
-    "chartStage": 3
+    "chartStage": 3,
+    "mrUrl": "https://www.youtube.com/watch?v=Wu5W0iEAB7s",
+    "mrTitle": "BIG Naughty - 사랑이라 믿었던 것들은 (Hopeless Romantic) ft. LEE SUHYUN (Instrumental)",
+    "mrChannel": "Rockstar Beats",
+    "mrNote": "Rockstar Beats · 검색 'BIG Naughty   feat. 이수현 사랑이라 믿었던 것들은 (Hopeless Romantic) inst' · YouTube oEmbed 200 확인(2026-11-22)",
+    "mrSource": "youtube"
   },
   {
     "id": "playlist-078",
@@ -29553,7 +30003,12 @@
       ]
     },
     "timeSignature": "4/4",
-    "chartStage": 3
+    "chartStage": 3,
+    "mrUrl": "https://www.youtube.com/watch?v=kaBdkSnE7O8",
+    "mrTitle": "[TJ노래방 / 멜로디제거] 한번더이별 - 성시경 / TJ Karaoke",
+    "mrChannel": "TJ노래방 공식 유튜브채널",
+    "mrNote": "TJ노래방 공식 유튜브채널 · 검색 '성시경 한번 더 이별 inst' · YouTube oEmbed 200 확인(2026-11-22)",
+    "mrSource": "youtube"
   },
   {
     "id": "playlist-084",
@@ -29754,7 +30209,12 @@
       ]
     },
     "timeSignature": "6/8",
-    "chartStage": 2
+    "chartStage": 2,
+    "mrUrl": "https://www.youtube.com/watch?v=q4ct0kmu2lY",
+    "mrTitle": "[TJ노래방] 숲 - 최유리 / TJ Karaoke",
+    "mrChannel": "TJ노래방 공식 유튜브채널",
+    "mrNote": "TJ노래방 공식 유튜브채널 · 검색 '최유리 숲 inst' · YouTube oEmbed 200 확인(2026-11-22)",
+    "mrSource": "youtube"
   },
   {
     "id": "playlist-085",
@@ -29955,7 +30415,12 @@
       ]
     },
     "timeSignature": "6/8",
-    "chartStage": 2
+    "chartStage": 2,
+    "mrUrl": "https://www.youtube.com/watch?v=q4ct0kmu2lY",
+    "mrTitle": "[TJ노래방] 숲 - 최유리 / TJ Karaoke",
+    "mrChannel": "TJ노래방 공식 유튜브채널",
+    "mrNote": "TJ노래방 공식 유튜브채널 · 검색 '최유리 숲 inst' · YouTube oEmbed 200 확인(2026-11-22)",
+    "mrSource": "youtube"
   },
   {
     "id": "playlist-086",
@@ -30122,7 +30587,12 @@
       "note": "원곡 가수·키·BPM·코드 후보만 확인한 부분 확인 상태입니다. 코드는 공개 자동분석/코드표 후보를 4박 마디 카드로 정리한 연습용 배치라 원곡의 세부 마디·박자와 다를 수 있고, 청음/정식 악보 대조 전입니다. 악보 원문은 복제하지 않고 구매·열람 링크만 연결합니다. 같은 곡 자동분석이 77bpm과 150bpm으로 병존해 박 세는 단위 확인이 필요합니다(77은 반속 카운트 가능성)."
     },
     "timeSignature": "미확인",
-    "chartStage": 2
+    "chartStage": 2,
+    "mrUrl": "https://www.youtube.com/watch?v=cPWJQevi5DU",
+    "mrTitle": "[TJ노래방] 힙합보단사랑, 사랑보단돈 - 노아주다 / TJ Karaoke",
+    "mrChannel": "TJ노래방 공식 유튜브채널",
+    "mrNote": "TJ노래방 공식 유튜브채널 · 검색 '노아주다 feat. 베이식 힙합보단 사랑, 사랑보단 돈 inst' · YouTube oEmbed 200 확인(2026-11-22)",
+    "mrSource": "youtube"
   },
   {
     "id": "playlist-087",
@@ -30461,7 +30931,12 @@
       ]
     },
     "timeSignature": "4/4",
-    "chartStage": 3
+    "chartStage": 3,
+    "mrUrl": "https://www.youtube.com/watch?v=OmIURctnkpA",
+    "mrTitle": "[Instrumental/MR] 이찬혁 - 멸종위기사랑 MR(원키) | 모든 키 구매 가능 | 노래방 반주 Karaoke | 엠알샵",
+    "mrChannel": "엠알샵 MR SHOP",
+    "mrNote": "엠알샵 MR SHOP · 검색 '이찬혁 멸종위기사랑 inst' · YouTube oEmbed 200 확인(2026-11-22)",
+    "mrSource": "youtube"
   },
   {
     "id": "playlist-089",
@@ -30658,7 +31133,12 @@
       ]
     },
     "timeSignature": "4/4",
-    "chartStage": 1
+    "chartStage": 1,
+    "mrUrl": "https://www.youtube.com/watch?v=HrPSVNyNKyQ",
+    "mrTitle": "Sondia 어른 (Adult) (Grown Ups) Karaoke instrumental official",
+    "mrChannel": "MaxAttilio Korea instrumental 맥시아띨리오",
+    "mrNote": "MaxAttilio Korea instrumental 맥시아띨리오 · 검색 'Sondia 어른 inst' · YouTube oEmbed 200 확인(2026-11-22)",
+    "mrSource": "youtube"
   },
   {
     "id": "playlist-090",
@@ -30855,7 +31335,12 @@
       ]
     },
     "timeSignature": "4/4",
-    "chartStage": 1
+    "chartStage": 1,
+    "mrUrl": "https://www.youtube.com/watch?v=HrPSVNyNKyQ",
+    "mrTitle": "Sondia 어른 (Adult) (Grown Ups) Karaoke instrumental official",
+    "mrChannel": "MaxAttilio Korea instrumental 맥시아띨리오",
+    "mrNote": "MaxAttilio Korea instrumental 맥시아띨리오 · 검색 'Sondia 어른 inst' · YouTube oEmbed 200 확인(2026-11-22)",
+    "mrSource": "youtube"
   },
   {
     "id": "playlist-091",
@@ -31106,7 +31591,12 @@
       ]
     },
     "timeSignature": "4/4",
-    "chartStage": 2
+    "chartStage": 2,
+    "mrUrl": "https://www.youtube.com/watch?v=WlOY3wcVDk8",
+    "mrTitle": "[TJ노래방] 사막에서꽃을피우듯 - 우디 / TJ Karaoke",
+    "mrChannel": "TJ노래방 공식 유튜브채널",
+    "mrNote": "TJ노래방 공식 유튜브채널 · 검색 '우디 사막에서 꽃을 피우듯 MR' · YouTube oEmbed 200 확인(2026-11-22)",
+    "mrSource": "youtube"
   },
   {
     "id": "playlist-092",
@@ -31309,7 +31799,12 @@
       ]
     },
     "timeSignature": "4/4",
-    "chartStage": 3
+    "chartStage": 3,
+    "mrUrl": "https://www.youtube.com/watch?v=LPhhewS6GZU",
+    "mrTitle": "[TJ노래방 / 멜로디제거] 봄내음보다너를 - 김나영 / TJ Karaoke",
+    "mrChannel": "TJ노래방 공식 유튜브채널",
+    "mrNote": "TJ노래방 공식 유튜브채널 · 검색 '김나영 봄 내음보다 너를 inst' · YouTube oEmbed 200 확인(2026-11-22)",
+    "mrSource": "youtube"
   },
   {
     "id": "playlist-103",
@@ -31512,7 +32007,12 @@
       ]
     },
     "timeSignature": "4/4",
-    "chartStage": 2
+    "chartStage": 2,
+    "mrUrl": "https://www.youtube.com/watch?v=hMkb70Xa9C0",
+    "mrTitle": "[TJ노래방 / 멜로디제거] 이밤을빌려말해요 - 10cm / TJ Karaoke",
+    "mrChannel": "TJ노래방 공식 유튜브채널",
+    "mrNote": "TJ노래방 공식 유튜브채널 · 검색 '10CM 이 밤을 빌려 말해요 inst' · YouTube oEmbed 200 확인(2026-11-22)",
+    "mrSource": "youtube"
   },
   {
     "id": "playlist-106",
@@ -31699,7 +32199,12 @@
       ]
     },
     "timeSignature": "4/4",
-    "chartStage": 1
+    "chartStage": 1,
+    "mrUrl": "https://www.youtube.com/watch?v=qaGWsZje0Fc",
+    "mrTitle": "[TJ노래방] Congratulations - 데이식스(DAY6) / TJ Karaoke",
+    "mrChannel": "TJ노래방 공식 유튜브채널",
+    "mrNote": "TJ노래방 공식 유튜브채널 · 검색 'DAY6 Congratulations inst' · YouTube oEmbed 200 확인(2026-11-22)",
+    "mrSource": "youtube"
   },
   {
     "id": "playlist-110",
@@ -32050,7 +32555,12 @@
       ]
     },
     "timeSignature": "4/4",
-    "chartStage": 2
+    "chartStage": 2,
+    "mrUrl": "https://www.youtube.com/watch?v=UynuBfkFzLg",
+    "mrTitle": "[TJ노래방] 언젠가는 - 이상은 / TJ Karaoke",
+    "mrChannel": "TJ노래방 공식 유튜브채널",
+    "mrNote": "TJ노래방 공식 유튜브채널 · 검색 '이상은 언젠가는 inst' · YouTube oEmbed 200 확인(2026-11-22)",
+    "mrSource": "youtube"
   },
   {
     "id": "playlist-112",
@@ -32209,7 +32719,12 @@
       ]
     },
     "timeSignature": "4/4",
-    "chartStage": 3
+    "chartStage": 3,
+    "mrUrl": "https://www.youtube.com/watch?v=SzYmJGstMqs",
+    "mrTitle": "[TJ노래방] 사랑한다말해도 - 김동률(Feat.이소라) / TJ Karaoke",
+    "mrChannel": "TJ노래방 공식 유튜브채널",
+    "mrNote": "TJ노래방 공식 유튜브채널 · 검색 '김동률 사랑한다 말해도 inst' · YouTube oEmbed 200 확인(2026-11-22)",
+    "mrSource": "youtube"
   },
   {
     "id": "playlist-113",
@@ -32406,7 +32921,12 @@
       ]
     },
     "timeSignature": "4/4",
-    "chartStage": 1
+    "chartStage": 1,
+    "mrUrl": "https://www.youtube.com/watch?v=HrPSVNyNKyQ",
+    "mrTitle": "Sondia 어른 (Adult) (Grown Ups) Karaoke instrumental official",
+    "mrChannel": "MaxAttilio Korea instrumental 맥시아띨리오",
+    "mrNote": "MaxAttilio Korea instrumental 맥시아띨리오 · 검색 'Sondia 어른 inst' · YouTube oEmbed 200 확인(2026-11-22)",
+    "mrSource": "youtube"
   },
   {
     "id": "playlist-114",
@@ -32562,7 +33082,12 @@
         }
       ],
       "note": "원곡 가수·키·BPM·코드 후보만 확인한 부분 확인 상태입니다. 코드는 공개 자동분석/코드표 후보를 4박 마디 카드로 정리한 연습용 배치라 원곡의 세부 마디·박자와 다를 수 있고, 청음/정식 악보 대조 전입니다. 악보 원문은 복제하지 않고 구매·열람 링크만 연결합니다. 카포 1프렛 코드표도 돌아다니지만 원음 코드와 운지 코드를 섞지 않으려고 원키(D♭) 기준으로만 적었습니다."
-    }
+    },
+    "mrUrl": "https://www.youtube.com/watch?v=Ro_2DgNWtf8",
+    "mrTitle": "[TJ노래방] Somebody - 디오(D.O.) / TJ Karaoke",
+    "mrChannel": "TJ노래방 공식 유튜브채널",
+    "mrNote": "TJ노래방 공식 · YouTube oEmbed 200 확인(2026-11-22)",
+    "mrSource": "youtube"
   },
   {
     "id": "playlist-117",
@@ -32763,7 +33288,12 @@
       ]
     },
     "timeSignature": "4/4",
-    "chartStage": 2
+    "chartStage": 2,
+    "mrUrl": "https://www.youtube.com/watch?v=Pu7IRieCNBA",
+    "mrTitle": "[TJ노래방 / 멜로디제거] 괜찮아도괜찮아(That's okay) - 도경수(D.O.) / TJ Karaoke",
+    "mrChannel": "TJ노래방 공식 유튜브채널",
+    "mrNote": "TJ노래방 공식 유튜브채널 · 검색 '도경수 괜찮아도 괜찮아 (That's okay) inst' · YouTube oEmbed 200 확인(2026-11-22)",
+    "mrSource": "youtube"
   },
   {
     "id": "playlist-118",
@@ -33356,7 +33886,12 @@
         }
       ],
       "note": "금영 노래방 80913 멜로디제거 반주(3분 0초)를 분석한 초안입니다. B장조·69.84 BPM은 제가 같은 mp3로 다시 재도 69.84·B장조로 같고, 원곡 악보의 B키와도 맞습니다. 다만 2:14~2:29 구간은 특히 불확실하고, F#/A#·E/G#·B/D# 같은 분수코드는 이 반주에서 베이스를 따로 검증하지 못했습니다. 원곡 참고 BPM 67은 다른 버전 수치라 연습 BPM으로 쓰지 않았습니다. 청음 검수 전입니다."
-    }
+    },
+    "mrUrl": "https://www.youtube.com/watch?v=R0ZOFPIEeis",
+    "mrTitle": "[TJ노래방] 나의아버지(Dad) - D.O.(EXO) / TJ Karaoke",
+    "mrChannel": "TJ노래방 공식 유튜브채널",
+    "mrNote": "TJ노래방 공식 · YouTube oEmbed 200 확인(2026-11-22)",
+    "mrSource": "youtube"
   },
   {
     "id": "playlist-120",
@@ -33521,7 +34056,12 @@
       ]
     },
     "timeSignature": "4/4",
-    "chartStage": 1
+    "chartStage": 1,
+    "mrUrl": "https://www.youtube.com/watch?v=Eefo2tLtng4",
+    "mrTitle": "별떨어진다 (I DO) - 도경수 (D.O.) (EXO) (남자키/원키B) 여기MR / Karaoke / Music / 노래방",
+    "mrChannel": "여기MR 노래방 Karaoke music",
+    "mrNote": "여기MR 노래방 Karaoke music · 검색 '별 떨어진다 (I Do) TJ노래방' · YouTube oEmbed 200 확인(2026-11-22)",
+    "mrSource": "youtube"
   },
   {
     "id": "playlist-124",
@@ -33644,7 +34184,12 @@
       "note": "원곡 가수·키·BPM·코드 후보만 확인한 부분 확인 상태입니다. 코드는 공개 자동분석/코드표 후보를 4박 마디 카드로 정리한 연습용 배치라 원곡의 세부 마디·박자와 다를 수 있고, 청음/정식 악보 대조 전입니다. 악보 원문은 복제하지 않고 구매·열람 링크만 연결합니다. 8번·13번(원본 #38·#124) 두 영상이 같은 곡이라 같은 자료를 연결했습니다."
     },
     "timeSignature": "미확인",
-    "chartStage": 2
+    "chartStage": 2,
+    "mrUrl": "https://www.youtube.com/watch?v=xoTAbyEjp00",
+    "mrTitle": "[Instrumental/MR] 도경수(D.O.) - 영원해 MR(원키) | 모든 키 구매 가능 | 노래방 반주 Karaoke | 엠알샵",
+    "mrChannel": "엠알샵 MR SHOP",
+    "mrNote": "엠알샵 MR SHOP · 검색 '도경수 영원해 inst' · YouTube oEmbed 200 확인(2026-11-22)",
+    "mrSource": "youtube"
   },
   {
     "id": "playlist-126",
@@ -33767,7 +34312,12 @@
       "note": "원곡 가수·키·BPM·코드 후보만 확인한 부분 확인 상태입니다. 코드는 공개 자동분석/코드표 후보를 4박 마디 카드로 정리한 연습용 배치라 원곡의 세부 마디·박자와 다를 수 있고, 청음/정식 악보 대조 전입니다. 악보 원문은 복제하지 않고 구매·열람 링크만 연결합니다. 코드표가 “카포 4 · G·D·Em·C”로 적혀 있어, 그 운지 그대로 저장하지 않고 카포 4에서 실제로 울리는 키(B·F♯·G♯m·E)로 옮겨 적었습니다. BPM은 확인하지 못했습니다."
     },
     "timeSignature": "미확인",
-    "chartStage": 2
+    "chartStage": 2,
+    "mrUrl": "https://www.youtube.com/watch?v=wCS8ljfFaNU",
+    "mrTitle": "[TJ노래방] 내일을너에게(I'll Be There) - 도경수(D.O.) / TJ Karaoke",
+    "mrChannel": "TJ노래방 공식 유튜브채널",
+    "mrNote": "TJ노래방 공식 유튜브채널 · 검색 '도경수 내일을 너에게 (I'll Be There) inst' · YouTube oEmbed 200 확인(2026-11-22)",
+    "mrSource": "youtube"
   },
   {
     "id": "playlist-134",
@@ -33977,7 +34527,12 @@
       ]
     },
     "timeSignature": "4/4",
-    "chartStage": 2
+    "chartStage": 2,
+    "mrUrl": "https://www.youtube.com/watch?v=AwUkPUERZck",
+    "mrTitle": "내일의 우리 (Ordinary Days) - 도경수 (D.O.) (원키Gb) 여기MR / KPOP / Karaoke / Music / 노래방",
+    "mrChannel": "여기MR 노래방 Karaoke music",
+    "mrNote": "여기MR 노래방 Karaoke music · 검색 '도경수 내일의 우리 (Ordinary Days) MR' · YouTube oEmbed 200 확인(2026-11-22)",
+    "mrSource": "youtube"
   },
   {
     "id": "playlist-136",
@@ -34089,7 +34644,12 @@
       ]
     },
     "timeSignature": "4/4",
-    "chartStage": 1
+    "chartStage": 1,
+    "mrUrl": "https://www.youtube.com/watch?v=TNZdnox2lwE",
+    "mrTitle": "[Instrumental/MR] 도경수(D.O.) - Popcorn MR(코러스) (원키) | 모든 키 구매 가능 | 노래방 반주 Karaoke | 엠알샵",
+    "mrChannel": "엠알샵 MR SHOP",
+    "mrNote": "엠알샵 MR SHOP · 검색 '도경수 Popcorn inst' · YouTube oEmbed 200 확인(2026-11-22)",
+    "mrSource": "youtube"
   },
   {
     "id": "playlist-138",
@@ -34359,7 +34919,12 @@
       ]
     },
     "timeSignature": "4/4",
-    "chartStage": 3
+    "chartStage": 3,
+    "mrUrl": "https://www.youtube.com/watch?v=F3VwFVjBLY0",
+    "mrTitle": "[Inst] 성시경 - 너의 모든 순간 기타 반주(MR / Instrumental)",
+    "mrChannel": "기타치는아빠 GuitarPD",
+    "mrNote": "기타치는아빠 GuitarPD · 검색 '성시경 너의 모든 순간 inst' · YouTube oEmbed 200 확인(2026-11-22)",
+    "mrSource": "youtube"
   },
   {
     "id": "playlist-139",
@@ -34704,7 +35269,12 @@
         }
       ],
       "note": "부분 확인 — 나윤권 원곡(도경수 앨범 기대와 혼동 정정), 원키 E♭→E 후반 반음 전조, 100bpm·4/4까지 확인했습니다. E♭·A♭·B♭·Cm·Fm(확장 E♭maj7·Cm7·Fm7·B♭7·A♭maj7)는 자동분석 후보이고 마디별 정확한 배치는 정식 악보 대조 전입니다. 악보 원문은 복제하지 않고 열람 링크만 연결합니다."
-    }
+    },
+    "mrUrl": "https://www.youtube.com/watch?v=t_KgLOZMELU",
+    "mrTitle": "[TJ노래방 / 멜로디제거] 기대 - 나윤권 / TJ Karaoke",
+    "mrChannel": "TJ노래방 공식 유튜브채널",
+    "mrNote": "TJ노래방 공식 유튜브채널 · 검색 '나윤권 기대 inst' · YouTube oEmbed 200 확인(2026-11-22)",
+    "mrSource": "youtube"
   },
   {
     "id": "playlist-143",
@@ -34835,7 +35405,12 @@
         }
       ],
       "note": "원곡 가수·키·BPM·코드 후보만 확인한 부분 확인 상태입니다. 코드는 공개 자동분석/코드표 후보를 4박 마디 카드로 정리한 연습용 배치라 원곡의 세부 마디·박자와 다를 수 있고, 청음/정식 악보 대조 전입니다. 악보 원문은 복제하지 않고 구매·열람 링크만 연결합니다. 143bpm은 빠른 편이라 연습은 100bpm대부터 올리는 것을 권합니다."
-    }
+    },
+    "mrUrl": "https://www.youtube.com/watch?v=azQhzlKb4H0",
+    "mrTitle": "[TJ노래방] 기적(Wonder) - 디오(D.O.) / TJ Karaoke",
+    "mrChannel": "TJ노래방 공식 유튜브채널",
+    "mrNote": "TJ노래방 공식 · YouTube oEmbed 200 확인(2026-11-22)",
+    "mrSource": "youtube"
   },
   {
     "id": "playlist-152",
@@ -34940,7 +35515,12 @@
       "note": "원곡 가수·키·BPM·코드 후보만 확인한 부분 확인 상태입니다. 코드는 공개 자동분석/코드표 후보를 4박 마디 카드로 정리한 연습용 배치라 원곡의 세부 마디·박자와 다를 수 있고, 청음/정식 악보 대조 전입니다. 악보 원문은 복제하지 않고 구매·열람 링크만 연결합니다. 코드표가 “카포 1 · F·C”로 적혀 있어 카포 1에서 실제로 울리는 F♯·C♯ 기준으로 옮겼습니다. 확인된 코드가 두 개뿐이라 전체 진행은 아닙니다. F키 조옮김 악보도 있어 원키와 구분이 필요합니다."
     },
     "timeSignature": "미확인",
-    "chartStage": 1
+    "chartStage": 1,
+    "mrUrl": "https://www.youtube.com/watch?v=yjd_CpFQMTs",
+    "mrTitle": "D.O. 'Where You Were (기억의 온기)' (Official Instrumental)",
+    "mrChannel": "Skzfan13",
+    "mrNote": "공식 Instrumental · YouTube oEmbed 200 확인(2026-11-22)",
+    "mrSource": "youtube"
   },
   {
     "id": "playlist-153",
@@ -35072,7 +35652,12 @@
       "note": "원곡 가수·키·BPM·코드 후보만 확인한 부분 확인 상태입니다. 코드는 공개 자동분석/코드표 후보를 4박 마디 카드로 정리한 연습용 배치라 원곡의 세부 마디·박자와 다를 수 있고, 청음/정식 악보 대조 전입니다. 악보 원문은 복제하지 않고 구매·열람 링크만 연결합니다. 코드 사이트의 키 표기는 B이고 곡 중 전조가 있다고 해서, 확인된 도입 진행(G → D/F♯ → Em7 → C → D)을 기준으로 도입 G키로 적었습니다. 후반 전조부 코드는 확인하지 못했습니다. 18번·19번(원본 #153·#154) 두 영상이 같은 곡입니다."
     },
     "timeSignature": "미확인",
-    "chartStage": 2
+    "chartStage": 2,
+    "mrUrl": "https://www.youtube.com/watch?v=jJ0qJl8BYCo",
+    "mrTitle": "[TJ노래방 / 멜로디제거] 다시, 별아래 - 임한별 / TJ Karaoke",
+    "mrChannel": "TJ노래방 공식 유튜브채널",
+    "mrNote": "TJ노래방 공식 유튜브채널 · 검색 '임한별 다시, 별 아래 inst' · YouTube oEmbed 200 확인(2026-11-22)",
+    "mrSource": "youtube"
   },
   {
     "id": "playlist-154",
@@ -35204,7 +35789,12 @@
       "note": "원곡 가수·키·BPM·코드 후보만 확인한 부분 확인 상태입니다. 코드는 공개 자동분석/코드표 후보를 4박 마디 카드로 정리한 연습용 배치라 원곡의 세부 마디·박자와 다를 수 있고, 청음/정식 악보 대조 전입니다. 악보 원문은 복제하지 않고 구매·열람 링크만 연결합니다. 코드 사이트의 키 표기는 B이고 곡 중 전조가 있다고 해서, 확인된 도입 진행(G → D/F♯ → Em7 → C → D)을 기준으로 도입 G키로 적었습니다. 후반 전조부 코드는 확인하지 못했습니다. 18번·19번(원본 #153·#154) 두 영상이 같은 곡입니다."
     },
     "timeSignature": "미확인",
-    "chartStage": 2
+    "chartStage": 2,
+    "mrUrl": "https://www.youtube.com/watch?v=jJ0qJl8BYCo",
+    "mrTitle": "[TJ노래방 / 멜로디제거] 다시, 별아래 - 임한별 / TJ Karaoke",
+    "mrChannel": "TJ노래방 공식 유튜브채널",
+    "mrNote": "TJ노래방 공식 유튜브채널 · 검색 '임한별 다시, 별 아래 inst' · YouTube oEmbed 200 확인(2026-11-22)",
+    "mrSource": "youtube"
   },
   {
     "id": "playlist-156",
@@ -35379,7 +35969,12 @@
     },
     "category": "chart",
     "timeSignature": "4/4",
-    "chartStage": 2
+    "chartStage": 2,
+    "mrUrl": "https://www.youtube.com/watch?v=tq5ot3EvzMU",
+    "mrTitle": "[TJ노래방] 0+0 - 한로로 / TJ Karaoke",
+    "mrChannel": "TJ노래방 공식 유튜브채널",
+    "mrNote": "TJ노래방 공식 유튜브채널 · 검색 '한로로 0+0 inst' · YouTube oEmbed 200 확인(2026-11-22)",
+    "mrSource": "youtube"
   },
   {
     "id": "playlist-157",
@@ -36058,7 +36653,12 @@
       "note": "TJ노래방 84960 멜로디제거 MR 녹화(3분 10초)를 자동 분석한 초안입니다. 4/4·E♭·♩83은 공개 템포 자료(SongBPM 83)와 박자 분석, 제가 같은 녹화에서 다시 잰 박이 모두 맞습니다. 다만 A♭maj7/A♭maj9, B♭/B♭7, E♭/E♭maj7 구분과 마디 안 전환 시각(B♭/D→A♭maj7)은 자동 분석만으로 확정하지 못했고, 후주 61~65마디는 반주 밖 신호가 섞였을 수 있어 코드를 비웠습니다. 청음 검수 전입니다."
     },
     "timeSignature": "4/4",
-    "chartStage": 3
+    "chartStage": 3,
+    "mrUrl": "https://www.youtube.com/watch?v=9Iurx0Tj9bM",
+    "mrTitle": "[TJ노래방] 픽픽 - 로꼬 / TJ Karaoke",
+    "mrChannel": "TJ노래방 공식 유튜브채널",
+    "mrNote": "TJ노래방 공식 유튜브채널 · 검색 '로꼬 픽픽 inst' · YouTube oEmbed 200 확인(2026-11-22)",
+    "mrSource": "youtube"
   },
   {
     "id": "playlist-158",
@@ -36322,7 +36922,12 @@
       ]
     },
     "timeSignature": "4/4",
-    "chartStage": 3
+    "chartStage": 3,
+    "mrUrl": "https://www.youtube.com/watch?v=FbQKQPmDA08",
+    "mrTitle": "[TJ노래방 / 멜로디제거] 시간이들겠지 - 로꼬 / TJ Karaoke",
+    "mrChannel": "TJ노래방 공식 유튜브채널",
+    "mrNote": "TJ노래방 공식 유튜브채널 · 검색 '로꼬 시간이 들겠지 inst' · YouTube oEmbed 200 확인(2026-11-22)",
+    "mrSource": "youtube"
   },
   {
     "id": "playlist-159",
@@ -36959,7 +37564,12 @@
       "note": "키썸 「서, 어른(inst.)」 공식 inst. 녹화(2분 51초)를 자동 분석한 초안입니다. 86.1 BPM은 제 beat 추적(172.3의 절반)과 같고 C장조 후보도 코드 분포와 맞습니다. 다만 처음 8.6초는 마디 배치가 불확실해 코드를 비웠고, C/Cmaj7·F/Fmaj7·Am7/Dm7은 구성음이 겹쳐 서로 오인식될 수 있습니다. 여성 원곡 규칙(-5반음)을 적용해 남자키 G로 적었습니다. 청음 검수 전입니다."
     },
     "timeSignature": "4/4",
-    "chartStage": 2
+    "chartStage": 2,
+    "mrUrl": "https://www.youtube.com/watch?v=ige-TSCG5vc",
+    "mrTitle": "서, 어른 (inst.)",
+    "mrChannel": "Kisum - Topic",
+    "mrNote": "공식 inst. (ZIP 자료 · Kisum - Topic) · YouTube oEmbed 200 확인(2026-11-22)",
+    "mrSource": "zip"
   },
   {
     "id": "playlist-160",
@@ -37063,7 +37673,12 @@
       ]
     },
     "timeSignature": "4/4",
-    "chartStage": 1
+    "chartStage": 1,
+    "mrUrl": "https://www.youtube.com/watch?v=72CLda2iLQk",
+    "mrTitle": "[TJ노래방] 입춘 - 한로로 / TJ Karaoke",
+    "mrChannel": "TJ노래방 공식 유튜브채널",
+    "mrNote": "TJ노래방 공식 유튜브채널 · 검색 '한로로 입춘 inst' · YouTube oEmbed 200 확인(2026-11-22)",
+    "mrSource": "youtube"
   },
   {
     "id": "playlist-161",
@@ -37213,7 +37828,12 @@
       "note": "원곡 가수·키·BPM·코드 후보만 확인한 부분 확인 상태입니다. 코드는 공개 자동분석/코드표 후보를 4박 마디 카드로 정리한 연습용 배치라 원곡의 세부 마디·박자와 다를 수 있고, 청음/정식 악보 대조 전입니다. 악보 원문은 복제하지 않고 구매·열람 링크만 연결합니다. 전조와 복잡한 코드가 많아 단순 4코드로 확정하지 않았습니다. 확인된 코드군만 순서대로 적었고 마디 배치는 검수 전입니다."
     },
     "timeSignature": "미확인",
-    "chartStage": 3
+    "chartStage": 3,
+    "mrUrl": "https://www.youtube.com/watch?v=6BdHQqZ0LUc",
+    "mrTitle": "[TJ노래방] 지금이대로만 - 박재정,설윤(NMIXX) / TJ Karaoke",
+    "mrChannel": "TJ노래방 공식 유튜브채널",
+    "mrNote": "TJ노래방 공식 유튜브채널 · 검색 '박재정 X 설윤 지금 이대로만 inst' · YouTube oEmbed 200 확인(2026-11-22)",
+    "mrSource": "youtube"
   },
   {
     "id": "playlist-162",
@@ -37496,7 +38116,12 @@
       ]
     },
     "timeSignature": "4/4",
-    "chartStage": 2
+    "chartStage": 2,
+    "mrUrl": "https://www.youtube.com/watch?v=5hkdHuMzupo",
+    "mrTitle": "IU(아이유) - 내 손을 잡아 Acoustic Guitar Instrumental, Karaoke, MR, 멜로디제거, 어쿠스틱버전",
+    "mrChannel": "Rami Guitar 라미기타",
+    "mrNote": "Rami Guitar 라미기타 · 검색 '아이유 내 손을 잡아 inst' · YouTube oEmbed 200 확인(2026-11-22)",
+    "mrSource": "youtube"
   },
   {
     "id": "playlist-166",
@@ -37735,7 +38360,12 @@
       "note": "원키 Ab·129bpm 확인. 정식 기타 코드표가 없어 코드 분석 사이트(Mazmazika)의 코드 진행 순서 중 앞부분 16개를 그대로 옮겼습니다."
     },
     "timeSignature": "4/4",
-    "chartStage": 3
+    "chartStage": 3,
+    "mrUrl": "https://www.youtube.com/watch?v=_mPK9qAjYiU",
+    "mrTitle": "[멜로디제거] Feel Special - TWICE (KY.27044) / KY Karaoke",
+    "mrChannel": "금영 노래방 공식 유튜브 채널",
+    "mrNote": "금영 노래방 공식 유튜브 채널 · 검색 'Feel Special TJ노래방' · YouTube oEmbed 200 확인(2026-11-22)",
+    "mrSource": "youtube"
   },
   {
     "id": "playlist-167",
@@ -38017,7 +38647,12 @@
       ]
     },
     "timeSignature": "4/4",
-    "chartStage": 3
+    "chartStage": 3,
+    "mrUrl": "https://www.youtube.com/watch?v=3BrebL7iuNY",
+    "mrTitle": "[TJ노래방] 더 아름다워져 - 소수빈 / TJ Karaoke",
+    "mrChannel": "TJ노래방 공식 유튜브채널",
+    "mrNote": "TJ노래방 공식 유튜브채널 · 검색 '소수빈 더 아름다워져 inst' · YouTube oEmbed 200 확인(2026-11-22)",
+    "mrSource": "youtube"
   },
   {
     "id": "playlist-170",
@@ -38218,7 +38853,12 @@
       ]
     },
     "timeSignature": "6/8",
-    "chartStage": 2
+    "chartStage": 2,
+    "mrUrl": "https://www.youtube.com/watch?v=a3zPnhgglFw",
+    "mrTitle": "[TJ노래방 / 멜로디제거] 생각을멈추다보면 - 최유리 / TJ Karaoke",
+    "mrChannel": "TJ노래방 공식 유튜브채널",
+    "mrNote": "TJ노래방 공식 유튜브채널 · 검색 '최유리 생각을 멈추다 보면 inst' · YouTube oEmbed 200 확인(2026-11-22)",
+    "mrSource": "youtube"
   },
   {
     "id": "playlist-172",
@@ -39239,7 +39879,12 @@
       ]
     },
     "timeSignature": "6/8",
-    "chartStage": 2
+    "chartStage": 2,
+    "mrUrl": "https://www.youtube.com/watch?v=a3zPnhgglFw",
+    "mrTitle": "[TJ노래방 / 멜로디제거] 생각을멈추다보면 - 최유리 / TJ Karaoke",
+    "mrChannel": "TJ노래방 공식 유튜브채널",
+    "mrNote": "TJ노래방 공식 유튜브채널 · 검색 '최유리 생각을 멈추다 보면 inst' · YouTube oEmbed 200 확인(2026-11-22)",
+    "mrSource": "youtube"
   },
   {
     "id": "playlist-175",
@@ -39526,7 +40171,12 @@
       ]
     },
     "timeSignature": "4/4",
-    "chartStage": 1
+    "chartStage": 1,
+    "mrUrl": "https://www.youtube.com/watch?v=FMppPoOfm9E",
+    "mrTitle": "만찬가(반산카) - 츠키 (晩餐歌 - tuki.) (KY.57828) / KY Karaoke",
+    "mrChannel": "금영 노래방 공식 유튜브 채널",
+    "mrNote": "금영 노래방 공식 유튜브 채널 · 검색 'tuki. 만찬가 inst' · YouTube oEmbed 200 확인(2026-11-22)",
+    "mrSource": "youtube"
   },
   {
     "id": "playlist-176",
@@ -39687,7 +40337,12 @@
       ]
     },
     "timeSignature": "4/4",
-    "chartStage": 1
+    "chartStage": 1,
+    "mrUrl": "https://www.youtube.com/watch?v=CKxHw4j6Hus",
+    "mrTitle": "[TJ노래방 / 멜로디제거] 사월이지나면우리헤어져요(Beautiful Goodbye) - 첸(CHEN) / TJ Karaoke",
+    "mrChannel": "TJ노래방 공식 유튜브채널",
+    "mrNote": "TJ노래방 공식 유튜브채널 · 검색 '첸 사월이 지나면 우리 헤어져요 inst' · YouTube oEmbed 200 확인(2026-11-22)",
+    "mrSource": "youtube"
   },
   {
     "id": "playlist-177",
@@ -39881,7 +40536,12 @@
       ]
     },
     "timeSignature": "4/4",
-    "chartStage": 1
+    "chartStage": 1,
+    "mrUrl": "https://www.youtube.com/watch?v=OpCSmq7CqWw",
+    "mrTitle": "[TJ노래방] Beautiful(도깨비OST) - 크러쉬 / TJ Karaoke",
+    "mrChannel": "TJ노래방 공식 유튜브채널",
+    "mrNote": "TJ노래방 공식 유튜브채널 · 검색 '크러쉬 Beautiful inst' · YouTube oEmbed 200 확인(2026-11-22)",
+    "mrSource": "youtube"
   },
   {
     "id": "playlist-178",
@@ -40125,7 +40785,12 @@
       ]
     },
     "timeSignature": "4/4",
-    "chartStage": 3
+    "chartStage": 3,
+    "mrUrl": "https://www.youtube.com/watch?v=ppVUbuaIRdo",
+    "mrTitle": "[TJ노래방 / 멜로디제거] 좋아해.. - 죠지 / TJ Karaoke",
+    "mrChannel": "TJ노래방 공식 유튜브채널",
+    "mrNote": "TJ노래방 공식 유튜브채널 · 검색 '죠지 좋아해.. inst' · YouTube oEmbed 200 확인(2026-11-22)",
+    "mrSource": "youtube"
   },
   {
     "id": "playlist-179",
@@ -40365,7 +41030,12 @@
       ]
     },
     "timeSignature": "4/4",
-    "chartStage": 3
+    "chartStage": 3,
+    "mrUrl": "https://www.youtube.com/watch?v=rwrxAflml6Y",
+    "mrTitle": "[Inst] 죠지(George) - 바라봐줘요 기타 반주(MR / Instrumental)",
+    "mrChannel": "기타치는아빠 GuitarPD",
+    "mrNote": "기타치는아빠 GuitarPD · 검색 '죠지 바라봐줘요 inst' · YouTube oEmbed 200 확인(2026-11-22)",
+    "mrSource": "youtube"
   },
   {
     "id": "playlist-180",
@@ -40605,7 +41275,12 @@
       ]
     },
     "timeSignature": "4/4",
-    "chartStage": 3
+    "chartStage": 3,
+    "mrUrl": "https://www.youtube.com/watch?v=rwrxAflml6Y",
+    "mrTitle": "[Inst] 죠지(George) - 바라봐줘요 기타 반주(MR / Instrumental)",
+    "mrChannel": "기타치는아빠 GuitarPD",
+    "mrNote": "기타치는아빠 GuitarPD · 검색 '죠지 바라봐줘요 inst' · YouTube oEmbed 200 확인(2026-11-22)",
+    "mrSource": "youtube"
   },
   {
     "id": "playlist-181",
@@ -40823,7 +41498,12 @@
       ]
     },
     "timeSignature": "4/4",
-    "chartStage": 1
+    "chartStage": 1,
+    "mrUrl": "https://www.youtube.com/watch?v=O_ZC_-9Njcw",
+    "mrTitle": "[TJ노래방 / 멜로디제거] Boat - 죠지(George) / TJ Karaoke",
+    "mrChannel": "TJ노래방 공식 유튜브채널",
+    "mrNote": "TJ노래방 공식 유튜브채널 · 검색 '죠지 Boat inst' · YouTube oEmbed 200 확인(2026-11-22)",
+    "mrSource": "youtube"
   },
   {
     "id": "playlist-182",
@@ -41058,7 +41738,12 @@
       ]
     },
     "timeSignature": "4/4",
-    "chartStage": 3
+    "chartStage": 3,
+    "mrUrl": "https://www.youtube.com/watch?v=gdMgYb-Z1xc",
+    "mrTitle": "[TJ노래방 / 멜로디제거] 축가 - 전우성 / TJ Karaoke",
+    "mrChannel": "TJ노래방 공식 유튜브채널",
+    "mrNote": "TJ노래방 공식 유튜브채널 · 검색 '전우성 축가 inst' · YouTube oEmbed 200 확인(2026-11-22)",
+    "mrSource": "youtube"
   },
   {
     "id": "playlist-183",
@@ -41326,7 +42011,12 @@
       ]
     },
     "timeSignature": "4/4",
-    "chartStage": 3
+    "chartStage": 3,
+    "mrUrl": "https://www.youtube.com/watch?v=gdMgYb-Z1xc",
+    "mrTitle": "[TJ노래방 / 멜로디제거] 축가 - 전우성 / TJ Karaoke",
+    "mrChannel": "TJ노래방 공식 유튜브채널",
+    "mrNote": "TJ노래방 공식 유튜브채널 · 검색 '전우성 축가 inst' · YouTube oEmbed 200 확인(2026-11-22)",
+    "mrSource": "youtube"
   },
   {
     "id": "playlist-185",
@@ -41515,7 +42205,12 @@
       ]
     },
     "timeSignature": "4/4",
-    "chartStage": 2
+    "chartStage": 2,
+    "mrUrl": "https://www.youtube.com/watch?v=C2AtSkwchw0",
+    "mrTitle": "[TJ노래방] 달리표현할수없어요 - 로이킴 / TJ Karaoke",
+    "mrChannel": "TJ노래방 공식 유튜브채널",
+    "mrNote": "TJ노래방 공식 유튜브채널 · 검색 '로이킴 달리 표현할 수 없어요 inst' · YouTube oEmbed 200 확인(2026-11-22)",
+    "mrSource": "youtube"
   },
   {
     "id": "playlist-186",
@@ -42340,7 +43035,12 @@
       "note": "공식 오디오 녹화(4분 51초, 음악 시작 6.2초)를 자동 분석한 초안입니다. 64.6 BPM(2배 129.2)은 제 beat 추적과 같고 C장조 후보도 코드 분포와 맞습니다. 다만 77개 시간창 중 두 분석 방식이 완전히 일치한 구간은 29개뿐이라, Fmaj7/Fm/F, Dm7/Dm, Em/Em7, G7/G 같은 대체 후보가 붙은 마디는 원음으로 확인해 주세요. 4/4와 마디 시작은 6.2초 기준 가정입니다. 청음 검수 전입니다."
     },
     "timeSignature": "4/4",
-    "chartStage": 3
+    "chartStage": 3,
+    "mrUrl": "https://www.youtube.com/watch?v=ZbHcA5kVn1w",
+    "mrTitle": "It's cloudy again today Instrumental (오늘도 날씨는 흐리네 Instrumental)",
+    "mrChannel": "Release - Topic",
+    "mrNote": "공식 Instrumental(Release - Topic) · YouTube oEmbed 200 확인(2026-11-22)",
+    "mrSource": "youtube"
   },
   {
     "id": "playlist-187",
@@ -42554,7 +43254,12 @@
       ]
     },
     "timeSignature": "4/4",
-    "chartStage": 3
+    "chartStage": 3,
+    "mrUrl": "https://www.youtube.com/watch?v=eNQmltPWJQQ",
+    "mrTitle": "[TJ노래방 / 멜로디제거] 다시사랑한다면 - 김필 / TJ Karaoke",
+    "mrChannel": "TJ노래방 공식 유튜브채널",
+    "mrNote": "TJ노래방 공식 유튜브채널 · 검색 '김필 다시 사랑한다면 inst' · YouTube oEmbed 200 확인(2026-11-22)",
+    "mrSource": "youtube"
   },
   {
     "id": "playlist-188",
@@ -42762,7 +43467,12 @@
       ]
     },
     "timeSignature": "4/4",
-    "chartStage": 3
+    "chartStage": 3,
+    "mrUrl": "https://www.youtube.com/watch?v=TPb2CY1VAlo",
+    "mrTitle": "[TJ노래방 / 멜로디제거] 나의 X에게 - 경서 / TJ Karaoke",
+    "mrChannel": "TJ노래방 공식 유튜브채널",
+    "mrNote": "TJ노래방 공식 유튜브채널 · 검색 '경서 나의 X에게 inst' · YouTube oEmbed 200 확인(2026-11-22)",
+    "mrSource": "youtube"
   },
   {
     "id": "playlist-189",
@@ -43767,7 +44477,12 @@
       "note": "승부Family MR 녹화(3분 40초)를 자동 분석한 초안입니다. 61.5 BPM(2배 해석 123)은 제 재측정과 같습니다. 초반 F/C, 중반 C를 거쳐 2:47 무렵 G장조로 옮겨 가는 것을 오디오에서 확인했고(2:47 이후 구간 크로마 상관 G장조 0.96), 그 지점에 구간 경계를 넣었습니다. 다만 전조가 정확히 어느 박에서 시작하는지는 확정하지 못했으며, F/Fmaj7, Gm/G7, 짧은 분수코드는 두 분석 방식이 갈렸습니다. 113개 2박 후보를 92개 연속 구간으로 병합해 4박 카드에 올렸으므로 마디 경계는 연습용입니다. 청음 검수 전입니다."
     },
     "timeSignature": "4/4",
-    "chartStage": 3
+    "chartStage": 3,
+    "mrUrl": "https://www.youtube.com/watch?v=uJ5TFy8XH7Y",
+    "mrTitle": "임승부(Lim Seung bu)-어떤이별(M.R)",
+    "mrChannel": "승부Family",
+    "mrNote": "ZIP 원본 MR · 임승부(Lim Seung bu)-어떤이별(M.R) · YouTube oEmbed 200 확인(2026-11-22)",
+    "mrSource": "zip"
   },
   {
     "id": "playlist-191",
@@ -43981,7 +44696,12 @@
       ]
     },
     "timeSignature": "4/4",
-    "chartStage": 3
+    "chartStage": 3,
+    "mrUrl": "https://www.youtube.com/watch?v=eNQmltPWJQQ",
+    "mrTitle": "[TJ노래방 / 멜로디제거] 다시사랑한다면 - 김필 / TJ Karaoke",
+    "mrChannel": "TJ노래방 공식 유튜브채널",
+    "mrNote": "TJ노래방 공식 유튜브채널 · 검색 '김필 다시 사랑한다면 inst' · YouTube oEmbed 200 확인(2026-11-22)",
+    "mrSource": "youtube"
   },
   {
     "id": "playlist-192",
@@ -44244,7 +44964,12 @@
       ]
     },
     "timeSignature": "4/4",
-    "chartStage": 3
+    "chartStage": 3,
+    "mrUrl": "https://www.youtube.com/watch?v=pQpqhOKtTFw",
+    "mrTitle": "[TJ노래방 / 멜로디제거] 거리에서 - 김광석 / TJ Karaoke",
+    "mrChannel": "TJ노래방 공식 유튜브채널",
+    "mrNote": "TJ노래방 공식 유튜브채널 · 검색 '김광석 거리에서 inst' · YouTube oEmbed 200 확인(2026-11-22)",
+    "mrSource": "youtube"
   },
   {
     "id": "playlist-194",
@@ -44440,7 +45165,12 @@
       ]
     },
     "timeSignature": "4/4",
-    "chartStage": 1
+    "chartStage": 1,
+    "mrUrl": "https://www.youtube.com/watch?v=HYSLcCmEZsE",
+    "mrTitle": "[TJ노래방 / 멜로디제거] 나는아픈건딱질색이니까 - (여자)아이들 / TJ Karaoke",
+    "mrChannel": "TJ노래방 공식 유튜브채널",
+    "mrNote": "TJ노래방 공식 유튜브채널 · 검색 '아이들 아픈 건 딱 질색이니까 inst' · YouTube oEmbed 200 확인(2026-11-22)",
+    "mrSource": "youtube"
   },
   {
     "id": "playlist-195",
@@ -44713,7 +45443,12 @@
       ]
     },
     "timeSignature": "4/4",
-    "chartStage": 1
+    "chartStage": 1,
+    "mrUrl": "https://www.youtube.com/watch?v=tcPUZZ0rIOc",
+    "mrTitle": "[TJ노래방 / 멜로디제거] 내생에아름다운(뷰티인사이드OST) - K.Will / TJ Karaoke",
+    "mrChannel": "TJ노래방 공식 유튜브채널",
+    "mrNote": "TJ노래방 공식 유튜브채널 · 검색 '케이윌 내 생에 아름다운 inst' · YouTube oEmbed 200 확인(2026-11-22)",
+    "mrSource": "youtube"
   },
   {
     "id": "playlist-196",
@@ -45059,7 +45794,12 @@
       ]
     },
     "timeSignature": "4/4",
-    "chartStage": 1
+    "chartStage": 1,
+    "mrUrl": "https://www.youtube.com/watch?v=jExhcj4SWkU",
+    "mrTitle": "[TJ노래방 / 멜로디제거] 뭐라할까! - 브리즈 / TJ Karaoke",
+    "mrChannel": "TJ노래방 공식 유튜브채널",
+    "mrNote": "TJ노래방 공식 유튜브채널 · 검색 '브리즈 뭐라할까 inst' · YouTube oEmbed 200 확인(2026-11-22)",
+    "mrSource": "youtube"
   },
   {
     "id": "playlist-200",
@@ -45274,7 +46014,12 @@
       ]
     },
     "timeSignature": "4/4",
-    "chartStage": 2
+    "chartStage": 2,
+    "mrUrl": "https://www.youtube.com/watch?v=FmgDEp5RH2s",
+    "mrTitle": "[TJ노래방] 꿈꾸던 어른이 되었나요? - 머무르 / TJ Karaoke",
+    "mrChannel": "TJ노래방 공식 유튜브채널",
+    "mrNote": "TJ노래방 공식 유튜브채널 · 검색 '머무르 꿈꾸던 어른이 되었나요? inst' · YouTube oEmbed 200 확인(2026-11-22)",
+    "mrSource": "youtube"
   },
   {
     "id": "playlist-204",
@@ -45553,7 +46298,12 @@
       ]
     },
     "timeSignature": "4/4",
-    "chartStage": 1
+    "chartStage": 1,
+    "mrUrl": "https://www.youtube.com/watch?v=jExhcj4SWkU",
+    "mrTitle": "[TJ노래방 / 멜로디제거] 뭐라할까! - 브리즈 / TJ Karaoke",
+    "mrChannel": "TJ노래방 공식 유튜브채널",
+    "mrNote": "TJ노래방 공식 유튜브채널 · 검색 '브리즈 뭐라할까 inst' · YouTube oEmbed 200 확인(2026-11-22)",
+    "mrSource": "youtube"
   },
   {
     "id": "playlist-205",
@@ -46453,7 +47203,12 @@
       "note": "허각 「안녕 너희(Goodbye to Us)」 Inst. 녹화(4분 14초)를 자동 분석한 초안입니다. A장조는 기존에 확인한 멜로디 악보의 A키 표기와 맞고, 80.75 BPM은 제 beat 추적(78.3)과 2 BPM 안에서 겹치고, 온셋 자기상관 후보도 81.3·79.6으로 81을 지지합니다. 다만 4박 85개·2박 169개 후보 중 상당수가 CQT와 스펙트럼 방식에서 갈려 \"후보 경합\"으로 표시되어 있고, 3.67초 격자 위치도 실제 마디선으로 검증되지 않았습니다. 청음 검수 전입니다."
     },
     "timeSignature": "4/4",
-    "chartStage": 3
+    "chartStage": 3,
+    "mrUrl": "https://www.youtube.com/watch?v=s82tYAXsmCc",
+    "mrTitle": "Goodbye to Us (Inst.)",
+    "mrChannel": "Huh Gak - Topic",
+    "mrNote": "공식 Inst.(Huh Gak - Topic) · YouTube oEmbed 200 확인(2026-11-22)",
+    "mrSource": "youtube"
   },
   {
     "id": "playlist-206",
@@ -47490,7 +48245,12 @@
       "note": "앞 영상(20:39:12, 16.5초)과 뒤 영상(20:38:05, 3분 13초)이 11.96초 지점에서 겹치는 것을 확인해 4.49초를 지우고 만든 통합 3분 25초 영상을 기준으로 분석한 초안입니다. 그래서 화면의 마디 시각은 통합 영상 기준이고, 뒤 영상만 열면 약 12초 느리게 보입니다. 66.26 BPM·F#장조는 제 재측정과 맞고, 통합 시각을 11.96초 보정해 무작위 마디를 대조하니 7개 중 5개가 3위 안에 들었습니다. 다만 2박 후보 114개 중 두 방식이 같은 코드를 고른 구간은 49개뿐입니다. 청음 검수 전입니다."
     },
     "timeSignature": "4/4",
-    "chartStage": 3
+    "chartStage": 3,
+    "mrUrl": "https://www.youtube.com/watch?v=K5AkyJ8W59U",
+    "mrTitle": "[TJ노래방] 나를 사랑하지 말아요 - 허각 / TJ Karaoke",
+    "mrChannel": "TJ노래방 공식 유튜브채널",
+    "mrNote": "TJ노래방 공식 유튜브채널 · 검색 '나를 사랑하지 말아요 TJ노래방' · YouTube oEmbed 200 확인(2026-11-22)",
+    "mrSource": "youtube"
   },
   {
     "id": "playlist-207",
@@ -47672,7 +48432,12 @@
       ]
     },
     "timeSignature": "4/4",
-    "chartStage": 2
+    "chartStage": 2,
+    "mrUrl": "https://www.youtube.com/watch?v=FmgDEp5RH2s",
+    "mrTitle": "[TJ노래방] 꿈꾸던 어른이 되었나요? - 머무르 / TJ Karaoke",
+    "mrChannel": "TJ노래방 공식 유튜브채널",
+    "mrNote": "TJ노래방 공식 유튜브채널 · 검색 '머무르 꿈꾸던 어른이 되었나요? inst' · YouTube oEmbed 200 확인(2026-11-22)",
+    "mrSource": "youtube"
   },
   {
     "id": "playlist-208",
@@ -47881,7 +48646,12 @@
       ]
     },
     "timeSignature": "4/4",
-    "chartStage": 3
+    "chartStage": 3,
+    "mrUrl": "https://www.youtube.com/watch?v=TPb2CY1VAlo",
+    "mrTitle": "[TJ노래방 / 멜로디제거] 나의 X에게 - 경서 / TJ Karaoke",
+    "mrChannel": "TJ노래방 공식 유튜브채널",
+    "mrNote": "TJ노래방 공식 유튜브채널 · 검색 '경서 나의 X에게 inst' · YouTube oEmbed 200 확인(2026-11-22)",
+    "mrSource": "youtube"
   },
   {
     "id": "playlist-210",
@@ -48298,7 +49068,12 @@
       ]
     },
     "timeSignature": "4/4",
-    "chartStage": 1
+    "chartStage": 1,
+    "mrUrl": "https://www.youtube.com/watch?v=wEUgcE0N-G0",
+    "mrTitle": "STAND BY ME – Ben E. King | Smooth Jazz KARAOKE 🎷🎤 | Instrumental Backing Track",
+    "mrChannel": "Kopa Kopi Karaoke",
+    "mrNote": "Kopa Kopi Karaoke · Instrumental Backing Track · YouTube oEmbed 200 확인(2026-11-22)",
+    "mrSource": "youtube"
   },
   {
     "id": "added-10000-hours",
@@ -49176,6 +49951,11 @@
     },
     "chartNote": "Dan + Shay feat. Justin Bieber 「10,000 Hours」의 기타 MR 녹화(2분 57초)를 자동 분석한 초안입니다. ZIP의 2마디 구절 32개를 마디 64개로 펴서 10개 구간에 배치했고, 마지막 아웃트로의 끝 마디는 녹화가 4.2초에서 끊겨 1.5마디 길이입니다. 올린 MR은 A장조·86.1 BPM·4/4이고, 원곡 악보는 B♭·90으로 1반음·약 4 BPM 차이가 있습니다. 악보는 실제로 칠 MR(A/86.1)에 맞췄고 원곡 수치는 근거에 같이 남겼습니다. 브리지 C# 계열(1:55~2:06)은 장·단 확정 불가, A/Amaj7·D/Dsus2도 후보입니다. Macklemore & Ryan Lewis의 「Ten Thousand Hours」와는 다른 곡이라 기존 항목과 합치지 않았습니다. 청음 검수 전입니다.",
     "timeSignature": "4/4",
-    "chartStage": 2
+    "chartStage": 2,
+    "mrUrl": "https://www.youtube.com/watch?v=7FRBYWmJZHw",
+    "mrTitle": "10,000 Hours - Shay & Justin Bieber (Acoustic karaoke)",
+    "mrChannel": "Acoustic Lounge",
+    "mrNote": "Acoustic Karaoke(Acoustic Lounge) · YouTube oEmbed 200 확인(2026-11-22)",
+    "mrSource": "youtube"
   }
 ]

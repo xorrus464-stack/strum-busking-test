@@ -16,6 +16,7 @@ const store = {};
 
 function boot(seedVersion) {
   const root = { innerHTML: '' };
+  const created = [];
   const handlers = {};
   const local = seedVersion ? JSON.parse(JSON.stringify(seedVersion)) : null;
   if (local) store['strum-busking-v2'] = JSON.stringify(local);
@@ -25,20 +26,21 @@ function boot(seedVersion) {
       getElementById(id) { return id === 'app' ? root : null; },
       addEventListener(name, fn) { handlers[name] = fn; },
       querySelector() { return null; },
-      createElement() { return { className: '', setAttribute() {}, remove() {}, textContent: '', click() {}, style: {} }; },
-      body: { appendChild() {} }
+      createElement() { const el = { className: '', id: '', setAttribute() {}, remove() {}, textContent: '', click() {}, style: {}, classList: { add() {}, remove() {} } }; created.push(el); return el; },
+      body: { appendChild() {}, classList: { add() {}, remove() {} }, style: {} },
+      documentElement: { style: { setProperty() {} } }
     },
     localStorage: { getItem(k) { return store[k] || null; }, setItem(k, v) { store[k] = v; } , removeItem(k){ delete store[k]; } },
     console, Date, Intl, URL, setTimeout, clearTimeout, setInterval, clearInterval, Math, confirm: () => true
   };
   vm.runInNewContext(appJs, ctx);
-  return { root, handlers };
+  return { root, handlers, created };
 }
 function nav(handlers, name) { handlers.click({ target: { dataset: { nav: name }, closest(q) { return q === '[data-nav]' ? this : null; } }, preventDefault() {} }); }
 function act(handlers, cmd) { handlers.click({ target: { dataset: { act: cmd }, closest(q) { return q === '[data-act]' ? this : null; } }, preventDefault() {} }); }
 
 // 1) 신규 브라우저: 첫 화면
-let { root, handlers } = boot(null);
+let { root, handlers, created } = boot(null);
 assert(root.innerHTML.includes('STRUM'));
 assert(root.innerHTML.includes(`${ready}곡 준비 완료`), '홈: 준비 완료 곡 수');
 assert(root.innerHTML.includes('비음악'), '홈: 분류 요약');
@@ -56,6 +58,37 @@ act(handlers, 'filter-cat:reference');
 assert((root.innerHTML.match(/비음악·참고 영상/g) || []).length >= meta.nonMusicCount, '비음악 필터 결과');
 act(handlers, 'filter-cat:chart-ready');
 assert((root.innerHTML.match(/class="song-row"/g) || []).length === ready, '악보 완료 필터 결과');
+
+// 2-1) MR 버튼 + 하단 미니 플레이어
+const miniEl = created.find(el => el.id === 'mini-player-root');
+assert(miniEl, '미니 플레이어 루트 생성');
+nav(handlers, 'songs');
+assert(root.innerHTML.includes('data-act="mr:verified-001"'), 'MR 버튼(있는 곡)');
+assert(root.innerHTML.includes('MR 없음'), 'MR 없음 버튼(없는 곡)');
+assert(root.innerHTML.includes('mr-off') && root.innerHTML.includes('mr-on'), 'MR 상태별 표시');
+act(handlers, 'mr:verified-001');
+assert(miniEl.innerHTML.includes('mini-player'), '미니 플레이어 열림');
+assert(miniEl.innerHTML.includes('youtube-nocookie.com/embed/lZUnv5nimGA'), 'MR 임베드');
+assert(miniEl.innerHTML.includes('autoplay=1'), 'autoplay 지원');
+assert(miniEl.innerHTML.includes('mini-badge') && miniEl.innerHTML.includes('>MR<'), 'MR 배지');
+assert(miniEl.innerHTML.includes('data-act="mini-collapse"') && miniEl.innerHTML.includes('data-act="mini-close"'), '접기·닫기 버튼');
+assert(miniEl.innerHTML.includes('id="mini-file"'), '로컬 파일 버튼');
+nav(handlers, 'roadmap');
+assert(miniEl.innerHTML.includes('mini-frame'), '탭 이동 후에도 유지');
+act(handlers, 'chart:verified-007');
+assert(miniEl.innerHTML.includes('mini-frame'), '악보 모달 위에서도 유지');
+act(handlers, 'mr:verified-007');
+assert(miniEl.innerHTML.includes('youtube-nocookie.com/embed/PJwPhFGk0pI'), '악보 화면에서 MR 재생');
+act(handlers, 'mini-collapse');
+assert(handlers.__collapsed !== undefined || miniEl.innerHTML.includes('collapsed'), '접기 상태 반영');
+act(handlers, 'mini-close');
+assert(miniEl.innerHTML === '', '닫기 후 제거');
+act(handlers, 'close');
+act(handlers, 'mr:verified-017');
+assert(root.innerHTML.includes('MR이 아직 등록되지 않았습니다'), 'MR 없음 안내');
+assert(root.innerHTML.includes('name="mrUrl"'), 'URL 붙여넣기 입력');
+assert(root.innerHTML.includes('youtube.com/results?search_query='), 'YouTube MR 검색 링크');
+act(handlers, 'close');
 
 // 3) 원터치 컬러 악보 모달
 nav(handlers, 'songs');
@@ -110,14 +143,14 @@ assert(root.innerHTML.includes(`${ready}곡`), '설정: 악보 곡 수');
 
 // 11) seedVersion 3 → 5 병합: 기존 연습 기록·숙련도·메모 보존 + 악보 채움
 const legacy = {
-  version: 2, seedVersion: 3, removedSeedIds: [],
+  version: 2, seedVersion: 12, removedSeedIds: [],
   songs: [{ id: 'verified-001', title: '오늘', artist: '오왠 (O.WHEN)', sourceIndices: [21], verification: 'site-top3', videoUrl: '', audioUrl: '', key: '미확정', maleKey: '미확정', bpm: null, chords: '', chordStatus: '미확인', strumming: '', level: '거의 가능', tags: [], notes: '내가 직접 쓴 메모', setlist: true }],
   sources: Array.from({ length: 211 }, (_, i) => ({ index: i + 1, status: i === 162 ? '제외' : '미확인', url: '', note: '', songs: [] })),
   logs: [{ id: 'log-old-1', date: '2026-11-20', minutes: 33, songId: 'verified-001', mode: 'easy', chords: 'E A', strum: '8비트', memo: '기존 기록' }]
 };
-({ root, handlers } = boot(legacy));
+({ root, handlers, created } = boot(legacy));
 const saved = JSON.parse(store['strum-busking-v2']);
-assert(saved.seedVersion === 12, 'seedVersion 12 로 업그레이드');
+assert(saved.seedVersion === 13, 'seedVersion 13 로 업그레이드');
 assert(saved.logs.length === 1 && saved.logs[0].minutes === 33, '기존 연습 기록 보존');
 const mine = saved.songs.find(s => s.id === 'verified-001');
 assert(mine.level === '거의 가능', '숙련도 보존');
@@ -128,5 +161,7 @@ assert(mine.maleKey === 'E' && mine.bpm === 70, '남자키·BPM 병합(남성 �
 assert(mine.sourceIndices.includes(21), '원본 번호 유지');
 assert(mine.videoUrl === 'https://www.youtube.com/watch?v=RE2AgFBJ80E', '영상 링크 병합(빈 링크 채움)');
 assert(saved.sources[162].status === '제외', '#163 제외 유지');
+assert(mine.mrUrl === 'https://www.youtube.com/watch?v=lZUnv5nimGA', 'MR 링크 병합(빈 값만 채움)');
+assert(mine.mrTitle && mine.mrChannel, 'MR 제목·채널 병합');
 
-console.log(`PASS: boot ${songs.length}곡(악보 ${ready}·검수대기 ${pending}), 남자키 배지, 원터치 컬러 악보(5색), SimplifyChord 슬롯, 4단계 로드맵, 4/4·3/4·6/8 메트로놈, 원본 슬롯, 백업, seed v12 병합(기존 기록·숙련도 보존)`);
+console.log(`PASS: boot ${songs.length}곡(악보 ${ready}·검수대기 ${pending}), 남자키 배지, 원터치 컬러 악보(5색), SimplifyChord 슬롯, 4단계 로드맵, 4/4·3/4·6/8 메트로놈, 원본 슬롯, 백업, seed v13 병합(기존 기록·숙련도 보존, MR 병합)·MR 버튼·미니 플레이어`);

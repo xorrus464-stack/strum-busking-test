@@ -135,7 +135,7 @@ for s in songs:
         assert not s['videoUrl'], s['id']
 
 # 10) 메타 집계
-assert meta['seedVersion'] == 12
+assert meta['seedVersion'] == 13
 assert meta['videoLinkCount'] == 201 and meta['videoLinkFilledCount'] == 36
 assert meta['playlistCollectedCount'] == 210
 assert meta['playlistPublicVideoCount'] == 168
@@ -313,6 +313,38 @@ for sid in NEW11:
 assert by_id['added-10000-hours']['verification'] == 'added-by-user'
 assert by_id['added-10000-hours']['sourceIndices'] == [] and by_id['added-10000-hours']['title'] == '10,000 Hours'
 assert by_id['verified-004']['title'] == 'Ten Thousand Hours' and by_id['verified-004']['artist'].startswith('Macklemore')
+
+# 12) MR(반주) 링크 정합성 (seed v13)
+MR_MARK = re.compile(r'\(inst\.?\)|instrumental|karaoke|노래방|카라오케|m\.?\s?r\.?|(?<![a-z])mr(?![a-z])|반주|カラオケ|インスト|オフボーカル', re.I)
+with_mr = [s for s in songs if s.get('mrUrl')]
+assert len(with_mr) == meta['mrLinkCount'], (len(with_mr), meta['mrLinkCount'])
+assert len(with_mr) >= 150, len(with_mr)
+works = {}
+for s in songs:
+    if not s.get('mrUrl'):
+        continue
+    m = re.fullmatch(r'https://www\.youtube\.com/watch\?v=([A-Za-z0-9_-]{11})', s['mrUrl'])
+    assert m, (s['id'], s['mrUrl'])
+    assert s['mrTitle'] and MR_MARK.search(s['mrTitle']), (s['id'], s['mrTitle'])
+    assert s['mrChannel'], s['id']
+    assert s.get('mrNote') and 'oEmbed' in s['mrNote'], s['id']
+    assert s.get('mrSource') in ('youtube', 'zip', 'user'), (s['id'], s.get('mrSource'))
+    assert s['category'] != 'reference', (s['id'], '참고 영상에 MR 금지')
+    key = (s.get('workTitle') or s['title'], s.get('workArtist') or s['artist'])
+    if key in works:
+        assert works[key] == s['mrUrl'], (s['id'], '같은 곡은 같은 MR')
+    works[key] = s['mrUrl']
+assert len(works) == meta['mrWorkCount'], (len(works), meta['mrWorkCount'])
+assert len(set(works.values())) == len(works), 'MR 영상 중복'
+# 대표 확인 링크(2026-11-22 oEmbed 200)
+assert by_id['verified-024']['mrUrl'].endswith('o2IIptFFbm8')
+assert by_id['playlist-159']['mrUrl'].endswith('ige-TSCG5vc')
+assert by_id['added-10000-hours']['mrUrl'].endswith('7FRBYWmJZHw')
+assert by_id['verified-007']['mrUrl'].endswith('PJwPhFGk0pI')
+for sid in ('verified-017', 'verified-021'):
+    assert not by_id[sid].get('mrUrl'), (sid, '확인되지 않은 MR은 비워 둔다')
+assert meta['mrDisclosure'] and 'oEmbed' in meta['mrDisclosure']
+print(f"OK: MR 링크 {len(with_mr)}개 곡(서로 다른 곡 {len(works)}) · oEmbed 확인 제목 표기·중복 없음 · 참고 영상 제외")
 
 print('OK: 곡 200 (기존 25 + 복원·확인 19 + 공개 영상 155 + 추천 1)')
 entry = [s for s in songs if s['id'].startswith(('verified-', 'restored-')) or s['verification'] in ('added-by-user', 'imported')]

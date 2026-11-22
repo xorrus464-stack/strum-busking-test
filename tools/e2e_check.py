@@ -148,6 +148,67 @@ def run(pw, name, viewport, mobile=False):
     page.fill('#song-search', '')
     page.wait_for_timeout(200)
 
+    # 하단 미니 플레이어 · MR 버튼 (2026-11-22 v13)
+    page.fill('#song-search', '희재')
+    page.wait_for_timeout(250)
+    page.locator('.song-row', has_text='희재').first.locator('button', has_text='음악').click()
+    page.wait_for_selector('.mini-player iframe')
+    src = page.locator('.mini-player iframe').get_attribute('src') or ''
+    check(f'{name}: 미니 플레이어 임베드(자동재생)', 'youtube-nocookie.com/embed/' in src and 'autoplay=1' in src, src)
+    fbox = page.locator('.mini-frame').bounding_box() or {}
+    check(f'{name}: 미니 프레임 보이는 크기', (fbox.get('width') or 0) > 90 and (fbox.get('height') or 0) > 50, str(fbox))
+    pad = page.evaluate("parseFloat(getComputedStyle(document.body).paddingBottom)||0")
+    check(f'{name}: 하단 여백 확보', pad > 60, str(pad))
+    page.click('[data-nav="roadmap"]')
+    page.wait_for_timeout(200)
+    check(f'{name}: 탭 이동 후 미니 플레이어 유지', page.locator('.mini-player').count() == 1)
+    page.click('[data-nav="songs"]')
+    page.fill('#song-search', '희재')
+    page.wait_for_timeout(250)
+    page.locator('.song-row', has_text='희재').first.locator('button', has_text='악보').click()
+    page.wait_for_selector('.chart-modal')
+    check(f'{name}: 악보 화면에서도 유지', page.locator('.mini-player').count() == 1)
+    page.locator('.chart-modal').locator('button', has_text='MR 듣기').click()
+    page.wait_for_timeout(300)
+    check(f'{name}: MR 버튼 → MR 모드', page.locator('.mini-badge').inner_text().strip() == 'MR')
+    mr_src = page.locator('.mini-player iframe').get_attribute('src') or ''
+    check(f'{name}: MR 영상 재생', '3gfZa__IVEM' in mr_src, mr_src)
+    check(f'{name}: MR 재생 중 악보 유지', page.locator('.chart-modal').count() == 1)
+    dock = page.locator('.mini-player').bounding_box() or {}
+    mbox = page.locator('.chart-modal').bounding_box() or {}
+    check(f'{name}: 악보가 미니 플레이어를 가리지 않음', (mbox.get('y', 0) + mbox.get('height', 0)) <= dock.get('y', 0) + 2,
+          f"modal={mbox.get('y', 0) + mbox.get('height', 0):.0f} dock={dock.get('y', 0):.0f}")
+    o = overflow(page)
+    check(f'{name}: 미니 플레이어 가로 넘침 없음', o['sw'] <= o['cw'] + 1, str(o))
+    page.screenshot(path=str(SHOTS / f'mini-chart-{name}.png'))
+    page.click('[data-act="close"]')
+    page.fill('#song-search', '나는 버려질 장난감')
+    page.wait_for_timeout(250)
+    page.locator('.song-row', has_text='나는 버려질 장난감').first.locator('button', has_text='MR 없음').click()
+    page.wait_for_selector('#mr-form')
+    check(f'{name}: MR 없음 안내', 'MR이 아직 등록되지 않았습니다' in page.content())
+    check(f'{name}: MR 검색 링크', 'youtube.com/results?search_query=' in (page.locator('#mr-form').evaluate("e => e.closest('.modal').innerHTML")))
+    page.fill('#mr-form input[name="mrUrl"]', 'https://www.youtube.com/watch?v=lZUnv5nimGA')
+    page.click('#mr-form button[type="submit"]')
+    page.wait_for_selector('.mini-badge')
+    page.wait_for_timeout(200)
+    st = json.loads(page.evaluate("() => localStorage.getItem('strum-busking-v2')"))
+    edited = [x for x in st['songs'] if x['id'] == 'verified-017'][0]
+    check(f'{name}: 붙여넣은 MR 저장', edited.get('mrUrl', '').endswith('lZUnv5nimGA') and edited.get('mrEdited') is True, str(edited.get('mrUrl')))
+    check(f'{name}: 저장한 MR 미니 재생', page.locator('.mini-badge').inner_text().strip() == 'MR')
+    w1 = (page.locator('.mini-frame').bounding_box() or {}).get('width', 0)
+    page.click('[data-act="mini-collapse"]')
+    page.wait_for_timeout(200)
+    w2 = (page.locator('.mini-frame').bounding_box() or {}).get('width', 0)
+    check(f'{name}: 접어도 프레임 유지(숨김 아님)', 60 < w2 < w1, f'{w1}->{w2}')
+    page.click('[data-act="mini-close"]')
+    page.wait_for_timeout(150)
+    check(f'{name}: 닫기 동작', page.locator('.mini-player').count() == 0)
+    pad = page.evaluate("parseFloat(getComputedStyle(document.body).paddingBottom)||0")
+    check(f'{name}: 닫은 뒤 하단 여백 원복', pad == 0, str(pad))
+    page.fill('#song-search', '')
+    page.wait_for_timeout(200)
+
     # 로드맵
     page.click('[data-nav="roadmap"]')
     body = page.content()
@@ -192,23 +253,22 @@ def run(pw, name, viewport, mobile=False):
     page.click('[data-nav="logs"]')
     check(f'{name}: 기록 저장', 'e2e 기록' in page.content())
 
-    # 2026-11-22 영상 링크 보강: 예전에 링크가 없던 곡도 영상 모달에서 바로 재생
+    # 2026-11-22 영상 링크 보강: 영상 버튼이 유튜브 앱이 아니라 하단 미니 플레이어에서 바로 재생
     page.click('[data-nav="songs"]')
     page.select_option('#song-filter', 'all')
     page.fill('#song-search', 'Stand by Me')
     page.wait_for_timeout(200)
     page.locator('.song-row', has_text='Stand by Me').first.locator('button', has_text='영상').click()
-    page.wait_for_selector('.player iframe')
-    v_src = page.locator('.player iframe').first.get_attribute('src') or ''
-    check(f'{name}: 영상 모달 재생(Stand by Me)', 'youtube-nocookie.com/embed/z5i9vT8wGY8' in v_src, v_src)
-    page.click('[data-act="close"]')
+    page.wait_for_selector('.mini-player iframe')
+    v_src = page.locator('.mini-player iframe').first.get_attribute('src') or ''
+    check(f'{name}: 미니 플레이어 영상 재생(Stand by Me)', 'youtube-nocookie.com/embed/z5i9vT8wGY8' in v_src, v_src)
     page.fill('#song-search', '히로인')
     page.wait_for_timeout(200)
     page.locator('.song-row', has_text='히로인').first.locator('button', has_text='영상').click()
-    page.wait_for_selector('.player iframe')
-    v_src = page.locator('.player iframe').first.get_attribute('src') or ''
-    check(f'{name}: 영상 모달 재생(히로인)', 'youtube-nocookie.com/embed/107UoVP2fAA' in v_src, v_src)
-    page.click('[data-act="close"]')
+    page.wait_for_selector('.mini-player iframe')
+    v_src = page.locator('.mini-player iframe').first.get_attribute('src') or ''
+    check(f'{name}: 미니 플레이어 영상 재생(히로인)', 'youtube-nocookie.com/embed/107UoVP2fAA' in v_src, v_src)
+    page.click('[data-act="mini-close"]')
     page.fill('#song-search', '')
     page.wait_for_timeout(200)
 
@@ -224,7 +284,7 @@ def run(pw, name, viewport, mobile=False):
 
 
 def run_merge(pw):
-    """seedVersion 3 사용자 데이터 → 12 병합: 기록·숙련도 보존 + 악보·영상 링크 추가."""
+    """seedVersion 12 사용자 데이터 → 13 병합: 기록·숙련도 보존 + 악보·영상 링크 추가."""
     browser = pw.chromium.launch()
     page = browser.new_page(viewport={'width': 1440, 'height': 900})
     page.on('pageerror', lambda e: errors.append(f'[merge] pageerror: {e}'))
@@ -250,7 +310,8 @@ def run_merge(pw):
     check('merge: 남자키 배지 병합', page.locator('.song-row', has_text='오늘').first.inner_text().find('남자키') >= 0)
     state = json.loads(page.evaluate("() => localStorage.getItem('strum-busking-v2')"))
     song = [s for s in state['songs'] if s['id'] == 'verified-001'][0]
-    check('merge: seedVersion 12', state['seedVersion'] == 12, str(state['seedVersion']))
+    check('merge: seedVersion 13', state['seedVersion'] == 13, str(state['seedVersion']))
+    check('merge: MR 링크 병합', song.get('mrUrl', '').endswith('lZUnv5nimGA'), str(song.get('mrUrl')))
     check('merge: 숙련도 보존', song['level'] == '버스킹 가능', song['level'])
     check('merge: 사용자 메모 보존', song['notes'] == '내 메모', song['notes'])
     check('merge: 세트리스트 보존', song['setlist'] is True)

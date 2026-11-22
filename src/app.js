@@ -31,6 +31,9 @@
   let state = defaultState(), currentTab='home', modal=null, searchQuery='', statusFilter='all', sourceQuery='', sourceFilter='known', showAllSources=false;
   let trackAudio=null, trackObjectURL=null, metronome=null, bpmTimer=null, practiceInterval=null, remaining=25*60, sessionRunning=false, lastTime=0, toastTimeout=null;
   let seedMerged=false;
+  /* 하단 도킹 미니 플레이어 상태 — render()가 #app을 다시 그려도 살아남도록 body에 붙인 별도 루트를 쓴다 */
+  let mini=null;
+  const miniRoot=(()=>{try{const el=document.createElement('div');el.id='mini-player-root';document.body.appendChild(el);return el;}catch(err){return null;}})();
   try { const saved=JSON.parse(localStorage.getItem(LS)||'null'); if(saved && Array.isArray(saved.songs) && Array.isArray(saved.sources)){ state={...defaultState(),...saved,settings:{...defaultState().settings,...saved.settings}}; state.seedVersion=Number(saved.seedVersion||0); seedMerged=mergeSeed(state); } }
   catch(err) { console.warn('기존 데이터 손상. 복원 파일을 가져오세요.',err); }
   remaining=state.settings.minutes*60;
@@ -93,7 +96,7 @@
   const displayTitle = s => s.workTitle || s.title;
   const displayArtist = s => s.workArtist || s.artist;
   function songRow(s,i){const c=chartOf(s);
-    return `<article class="song-row"><div class="song-num">${String(i+1).padStart(2,'0')}</div><div><div class="song-name">${esc(displayTitle(s))} ${c?stageChip(c.stage):''}</div><div class="song-artist">${esc(displayArtist(s))}${s.sourceIndices?.length?` · 원본 #${s.sourceIndices.join(', #')}`:''}</div><div class="taglist">${chartBadge(s)}${s.videoStatus&&s.videoStatus!=='공개 영상'?`<span class="tag">${esc(s.videoStatus)}</span>`:''}${s.tags?.slice(0,2).map(t=>`<span class="tag">${esc(t)}</span>`).join('')||''}${s.verification.startsWith('learning-')?'<span class="tag">외부 추천곡</span>':''}</div></div>${stat(s.level)}<div class="song-actions">${c?action('chart:'+s.id,'악보','btn primary small'):action('chart:'+s.id,'정보','btn outline small')}${action('video:'+s.id,'영상')}${action('music:'+s.id,'음악')}${action('edit:'+s.id,'수정','btn outline small')}</div></article>`}
+    return `<article class="song-row"><div class="song-num">${String(i+1).padStart(2,'0')}</div><div><div class="song-name">${esc(displayTitle(s))} ${c?stageChip(c.stage):''}</div><div class="song-artist">${esc(displayArtist(s))}${s.sourceIndices?.length?` · 원본 #${s.sourceIndices.join(', #')}`:''}</div><div class="taglist">${chartBadge(s)}${s.videoStatus&&s.videoStatus!=='공개 영상'?`<span class="tag">${esc(s.videoStatus)}</span>`:''}${s.tags?.slice(0,2).map(t=>`<span class="tag">${esc(t)}</span>`).join('')||''}${s.verification.startsWith('learning-')?'<span class="tag">외부 추천곡</span>':''}</div></div>${stat(s.level)}<div class="song-actions">${c?action('chart:'+s.id,'악보','btn primary small'):action('chart:'+s.id,'정보','btn outline small')}${action('video:'+s.id,'영상')}${action('music:'+s.id,'음악')}${action('mr:'+s.id,s.mrUrl?'MR':'MR 없음','btn small '+(s.mrUrl?'mr-on':'mr-off'))}${action('edit:'+s.id,'수정','btn outline small')}</div></article>`}
   const songQuery = () => {const raw=String(searchQuery).trim().replace(/\s*번$/,'');const hash=raw.startsWith('#');const body=hash?raw.slice(1).trim():raw;return {q:norm(body),n:/^\d{1,3}$/.test(body)?+body:null,hash};};
   function filterSongs(){const {q,n,hash}=songQuery();return ordered().filter(s=>{const fields=[s.title,s.artist,s.workTitle,s.workArtist,s.notes,s.chords,...(s.tags||[]),...(s.sourceIndices||[]),s.maleKey,s.key];let hit;if(n!==null){hit=(s.sourceIndices||[]).includes(n)||(!hash&&[s.title,s.artist].some(v=>new RegExp('(^|[^0-9])'+n+'([^0-9]|$)').test(norm(v))));}else{hit=!q||fields.some(v=>norm(v).includes(q));}
       const st=statusFilter;const cat=s.category||'';
@@ -247,14 +250,14 @@
         <div><span>박자</span><b>${esc((c&&c.timeSignature)||s.timeSignature||'—')}</b></div>
         <div><span>BPM</span><b>${(c&&c.bpm)||s.bpm||'—'}</b></div>
       </div>
-      <div class="row" style="flex-wrap:wrap">${c?action('metro-song:'+s.id,'이 곡 템포로 연습','btn primary small'):''}${action('edit:'+s.id,'곡 정보 수정','btn outline small')}</div></div>`;
+      <div class="row" style="flex-wrap:wrap">${s.mrUrl?action('mr:'+s.id,'MR 듣기','btn accent small'):action('mr:'+s.id,'MR 없음','btn outline small')}${c?action('metro-song:'+s.id,'이 곡 템포로 연습','btn primary small'):''}${action('edit:'+s.id,'곡 정보 수정','btn outline small')}</div></div>`;
     const partialStrip=((s.chartStatus==='partial'||s.chartStatus==='original')&&c&&s.chartNote)?`<div class="alert strip"><b>${s.chartStatus==='original'?'음원 분석':'부분 확인'}</b> · ${esc(s.chartNote)}</div>`:'';
     const tabs=`<div class="subtabs">${[['chart','원터치 악보'],['slots','SimplifyChord'],['perc','스트로크·퍼커시브'],['basis','근거']].map(([k,l])=>`<button data-act="chart-tab:${k}" class="${tab===k?'active':''}">${l}</button>`).join('')}</div>`;
     if(!c){
       const pc=s.chart||{};const pev=pc.evidence||[];
       const known=pev.length?`<div class="card" style="margin-top:12px"><h3>확인한 값</h3><div class="kv"><div><span>원곡 키</span><b>${esc(pc.originalKey||'미확인')}</b></div><div><span>박자</span><b>${esc(pc.timeSignature||'미확인')}</b><small>${esc(pc.timeNote||'')}</small></div><div><span>BPM</span><b>${pc.bpm||'—'}</b><small>${esc(pc.bpmNote||'')}</small></div></div><div class="divider"></div><h4>근거 자료</h4><ul class="ev">${pev.map(e=>`<li><a href="${esc(e.url)}" target="_blank" rel="noopener noreferrer">${esc(e.label)}</a><span class="tiny">${esc(e.note)}</span></li>`).join('')}</ul><p class="tiny">키·코드가 확인되지 않은 값은 비워 두었습니다. 위 링크에서 악보·코드표를 바로 열 수 있습니다.</p></div>`:'';
       return `${head0}${s.chartStatus==='partial'&&s.chart?`<div class="alert">${esc(s.chartNote||'일부 정보만 확인되었습니다.')}<br>확인된 값: 원키 ${esc(s.chart.originalKey||'—')} · ${esc(s.chart.timeSignature||'—')}${s.chart.bpm?` · ${s.chart.bpm}BPM`:''}</div>`:`<div class="empty"><strong>코드 검수 대기 곡입니다.</strong>${esc(s.chartNote||'원곡 키·박자·코드를 확인한 뒤 악보를 채웁니다. 추측값을 넣지 않습니다.')}</div>`}${known}
-      <div class="row" style="margin-top:12px">${action('video:'+s.id,'영상 보기','btn outline')}${action('music:'+s.id,'음악 듣기','btn outline')}</div>`;
+      <div class="row" style="margin-top:12px;flex-wrap:wrap">${action('video:'+s.id,'영상 보기','btn outline')}${action('music:'+s.id,'음악 듣기','btn outline')}${s.mrUrl?action('mr:'+s.id,'MR 듣기','btn accent'):action('mr:'+s.id,'MR 없음','btn outline')}</div>`;
     }
     if(tab==='chart'){
       const used=BTNS.filter(b=>c.sections.some(sec=>sec.bars.some(b_=>b_.some(x=>x.btn===b))));
@@ -297,13 +300,15 @@
   }
 
   function centerActiveNav(){try{if(!document.querySelector)return;const nav=document.querySelector('.nav');if(!nav)return;const btn=nav.querySelector('button.active');if(!btn)return;if(nav.scrollWidth<=nav.clientWidth+1)return;const n=nav.getBoundingClientRect(),b=btn.getBoundingClientRect();if(b.left>=n.left-1&&b.right<=n.right+1)return;const reduce=!!(window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches);btn.scrollIntoView({inline:'center',block:'nearest',behavior:reduce?'auto':'smooth'});}catch{}}
-  function render(){root.innerHTML=`<div class="shell">${bar()}<main>${({home,songs:songsPage,roadmap:roadmapPage,playlist:playlistPage,practice:practicePage,logs:logsPage,sources:sourcesPage,settings:settingsPage}[currentTab]||home)()}</main><footer class="footer">STRUM · PLAY A LITTLE. GO A LITTLE FURTHER. · 독립 백업/복원 버전</footer></div>${modal?renderModal():''}`;centerActiveNav();}
+  function render(){root.innerHTML=`<div class="shell">${bar()}<main>${({home,songs:songsPage,roadmap:roadmapPage,playlist:playlistPage,practice:practicePage,logs:logsPage,sources:sourcesPage,settings:settingsPage}[currentTab]||home)()}</main><footer class="footer">STRUM · PLAY A LITTLE. GO A LITTLE FURTHER. · 독립 백업/복원 버전</footer></div>${modal?renderModal():''}`;centerActiveNav();if(mini)setTimeout(syncMiniHeight,0);}
   function renderModal(){if(!modal)return '';if(modal.kind==='chart'){const s=song(modal.id);if(!s)return '';return chartModalShell(s);}let content='';let s=modal.id&&song(modal.id);
     if(modal.kind==='edit' || modal.kind==='new'){
-      s=s||{id:'',title:'',artist:'',sourceIndices:[],verification:'added-by-user',videoUrl:'',audioUrl:'',key:'미확정',maleKey:'미확정',bpm:null,chords:'',chordStatus:'미확인',strumming:'',difficultyEasy:'미확인',difficultyStandard:'미확인',vocalDifficulty:'미확인',level:'미착수',tags:[],notes:'',setlist:false};
-      content=`<form id="song-form" class="stack"><div class="field-grid"><div class="field"><label>곡 제목 *</label><input name="title" value="${esc(s.title)}" required maxlength="250" /></div><div class="field"><label>가수 *</label><input name="artist" value="${esc(s.artist)}" required maxlength="250" /></div><div class="field"><label>원본 영상 번호(여러 개면 쉼표)</label><input name="sourceIndices" value="${(s.sourceIndices||[]).join(', ')}" placeholder="6, 65" /></div><div class="field"><label>숙련도</label>${selectField('level',levels,s.level)}</div><div class="field"><label>원곡 키</label><input name="key" value="${esc(s.key)}" /></div><div class="field"><label>나에게 맞는 남자 키</label><input name="maleKey" value="${esc(s.maleKey)}" /></div><div class="field"><label>연습 BPM (확정값만)</label><input name="bpm" type="number" min="30" max="300" value="${s.bpm??''}" /></div><div class="field"><label>코드 검수 상태</label>${selectField('chordStatus',['미확인','자동분석 초안','웹 자료 검수 완료','부분 확인','청음 검수 완료'],s.chordStatus)}</div></div><div class="field"><label>코드 진행</label><input name="chords" value="${esc(s.chords)}" placeholder="예: G, Em, C, D" /></div><div class="field"><label>스트로크 메모</label><input name="strumming" value="${esc(s.strumming)}" /></div><div class="field-grid"><div class="field"><label>영상 보기 YouTube URL</label><input name="videoUrl" type="url" placeholder="https://www.youtube.com/watch?v=..." value="${esc(s.videoUrl)}" /></div><div class="field"><label>음악 직접 재생 URL (합법적 소유·사용 파일)</label><input name="audioUrl" type="url" placeholder="https://example.com/my-audio.mp3" value="${esc(s.audioUrl)}" /></div></div><div class="field"><label>메모 · 검수 근거 · 수정 이력</label><textarea name="notes">${esc(s.notes)}</textarea></div><label class="row"><input type="checkbox" name="setlist" ${s.setlist?'checked':''} /> 첫 버스킹 세트리스트에 포함하기</label><div class="row between"><div>${modal.kind==='edit'?action('delete-song:'+s.id,'곡 삭제','btn danger small'):''}</div><button class="btn primary" type="submit">곡 저장하기</button></div></form>`;
+      s=s||{id:'',title:'',artist:'',sourceIndices:[],verification:'added-by-user',videoUrl:'',audioUrl:'',mrUrl:'',key:'미확정',maleKey:'미확정',bpm:null,chords:'',chordStatus:'미확인',strumming:'',difficultyEasy:'미확인',difficultyStandard:'미확인',vocalDifficulty:'미확인',level:'미착수',tags:[],notes:'',setlist:false};
+      content=`<form id="song-form" class="stack"><div class="field-grid"><div class="field"><label>곡 제목 *</label><input name="title" value="${esc(s.title)}" required maxlength="250" /></div><div class="field"><label>가수 *</label><input name="artist" value="${esc(s.artist)}" required maxlength="250" /></div><div class="field"><label>원본 영상 번호(여러 개면 쉼표)</label><input name="sourceIndices" value="${(s.sourceIndices||[]).join(', ')}" placeholder="6, 65" /></div><div class="field"><label>숙련도</label>${selectField('level',levels,s.level)}</div><div class="field"><label>원곡 키</label><input name="key" value="${esc(s.key)}" /></div><div class="field"><label>나에게 맞는 남자 키</label><input name="maleKey" value="${esc(s.maleKey)}" /></div><div class="field"><label>연습 BPM (확정값만)</label><input name="bpm" type="number" min="30" max="300" value="${s.bpm??''}" /></div><div class="field"><label>코드 검수 상태</label>${selectField('chordStatus',['미확인','자동분석 초안','웹 자료 검수 완료','부분 확인','청음 검수 완료'],s.chordStatus)}</div></div><div class="field"><label>코드 진행</label><input name="chords" value="${esc(s.chords)}" placeholder="예: G, Em, C, D" /></div><div class="field"><label>스트로크 메모</label><input name="strumming" value="${esc(s.strumming)}" /></div><div class="field-grid"><div class="field"><label>영상 보기 YouTube URL</label><input name="videoUrl" type="url" placeholder="https://www.youtube.com/watch?v=..." value="${esc(s.videoUrl)}" /></div><div class="field"><label>음악 직접 재생 URL (합법적 소유·사용 파일)</label><input name="audioUrl" type="url" placeholder="https://example.com/my-audio.mp3" value="${esc(s.audioUrl)}" /></div><div class="field"><label>MR(반주) YouTube URL</label><input name="mrUrl" type="url" placeholder="https://www.youtube.com/watch?v=..." value="${esc(s.mrUrl||'')}" /></div></div><div class="field"><label>메모 · 검수 근거 · 수정 이력</label><textarea name="notes">${esc(s.notes)}</textarea></div><label class="row"><input type="checkbox" name="setlist" ${s.setlist?'checked':''} /> 첫 버스킹 세트리스트에 포함하기</label><div class="row between"><div>${modal.kind==='edit'?action('delete-song:'+s.id,'곡 삭제','btn danger small'):''}</div><button class="btn primary" type="submit">곡 저장하기</button></div></form>`;
     }else if(modal.kind==='source'){
       const item=state.sources.find(v=>v.index===modal.index);content=`<form id="source-form" class="stack"><div class="field"><label>원본 영상 주소</label><input type="url" name="url" value="${esc(item.url)}" placeholder="https://www.youtube.com/watch?v=..." /></div><div class="field"><label>상태</label>${selectField('status',SOURCE_STATES,item.status)}</div><div class="field"><label>비고</label><textarea name="note">${esc(item.note)}</textarea></div><div class="hint">연결 곡: ${item.songs.map(id=>esc(song(id)?.title)).join(', ')||'없음'} · 곡 편집 화면에서 ‘원본 영상 번호’를 저장하면 이 표에 자동으로 연결됩니다.</div><button type="submit" class="btn primary">원본 번호 저장</button></form>`;
+    }else if(modal.kind==='mr'){
+      const q=mrSearch(s);content=`<div class="alert" style="margin-bottom:14px"><b>MR이 아직 등록되지 않았습니다.</b> 이 곡은 반주(MR·Inst·노래방) 영상이 확인되지 않아 비워 두었습니다. 아래 검색으로 찾아 주소를 붙여넣으면 이 곡의 <b>MR</b> 버튼과 미니 플레이어에 바로 연결됩니다.</div><div class="stack"><a class="btn primary" href="${esc(q)}" target="_blank" rel="noopener noreferrer">YouTube에서 '${esc(displayTitle(s))} ${esc(displayArtist(s))} MR' 검색 ↗</a><form id="mr-form" class="stack"><div class="field"><label>MR 영상 URL 붙여넣기</label><input name="mrUrl" type="url" required placeholder="https://www.youtube.com/watch?v=..." value="${esc(s.mrUrl||'')}" /></div><div class="hint">YouTube 주소만 확인합니다. 숨김 재생·음원 추출은 하지 않고, 저장한 영상은 하단 미니 플레이어에서 재생합니다.</div><button class="btn primary" type="submit">MR 저장하고 미니 플레이어로 재생</button></form></div>`;
     }else if(modal.kind==='video'){
       const video=ytId(s.videoUrl);const status=s.videoStatus||'';const unavailable=status.startsWith('영상 불가');
       content=video?`<div class="player"><iframe title="${esc(s.title)} 영상 보기" src="https://www.youtube-nocookie.com/embed/${video}?rel=0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe></div><p class="tiny" style="margin-top:11px">재생이 제한되면 YouTube에서 직접 보기를 이용하세요.</p>`:`<div class="empty"><strong>${unavailable?'원본 영상을 재생할 수 없습니다.':'저장된 영상 링크가 없습니다.'}</strong>${unavailable?esc(status)+' — 원본 영상이 삭제·비공개·채널 해지되어 사이트에서 재생할 수 없습니다. 아래 YouTube 검색으로 곡명을 확인하세요.':'영상이 아직 확인되지 않았습니다. 검색 후 정확한 유튜브 주소를 곡 편집 화면에 저장하면 여기서 바로 재생됩니다.'}</div>`;
@@ -311,7 +316,7 @@
     }else if(modal.kind==='music'){
       let url=safeHttp(s.audioUrl);content=`<p class="tiny">음악 듣기는 소유하거나 이용 권한이 있는 MP3·오디오 URL 또는 휴대폰에 저장된 음원 파일로 재생합니다. YouTube 영상에서 음원을 무단 추출하거나 숨김 재생하지 않습니다.</p><div class="field" style="margin:13px 0"><label>휴대폰/PC에 저장한 오디오 파일 재생</label><input id="local-audio" type="file" class="input" accept="audio/*" /></div><div id="audio-mount">${url?`<audio class="audio-player" id="song-audio" controls preload="none" src="${esc(url)}"></audio>`:'<div class="hint">등록된 직접 재생용 음원 링크가 없습니다. 위에서 파일을 선택하거나 아래 버튼으로 음악 서비스를 이용하세요.</div>'}</div><div class="row" style="flex-wrap:wrap;margin-top:15px"><button class="btn primary" data-act="music-search:${s.id}">YouTube Music에서 찾기 ↗</button>${action('edit:'+s.id,'음원 URL 등록','btn outline')}</div>`;
     }
-    return `<div class="modal-layer" data-act="dismiss"><section class="modal ${modal.kind==='edit'||modal.kind==='new'?'wide':''}" role="dialog" aria-modal="true" aria-label="${esc(s?.title||'편집')}"><header class="modal-head"><div><div class="eyebrow">${modal.kind==='music'?'AUDIO PLAYER':modal.kind==='video'?'WATCH VIDEO':'EDIT DATA'}</div><h2>${modal.kind==='new'?'새 곡 등록':modal.kind==='source'?'원본 #'+modal.index+' 수정':esc(s?.title||'곡 수정')}</h2>${s?.artist?`<div class="tiny">${esc(s.artist)}</div>`:''}</div><button class="icon-btn" aria-label="닫기" data-act="close">×</button></header>${content}</section></div>`;
+    return `<div class="modal-layer" data-act="dismiss"><section class="modal ${modal.kind==='edit'||modal.kind==='new'?'wide':''}" role="dialog" aria-modal="true" aria-label="${esc(s?.title||'편집')}"><header class="modal-head"><div><div class="eyebrow">${modal.kind==='music'?'AUDIO PLAYER':modal.kind==='video'?'WATCH VIDEO':modal.kind==='mr'?'MR REGISTER':'EDIT DATA'}</div><h2>${modal.kind==='new'?'새 곡 등록':modal.kind==='source'?'원본 #'+modal.index+' 수정':modal.kind==='mr'?'MR 등록 — '+esc(s?.title||''):esc(s?.title||'곡 수정')}</h2>${s?.artist?`<div class="tiny">${esc(s.artist)}</div>`:''}</div><button class="icon-btn" aria-label="닫기" data-act="close">×</button></header>${content}</section></div>`;
   }
   function setTab(n){if(!navs.some(([id])=>id===n))return;modal=null;currentTab=n;render();window.scrollTo({top:0,behavior:'auto'});}
   function mergeSeed(st){
@@ -325,6 +330,9 @@
       if(cur){
         if(!cur.videoUrl && seedSong.videoUrl){cur.videoUrl=seedSong.videoUrl;cur.videoStatus=seedSong.videoStatus;}
         if(!cur.videoStatus && seedSong.videoStatus)cur.videoStatus=seedSong.videoStatus;
+        /* MR 링크 병합: 비어 있으면 채우고, 사용자가 직접 넣은 값(mrEdited)은 건드리지 않는다 */
+        if(!cur.mrUrl && seedSong.mrUrl){for(const k of ['mrUrl','mrTitle','mrChannel','mrNote','mrSource'])cur[k]=seedSong[k];}
+        else if(cur.mrUrl&&cur.mrUrl===seedSong.mrUrl&&!cur.mrEdited){for(const k of ['mrTitle','mrChannel','mrNote','mrSource'])if(seedSong[k])cur[k]=seedSong[k];}
         if(Array.isArray(cur.sourceIndices)){
           if(!cur.sourceIndices.length && seedSong.sourceIndices.length)cur.sourceIndices=seedSong.sourceIndices.slice();
           else for(const n of seedSong.sourceIndices) if(!cur.sourceIndices.includes(n)) cur.sourceIndices.push(n);
@@ -378,6 +386,44 @@
   }
   function updateSongRecords(st=state){for (const source of st.sources)source.songs=[];for(const s of st.songs){for(const i of (s.sourceIndices||[])){const r=st.sources[i-1];if(r && !r.songs.includes(s.id))r.songs.push(s.id);}}}
   function audioStop(){const el=get('song-audio');if(el)el.pause();if(trackObjectURL){URL.revokeObjectURL(trackObjectURL);trackObjectURL=null;}trackAudio=null;}
+  /* ── 미니 플레이어 ────────────────────────────
+     YouTube 정책: 영상을 숨기지 않는다. 도킹 바 안에 보이는 임베드 프레임을 두고
+     접기(collapsed)도 프레임을 작게 유지한 채로만 줄인다(0×0 숨김 금지). */
+  function ytEmbed(id){return `https://www.youtube-nocookie.com/embed/${id}?autoplay=1&rel=0&playsinline=1&modestbranding=1`;}
+  const mrSearch=s=>`https://www.youtube.com/results?search_query=${encodeURIComponent(displayTitle(s)+' '+displayArtist(s)+' MR inst')}`;
+  function syncMiniHeight(){try{const el=get('mini-player');const h=el?Math.round(el.getBoundingClientRect().height||el.offsetHeight||0):0;if(document.documentElement?.style)document.documentElement.style.setProperty('--mini-h',h+'px');if(document.body?.style)document.body.style.paddingBottom=h?(h+10)+'px':'';}catch(err){}}
+  function openMini(mode,s){
+    if(!s)return;
+    let kind=mode, url='';
+    if(mode==='mr'){url=s.mrUrl;}
+    else if(mode==='music'){if(safeHttp(s.audioUrl))kind='audio';else url=s.videoUrl;}
+    else {url=s.videoUrl;}
+    if(kind==='audio'){if(!safeHttp(s.audioUrl)){notice('등록된 음원이 없어 영상으로 재생합니다.');kind='music';url=s.videoUrl;}}
+    const vid=kind==='audio'?'':ytId(url);
+    if(kind!=='audio'&&!vid){notice(mode==='mr'?'MR 링크가 없습니다. MR 없음 버튼으로 등록할 수 있습니다.':'재생할 영상 링크가 없습니다.');return;}
+    mini={kind:kind,songId:s.id,videoId:vid,audioUrl:kind==='audio'?safeHttp(s.audioUrl):'',title:displayTitle(s),sub:displayArtist(s),badge:mode==='mr'?'MR':mode==='music'?'음악':kind==='audio'?'음악':'영상',collapsed:false};
+    renderMini();
+    notice(mode==='mr'?`${s.title} · MR(반주)를 미니 플레이어에서 재생합니다.`:`${s.title} · ${mini.badge} 재생 중 — 악보로 이동해도 꺼지지 않습니다.`);
+  }
+  function closeMini(){try{get('mini-audio')?.pause();}catch(err){}if(trackObjectURL){URL.revokeObjectURL(trackObjectURL);trackObjectURL=null;}mini=null;renderMini();}
+  function renderMini(){
+    if(!miniRoot)return;
+    if(!mini){miniRoot.innerHTML='';try{document.body.classList?.remove('has-mini');document.body.style.paddingBottom='';document.documentElement?.style&&document.documentElement.style.setProperty('--mini-h','0px');}catch(err){}return;}
+    const s=song(mini.songId);
+    const watch=s?((mini.kind==='mr'?s.mrUrl:s.videoUrl)||''):'';
+    const body=mini.kind==='audio'
+      ?`<audio class="mini-audio" id="mini-audio" controls autoplay preload="none" src="${esc(mini.audioUrl)}"></audio>`
+      :`<div class="mini-frame"><iframe src="${esc(ytEmbed(mini.videoId))}" title="${esc(mini.title)} ${esc(mini.badge)} 재생" allow="autoplay; encrypted-media; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe></div>`;
+    const link=mini.kind==='audio'?musicSearch(s||{title:mini.title,artist:mini.sub}):esc(watch);
+    miniRoot.innerHTML=`<section class="mini-player ${mini.collapsed?'collapsed':''}" id="mini-player" aria-label="하단 미니 플레이어">
+      <div class="mini-info"><span class="mini-badge">${esc(mini.badge)}</span><div class="mini-text"><b>${esc(mini.title)}</b><span>${esc(mini.sub)}</span></div></div>
+      ${body}
+      <div class="mini-tools"><button type="button" class="mini-btn" data-act="mini-local" title="휴대폰에 저장한 오디오 파일 재생">내 파일</button><a class="mini-btn" href="${link}" target="_blank" rel="noopener noreferrer">YouTube ↗</a><button type="button" class="mini-btn" data-act="mini-collapse" aria-label="${mini.collapsed?'펼치기':'접기'}" title="${mini.collapsed?'펼치기':'접기'}">${mini.collapsed?'▴':'▾'}</button><button type="button" class="mini-btn mini-close" data-act="mini-close" aria-label="미니 플레이어 닫기" title="닫기">×</button></div>
+      <input id="mini-file" type="file" accept="audio/*" class="hide" />
+    </section>`;
+    try{document.body.classList?.add('has-mini');}catch(err){}
+    syncMiniHeight();
+  }
   function closeModal(){audioStop();modal=null;render();}
   function editSong(id){modal={kind:id?'edit':'new',id};render();}
   function setSettingsField(name,value){state.settings[name]=value;save();render();}
@@ -415,10 +461,19 @@
     try{const text=await file.text();let parsed=file.name.toLowerCase().endsWith('.csv')?parseCsv(text):JSON.parse(text);if(file.name.toLowerCase().endsWith('.csv')&&parsed.some(r=>r.index&&!r.title))throw new Error('원본 영상 CSV는 곡 CSV와 형식이 달라 이 화면에서 가져올 수 없습니다. 전체 JSON 백업을 이용하세요.');let res=importJson(parsed,mode);save();render();notice(`가져오기 완료: 신규 ${res.added}곡, 갱신 ${res.updated}곡`);}catch(e){notice('가져오기 실패: '+e.message);}
   }
   function saveSongForm(form){let values=Object.fromEntries(new FormData(form));let title=String(values.title||'').trim(),artist=String(values.artist||'').trim();if(!title||!artist){notice('제목과 가수를 입력하세요.');return;}let s=modal.id? song(modal.id):null;
-    const prev=s?{key:s.key,maleKey:s.maleKey,chords:s.chords,strumming:s.strumming,bpm:s.bpm}:null;
+    const prev=s?{key:s.key,maleKey:s.maleKey,chords:s.chords,strumming:s.strumming,bpm:s.bpm,mrUrl:s.mrUrl||''}:null;
     let nums=String(values.sourceIndices||'').split(',').map(n=>+n.trim()).filter(i=>Number.isInteger(i)&&i>=1&&i<=211);
-    if(!s){s={...clone(seed.songs.at(-1)),id:uniqueId(),verification:'added-by-user',tags:[]};state.songs.push(s);}Object.assign(s,{title,artist,sourceIndices:[...new Set(nums)],level:values.level,videoUrl:safeHttp(values.videoUrl)||'',audioUrl:safeHttp(values.audioUrl)||'',key:values.key||'미확정',maleKey:values.maleKey||'미확정',bpm:values.bpm?+values.bpm:null,chords:values.chords||'',chordStatus:values.chordStatus,strumming:values.strumming||'',notes:values.notes||'',setlist:form.querySelector('[name="setlist"]')?.checked||false});if(prev&&s.chart&&(prev.key!==s.key||prev.maleKey!==s.maleKey||prev.chords!==s.chords||prev.strumming!==s.strumming||prev.bpm!==s.bpm))s.chartEdited=true;updateSongRecords();save();modal=null;render();notice('곡 정보가 저장되었습니다.');}
+    if(!s){s={...clone(seed.songs.at(-1)),id:uniqueId(),verification:'added-by-user',tags:[]};state.songs.push(s);}Object.assign(s,{title,artist,sourceIndices:[...new Set(nums)],level:values.level,videoUrl:safeHttp(values.videoUrl)||'',audioUrl:safeHttp(values.audioUrl)||'',mrUrl:(safeHttp(values.mrUrl)?('https://www.youtube.com/watch?v='+(ytId(values.mrUrl)||'')):''),key:values.key||'미확정',maleKey:values.maleKey||'미확정',bpm:values.bpm?+values.bpm:null,chords:values.chords||'',chordStatus:values.chordStatus,strumming:values.strumming||'',notes:values.notes||'',setlist:form.querySelector('[name="setlist"]')?.checked||false});if(prev&&s.chart&&(prev.key!==s.key||prev.maleKey!==s.maleKey||prev.chords!==s.chords||prev.strumming!==s.strumming||prev.bpm!==s.bpm))s.chartEdited=true;if(prev&&prev.mrUrl!==(s.mrUrl||'')){s.mrEdited=true;s.mrTitle='';s.mrChannel='';s.mrNote='직접 등록('+dateKey()+')';s.mrSource='user';}updateSongRecords();save();modal=null;render();notice('곡 정보가 저장되었습니다.');}
   function saveSourceForm(form){let ex=state.sources.find(s=>s.index===modal.index),data=new FormData(form);ex.url=safeHttp(data.get('url'));ex.status=ex.index===163?'제외':(SOURCE_STATES.includes(data.get('status'))?data.get('status'):'미확인');ex.note=String(data.get('note')||'');save();modal=null;render();notice('원본 영상 정보를 저장했습니다.');}
+  function saveMrForm(form){
+    const s=modal&&modal.id?song(modal.id):null;if(!s){notice('곡을 찾을 수 없습니다.');return;}
+    const vid=ytId(new FormData(form).get('mrUrl'));
+    if(!vid){notice('YouTube 영상 주소를 확인하세요. 예: https://www.youtube.com/watch?v=...');return;}
+    s.mrUrl='https://www.youtube.com/watch?v='+vid;s.mrEdited=true;s.mrTitle='';s.mrChannel='';s.mrNote='직접 등록('+dateKey()+')';s.mrSource='user';
+    const back=modal.from;save();modal=null;render();
+    if(back==='chart'){modal={kind:'chart',id:s.id,tab:'chart'};render();}
+    openMini('mr',s);notice('MR을 저장했습니다. 미니 플레이어에서 재생합니다.');
+  }
   function saveLogForm(form){const d=new FormData(form);const m=Math.max(1,Math.min(480,+d.get('minutes')||0));state.logs.push({id:'log-'+Date.now()+'-'+Math.random().toString(36).slice(2,5),date:dateKey(),minutes:m,songId:d.get('songId')||'',mode:state.settings.mode,chords:String(d.get('chords')||''),strum:String(d.get('strum')||''),memo:String(d.get('memo')||'')});if(d.get('songId')){let s=song(d.get('songId'));if(s&&s.level==='미착수')s.level='연습 중';}state.completedStages=[];save();resetTimer();notice('오늘 연습 기록을 저장했습니다.');}
   function handleAction(act){let [cmd,...rest]=act.split(':'),value=rest.join(':');switch(cmd){
     case 'start-practice':case 'go-practice':setTab('practice');return;
@@ -432,7 +487,11 @@
     case 'chart':modal={kind:'chart',id:value,tab:'chart'};render();return;
     case 'chart-tab':if(modal){modal.tab=value;render();}return;
     case 'metro-song':{const s=song(value),c=s&&chartOf(s);if(c){state.settings.bpm=Math.max(40,Math.min(180,Math.round(c.bpm||state.settings.bpm)));state.settings.timeSignature=c.timeSignature||state.settings.timeSignature;state.settings.focusSongId=s.id;save();if(metronome){stopMetro();}modal=null;setTab('practice');notice(`${s.title} · ${state.settings.bpm}BPM · ${state.settings.timeSignature} 메트로놈으로 연습을 준비했습니다.`);}else notice('이 곡은 아직 악보 검수 대기입니다.');return;}
-    case 'video':case 'music':audioStop();modal={kind:cmd,id:value};render();return;
+    case 'video':case 'music':{const s=song(value);if(!s)return;if(cmd==='music'&&!safeHttp(s.audioUrl)&&!s.videoUrl){audioStop();modal={kind:'music',id:value};render();return;}openMini(cmd,s);return;}
+    case 'mr':{const s=song(value);if(!s)return;if(s.mrUrl){openMini('mr',s);return;}modal={kind:'mr',id:value,from:modal&&modal.kind==='chart'?'chart':''};render();return;}
+    case 'mini-close':closeMini();return;
+    case 'mini-collapse':if(mini){mini.collapsed=!mini.collapsed;renderMini();}return;
+    case 'mini-local':get('mini-file')?.click();return;
     case 'close':case 'dismiss':closeModal();return;
     case 'source':modal={kind:'source',index:+value};render();return;
     case 'youtube-search':{const s=song(value);if(s)openTab(youtubeSearch(s));return;}
@@ -457,12 +516,13 @@
     case 'clear-data':if(confirm('현재 브라우저 데이터를 초기화합니다. 먼저 자동 백업 파일을 다운로드합니다. 계속할까요?')&&confirm('최종 확인: 복원본 기본 데이터로 되돌릴까요?')){download('STRUM_before_reset_'+dateKey()+'.json',JSON.stringify(state,null,2),'application/json;charset=utf-8');state=defaultState();save();resetTimer();render();notice('초기화했습니다.');}return;
   }}
   document.addEventListener('click',e=>{const nav=e.target.closest('[data-nav]');if(nav){e.preventDefault();setTab(nav.dataset.nav);return;}const button=e.target.closest('[data-act]');if(!button)return;if(button.dataset.act==='dismiss'){if(e.target!==button)return;e.preventDefault();closeModal();return;}e.preventDefault();handleAction(button.dataset.act);});
-  document.addEventListener('submit',e=>{if(e.target.id==='song-form'){e.preventDefault();saveSongForm(e.target);}else if(e.target.id==='source-form'){e.preventDefault();saveSourceForm(e.target);}else if(e.target.id==='practice-form'){e.preventDefault();saveLogForm(e.target);}});
+  document.addEventListener('submit',e=>{if(e.target.id==='song-form'){e.preventDefault();saveSongForm(e.target);}else if(e.target.id==='source-form'){e.preventDefault();saveSourceForm(e.target);}else if(e.target.id==='practice-form'){e.preventDefault();saveLogForm(e.target);}else if(e.target.id==='mr-form'){e.preventDefault();saveMrForm(e.target);}});
   document.addEventListener('input',e=>{
     if(e.target.id==='song-search'){searchQuery=e.target.value;const filtered=filterSongs();const list=get('song-list');if(list)list.innerHTML=filtered.length?filtered.map(songRow).join(''):'<div class="empty">검색된 곡이 없습니다.</div>';const count=get('song-result-count');if(count)count.textContent='검색 결과 '+filtered.length+'곡 · 데이터가 추가되면 즉시 반영됩니다.';return;}
     if(e.target.id==='source-search'){sourceQuery=e.target.value;render();get('source-search')?.focus();try{get('source-search').setSelectionRange(sourceQuery.length,sourceQuery.length);}catch{}return;}
     if(e.target.id==='bpm-range'){const bpm=+e.target.value;if(bpm!==state.settings.bpm){state.settings.bpm=bpm;save();if(metronome){stopMetro();startMetro();}else {const l=get('bpm-label');if(l)l.textContent=bpm+' BPM';}}return;}
     if(e.target.id==='local-audio'){const file=e.target.files?.[0];if(!file)return;if(!file.type.startsWith('audio/')){notice('오디오 파일을 선택하세요.');return;}audioStop();trackObjectURL=URL.createObjectURL(file);let mount=get('audio-mount');if(mount){mount.innerHTML='<audio class="audio-player" id="song-audio" controls autoplay></audio>';trackAudio=get('song-audio');trackAudio.src=trackObjectURL;trackAudio.play().catch(()=>{});}return;}
+    if(e.target.id==='mini-file'){const file=e.target.files?.[0];if(!file)return;if(!file.type.startsWith('audio/')){notice('오디오 파일을 선택하세요.');return;}if(trackObjectURL)URL.revokeObjectURL(trackObjectURL);trackObjectURL=URL.createObjectURL(file);mini={kind:'audio',songId:mini?.songId||'',videoId:'',audioUrl:trackObjectURL,title:file.name,sub:'내 오디오 파일',badge:'내 파일',collapsed:false};renderMini();return;}
   });
   document.addEventListener('change',e=>{
     if(e.target.dataset.step!==undefined){let i=+e.target.dataset.step;if(e.target.checked&&!state.completedStages.includes(i))state.completedStages.push(i);else if(!e.target.checked)state.completedStages=state.completedStages.filter(v=>v!==i);save();const checked=state.completedStages.length;let pill=e.target.closest('.card')?.querySelector('.pill');if(pill)pill.textContent=checked+'/5 완료';return;}
@@ -473,6 +533,7 @@
     if(e.target.name==='ts'&&currentTab==='settings'){state.settings.timeSignature=e.target.value;save();if(metronome){stopMetro();startMetro();}else render();return;}
   });
   document.addEventListener('keydown',e=>{if(e.key==='Escape'&&modal)closeModal();});
+  window.addEventListener('resize',()=>{if(mini)syncMiniHeight();});
   window.addEventListener('beforeunload',()=>{stopMetro();});
   render();
 })();

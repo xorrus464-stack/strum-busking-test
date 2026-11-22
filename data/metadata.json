@@ -12,7 +12,7 @@
   "additionalRecommendedSongCount": 1,
   "originalPlaylist": "https://www.youtube.com/playlist?list=PLdOy20BJp9XElDHDvAJI6mUG48BmfDX-y",
   "playlistId": "PLdOy20BJp9XElDHDvAJI6mUG48BmfDX-y",
-  "seedVersion": 12,
+  "seedVersion": 13,
   "playlistCollectedCount": 210,
   "playlistPublicVideoCount": 168,
   "playlistInaccessibleVideoCount": 42,
@@ -35,5 +35,9 @@
   },
   "originalWorks": [],
   "videoLinkCount": 201,
-  "videoLinkFilledCount": 36
+  "videoLinkFilledCount": 36,
+  "mrVersion": "2026-11-22",
+  "mrLinkCount": 156,
+  "mrWorkCount": 130,
+  "mrDisclosure": "MR(반주) 링크는 YouTube 검색 결과에서 제목에 MR·Inst·노래방·반주 표기가 있고 YouTube oEmbed HTTP 200으로 실제 존재를 확인한 영상만 연결했습니다. 곡 156개(서로 다른 곡 130개)에 연결했고, 확인되지 않은 곡은 비워 두어 화면에서 MR 없음으로 표시한 뒤 YouTube MR 검색과 URL 붙여넣기로 직접 등록할 수 있게 했습니다. TJ·금영 공식 채널과 아티스트 공식 inst.를 우선했습니다."
 }
