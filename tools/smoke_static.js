@@ -63,9 +63,11 @@ assert((root.innerHTML.match(/class="song-row"/g) || []).length === ready, '악�
 const miniEl = created.find(el => el.id === 'mini-player-root');
 assert(miniEl, '미니 플레이어 루트 생성');
 nav(handlers, 'songs');
+act(handlers, 'filter-cat:all');
 assert(root.innerHTML.includes('data-act="mr:verified-001"'), 'MR 버튼(있는 곡)');
 assert(root.innerHTML.includes('MR 없음'), 'MR 없음 버튼(없는 곡)');
 assert(root.innerHTML.includes('mr-off') && root.innerHTML.includes('mr-on'), 'MR 상태별 표시');
+act(handlers, 'filter-cat:chart-ready');
 act(handlers, 'mr:verified-001');
 assert(miniEl.innerHTML.includes('mini-player'), '미니 플레이어 열림');
 assert(miniEl.innerHTML.includes('youtube-nocookie.com/embed/hwZqHCMmjUM'), 'MR 임베드');
@@ -83,6 +85,23 @@ act(handlers, 'mini-collapse');
 assert(handlers.__collapsed !== undefined || miniEl.innerHTML.includes('collapsed'), '접기 상태 반영');
 act(handlers, 'mini-close');
 assert(miniEl.innerHTML === '', '닫기 후 제거');
+// 2-2) MR 음원 파일(주성 님 녹화에서 오디오만 추출) — 미니 플레이어 안 <audio> 재생
+act(handlers, 'filter-cat:all');
+assert(/data-act="mr:playlist-157"[^>]*>MR</.test(root.innerHTML), 'MR 음원 파일 곡도 MR 버튼');
+act(handlers, 'mr:playlist-157');
+assert(miniEl.innerHTML.includes('<audio') && miniEl.innerHTML.includes('media/pikpik-mr.mp3'), 'MR 음원 파일 재생(픽픽)');
+assert(miniEl.innerHTML.includes('id="mini-audio"') && miniEl.innerHTML.includes('controls') && miniEl.innerHTML.includes('autoplay'), 'MR 음원 컨트롤·자동재생');
+assert(!miniEl.innerHTML.includes('iframe'), 'MR 음원은 iframe 없이 재생');
+nav(handlers, 'roadmap');
+assert(miniEl.innerHTML.includes('mini-audio'), 'MR 음원도 탭 이동 후 유지');
+act(handlers, 'chart:playlist-157');
+assert(miniEl.innerHTML.includes('mini-audio'), 'MR 음원도 악보 모달 위에서 유지');
+act(handlers, 'close');
+act(handlers, 'mini-close');
+act(handlers, 'mr:playlist-057');
+assert(miniEl.innerHTML.includes('youtube-nocookie.com/embed/_aJasCmlQC8'), '잠깐 시간 될까 MR 임베드');
+act(handlers, 'mini-close');
+act(handlers, 'filter-cat:chart-ready');
 act(handlers, 'close');
 act(handlers, 'mr:verified-017');
 assert(root.innerHTML.includes('MR이 아직 등록되지 않았습니다'), 'MR 없음 안내');
@@ -145,13 +164,14 @@ assert(root.innerHTML.includes(`${ready}곡`), '설정: 악보 곡 수');
 const legacy = {
   version: 2, seedVersion: 12, removedSeedIds: [],
   songs: [{ id: 'verified-001', title: '오늘', artist: '오왠 (O.WHEN)', sourceIndices: [21], verification: 'site-top3', videoUrl: '', audioUrl: '', key: '미확정', maleKey: '미확정', bpm: null, chords: '', chordStatus: '미확인', strumming: '', level: '거의 가능', tags: [], notes: '내가 직접 쓴 메모', setlist: true },
+           { id: 'playlist-157', title: '나약함을 고백하는 행위가 가장 강인한 행동 #로꼬 #픽픽 #쇼츠', artist: '올데뮤AllDayMusic', sourceIndices: [157], verification: 'playlist-public-video', videoUrl: '', audioUrl: '', key: 'Eb', maleKey: 'Eb', bpm: 83, chords: '', chordStatus: '부분 확인', strumming: '', level: '연습 중', tags: [], notes: '', setlist: false },
            { id: 'verified-007', title: '한숨', artist: '이하이', sourceIndices: [6], verification: 'user-verified', videoUrl: '', audioUrl: '', key: '미확정', maleKey: '미확정', bpm: null, chords: '', chordStatus: '미확인', strumming: '', level: '미착수', tags: [], notes: '', setlist: false, mrUrl: 'https://www.youtube.com/watch?v=PJwPhFGk0pI', mrTitle: '이전 TJ 반주', mrChannel: 'TJ노래방', mrNote: '이전 시드' }],
   sources: Array.from({ length: 211 }, (_, i) => ({ index: i + 1, status: i === 162 ? '제외' : '미확인', url: '', note: '', songs: [] })),
   logs: [{ id: 'log-old-1', date: '2026-11-20', minutes: 33, songId: 'verified-001', mode: 'easy', chords: 'E A', strum: '8비트', memo: '기존 기록' }]
 };
 ({ root, handlers, created } = boot(legacy));
 const saved = JSON.parse(store['strum-busking-v2']);
-assert(saved.seedVersion === 15, 'seedVersion 15 로 업그레이드');
+assert(saved.seedVersion === 16, 'seedVersion 16 로 업그레이드');
 assert(saved.logs.length === 1 && saved.logs[0].minutes === 33, '기존 연습 기록 보존');
 const mine = saved.songs.find(s => s.id === 'verified-001');
 assert(mine.level === '거의 가능', '숙련도 보존');
@@ -166,5 +186,11 @@ assert(mine.mrUrl === 'https://www.youtube.com/watch?v=hwZqHCMmjUM', 'MR 링크 
 assert(mine.mrTitle && mine.mrChannel, 'MR 제목·채널 병합');
 const han = saved.songs.find(s => s.id === 'verified-007');
 assert(han.mrUrl === 'https://www.youtube.com/watch?v=IkF6QIQ0Q0A', '임베드 막힌 이전 MR을 재생되는 반주로 교체');
+const pik = saved.songs.find(s => s.id === 'playlist-157');
+assert(pik.mrAudioUrl === 'media/pikpik-mr.mp3', 'MR 음원 파일 병합');
+assert(pik.mrSource === 'user-recording' && pik.mrTitle, 'MR 음원 출처·제목 병합');
+assert(pik.level === '연습 중', 'MR 음원 병합 중 숙련도 보존');
+const jamkkan = saved.songs.find(s => s.id === 'playlist-057');
+assert(jamkkan.mrUrl === 'https://www.youtube.com/watch?v=_aJasCmlQC8', '잠깐 시간 될까 MR 병합');
 
-console.log(`PASS: boot ${songs.length}곡(악보 ${ready}·검수대기 ${pending}), 남자키 배지, 원터치 컬러 악보(5색), SimplifyChord 슬롯, 4단계 로드맵, 4/4·3/4·6/8 메트로놈, 원본 슬롯, 백업, seed v15 병합(기존 기록·숙련도 보존, MR 병합)·MR 버튼·미니 플레이어`);
+console.log(`PASS: boot ${songs.length}곡(악보 ${ready}·검수대기 ${pending}), 남자키 배지, 원터치 컬러 악보(5색), SimplifyChord 슬롯, 4단계 로드맵, 4/4·3/4·6/8 메트로놈, 원본 슬롯, 백업, seed v16 병합(기존 기록·숙련도 보존, MR 링크·MR 음원 파일 병합)·MR 버튼·미니 플레이어(임베드·<audio>)`);

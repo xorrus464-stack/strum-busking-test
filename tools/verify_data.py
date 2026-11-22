@@ -135,7 +135,7 @@ for s in songs:
         assert not s['videoUrl'], s['id']
 
 # 10) 메타 집계
-assert meta['seedVersion'] == 15
+assert meta['seedVersion'] == 16
 assert meta['videoLinkCount'] == 201 and meta['videoLinkFilledCount'] == 36
 assert meta['playlistCollectedCount'] == 210
 assert meta['playlistPublicVideoCount'] == 168
@@ -318,13 +318,14 @@ assert by_id['verified-004']['title'] == 'Ten Thousand Hours' and by_id['verifie
 MR_MARK = re.compile(r'inst|instrumental|karaoke|노래방|카라오케|m\.?\s?r\.?|(?<![a-z])mr(?![a-z])|반주|カラオケ|インスト|オフボーカル', re.I)
 # 주성 님이 직접 지정한 MR 중 제목에 MR·Inst 표기가 없는 링크(피아노 연주 반주 등) — mrNote 에 '주성 님 지정'으로 근거를 남긴 경우만 예외
 USER_PICKED_MR_IDS = {'playlist-166'}
-with_mr = [s for s in songs if s.get('mrUrl')]
-assert len(with_mr) == meta['mrLinkCount'], (len(with_mr), meta['mrLinkCount'])
-assert len(with_mr) >= 145, len(with_mr)
+LOCAL_MR_FILE = 'media/pikpik-mr.mp3'
+with_yt = [s for s in songs if s.get('mrUrl')]
+with_local = [s for s in songs if s.get('mrAudioUrl')]
+with_mr = [s for s in songs if s.get('mrUrl') or s.get('mrAudioUrl')]
+assert len(with_mr) == meta['mrLinkCount'] == 158, (len(with_mr), meta['mrLinkCount'])
+assert len(with_yt) == 157 and len(with_local) == 1, (len(with_yt), len(with_local))
 works = {}
-for s in songs:
-    if not s.get('mrUrl'):
-        continue
+for s in with_yt:
     m = re.fullmatch(r'https://www\.youtube\.com/watch\?v=([A-Za-z0-9_-]{11})', s['mrUrl'])
     assert m, (s['id'], s['mrUrl'])
     if s['id'] in USER_PICKED_MR_IDS:
@@ -335,10 +336,25 @@ for s in songs:
     assert s.get('mrSource') in ('youtube', 'zip', 'user'), (s['id'], s.get('mrSource'))
     assert s['category'] != 'reference', (s['id'], '참고 영상에 MR 금지')
     key = (s.get('workTitle') or s['title'], s.get('workArtist') or s['artist'])
+    sig = s['mrUrl']
     if key in works:
-        assert works[key] == s['mrUrl'], (s['id'], '같은 곡은 같은 MR')
-    works[key] = s['mrUrl']
-assert len(works) == meta['mrWorkCount'], (len(works), meta['mrWorkCount'])
+        assert works[key] == sig, (s['id'], '같은 곡은 같은 MR')
+    works[key] = sig
+# 12-1) 저장소에 함께 올린 MR 음원 파일(주성 님 녹화에서 오디오만 추출)
+local_file = BASE / LOCAL_MR_FILE
+assert local_file.exists() and local_file.stat().st_size > 1_000_000, (LOCAL_MR_FILE, 'MR 음원 파일 없음')
+for s in with_local:
+    assert s['mrAudioUrl'] == LOCAL_MR_FILE, (s['id'], s['mrAudioUrl'])
+    assert s.get('mrSource') == 'user-recording', (s['id'], s.get('mrSource'))
+    assert s.get('mrTitle') and '픽픽' in s['mrTitle'], (s['id'], s.get('mrTitle'))
+    assert s.get('mrNote') and '2026-11-23' in s['mrNote'], (s['id'], 'MR 음원 등록 근거 없음')
+    assert s['category'] != 'reference', (s['id'], '참고 영상에 MR 금지')
+    key = (s.get('workTitle') or s['title'], s.get('workArtist') or s['artist'])
+    sig = 'audio:' + s['mrAudioUrl']
+    if key in works:
+        assert works[key] == sig, (s['id'], '같은 곡은 같은 MR')
+    works[key] = sig
+assert len(works) == meta['mrWorkCount'] == 131, (len(works), meta['mrWorkCount'])
 # 같은 곡이 표기만 달리해 두 항목으로 있는 경우(예: '예뻤어'/'예뻤어 (You were beautiful)')만 같은 MR 허용
 def _nt(t):
     t = unicodedata.normalize('NFKC', t).lower()
@@ -353,6 +369,14 @@ assert by_id['verified-024']['mrUrl'].endswith('wfBXXKRdtlk')      # 임베드 �
 assert by_id['playlist-159']['mrUrl'].endswith('ige-TSCG5vc')      # ZIP 자료 공식 inst.
 assert by_id['added-10000-hours']['mrUrl'].endswith('Gt636FM6Ayc')  # Acoustic karaoke(임베드 재생 확인)
 assert by_id['verified-007']['mrUrl'].endswith('IkF6QIQ0Q0A')
+# 2026-11-23 주성 님 지정: 「잠깐 시간 될까」 두 항목 같은 YouTube MR + 로꼬 「픽픽」 녹화 MR 음원 파일
+for sid in ('playlist-057', 'playlist-058'):
+    assert by_id[sid]['mrUrl'].endswith('_aJasCmlQC8'), (sid, by_id[sid]['mrUrl'])
+    assert by_id[sid]['mrChannel'] == 'Rockstar Beats', sid
+    assert 'Instrumental' in by_id[sid]['mrTitle'], (sid, by_id[sid]['mrTitle'])
+    assert by_id[sid]['mrSource'] == 'youtube', sid
+assert by_id['playlist-157']['mrAudioUrl'] == LOCAL_MR_FILE and by_id['playlist-157']['mrSource'] == 'user-recording'
+assert by_id['playlist-157']['workTitle'] == '픽픽' and not by_id['playlist-157'].get('mrUrl')
 for sid in ('verified-017', 'verified-021', 'playlist-125' if 'playlist-125' in by_id else 'verified-017'):
     assert not by_id[sid].get('mrUrl'), (sid, '확인되지 않은 MR은 비워 둔다')
 assert meta['mrDisclosure'] and 'oEmbed' in meta['mrDisclosure']

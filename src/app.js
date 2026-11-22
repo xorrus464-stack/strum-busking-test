@@ -66,6 +66,11 @@
       if(/(^|\.)youtube\.com$/.test(u.hostname)||u.hostname==='music.youtube.com') {let id=u.searchParams.get('v')||u.pathname.match(/\/(?:shorts|embed|live)\/([a-zA-Z0-9_-]{11})/)?.[1]||'';return /^[a-zA-Z0-9_-]{11}$/.test(id)?id:'';} return '';
     }catch{return '';}
   };
+  /* 반주(MR)는 YouTube 링크(mrUrl) 또는 저장소에 함께 올린 음원 파일(mrAudioUrl) 둘 다 지원한다.
+     mrAudioUrl 은 'media/xxx.mp3' 같은 상대 경로(저장소 안 파일)나 https 음원 주소만 허용한다. */
+  const mrAudioUrlOf = v => { const t=String(v||'').trim(); if(/^https?:\/\//i.test(t))return t; return /^[\w./-]+\.(mp3|m4a|wav|ogg)$/i.test(t)?t:''; };
+  const mrAudioOf = s => mrAudioUrlOf(s&&s.mrAudioUrl);
+  const hasMr = s => !!(s && (String(s.mrUrl||'').trim() || mrAudioOf(s)));
   const PLAYLIST_URL = seed.meta.originalPlaylist;
   const PLAYLIST_ID = seed.meta.playlistId;
   const youtubeSearch=s=>`https://www.youtube.com/results?search_query=${encodeURIComponent(s.title+' '+s.artist+' 라이브')}`;
@@ -96,7 +101,7 @@
   const displayTitle = s => s.workTitle || s.title;
   const displayArtist = s => s.workArtist || s.artist;
   function songRow(s,i){const c=chartOf(s);
-    return `<article class="song-row"><div class="song-num">${String(i+1).padStart(2,'0')}</div><div><div class="song-name">${esc(displayTitle(s))} ${c?stageChip(c.stage):''}</div><div class="song-artist">${esc(displayArtist(s))}${s.sourceIndices?.length?` · 원본 #${s.sourceIndices.join(', #')}`:''}</div><div class="taglist">${chartBadge(s)}${s.videoStatus&&s.videoStatus!=='공개 영상'?`<span class="tag">${esc(s.videoStatus)}</span>`:''}${s.tags?.slice(0,2).map(t=>`<span class="tag">${esc(t)}</span>`).join('')||''}${s.verification.startsWith('learning-')?'<span class="tag">외부 추천곡</span>':''}</div></div>${stat(s.level)}<div class="song-actions">${c?action('chart:'+s.id,'악보','btn primary small'):action('chart:'+s.id,'정보','btn outline small')}${action('video:'+s.id,'영상')}${action('music:'+s.id,'음악')}${action('mr:'+s.id,s.mrUrl?'MR':'MR 없음','btn small '+(s.mrUrl?'mr-on':'mr-off'))}${action('edit:'+s.id,'수정','btn outline small')}</div></article>`}
+    return `<article class="song-row"><div class="song-num">${String(i+1).padStart(2,'0')}</div><div><div class="song-name">${esc(displayTitle(s))} ${c?stageChip(c.stage):''}</div><div class="song-artist">${esc(displayArtist(s))}${s.sourceIndices?.length?` · 원본 #${s.sourceIndices.join(', #')}`:''}</div><div class="taglist">${chartBadge(s)}${s.videoStatus&&s.videoStatus!=='공개 영상'?`<span class="tag">${esc(s.videoStatus)}</span>`:''}${s.tags?.slice(0,2).map(t=>`<span class="tag">${esc(t)}</span>`).join('')||''}${s.verification.startsWith('learning-')?'<span class="tag">외부 추천곡</span>':''}</div></div>${stat(s.level)}<div class="song-actions">${c?action('chart:'+s.id,'악보','btn primary small'):action('chart:'+s.id,'정보','btn outline small')}${action('video:'+s.id,'영상')}${action('music:'+s.id,'음악')}${action('mr:'+s.id,hasMr(s)?'MR':'MR 없음','btn small '+(hasMr(s)?'mr-on':'mr-off'))}${action('edit:'+s.id,'수정','btn outline small')}</div></article>`}
   const songQuery = () => {const raw=String(searchQuery).trim().replace(/\s*번$/,'');const hash=raw.startsWith('#');const body=hash?raw.slice(1).trim():raw;return {q:norm(body),n:/^\d{1,3}$/.test(body)?+body:null,hash};};
   function filterSongs(){const {q,n,hash}=songQuery();return ordered().filter(s=>{const fields=[s.title,s.artist,s.workTitle,s.workArtist,s.notes,s.chords,...(s.tags||[]),...(s.sourceIndices||[]),s.maleKey,s.key];let hit;if(n!==null){hit=(s.sourceIndices||[]).includes(n)||(!hash&&[s.title,s.artist].some(v=>new RegExp('(^|[^0-9])'+n+'([^0-9]|$)').test(norm(v))));}else{hit=!q||fields.some(v=>norm(v).includes(q));}
       const st=statusFilter;const cat=s.category||'';
@@ -250,14 +255,14 @@
         <div><span>박자</span><b>${esc((c&&c.timeSignature)||s.timeSignature||'—')}</b></div>
         <div><span>BPM</span><b>${(c&&c.bpm)||s.bpm||'—'}</b></div>
       </div>
-      <div class="row" style="flex-wrap:wrap">${s.mrUrl?action('mr:'+s.id,'MR 듣기','btn accent small'):action('mr:'+s.id,'MR 없음','btn outline small')}${c?action('metro-song:'+s.id,'이 곡 템포로 연습','btn primary small'):''}${action('edit:'+s.id,'곡 정보 수정','btn outline small')}</div></div>`;
+      <div class="row" style="flex-wrap:wrap">${hasMr(s)?action('mr:'+s.id,'MR 듣기','btn accent small'):action('mr:'+s.id,'MR 없음','btn outline small')}${c?action('metro-song:'+s.id,'이 곡 템포로 연습','btn primary small'):''}${action('edit:'+s.id,'곡 정보 수정','btn outline small')}</div></div>`;
     const partialStrip=((s.chartStatus==='partial'||s.chartStatus==='original')&&c&&s.chartNote)?`<div class="alert strip"><b>${s.chartStatus==='original'?'음원 분석':'부분 확인'}</b> · ${esc(s.chartNote)}</div>`:'';
     const tabs=`<div class="subtabs">${[['chart','원터치 악보'],['slots','SimplifyChord'],['perc','스트로크·퍼커시브'],['basis','근거']].map(([k,l])=>`<button data-act="chart-tab:${k}" class="${tab===k?'active':''}">${l}</button>`).join('')}</div>`;
     if(!c){
       const pc=s.chart||{};const pev=pc.evidence||[];
       const known=pev.length?`<div class="card" style="margin-top:12px"><h3>확인한 값</h3><div class="kv"><div><span>원곡 키</span><b>${esc(pc.originalKey||'미확인')}</b></div><div><span>박자</span><b>${esc(pc.timeSignature||'미확인')}</b><small>${esc(pc.timeNote||'')}</small></div><div><span>BPM</span><b>${pc.bpm||'—'}</b><small>${esc(pc.bpmNote||'')}</small></div></div><div class="divider"></div><h4>근거 자료</h4><ul class="ev">${pev.map(e=>`<li><a href="${esc(e.url)}" target="_blank" rel="noopener noreferrer">${esc(e.label)}</a><span class="tiny">${esc(e.note)}</span></li>`).join('')}</ul><p class="tiny">키·코드가 확인되지 않은 값은 비워 두었습니다. 위 링크에서 악보·코드표를 바로 열 수 있습니다.</p></div>`:'';
       return `${head0}${s.chartStatus==='partial'&&s.chart?`<div class="alert">${esc(s.chartNote||'일부 정보만 확인되었습니다.')}<br>확인된 값: 원키 ${esc(s.chart.originalKey||'—')} · ${esc(s.chart.timeSignature||'—')}${s.chart.bpm?` · ${s.chart.bpm}BPM`:''}</div>`:`<div class="empty"><strong>코드 검수 대기 곡입니다.</strong>${esc(s.chartNote||'원곡 키·박자·코드를 확인한 뒤 악보를 채웁니다. 추측값을 넣지 않습니다.')}</div>`}${known}
-      <div class="row" style="margin-top:12px;flex-wrap:wrap">${action('video:'+s.id,'영상 보기','btn outline')}${action('music:'+s.id,'음악 듣기','btn outline')}${s.mrUrl?action('mr:'+s.id,'MR 듣기','btn accent'):action('mr:'+s.id,'MR 없음','btn outline')}</div>`;
+      <div class="row" style="margin-top:12px;flex-wrap:wrap">${action('video:'+s.id,'영상 보기','btn outline')}${action('music:'+s.id,'음악 듣기','btn outline')}${hasMr(s)?action('mr:'+s.id,'MR 듣기','btn accent'):action('mr:'+s.id,'MR 없음','btn outline')}</div>`;
     }
     if(tab==='chart'){
       const used=BTNS.filter(b=>c.sections.some(sec=>sec.bars.some(b_=>b_.some(x=>x.btn===b))));
@@ -333,6 +338,9 @@
         /* MR 링크 병합: 비어 있으면 채우고, 사용자가 직접 넣은 값(mrEdited)은 건드리지 않는다 */
         if(seedSong.mrUrl&&!cur.mrEdited){for(const k of ['mrUrl','mrTitle','mrChannel','mrNote','mrSource'])cur[k]=seedSong[k];}
         else if(!cur.mrUrl && seedSong.mrUrl){for(const k of ['mrUrl','mrTitle','mrChannel','mrNote','mrSource'])cur[k]=seedSong[k];}
+        /* MR 음원 파일(mrAudioUrl, 저장소 media/)도 같은 규칙으로 병합한다 */
+        if(seedSong.mrAudioUrl&&!cur.mrEdited){for(const k of ['mrAudioUrl','mrTitle','mrNote','mrSource'])cur[k]=seedSong[k];}
+        else if(!cur.mrAudioUrl && seedSong.mrAudioUrl){for(const k of ['mrAudioUrl','mrTitle','mrNote','mrSource'])cur[k]=seedSong[k];}
         if(Array.isArray(cur.sourceIndices)){
           if(!cur.sourceIndices.length && seedSong.sourceIndices.length)cur.sourceIndices=seedSong.sourceIndices.slice();
           else for(const n of seedSong.sourceIndices) if(!cur.sourceIndices.includes(n)) cur.sourceIndices.push(n);
@@ -395,13 +403,14 @@
   function openMini(mode,s){
     if(!s)return;
     let kind=mode, url='';
-    if(mode==='mr'){url=s.mrUrl;}
+    if(mode==='mr'){if(mrAudioOf(s))kind='mraudio';else url=s.mrUrl||'';}
     else if(mode==='music'){if(safeHttp(s.audioUrl))kind='audio';else url=s.videoUrl;}
     else {url=s.videoUrl;}
     if(kind==='audio'){if(!safeHttp(s.audioUrl)){notice('등록된 음원이 없어 영상으로 재생합니다.');kind='music';url=s.videoUrl;}}
-    const vid=kind==='audio'?'':ytId(url);
-    if(kind!=='audio'&&!vid){notice(mode==='mr'?'MR 링크가 없습니다. MR 없음 버튼으로 등록할 수 있습니다.':'재생할 영상 링크가 없습니다.');return;}
-    mini={kind:kind,songId:s.id,videoId:vid,audioUrl:kind==='audio'?safeHttp(s.audioUrl):'',title:displayTitle(s),sub:displayArtist(s),badge:mode==='mr'?'MR':mode==='music'?'음악':kind==='audio'?'음악':'영상',collapsed:false};
+    const isAudio=kind==='audio'||kind==='mraudio';
+    const vid=isAudio?'':ytId(url);
+    if(!isAudio&&!vid){notice(mode==='mr'?'MR 링크가 없습니다. MR 없음 버튼으로 등록할 수 있습니다.':'재생할 영상 링크가 없습니다.');return;}
+    mini={kind:kind,songId:s.id,videoId:vid,audioUrl:kind==='audio'?safeHttp(s.audioUrl):kind==='mraudio'?mrAudioOf(s):'',title:displayTitle(s),sub:displayArtist(s),badge:mode==='mr'?'MR':mode==='music'?'음악':kind==='audio'?'음악':'영상',collapsed:false};
     renderMini();
     notice(mode==='mr'?`${s.title} · MR(반주)를 미니 플레이어에서 재생합니다.`:`${s.title} · ${mini.badge} 재생 중 — 악보로 이동해도 꺼지지 않습니다.`);
   }
@@ -411,14 +420,16 @@
     if(!mini){miniRoot.innerHTML='';try{document.body.classList?.remove('has-mini');document.body.style.paddingBottom='';document.documentElement?.style&&document.documentElement.style.setProperty('--mini-h','0px');}catch(err){}return;}
     const s=song(mini.songId);
     const watch=s?((mini.kind==='mr'?s.mrUrl:s.videoUrl)||''):'';
-    const body=mini.kind==='audio'
+    const isAudio=mini.kind==='audio'||mini.kind==='mraudio';
+    const body=isAudio
       ?`<audio class="mini-audio" id="mini-audio" controls autoplay preload="none" src="${esc(mini.audioUrl)}"></audio>`
       :`<div class="mini-frame"><iframe src="${esc(ytEmbed(mini.videoId))}" title="${esc(mini.title)} ${esc(mini.badge)} 재생" allow="autoplay; encrypted-media; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe></div>`;
-    const link=mini.kind==='audio'?musicSearch(s||{title:mini.title,artist:mini.sub}):esc(watch);
+    const link=mini.kind==='audio'?musicSearch(s||{title:mini.title,artist:mini.sub}):mini.kind==='mraudio'?esc(mini.audioUrl):esc(watch);
+    const linkLabel=mini.kind==='mraudio'?'MR 음원 ↗':'YouTube ↗';
     miniRoot.innerHTML=`<section class="mini-player ${mini.collapsed?'collapsed':''}" id="mini-player" aria-label="하단 미니 플레이어">
       <div class="mini-info"><span class="mini-badge">${esc(mini.badge)}</span><div class="mini-text"><b>${esc(mini.title)}</b><span>${esc(mini.sub)}</span></div></div>
       ${body}
-      <div class="mini-tools"><button type="button" class="mini-btn" data-act="mini-local" title="휴대폰에 저장한 오디오 파일 재생">내 파일</button><a class="mini-btn" href="${link}" target="_blank" rel="noopener noreferrer">YouTube ↗</a><button type="button" class="mini-btn" data-act="mini-collapse" aria-label="${mini.collapsed?'펼치기':'접기'}" title="${mini.collapsed?'펼치기':'접기'}">${mini.collapsed?'▴':'▾'}</button><button type="button" class="mini-btn mini-close" data-act="mini-close" aria-label="미니 플레이어 닫기" title="닫기">×</button></div>
+      <div class="mini-tools"><button type="button" class="mini-btn" data-act="mini-local" title="휴대폰에 저장한 오디오 파일 재생">내 파일</button><a class="mini-btn" href="${link}" target="_blank" rel="noopener noreferrer">${linkLabel}</a><button type="button" class="mini-btn" data-act="mini-collapse" aria-label="${mini.collapsed?'펼치기':'접기'}" title="${mini.collapsed?'펼치기':'접기'}">${mini.collapsed?'▴':'▾'}</button><button type="button" class="mini-btn mini-close" data-act="mini-close" aria-label="미니 플레이어 닫기" title="닫기">×</button></div>
       <input id="mini-file" type="file" accept="audio/*" class="hide" />
     </section>`;
     try{document.body.classList?.add('has-mini');}catch(err){}
@@ -488,7 +499,7 @@
     case 'chart-tab':if(modal){modal.tab=value;render();}return;
     case 'metro-song':{const s=song(value),c=s&&chartOf(s);if(c){state.settings.bpm=Math.max(40,Math.min(180,Math.round(c.bpm||state.settings.bpm)));state.settings.timeSignature=c.timeSignature||state.settings.timeSignature;state.settings.focusSongId=s.id;save();if(metronome){stopMetro();}modal=null;setTab('practice');notice(`${s.title} · ${state.settings.bpm}BPM · ${state.settings.timeSignature} 메트로놈으로 연습을 준비했습니다.`);}else notice('이 곡은 아직 악보 검수 대기입니다.');return;}
     case 'video':case 'music':{const s=song(value);if(!s)return;if(cmd==='music'&&!safeHttp(s.audioUrl)&&!s.videoUrl){audioStop();modal={kind:'music',id:value};render();return;}openMini(cmd,s);return;}
-    case 'mr':{const s=song(value);if(!s)return;if(s.mrUrl){openMini('mr',s);return;}modal={kind:'mr',id:value,from:modal&&modal.kind==='chart'?'chart':''};render();return;}
+    case 'mr':{const s=song(value);if(!s)return;if(hasMr(s)){openMini('mr',s);return;}modal={kind:'mr',id:value,from:modal&&modal.kind==='chart'?'chart':''};render();return;}
     case 'mini-close':closeMini();return;
     case 'mini-collapse':if(mini){mini.collapsed=!mini.collapsed;renderMini();}return;
     case 'mini-local':get('mini-file')?.click();return;

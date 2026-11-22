@@ -12,7 +12,7 @@
   "additionalRecommendedSongCount": 1,
   "originalPlaylist": "https://www.youtube.com/playlist?list=PLdOy20BJp9XElDHDvAJI6mUG48BmfDX-y",
   "playlistId": "PLdOy20BJp9XElDHDvAJI6mUG48BmfDX-y",
-  "seedVersion": 15,
+  "seedVersion": 16,
   "playlistCollectedCount": 210,
   "playlistPublicVideoCount": 168,
   "playlistInaccessibleVideoCount": 42,
@@ -37,7 +37,7 @@
   "videoLinkCount": 201,
   "videoLinkFilledCount": 36,
   "mrVersion": "2026-11-23",
-  "mrLinkCount": 155,
-  "mrWorkCount": 129,
-  "mrDisclosure": "MR(반주) 링크는 YouTube 검색 결과에서 제목에 MR·Inst·노래방·반주 표기가 있고 YouTube oEmbed HTTP 200으로 존재를 확인한 뒤, 앱과 같은 iframe 플레이어(YouTube IFrame API)로 임베드 재생까지 확인한 영상만 연결했습니다. TJ노래방 공식 채널은 임베드 재생을 막아(플레이어 오류 150) 금영(KY)·엠알샵·싱잇·MR노래방·여기MR·아티스트 공식 inst. 등 재생되는 반주로 바꿨습니다. 2026-11-23에는 주성 님이 직접 보내준 4건(#77 사랑이라 믿었던 것들은 · #144 기억을 걷는 시간 · #24 에아오 · #166 Feel Special 피아노 반주)을 같은 방식으로 확인해 추가했습니다. 곡 155개(서로 다른 곡 129개)에 연결했고, 재생되는 반주가 확인되지 않은 곡은 비워 두어 화면에서 MR 없음으로 표시한 뒤 YouTube MR 검색과 URL 붙여넣기로 직접 등록할 수 있게 했습니다."
+  "mrLinkCount": 158,
+  "mrWorkCount": 131,
+  "mrDisclosure": "MR(반주) 링크는 YouTube 검색 결과에서 제목에 MR·Inst·노래방·반주 표기가 있고 YouTube oEmbed HTTP 200으로 존재를 확인한 뒤, 앱과 같은 iframe 플레이어로 임베드 재생까지 확인한 영상만 연결했습니다. TJ노래방 공식 채널은 임베드 재생을 막아(플레이어 오류 150) 금영(KY)·엠알샵·싱잇·MR노래방·여기MR·아티스트 공식 inst. 등 재생되는 반주로 바꿨습니다. 2026-11-23에는 주성 님이 직접 보내준 4건(#77 사랑이라 믿었던 것들은 · #144 기억을 걷는 시간 · #24 에아오 · #166 Feel Special 피아노 반주)을 같은 방식으로 확인해 추가했고, 이어 「잠깐 시간 될까」 두 항목에 LEE MU JIN Ordinary Confession Instrumental(Rockstar Beats)을 연결했습니다. 주성 님이 직접 올린 녹화에서 오디오만 추출한 반주(로꼬 픽픽 · media/pikpik-mr.mp3)는 MR 음원 파일로 연결해 미니 플레이어 안에서 바로 재생합니다. 곡 158개(서로 다른 곡 131개, YouTube MR 영상 157개 항목 + MR 음원 파일 1개 항목)에 연결했고, 재생되는 반주가 확인되지 않은 곡은 비워 두어 화면에서 MR 없음으로 표시한 뒤 YouTube MR 검색과 URL 붙여넣기로 직접 등록할 수 있게 했습니다."
 }

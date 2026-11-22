@@ -210,6 +210,41 @@ def run(pw, name, viewport, mobile=False):
     page.fill('#song-search', '')
     page.wait_for_timeout(200)
 
+    # 2026-11-23 MR (seed v16): 「잠깐 시간 될까」 YouTube MR · 로꼬 「픽픽」 MR 음원 파일(주성 님 녹화)
+    media = page.request.get(f'http://127.0.0.1:{PORT}/media/pikpik-mr.mp3')
+    check(f'{name}: MR 음원 파일 서빙(media/pikpik-mr.mp3)',
+          media.status == 200 and int(media.headers.get('content-length', 0)) > 1_000_000,
+          f"{media.status} {media.headers.get('content-length')}")
+    page.fill('#song-search', '잠깐 시간 될까')
+    page.wait_for_timeout(250)
+    page.locator('.song-row', has_text='잠깐 시간 될까').first.locator('button.mr-on').click()
+    page.wait_for_selector('.mini-player iframe')
+    src = page.locator('.mini-player iframe').first.get_attribute('src') or ''
+    check(f'{name}: 잠깐 시간 될까 MR 재생', '_aJasCmlQC8' in src, src)
+    check(f'{name}: 잠깐 시간 될까 MR 배지', page.locator('.mini-badge').inner_text().strip() == 'MR')
+    page.click('[data-act="mini-close"]')
+    page.fill('#song-search', '픽픽')
+    page.wait_for_timeout(250)
+    page.locator('.song-row', has_text='픽픽').first.locator('button.mr-on').click()
+    page.wait_for_selector('.mini-player audio#mini-audio')
+    a_src = page.locator('.mini-player audio#mini-audio').get_attribute('src') or ''
+    check(f'{name}: 픽픽 MR 음원 파일 미니 재생', 'media/pikpik-mr.mp3' in a_src, a_src)
+    check(f'{name}: MR 음원은 iframe 없이 <audio> 재생', page.locator('.mini-player iframe').count() == 0)
+    page.wait_for_function("() => { const a = document.querySelector('#mini-audio'); return !!a && a.readyState >= 1 && a.duration > 60; }",
+                           timeout=15000)
+    dur = page.evaluate("() => document.querySelector('#mini-audio').duration")
+    check(f'{name}: MR 음원 실제 로드(3분 10초)', 180 < dur < 200, str(dur))
+    page.locator('.song-row', has_text='픽픽').first.locator('button', has_text='악보').click()
+    page.wait_for_selector('.chart-modal')
+    check(f'{name}: MR 음원 재생 중 악보 유지', page.locator('.mini-player audio#mini-audio').count() == 1)
+    o = overflow(page)
+    check(f'{name}: MR 음원 미니 플레이어 가로 넘침 없음', o['sw'] <= o['cw'] + 1, str(o))
+    page.screenshot(path=str(SHOTS / f'mini-audio-mr-{name}.png'))
+    page.click('[data-act="close"]')
+    page.click('[data-act="mini-close"]')
+    page.fill('#song-search', '')
+    page.wait_for_timeout(200)
+
     # 로드맵
     page.click('[data-nav="roadmap"]')
     body = page.content()
@@ -311,13 +346,15 @@ def run_merge(pw):
     check('merge: 남자키 배지 병합', page.locator('.song-row', has_text='오늘').first.inner_text().find('남자키') >= 0)
     state = json.loads(page.evaluate("() => localStorage.getItem('strum-busking-v2')"))
     song = [s for s in state['songs'] if s['id'] == 'verified-001'][0]
-    check('merge: seedVersion 15', state['seedVersion'] == 15, str(state['seedVersion']))
+    check('merge: seedVersion 16', state['seedVersion'] == 16, str(state['seedVersion']))
     check('merge: MR 링크 병합', song.get('mrUrl', '').endswith('hwZqHCMmjUM'), str(song.get('mrUrl')))
     check('merge: 숙련도 보존', song['level'] == '버스킹 가능', song['level'])
     check('merge: 사용자 메모 보존', song['notes'] == '내 메모', song['notes'])
     check('merge: 세트리스트 보존', song['setlist'] is True)
     check('merge: 악보 추가(남성 원곡 원키 E)', song.get('chart', {}).get('maleKey') == 'E' and song.get('chart', {}).get('maleShift') == 0, str(song.get('chart', {}).get('maleKey')))
     check('merge: #163 제외 유지', state['sources'][162]['status'] == '제외')
+    pik = [s for s in state['songs'] if s['id'] == 'playlist-157'][0]
+    check('merge: MR 음원 파일 병합(픽픽)', pik.get('mrAudioUrl') == 'media/pikpik-mr.mp3', str(pik.get('mrAudioUrl')))
     browser.close()
 
 

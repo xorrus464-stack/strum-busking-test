@@ -24705,7 +24705,12 @@
       ]
     },
     "timeSignature": "4/4",
-    "chartStage": 3
+    "chartStage": 3,
+    "mrUrl": "https://www.youtube.com/watch?v=_aJasCmlQC8",
+    "mrTitle": "LEE MU JIN - Ordinary Confession (잠깐 시간 될까) (Instrumental)",
+    "mrChannel": "Rockstar Beats",
+    "mrNote": "Rockstar Beats · 주성 님 지정 · 잠깐 시간 될까 Instrumental · YouTube oEmbed 200 + 임베드 재생 확인(2026-11-23)",
+    "mrSource": "youtube"
   },
   {
     "id": "playlist-058",
@@ -24892,7 +24897,12 @@
       ]
     },
     "timeSignature": "4/4",
-    "chartStage": 3
+    "chartStage": 3,
+    "mrUrl": "https://www.youtube.com/watch?v=_aJasCmlQC8",
+    "mrTitle": "LEE MU JIN - Ordinary Confession (잠깐 시간 될까) (Instrumental)",
+    "mrChannel": "Rockstar Beats",
+    "mrNote": "Rockstar Beats · 주성 님 지정 · 잠깐 시간 될까 Instrumental · YouTube oEmbed 200 + 임베드 재생 확인(2026-11-23)",
+    "mrSource": "youtube"
   },
   {
     "id": "playlist-059",
@@ -36653,7 +36663,11 @@
       "note": "TJ노래방 84960 멜로디제거 MR 녹화(3분 10초)를 자동 분석한 초안입니다. 4/4·E♭·♩83은 공개 템포 자료(SongBPM 83)와 박자 분석, 제가 같은 녹화에서 다시 잰 박이 모두 맞습니다. 다만 A♭maj7/A♭maj9, B♭/B♭7, E♭/E♭maj7 구분과 마디 안 전환 시각(B♭/D→A♭maj7)은 자동 분석만으로 확정하지 못했고, 후주 61~65마디는 반주 밖 신호가 섞였을 수 있어 코드를 비웠습니다. 청음 검수 전입니다."
     },
     "timeSignature": "4/4",
-    "chartStage": 3
+    "chartStage": 3,
+    "mrAudioUrl": "media/pikpik-mr.mp3",
+    "mrTitle": "로꼬 (LOCO) - 픽픽 (PICK PICK) TJ 84960 멜로디제거 반주 (주성 님 녹화)",
+    "mrNote": "주성 님이 2026-11-22 화면 녹화로 올린 반주에서 오디오만 추출 · media/pikpik-mr.mp3 (2978KB) · 미니 플레이어에서 바로 재생(2026-11-23)",
+    "mrSource": "user-recording"
   },
   {
     "id": "playlist-158",
