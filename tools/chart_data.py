@@ -68,7 +68,26 @@ CHARTS = {
         ],
     },
     "verified-004": {  # Ten Thousand Hours
-        "originalKey": "", "missing": "가수·키·박자·코드 확인 전(힙합 트랙, 기타 반주 자료 없음)",
+        "originalKey": "Ebm", "timeSignature": "4/4", "bpm": 83,
+        "timeNote": "SongBPM 기준 4/4",
+        "bpmNote": "SongBPM 83 (사이트별 80~85 차이)",
+        "stage": 1,
+        "partial": ("원곡 가수·키(E♭m 참고)·83bpm·4/4·코드 후보(B→G♭→B♭m→E♭m)만 확인한 부분 확인 상태입니다. "
+                    "힙합 트랙이라 기타 반주 정식 악보가 없고, 코드는 온라인 코드표 후보를 4박 카드로 정리한 연습용입니다. "
+                    "BPM은 사이트별 80~85로 차이가 있어 원음에 맞춰 확인이 필요하고, 악보 원문은 복제하지 않고 열람 링크만 연결합니다."),
+        "sections": [
+            {"name": "A (E♭m키 · 코드 후보)", "bars": [["B"], ["Gb"], ["Bbm"], ["Ebm"]]},
+        ],
+        "stroke": "↓ · ↓↑ · ↓↑ (83bpm, 마디마다 코드 하나)",
+        "why": "B → G♭ → B♭m → E♭m 네 코드 순환. B·B♭m은 원터치 10버튼에 없어 SimplifyChord 슬롯으로 넘기고, G♭·E♭m은 카포로 버튼에 맞춘다.",
+        "evidence": [
+            ("코드표(Gotabs)", "https://www.gotabs.com/macklemore/ten-thousand-hours-chords",
+             "B → G♭ → B♭m → E♭m 코드 후보 · 원문 복제 없이 열람 링크만"),
+            ("코드·템포(Chordu)", "https://chordu.com/chords-tabs-macklemore-ryan-lewis-ten-thousand-hours-lyrics-hq-id_hClRPa0jfyA",
+             "코드 후보 참고"),
+            ("BPM·박자(SongBPM)", "https://songbpm.com/%40macklemore-ryan-lewis/ten-thousand-hours",
+             "83 BPM · 4/4 (사이트별 80~85)"),
+        ],
     },
     "verified-005": {  # 추억이면 / 부활
         "originalKey": "", "missing": "부활 '추억이면' 코드표 미확보",
@@ -317,8 +336,18 @@ CHARTS = {
             ("악보바다 원키 Gb", "https://www.akbobada.com/musicDetail.html?musicID=97191", "원키 Gb(내림 사장조)"),
         ],
     },
-    "verified-024": {  # 닮은사람 / 이기찬
-        "originalKey": "", "missing": "코드표 미확보",
+    "verified-024": {  # 닮은 사람 / 이기찬
+        "pending": ("검수 대기 — 이기찬 ‘닮은 사람’의 유료 멜로디 악보·자동분석 코드 페이지·곡 정보까지만 확인했습니다. "
+                    "원키·BPM·코드 진행 수치를 확인하지 못해 악보를 만들지 않았습니다(추측값 금지). 테이의 동명이곡과 혼동하지 않습니다."),
+        "originalKey": "미확인", "timeSignature": "미확인", "bpm": 0,
+        "evidence": [
+            ("멜로디 악보(뮤직스코어)", "https://www.musicscore.co.kr/m_score/score_detail.asp?s_rndidx=Rc5c4FgSZw5f2026111113341",
+             "유료 멜로디 악보 · 원문 복제 없이 열람 링크만"),
+            ("코드 분석 페이지(Chordify)", "https://chordify.net/chords/igichan-dalm-eun-salam-kpop-lyrics-gasa-nn-music",
+             "페이지는 있으나 코드/BPM 수치 미확인"),
+            ("곡 식별(SoundLeader)", "https://soundleader.co.kr/ContV2/msheet.php?idx=134401&pap=main_msheetView",
+             "이기찬 닮은 사람 악보 정보"),
+        ],
     },
     "verified-025": {  # 히로인 / back number
         "originalKey": "G", "timeSignature": "4/4", "timeNote": "ChordWiki 4/4",

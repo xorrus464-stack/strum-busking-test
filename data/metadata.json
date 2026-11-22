@@ -12,7 +12,7 @@
   "additionalRecommendedSongCount": 1,
   "originalPlaylist": "https://www.youtube.com/playlist?list=PLdOy20BJp9XElDHDvAJI6mUG48BmfDX-y",
   "playlistId": "PLdOy20BJp9XElDHDvAJI6mUG48BmfDX-y",
-  "seedVersion": 7,
+  "seedVersion": 8,
   "playlistCollectedCount": 210,
   "playlistPublicVideoCount": 168,
   "playlistInaccessibleVideoCount": 42,
@@ -20,49 +20,25 @@
   "songEntryCount": 200,
   "chartVersion": "2026-11-22",
   "chartReadyCount": 124,
-  "chartPartialCount": 11,
-  "chartPendingCount": 25,
-  "chartDisclosure": "남자키는 남성 원곡이면 원키 그대로(이조 0반음), 여성 원곡이면 -5반음으로 잡고 그 목표 키를 AeroBand 원터치 버튼에 맞추도록 카포를 골랐습니다. 남자키·박자·BPM·코드 진행은 2026-11-22 웹 검색으로 확인한 코드표·악보 메타데이터와, 주성 님이 직접 올린 음원 2곳의 오디오 분석에서 옮겼습니다. 악보 준비 완료 124곡(서로 다른 곡 110곡), 부분 확인 11곡, 검수 대기 25곡, 비음악·참고 영상 39개, 자작곡 1개. 마디 배치는 코드표 순서를 4박 카드로 정리한 연습용이며, 원곡 세부 마디와 다를 수 있습니다. 음원 분석 곡(#108 · #172)은 오디오 분석 기반으로 청음 검수를 권장합니다. 원터치 버튼에 없는 코드는 SimplifyChord 슬롯(최대 8개)으로 안내합니다.",
+  "chartPartialCount": 26,
+  "chartPendingCount": 10,
+  "chartDisclosure": "남자키는 남성 원곡이면 원키 그대로(이조 0반음), 여성 원곡이면 -5반음으로 잡고 그 목표 키를 AeroBand 원터치 버튼에 맞추도록 카포를 골랐습니다. 남자키·박자·BPM·코드 진행은 2026-11-22 웹 검색으로 확인한 코드표·악보 메타데이터와, 주성 님이 직접 올린 음원 2곳의 오디오 분석에서 옮겼습니다. 악보 준비 완료 124곡(서로 다른 곡 123곡), 부분 확인 26곡, 검수 대기 10곡, 비음악·참고 영상 39개, 자작곡 1개. 마디 배치는 코드표 순서를 4박 카드로 정리한 연습용이며, 원곡 세부 마디와 다를 수 있습니다. 음원 분석 곡(#108 · #172)과 자동분석 후보 곡은 청음 검수를 권장합니다. 키·코드가 확인되지 않은 곡은 추측값을 넣지 않고 검수 대기로 두되, 확인된 BPM·키와 근거 링크만 곡 정보 화면에 남겼습니다. 원터치 버튼에 없는 코드는 SimplifyChord 슬롯(최대 8개)으로 안내합니다.",
   "nonMusicCount": 39,
   "originalWorkCount": 1,
-  "uniqueChartSongCount": 110,
+  "uniqueChartSongCount": 123,
   "categoryCounts": {
     "chart": 124,
-    "partial": 11,
-    "pending": 25,
+    "partial": 26,
+    "pending": 10,
     "reference": 39,
     "original": 1
   },
   "originalWorks": [
     {
-      "id": "verified-004",
-      "title": "Ten Thousand Hours",
-      "artist": "Macklemore & Ryan Lewis",
-      "note": ""
-    },
-    {
       "id": "verified-024",
       "title": "닮은사람",
       "artist": "이기찬",
       "note": ""
-    },
-    {
-      "id": "playlist-001",
-      "title": "운명의 상대를 만난다면 머릿속에서 이 노래가 들릴 겁니다 | Past Lives (cover by Jon Poppii)",
-      "artist": "MUFLIX 뮤플릭스",
-      "note": ""
-    },
-    {
-      "id": "playlist-016",
-      "title": "so low",
-      "artist": "Shiloh Dynasty",
-      "note": ""
-    },
-    {
-      "id": "playlist-024",
-      "title": "에아오 (AEAO)",
-      "artist": "다이나믹듀오",
-      "note": "다이나믹듀오 원곡 커버"
     },
     {
       "id": "playlist-025",
@@ -71,70 +47,10 @@
       "note": "개코 라이브"
     },
     {
-      "id": "playlist-034",
-      "title": "한계",
-      "artist": "넬",
-      "note": "넬 원곡, 비교듣기"
-    },
-    {
-      "id": "playlist-038",
-      "title": "영원해",
-      "artist": "도경수 (D.O.)",
-      "note": "도경수 원곡"
-    },
-    {
-      "id": "playlist-086",
-      "title": "힙합보단 사랑, 사랑보단 돈",
-      "artist": "노아주다 feat. 베이식",
-      "note": "노아주다 커버"
-    },
-    {
-      "id": "playlist-116",
-      "title": "Somebody",
-      "artist": "도경수 (D.O.)",
-      "note": "도경수 원곡"
-    },
-    {
       "id": "playlist-118",
       "title": "나의 아버지 (Dad)",
       "artist": "도경수 (D.O.)",
       "note": "도경수 원곡"
-    },
-    {
-      "id": "playlist-124",
-      "title": "영원해",
-      "artist": "도경수 (D.O.)",
-      "note": "도경수 원곡"
-    },
-    {
-      "id": "playlist-126",
-      "title": "내일을 너에게 (I'll Be There)",
-      "artist": "도경수 (D.O.)",
-      "note": "도경수 원곡"
-    },
-    {
-      "id": "playlist-143",
-      "title": "기적 (Wonder)",
-      "artist": "도경수 (D.O.)",
-      "note": "도경수 원곡"
-    },
-    {
-      "id": "playlist-152",
-      "title": "기억의 온기 (Where You Were)",
-      "artist": "도경수 (D.O.)",
-      "note": "도경수 원곡"
-    },
-    {
-      "id": "playlist-153",
-      "title": "다시, 별 아래",
-      "artist": "임한별",
-      "note": "임한별 원곡"
-    },
-    {
-      "id": "playlist-154",
-      "title": "다시, 별 아래",
-      "artist": "임한별",
-      "note": "임한별 원곡 커버"
     },
     {
       "id": "playlist-157",
@@ -144,21 +60,15 @@
     },
     {
       "id": "playlist-159",
-      "title": "30 (서, 어른)",
+      "title": "서, 어른",
       "artist": "키썸 (Kisum)",
       "note": "키썸 원곡"
-    },
-    {
-      "id": "playlist-161",
-      "title": "지금 이대로만",
-      "artist": "박재정 X 설윤",
-      "note": "박재정 X 설윤 원곡, 테이 커버"
     },
     {
       "id": "playlist-173",
       "title": "괜히 보고 싶은 사실이 조금은 다행인 시간",
       "artist": "jehoda",
-      "note": "jehoda 자작곡"
+      "note": "jehoda 곡(2026년 앨범 10번 트랙)"
     },
     {
       "id": "playlist-186",
@@ -175,14 +85,14 @@
     {
       "id": "playlist-205",
       "title": "안녕 너희",
-      "artist": "유영우 X 허각",
-      "note": "유영우 X 허각"
+      "artist": "허각",
+      "note": "허각 곡 · 유영우·허각 듀엣 무대"
     },
     {
       "id": "playlist-206",
       "title": "나를 사랑하지 말아요",
-      "artist": "유영우 X 허각",
-      "note": "유영우 X 허각"
+      "artist": "허각",
+      "note": "허각 곡 · 유영우·허각 듀엣 무대"
     }
   ]
 }

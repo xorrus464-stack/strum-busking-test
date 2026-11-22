@@ -40,6 +40,7 @@ EASY_ALT = {
     'C#m7': 'C#m7(x46454)', 'F#m7': 'F#m7(242222)', 'Cm7': 'Cm7(x35343)', 'Fm7': 'Fm7(131111)',
     'Bb7': 'Bb7(x13131)', 'Ebmaj7': 'Ebmaj7(xx1333)', 'Abmaj7': 'Abmaj7(465544)', 'Bbm7': 'Bbm7(x13121)',
     'E': 'E(022100)', 'B': 'B7(x21202) 약식', 'C#': 'Db(x46664) 4프렛 바레',
+    'Ebm': 'Ebm7(x68676) 6프렛 바레', 'Abm7': 'Abm7(464444)', 'Dbm': 'Dbm(x46664) 4프렛 바레',
 }
 
 
@@ -126,7 +127,9 @@ def plan(sid, data):
     # 남성 원곡은 원키 고정(이조 0반음), 여성 원곡은 -5반음 고정. 카포만으로 원터치 버튼에 맞춘다.
     shifts = [5] if ideal == 5 else [0]
     for shift in shifts:
-        male = {c: shift_name(p['root'], shift, prefer_flat) + p['suffix'] for c, p in parsed}
+        male = {c: shift_name(p['root'], shift, prefer_flat) + p['suffix']
+                + (('/' + shift_name(p['bass'], shift, prefer_flat)) if p['bass'] else '')
+                for c, p in parsed}
         male_pc = {c: PC[shift_name(p['root'], shift, prefer_flat)] for c, p in parsed}
         for capo in range(0, 8):
             mapped = sum(1 for c, p in parsed if find_button(male_pc[c], p['quality'], capo))
@@ -343,6 +346,53 @@ def main():
             s.pop('chart', None)
             pending += 1
             continue
+        if data.get('pending') and not data.get('sections'):
+            # 확인된 키·BPM·근거 링크만 있는 곡: 악보 없이 '검수 대기'를 유지하되,
+            # 확인한 값과 근거 링크는 곡 정보/근거 화면에서 바로 열 수 있게 남긴다.
+            orig = data.get('originalKey', '')
+            ts = data.get('timeSignature', '') or '미확인'
+            bpm = data.get('bpm') or 0
+            male_key = ''
+            shift = 0
+            if orig and orig != '미확인':
+                try:
+                    b_ = parse_chord(orig)
+                    pref_ = 'b' in orig
+                    shift = ideal_shift(s['id'])
+                    male_key = name((PC[b_['root']] - shift) % 12, pref_)
+                    if b_['quality'] == 'min':
+                        male_key += 'm'
+                except (KeyError, ValueError):
+                    male_key, shift = '', 0
+            s['chart'] = {
+                'status': 'pending',
+                'timeSignature': ts,
+                'timeNote': data.get('timeNote', ''),
+                'bpm': bpm,
+                'bpmNote': data.get('bpmNote', ''),
+                'originalKey': orig,
+                'maleKey': male_key,
+                'maleShift': shift,
+                'capo': None,
+                'formButton': '', 'formKey': '', 'formText': '',
+                'sections': [], 'slots': [], 'stage': 3,
+                'stroke': '', 'percussive': '', 'why': '',
+                'coverage': {'mapped': 0, 'total': 0, 'unmapped': 0},
+                'basis': '',
+                'note': data['pending'],
+                'evidence': [{'label': a, 'url': b, 'note': c} for a, b, c in data.get('evidence', [])],
+            }
+            s['chartStatus'] = 'pending'
+            s['category'] = 'pending'
+            s['chartNote'] = data['pending']
+            s['key'] = orig
+            if male_key:
+                s['maleKey'] = male_key
+            s['bpm'] = bpm or None
+            s['timeSignature'] = ts
+            s['chordStatus'] = '미확인'
+            pending += 1
+            continue
         if 'sections' not in data:
             chart = {
                 'status': 'partial',
@@ -459,7 +509,7 @@ def main():
     pending = sum(1 for s in songs if s.get('category') == 'pending')
     references = sum(1 for s in songs if s.get('category') == 'reference')
     originals = sum(1 for s in songs if s.get('category') == 'original')
-    meta['seedVersion'] = 7
+    meta['seedVersion'] = 8
     meta['chartVersion'] = '2026-11-22'
     meta['chartReadyCount'] = ready
     meta['chartPartialCount'] = partial
@@ -482,7 +532,8 @@ def main():
         f'악보 준비 완료 {ready}곡(서로 다른 곡 {len(chart_titles)}곡), 부분 확인 {partial}곡, 검수 대기 {pending}곡, '
         f'비음악·참고 영상 {references}개, 자작곡 {originals}개. '
         '마디 배치는 코드표 순서를 4박 카드로 정리한 연습용이며, 원곡 세부 마디와 다를 수 있습니다. '
-        '음원 분석 곡(#108 · #172)은 오디오 분석 기반으로 청음 검수를 권장합니다. '
+        '음원 분석 곡(#108 · #172)과 자동분석 후보 곡은 청음 검수를 권장합니다. '
+        '키·코드가 확인되지 않은 곡은 추측값을 넣지 않고 검수 대기로 두되, 확인된 BPM·키와 근거 링크만 곡 정보 화면에 남겼습니다. '
         '원터치 버튼에 없는 코드는 SimplifyChord 슬롯(최대 8개)으로 안내합니다.')
     meta['sourceDisclosure'] = (
         '원본 152곡 전체 데이터는 여전히 미확보입니다. 2026-11-22 확인한 재생목록 공개 168개 영상과 접근 불가 42개 사유를 기록했고, '

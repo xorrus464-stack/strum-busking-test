@@ -194,7 +194,7 @@
       <div class="divider"></div>
       <div class="row between"><div><h3>나의 메트로놈</h3><p class="tiny">${esc(state.settings.timeSignature)} · ${state.settings.timeSignature==='6/8'?'8분음표 6번, 1·4박 강세':'1박 강세'}</p></div><span id="bpm-label" style="font-size:23px;font-weight:900">${state.settings.bpm} BPM</span></div>
       <div class="segmented ts-pick" style="margin-top:10px">${['4/4','3/4','6/8'].map(t=>`<button data-act="ts:${t}" class="${state.settings.timeSignature===t?'selected':''}">${t}</button>`).join('')}</div>
-      <p class="tiny" style="margin:6px 0 0">확인한 27곡은 모두 4/4입니다. 3/4·6/8은 왈츠·겹박자 기본 스트로크를 따로 연습할 때 쓰세요.</p>
+      <p class="tiny" style="margin:6px 0 0">악보에 표시된 박자를 기준으로 연습하세요. 확인된 곡은 대부분 4/4이고, 박자표를 확인하지 못한 곡은 4/4로 단정하지 않았습니다. 3/4·6/8은 왈츠·겹박자 기본 스트로크를 따로 연습할 때 쓰세요.</p>
       <div class="beat-dots" id="beat-dots">${Array.from({length:beatCount(state.settings.timeSignature)},(_,i)=>`<i class="${i===0?'accent':''}"></i>`).join('')}</div>
       <input id="bpm-range" type="range" min="40" max="180" step="1" value="${state.settings.bpm}" aria-label="BPM" style="width:100%;margin:12px 0" /><div class="row between">${action('bpm-down','−5','btn outline small')}${action('metro-toggle',metronome?'메트로놈 정지':'메트로놈 켜기','btn primary small')}${action('bpm-up','+5','btn outline small')}</div></div>
       <div class="card"><h3>원터치 버튼 10개</h3><p class="tiny" style="margin:4px 0 12px">에어로밴드 앱과 같은 색으로 표시합니다.</p><div class="ot-grid">${BTNS.map(b=>`<div class="ot-btn" style="--c:${BTN_COLOR[b]}">${b}</div>`).join('')}</div></div></div></section>
@@ -239,19 +239,21 @@
       <div class="bar-row">${sec.bars.map((bar,bi)=>`<div class="bar" aria-label="${bi+1}마디"><div class="bar-beats">${Array.from({length:beats},(_,i)=>`<i class="${i===0?'on':''}"></i>`).join('')}</div><div class="bar-cells">${bar.map(cell=>chordCell(cell,beats)).join('')}</div><div class="bar-num">${bi+1}</div></div>`).join('')}</div></div>`).join('');
   }
   function chartModal(s){
-    const c=s.chart||null;const tab=modal.tab||'chart';
+    const c=(s.chart&&s.chart.status!=='pending')?s.chart:null;const tab=modal.tab||'chart';
     const head0=`<div class="chart-head"><div class="keyflow">
         <div><span>원곡 키</span><b>${esc((c&&c.originalKey)||s.key||'—')}</b></div>
         <div><span>남자키</span><b class="hl">${esc((c&&c.maleKey)||s.maleKey||'—')}</b></div>
         <div><span>AeroBand Capo</span><b class="hl">${c&&Number.isFinite(c.capo)?'+'+c.capo:'—'}</b></div>
-        <div><span>박자</span><b>${esc((c&&c.timeSignature)||'—')}</b></div>
-        <div><span>BPM</span><b>${c&&c.bpm?c.bpm:'—'}</b></div>
+        <div><span>박자</span><b>${esc((c&&c.timeSignature)||s.timeSignature||'—')}</b></div>
+        <div><span>BPM</span><b>${(c&&c.bpm)||s.bpm||'—'}</b></div>
       </div>
       <div class="row" style="flex-wrap:wrap">${c?action('metro-song:'+s.id,'이 곡 템포로 연습','btn primary small'):''}${action('edit:'+s.id,'곡 정보 수정','btn outline small')}</div></div>`;
     const partialStrip=(s.chartStatus==='partial'&&c&&s.chartNote)?`<div class="alert strip"><b>부분 확인</b> · ${esc(s.chartNote)}</div>`:'';
     const tabs=`<div class="subtabs">${[['chart','원터치 악보'],['slots','SimplifyChord'],['perc','스트로크·퍼커시브'],['basis','근거']].map(([k,l])=>`<button data-act="chart-tab:${k}" class="${tab===k?'active':''}">${l}</button>`).join('')}</div>`;
     if(!c){
-      return `${head0}${s.chartStatus==='partial'&&s.chart?`<div class="alert">${esc(s.chartNote||'일부 정보만 확인되었습니다.')}<br>확인된 값: 원키 ${esc(s.chart.originalKey||'—')} · ${esc(s.chart.timeSignature||'—')}${s.chart.bpm?` · ${s.chart.bpm}BPM`:''}</div>`:`<div class="empty"><strong>코드 검수 대기 곡입니다.</strong>${esc(s.chartNote||'원곡 키·박자·코드를 확인한 뒤 악보를 채웁니다. 추측값을 넣지 않습니다.')}</div>`}
+      const pc=s.chart||{};const pev=pc.evidence||[];
+      const known=pev.length?`<div class="card" style="margin-top:12px"><h3>확인한 값</h3><div class="kv"><div><span>원곡 키</span><b>${esc(pc.originalKey||'미확인')}</b></div><div><span>박자</span><b>${esc(pc.timeSignature||'미확인')}</b><small>${esc(pc.timeNote||'')}</small></div><div><span>BPM</span><b>${pc.bpm||'—'}</b><small>${esc(pc.bpmNote||'')}</small></div></div><div class="divider"></div><h4>근거 자료</h4><ul class="ev">${pev.map(e=>`<li><a href="${esc(e.url)}" target="_blank" rel="noopener noreferrer">${esc(e.label)}</a><span class="tiny">${esc(e.note)}</span></li>`).join('')}</ul><p class="tiny">키·코드가 확인되지 않은 값은 비워 두었습니다. 위 링크에서 악보·코드표를 바로 열 수 있습니다.</p></div>`:'';
+      return `${head0}${s.chartStatus==='partial'&&s.chart?`<div class="alert">${esc(s.chartNote||'일부 정보만 확인되었습니다.')}<br>확인된 값: 원키 ${esc(s.chart.originalKey||'—')} · ${esc(s.chart.timeSignature||'—')}${s.chart.bpm?` · ${s.chart.bpm}BPM`:''}</div>`:`<div class="empty"><strong>코드 검수 대기 곡입니다.</strong>${esc(s.chartNote||'원곡 키·박자·코드를 확인한 뒤 악보를 채웁니다. 추측값을 넣지 않습니다.')}</div>`}${known}
       <div class="row" style="margin-top:12px">${action('video:'+s.id,'영상 보기','btn outline')}${action('music:'+s.id,'음악 듣기','btn outline')}</div>`;
     }
     if(tab==='chart'){

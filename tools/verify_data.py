@@ -132,7 +132,7 @@ for s in songs:
         assert not s['videoUrl'], s['id']
 
 # 10) 메타 집계
-assert meta['seedVersion'] == 7
+assert meta['seedVersion'] == 8
 assert meta['playlistCollectedCount'] == 210
 assert meta['playlistPublicVideoCount'] == 168
 assert meta['playlistInaccessibleVideoCount'] == 42
@@ -207,6 +207,49 @@ for s in pending:
 assert meta['chartReadyCount'] == len(ready)
 assert meta['chartPartialCount'] == len(partial)
 assert meta['chartDisclosure']
+
+# 11-1) 검수 대기 27꾸 자료(2026-11-22) 반영 확인 — #77(9번)·#139(15번) 포함
+GROUPS = {
+    # 27꾸 조사표 inputNumber → seed id, 상태
+    1: ('verified-004', 'partial'), 2: ('verified-024', 'pending'),
+    3: ('playlist-001', 'partial'), 4: ('playlist-016', 'partial'),
+    5: ('playlist-024', 'partial'), 6: ('playlist-025', 'pending'),
+    7: ('playlist-034', 'partial'), 8: ('playlist-038', 'partial'),
+    9: ('playlist-077', 'partial'), 10: ('playlist-086', 'partial'),
+    11: ('playlist-116', 'partial'), 12: ('playlist-118', 'pending'),
+    13: ('playlist-124', 'partial'), 14: ('playlist-126', 'partial'),
+    15: ('playlist-139', 'partial'), 16: ('playlist-143', 'partial'),
+    17: ('playlist-152', 'partial'), 18: ('playlist-153', 'partial'),
+    19: ('playlist-154', 'partial'), 20: ('playlist-157', 'pending'),
+    21: ('playlist-159', 'pending'), 22: ('playlist-161', 'partial'),
+    23: ('playlist-173', 'pending'), 24: ('playlist-186', 'pending'),
+    25: ('playlist-190', 'pending'), 26: ('playlist-205', 'pending'),
+    27: ('playlist-206', 'pending'),
+}
+for n, (sid, status) in GROUPS.items():
+    s = by_id[sid]
+    assert s['chartStatus'] == status, (n, sid, s['chartStatus'])
+    c = s.get('chart') or {}
+    assert c.get('evidence') and all(e['url'].startswith('http') for e in c['evidence']), (n, sid, '근거 누락')
+    if status == 'partial':
+        assert c['sections'] and c.get('capo') is not None, (n, sid)
+    else:
+        assert not c.get('sections'), (n, sid, '대기 꾸에 섹션 금지')
+        assert c.get('note') and s.get('chartNote'), (n, sid)
+# 확인된 수치·정정
+assert by_id['verified-004']['chart']['originalKey'] == 'Ebm' and by_id['verified-004']['chart']['bpm'] == 83
+assert by_id['playlist-077']['workArtist'].startswith('BIG Naughty') and '권진아' not in by_id['playlist-077']['workArtist']
+assert by_id['playlist-139']['workArtist'] == '나윤권'
+assert by_id['playlist-126']['chart']['capo'] == 4 and by_id['playlist-126']['chart']['originalKey'] == 'B'
+assert by_id['playlist-152']['chart']['capo'] == 1 and by_id['playlist-152']['chart']['originalKey'] == 'F#'
+assert by_id['playlist-159']['workTitle'] == '서, 어른' and by_id['playlist-159']['artist'] == 'GeGee Edu'
+assert by_id['playlist-025']['chart']['bpm'] == 126
+assert by_id['playlist-205']['chart']['originalKey'] == 'A'
+assert by_id['playlist-038']['chart']['maleKey'] == by_id['playlist-124']['chart']['maleKey'] == 'A'
+assert by_id['playlist-153']['chart']['sections'] == by_id['playlist-154']['chart']['sections']
+assert by_id['playlist-072']['category'] == 'original' and by_id['playlist-072']['chartStatus'] == 'original'
+assert len([s for s in songs if s['chartStatus'] == 'partial']) == 26
+assert len([s for s in songs if s['chartStatus'] == 'pending']) == 10
 # 남자키는 원곡에서 0~6반음 내려간 값이어야 한다
 for s in ready:
     c = s['chart']

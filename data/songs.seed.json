@@ -914,7 +914,7 @@
           "slot": 1,
           "chord": "Ebm",
           "orig": "D#m",
-          "alt": "",
+          "alt": "Ebm7(x68676) 6프렛 바레",
           "why": "원터치 10버튼에 없는 코드(바레/전위 등)"
         },
         {
@@ -964,12 +964,12 @@
     "verification": "user-verified",
     "videoUrl": "",
     "audioUrl": "",
-    "key": "미확정",
-    "maleKey": "미확정",
-    "bpm": null,
-    "chords": "",
-    "chordStatus": "미확인",
-    "strumming": "",
+    "key": "Ebm",
+    "maleKey": "Ebm",
+    "bpm": 83,
+    "chords": "B / Gb / Bbm / Ebm",
+    "chordStatus": "부분 확인",
+    "strumming": "↓ · ↓↑ · ↓↑ (83bpm, 마디마다 코드 하나)",
     "difficultyEasy": "미확인",
     "difficultyStandard": "미확인",
     "vocalDifficulty": "미확인",
@@ -978,9 +978,106 @@
     "notes": "원본 #2 슬롯의 현재 재생목록 영상은 「나보다 못부르네」(KcTFE8g7UN8)이며 Ten Thousand Hours 영상으로 확인되지 않아 연결하지 않음.",
     "setlist": false,
     "videoStatus": "영상 미확인",
-    "chartStatus": "pending",
-    "chartNote": "가수·키·박자·코드 확인 전(힙합 트랙, 기타 반주 자료 없음)",
-    "category": "pending"
+    "chartStatus": "partial",
+    "chartNote": "원곡 가수·키(E♭m 참고)·83bpm·4/4·코드 후보(B→G♭→B♭m→E♭m)만 확인한 부분 확인 상태입니다. 힙합 트랙이라 기타 반주 정식 악보가 없고, 코드는 온라인 코드표 후보를 4박 카드로 정리한 연습용입니다. BPM은 사이트별 80~85로 차이가 있어 원음에 맞춰 확인이 필요하고, 악보 원문은 복제하지 않고 열람 링크만 연결합니다.",
+    "category": "partial",
+    "chart": {
+      "status": "partial",
+      "timeSignature": "4/4",
+      "timeNote": "SongBPM 기준 4/4",
+      "bpm": 83,
+      "bpmNote": "SongBPM 83 (사이트별 80~85 차이)",
+      "originalKey": "Ebm",
+      "maleKey": "Ebm",
+      "maleShift": 0,
+      "capo": 6,
+      "formButton": "",
+      "formKey": "Gb",
+      "formText": "Capo +6",
+      "sections": [
+        {
+          "name": "A (E♭m키 · 코드 후보)",
+          "bars": [
+            [
+              {
+                "btn": "F",
+                "slot": 0,
+                "sound": "B",
+                "orig": "B",
+                "quality": "maj"
+              }
+            ],
+            [
+              {
+                "btn": "C",
+                "slot": 0,
+                "sound": "Gb",
+                "orig": "Gb",
+                "quality": "maj"
+              }
+            ],
+            [
+              {
+                "btn": "Em",
+                "slot": 0,
+                "sound": "Bbm",
+                "orig": "Bbm",
+                "quality": "min"
+              }
+            ],
+            [
+              {
+                "btn": null,
+                "slot": 1,
+                "sound": "Ebm",
+                "orig": "Ebm",
+                "quality": "min"
+              }
+            ]
+          ]
+        }
+      ],
+      "slots": [
+        {
+          "slot": 1,
+          "chord": "Ebm",
+          "orig": "Ebm",
+          "alt": "Ebm7(x68676) 6프렛 바레",
+          "why": "원터치 10버튼에 없는 코드(바레/전위 등)"
+        }
+      ],
+      "stage": 1,
+      "percussiveReady": false,
+      "stroke": "↓ · ↓↑ · ↓↑ (83bpm, 마디마다 코드 하나)",
+      "percussive": "",
+      "why": "B → G♭ → B♭m → E♭m 네 코드 순환. B·B♭m은 원터치 10버튼에 없어 SimplifyChord 슬롯으로 넘기고, G♭·E♭m은 카포로 버튼에 맞춘다.",
+      "coverage": {
+        "mapped": 3,
+        "total": 4,
+        "unmapped": 1
+      },
+      "basis": "코드표 순서를 4박 마디 카드로 정리한 연습용 배치입니다. 원곡의 세부 마디 배치와 다를 수 있습니다.",
+      "evidence": [
+        {
+          "label": "코드표(Gotabs)",
+          "url": "https://www.gotabs.com/macklemore/ten-thousand-hours-chords",
+          "note": "B → G♭ → B♭m → E♭m 코드 후보 · 원문 복제 없이 열람 링크만"
+        },
+        {
+          "label": "코드·템포(Chordu)",
+          "url": "https://chordu.com/chords-tabs-macklemore-ryan-lewis-ten-thousand-hours-lyrics-hq-id_hClRPa0jfyA",
+          "note": "코드 후보 참고"
+        },
+        {
+          "label": "BPM·박자(SongBPM)",
+          "url": "https://songbpm.com/%40macklemore-ryan-lewis/ten-thousand-hours",
+          "note": "83 BPM · 4/4 (사이트별 80~85)"
+        }
+      ],
+      "note": "원곡 가수·키(E♭m 참고)·83bpm·4/4·코드 후보(B→G♭→B♭m→E♭m)만 확인한 부분 확인 상태입니다. 힙합 트랙이라 기타 반주 정식 악보가 없고, 코드는 온라인 코드표 후보를 4박 카드로 정리한 연습용입니다. BPM은 사이트별 80~85로 차이가 있어 원음에 맞춰 확인이 필요하고, 악보 원문은 복제하지 않고 열람 링크만 연결합니다."
+    },
+    "timeSignature": "4/4",
+    "chartStage": 1
   },
   {
     "id": "verified-005",
@@ -1982,7 +2079,7 @@
               {
                 "btn": "G",
                 "slot": 0,
-                "sound": "G",
+                "sound": "G/F",
                 "orig": "G/F",
                 "quality": "maj"
               }
@@ -3628,14 +3725,14 @@
               {
                 "btn": "C",
                 "slot": 0,
-                "sound": "E",
+                "sound": "E/Ab",
                 "orig": "E/G#",
                 "quality": "maj"
               },
               {
                 "btn": null,
                 "slot": 2,
-                "sound": "Eb",
+                "sound": "Eb/G",
                 "orig": "Eb/G",
                 "quality": "maj"
               }
@@ -3662,7 +3759,7 @@
               {
                 "btn": "Dm",
                 "slot": 0,
-                "sound": "F#m7",
+                "sound": "F#m7/E",
                 "orig": "F#m7/E",
                 "quality": "min"
               }
@@ -3689,7 +3786,7 @@
               {
                 "btn": "Fm",
                 "slot": 0,
-                "sound": "Am6",
+                "sound": "Am6/E",
                 "orig": "Am6/E",
                 "quality": "min"
               }
@@ -3707,7 +3804,7 @@
               {
                 "btn": "Fm",
                 "slot": 0,
-                "sound": "Am6",
+                "sound": "Am6/E",
                 "orig": "Am6/E",
                 "quality": "min"
               }
@@ -3725,7 +3822,7 @@
               {
                 "btn": "Fm",
                 "slot": 0,
-                "sound": "Am6",
+                "sound": "Am6/E",
                 "orig": "Am6/E",
                 "quality": "min"
               }
@@ -3743,9 +3840,9 @@
         },
         {
           "slot": 2,
-          "chord": "Eb",
+          "chord": "Eb/G",
           "orig": "Eb/G",
-          "alt": "Eb(x68886)",
+          "alt": "",
           "why": "원터치 10버튼에 없는 코드(바레/전위 등)"
         }
       ],
@@ -7487,7 +7584,7 @@
               {
                 "btn": "D",
                 "slot": 0,
-                "sound": "Ab",
+                "sound": "Ab/C",
                 "orig": "G#/C",
                 "quality": "maj"
               }
@@ -7643,7 +7740,7 @@
               {
                 "btn": "D",
                 "slot": 0,
-                "sound": "Ab",
+                "sound": "Ab/C",
                 "orig": "G#/C",
                 "quality": "maj"
               }
@@ -7713,7 +7810,7 @@
           "slot": 1,
           "chord": "Ebm",
           "orig": "D#m",
-          "alt": "",
+          "alt": "Ebm7(x68676) 6프렛 바레",
           "why": "원터치 10버튼에 없는 코드(바레/전위 등)"
         },
         {
@@ -7839,7 +7936,7 @@
     "verification": "user-verified",
     "videoUrl": "https://www.youtube.com/watch?v=JIEuvqny0yc",
     "audioUrl": "",
-    "key": "미확정",
+    "key": "미확인",
     "maleKey": "미확정",
     "bpm": null,
     "chords": "",
@@ -7854,8 +7951,53 @@
     "setlist": false,
     "videoStatus": "공개 영상(원곡)",
     "chartStatus": "pending",
-    "chartNote": "코드표 미확보",
-    "category": "pending"
+    "chartNote": "검수 대기 — 이기찬 ‘닮은 사람’의 유료 멜로디 악보·자동분석 코드 페이지·곡 정보까지만 확인했습니다. 원키·BPM·코드 진행 수치를 확인하지 못해 악보를 만들지 않았습니다(추측값 금지). 테이의 동명이곡과 혼동하지 않습니다.",
+    "category": "pending",
+    "chart": {
+      "status": "pending",
+      "timeSignature": "미확인",
+      "timeNote": "",
+      "bpm": 0,
+      "bpmNote": "",
+      "originalKey": "미확인",
+      "maleKey": "",
+      "maleShift": 0,
+      "capo": null,
+      "formButton": "",
+      "formKey": "",
+      "formText": "",
+      "sections": [],
+      "slots": [],
+      "stage": 3,
+      "stroke": "",
+      "percussive": "",
+      "why": "",
+      "coverage": {
+        "mapped": 0,
+        "total": 0,
+        "unmapped": 0
+      },
+      "basis": "",
+      "note": "검수 대기 — 이기찬 ‘닮은 사람’의 유료 멜로디 악보·자동분석 코드 페이지·곡 정보까지만 확인했습니다. 원키·BPM·코드 진행 수치를 확인하지 못해 악보를 만들지 않았습니다(추측값 금지). 테이의 동명이곡과 혼동하지 않습니다.",
+      "evidence": [
+        {
+          "label": "멜로디 악보(뮤직스코어)",
+          "url": "https://www.musicscore.co.kr/m_score/score_detail.asp?s_rndidx=Rc5c4FgSZw5f2026111113341",
+          "note": "유료 멜로디 악보 · 원문 복제 없이 열람 링크만"
+        },
+        {
+          "label": "코드 분석 페이지(Chordify)",
+          "url": "https://chordify.net/chords/igichan-dalm-eun-salam-kpop-lyrics-gasa-nn-music",
+          "note": "페이지는 있으나 코드/BPM 수치 미확인"
+        },
+        {
+          "label": "곡 식별(SoundLeader)",
+          "url": "https://soundleader.co.kr/ContV2/msheet.php?idx=134401&pap=main_msheetView",
+          "note": "이기찬 닮은 사람 악보 정보"
+        }
+      ]
+    },
+    "timeSignature": "미확인"
   },
   {
     "id": "verified-025",
@@ -7910,7 +8052,7 @@
               {
                 "btn": "D",
                 "slot": 0,
-                "sound": "D",
+                "sound": "D/F#",
                 "orig": "D/F#",
                 "quality": "maj"
               }
@@ -8004,7 +8146,7 @@
               {
                 "btn": "D",
                 "slot": 0,
-                "sound": "D",
+                "sound": "D/F#",
                 "orig": "D/F#",
                 "quality": "maj"
               }
@@ -13903,27 +14045,117 @@
     "videoUrl": "https://www.youtube.com/watch?v=AvQOisDWy10",
     "videoStatus": "공개 영상",
     "audioUrl": "",
-    "key": "미확정",
-    "maleKey": "미확정",
-    "bpm": null,
-    "chords": "",
-    "chordStatus": "미확인",
-    "strumming": "",
+    "key": "Eb",
+    "maleKey": "Eb",
+    "bpm": 116,
+    "chords": "Eb / Bb / Ab / Eb",
+    "chordStatus": "부분 확인",
+    "strumming": "↓ · ↓↑ · ↓↑ (116bpm, 마디마다 코드 하나)",
     "difficultyEasy": "미확인",
     "difficultyStandard": "미확인",
     "vocalDifficulty": "미확인",
     "level": "미착수",
     "tags": [
-      "재생목록 영상",
-      "가수 미확인"
+      "커버 영상"
     ],
     "notes": "원본 재생목록 #1 · 영상 ID AvQOisDWy10 · 채널 MUFLIX 뮤플릭스 · 유튜브 제목 그대로. 가수 필드는 채널명을 표기했으며 원곡 가수·코드·남자 키·BPM은 확인 전이라 비움.",
     "setlist": false,
-    "chartStatus": "pending",
-    "chartNote": "코드·키·박자 확인 전 — 검수 대기",
+    "chartStatus": "partial",
+    "chartNote": "원곡 가수·키·BPM·코드 후보만 확인한 부분 확인 상태입니다. 코드는 공개 자동분석/코드표 후보를 4박 마디 카드로 정리한 연습용 배치라 원곡의 세부 마디·박자와 다를 수 있고, 청음/정식 악보 대조 전입니다. 악보 원문은 복제하지 않고 구매·열람 링크만 연결합니다. 연결 영상은 Jon Poppii 커버라 커버의 키·템포가 원곡과 같은지는 아직 확인하지 못했습니다.",
     "playlistKind": "music",
-    "categoryNote": "",
-    "category": "pending"
+    "categoryNote": "Jon Poppii 커버",
+    "category": "partial",
+    "workTitle": "Past Lives",
+    "workArtist": "sapientdream (Jon Poppii 커버)",
+    "chart": {
+      "status": "partial",
+      "timeSignature": "4/4",
+      "timeNote": "sapientdream 기준 4/4 (연결 영상 Jon Poppii 커버의 박자 미검증)",
+      "bpm": 116,
+      "bpmNote": "SongBPM 116 (sapientdream 기준) · 커버 영상 템포 미확인",
+      "originalKey": "Eb",
+      "maleKey": "Eb",
+      "maleShift": 0,
+      "capo": 3,
+      "formButton": "C",
+      "formKey": "Eb",
+      "formText": "C폼 · Capo +3",
+      "sections": [
+        {
+          "name": "A (E♭키 · 코드 후보)",
+          "bars": [
+            [
+              {
+                "btn": "C",
+                "slot": 0,
+                "sound": "Eb",
+                "orig": "Eb",
+                "quality": "maj"
+              }
+            ],
+            [
+              {
+                "btn": "G",
+                "slot": 0,
+                "sound": "Bb",
+                "orig": "Bb",
+                "quality": "maj"
+              }
+            ],
+            [
+              {
+                "btn": "F",
+                "slot": 0,
+                "sound": "Ab",
+                "orig": "Ab",
+                "quality": "maj"
+              }
+            ],
+            [
+              {
+                "btn": "C",
+                "slot": 0,
+                "sound": "Eb",
+                "orig": "Eb",
+                "quality": "maj"
+              }
+            ]
+          ]
+        }
+      ],
+      "slots": [],
+      "stage": 1,
+      "percussiveReady": false,
+      "stroke": "↓ · ↓↑ · ↓↑ (116bpm, 마디마다 코드 하나)",
+      "percussive": "",
+      "why": "E♭·B♭·A♭ 세 코드가 순환하는 짧은 진행이다. A♭·B♭은 원터치 버튼에 없어 SimplifyChord 슬롯으로 넘기고, 카포로 E♭을 C폼에 맞춰 잡는다.",
+      "coverage": {
+        "mapped": 3,
+        "total": 3,
+        "unmapped": 0
+      },
+      "basis": "코드표 순서를 4박 마디 카드로 정리한 연습용 배치입니다. 원곡의 세부 마디 배치와 다를 수 있습니다.",
+      "evidence": [
+        {
+          "label": "커버 코드표(Chordify · Jon Poppii)",
+          "url": "https://chordify.net/chords/past-lives-by-borns-intro-cover-by-jon-poppii-jon-poppii",
+          "note": "커버 기준 코드표 · 키/템포 일치 미검증"
+        },
+        {
+          "label": "코드·템포(Chordu · sapientdream)",
+          "url": "https://chordu.com/chords-tabs-sapientdream-pastlives-lyrics--id_-TXtyYZIiWc",
+          "note": "E♭ → B♭ → A♭ 등 코드 후보"
+        },
+        {
+          "label": "BPM·박자(SongBPM · sapientdream)",
+          "url": "https://songbpm.com/%40sapientdream/past-lives-CrZ5elxJNL",
+          "note": "116 BPM · 4/4"
+        }
+      ],
+      "note": "원곡 가수·키·BPM·코드 후보만 확인한 부분 확인 상태입니다. 코드는 공개 자동분석/코드표 후보를 4박 마디 카드로 정리한 연습용 배치라 원곡의 세부 마디·박자와 다를 수 있고, 청음/정식 악보 대조 전입니다. 악보 원문은 복제하지 않고 구매·열람 링크만 연결합니다. 연결 영상은 Jon Poppii 커버라 커버의 키·템포가 원곡과 같은지는 아직 확인하지 못했습니다."
+    },
+    "timeSignature": "4/4",
+    "chartStage": 1
   },
   {
     "id": "playlist-002",
@@ -15364,29 +15596,134 @@
     "videoUrl": "https://www.youtube.com/watch?v=0v7zZMSp5lY",
     "videoStatus": "공개 영상",
     "audioUrl": "",
-    "key": "미확정",
-    "maleKey": "미확정",
-    "bpm": null,
-    "chords": "",
-    "chordStatus": "미확인",
-    "strumming": "",
+    "key": "Cm",
+    "maleKey": "Cm",
+    "bpm": 94,
+    "chords": "Eb / F / Ab / G / Cm",
+    "chordStatus": "부분 확인",
+    "strumming": "↓ · ↓↑ · ↓↑ (94bpm, 마디마다 코드 하나)",
     "difficultyEasy": "미확인",
     "difficultyStandard": "미확인",
     "vocalDifficulty": "미확인",
     "level": "미착수",
     "tags": [
-      "재생목록 영상",
-      "가수 미확인"
+      "커버 영상"
     ],
     "notes": "원본 재생목록 #16 · 영상 ID 0v7zZMSp5lY · 채널 kyu. · 유튜브 제목 그대로. 가수 필드는 채널명을 표기했으며 원곡 가수·코드·남자 키·BPM은 확인 전이라 비움.",
     "setlist": false,
-    "chartStatus": "pending",
-    "chartNote": "코드·키·박자 확인 전 — 검수 대기",
+    "chartStatus": "partial",
+    "chartNote": "원곡 가수·키·BPM·코드 후보만 확인한 부분 확인 상태입니다. 코드는 공개 자동분석/코드표 후보를 4박 마디 카드로 정리한 연습용 배치라 원곡의 세부 마디·박자와 다를 수 있고, 청음/정식 악보 대조 전입니다. 악보 원문은 복제하지 않고 구매·열람 링크만 연결합니다. 이 곡은 박자표가 확인되지 않아 4/4로 단정하지 않았습니다. 같은 제목의 리믹스·커버가 많아 원곡(Shiloh Dynasty) 기준으로만 적었습니다.",
     "playlistKind": "music",
     "categoryNote": "",
-    "workTitle": "so low",
+    "workTitle": "So Low",
     "workArtist": "Shiloh Dynasty",
-    "category": "pending"
+    "category": "partial",
+    "chart": {
+      "status": "partial",
+      "timeSignature": "미확인",
+      "timeNote": "박자표 미확인 — 코드표에 박자 표기 없음(연습은 4박 카드)",
+      "bpm": 94,
+      "bpmNote": "94 BPM (자동분석)",
+      "originalKey": "Cm",
+      "maleKey": "Cm",
+      "maleShift": 0,
+      "capo": 3,
+      "formButton": "",
+      "formKey": "Eb",
+      "formText": "Capo +3",
+      "sections": [
+        {
+          "name": "A (Cm키 · 코드 후보)",
+          "bars": [
+            [
+              {
+                "btn": "C",
+                "slot": 0,
+                "sound": "Eb",
+                "orig": "Eb",
+                "quality": "maj"
+              }
+            ],
+            [
+              {
+                "btn": "D",
+                "slot": 0,
+                "sound": "F",
+                "orig": "F",
+                "quality": "maj"
+              }
+            ],
+            [
+              {
+                "btn": "F",
+                "slot": 0,
+                "sound": "Ab",
+                "orig": "Ab",
+                "quality": "maj"
+              }
+            ],
+            [
+              {
+                "btn": "E",
+                "slot": 0,
+                "sound": "G",
+                "orig": "G",
+                "quality": "maj"
+              }
+            ],
+            [
+              {
+                "btn": null,
+                "slot": 1,
+                "sound": "Cm",
+                "orig": "Cm",
+                "quality": "min"
+              }
+            ]
+          ]
+        }
+      ],
+      "slots": [
+        {
+          "slot": 1,
+          "chord": "Cm",
+          "orig": "Cm",
+          "alt": "Cm7(x35343)",
+          "why": "원터치 10버튼에 없는 코드(바레/전위 등)"
+        }
+      ],
+      "stage": 2,
+      "percussiveReady": false,
+      "stroke": "↓ · ↓↑ · ↓↑ (94bpm, 마디마다 코드 하나)",
+      "percussive": "",
+      "why": "E♭·F·A♭·G·Cm 다섯 코드가 도는 곡. G·A♭·E♭은 원터치에 없어 슬롯으로 넘기고, Cm은 Cm 버튼으로 바로 잡힌다.",
+      "coverage": {
+        "mapped": 4,
+        "total": 5,
+        "unmapped": 1
+      },
+      "basis": "코드표 순서를 4박 마디 카드로 정리한 연습용 배치입니다. 원곡의 세부 마디 배치와 다를 수 있습니다.",
+      "evidence": [
+        {
+          "label": "코드표(Chordu)",
+          "url": "https://chordu.com/chords-tabs-shiloh-dynasty-so-low-id_sR2NaL7EG2c",
+          "note": "E♭ · F · A♭ · G · Cm 후보 코드군"
+        },
+        {
+          "label": "코드 진행(Hooktheory)",
+          "url": "https://www.hooktheory.com/theorytab/view/shiloh-dynasty/so-low",
+          "note": "원곡 코드 진행 참고"
+        },
+        {
+          "label": "곡 식별(Chordify)",
+          "url": "https://chordify.net/chords/shiloh-dynasty-forgive-me-original-shiloh-dynasty",
+          "note": "Shiloh Dynasty 원곡 계열 · 다른 리믹스와 혼동 주의"
+        }
+      ],
+      "note": "원곡 가수·키·BPM·코드 후보만 확인한 부분 확인 상태입니다. 코드는 공개 자동분석/코드표 후보를 4박 마디 카드로 정리한 연습용 배치라 원곡의 세부 마디·박자와 다를 수 있고, 청음/정식 악보 대조 전입니다. 악보 원문은 복제하지 않고 구매·열람 링크만 연결합니다. 이 곡은 박자표가 확인되지 않아 4/4로 단정하지 않았습니다. 같은 제목의 리믹스·커버가 많아 원곡(Shiloh Dynasty) 기준으로만 적었습니다."
+    },
+    "timeSignature": "미확인",
+    "chartStage": 2
   },
   {
     "id": "playlist-018",
@@ -15690,29 +16027,125 @@
     "videoUrl": "https://www.youtube.com/watch?v=SOKDiMRETrM",
     "videoStatus": "공개 영상",
     "audioUrl": "",
-    "key": "미확정",
-    "maleKey": "미확정",
-    "bpm": null,
-    "chords": "",
-    "chordStatus": "미확인",
-    "strumming": "",
+    "key": "F#m",
+    "maleKey": "F#m",
+    "bpm": 77,
+    "chords": "Amaj7 / Dmaj7 / G#m7 / Cmaj7",
+    "chordStatus": "부분 확인",
+    "strumming": "↓ · ↓↑ · ↓↑ (77bpm, 8분 중심)",
     "difficultyEasy": "미확인",
     "difficultyStandard": "미확인",
     "vocalDifficulty": "미확인",
     "level": "미착수",
     "tags": [
-      "재생목록 영상",
-      "가수 미확인"
+      "커버 영상"
     ],
     "notes": "원본 재생목록 #24 · 영상 ID SOKDiMRETrM · 채널 INSU 인수 · 유튜브 제목 그대로. 가수 필드는 채널명을 표기했으며 원곡 가수·코드·남자 키·BPM은 확인 전이라 비움.",
     "setlist": false,
-    "chartStatus": "pending",
-    "chartNote": "코드·키·박자 확인 전 — 검수 대기",
+    "chartStatus": "partial",
+    "chartNote": "원곡 가수·키·BPM·코드 후보만 확인한 부분 확인 상태입니다. 코드는 공개 자동분석/코드표 후보를 4박 마디 카드로 정리한 연습용 배치라 원곡의 세부 마디·박자와 다를 수 있고, 청음/정식 악보 대조 전입니다. 악보 원문은 복제하지 않고 구매·열람 링크만 연결합니다. 코드 앱마다 화음 표기가 달라 A메이저7·D메이저7 계열로 적었고, 악보바다 C키 멜로디 악보는 조옮김본일 수 있어 참고하지 않았습니다.",
     "playlistKind": "music",
     "categoryNote": "다이나믹듀오 원곡 커버",
     "workTitle": "에아오 (AEAO)",
-    "workArtist": "다이나믹듀오",
-    "category": "pending"
+    "workArtist": "다이나믹듀오 × DJ Premier",
+    "category": "partial",
+    "chart": {
+      "status": "partial",
+      "timeSignature": "미확인",
+      "timeNote": "박자표 미확인(코드표에 표기 없음)",
+      "bpm": 77,
+      "bpmNote": "77 BPM (자동분석)",
+      "originalKey": "F#m",
+      "maleKey": "F#m",
+      "maleShift": 0,
+      "capo": 7,
+      "formButton": "",
+      "formKey": "G",
+      "formText": "Capo +7",
+      "sections": [
+        {
+          "name": "A (F♯m키 · 자동분석 후보)",
+          "bars": [
+            [
+              {
+                "btn": "D",
+                "slot": 0,
+                "sound": "Amaj7",
+                "orig": "Amaj7",
+                "quality": "maj"
+              }
+            ],
+            [
+              {
+                "btn": "G",
+                "slot": 0,
+                "sound": "Dmaj7",
+                "orig": "Dmaj7",
+                "quality": "maj"
+              }
+            ],
+            [
+              {
+                "btn": null,
+                "slot": 1,
+                "sound": "Abm7",
+                "orig": "G#m7",
+                "quality": "min"
+              }
+            ],
+            [
+              {
+                "btn": "F",
+                "slot": 0,
+                "sound": "Cmaj7",
+                "orig": "Cmaj7",
+                "quality": "maj"
+              }
+            ]
+          ]
+        }
+      ],
+      "slots": [
+        {
+          "slot": 1,
+          "chord": "Abm7",
+          "orig": "G#m7",
+          "alt": "Abm7(464444)",
+          "why": "원터치 10버튼에 없는 코드(바레/전위 등)"
+        }
+      ],
+      "stage": 2,
+      "percussiveReady": false,
+      "stroke": "↓ · ↓↑ · ↓↑ (77bpm, 8분 중심)",
+      "percussive": "",
+      "why": "maj7·m7 코드가 계속 이어져 원터치 버튼은 3화음으로 근사하고, G♯m7·C♯maj7은 슬롯/바레로 처리한다. 힙합 트랙이라 기타는 4마디 순환만 잡아도 충분하다.",
+      "coverage": {
+        "mapped": 3,
+        "total": 4,
+        "unmapped": 1
+      },
+      "basis": "코드표 순서를 4박 마디 카드로 정리한 연습용 배치입니다. 원곡의 세부 마디 배치와 다를 수 있습니다.",
+      "evidence": [
+        {
+          "label": "멜로디 악보/코드표(악보바다)",
+          "url": "https://www.akbobada.com/albumdetailedpage.html?albumID=28896",
+          "note": "유료 멜로디 악보 · C키 조옮김본일 수 있음 · 원문 복제 없이 열람 링크만"
+        },
+        {
+          "label": "자동 코드(Chordify)",
+          "url": "https://chordify.net/chords/dynamic-duo-dj-premier-songs/aeao-chords",
+          "note": "Amaj7 → Dmaj7 → G♯m7 → C♯maj7 후보"
+        },
+        {
+          "label": "곡 식별(Chordu)",
+          "url": "https://chordu.com/chords-tabs--mv-dynamic-duo-dj-premier-%EB%8B%A4%EC%9D%B4%EB%82%98%EB%AF%B9%EB%93%80%EC%98%A4-%EB%94%94%EC%A0%9C%EC%9D%B4-%ED%94%84%EB%A6%AC%EB%AF%B8%EC%96%B4-aeao-id_DYz-LjtiVOc",
+          "note": "다이나믹듀오 × DJ Premier · AEAO"
+        }
+      ],
+      "note": "원곡 가수·키·BPM·코드 후보만 확인한 부분 확인 상태입니다. 코드는 공개 자동분석/코드표 후보를 4박 마디 카드로 정리한 연습용 배치라 원곡의 세부 마디·박자와 다를 수 있고, 청음/정식 악보 대조 전입니다. 악보 원문은 복제하지 않고 구매·열람 링크만 연결합니다. 코드 앱마다 화음 표기가 달라 A메이저7·D메이저7 계열로 적었고, 악보바다 C키 멜로디 악보는 조옮김본일 수 있어 참고하지 않았습니다."
+    },
+    "timeSignature": "미확인",
+    "chartStage": 2
   },
   {
     "id": "playlist-025",
@@ -15725,9 +16158,9 @@
     "videoUrl": "https://www.youtube.com/watch?v=RaD4gyzKbdA",
     "videoStatus": "공개 영상",
     "audioUrl": "",
-    "key": "미확정",
+    "key": "미확인",
     "maleKey": "미확정",
-    "bpm": null,
+    "bpm": 126,
     "chords": "",
     "chordStatus": "미확인",
     "strumming": "",
@@ -15742,12 +16175,57 @@
     "notes": "원본 재생목록 #25 · 영상 ID RaD4gyzKbdA · 채널 젼티비티 jiyeontivity · 유튜브 제목 그대로. 가수 필드는 채널명을 표기했으며 원곡 가수·코드·남자 키·BPM은 확인 전이라 비움.",
     "setlist": false,
     "chartStatus": "pending",
-    "chartNote": "코드·키·박자 확인 전 — 검수 대기",
+    "chartNote": "검수 대기 — 가수(개코)·BPM 126·코드 분석 페이지까지만 확인했습니다. 원곡 키·박자표·실제 코드 진행은 아직 확인하지 못해 악보를 만들지 않았습니다(추측값 입력 금지). 초기 버전과 리믹스가 달라 구분이 필요합니다. 근거 탭의 링크에서 코드표를 바로 열 수 있습니다.",
     "playlistKind": "music",
     "categoryNote": "개코 라이브",
     "workTitle": "될 대로 되라고 해",
     "workArtist": "개코",
-    "category": "pending"
+    "category": "pending",
+    "chart": {
+      "status": "pending",
+      "timeSignature": "미확인",
+      "timeNote": "",
+      "bpm": 126,
+      "bpmNote": "126 BPM (자동분석)",
+      "originalKey": "미확인",
+      "maleKey": "",
+      "maleShift": 0,
+      "capo": null,
+      "formButton": "",
+      "formKey": "",
+      "formText": "",
+      "sections": [],
+      "slots": [],
+      "stage": 3,
+      "stroke": "",
+      "percussive": "",
+      "why": "",
+      "coverage": {
+        "mapped": 0,
+        "total": 0,
+        "unmapped": 0
+      },
+      "basis": "",
+      "note": "검수 대기 — 가수(개코)·BPM 126·코드 분석 페이지까지만 확인했습니다. 원곡 키·박자표·실제 코드 진행은 아직 확인하지 못해 악보를 만들지 않았습니다(추측값 입력 금지). 초기 버전과 리믹스가 달라 구분이 필요합니다. 근거 탭의 링크에서 코드표를 바로 열 수 있습니다.",
+      "evidence": [
+        {
+          "label": "코드 분석 페이지(Chordify)",
+          "url": "https://chordify.net/chords/gaeko-songs/doel-daelo-doelago-hae-rhythm-is-life-chords",
+          "note": "개코 · 코드 분석 페이지(키·코드 수치 미확인)"
+        },
+        {
+          "label": "BPM(SongBPM)",
+          "url": "https://getsongbpm.com/song/rhythm-is-life/GRr46L",
+          "note": "126 BPM"
+        },
+        {
+          "label": "곡 식별(Bugs)",
+          "url": "https://music.bugs.co.kr/artist/2916/tracks",
+          "note": "개코 곡 목록 · 버전/리믹스 구분 필요"
+        }
+      ]
+    },
+    "timeSignature": "미확인"
   },
   {
     "id": "playlist-027",
@@ -17083,12 +17561,12 @@
     "videoUrl": "https://www.youtube.com/watch?v=BFTbuAvuZJM",
     "videoStatus": "공개 영상",
     "audioUrl": "",
-    "key": "A",
+    "key": "G",
     "maleKey": "G",
-    "bpm": 70,
-    "chords": "A / C# / F#m A / D / Bm / E / A E",
-    "chordStatus": "웹 자료 검수 완료",
-    "strumming": "↓ · ↓↑ · ↓↑ (8분 중심, 코드는 마디 앞에서)",
+    "bpm": 144,
+    "chords": "G / Em / C / D / B",
+    "chordStatus": "부분 확인",
+    "strumming": "↓ · ↓↑ ↑↓↑ (144bpm, 8분 중심 · 락 발라드)",
     "difficultyEasy": "미확인",
     "difficultyStandard": "미확인",
     "vocalDifficulty": "미확인",
@@ -17098,15 +17576,119 @@
     ],
     "notes": "원본 재생목록 #34 · 영상 ID BFTbuAvuZJM · 채널 MusicPick · 유튜브 제목 그대로. 가수 필드는 채널명을 표기했으며 원곡 가수·코드·남자 키·BPM은 확인 전이라 비움.",
     "setlist": false,
-    "chartStatus": "pending",
-    "chartNote": "코드·키·박자 확인 전 — 검수 대기",
+    "chartStatus": "partial",
+    "chartNote": "원곡 가수·키·BPM·코드 후보만 확인한 부분 확인 상태입니다. 코드는 공개 자동분석/코드표 후보를 4박 마디 카드로 정리한 연습용 배치라 원곡의 세부 마디·박자와 다를 수 있고, 청음/정식 악보 대조 전입니다. 악보 원문은 복제하지 않고 구매·열람 링크만 연결합니다. 원곡은 144bpm으로 적었지만 반속 72로 세는 표기도 있어, 메트로놈은 원음에 맞춰 확인이 필요합니다. 라이브 편곡(134bpm 등)과는 다릅니다.",
     "playlistKind": "music",
     "categoryNote": "넬 원곡, 비교듣기",
     "workTitle": "한계",
-    "workArtist": "넬",
-    "category": "pending",
-    "timeSignature": "4/4",
-    "chartStage": 2
+    "workArtist": "넬 (NELL)",
+    "category": "partial",
+    "timeSignature": "미확인",
+    "chartStage": 2,
+    "chart": {
+      "status": "partial",
+      "timeSignature": "미확인",
+      "timeNote": "박자표 미확인",
+      "bpm": 144,
+      "bpmNote": "144 BPM (반속 72로 세는 표기 있음) · 라이브 편곡은 134bpm 등",
+      "originalKey": "G",
+      "maleKey": "G",
+      "maleShift": 0,
+      "capo": 0,
+      "formButton": "G",
+      "formKey": "C",
+      "formText": "G폼 · Capo +0",
+      "sections": [
+        {
+          "name": "A (G키 · 코드 후보)",
+          "bars": [
+            [
+              {
+                "btn": "G",
+                "slot": 0,
+                "sound": "G",
+                "orig": "G",
+                "quality": "maj"
+              }
+            ],
+            [
+              {
+                "btn": "Em",
+                "slot": 0,
+                "sound": "Em",
+                "orig": "Em",
+                "quality": "min"
+              }
+            ],
+            [
+              {
+                "btn": "C",
+                "slot": 0,
+                "sound": "C",
+                "orig": "C",
+                "quality": "maj"
+              }
+            ],
+            [
+              {
+                "btn": "D",
+                "slot": 0,
+                "sound": "D",
+                "orig": "D",
+                "quality": "maj"
+              }
+            ],
+            [
+              {
+                "btn": null,
+                "slot": 1,
+                "sound": "B",
+                "orig": "B",
+                "quality": "maj"
+              }
+            ]
+          ]
+        }
+      ],
+      "slots": [
+        {
+          "slot": 1,
+          "chord": "B",
+          "orig": "B",
+          "alt": "B7(x21202) 약식",
+          "why": "원터치 10버튼에 없는 코드(바레/전위 등)"
+        }
+      ],
+      "stage": 2,
+      "percussiveReady": false,
+      "stroke": "↓ · ↓↑ ↑↓↑ (144bpm, 8분 중심 · 락 발라드)",
+      "percussive": "",
+      "why": "G·Em·C·D에 B(도미넌트)가 섞여 손이 바뀌는 지점이 있다. B는 원터치에 없어 B7 약식 슬롯으로 넘긴다.",
+      "coverage": {
+        "mapped": 4,
+        "total": 5,
+        "unmapped": 1
+      },
+      "basis": "코드표 순서를 4박 마디 카드로 정리한 연습용 배치입니다. 원곡의 세부 마디 배치와 다를 수 있습니다.",
+      "evidence": [
+        {
+          "label": "멜로디 악보/코드표(악보바다)",
+          "url": "https://www.akbobada.com/musicDetail.html?musicID=44135",
+          "note": "유료 악보 · 원문 복제 없이 열람 링크만"
+        },
+        {
+          "label": "자동 코드(Chordu)",
+          "url": "https://chordu.com/chords-tabs-nell-%EB%84%AC-%ED%95%9C%EA%B3%84-id_ZBeA-Tik8fw",
+          "note": "G · Em · C · D · B 후보"
+        },
+        {
+          "label": "곡 식별(Chordify)",
+          "url": "https://chordify.net/chords/hangye-nell-topic",
+          "note": "넬(NELL) 한계"
+        }
+      ],
+      "note": "원곡 가수·키·BPM·코드 후보만 확인한 부분 확인 상태입니다. 코드는 공개 자동분석/코드표 후보를 4박 마디 카드로 정리한 연습용 배치라 원곡의 세부 마디·박자와 다를 수 있고, 청음/정식 악보 대조 전입니다. 악보 원문은 복제하지 않고 구매·열람 링크만 연결합니다. 원곡은 144bpm으로 적었지만 반속 72로 세는 표기도 있어, 메트로놈은 원음에 맞춰 확인이 필요합니다. 라이브 편곡(134bpm 등)과는 다릅니다."
+    }
   },
   {
     "id": "playlist-035",
@@ -17677,29 +18259,117 @@
     "videoUrl": "https://www.youtube.com/watch?v=HS-r7e44EiQ",
     "videoStatus": "공개 영상",
     "audioUrl": "",
-    "key": "미확정",
-    "maleKey": "미확정",
-    "bpm": null,
-    "chords": "",
-    "chordStatus": "미확인",
-    "strumming": "",
+    "key": "A",
+    "maleKey": "A",
+    "bpm": 68,
+    "chords": "A / E/G# / F#m7 / D",
+    "chordStatus": "부분 확인",
+    "strumming": "↓ · ↓↑ · ↓↑ (68bpm, 느린 8분)",
     "difficultyEasy": "미확인",
     "difficultyStandard": "미확인",
     "vocalDifficulty": "미확인",
     "level": "미착수",
     "tags": [
-      "재생목록 영상",
-      "가수 미확인"
+      "커버 영상"
     ],
     "notes": "원본 재생목록 #38 · 영상 ID HS-r7e44EiQ · 채널 나뚜뚜 · 유튜브 제목 그대로. 가수 필드는 채널명을 표기했으며 원곡 가수·코드·남자 키·BPM은 확인 전이라 비움.",
     "setlist": false,
-    "chartStatus": "pending",
-    "chartNote": "코드·키·박자 확인 전 — 검수 대기",
+    "chartStatus": "partial",
+    "chartNote": "원곡 가수·키·BPM·코드 후보만 확인한 부분 확인 상태입니다. 코드는 공개 자동분석/코드표 후보를 4박 마디 카드로 정리한 연습용 배치라 원곡의 세부 마디·박자와 다를 수 있고, 청음/정식 악보 대조 전입니다. 악보 원문은 복제하지 않고 구매·열람 링크만 연결합니다. 8번·13번(원본 #38·#124) 두 영상이 같은 곡이라 같은 자료를 연결했습니다.",
     "playlistKind": "music",
     "categoryNote": "도경수 원곡",
     "workTitle": "영원해",
     "workArtist": "도경수 (D.O.)",
-    "category": "pending"
+    "category": "partial",
+    "chart": {
+      "status": "partial",
+      "timeSignature": "미확인",
+      "timeNote": "박자표 미확인",
+      "bpm": 68,
+      "bpmNote": "68 BPM (자동분석)",
+      "originalKey": "A",
+      "maleKey": "A",
+      "maleShift": 0,
+      "capo": 2,
+      "formButton": "G",
+      "formKey": "D",
+      "formText": "G폼 · Capo +2",
+      "sections": [
+        {
+          "name": "A (A키 · 대표 진행 후보)",
+          "bars": [
+            [
+              {
+                "btn": "G",
+                "slot": 0,
+                "sound": "A",
+                "orig": "A",
+                "quality": "maj"
+              }
+            ],
+            [
+              {
+                "btn": "D",
+                "slot": 0,
+                "sound": "E/Ab",
+                "orig": "E/G#",
+                "quality": "maj"
+              }
+            ],
+            [
+              {
+                "btn": "Em",
+                "slot": 0,
+                "sound": "F#m7",
+                "orig": "F#m7",
+                "quality": "min"
+              }
+            ],
+            [
+              {
+                "btn": "C",
+                "slot": 0,
+                "sound": "D",
+                "orig": "D",
+                "quality": "maj"
+              }
+            ]
+          ]
+        }
+      ],
+      "slots": [],
+      "stage": 2,
+      "percussiveReady": false,
+      "stroke": "↓ · ↓↑ · ↓↑ (68bpm, 느린 8분)",
+      "percussive": "",
+      "why": "A → E/G♯ → F♯m7 → D 왕복 진행. F♯m7은 원터치 3화음(Fm 버튼+카포)으로 근사하고, E/G♯ 전위는 슬롯으로 넘긴다.",
+      "coverage": {
+        "mapped": 4,
+        "total": 4,
+        "unmapped": 0
+      },
+      "basis": "코드표 순서를 4박 마디 카드로 정리한 연습용 배치입니다. 원곡의 세부 마디 배치와 다를 수 있습니다.",
+      "evidence": [
+        {
+          "label": "멜로디/반주 악보(MyMusic5)",
+          "url": "https://www.mymusic5.com/pianojeongryujang/287900",
+          "note": "도경수 영원해 · 유료 악보 · 원문 복제 없이 열람 링크만"
+        },
+        {
+          "label": "자동 코드(Chordify)",
+          "url": "https://chordify.net/chords/dogyeongsu-d-o-songs/yeong-wonhae-chords",
+          "note": "A → E/G♯ → F♯m7 → D 후보"
+        },
+        {
+          "label": "곡 식별(SoundLeader)",
+          "url": "https://soundleader.co.kr/ContV2/msheet.php?idx=135303&pap=main_msheetView",
+          "note": "악보 정보 · 8번/13번 동일곡"
+        }
+      ],
+      "note": "원곡 가수·키·BPM·코드 후보만 확인한 부분 확인 상태입니다. 코드는 공개 자동분석/코드표 후보를 4박 마디 카드로 정리한 연습용 배치라 원곡의 세부 마디·박자와 다를 수 있고, 청음/정식 악보 대조 전입니다. 악보 원문은 복제하지 않고 구매·열람 링크만 연결합니다. 8번·13번(원본 #38·#124) 두 영상이 같은 곡이라 같은 자료를 연결했습니다."
+    },
+    "timeSignature": "미확인",
+    "chartStage": 2
   },
   {
     "id": "playlist-039",
@@ -23189,7 +23859,7 @@
               {
                 "btn": "G",
                 "slot": 0,
-                "sound": "Bb",
+                "sound": "Bb/D",
                 "orig": "Bb/D",
                 "quality": "maj"
               }
@@ -23234,7 +23904,7 @@
               {
                 "btn": "G",
                 "slot": 0,
-                "sound": "Bb",
+                "sound": "Bb/D",
                 "orig": "Bb/D",
                 "quality": "maj"
               }
@@ -23483,7 +24153,7 @@
               {
                 "btn": "C",
                 "slot": 0,
-                "sound": "Eb",
+                "sound": "Eb/G",
                 "orig": "Eb/G",
                 "quality": "maj"
               }
@@ -23519,7 +24189,7 @@
               {
                 "btn": "C",
                 "slot": 0,
-                "sound": "Eb",
+                "sound": "Eb/G",
                 "orig": "Eb/G",
                 "quality": "maj"
               }
@@ -23537,7 +24207,7 @@
               {
                 "btn": "C",
                 "slot": 0,
-                "sound": "Eb",
+                "sound": "Eb/G",
                 "orig": "Eb/G",
                 "quality": "maj"
               }
@@ -23929,7 +24599,7 @@
               {
                 "btn": "F",
                 "slot": 0,
-                "sound": "F",
+                "sound": "F/C",
                 "orig": "Bb/F",
                 "quality": "maj"
               }
@@ -23947,7 +24617,7 @@
               {
                 "btn": null,
                 "slot": 2,
-                "sound": "Bb",
+                "sound": "Bb/C",
                 "orig": "Eb/F",
                 "quality": "maj"
               }
@@ -23956,7 +24626,7 @@
               {
                 "btn": "F",
                 "slot": 0,
-                "sound": "F",
+                "sound": "F/C",
                 "orig": "Bb/F",
                 "quality": "maj"
               }
@@ -24047,7 +24717,7 @@
               {
                 "btn": "C",
                 "slot": 0,
-                "sound": "C",
+                "sound": "C/E",
                 "orig": "F/A",
                 "quality": "maj"
               }
@@ -24119,7 +24789,7 @@
               {
                 "btn": "C",
                 "slot": 0,
-                "sound": "C",
+                "sound": "C/E",
                 "orig": "F/A",
                 "quality": "maj"
               }
@@ -24480,9 +25150,9 @@
         },
         {
           "slot": 2,
-          "chord": "Bb",
+          "chord": "Bb/C",
           "orig": "Eb/F",
-          "alt": "Bb(6프렛 바레) 또는 A# 약식",
+          "alt": "",
           "why": "원터치 10버튼에 없는 코드(바레/전위 등)"
         },
         {
@@ -26035,7 +26705,7 @@
           "slot": 2,
           "chord": "Ebm",
           "orig": "D#m",
-          "alt": "",
+          "alt": "Ebm7(x68676) 6프렛 바레",
           "why": "원터치 10버튼에 없는 코드(바레/전위 등)"
         }
       ],
@@ -26474,29 +27144,161 @@
     "videoUrl": "https://www.youtube.com/watch?v=abInYx2D12g",
     "videoStatus": "공개 영상",
     "audioUrl": "",
-    "key": "미확정",
-    "maleKey": "미확정",
-    "bpm": null,
-    "chords": "",
-    "chordStatus": "미확인",
-    "strumming": "",
+    "key": "F",
+    "maleKey": "F",
+    "bpm": 77,
+    "chords": "F / C/E / Dm / C / Bb / F/A / Bb / C",
+    "chordStatus": "부분 확인",
+    "strumming": "↓ · ↓↑ · ↑↓↑ (77bpm 8분, 발라드 스트럼)",
     "difficultyEasy": "미확인",
     "difficultyStandard": "미확인",
     "vocalDifficulty": "미확인",
     "level": "미착수",
     "tags": [
-      "재생목록 영상",
-      "가수 미확인"
+      "커버 영상"
     ],
     "notes": "원본 재생목록 #86 · 영상 ID abInYx2D12g · 채널 정남도입니다. · 유튜브 제목 그대로. 가수 필드는 채널명을 표기했으며 원곡 가수·코드·남자 키·BPM은 확인 전이라 비움.",
     "setlist": false,
-    "chartStatus": "pending",
-    "chartNote": "코드·키·박자 확인 전 — 검수 대기",
+    "chartStatus": "partial",
+    "chartNote": "원곡 가수·키·BPM·코드 후보만 확인한 부분 확인 상태입니다. 코드는 공개 자동분석/코드표 후보를 4박 마디 카드로 정리한 연습용 배치라 원곡의 세부 마디·박자와 다를 수 있고, 청음/정식 악보 대조 전입니다. 악보 원문은 복제하지 않고 구매·열람 링크만 연결합니다. 같은 곡 자동분석이 77bpm과 150bpm으로 병존해 박 세는 단위 확인이 필요합니다(77은 반속 카운트 가능성).",
     "playlistKind": "music",
     "categoryNote": "노아주다 커버",
     "workTitle": "힙합보단 사랑, 사랑보단 돈",
     "workArtist": "노아주다 feat. 베이식",
-    "category": "pending"
+    "category": "partial",
+    "chart": {
+      "status": "partial",
+      "timeSignature": "미확인",
+      "timeNote": "박자표 미확인",
+      "bpm": 77,
+      "bpmNote": "75~77 또는 150 (박 단위 차이) — 자동분석에 77/150 병존",
+      "originalKey": "F",
+      "maleKey": "F",
+      "maleShift": 0,
+      "capo": 0,
+      "formButton": "F",
+      "formKey": "C",
+      "formText": "F폼 · Capo +0",
+      "sections": [
+        {
+          "name": "A (F키 · 코드 후보)",
+          "bars": [
+            [
+              {
+                "btn": "F",
+                "slot": 0,
+                "sound": "F",
+                "orig": "F",
+                "quality": "maj"
+              }
+            ],
+            [
+              {
+                "btn": "C",
+                "slot": 0,
+                "sound": "C/E",
+                "orig": "C/E",
+                "quality": "maj"
+              }
+            ],
+            [
+              {
+                "btn": "Dm",
+                "slot": 0,
+                "sound": "Dm",
+                "orig": "Dm",
+                "quality": "min"
+              }
+            ],
+            [
+              {
+                "btn": "C",
+                "slot": 0,
+                "sound": "C",
+                "orig": "C",
+                "quality": "maj"
+              }
+            ],
+            [
+              {
+                "btn": null,
+                "slot": 1,
+                "sound": "Bb",
+                "orig": "Bb",
+                "quality": "maj"
+              }
+            ],
+            [
+              {
+                "btn": "F",
+                "slot": 0,
+                "sound": "F/A",
+                "orig": "F/A",
+                "quality": "maj"
+              }
+            ],
+            [
+              {
+                "btn": null,
+                "slot": 1,
+                "sound": "Bb",
+                "orig": "Bb",
+                "quality": "maj"
+              }
+            ],
+            [
+              {
+                "btn": "C",
+                "slot": 0,
+                "sound": "C",
+                "orig": "C",
+                "quality": "maj"
+              }
+            ]
+          ]
+        }
+      ],
+      "slots": [
+        {
+          "slot": 1,
+          "chord": "Bb",
+          "orig": "Bb",
+          "alt": "Bb(6프렛 바레) 또는 A# 약식",
+          "why": "원터치 10버튼에 없는 코드(바레/전위 등)"
+        }
+      ],
+      "stage": 2,
+      "percussiveReady": false,
+      "stroke": "↓ · ↓↑ · ↑↓↑ (77bpm 8분, 발라드 스트럼)",
+      "percussive": "",
+      "why": "F → C/E → Dm → C → B♭ → F/A → B♭ → C로 이어지는 긴 진행. 전위(C/E·F/A)와 B♭은 슬롯으로 넘기고, F·Dm·C는 원터치로 잡는다.",
+      "coverage": {
+        "mapped": 5,
+        "total": 6,
+        "unmapped": 1
+      },
+      "basis": "코드표 순서를 4박 마디 카드로 정리한 연습용 배치입니다. 원곡의 세부 마디 배치와 다를 수 있습니다.",
+      "evidence": [
+        {
+          "label": "피아노/코드 악보(악보바다)",
+          "url": "https://www.akbobada.com/musicDetail.html?musicID=97439&partTabGubun=P",
+          "note": "유료 악보 · 원문 복제 없이 열람 링크만"
+        },
+        {
+          "label": "자동 코드(Chordify)",
+          "url": "https://chordify.net/chords/noajuda-noahjooda-hibhabbodan-salang-salangbodan-don-feat-beisig-gasa-lyrics-hibhabgaelleoli",
+          "note": "F → C/E → Dm → C → B♭ → F/A → B♭ → C 후보"
+        },
+        {
+          "label": "기타 튜토리얼(YouTube)",
+          "url": "https://www.youtube.com/watch?v=nlmZ20c7BvE",
+          "note": "노아주다 feat. 베이식 · 원곡 확인"
+        }
+      ],
+      "note": "원곡 가수·키·BPM·코드 후보만 확인한 부분 확인 상태입니다. 코드는 공개 자동분석/코드표 후보를 4박 마디 카드로 정리한 연습용 배치라 원곡의 세부 마디·박자와 다를 수 있고, 청음/정식 악보 대조 전입니다. 악보 원문은 복제하지 않고 구매·열람 링크만 연결합니다. 같은 곡 자동분석이 77bpm과 150bpm으로 병존해 박 세는 단위 확인이 필요합니다(77은 반속 카운트 가능성)."
+    },
+    "timeSignature": "미확인",
+    "chartStage": 2
   },
   {
     "id": "playlist-087",
@@ -28552,7 +29354,7 @@
           "slot": 1,
           "chord": "Ebm",
           "orig": "D#m",
-          "alt": "",
+          "alt": "Ebm7(x68676) 6프렛 바레",
           "why": "원터치 10버튼에 없는 코드(바레/전위 등)"
         },
         {
@@ -28826,31 +29628,117 @@
     "videoUrl": "https://www.youtube.com/watch?v=fhevsg3VLj0",
     "videoStatus": "공개 영상",
     "audioUrl": "",
-    "key": "Ab",
-    "maleKey": "G",
-    "bpm": 216,
-    "chords": "Ab Db / Eb Db / Ab Eb / Ab Eb / Fm",
-    "chordStatus": "웹 자료 검수 완료",
-    "strumming": "↓ · ↓↑ · ↓↑ (8분 중심, 코드는 마디 앞에서)",
+    "key": "Db",
+    "maleKey": "Db",
+    "bpm": 89,
+    "chords": "Gb / Ebm / Ab / Db",
+    "chordStatus": "부분 확인",
+    "strumming": "↓ · ↓↑ · ↓↑ (89bpm, 8분 중심)",
     "difficultyEasy": "미확인",
     "difficultyStandard": "미확인",
     "vocalDifficulty": "미확인",
     "level": "미착수",
     "tags": [
-      "커버 영상",
-      "오른손 1단계"
+      "커버 영상"
     ],
     "notes": "원본 재생목록 #116 · 영상 ID fhevsg3VLj0 · 채널 Music Time | 뮤직 타임 · 유튜브 제목 그대로. 가수 필드는 채널명을 표기했으며 원곡 가수·코드·남자 키·BPM은 확인 전이라 비움.",
     "setlist": false,
-    "chartStatus": "pending",
-    "chartNote": "코드·키·박자 확인 전 — 검수 대기",
+    "chartStatus": "partial",
+    "chartNote": "원곡 가수·키·BPM·코드 후보만 확인한 부분 확인 상태입니다. 코드는 공개 자동분석/코드표 후보를 4박 마디 카드로 정리한 연습용 배치라 원곡의 세부 마디·박자와 다를 수 있고, 청음/정식 악보 대조 전입니다. 악보 원문은 복제하지 않고 구매·열람 링크만 연결합니다. 카포 1프렛 코드표도 돌아다니지만 원음 코드와 운지 코드를 섞지 않으려고 원키(D♭) 기준으로만 적었습니다.",
     "playlistKind": "music",
     "categoryNote": "도경수 원곡",
     "workTitle": "Somebody",
     "workArtist": "도경수 (D.O.)",
-    "category": "pending",
-    "timeSignature": "6/8",
-    "chartStage": 1
+    "category": "partial",
+    "timeSignature": "미확인",
+    "chartStage": 2,
+    "chart": {
+      "status": "partial",
+      "timeSignature": "미확인",
+      "timeNote": "박자표 미확인",
+      "bpm": 89,
+      "bpmNote": "89 BPM (자동분석)",
+      "originalKey": "Db",
+      "maleKey": "Db",
+      "maleShift": 0,
+      "capo": 1,
+      "formButton": "C",
+      "formKey": "Db",
+      "formText": "C폼 · Capo +1",
+      "sections": [
+        {
+          "name": "A (D♭키 · 참고 진행)",
+          "bars": [
+            [
+              {
+                "btn": "F",
+                "slot": 0,
+                "sound": "Gb",
+                "orig": "Gb",
+                "quality": "maj"
+              }
+            ],
+            [
+              {
+                "btn": "Dm",
+                "slot": 0,
+                "sound": "Ebm",
+                "orig": "Ebm",
+                "quality": "min"
+              }
+            ],
+            [
+              {
+                "btn": "G",
+                "slot": 0,
+                "sound": "Ab",
+                "orig": "Ab",
+                "quality": "maj"
+              }
+            ],
+            [
+              {
+                "btn": "C",
+                "slot": 0,
+                "sound": "Db",
+                "orig": "Db",
+                "quality": "maj"
+              }
+            ]
+          ]
+        }
+      ],
+      "slots": [],
+      "stage": 2,
+      "percussiveReady": false,
+      "stroke": "↓ · ↓↑ · ↓↑ (89bpm, 8분 중심)",
+      "percussive": "",
+      "why": "G♭·E♭m·A♭·D♭ 네 코드 진행. D♭은 카포로 C폼에 맞추고, G♭·E♭m·A♭은 슬롯/바레로 처리한다.",
+      "coverage": {
+        "mapped": 4,
+        "total": 4,
+        "unmapped": 0
+      },
+      "basis": "코드표 순서를 4박 마디 카드로 정리한 연습용 배치입니다. 원곡의 세부 마디 배치와 다를 수 있습니다.",
+      "evidence": [
+        {
+          "label": "가사 위 코드표(KpopChords)",
+          "url": "https://www.kpopchords.com/d-o-somebody-chords-romanized-lyrics.html",
+          "note": "도경수 Somebody 코드표 · 원문 복제 없이 링크만"
+        },
+        {
+          "label": "코드·템포(Chordu)",
+          "url": "https://chordu.com/chords-tabs-d-o-%EB%94%94%EC%98%A4-somebody-mv-id_jNYVbmVIP4A",
+          "note": "G♭ → E♭m → A♭ → D♭ 후보"
+        },
+        {
+          "label": "코드 분석(Mazmazika)",
+          "url": "https://www.mazmazika.com/chordanalyzer/d-o--songs/d-o-%EB%94%94%EC%98%A4-%27somebody%27-chords",
+          "note": "자동 분석 · 카포1 코드표와 원음 코드 구분 필요"
+        }
+      ],
+      "note": "원곡 가수·키·BPM·코드 후보만 확인한 부분 확인 상태입니다. 코드는 공개 자동분석/코드표 후보를 4박 마디 카드로 정리한 연습용 배치라 원곡의 세부 마디·박자와 다를 수 있고, 청음/정식 악보 대조 전입니다. 악보 원문은 복제하지 않고 구매·열람 링크만 연결합니다. 카포 1프렛 코드표도 돌아다니지만 원음 코드와 운지 코드를 섞지 않으려고 원키(D♭) 기준으로만 적었습니다."
+    }
   },
   {
     "id": "playlist-117",
@@ -29064,11 +29952,11 @@
     "videoUrl": "https://www.youtube.com/watch?v=K-vWJKBwwvM",
     "videoStatus": "공개 영상",
     "audioUrl": "",
-    "key": "Bb",
+    "key": "미확인",
     "maleKey": "G",
-    "bpm": 116,
+    "bpm": null,
     "chords": "Eb / Eb D / D / Gm / Cm / F / Bb / Bb / Bb / Bb / Cm / Cm / F / F / Bb / F",
-    "chordStatus": "웹 자료 검수 완료",
+    "chordStatus": "미확인",
     "strumming": "↓ · ↓↑ · ↓↑ (8분 중심, 코드는 마디 앞에서)",
     "difficultyEasy": "미확인",
     "difficultyStandard": "미확인",
@@ -29080,14 +29968,58 @@
     "notes": "원본 재생목록 #118 · 영상 ID K-vWJKBwwvM · 채널 Loonytixc · 유튜브 제목 그대로. 가수 필드는 채널명을 표기했으며 원곡 가수·코드·남자 키·BPM은 확인 전이라 비움.",
     "setlist": false,
     "chartStatus": "pending",
-    "chartNote": "코드·키·박자 확인 전 — 검수 대기",
+    "chartNote": "검수 대기 — 도경수 ‘나의 아버지(Dad)’ 곡과 가사 위 코드표(무료)·기타 코드 페이지까지만 확인했습니다. 원키·BPM·실제 코드 진행을 확인하지 못해 악보를 만들지 않았습니다. 링크의 카포 표기와 실제 원키가 달라 그대로 옮기지 않았습니다.",
     "playlistKind": "music",
     "categoryNote": "도경수 원곡",
     "workTitle": "나의 아버지 (Dad)",
     "workArtist": "도경수 (D.O.)",
     "category": "pending",
-    "timeSignature": "4/4",
-    "chartStage": 2
+    "timeSignature": "미확인",
+    "chartStage": 2,
+    "chart": {
+      "status": "pending",
+      "timeSignature": "미확인",
+      "timeNote": "",
+      "bpm": 0,
+      "bpmNote": "",
+      "originalKey": "미확인",
+      "maleKey": "",
+      "maleShift": 0,
+      "capo": null,
+      "formButton": "",
+      "formKey": "",
+      "formText": "",
+      "sections": [],
+      "slots": [],
+      "stage": 3,
+      "stroke": "",
+      "percussive": "",
+      "why": "",
+      "coverage": {
+        "mapped": 0,
+        "total": 0,
+        "unmapped": 0
+      },
+      "basis": "",
+      "note": "검수 대기 — 도경수 ‘나의 아버지(Dad)’ 곡과 가사 위 코드표(무료)·기타 코드 페이지까지만 확인했습니다. 원키·BPM·실제 코드 진행을 확인하지 못해 악보를 만들지 않았습니다. 링크의 카포 표기와 실제 원키가 달라 그대로 옮기지 않았습니다.",
+      "evidence": [
+        {
+          "label": "가사 위 코드표(KpopChords)",
+          "url": "https://www.kpopchords.com/2021/08/do-dad-chords.html",
+          "note": "가사 위 코드표 · 키·진행 미확인"
+        },
+        {
+          "label": "기타 코드 페이지(GuitarTabsExplorer)",
+          "url": "https://www.guitartabsexplorer.com/d.o./dad---chords",
+          "note": "카포 표기 포함 · 원키 구분 필요"
+        },
+        {
+          "label": "곡 식별(Bugs)",
+          "url": "https://music.bugs.co.kr/track/32295477",
+          "note": "도경수 (D.O.) 나의 아버지 (Dad) 정식 발매"
+        }
+      ]
+    }
   },
   {
     "id": "playlist-120",
@@ -29265,29 +30197,117 @@
     "videoUrl": "https://www.youtube.com/watch?v=nMKQx73h-uE",
     "videoStatus": "공개 영상",
     "audioUrl": "",
-    "key": "미확정",
-    "maleKey": "미확정",
-    "bpm": null,
-    "chords": "",
-    "chordStatus": "미확인",
-    "strumming": "",
+    "key": "A",
+    "maleKey": "A",
+    "bpm": 68,
+    "chords": "A / E/G# / F#m7 / D",
+    "chordStatus": "부분 확인",
+    "strumming": "↓ · ↓↑ · ↓↑ (68bpm, 느린 8분)",
     "difficultyEasy": "미확인",
     "difficultyStandard": "미확인",
     "vocalDifficulty": "미확인",
     "level": "미착수",
     "tags": [
-      "재생목록 영상",
-      "가수 미확인"
+      "커버 영상"
     ],
     "notes": "원본 재생목록 #124 · 영상 ID nMKQx73h-uE · 채널 365 MUSIC · 유튜브 제목 그대로. 가수 필드는 채널명을 표기했으며 원곡 가수·코드·남자 키·BPM은 확인 전이라 비움.",
     "setlist": false,
-    "chartStatus": "pending",
-    "chartNote": "코드·키·박자 확인 전 — 검수 대기",
+    "chartStatus": "partial",
+    "chartNote": "원곡 가수·키·BPM·코드 후보만 확인한 부분 확인 상태입니다. 코드는 공개 자동분석/코드표 후보를 4박 마디 카드로 정리한 연습용 배치라 원곡의 세부 마디·박자와 다를 수 있고, 청음/정식 악보 대조 전입니다. 악보 원문은 복제하지 않고 구매·열람 링크만 연결합니다. 8번·13번(원본 #38·#124) 두 영상이 같은 곡이라 같은 자료를 연결했습니다.",
     "playlistKind": "music",
     "categoryNote": "도경수 원곡",
     "workTitle": "영원해",
     "workArtist": "도경수 (D.O.)",
-    "category": "pending"
+    "category": "partial",
+    "chart": {
+      "status": "partial",
+      "timeSignature": "미확인",
+      "timeNote": "박자표 미확인",
+      "bpm": 68,
+      "bpmNote": "68 BPM (자동분석)",
+      "originalKey": "A",
+      "maleKey": "A",
+      "maleShift": 0,
+      "capo": 2,
+      "formButton": "G",
+      "formKey": "D",
+      "formText": "G폼 · Capo +2",
+      "sections": [
+        {
+          "name": "A (A키 · 대표 진행 후보)",
+          "bars": [
+            [
+              {
+                "btn": "G",
+                "slot": 0,
+                "sound": "A",
+                "orig": "A",
+                "quality": "maj"
+              }
+            ],
+            [
+              {
+                "btn": "D",
+                "slot": 0,
+                "sound": "E/Ab",
+                "orig": "E/G#",
+                "quality": "maj"
+              }
+            ],
+            [
+              {
+                "btn": "Em",
+                "slot": 0,
+                "sound": "F#m7",
+                "orig": "F#m7",
+                "quality": "min"
+              }
+            ],
+            [
+              {
+                "btn": "C",
+                "slot": 0,
+                "sound": "D",
+                "orig": "D",
+                "quality": "maj"
+              }
+            ]
+          ]
+        }
+      ],
+      "slots": [],
+      "stage": 2,
+      "percussiveReady": false,
+      "stroke": "↓ · ↓↑ · ↓↑ (68bpm, 느린 8분)",
+      "percussive": "",
+      "why": "A → E/G♯ → F♯m7 → D 왕복 진행. F♯m7은 원터치 3화음(Fm 버튼+카포)으로 근사하고, E/G♯ 전위는 슬롯으로 넘긴다.",
+      "coverage": {
+        "mapped": 4,
+        "total": 4,
+        "unmapped": 0
+      },
+      "basis": "코드표 순서를 4박 마디 카드로 정리한 연습용 배치입니다. 원곡의 세부 마디 배치와 다를 수 있습니다.",
+      "evidence": [
+        {
+          "label": "멜로디/반주 악보(MyMusic5)",
+          "url": "https://www.mymusic5.com/pianojeongryujang/287900",
+          "note": "도경수 영원해 · 유료 악보 · 원문 복제 없이 열람 링크만"
+        },
+        {
+          "label": "자동 코드(Chordify)",
+          "url": "https://chordify.net/chords/dogyeongsu-d-o-songs/yeong-wonhae-chords",
+          "note": "A → E/G♯ → F♯m7 → D 후보"
+        },
+        {
+          "label": "곡 식별(SoundLeader)",
+          "url": "https://soundleader.co.kr/ContV2/msheet.php?idx=135303&pap=main_msheetView",
+          "note": "악보 정보 · 8번/13번 동일곡"
+        }
+      ],
+      "note": "원곡 가수·키·BPM·코드 후보만 확인한 부분 확인 상태입니다. 코드는 공개 자동분석/코드표 후보를 4박 마디 카드로 정리한 연습용 배치라 원곡의 세부 마디·박자와 다를 수 있고, 청음/정식 악보 대조 전입니다. 악보 원문은 복제하지 않고 구매·열람 링크만 연결합니다. 8번·13번(원본 #38·#124) 두 영상이 같은 곡이라 같은 자료를 연결했습니다."
+    },
+    "timeSignature": "미확인",
+    "chartStage": 2
   },
   {
     "id": "playlist-126",
@@ -29300,29 +30320,117 @@
     "videoUrl": "https://www.youtube.com/watch?v=C37V_LaKLPU",
     "videoStatus": "공개 영상",
     "audioUrl": "",
-    "key": "미확정",
-    "maleKey": "미확정",
+    "key": "B",
+    "maleKey": "B",
     "bpm": null,
-    "chords": "",
-    "chordStatus": "미확인",
-    "strumming": "",
+    "chords": "B / F# / G#m / E",
+    "chordStatus": "부분 확인",
+    "strumming": "↓ · ↓↑ · ↓↑ (중간 템포 8분)",
     "difficultyEasy": "미확인",
     "difficultyStandard": "미확인",
     "vocalDifficulty": "미확인",
     "level": "미착수",
     "tags": [
-      "재생목록 영상",
-      "가수 미확인"
+      "커버 영상"
     ],
     "notes": "원본 재생목록 #126 · 영상 ID C37V_LaKLPU · 채널 Music Time | 뮤직 타임 · 유튜브 제목 그대로. 가수 필드는 채널명을 표기했으며 원곡 가수·코드·남자 키·BPM은 확인 전이라 비움.",
     "setlist": false,
-    "chartStatus": "pending",
-    "chartNote": "코드·키·박자 확인 전 — 검수 대기",
+    "chartStatus": "partial",
+    "chartNote": "원곡 가수·키·BPM·코드 후보만 확인한 부분 확인 상태입니다. 코드는 공개 자동분석/코드표 후보를 4박 마디 카드로 정리한 연습용 배치라 원곡의 세부 마디·박자와 다를 수 있고, 청음/정식 악보 대조 전입니다. 악보 원문은 복제하지 않고 구매·열람 링크만 연결합니다. 코드표가 “카포 4 · G·D·Em·C”로 적혀 있어, 그 운지 그대로 저장하지 않고 카포 4에서 실제로 울리는 키(B·F♯·G♯m·E)로 옮겨 적었습니다. BPM은 확인하지 못했습니다.",
     "playlistKind": "music",
     "categoryNote": "도경수 원곡",
     "workTitle": "내일을 너에게 (I'll Be There)",
     "workArtist": "도경수 (D.O.)",
-    "category": "pending"
+    "category": "partial",
+    "chart": {
+      "status": "partial",
+      "timeSignature": "미확인",
+      "timeNote": "박자표 미확인 — 코드표는 카포4 G폼 기준",
+      "bpm": 0,
+      "bpmNote": "BPM 미확인",
+      "originalKey": "B",
+      "maleKey": "B",
+      "maleShift": 0,
+      "capo": 4,
+      "formButton": "G",
+      "formKey": "E",
+      "formText": "G폼 · Capo +4",
+      "sections": [
+        {
+          "name": "A (B키 · 카포4 G폼 코드표 기준)",
+          "bars": [
+            [
+              {
+                "btn": "G",
+                "slot": 0,
+                "sound": "B",
+                "orig": "B",
+                "quality": "maj"
+              }
+            ],
+            [
+              {
+                "btn": "D",
+                "slot": 0,
+                "sound": "F#",
+                "orig": "F#",
+                "quality": "maj"
+              }
+            ],
+            [
+              {
+                "btn": "Em",
+                "slot": 0,
+                "sound": "Abm",
+                "orig": "G#m",
+                "quality": "min"
+              }
+            ],
+            [
+              {
+                "btn": "C",
+                "slot": 0,
+                "sound": "E",
+                "orig": "E",
+                "quality": "maj"
+              }
+            ]
+          ]
+        }
+      ],
+      "slots": [],
+      "stage": 2,
+      "percussiveReady": false,
+      "stroke": "↓ · ↓↑ · ↓↑ (중간 템포 8분)",
+      "percussive": "",
+      "why": "카포 4에서 G·D·Em·C 모양을 잡으면 실제로는 B·F♯·G♯m·E가 울린다. 원터치에서는 G·D·Em·C 버튼이 그대로 대응돼 그 조합을 노린다.",
+      "coverage": {
+        "mapped": 4,
+        "total": 4,
+        "unmapped": 0
+      },
+      "basis": "코드표 순서를 4박 마디 카드로 정리한 연습용 배치입니다. 원곡의 세부 마디 배치와 다를 수 있습니다.",
+      "evidence": [
+        {
+          "label": "멜로디 악보(뮤직스코어)",
+          "url": "https://www.musicscore.co.kr/m_score/score_detail.asp?s_rndidx=SIr5qtRi12025091253330",
+          "note": "유료 악보 · 원문 복제 없이 열람 링크만"
+        },
+        {
+          "label": "카포4 코드표(KpopChords)",
+          "url": "https://www.kpopchords.com/doh-kyungsoo-ill-be-there-chords-romanized-lyrics.html",
+          "note": "카포4 · G·D·Em·C 운지표"
+        },
+        {
+          "label": "자동 코드(Chordify)",
+          "url": "https://chordify.net/chords/dogyeongsu-doh-kyung-soo-naeil-eul-neoege-i-ll-be-there-live-clip-preview-keompeonisusu-company-soosoo",
+          "note": "도경수 내일을 너에게 · 코드 순서 참고"
+        }
+      ],
+      "note": "원곡 가수·키·BPM·코드 후보만 확인한 부분 확인 상태입니다. 코드는 공개 자동분석/코드표 후보를 4박 마디 카드로 정리한 연습용 배치라 원곡의 세부 마디·박자와 다를 수 있고, 청음/정식 악보 대조 전입니다. 악보 원문은 복제하지 않고 구매·열람 링크만 연결합니다. 코드표가 “카포 4 · G·D·Em·C”로 적혀 있어, 그 운지 그대로 저장하지 않고 카포 4에서 실제로 울리는 키(B·F♯·G♯m·E)로 옮겨 적었습니다. BPM은 확인하지 못했습니다."
+    },
+    "timeSignature": "미확인",
+    "chartStage": 2
   },
   {
     "id": "playlist-134",
@@ -29508,7 +30616,7 @@
           "slot": 1,
           "chord": "Ebm",
           "orig": "Ebm",
-          "alt": "",
+          "alt": "Ebm7(x68676) 6프렛 바레",
           "why": "원터치 10버튼에 없는 코드(바레/전위 등)"
         }
       ],
@@ -30273,11 +31381,11 @@
     "videoStatus": "공개 영상",
     "audioUrl": "",
     "key": "E",
-    "maleKey": "D",
-    "bpm": 60,
-    "chords": "Eb Abm / Eb Abm / Eb Abm / Eb Abm / Eb C / F G / Cm Ab / Eb D",
-    "chordStatus": "웹 자료 검수 완료",
-    "strumming": "↓ · ↓↑ · ↓↑ (8분 중심, 코드는 마디 앞에서)",
+    "maleKey": "E",
+    "bpm": 143,
+    "chords": "B / C#m / A / E",
+    "chordStatus": "부분 확인",
+    "strumming": "↓ ↓↑ ↑↓↑ (143bpm, 8분 중심)",
     "difficultyEasy": "미확인",
     "difficultyStandard": "미확인",
     "vocalDifficulty": "미확인",
@@ -30287,15 +31395,110 @@
     ],
     "notes": "원본 재생목록 #143 · 영상 ID k5srNWNJdf8 · 채널 Music Time | 뮤직 타임 · 유튜브 제목 그대로. 가수 필드는 채널명을 표기했으며 원곡 가수·코드·남자 키·BPM은 확인 전이라 비움.",
     "setlist": false,
-    "chartStatus": "pending",
-    "chartNote": "코드·키·박자 확인 전 — 검수 대기",
+    "chartStatus": "partial",
+    "chartNote": "원곡 가수·키·BPM·코드 후보만 확인한 부분 확인 상태입니다. 코드는 공개 자동분석/코드표 후보를 4박 마디 카드로 정리한 연습용 배치라 원곡의 세부 마디·박자와 다를 수 있고, 청음/정식 악보 대조 전입니다. 악보 원문은 복제하지 않고 구매·열람 링크만 연결합니다. 143bpm은 빠른 편이라 연습은 100bpm대부터 올리는 것을 권합니다.",
     "playlistKind": "music",
     "categoryNote": "도경수 원곡",
     "workTitle": "기적 (Wonder)",
     "workArtist": "도경수 (D.O.)",
-    "category": "pending",
-    "timeSignature": "4/4",
-    "chartStage": 3
+    "category": "partial",
+    "timeSignature": "미확인",
+    "chartStage": 2,
+    "chart": {
+      "status": "partial",
+      "timeSignature": "미확인",
+      "timeNote": "박자표 미확인",
+      "bpm": 143,
+      "bpmNote": "143 BPM (자동분석)",
+      "originalKey": "E",
+      "maleKey": "E",
+      "maleShift": 0,
+      "capo": 4,
+      "formButton": "C",
+      "formKey": "E",
+      "formText": "C폼 · Capo +4",
+      "sections": [
+        {
+          "name": "A (E키 · 자동분석 대표 코드군)",
+          "bars": [
+            [
+              {
+                "btn": "G",
+                "slot": 0,
+                "sound": "B",
+                "orig": "B",
+                "quality": "maj"
+              }
+            ],
+            [
+              {
+                "btn": null,
+                "slot": 1,
+                "sound": "C#m",
+                "orig": "C#m",
+                "quality": "min"
+              }
+            ],
+            [
+              {
+                "btn": "F",
+                "slot": 0,
+                "sound": "A",
+                "orig": "A",
+                "quality": "maj"
+              }
+            ],
+            [
+              {
+                "btn": "C",
+                "slot": 0,
+                "sound": "E",
+                "orig": "E",
+                "quality": "maj"
+              }
+            ]
+          ]
+        }
+      ],
+      "slots": [
+        {
+          "slot": 1,
+          "chord": "C#m",
+          "orig": "C#m",
+          "alt": "C#m7(x46454)",
+          "why": "원터치 10버튼에 없는 코드(바레/전위 등)"
+        }
+      ],
+      "stage": 2,
+      "percussiveReady": false,
+      "stroke": "↓ ↓↑ ↑↓↑ (143bpm, 8분 중심)",
+      "percussive": "",
+      "why": "B·C♯m·A·E 네 코드. B·C♯m은 슬롯/바레로 넘기고, E는 E 버튼으로 바로 잡는다.",
+      "coverage": {
+        "mapped": 3,
+        "total": 4,
+        "unmapped": 1
+      },
+      "basis": "코드표 순서를 4박 마디 카드로 정리한 연습용 배치입니다. 원곡의 세부 마디 배치와 다를 수 있습니다.",
+      "evidence": [
+        {
+          "label": "자동 코드(Chordify)",
+          "url": "https://chordify.net/chords/d-o-songs/gijeog-wonder-chords",
+          "note": "B → C♯m → A → E 대표 코드군"
+        },
+        {
+          "label": "곡 정보(Genie)",
+          "url": "https://www.genie.co.kr/detail/songInfo?xgnm=103414266",
+          "note": "도경수 기적 (Wonder) 음원 정보"
+        },
+        {
+          "label": "곡 정보(나무위키)",
+          "url": "https://www.namu.moe/w/%EA%B8%B0%EB%8C%80(%EB%8F%84%EA%B2%BD%EC%88%98)",
+          "note": "앨범 수록곡 참고"
+        }
+      ],
+      "note": "원곡 가수·키·BPM·코드 후보만 확인한 부분 확인 상태입니다. 코드는 공개 자동분석/코드표 후보를 4박 마디 카드로 정리한 연습용 배치라 원곡의 세부 마디·박자와 다를 수 있고, 청음/정식 악보 대조 전입니다. 악보 원문은 복제하지 않고 구매·열람 링크만 연결합니다. 143bpm은 빠른 편이라 연습은 100bpm대부터 올리는 것을 권합니다."
+    }
   },
   {
     "id": "playlist-152",
@@ -30308,29 +31511,99 @@
     "videoUrl": "https://www.youtube.com/watch?v=nOmh3bTZy_4",
     "videoStatus": "공개 영상",
     "audioUrl": "",
-    "key": "미확정",
-    "maleKey": "미확정",
+    "key": "F#",
+    "maleKey": "F#",
     "bpm": null,
-    "chords": "",
-    "chordStatus": "미확인",
-    "strumming": "",
+    "chords": "F# / C#",
+    "chordStatus": "부분 확인",
+    "strumming": "↓ · ↓↑ · ↓↑ (느린 8분)",
     "difficultyEasy": "미확인",
     "difficultyStandard": "미확인",
     "vocalDifficulty": "미확인",
     "level": "미착수",
     "tags": [
-      "재생목록 영상",
-      "가수 미확인"
+      "커버 영상"
     ],
     "notes": "원본 재생목록 #152 · 영상 ID nOmh3bTZy_4 · 채널 Music Time | 뮤직 타임 · 유튜브 제목 그대로. 가수 필드는 채널명을 표기했으며 원곡 가수·코드·남자 키·BPM은 확인 전이라 비움.",
     "setlist": false,
-    "chartStatus": "pending",
-    "chartNote": "코드·키·박자 확인 전 — 검수 대기",
+    "chartStatus": "partial",
+    "chartNote": "원곡 가수·키·BPM·코드 후보만 확인한 부분 확인 상태입니다. 코드는 공개 자동분석/코드표 후보를 4박 마디 카드로 정리한 연습용 배치라 원곡의 세부 마디·박자와 다를 수 있고, 청음/정식 악보 대조 전입니다. 악보 원문은 복제하지 않고 구매·열람 링크만 연결합니다. 코드표가 “카포 1 · F·C”로 적혀 있어 카포 1에서 실제로 울리는 F♯·C♯ 기준으로 옮겼습니다. 확인된 코드가 두 개뿐이라 전체 진행은 아닙니다. F키 조옮김 악보도 있어 원키와 구분이 필요합니다.",
     "playlistKind": "music",
     "categoryNote": "도경수 원곡",
     "workTitle": "기억의 온기 (Where You Were)",
     "workArtist": "도경수 (D.O.)",
-    "category": "pending"
+    "category": "partial",
+    "chart": {
+      "status": "partial",
+      "timeSignature": "미확인",
+      "timeNote": "박자표 미확인 — 코드표는 카포1 F폼 기준",
+      "bpm": 0,
+      "bpmNote": "BPM 미확인",
+      "originalKey": "F#",
+      "maleKey": "F#",
+      "maleShift": 0,
+      "capo": 1,
+      "formButton": "F",
+      "formKey": "C#",
+      "formText": "F폼 · Capo +1",
+      "sections": [
+        {
+          "name": "확인된 코드 (F♯키 · 카포1 F폼 기준)",
+          "bars": [
+            [
+              {
+                "btn": "F",
+                "slot": 0,
+                "sound": "F#",
+                "orig": "F#",
+                "quality": "maj"
+              }
+            ],
+            [
+              {
+                "btn": "C",
+                "slot": 0,
+                "sound": "C#",
+                "orig": "C#",
+                "quality": "maj"
+              }
+            ]
+          ]
+        }
+      ],
+      "slots": [],
+      "stage": 1,
+      "percussiveReady": false,
+      "stroke": "↓ · ↓↑ · ↓↑ (느린 8분)",
+      "percussive": "",
+      "why": "확인된 코드가 F♯·C♯ 두 개뿐이라 곡 전체 악보가 아니라 확인된 구간만 적었다. 카포 1에서 F·C 모양으로 잡으면 소리는 F♯·C♯이 난다.",
+      "coverage": {
+        "mapped": 2,
+        "total": 2,
+        "unmapped": 0
+      },
+      "basis": "코드표 순서를 4박 마디 카드로 정리한 연습용 배치입니다. 원곡의 세부 마디 배치와 다를 수 있습니다.",
+      "evidence": [
+        {
+          "label": "멜로디 악보(뮤직스코어)",
+          "url": "https://www.musicscore.co.kr/m_score/score_detail.asp?s_rndidx=Nh4HS20250913125708",
+          "note": "유료 악보 · 원문 복제 없이 열람 링크만"
+        },
+        {
+          "label": "카포1 코드표(KpopChords)",
+          "url": "https://www.kpopchords.com/doh-kyungsoo-where-you-were-chords-romanized-lyrics.html",
+          "note": "카포1 · F·C 코드표 · 전체 진행 미확정"
+        },
+        {
+          "label": "악보 정보(뮤직스코어)",
+          "url": "https://www.musicscore.co.kr/m_score/score_detail.asp?s_rndidx=zxuqomNoOMF20250913125711",
+          "note": "F키 조옮김본 존재 · 원키와 구분"
+        }
+      ],
+      "note": "원곡 가수·키·BPM·코드 후보만 확인한 부분 확인 상태입니다. 코드는 공개 자동분석/코드표 후보를 4박 마디 카드로 정리한 연습용 배치라 원곡의 세부 마디·박자와 다를 수 있고, 청음/정식 악보 대조 전입니다. 악보 원문은 복제하지 않고 구매·열람 링크만 연결합니다. 코드표가 “카포 1 · F·C”로 적혀 있어 카포 1에서 실제로 울리는 F♯·C♯ 기준으로 옮겼습니다. 확인된 코드가 두 개뿐이라 전체 진행은 아닙니다. F키 조옮김 악보도 있어 원키와 구분이 필요합니다."
+    },
+    "timeSignature": "미확인",
+    "chartStage": 1
   },
   {
     "id": "playlist-153",
@@ -30343,29 +31616,126 @@
     "videoUrl": "https://www.youtube.com/watch?v=pgqdQfe8_64",
     "videoStatus": "공개 영상",
     "audioUrl": "",
-    "key": "미확정",
-    "maleKey": "미확정",
-    "bpm": null,
-    "chords": "",
-    "chordStatus": "미확인",
-    "strumming": "",
+    "key": "G",
+    "maleKey": "G",
+    "bpm": 67,
+    "chords": "G / D/F# / Em7 / C / D",
+    "chordStatus": "부분 확인",
+    "strumming": "↓ · ↓↑ · ↓↑ (67bpm, 느린 8분)",
     "difficultyEasy": "미확인",
     "difficultyStandard": "미확인",
     "vocalDifficulty": "미확인",
     "level": "미착수",
     "tags": [
-      "재생목록 영상",
-      "가수 미확인"
+      "커버 영상"
     ],
     "notes": "원본 재생목록 #153 · 영상 ID pgqdQfe8_64 · 채널 오이뮤직 - 오늘 이 음악 · 유튜브 제목 그대로. 가수 필드는 채널명을 표기했으며 원곡 가수·코드·남자 키·BPM은 확인 전이라 비움.",
     "setlist": false,
-    "chartStatus": "pending",
-    "chartNote": "코드·키·박자 확인 전 — 검수 대기",
+    "chartStatus": "partial",
+    "chartNote": "원곡 가수·키·BPM·코드 후보만 확인한 부분 확인 상태입니다. 코드는 공개 자동분석/코드표 후보를 4박 마디 카드로 정리한 연습용 배치라 원곡의 세부 마디·박자와 다를 수 있고, 청음/정식 악보 대조 전입니다. 악보 원문은 복제하지 않고 구매·열람 링크만 연결합니다. 코드 사이트의 키 표기는 B이고 곡 중 전조가 있다고 해서, 확인된 도입 진행(G → D/F♯ → Em7 → C → D)을 기준으로 도입 G키로 적었습니다. 후반 전조부 코드는 확인하지 못했습니다. 18번·19번(원본 #153·#154) 두 영상이 같은 곡입니다.",
     "playlistKind": "music",
     "categoryNote": "임한별 원곡",
     "workTitle": "다시, 별 아래",
     "workArtist": "임한별",
-    "category": "pending"
+    "category": "partial",
+    "chart": {
+      "status": "partial",
+      "timeSignature": "미확인",
+      "timeNote": "박자표 미확인",
+      "bpm": 67,
+      "bpmNote": "67 BPM (자동분석)",
+      "originalKey": "G",
+      "maleKey": "G",
+      "maleShift": 0,
+      "capo": 0,
+      "formButton": "G",
+      "formKey": "C",
+      "formText": "G폼 · Capo +0",
+      "sections": [
+        {
+          "name": "도입 (G키 · 확인된 진행)",
+          "bars": [
+            [
+              {
+                "btn": "G",
+                "slot": 0,
+                "sound": "G",
+                "orig": "G",
+                "quality": "maj"
+              }
+            ],
+            [
+              {
+                "btn": "D",
+                "slot": 0,
+                "sound": "D/F#",
+                "orig": "D/F#",
+                "quality": "maj"
+              }
+            ],
+            [
+              {
+                "btn": "Em",
+                "slot": 0,
+                "sound": "Em7",
+                "orig": "Em7",
+                "quality": "min"
+              }
+            ],
+            [
+              {
+                "btn": "C",
+                "slot": 0,
+                "sound": "C",
+                "orig": "C",
+                "quality": "maj"
+              }
+            ],
+            [
+              {
+                "btn": "D",
+                "slot": 0,
+                "sound": "D",
+                "orig": "D",
+                "quality": "maj"
+              }
+            ]
+          ]
+        }
+      ],
+      "slots": [],
+      "stage": 2,
+      "percussiveReady": false,
+      "stroke": "↓ · ↓↑ · ↓↑ (67bpm, 느린 8분)",
+      "percussive": "",
+      "why": "도입은 G → D/F♯ → Em7 → C → D로 내려오는 진행. D/F♯ 전위와 Em7은 슬롯으로 넘기고, G·C·D는 원터치로 잡는다. 후반 전조는 확인 전이라 넣지 않았다.",
+      "coverage": {
+        "mapped": 5,
+        "total": 5,
+        "unmapped": 0
+      },
+      "basis": "코드표 순서를 4박 마디 카드로 정리한 연습용 배치입니다. 원곡의 세부 마디 배치와 다를 수 있습니다.",
+      "evidence": [
+        {
+          "label": "피아노/멜로디 악보(악보바다)",
+          "url": "https://www.akbobada.com/musicDetail.html?musicID=98176",
+          "note": "유료 악보 · 원문 복제 없이 열람 링크만"
+        },
+        {
+          "label": "자동 코드(Chordify)",
+          "url": "https://chordify.net/chords/imhanbyeol-dasi-byeol-alae-kpop-lyrics-gasa-nn-music",
+          "note": "도입 G → D/F♯ → Em7 → C → D · 키 표기 B(전조 가능)"
+        },
+        {
+          "label": "곡 식별(Bugs)",
+          "url": "https://music.bugs.co.kr/track/6419123",
+          "note": "임한별 다시, 별 아래"
+        }
+      ],
+      "note": "원곡 가수·키·BPM·코드 후보만 확인한 부분 확인 상태입니다. 코드는 공개 자동분석/코드표 후보를 4박 마디 카드로 정리한 연습용 배치라 원곡의 세부 마디·박자와 다를 수 있고, 청음/정식 악보 대조 전입니다. 악보 원문은 복제하지 않고 구매·열람 링크만 연결합니다. 코드 사이트의 키 표기는 B이고 곡 중 전조가 있다고 해서, 확인된 도입 진행(G → D/F♯ → Em7 → C → D)을 기준으로 도입 G키로 적었습니다. 후반 전조부 코드는 확인하지 못했습니다. 18번·19번(원본 #153·#154) 두 영상이 같은 곡입니다."
+    },
+    "timeSignature": "미확인",
+    "chartStage": 2
   },
   {
     "id": "playlist-154",
@@ -30378,29 +31748,126 @@
     "videoUrl": "https://www.youtube.com/watch?v=C-eJ4XxZlPs",
     "videoStatus": "공개 영상",
     "audioUrl": "",
-    "key": "미확정",
-    "maleKey": "미확정",
-    "bpm": null,
-    "chords": "",
-    "chordStatus": "미확인",
-    "strumming": "",
+    "key": "G",
+    "maleKey": "G",
+    "bpm": 67,
+    "chords": "G / D/F# / Em7 / C / D",
+    "chordStatus": "부분 확인",
+    "strumming": "↓ · ↓↑ · ↓↑ (67bpm, 느린 8분)",
     "difficultyEasy": "미확인",
     "difficultyStandard": "미확인",
     "vocalDifficulty": "미확인",
     "level": "미착수",
     "tags": [
-      "재생목록 영상",
-      "가수 미확인"
+      "커버 영상"
     ],
     "notes": "원본 재생목록 #154 · 영상 ID C-eJ4XxZlPs · 채널 발라드의 모든 것 𝑨𝒍𝒍 𝑨𝒃𝒐𝒖𝒕 𝑩𝒂𝒍𝒍𝒂𝒅 · 유튜브 제목 그대로. 가수 필드는 채널명을 표기했으며 원곡 가수·코드·남자 키·BPM은 확인 전이라 비움.",
     "setlist": false,
-    "chartStatus": "pending",
-    "chartNote": "코드·키·박자 확인 전 — 검수 대기",
+    "chartStatus": "partial",
+    "chartNote": "원곡 가수·키·BPM·코드 후보만 확인한 부분 확인 상태입니다. 코드는 공개 자동분석/코드표 후보를 4박 마디 카드로 정리한 연습용 배치라 원곡의 세부 마디·박자와 다를 수 있고, 청음/정식 악보 대조 전입니다. 악보 원문은 복제하지 않고 구매·열람 링크만 연결합니다. 코드 사이트의 키 표기는 B이고 곡 중 전조가 있다고 해서, 확인된 도입 진행(G → D/F♯ → Em7 → C → D)을 기준으로 도입 G키로 적었습니다. 후반 전조부 코드는 확인하지 못했습니다. 18번·19번(원본 #153·#154) 두 영상이 같은 곡입니다.",
     "playlistKind": "music",
     "categoryNote": "임한별 원곡 커버",
     "workTitle": "다시, 별 아래",
     "workArtist": "임한별",
-    "category": "pending"
+    "category": "partial",
+    "chart": {
+      "status": "partial",
+      "timeSignature": "미확인",
+      "timeNote": "박자표 미확인",
+      "bpm": 67,
+      "bpmNote": "67 BPM (자동분석)",
+      "originalKey": "G",
+      "maleKey": "G",
+      "maleShift": 0,
+      "capo": 0,
+      "formButton": "G",
+      "formKey": "C",
+      "formText": "G폼 · Capo +0",
+      "sections": [
+        {
+          "name": "도입 (G키 · 확인된 진행)",
+          "bars": [
+            [
+              {
+                "btn": "G",
+                "slot": 0,
+                "sound": "G",
+                "orig": "G",
+                "quality": "maj"
+              }
+            ],
+            [
+              {
+                "btn": "D",
+                "slot": 0,
+                "sound": "D/F#",
+                "orig": "D/F#",
+                "quality": "maj"
+              }
+            ],
+            [
+              {
+                "btn": "Em",
+                "slot": 0,
+                "sound": "Em7",
+                "orig": "Em7",
+                "quality": "min"
+              }
+            ],
+            [
+              {
+                "btn": "C",
+                "slot": 0,
+                "sound": "C",
+                "orig": "C",
+                "quality": "maj"
+              }
+            ],
+            [
+              {
+                "btn": "D",
+                "slot": 0,
+                "sound": "D",
+                "orig": "D",
+                "quality": "maj"
+              }
+            ]
+          ]
+        }
+      ],
+      "slots": [],
+      "stage": 2,
+      "percussiveReady": false,
+      "stroke": "↓ · ↓↑ · ↓↑ (67bpm, 느린 8분)",
+      "percussive": "",
+      "why": "도입은 G → D/F♯ → Em7 → C → D로 내려오는 진행. D/F♯ 전위와 Em7은 슬롯으로 넘기고, G·C·D는 원터치로 잡는다. 후반 전조는 확인 전이라 넣지 않았다.",
+      "coverage": {
+        "mapped": 5,
+        "total": 5,
+        "unmapped": 0
+      },
+      "basis": "코드표 순서를 4박 마디 카드로 정리한 연습용 배치입니다. 원곡의 세부 마디 배치와 다를 수 있습니다.",
+      "evidence": [
+        {
+          "label": "피아노/멜로디 악보(악보바다)",
+          "url": "https://www.akbobada.com/musicDetail.html?musicID=98176",
+          "note": "유료 악보 · 원문 복제 없이 열람 링크만"
+        },
+        {
+          "label": "자동 코드(Chordify)",
+          "url": "https://chordify.net/chords/imhanbyeol-dasi-byeol-alae-kpop-lyrics-gasa-nn-music",
+          "note": "도입 G → D/F♯ → Em7 → C → D · 키 표기 B(전조 가능)"
+        },
+        {
+          "label": "곡 식별(Bugs)",
+          "url": "https://music.bugs.co.kr/track/6419123",
+          "note": "임한별 다시, 별 아래"
+        }
+      ],
+      "note": "원곡 가수·키·BPM·코드 후보만 확인한 부분 확인 상태입니다. 코드는 공개 자동분석/코드표 후보를 4박 마디 카드로 정리한 연습용 배치라 원곡의 세부 마디·박자와 다를 수 있고, 청음/정식 악보 대조 전입니다. 악보 원문은 복제하지 않고 구매·열람 링크만 연결합니다. 코드 사이트의 키 표기는 B이고 곡 중 전조가 있다고 해서, 확인된 도입 진행(G → D/F♯ → Em7 → C → D)을 기준으로 도입 G키로 적었습니다. 후반 전조부 코드는 확인하지 못했습니다. 18번·19번(원본 #153·#154) 두 영상이 같은 곡입니다."
+    },
+    "timeSignature": "미확인",
+    "chartStage": 2
   },
   {
     "id": "playlist-156",
@@ -30588,7 +32055,7 @@
     "videoUrl": "https://www.youtube.com/watch?v=mqkj5pEfBFI",
     "videoStatus": "공개 영상",
     "audioUrl": "",
-    "key": "미확정",
+    "key": "미확인",
     "maleKey": "미확정",
     "bpm": null,
     "chords": "",
@@ -30605,12 +32072,57 @@
     "notes": "원본 재생목록 #157 · 영상 ID mqkj5pEfBFI · 채널 올데뮤AllDayMusic · 유튜브 제목 그대로. 가수 필드는 채널명을 표기했으며 원곡 가수·코드·남자 키·BPM은 확인 전이라 비움.",
     "setlist": false,
     "chartStatus": "pending",
-    "chartNote": "코드·키·박자 확인 전 — 검수 대기",
+    "chartNote": "검수 대기 — 로꼬 ‘픽픽’의 유료 기타 TAB+코드 악보 판매 페이지만 확인했습니다. 키·BPM·코드 진행은 확인하지 못해 악보를 만들지 않았습니다. 유료 파일 원문은 복제하지 않으며, 구매 링크만 연결합니다.",
     "playlistKind": "music",
     "categoryNote": "로꼬 원곡",
     "workTitle": "픽픽",
     "workArtist": "로꼬",
-    "category": "pending"
+    "category": "pending",
+    "chart": {
+      "status": "pending",
+      "timeSignature": "미확인",
+      "timeNote": "",
+      "bpm": 0,
+      "bpmNote": "",
+      "originalKey": "미확인",
+      "maleKey": "",
+      "maleShift": 0,
+      "capo": null,
+      "formButton": "",
+      "formKey": "",
+      "formText": "",
+      "sections": [],
+      "slots": [],
+      "stage": 3,
+      "stroke": "",
+      "percussive": "",
+      "why": "",
+      "coverage": {
+        "mapped": 0,
+        "total": 0,
+        "unmapped": 0
+      },
+      "basis": "",
+      "note": "검수 대기 — 로꼬 ‘픽픽’의 유료 기타 TAB+코드 악보 판매 페이지만 확인했습니다. 키·BPM·코드 진행은 확인하지 못해 악보를 만들지 않았습니다. 유료 파일 원문은 복제하지 않으며, 구매 링크만 연결합니다.",
+      "evidence": [
+        {
+          "label": "기타 TAB+코드 악보(유료)",
+          "url": "https://www.clefguitar.com/1291436240/?idx=999",
+          "note": "1,800원 유료 악보 · 키·BPM은 구매 후 확인 · 원문 복제 금지"
+        },
+        {
+          "label": "영상(YouTube)",
+          "url": "https://www.youtube.com/watch?v=9dPdOwoGacc",
+          "note": "로꼬 픽픽 관련 영상"
+        },
+        {
+          "label": "곡 식별(Bugs)",
+          "url": "https://music.bugs.co.kr/track/32993131",
+          "note": "로꼬 픽픽"
+        }
+      ]
+    },
+    "timeSignature": "미확인"
   },
   {
     "id": "playlist-158",
@@ -30887,7 +32399,7 @@
     "videoUrl": "https://www.youtube.com/watch?v=s-1QwV9ZTWk",
     "videoStatus": "공개 영상",
     "audioUrl": "",
-    "key": "미확정",
+    "key": "미확인",
     "maleKey": "미확정",
     "bpm": null,
     "chords": "",
@@ -30904,12 +32416,47 @@
     "notes": "원본 재생목록 #159 · 영상 ID s-1QwV9ZTWk · 채널 GeGee Edu · 유튜브 제목 그대로. 가수 필드는 채널명을 표기했으며 원곡 가수·코드·남자 키·BPM은 확인 전이라 비움.",
     "setlist": false,
     "chartStatus": "pending",
-    "chartNote": "코드·키·박자 확인 전 — 검수 대기",
+    "chartNote": "검수 대기 — 검색어 30으로 알려진 곡의 정식 제목이 키썸 ‘서, 어른’임을 확인했습니다. 다만 공개 악보·코드표를 찾지 못해 키·BPM·코드를 채우지 않았습니다. 별칭 30은 검색어로 남겨 둡니다.",
     "playlistKind": "music",
     "categoryNote": "키썸 원곡",
-    "workTitle": "30 (서, 어른)",
+    "workTitle": "서, 어른",
     "workArtist": "키썸 (Kisum)",
-    "category": "pending"
+    "category": "pending",
+    "chart": {
+      "status": "pending",
+      "timeSignature": "미확인",
+      "timeNote": "",
+      "bpm": 0,
+      "bpmNote": "",
+      "originalKey": "미확인",
+      "maleKey": "",
+      "maleShift": 0,
+      "capo": null,
+      "formButton": "",
+      "formKey": "",
+      "formText": "",
+      "sections": [],
+      "slots": [],
+      "stage": 3,
+      "stroke": "",
+      "percussive": "",
+      "why": "",
+      "coverage": {
+        "mapped": 0,
+        "total": 0,
+        "unmapped": 0
+      },
+      "basis": "",
+      "note": "검수 대기 — 검색어 30으로 알려진 곡의 정식 제목이 키썸 ‘서, 어른’임을 확인했습니다. 다만 공개 악보·코드표를 찾지 못해 키·BPM·코드를 채우지 않았습니다. 별칭 30은 검색어로 남겨 둡니다.",
+      "evidence": [
+        {
+          "label": "곡 식별(Bugs)",
+          "url": "https://music.bugs.co.kr/track/6240565",
+          "note": "키썸 (Kisum) 서, 어른 · 별칭 30"
+        }
+      ]
+    },
+    "timeSignature": "미확인"
   },
   {
     "id": "playlist-160",
@@ -31026,29 +32573,144 @@
     "videoUrl": "https://www.youtube.com/watch?v=2gtVzsQMtXc",
     "videoStatus": "공개 영상",
     "audioUrl": "",
-    "key": "미확정",
-    "maleKey": "미확정",
-    "bpm": null,
-    "chords": "",
-    "chordStatus": "미확인",
-    "strumming": "",
+    "key": "D",
+    "maleKey": "D",
+    "bpm": 68,
+    "chords": "D / Gm / F#m / Gmaj7 / D/F# / Em7 / A7",
+    "chordStatus": "부분 확인",
+    "strumming": "↓ · ↓↑ · ↓↑ (68bpm, 느린 8분)",
     "difficultyEasy": "미확인",
     "difficultyStandard": "미확인",
     "vocalDifficulty": "미확인",
     "level": "미착수",
     "tags": [
-      "재생목록 영상",
-      "가수 미확인"
+      "커버 영상"
     ],
     "notes": "원본 재생목록 #161 · 영상 ID 2gtVzsQMtXc · 채널 너에게들려주고싶었던BGM · 유튜브 제목 그대로. 가수 필드는 채널명을 표기했으며 원곡 가수·코드·남자 키·BPM은 확인 전이라 비움.",
     "setlist": false,
-    "chartStatus": "pending",
-    "chartNote": "코드·키·박자 확인 전 — 검수 대기",
+    "chartStatus": "partial",
+    "chartNote": "원곡 가수·키·BPM·코드 후보만 확인한 부분 확인 상태입니다. 코드는 공개 자동분석/코드표 후보를 4박 마디 카드로 정리한 연습용 배치라 원곡의 세부 마디·박자와 다를 수 있고, 청음/정식 악보 대조 전입니다. 악보 원문은 복제하지 않고 구매·열람 링크만 연결합니다. 전조와 복잡한 코드가 많아 단순 4코드로 확정하지 않았습니다. 확인된 코드군만 순서대로 적었고 마디 배치는 검수 전입니다.",
     "playlistKind": "music",
     "categoryNote": "박재정 X 설윤 원곡, 테이 커버",
     "workTitle": "지금 이대로만",
     "workArtist": "박재정 X 설윤",
-    "category": "pending"
+    "category": "partial",
+    "chart": {
+      "status": "partial",
+      "timeSignature": "미확인",
+      "timeNote": "박자표 미확인",
+      "bpm": 68,
+      "bpmNote": "68 BPM (자동분석)",
+      "originalKey": "D",
+      "maleKey": "D",
+      "maleShift": 0,
+      "capo": 2,
+      "formButton": "C",
+      "formKey": "D",
+      "formText": "C폼 · Capo +2",
+      "sections": [
+        {
+          "name": "A (D키 · 코드 후보)",
+          "bars": [
+            [
+              {
+                "btn": "C",
+                "slot": 0,
+                "sound": "D",
+                "orig": "D",
+                "quality": "maj"
+              }
+            ],
+            [
+              {
+                "btn": "Fm",
+                "slot": 0,
+                "sound": "Gm",
+                "orig": "Gm",
+                "quality": "min"
+              }
+            ],
+            [
+              {
+                "btn": "Em",
+                "slot": 0,
+                "sound": "F#m",
+                "orig": "F#m",
+                "quality": "min"
+              }
+            ],
+            [
+              {
+                "btn": "F",
+                "slot": 0,
+                "sound": "Gmaj7",
+                "orig": "Gmaj7",
+                "quality": "maj"
+              }
+            ],
+            [
+              {
+                "btn": "C",
+                "slot": 0,
+                "sound": "D/F#",
+                "orig": "D/F#",
+                "quality": "maj"
+              }
+            ],
+            [
+              {
+                "btn": "Dm",
+                "slot": 0,
+                "sound": "Em7",
+                "orig": "Em7",
+                "quality": "min"
+              }
+            ],
+            [
+              {
+                "btn": "G",
+                "slot": 0,
+                "sound": "A7",
+                "orig": "A7",
+                "quality": "maj"
+              }
+            ]
+          ]
+        }
+      ],
+      "slots": [],
+      "stage": 3,
+      "percussiveReady": false,
+      "stroke": "↓ · ↓↑ · ↓↑ (68bpm, 느린 8분)",
+      "percussive": "",
+      "why": "D·Gm·F♯m·Gmaj7·D/F♯·Em7·A7이 섞여 3단계 곡. 7th·maj7과 전위는 슬롯으로 넘기고, D·Gm·Em은 원터치로 먼저 잡는다.",
+      "coverage": {
+        "mapped": 7,
+        "total": 7,
+        "unmapped": 0
+      },
+      "basis": "코드표 순서를 4박 마디 카드로 정리한 연습용 배치입니다. 원곡의 세부 마디 배치와 다를 수 있습니다.",
+      "evidence": [
+        {
+          "label": "멜로디/피아노 악보(악보바다)",
+          "url": "https://www.akbobada.com/musicDetail.html?musicID=98159&partTabGubun=R",
+          "note": "유료 악보 · 원문 복제 없이 열람 링크만"
+        },
+        {
+          "label": "자동 코드(Chordify)",
+          "url": "https://chordify.net/chords/parc-jae-jung-bagjaejeong-sullyoon-nmixx-jigeum-idaeloman-always-color-coded-lyrics-lyritix-lyritix",
+          "note": "D → Gm → F♯m → Gmaj7 → D/F♯ → Em7 → A7 후보"
+        },
+        {
+          "label": "악보 정보(뮤직스코어)",
+          "url": "https://www.musicscore.co.kr/m_score/score_detail.asp?s_rndidx=ELpW7i4S48j20260225101903",
+          "note": "박재정 × 설윤 지금 이대로만"
+        }
+      ],
+      "note": "원곡 가수·키·BPM·코드 후보만 확인한 부분 확인 상태입니다. 코드는 공개 자동분석/코드표 후보를 4박 마디 카드로 정리한 연습용 배치라 원곡의 세부 마디·박자와 다를 수 있고, 청음/정식 악보 대조 전입니다. 악보 원문은 복제하지 않고 구매·열람 링크만 연결합니다. 전조와 복잡한 코드가 많아 단순 4코드로 확정하지 않았습니다. 확인된 코드군만 순서대로 적었고 마디 배치는 검수 전입니다."
+    },
+    "timeSignature": "미확인",
+    "chartStage": 3
   },
   {
     "id": "playlist-162",
@@ -31828,7 +33490,7 @@
           "slot": 1,
           "chord": "Dbm",
           "orig": "C#m",
-          "alt": "C#m7(x46454)",
+          "alt": "Dbm(x46664) 4프렛 바레",
           "why": "원터치 10버튼에 없는 코드(바레/전위 등)"
         }
       ],
@@ -32099,7 +33761,7 @@
     "videoUrl": "https://www.youtube.com/watch?v=ehJZ4QZPqtw",
     "videoStatus": "공개 영상",
     "audioUrl": "",
-    "key": "미확정",
+    "key": "미확인",
     "maleKey": "미확정",
     "bpm": null,
     "chords": "",
@@ -32116,12 +33778,47 @@
     "notes": "원본 재생목록 #173 · 영상 ID ehJZ4QZPqtw · 채널 jehoda · 유튜브 제목 그대로. 가수 필드는 채널명을 표기했으며 원곡 가수·코드·남자 키·BPM은 확인 전이라 비움.",
     "setlist": false,
     "chartStatus": "pending",
-    "chartNote": "코드·키·박자 확인 전 — 검수 대기",
+    "chartNote": "검수 대기 — jehoda ‘괜히 보고 싶은 사실이 조금은 다행인 시간’이 2026년 앨범 10번 트랙으로 실려 있는 것까지 확인했습니다. 공식 코드·BPM·악보는 찾지 못해 악보를 만들지 않았습니다.",
     "playlistKind": "music",
-    "categoryNote": "jehoda 자작곡",
+    "categoryNote": "jehoda 곡(2026년 앨범 10번 트랙)",
     "workTitle": "괜히 보고 싶은 사실이 조금은 다행인 시간",
     "workArtist": "jehoda",
-    "category": "pending"
+    "category": "pending",
+    "chart": {
+      "status": "pending",
+      "timeSignature": "미확인",
+      "timeNote": "",
+      "bpm": 0,
+      "bpmNote": "",
+      "originalKey": "미확인",
+      "maleKey": "",
+      "maleShift": 0,
+      "capo": null,
+      "formButton": "",
+      "formKey": "",
+      "formText": "",
+      "sections": [],
+      "slots": [],
+      "stage": 3,
+      "stroke": "",
+      "percussive": "",
+      "why": "",
+      "coverage": {
+        "mapped": 0,
+        "total": 0,
+        "unmapped": 0
+      },
+      "basis": "",
+      "note": "검수 대기 — jehoda ‘괜히 보고 싶은 사실이 조금은 다행인 시간’이 2026년 앨범 10번 트랙으로 실려 있는 것까지 확인했습니다. 공식 코드·BPM·악보는 찾지 못해 악보를 만들지 않았습니다.",
+      "evidence": [
+        {
+          "label": "앨범 정보(Spotify)",
+          "url": "https://open.spotify.com/album/1h2AypWki5S8i3PnmC0tqJ",
+          "note": "2026년 앨범 10번 트랙 · jehoda"
+        }
+      ]
+    },
+    "timeSignature": "미확인"
   },
   {
     "id": "playlist-174",
@@ -33424,7 +35121,7 @@
           "slot": 3,
           "chord": "Ebm",
           "orig": "Ebm",
-          "alt": "",
+          "alt": "Ebm7(x68676) 6프렛 바레",
           "why": "원터치 10버튼에 없는 코드(바레/전위 등)"
         }
       ],
@@ -33664,7 +35361,7 @@
           "slot": 3,
           "chord": "Ebm",
           "orig": "Ebm",
-          "alt": "",
+          "alt": "Ebm7(x68676) 6프렛 바레",
           "why": "원터치 10버튼에 없는 코드(바레/전위 등)"
         }
       ],
@@ -34611,7 +36308,7 @@
     "videoUrl": "https://www.youtube.com/watch?v=uC6GQlAFR_M",
     "videoStatus": "공개 영상",
     "audioUrl": "",
-    "key": "미확정",
+    "key": "미확인",
     "maleKey": "미확정",
     "bpm": null,
     "chords": "",
@@ -34628,12 +36325,47 @@
     "notes": "원본 재생목록 #186 · 영상 ID uC6GQlAFR_M · 채널 OGAM Entertainment · 유튜브 제목 그대로. 가수 필드는 채널명을 표기했으며 원곡 가수·코드·남자 키·BPM은 확인 전이라 비움.",
     "setlist": false,
     "chartStatus": "pending",
-    "chartNote": "코드·키·박자 확인 전 — 검수 대기",
+    "chartNote": "검수 대기 — 정영원 ‘오늘도 날씨는 흐리네’가 2025-07-17 발매된 곡임을 확인했습니다. 공식 피아노/기타 코드 악보와 BPM은 확인하지 못해 악보를 만들지 않았습니다.",
     "playlistKind": "music",
     "categoryNote": "정영원 원곡",
     "workTitle": "오늘도 날씨는 흐리네",
     "workArtist": "정영원",
-    "category": "pending"
+    "category": "pending",
+    "chart": {
+      "status": "pending",
+      "timeSignature": "미확인",
+      "timeNote": "",
+      "bpm": 0,
+      "bpmNote": "",
+      "originalKey": "미확인",
+      "maleKey": "",
+      "maleShift": 0,
+      "capo": null,
+      "formButton": "",
+      "formKey": "",
+      "formText": "",
+      "sections": [],
+      "slots": [],
+      "stage": 3,
+      "stroke": "",
+      "percussive": "",
+      "why": "",
+      "coverage": {
+        "mapped": 0,
+        "total": 0,
+        "unmapped": 0
+      },
+      "basis": "",
+      "note": "검수 대기 — 정영원 ‘오늘도 날씨는 흐리네’가 2025-07-17 발매된 곡임을 확인했습니다. 공식 피아노/기타 코드 악보와 BPM은 확인하지 못해 악보를 만들지 않았습니다.",
+      "evidence": [
+        {
+          "label": "곡 식별(Bugs)",
+          "url": "https://music.bugs.co.kr/track/33608104",
+          "note": "정영원 오늘도 날씨는 흐리네 · 2025-07-17 발매"
+        }
+      ]
+    },
+    "timeSignature": "미확인"
   },
   {
     "id": "playlist-187",
@@ -35101,7 +36833,7 @@
     "videoUrl": "https://www.youtube.com/watch?v=Wqwitfs1LSY",
     "videoStatus": "공개 영상",
     "audioUrl": "",
-    "key": "미확정",
+    "key": "미확인",
     "maleKey": "미확정",
     "bpm": null,
     "chords": "",
@@ -35118,12 +36850,47 @@
     "notes": "원본 재생목록 #190 · 영상 ID Wqwitfs1LSY · 채널 못됐다사랑 · 유튜브 제목 그대로. 가수 필드는 채널명을 표기했으며 원곡 가수·코드·남자 키·BPM은 확인 전이라 비움.",
     "setlist": false,
     "chartStatus": "pending",
-    "chartNote": "코드·키·박자 확인 전 — 검수 대기",
+    "chartNote": "검수 대기 — 임승부 ‘어떤이별’이 2017년 발표곡(3:24)임을 확인했습니다. BPM·박자·악보는 확인하지 못해 악보를 만들지 않았습니다.",
     "playlistKind": "music",
     "categoryNote": "임승부 원곡",
     "workTitle": "어떤이별",
     "workArtist": "임승부",
-    "category": "pending"
+    "category": "pending",
+    "chart": {
+      "status": "pending",
+      "timeSignature": "미확인",
+      "timeNote": "",
+      "bpm": 0,
+      "bpmNote": "",
+      "originalKey": "미확인",
+      "maleKey": "",
+      "maleShift": 0,
+      "capo": null,
+      "formButton": "",
+      "formKey": "",
+      "formText": "",
+      "sections": [],
+      "slots": [],
+      "stage": 3,
+      "stroke": "",
+      "percussive": "",
+      "why": "",
+      "coverage": {
+        "mapped": 0,
+        "total": 0,
+        "unmapped": 0
+      },
+      "basis": "",
+      "note": "검수 대기 — 임승부 ‘어떤이별’이 2017년 발표곡(3:24)임을 확인했습니다. BPM·박자·악보는 확인하지 못해 악보를 만들지 않았습니다.",
+      "evidence": [
+        {
+          "label": "곡 식별(Bugs)",
+          "url": "https://music.bugs.co.kr/track/30768854",
+          "note": "임승부 어떤이별 · 3:24"
+        }
+      ]
+    },
+    "timeSignature": "미확인"
   },
   {
     "id": "playlist-191",
@@ -36606,7 +38373,7 @@
           "slot": 1,
           "chord": "Ebm",
           "orig": "Ebm",
-          "alt": "",
+          "alt": "Ebm7(x68676) 6프렛 바레",
           "why": "원터치 10버튼에 없는 코드(바레/전위 등)"
         }
       ],
@@ -36922,8 +38689,8 @@
     "videoUrl": "https://www.youtube.com/watch?v=BAKpv0FwmXM",
     "videoStatus": "공개 영상",
     "audioUrl": "",
-    "key": "미확정",
-    "maleKey": "미확정",
+    "key": "A",
+    "maleKey": "A",
     "bpm": null,
     "chords": "",
     "chordStatus": "미확인",
@@ -36939,12 +38706,52 @@
     "notes": "원본 재생목록 #205 · 영상 ID BAKpv0FwmXM · 채널 gamtree · 유튜브 제목 그대로. 가수 필드는 채널명을 표기했으며 원곡 가수·코드·남자 키·BPM은 확인 전이라 비움.",
     "setlist": false,
     "chartStatus": "pending",
-    "chartNote": "코드·키·박자 확인 전 — 검수 대기",
+    "chartNote": "검수 대기 — 뮤직스코어 멜로디 1단 악보의 A키 표기까지만 확인했습니다. BPM과 코드 진행은 확인하지 못해 악보를 만들지 않았고, 구매 악보 인쇄는 윈도우 PC에서만 가능합니다. 연결 영상은 유영우·허각 듀엣 무대입니다.",
     "playlistKind": "music",
-    "categoryNote": "유영우 X 허각",
+    "categoryNote": "허각 곡 · 유영우·허각 듀엣 무대",
     "workTitle": "안녕 너희",
-    "workArtist": "유영우 X 허각",
-    "category": "pending"
+    "workArtist": "허각",
+    "category": "pending",
+    "chart": {
+      "status": "pending",
+      "timeSignature": "미확인",
+      "timeNote": "",
+      "bpm": 0,
+      "bpmNote": "",
+      "originalKey": "A",
+      "maleKey": "A",
+      "maleShift": 0,
+      "capo": null,
+      "formButton": "",
+      "formKey": "",
+      "formText": "",
+      "sections": [],
+      "slots": [],
+      "stage": 3,
+      "stroke": "",
+      "percussive": "",
+      "why": "",
+      "coverage": {
+        "mapped": 0,
+        "total": 0,
+        "unmapped": 0
+      },
+      "basis": "",
+      "note": "검수 대기 — 뮤직스코어 멜로디 1단 악보의 A키 표기까지만 확인했습니다. BPM과 코드 진행은 확인하지 못해 악보를 만들지 않았고, 구매 악보 인쇄는 윈도우 PC에서만 가능합니다. 연결 영상은 유영우·허각 듀엣 무대입니다.",
+      "evidence": [
+        {
+          "label": "멜로디 악보(뮤직스코어)",
+          "url": "https://www.musicscore.co.kr/m_score/score_detail.asp?s_rndidx=dNq6QnN2026111910507",
+          "note": "A키 표기 · 500원 · 원문 복제 없이 열람 링크만"
+        },
+        {
+          "label": "곡 정보(Melon)",
+          "url": "https://www.melon.com/song/detail.htm?songId=603977744",
+          "note": "허각 안녕 너희"
+        }
+      ]
+    },
+    "timeSignature": "미확인"
   },
   {
     "id": "playlist-206",
@@ -36957,7 +38764,7 @@
     "videoUrl": "https://www.youtube.com/watch?v=RDYbQZhj2IE",
     "videoStatus": "공개 영상",
     "audioUrl": "",
-    "key": "미확정",
+    "key": "미확인",
     "maleKey": "미확정",
     "bpm": null,
     "chords": "",
@@ -36974,12 +38781,57 @@
     "notes": "원본 재생목록 #206 · 영상 ID RDYbQZhj2IE · 채널 gamtree · 유튜브 제목 그대로. 가수 필드는 채널명을 표기했으며 원곡 가수·코드·남자 키·BPM은 확인 전이라 비움.",
     "setlist": false,
     "chartStatus": "pending",
-    "chartNote": "코드·키·박자 확인 전 — 검수 대기",
+    "chartNote": "검수 대기 — 허각 ‘나를 사랑하지 말아요’(2026)의 멜로디 악보와 자동분석 코드 페이지까지만 확인했습니다. 원키는 확인하지 못했고 F키 편곡 악보만 있어 그 키를 원키로 적지 않았습니다. ‘나를 잊지 말아요’와는 다른 곡입니다.",
     "playlistKind": "music",
-    "categoryNote": "유영우 X 허각",
+    "categoryNote": "허각 곡 · 유영우·허각 듀엣 무대",
     "workTitle": "나를 사랑하지 말아요",
-    "workArtist": "유영우 X 허각",
-    "category": "pending"
+    "workArtist": "허각",
+    "category": "pending",
+    "chart": {
+      "status": "pending",
+      "timeSignature": "미확인",
+      "timeNote": "",
+      "bpm": 0,
+      "bpmNote": "",
+      "originalKey": "미확인",
+      "maleKey": "",
+      "maleShift": 0,
+      "capo": null,
+      "formButton": "",
+      "formKey": "",
+      "formText": "",
+      "sections": [],
+      "slots": [],
+      "stage": 3,
+      "stroke": "",
+      "percussive": "",
+      "why": "",
+      "coverage": {
+        "mapped": 0,
+        "total": 0,
+        "unmapped": 0
+      },
+      "basis": "",
+      "note": "검수 대기 — 허각 ‘나를 사랑하지 말아요’(2026)의 멜로디 악보와 자동분석 코드 페이지까지만 확인했습니다. 원키는 확인하지 못했고 F키 편곡 악보만 있어 그 키를 원키로 적지 않았습니다. ‘나를 잊지 말아요’와는 다른 곡입니다.",
+      "evidence": [
+        {
+          "label": "멜로디 악보(뮤직스코어)",
+          "url": "https://www.musicscore.co.kr/m_score/score_detail.asp?s_rndidx=onR7fYn82026103010041",
+          "note": "F키 편곡 악보 · 원키 아님 · 원문 복제 없이 열람 링크만"
+        },
+        {
+          "label": "자동 코드(Chordify)",
+          "url": "https://chordify.net/chords/heogag-naleul-salanghaji-mal-ayo-lyrics-gasa-nn-music",
+          "note": "코드 페이지 있음 · 진행 미확인"
+        },
+        {
+          "label": "곡 식별(Bugs)",
+          "url": "https://music.bugs.co.kr/track/6514253",
+          "note": "허각 나를 사랑하지 말아요 (2026)"
+        }
+      ]
+    },
+    "timeSignature": "미확인"
   },
   {
     "id": "playlist-207",
@@ -37137,7 +38989,7 @@
           "slot": 1,
           "chord": "Ebm",
           "orig": "Ebm",
-          "alt": "",
+          "alt": "Ebm7(x68676) 6프렛 바레",
           "why": "원터치 10버튼에 없는 코드(바레/전위 등)"
         }
       ],
