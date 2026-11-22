@@ -12,7 +12,7 @@
   "additionalRecommendedSongCount": 1,
   "originalPlaylist": "https://www.youtube.com/playlist?list=PLdOy20BJp9XElDHDvAJI6mUG48BmfDX-y",
   "playlistId": "PLdOy20BJp9XElDHDvAJI6mUG48BmfDX-y",
-  "seedVersion": 8,
+  "seedVersion": 9,
   "playlistCollectedCount": 210,
   "playlistPublicVideoCount": 168,
   "playlistInaccessibleVideoCount": 42,
@@ -20,26 +20,20 @@
   "songEntryCount": 200,
   "chartVersion": "2026-11-22",
   "chartReadyCount": 124,
-  "chartPartialCount": 26,
-  "chartPendingCount": 10,
-  "chartDisclosure": "남자키는 남성 원곡이면 원키 그대로(이조 0반음), 여성 원곡이면 -5반음으로 잡고 그 목표 키를 AeroBand 원터치 버튼에 맞추도록 카포를 골랐습니다. 남자키·박자·BPM·코드 진행은 2026-11-22 웹 검색으로 확인한 코드표·악보 메타데이터와, 주성 님이 직접 올린 음원 2곳의 오디오 분석에서 옮겼습니다. 악보 준비 완료 124곡(서로 다른 곡 123곡), 부분 확인 26곡, 검수 대기 10곡, 비음악·참고 영상 39개, 자작곡 1개. 마디 배치는 코드표 순서를 4박 카드로 정리한 연습용이며, 원곡 세부 마디와 다를 수 있습니다. 음원 분석 곡(#108 · #172)과 자동분석 후보 곡은 청음 검수를 권장합니다. 키·코드가 확인되지 않은 곡은 추측값을 넣지 않고 검수 대기로 두되, 확인된 BPM·키와 근거 링크만 곡 정보 화면에 남겼습니다. 원터치 버튼에 없는 코드는 SimplifyChord 슬롯(최대 8개)으로 안내합니다.",
+  "chartPartialCount": 27,
+  "chartPendingCount": 9,
+  "chartDisclosure": "남자키는 남성 원곡이면 원키 그대로(이조 0반음), 여성 원곡이면 -5반음으로 잡고 그 목표 키를 AeroBand 원터치 버튼에 맞추도록 카포를 골랐습니다. 남자키·박자·BPM·코드 진행은 2026-11-22 웹 검색으로 확인한 코드표·악보 메타데이터와, 주성 님이 직접 올린 음원 3곳(#108 · #172 · #202 이기찬 ‘닮은 사람’ MR)의 오디오 분석에서 옮겼습니다. 악보 준비 완료 124곡(서로 다른 곡 124곡), 부분 확인 27곡, 검수 대기 9곡, 비음악·참고 영상 39개, 자작곡 1개. 마디 배치는 코드표 순서를 4박 카드로 정리한 연습용이며, 원곡 세부 마디와 다를 수 있습니다. 음원 분석 곡(#108 · #172 · #202)과 자동분석 후보 곡은 청음 검수를 권장합니다. 키·코드가 확인되지 않은 곡은 추측값을 넣지 않고 검수 대기로 두되, 확인된 BPM·키와 근거 링크만 곡 정보 화면에 남겼습니다. 원터치 버튼에 없는 코드는 SimplifyChord 슬롯(최대 8개)으로 안내합니다.",
   "nonMusicCount": 39,
   "originalWorkCount": 1,
-  "uniqueChartSongCount": 123,
+  "uniqueChartSongCount": 124,
   "categoryCounts": {
     "chart": 124,
-    "partial": 26,
-    "pending": 10,
+    "partial": 27,
+    "pending": 9,
     "reference": 39,
     "original": 1
   },
   "originalWorks": [
-    {
-      "id": "verified-024",
-      "title": "닮은사람",
-      "artist": "이기찬",
-      "note": ""
-    },
     {
       "id": "playlist-025",
       "title": "될 대로 되라고 해",

@@ -132,7 +132,7 @@ for s in songs:
         assert not s['videoUrl'], s['id']
 
 # 10) 메타 집계
-assert meta['seedVersion'] == 8
+assert meta['seedVersion'] == 9
 assert meta['playlistCollectedCount'] == 210
 assert meta['playlistPublicVideoCount'] == 168
 assert meta['playlistInaccessibleVideoCount'] == 42
@@ -211,7 +211,7 @@ assert meta['chartDisclosure']
 # 11-1) 검수 대기 27꾸 자료(2026-11-22) 반영 확인 — #77(9번)·#139(15번) 포함
 GROUPS = {
     # 27꾸 조사표 inputNumber → seed id, 상태
-    1: ('verified-004', 'partial'), 2: ('verified-024', 'pending'),
+    1: ('verified-004', 'partial'), 2: ('verified-024', 'partial'),
     3: ('playlist-001', 'partial'), 4: ('playlist-016', 'partial'),
     5: ('playlist-024', 'partial'), 6: ('playlist-025', 'pending'),
     7: ('playlist-034', 'partial'), 8: ('playlist-038', 'partial'),
@@ -238,6 +238,11 @@ for n, (sid, status) in GROUPS.items():
         assert c.get('note') and s.get('chartNote'), (n, sid)
 # 확인된 수치·정정
 assert by_id['verified-004']['chart']['originalKey'] == 'Ebm' and by_id['verified-004']['chart']['bpm'] == 83
+# 이기찬 ‘닮은 사람’ MR 오디오 실측(2026-11-22): 4/4 · 64bpm · 원키 D · C폼 카포 2
+_n24 = by_id['verified-024']['chart']
+assert (_n24['originalKey'], _n24['maleKey'], _n24['bpm'], _n24['timeSignature']) == ('D', 'D', 64, '4/4')
+assert _n24['capo'] == 2 and _n24['formText'] == 'C폼 · Capo +2' and _n24['status'] == 'partial'
+assert len(_n24['sections']) == 9 and len(_n24['slots']) == 5
 assert by_id['playlist-077']['workArtist'].startswith('BIG Naughty') and '권진아' not in by_id['playlist-077']['workArtist']
 assert by_id['playlist-139']['workArtist'] == '나윤권'
 assert by_id['playlist-126']['chart']['capo'] == 4 and by_id['playlist-126']['chart']['originalKey'] == 'B'
@@ -248,8 +253,8 @@ assert by_id['playlist-205']['chart']['originalKey'] == 'A'
 assert by_id['playlist-038']['chart']['maleKey'] == by_id['playlist-124']['chart']['maleKey'] == 'A'
 assert by_id['playlist-153']['chart']['sections'] == by_id['playlist-154']['chart']['sections']
 assert by_id['playlist-072']['category'] == 'original' and by_id['playlist-072']['chartStatus'] == 'original'
-assert len([s for s in songs if s['chartStatus'] == 'partial']) == 26
-assert len([s for s in songs if s['chartStatus'] == 'pending']) == 10
+assert len([s for s in songs if s['chartStatus'] == 'partial']) == 27
+assert len([s for s in songs if s['chartStatus'] == 'pending']) == 9
 # 남자키는 원곡에서 0~6반음 내려간 값이어야 한다
 for s in ready:
     c = s['chart']

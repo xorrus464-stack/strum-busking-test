@@ -7936,12 +7936,12 @@
     "verification": "user-verified",
     "videoUrl": "https://www.youtube.com/watch?v=JIEuvqny0yc",
     "audioUrl": "",
-    "key": "미확인",
-    "maleKey": "미확정",
-    "bpm": null,
-    "chords": "",
-    "chordStatus": "미확인",
-    "strumming": "",
+    "key": "D",
+    "maleKey": "D",
+    "bpm": 64,
+    "chords": "D / Bm B7 / Em D / C / A / D F#m / G F#m / Em A7 / Am B7 / Em D/F# / G D/F# / Em G / A / F#m G / A D / G Em7 / G A / A / A D/F# / Bm B7 / B7 Em7 / A Am / B7 Em7 / F#m G / G Em7 / A7 / Bm D / G A / Bm C#m / D G / Em7 C / A / D / Bm B7 / Em7 A / C B7 / Em7 D / G / Em A / G A / Bb A / Gm F#m / Em / A / D A / D / Bm / Em A / F#m Bm / Em F#m / G D / Em F#m / Bm A / A G / D A / A D / D / D A",
+    "chordStatus": "부분 확인",
+    "strumming": "♩=64 · 한 마디 4박에 코드 2개(2박씩) — ↓ · ↓↑ 로 시작해 후렴은 8분으로 채운다",
     "difficultyEasy": "미확인",
     "difficultyStandard": "미확인",
     "vocalDifficulty": "미확인",
@@ -7950,54 +7950,973 @@
     "notes": "공개 영상 확인(2026-11-22): 재생목록 #202 「X에서 난리 난 엑디즈 주연 '닮은 사람' 라이브 #이기찬 #주연」 (JIEuvqny0yc) — 기존 원본 번호 #203과 1 차이.",
     "setlist": false,
     "videoStatus": "공개 영상(원곡)",
-    "chartStatus": "pending",
-    "chartNote": "검수 대기 — 이기찬 ‘닮은 사람’의 유료 멜로디 악보·자동분석 코드 페이지·곡 정보까지만 확인했습니다. 원키·BPM·코드 진행 수치를 확인하지 못해 악보를 만들지 않았습니다(추측값 금지). 테이의 동명이곡과 혼동하지 않습니다.",
-    "category": "pending",
+    "chartStatus": "partial",
+    "chartNote": "MR 오디오 분석 기반 — 주성 님이 올린 TJ노래방 ‘멜로디제거’ MR 화면 녹화(3분 37초)에서 직접 뽑은 값입니다. 4/4, BPM 64, 원키 D는 화면의 ‘현재음정 남성 D’ 표기와 오디오 실측(킥은 1박과 3박, 스네어는 2박과 4박, 한 마디 3.75초)이 일치합니다. 코드는 8분 격자 크로마와 저역 근음, 박별 스펙트럼 피크를 함께 보고 옮긴 초안이라, 마디 안 패스 코드와 7th/sus 유무는 청음 확인이 필요합니다. 이기찬 2025 리메이크(작사 조은희, 작곡 조우진)는 테이 2004 원곡의 리메이크이고, TJ 화면에도 원곡이 tei로 표기됩니다(테이 원곡 악보 키는 E♭). 마지막 후렴(2:45~)은 반음 올라가 E♭로 조바꿈하므로, 악보는 같은 코드 모양으로 칠 수 있게 D 기준으로 옮겨 적었습니다 — 원키로 부르려면 Capo를 한 칸 더 올리세요. 악보 원문은 복제하지 않고 열람 링크만 연결합니다.",
+    "category": "partial",
     "chart": {
-      "status": "pending",
-      "timeSignature": "미확인",
-      "timeNote": "",
-      "bpm": 0,
-      "bpmNote": "",
-      "originalKey": "미확인",
-      "maleKey": "",
+      "status": "partial",
+      "timeSignature": "4/4",
+      "timeNote": "MR 오디오 실측 — 0.619초부터 3.75초 마디(킥 1·3박, 스네어 2·4박)",
+      "bpm": 64,
+      "bpmNote": "오디오 실측 ♩≈64(박 0.9375초) · 하이햇 8분 · 128 더블 표기 아님",
+      "originalKey": "D",
+      "maleKey": "D",
       "maleShift": 0,
-      "capo": null,
-      "formButton": "",
-      "formKey": "",
-      "formText": "",
-      "sections": [],
-      "slots": [],
+      "capo": 2,
+      "formButton": "C",
+      "formKey": "D",
+      "formText": "C폼 · Capo +2",
+      "sections": [
+        {
+          "name": "전주 · 0:00",
+          "bars": [
+            [
+              {
+                "btn": "C",
+                "slot": 0,
+                "sound": "D",
+                "orig": "D",
+                "quality": "maj"
+              }
+            ],
+            [
+              {
+                "btn": null,
+                "slot": 1,
+                "sound": "Bm",
+                "orig": "Bm",
+                "quality": "min"
+              },
+              {
+                "btn": null,
+                "slot": 2,
+                "sound": "B7",
+                "orig": "B7",
+                "quality": "maj"
+              }
+            ],
+            [
+              {
+                "btn": "Dm",
+                "slot": 0,
+                "sound": "Em",
+                "orig": "Em",
+                "quality": "min"
+              },
+              {
+                "btn": "C",
+                "slot": 0,
+                "sound": "D",
+                "orig": "D",
+                "quality": "maj"
+              }
+            ]
+          ]
+        },
+        {
+          "name": "1절 · 0:12",
+          "bars": [
+            [
+              {
+                "btn": null,
+                "slot": 3,
+                "sound": "C",
+                "orig": "C",
+                "quality": "maj"
+              }
+            ],
+            [
+              {
+                "btn": "G",
+                "slot": 0,
+                "sound": "A",
+                "orig": "A",
+                "quality": "maj"
+              }
+            ],
+            [
+              {
+                "btn": "C",
+                "slot": 0,
+                "sound": "D",
+                "orig": "D",
+                "quality": "maj"
+              },
+              {
+                "btn": "Em",
+                "slot": 0,
+                "sound": "F#m",
+                "orig": "F#m",
+                "quality": "min"
+              }
+            ],
+            [
+              {
+                "btn": "F",
+                "slot": 0,
+                "sound": "G",
+                "orig": "G",
+                "quality": "maj"
+              },
+              {
+                "btn": "Em",
+                "slot": 0,
+                "sound": "F#m",
+                "orig": "F#m",
+                "quality": "min"
+              }
+            ],
+            [
+              {
+                "btn": "Dm",
+                "slot": 0,
+                "sound": "Em",
+                "orig": "Em",
+                "quality": "min"
+              },
+              {
+                "btn": "G",
+                "slot": 0,
+                "sound": "A7",
+                "orig": "A7",
+                "quality": "maj"
+              }
+            ],
+            [
+              {
+                "btn": "Gm",
+                "slot": 0,
+                "sound": "Am",
+                "orig": "Am",
+                "quality": "min"
+              },
+              {
+                "btn": null,
+                "slot": 2,
+                "sound": "B7",
+                "orig": "B7",
+                "quality": "maj"
+              }
+            ],
+            [
+              {
+                "btn": "Dm",
+                "slot": 0,
+                "sound": "Em",
+                "orig": "Em",
+                "quality": "min"
+              },
+              {
+                "btn": "C",
+                "slot": 0,
+                "sound": "D/F#",
+                "orig": "D/F#",
+                "quality": "maj"
+              }
+            ],
+            [
+              {
+                "btn": "F",
+                "slot": 0,
+                "sound": "G",
+                "orig": "G",
+                "quality": "maj"
+              },
+              {
+                "btn": "C",
+                "slot": 0,
+                "sound": "D/F#",
+                "orig": "D/F#",
+                "quality": "maj"
+              }
+            ]
+          ]
+        },
+        {
+          "name": "1절 후반 · 0:42",
+          "bars": [
+            [
+              {
+                "btn": "Dm",
+                "slot": 0,
+                "sound": "Em",
+                "orig": "Em",
+                "quality": "min"
+              },
+              {
+                "btn": "F",
+                "slot": 0,
+                "sound": "G",
+                "orig": "G",
+                "quality": "maj"
+              }
+            ],
+            [
+              {
+                "btn": "G",
+                "slot": 0,
+                "sound": "A",
+                "orig": "A",
+                "quality": "maj"
+              }
+            ],
+            [
+              {
+                "btn": "Em",
+                "slot": 0,
+                "sound": "F#m",
+                "orig": "F#m",
+                "quality": "min"
+              },
+              {
+                "btn": "F",
+                "slot": 0,
+                "sound": "G",
+                "orig": "G",
+                "quality": "maj"
+              }
+            ],
+            [
+              {
+                "btn": "G",
+                "slot": 0,
+                "sound": "A",
+                "orig": "A",
+                "quality": "maj"
+              },
+              {
+                "btn": "C",
+                "slot": 0,
+                "sound": "D",
+                "orig": "D",
+                "quality": "maj"
+              }
+            ],
+            [
+              {
+                "btn": "F",
+                "slot": 0,
+                "sound": "G",
+                "orig": "G",
+                "quality": "maj"
+              },
+              {
+                "btn": "Dm",
+                "slot": 0,
+                "sound": "Em7",
+                "orig": "Em7",
+                "quality": "min"
+              }
+            ],
+            [
+              {
+                "btn": "F",
+                "slot": 0,
+                "sound": "G",
+                "orig": "G",
+                "quality": "maj"
+              },
+              {
+                "btn": "G",
+                "slot": 0,
+                "sound": "A",
+                "orig": "A",
+                "quality": "maj"
+              }
+            ],
+            [
+              {
+                "btn": "G",
+                "slot": 0,
+                "sound": "A",
+                "orig": "A",
+                "quality": "maj"
+              }
+            ]
+          ]
+        },
+        {
+          "name": "후렴 · 1:08",
+          "bars": [
+            [
+              {
+                "btn": "G",
+                "slot": 0,
+                "sound": "A",
+                "orig": "A",
+                "quality": "maj"
+              },
+              {
+                "btn": "C",
+                "slot": 0,
+                "sound": "D/F#",
+                "orig": "D/F#",
+                "quality": "maj"
+              }
+            ],
+            [
+              {
+                "btn": null,
+                "slot": 1,
+                "sound": "Bm",
+                "orig": "Bm",
+                "quality": "min"
+              },
+              {
+                "btn": null,
+                "slot": 2,
+                "sound": "B7",
+                "orig": "B7",
+                "quality": "maj"
+              }
+            ],
+            [
+              {
+                "btn": null,
+                "slot": 2,
+                "sound": "B7",
+                "orig": "B7",
+                "quality": "maj"
+              },
+              {
+                "btn": "Dm",
+                "slot": 0,
+                "sound": "Em7",
+                "orig": "Em7",
+                "quality": "min"
+              }
+            ],
+            [
+              {
+                "btn": "G",
+                "slot": 0,
+                "sound": "A",
+                "orig": "A",
+                "quality": "maj"
+              },
+              {
+                "btn": "Gm",
+                "slot": 0,
+                "sound": "Am",
+                "orig": "Am",
+                "quality": "min"
+              }
+            ],
+            [
+              {
+                "btn": null,
+                "slot": 2,
+                "sound": "B7",
+                "orig": "B7",
+                "quality": "maj"
+              },
+              {
+                "btn": "Dm",
+                "slot": 0,
+                "sound": "Em7",
+                "orig": "Em7",
+                "quality": "min"
+              }
+            ],
+            [
+              {
+                "btn": "Em",
+                "slot": 0,
+                "sound": "F#m",
+                "orig": "F#m",
+                "quality": "min"
+              },
+              {
+                "btn": "F",
+                "slot": 0,
+                "sound": "G",
+                "orig": "G",
+                "quality": "maj"
+              }
+            ],
+            [
+              {
+                "btn": "F",
+                "slot": 0,
+                "sound": "G",
+                "orig": "G",
+                "quality": "maj"
+              },
+              {
+                "btn": "Dm",
+                "slot": 0,
+                "sound": "Em7",
+                "orig": "Em7",
+                "quality": "min"
+              }
+            ],
+            [
+              {
+                "btn": "G",
+                "slot": 0,
+                "sound": "A7",
+                "orig": "A7",
+                "quality": "maj"
+              }
+            ]
+          ]
+        },
+        {
+          "name": "2절 · 1:38",
+          "bars": [
+            [
+              {
+                "btn": null,
+                "slot": 1,
+                "sound": "Bm",
+                "orig": "Bm",
+                "quality": "min"
+              },
+              {
+                "btn": "C",
+                "slot": 0,
+                "sound": "D",
+                "orig": "D",
+                "quality": "maj"
+              }
+            ],
+            [
+              {
+                "btn": "F",
+                "slot": 0,
+                "sound": "G",
+                "orig": "G",
+                "quality": "maj"
+              },
+              {
+                "btn": "G",
+                "slot": 0,
+                "sound": "A",
+                "orig": "A",
+                "quality": "maj"
+              }
+            ],
+            [
+              {
+                "btn": null,
+                "slot": 1,
+                "sound": "Bm",
+                "orig": "Bm",
+                "quality": "min"
+              },
+              {
+                "btn": null,
+                "slot": 4,
+                "sound": "C#m",
+                "orig": "C#m",
+                "quality": "min"
+              }
+            ],
+            [
+              {
+                "btn": "C",
+                "slot": 0,
+                "sound": "D",
+                "orig": "D",
+                "quality": "maj"
+              },
+              {
+                "btn": "F",
+                "slot": 0,
+                "sound": "G",
+                "orig": "G",
+                "quality": "maj"
+              }
+            ]
+          ]
+        },
+        {
+          "name": "후렴 2 · 1:53",
+          "bars": [
+            [
+              {
+                "btn": "Dm",
+                "slot": 0,
+                "sound": "Em7",
+                "orig": "Em7",
+                "quality": "min"
+              },
+              {
+                "btn": null,
+                "slot": 3,
+                "sound": "C",
+                "orig": "C",
+                "quality": "maj"
+              }
+            ],
+            [
+              {
+                "btn": "G",
+                "slot": 0,
+                "sound": "A",
+                "orig": "A",
+                "quality": "maj"
+              }
+            ],
+            [
+              {
+                "btn": "C",
+                "slot": 0,
+                "sound": "D",
+                "orig": "D",
+                "quality": "maj"
+              }
+            ],
+            [
+              {
+                "btn": null,
+                "slot": 1,
+                "sound": "Bm",
+                "orig": "Bm",
+                "quality": "min"
+              },
+              {
+                "btn": null,
+                "slot": 2,
+                "sound": "B7",
+                "orig": "B7",
+                "quality": "maj"
+              }
+            ],
+            [
+              {
+                "btn": "Dm",
+                "slot": 0,
+                "sound": "Em7",
+                "orig": "Em7",
+                "quality": "min"
+              },
+              {
+                "btn": "G",
+                "slot": 0,
+                "sound": "A",
+                "orig": "A",
+                "quality": "maj"
+              }
+            ],
+            [
+              {
+                "btn": null,
+                "slot": 3,
+                "sound": "C",
+                "orig": "C",
+                "quality": "maj"
+              },
+              {
+                "btn": null,
+                "slot": 2,
+                "sound": "B7",
+                "orig": "B7",
+                "quality": "maj"
+              }
+            ],
+            [
+              {
+                "btn": "Dm",
+                "slot": 0,
+                "sound": "Em7",
+                "orig": "Em7",
+                "quality": "min"
+              },
+              {
+                "btn": "C",
+                "slot": 0,
+                "sound": "D",
+                "orig": "D",
+                "quality": "maj"
+              }
+            ],
+            [
+              {
+                "btn": "F",
+                "slot": 0,
+                "sound": "G",
+                "orig": "G",
+                "quality": "maj"
+              }
+            ]
+          ]
+        },
+        {
+          "name": "브릿지 · 2:23",
+          "bars": [
+            [
+              {
+                "btn": "Dm",
+                "slot": 0,
+                "sound": "Em",
+                "orig": "Em",
+                "quality": "min"
+              },
+              {
+                "btn": "G",
+                "slot": 0,
+                "sound": "A",
+                "orig": "A",
+                "quality": "maj"
+              }
+            ],
+            [
+              {
+                "btn": "F",
+                "slot": 0,
+                "sound": "G",
+                "orig": "G",
+                "quality": "maj"
+              },
+              {
+                "btn": "G",
+                "slot": 0,
+                "sound": "A",
+                "orig": "A",
+                "quality": "maj"
+              }
+            ],
+            [
+              {
+                "btn": null,
+                "slot": 5,
+                "sound": "Bb",
+                "orig": "Bb",
+                "quality": "maj"
+              },
+              {
+                "btn": "G",
+                "slot": 0,
+                "sound": "A",
+                "orig": "A",
+                "quality": "maj"
+              }
+            ],
+            [
+              {
+                "btn": "Fm",
+                "slot": 0,
+                "sound": "Gm",
+                "orig": "Gm",
+                "quality": "min"
+              },
+              {
+                "btn": "Em",
+                "slot": 0,
+                "sound": "F#m",
+                "orig": "F#m",
+                "quality": "min"
+              }
+            ],
+            [
+              {
+                "btn": "Dm",
+                "slot": 0,
+                "sound": "Em",
+                "orig": "Em",
+                "quality": "min"
+              }
+            ],
+            [
+              {
+                "btn": "G",
+                "slot": 0,
+                "sound": "A",
+                "orig": "A",
+                "quality": "maj"
+              }
+            ]
+          ]
+        },
+        {
+          "name": "마지막 후렴 · 2:45 (원곡 E♭→D)",
+          "bars": [
+            [
+              {
+                "btn": "C",
+                "slot": 0,
+                "sound": "D",
+                "orig": "D",
+                "quality": "maj"
+              },
+              {
+                "btn": "G",
+                "slot": 0,
+                "sound": "A",
+                "orig": "A",
+                "quality": "maj"
+              }
+            ],
+            [
+              {
+                "btn": "C",
+                "slot": 0,
+                "sound": "D",
+                "orig": "D",
+                "quality": "maj"
+              }
+            ],
+            [
+              {
+                "btn": null,
+                "slot": 1,
+                "sound": "Bm",
+                "orig": "Bm",
+                "quality": "min"
+              }
+            ],
+            [
+              {
+                "btn": "Dm",
+                "slot": 0,
+                "sound": "Em",
+                "orig": "Em",
+                "quality": "min"
+              },
+              {
+                "btn": "G",
+                "slot": 0,
+                "sound": "A",
+                "orig": "A",
+                "quality": "maj"
+              }
+            ],
+            [
+              {
+                "btn": "Em",
+                "slot": 0,
+                "sound": "F#m",
+                "orig": "F#m",
+                "quality": "min"
+              },
+              {
+                "btn": null,
+                "slot": 1,
+                "sound": "Bm",
+                "orig": "Bm",
+                "quality": "min"
+              }
+            ],
+            [
+              {
+                "btn": "Dm",
+                "slot": 0,
+                "sound": "Em",
+                "orig": "Em",
+                "quality": "min"
+              },
+              {
+                "btn": "Em",
+                "slot": 0,
+                "sound": "F#m",
+                "orig": "F#m",
+                "quality": "min"
+              }
+            ],
+            [
+              {
+                "btn": "F",
+                "slot": 0,
+                "sound": "G",
+                "orig": "G",
+                "quality": "maj"
+              },
+              {
+                "btn": "C",
+                "slot": 0,
+                "sound": "D",
+                "orig": "D",
+                "quality": "maj"
+              }
+            ],
+            [
+              {
+                "btn": "Dm",
+                "slot": 0,
+                "sound": "Em",
+                "orig": "Em",
+                "quality": "min"
+              },
+              {
+                "btn": "Em",
+                "slot": 0,
+                "sound": "F#m",
+                "orig": "F#m",
+                "quality": "min"
+              }
+            ],
+            [
+              {
+                "btn": null,
+                "slot": 1,
+                "sound": "Bm",
+                "orig": "Bm",
+                "quality": "min"
+              },
+              {
+                "btn": "G",
+                "slot": 0,
+                "sound": "A",
+                "orig": "A",
+                "quality": "maj"
+              }
+            ]
+          ]
+        },
+        {
+          "name": "아웃트로 · 3:19 (원곡 E♭→D)",
+          "bars": [
+            [
+              {
+                "btn": "G",
+                "slot": 0,
+                "sound": "A",
+                "orig": "A",
+                "quality": "maj"
+              },
+              {
+                "btn": "F",
+                "slot": 0,
+                "sound": "G",
+                "orig": "G",
+                "quality": "maj"
+              }
+            ],
+            [
+              {
+                "btn": "C",
+                "slot": 0,
+                "sound": "D",
+                "orig": "D",
+                "quality": "maj"
+              },
+              {
+                "btn": "G",
+                "slot": 0,
+                "sound": "A",
+                "orig": "A",
+                "quality": "maj"
+              }
+            ],
+            [
+              {
+                "btn": "G",
+                "slot": 0,
+                "sound": "A",
+                "orig": "A",
+                "quality": "maj"
+              },
+              {
+                "btn": "C",
+                "slot": 0,
+                "sound": "D",
+                "orig": "D",
+                "quality": "maj"
+              }
+            ],
+            [
+              {
+                "btn": "C",
+                "slot": 0,
+                "sound": "D",
+                "orig": "D",
+                "quality": "maj"
+              }
+            ],
+            [
+              {
+                "btn": "C",
+                "slot": 0,
+                "sound": "D",
+                "orig": "D",
+                "quality": "maj"
+              },
+              {
+                "btn": "G",
+                "slot": 0,
+                "sound": "A",
+                "orig": "A",
+                "quality": "maj"
+              }
+            ]
+          ]
+        }
+      ],
+      "slots": [
+        {
+          "slot": 1,
+          "chord": "Bm",
+          "orig": "Bm",
+          "alt": "Bm7(x20202)",
+          "why": "원터치 10버튼에 없는 코드(바레/전위 등)"
+        },
+        {
+          "slot": 2,
+          "chord": "B7",
+          "orig": "B7",
+          "alt": "B7(x21202)",
+          "why": "원터치 10버튼에 없는 코드(바레/전위 등)"
+        },
+        {
+          "slot": 3,
+          "chord": "C",
+          "orig": "C",
+          "alt": "",
+          "why": "원터치 10버튼에 없는 코드(바레/전위 등)"
+        },
+        {
+          "slot": 4,
+          "chord": "C#m",
+          "orig": "C#m",
+          "alt": "C#m7(x46454)",
+          "why": "원터치 10버튼에 없는 코드(바레/전위 등)"
+        },
+        {
+          "slot": 5,
+          "chord": "Bb",
+          "orig": "Bb",
+          "alt": "Bb(6프렛 바레) 또는 A# 약식",
+          "why": "원터치 10버튼에 없는 코드(바레/전위 등)"
+        }
+      ],
       "stage": 3,
-      "stroke": "",
-      "percussive": "",
-      "why": "",
+      "percussiveReady": true,
+      "stroke": "♩=64 · 한 마디 4박에 코드 2개(2박씩) — ↓ · ↓↑ 로 시작해 후렴은 8분으로 채운다",
+      "percussive": "후렴 2·4박에 오른손 손날로 바디를 톡(X). 브릿지 ‘다시 길들여지는 게’는 1박만 세게 치고 나머지는 컷.",
+      "why": "남성 원곡 D키라 원키 그대로(C폼 + 카포 2). C(♭VII)·B7·Am·B♭ 같은 색채 코드가 섞여 3단계 곡. 원터치 버튼으로 후렴(A·D·Em·G·F#m·Am)만 먼저 잡고, 슬롯에 Bm·B7·C를 넣어 1절로 넓힌다. 한 마디에 코드가 두 번 바뀌므로 64bpm에서 2박 단위로 손을 미리 옮기는 연습이 핵심.",
       "coverage": {
-        "mapped": 0,
-        "total": 0,
-        "unmapped": 0
+        "mapped": 10,
+        "total": 15,
+        "unmapped": 5
       },
-      "basis": "",
-      "note": "검수 대기 — 이기찬 ‘닮은 사람’의 유료 멜로디 악보·자동분석 코드 페이지·곡 정보까지만 확인했습니다. 원키·BPM·코드 진행 수치를 확인하지 못해 악보를 만들지 않았습니다(추측값 금지). 테이의 동명이곡과 혼동하지 않습니다.",
+      "basis": "MR 오디오 3분 37초에서 3.75초 마디 격자로 마디별 코드를 뽑아 4박 카드로 옮긴 초안입니다. 화면 표기 남성 D와 실측 D키, 킥 1박·3박, 스네어 2박·4박이 일치합니다. 마디 안 패스 코드와 7th/sus 유무는 청음으로 확인해 주세요.",
       "evidence": [
         {
-          "label": "멜로디 악보(뮤직스코어)",
-          "url": "https://www.musicscore.co.kr/m_score/score_detail.asp?s_rndidx=Rc5c4FgSZw5f2026111113341",
-          "note": "유료 멜로디 악보 · 원문 복제 없이 열람 링크만"
+          "label": "TJ노래방 수록 정보(닮은사람 · 이기찬)",
+          "url": "https://noraebang.app/songs/tj/87362",
+          "note": "TJ 87362 · 작곡 조우진 · 작사 조은희 — 분석한 MR 영상과 같은 반주"
         },
         {
-          "label": "코드 분석 페이지(Chordify)",
-          "url": "https://chordify.net/chords/igichan-dalm-eun-salam-kpop-lyrics-gasa-nn-music",
-          "note": "페이지는 있으나 코드/BPM 수치 미확인"
+          "label": "악보바다 테이 원곡 악보 메타",
+          "url": "https://www.akbobada.com/musicDetail.html?musicID=12225",
+          "note": "테이 2004 원곡 · 원키 E♭(내림 마장조) · MR/멜로디 악보 수록"
         },
         {
-          "label": "곡 식별(SoundLeader)",
-          "url": "https://soundleader.co.kr/ContV2/msheet.php?idx=134401&pap=main_msheetView",
-          "note": "이기찬 닮은 사람 악보 정보"
+          "label": "ChordTool 이기찬 곡 정보",
+          "url": "https://chordtool.com/%EC%9D%B4%EA%B8%B0%EC%B0%AC/%EB%8B%AE%EC%9D%80-%EC%82%AC%EB%9E%8C",
+          "note": "이기찬 2025.06 발매 · 작곡 조우진 · 작사 조은희(테이 원곡과 같은 작가) · 코드악보 미등록"
+        },
+        {
+          "label": "벅스 이기찬 ‘닮은 사람’ 곡 정보",
+          "url": "https://music.bugs.co.kr/track/6298142",
+          "note": "재생 시간 03:40 · 보컬 이기찬 · 편곡 승찬"
         }
-      ]
+      ],
+      "note": "MR 오디오 분석 기반 — 주성 님이 올린 TJ노래방 ‘멜로디제거’ MR 화면 녹화(3분 37초)에서 직접 뽑은 값입니다. 4/4, BPM 64, 원키 D는 화면의 ‘현재음정 남성 D’ 표기와 오디오 실측(킥은 1박과 3박, 스네어는 2박과 4박, 한 마디 3.75초)이 일치합니다. 코드는 8분 격자 크로마와 저역 근음, 박별 스펙트럼 피크를 함께 보고 옮긴 초안이라, 마디 안 패스 코드와 7th/sus 유무는 청음 확인이 필요합니다. 이기찬 2025 리메이크(작사 조은희, 작곡 조우진)는 테이 2004 원곡의 리메이크이고, TJ 화면에도 원곡이 tei로 표기됩니다(테이 원곡 악보 키는 E♭). 마지막 후렴(2:45~)은 반음 올라가 E♭로 조바꿈하므로, 악보는 같은 코드 모양으로 칠 수 있게 D 기준으로 옮겨 적었습니다 — 원키로 부르려면 Capo를 한 칸 더 올리세요. 악보 원문은 복제하지 않고 열람 링크만 연결합니다."
     },
-    "timeSignature": "미확인"
+    "timeSignature": "4/4",
+    "chartStage": 3
   },
   {
     "id": "verified-025",

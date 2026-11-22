@@ -131,7 +131,8 @@ def plan(sid, data):
                 + (('/' + shift_name(p['bass'], shift, prefer_flat)) if p['bass'] else '')
                 for c, p in parsed}
         male_pc = {c: PC[shift_name(p['root'], shift, prefer_flat)] for c, p in parsed}
-        for capo in range(0, 8):
+        capo_range = [int(data['capo'])] if data.get('capo') is not None else range(0, 8)
+        for capo in capo_range:
             mapped = sum(1 for c, p in parsed if find_button(male_pc[c], p['quality'], capo))
             unmapped = len(parsed) - mapped
             mapped_occ = sum(weight[c] for c, p in parsed if find_button(male_pc[c], p['quality'], capo))
@@ -234,7 +235,7 @@ def build_chart(sid, data):
         'percussive': data.get('percussive', ''),
         'why': data.get('why', ''),
         'coverage': {'mapped': p['mapped'], 'total': p['total'], 'unmapped': p['unmapped']},
-        'basis': '코드표 순서를 4박 마디 카드로 정리한 연습용 배치입니다. 원곡의 세부 마디 배치와 다를 수 있습니다.',
+        'basis': data.get('basis') or '코드표 순서를 4박 마디 카드로 정리한 연습용 배치입니다. 원곡의 세부 마디 배치와 다를 수 있습니다.',
         'evidence': [{'label': a, 'url': b, 'note': c} for a, b, c in data.get('evidence', [])],
     }
     return chart, male_key
@@ -509,7 +510,7 @@ def main():
     pending = sum(1 for s in songs if s.get('category') == 'pending')
     references = sum(1 for s in songs if s.get('category') == 'reference')
     originals = sum(1 for s in songs if s.get('category') == 'original')
-    meta['seedVersion'] = 8
+    meta['seedVersion'] = 9
     meta['chartVersion'] = '2026-11-22'
     meta['chartReadyCount'] = ready
     meta['chartPartialCount'] = partial
@@ -528,11 +529,11 @@ def main():
     ]
     meta['chartDisclosure'] = (
         '남자키는 남성 원곡이면 원키 그대로(이조 0반음), 여성 원곡이면 -5반음으로 잡고 그 목표 키를 AeroBand 원터치 버튼에 맞추도록 카포를 골랐습니다. '
-        f'남자키·박자·BPM·코드 진행은 2026-11-22 웹 검색으로 확인한 코드표·악보 메타데이터와, 주성 님이 직접 올린 음원 2곳의 오디오 분석에서 옮겼습니다. '
+        f'남자키·박자·BPM·코드 진행은 2026-11-22 웹 검색으로 확인한 코드표·악보 메타데이터와, 주성 님이 직접 올린 음원 3곳(#108 · #172 · #202 이기찬 ‘닮은 사람’ MR)의 오디오 분석에서 옮겼습니다. '
         f'악보 준비 완료 {ready}곡(서로 다른 곡 {len(chart_titles)}곡), 부분 확인 {partial}곡, 검수 대기 {pending}곡, '
         f'비음악·참고 영상 {references}개, 자작곡 {originals}개. '
         '마디 배치는 코드표 순서를 4박 카드로 정리한 연습용이며, 원곡 세부 마디와 다를 수 있습니다. '
-        '음원 분석 곡(#108 · #172)과 자동분석 후보 곡은 청음 검수를 권장합니다. '
+        '음원 분석 곡(#108 · #172 · #202)과 자동분석 후보 곡은 청음 검수를 권장합니다. '
         '키·코드가 확인되지 않은 곡은 추측값을 넣지 않고 검수 대기로 두되, 확인된 BPM·키와 근거 링크만 곡 정보 화면에 남겼습니다. '
         '원터치 버튼에 없는 코드는 SimplifyChord 슬롯(최대 8개)으로 안내합니다.')
     meta['sourceDisclosure'] = (

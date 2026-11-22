@@ -69,7 +69,7 @@ def run(pw, name, viewport, mobile=False):
     check(f'{name}: 자작·AI곡 필터', org >= 1, f'{org}')
     page.select_option('#song-filter', 'chart-pending')
     pend = page.locator('.song-row').count()
-    check(f'{name}: 검수 대기 필터', pend >= 10, f'{pend}')
+    check(f'{name}: 검수 대기 필터', pend >= 9, f'{pend}')
     page.select_option('#song-filter', 'all')
     page.fill('#song-search', '신호등')
     page.wait_for_timeout(200)
@@ -192,7 +192,7 @@ def run_merge(pw):
     check('merge: 남자키 배지 병합', page.locator('.song-row', has_text='오늘').first.inner_text().find('남자키') >= 0)
     state = json.loads(page.evaluate("() => localStorage.getItem('strum-busking-v2')"))
     song = [s for s in state['songs'] if s['id'] == 'verified-001'][0]
-    check('merge: seedVersion 8', state['seedVersion'] == 8, str(state['seedVersion']))
+    check('merge: seedVersion 9', state['seedVersion'] == 9, str(state['seedVersion']))
     check('merge: 숙련도 보존', song['level'] == '버스킹 가능', song['level'])
     check('merge: 사용자 메모 보존', song['notes'] == '내 메모', song['notes'])
     check('merge: 세트리스트 보존', song['setlist'] is True)
