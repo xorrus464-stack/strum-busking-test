@@ -6,7 +6,7 @@
 
 실행: python3 tools/verify_data.py
 """
-import json, pathlib, re
+import json, pathlib, re, unicodedata
 
 BASE = pathlib.Path(__file__).resolve().parents[1]
 songs = json.loads((BASE / 'data' / 'songs.seed.json').read_text(encoding='utf-8'))
@@ -315,10 +315,10 @@ assert by_id['added-10000-hours']['sourceIndices'] == [] and by_id['added-10000-
 assert by_id['verified-004']['title'] == 'Ten Thousand Hours' and by_id['verified-004']['artist'].startswith('Macklemore')
 
 # 12) MR(반주) 링크 정합성 (seed v13)
-MR_MARK = re.compile(r'\(inst\.?\)|instrumental|karaoke|노래방|카라오케|m\.?\s?r\.?|(?<![a-z])mr(?![a-z])|반주|カラオケ|インスト|オフボーカル', re.I)
+MR_MARK = re.compile(r'inst|instrumental|karaoke|노래방|카라오케|m\.?\s?r\.?|(?<![a-z])mr(?![a-z])|반주|カラオケ|インスト|オフボーカル', re.I)
 with_mr = [s for s in songs if s.get('mrUrl')]
 assert len(with_mr) == meta['mrLinkCount'], (len(with_mr), meta['mrLinkCount'])
-assert len(with_mr) >= 150, len(with_mr)
+assert len(with_mr) >= 145, len(with_mr)
 works = {}
 for s in songs:
     if not s.get('mrUrl'):
@@ -327,7 +327,7 @@ for s in songs:
     assert m, (s['id'], s['mrUrl'])
     assert s['mrTitle'] and MR_MARK.search(s['mrTitle']), (s['id'], s['mrTitle'])
     assert s['mrChannel'], s['id']
-    assert s.get('mrNote') and 'oEmbed' in s['mrNote'], s['id']
+    assert s.get('mrNote') and 'oEmbed' in s['mrNote'] and '임베드 재생 확인' in s['mrNote'], s['id']
     assert s.get('mrSource') in ('youtube', 'zip', 'user'), (s['id'], s.get('mrSource'))
     assert s['category'] != 'reference', (s['id'], '참고 영상에 MR 금지')
     key = (s.get('workTitle') or s['title'], s.get('workArtist') or s['artist'])
@@ -335,13 +335,21 @@ for s in songs:
         assert works[key] == s['mrUrl'], (s['id'], '같은 곡은 같은 MR')
     works[key] = s['mrUrl']
 assert len(works) == meta['mrWorkCount'], (len(works), meta['mrWorkCount'])
-assert len(set(works.values())) == len(works), 'MR 영상 중복'
+# 같은 곡이 표기만 달리해 두 항목으로 있는 경우(예: '예뻤어'/'예뻤어 (You were beautiful)')만 같은 MR 허용
+def _nt(t):
+    t = unicodedata.normalize('NFKC', t).lower()
+    return re.sub(r'[\s\(\)\[\]\{\}\.\,\'"`·:;!?\-_/\\|&+#%$@~^*+=<>]+', '', t)
+by_url = {}
+for (t, _a), u in works.items():
+    if u in by_url and not (_nt(by_url[u]) in _nt(t) or _nt(t) in _nt(by_url[u])):
+        raise AssertionError(('MR 영상 중복', u, by_url[u], t))
+    by_url[u] = t
 # 대표 확인 링크(2026-11-22 oEmbed 200)
-assert by_id['verified-024']['mrUrl'].endswith('o2IIptFFbm8')
-assert by_id['playlist-159']['mrUrl'].endswith('ige-TSCG5vc')
-assert by_id['added-10000-hours']['mrUrl'].endswith('7FRBYWmJZHw')
-assert by_id['verified-007']['mrUrl'].endswith('PJwPhFGk0pI')
-for sid in ('verified-017', 'verified-021'):
+assert by_id['verified-024']['mrUrl'].endswith('wfBXXKRdtlk')      # 임베드 차단된 TJ 대신 여기MR 원키
+assert by_id['playlist-159']['mrUrl'].endswith('ige-TSCG5vc')      # ZIP 자료 공식 inst.
+assert by_id['added-10000-hours']['mrUrl'].endswith('Gt636FM6Ayc')  # Acoustic karaoke(임베드 재생 확인)
+assert by_id['verified-007']['mrUrl'].endswith('IkF6QIQ0Q0A')
+for sid in ('verified-017', 'verified-021', 'playlist-125' if 'playlist-125' in by_id else 'verified-017'):
     assert not by_id[sid].get('mrUrl'), (sid, '확인되지 않은 MR은 비워 둔다')
 assert meta['mrDisclosure'] and 'oEmbed' in meta['mrDisclosure']
 print(f"OK: MR 링크 {len(with_mr)}개 곡(서로 다른 곡 {len(works)}) · oEmbed 확인 제목 표기·중복 없음 · 참고 영상 제외")

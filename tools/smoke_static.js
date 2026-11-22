@@ -68,7 +68,7 @@ assert(root.innerHTML.includes('MR 없음'), 'MR 없음 버튼(없는 곡)');
 assert(root.innerHTML.includes('mr-off') && root.innerHTML.includes('mr-on'), 'MR 상태별 표시');
 act(handlers, 'mr:verified-001');
 assert(miniEl.innerHTML.includes('mini-player'), '미니 플레이어 열림');
-assert(miniEl.innerHTML.includes('youtube-nocookie.com/embed/lZUnv5nimGA'), 'MR 임베드');
+assert(miniEl.innerHTML.includes('youtube-nocookie.com/embed/hwZqHCMmjUM'), 'MR 임베드');
 assert(miniEl.innerHTML.includes('autoplay=1'), 'autoplay 지원');
 assert(miniEl.innerHTML.includes('mini-badge') && miniEl.innerHTML.includes('>MR<'), 'MR 배지');
 assert(miniEl.innerHTML.includes('data-act="mini-collapse"') && miniEl.innerHTML.includes('data-act="mini-close"'), '접기·닫기 버튼');
@@ -78,7 +78,7 @@ assert(miniEl.innerHTML.includes('mini-frame'), '탭 이동 후에도 유지');
 act(handlers, 'chart:verified-007');
 assert(miniEl.innerHTML.includes('mini-frame'), '악보 모달 위에서도 유지');
 act(handlers, 'mr:verified-007');
-assert(miniEl.innerHTML.includes('youtube-nocookie.com/embed/PJwPhFGk0pI'), '악보 화면에서 MR 재생');
+assert(miniEl.innerHTML.includes('youtube-nocookie.com/embed/IkF6QIQ0Q0A'), '악보 화면에서 MR 재생');
 act(handlers, 'mini-collapse');
 assert(handlers.__collapsed !== undefined || miniEl.innerHTML.includes('collapsed'), '접기 상태 반영');
 act(handlers, 'mini-close');
@@ -161,7 +161,7 @@ assert(mine.maleKey === 'E' && mine.bpm === 70, '남자키·BPM 병합(남성 �
 assert(mine.sourceIndices.includes(21), '원본 번호 유지');
 assert(mine.videoUrl === 'https://www.youtube.com/watch?v=RE2AgFBJ80E', '영상 링크 병합(빈 링크 채움)');
 assert(saved.sources[162].status === '제외', '#163 제외 유지');
-assert(mine.mrUrl === 'https://www.youtube.com/watch?v=lZUnv5nimGA', 'MR 링크 병합(빈 값만 채움)');
+assert(mine.mrUrl === 'https://www.youtube.com/watch?v=hwZqHCMmjUM', 'MR 링크 병합(빈 값만 채움)');
 assert(mine.mrTitle && mine.mrChannel, 'MR 제목·채널 병합');
 
 console.log(`PASS: boot ${songs.length}곡(악보 ${ready}·검수대기 ${pending}), 남자키 배지, 원터치 컬러 악보(5색), SimplifyChord 슬롯, 4단계 로드맵, 4/4·3/4·6/8 메트로놈, 원본 슬롯, 백업, seed v13 병합(기존 기록·숙련도 보존, MR 병합)·MR 버튼·미니 플레이어`);

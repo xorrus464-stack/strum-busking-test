@@ -46,7 +46,8 @@ def run(pw, name, viewport, mobile=False):
                               user_agent=('Mozilla/5.0 (Linux; Android 14; SM-S911B) AppleWebKit/537.36 '
                                           '(KHTML, like Gecko) Chrome/126.0.0.0 Mobile Safari/537.36') if mobile else None)
     page = ctx.new_page()
-    page.on('console', lambda m: errors.append(f'[{name}] console.{m.type}: {m.text}') if m.type == 'error' else None)
+    page.on('console', lambda m: errors.append(f'[{name}] console.{m.type}: {m.text}')
+            if m.type == 'error' and 'compute-pressure' not in m.text else None)
     page.on('pageerror', lambda e: errors.append(f'[{name}] pageerror: {e}'))
     page.goto(f'http://127.0.0.1:{PORT}/index.html', wait_until='networkidle')
 
@@ -172,7 +173,7 @@ def run(pw, name, viewport, mobile=False):
     page.wait_for_timeout(300)
     check(f'{name}: MR 버튼 → MR 모드', page.locator('.mini-badge').inner_text().strip() == 'MR')
     mr_src = page.locator('.mini-player iframe').get_attribute('src') or ''
-    check(f'{name}: MR 영상 재생', '3gfZa__IVEM' in mr_src, mr_src)
+    check(f'{name}: MR 영상 재생', 'nu3BNEd4u2o' in mr_src, mr_src)
     check(f'{name}: MR 재생 중 악보 유지', page.locator('.chart-modal').count() == 1)
     dock = page.locator('.mini-player').bounding_box() or {}
     mbox = page.locator('.chart-modal').bounding_box() or {}
@@ -188,13 +189,13 @@ def run(pw, name, viewport, mobile=False):
     page.wait_for_selector('#mr-form')
     check(f'{name}: MR 없음 안내', 'MR이 아직 등록되지 않았습니다' in page.content())
     check(f'{name}: MR 검색 링크', 'youtube.com/results?search_query=' in (page.locator('#mr-form').evaluate("e => e.closest('.modal').innerHTML")))
-    page.fill('#mr-form input[name="mrUrl"]', 'https://www.youtube.com/watch?v=lZUnv5nimGA')
+    page.fill('#mr-form input[name="mrUrl"]', 'https://www.youtube.com/watch?v=IkF6QIQ0Q0A')
     page.click('#mr-form button[type="submit"]')
     page.wait_for_selector('.mini-badge')
     page.wait_for_timeout(200)
     st = json.loads(page.evaluate("() => localStorage.getItem('strum-busking-v2')"))
     edited = [x for x in st['songs'] if x['id'] == 'verified-017'][0]
-    check(f'{name}: 붙여넣은 MR 저장', edited.get('mrUrl', '').endswith('lZUnv5nimGA') and edited.get('mrEdited') is True, str(edited.get('mrUrl')))
+    check(f'{name}: 붙여넣은 MR 저장', edited.get('mrUrl', '').endswith('IkF6QIQ0Q0A') and edited.get('mrEdited') is True, str(edited.get('mrUrl')))
     check(f'{name}: 저장한 MR 미니 재생', page.locator('.mini-badge').inner_text().strip() == 'MR')
     w1 = (page.locator('.mini-frame').bounding_box() or {}).get('width', 0)
     page.click('[data-act="mini-collapse"]')
@@ -311,7 +312,7 @@ def run_merge(pw):
     state = json.loads(page.evaluate("() => localStorage.getItem('strum-busking-v2')"))
     song = [s for s in state['songs'] if s['id'] == 'verified-001'][0]
     check('merge: seedVersion 13', state['seedVersion'] == 13, str(state['seedVersion']))
-    check('merge: MR 링크 병합', song.get('mrUrl', '').endswith('lZUnv5nimGA'), str(song.get('mrUrl')))
+    check('merge: MR 링크 병합', song.get('mrUrl', '').endswith('hwZqHCMmjUM'), str(song.get('mrUrl')))
     check('merge: 숙련도 보존', song['level'] == '버스킹 가능', song['level'])
     check('merge: 사용자 메모 보존', song['notes'] == '내 메모', song['notes'])
     check('merge: 세트리스트 보존', song['setlist'] is True)

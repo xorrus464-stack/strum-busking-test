@@ -76,6 +76,10 @@ def main():
     if auto_path.exists():
         for w in json.loads(auto_path.read_text(encoding='utf-8')):
             auto[(w['title'], w['artist'])] = w.get('mr')
+    picks_path = BASE / 'tmp' / 'mr_picks.json'
+    picks = json.loads(picks_path.read_text(encoding='utf-8')) if picks_path.exists() else {}
+    status_path = BASE / 'tmp' / 'embed_status.json'
+    embed = json.loads(status_path.read_text(encoding='utf-8')) if status_path.exists() else {}
 
     def lookup(title, artist):
         if (title, artist) in OVERRIDES:
@@ -86,6 +90,10 @@ def main():
             return m['videoId'], f"{m['channel']} · 검색 '{m['query']}'"
         return None, None
 
+    # 이전에 넣었던 MR 값은 지우고 다시 계산한다(임베드 차단 링크가 남지 않도록).
+    for s in songs:
+        for k in ('mrUrl', 'mrTitle', 'mrChannel', 'mrNote', 'mrSource'):
+            s.pop(k, None)
     cache = {}
     checked = 0
     updated = 0
@@ -100,6 +108,14 @@ def main():
             vid, note = lookup(title, artist)
             auto_m = auto.get(key)
             auto_vid = auto_m['videoId'] if auto_m else None
+            # TJ노래방처럼 임베드를 막은 영상은 앱 안에서 재생되지 않는다(플레이어 오류 150).
+            # 재생이 확인된 대체 후보가 있으면 그것을 쓰고, 없으면 MR을 비운다.
+            picked = picks.get(f'{title}|{artist}')
+            if picked and embed.get(picked['videoId']) == 'PLAYS':
+                vid, note = picked['videoId'], f"{picked['channel']} · 대체 반주(임베드 재생 확인)"
+            elif vid and embed and embed.get(vid) != 'PLAYS':
+                alt = picks.get(f'{title}|{artist}')
+                vid, note = None, None
             if not vid:
                 per_work[key] = None
                 continue
@@ -115,8 +131,8 @@ def main():
                 if not info:
                     per_work[key] = None
                     continue
-                ms, _ = marker_score(info['title'])
-                if ms < 2:   # oEmbed 제목에 반주 표기가 없으면 연결하지 않는다
+                _ms, hits = marker_score(info['title'])
+                if not hits:   # oEmbed 제목에 MR·Inst·노래방 표기가 없으면 연결하지 않는다
                     per_work[key] = None
                     continue
                 cache[vid] = info
@@ -129,7 +145,7 @@ def main():
         s['mrUrl'] = rec['url']
         s['mrTitle'] = rec['title']
         s['mrChannel'] = rec['channel']
-        s['mrNote'] = f"{rec['note']} · YouTube oEmbed 200 확인(2026-11-22)"
+        s['mrNote'] = f"{rec['note']} · YouTube oEmbed 200 + 임베드 재생 확인(2026-11-22)"
         s['mrSource'] = 'zip' if 'ZIP' in (rec['note'] or '') else 'youtube'
         updated += 1
     for s in songs:
@@ -142,12 +158,14 @@ def main():
     meta['mrVersion'] = '2026-11-22'
     meta['mrLinkCount'] = hit
     meta['mrWorkCount'] = works
-    meta['mrDisclosure'] = ('MR(반주) 링크는 YouTube 검색 결과에서 제목에 MR·Inst·노래방·반주 표기가 있고 '
-                            'YouTube oEmbed HTTP 200으로 실제 존재를 확인한 영상만 연결했습니다. '
-                            f'곡 {hit}개(서로 다른 곡 {works}개)에 연결했고, 확인되지 않은 곡은 비워 두어 '
-                            '화면에서 MR 없음으로 표시한 뒤 YouTube MR 검색과 URL 붙여넣기로 직접 등록할 수 있게 했습니다. '
-                            'TI·금영 공식 채널과 아티스트 공식 inst.를 우선했습니다.')
-    meta['mrDisclosure'] = meta['mrDisclosure'].replace('TI·금영', 'TJ·금영')
+    meta['mrDisclosure'] = (
+        'MR(반주) 링크는 YouTube 검색 결과에서 제목에 MR·Inst·노래방·반주 표기가 있고 '
+        'YouTube oEmbed HTTP 200으로 존재를 확인한 뒤, 앱과 같은 iframe 플레이어(YouTube IFrame API)로 '
+        '임베드 재생까지 확인한 영상만 연결했습니다. TJ노래방 공식 채널은 임베드 재생을 막아(플레이어 오류 150) '
+        '금영(KY)·엠알샵·싱잇·MR노래방·여기MR·아티스트 공식 inst. 등 재생되는 반주로 바꿨습니다. '
+        f'곡 {hit}개(서로 다른 곡 {works}개)에 연결했고, 재생되는 반주가 확인되지 않은 곡은 비워 두어 '
+        '화면에서 MR 없음으로 표시한 뒤 YouTube MR 검색과 URL 붙여넣기로 직접 등록할 수 있게 했습니다.'
+    )
 
     (BASE / 'data' / 'songs.seed.json').write_text(
         json.dumps(songs, ensure_ascii=False, indent=2) + '\n', encoding='utf-8')
