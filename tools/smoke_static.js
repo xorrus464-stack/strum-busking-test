@@ -144,13 +144,14 @@ assert(root.innerHTML.includes(`${ready}곡`), '설정: 악보 곡 수');
 // 11) seedVersion 3 → 5 병합: 기존 연습 기록·숙련도·메모 보존 + 악보 채움
 const legacy = {
   version: 2, seedVersion: 12, removedSeedIds: [],
-  songs: [{ id: 'verified-001', title: '오늘', artist: '오왠 (O.WHEN)', sourceIndices: [21], verification: 'site-top3', videoUrl: '', audioUrl: '', key: '미확정', maleKey: '미확정', bpm: null, chords: '', chordStatus: '미확인', strumming: '', level: '거의 가능', tags: [], notes: '내가 직접 쓴 메모', setlist: true }],
+  songs: [{ id: 'verified-001', title: '오늘', artist: '오왠 (O.WHEN)', sourceIndices: [21], verification: 'site-top3', videoUrl: '', audioUrl: '', key: '미확정', maleKey: '미확정', bpm: null, chords: '', chordStatus: '미확인', strumming: '', level: '거의 가능', tags: [], notes: '내가 직접 쓴 메모', setlist: true },
+           { id: 'verified-007', title: '한숨', artist: '이하이', sourceIndices: [6], verification: 'user-verified', videoUrl: '', audioUrl: '', key: '미확정', maleKey: '미확정', bpm: null, chords: '', chordStatus: '미확인', strumming: '', level: '미착수', tags: [], notes: '', setlist: false, mrUrl: 'https://www.youtube.com/watch?v=PJwPhFGk0pI', mrTitle: '이전 TJ 반주', mrChannel: 'TJ노래방', mrNote: '이전 시드' }],
   sources: Array.from({ length: 211 }, (_, i) => ({ index: i + 1, status: i === 162 ? '제외' : '미확인', url: '', note: '', songs: [] })),
   logs: [{ id: 'log-old-1', date: '2026-11-20', minutes: 33, songId: 'verified-001', mode: 'easy', chords: 'E A', strum: '8비트', memo: '기존 기록' }]
 };
 ({ root, handlers, created } = boot(legacy));
 const saved = JSON.parse(store['strum-busking-v2']);
-assert(saved.seedVersion === 13, 'seedVersion 13 로 업그레이드');
+assert(saved.seedVersion === 14, 'seedVersion 14 로 업그레이드');
 assert(saved.logs.length === 1 && saved.logs[0].minutes === 33, '기존 연습 기록 보존');
 const mine = saved.songs.find(s => s.id === 'verified-001');
 assert(mine.level === '거의 가능', '숙련도 보존');
@@ -163,5 +164,7 @@ assert(mine.videoUrl === 'https://www.youtube.com/watch?v=RE2AgFBJ80E', '영상 
 assert(saved.sources[162].status === '제외', '#163 제외 유지');
 assert(mine.mrUrl === 'https://www.youtube.com/watch?v=hwZqHCMmjUM', 'MR 링크 병합(빈 값만 채움)');
 assert(mine.mrTitle && mine.mrChannel, 'MR 제목·채널 병합');
+const han = saved.songs.find(s => s.id === 'verified-007');
+assert(han.mrUrl === 'https://www.youtube.com/watch?v=IkF6QIQ0Q0A', '임베드 막힌 이전 MR을 재생되는 반주로 교체');
 
-console.log(`PASS: boot ${songs.length}곡(악보 ${ready}·검수대기 ${pending}), 남자키 배지, 원터치 컬러 악보(5색), SimplifyChord 슬롯, 4단계 로드맵, 4/4·3/4·6/8 메트로놈, 원본 슬롯, 백업, seed v13 병합(기존 기록·숙련도 보존, MR 병합)·MR 버튼·미니 플레이어`);
+console.log(`PASS: boot ${songs.length}곡(악보 ${ready}·검수대기 ${pending}), 남자키 배지, 원터치 컬러 악보(5색), SimplifyChord 슬롯, 4단계 로드맵, 4/4·3/4·6/8 메트로놈, 원본 슬롯, 백업, seed v14 병합(기존 기록·숙련도 보존, MR 병합)·MR 버튼·미니 플레이어`);

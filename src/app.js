@@ -331,8 +331,8 @@
         if(!cur.videoUrl && seedSong.videoUrl){cur.videoUrl=seedSong.videoUrl;cur.videoStatus=seedSong.videoStatus;}
         if(!cur.videoStatus && seedSong.videoStatus)cur.videoStatus=seedSong.videoStatus;
         /* MR 링크 병합: 비어 있으면 채우고, 사용자가 직접 넣은 값(mrEdited)은 건드리지 않는다 */
-        if(!cur.mrUrl && seedSong.mrUrl){for(const k of ['mrUrl','mrTitle','mrChannel','mrNote','mrSource'])cur[k]=seedSong[k];}
-        else if(cur.mrUrl&&cur.mrUrl===seedSong.mrUrl&&!cur.mrEdited){for(const k of ['mrTitle','mrChannel','mrNote','mrSource'])if(seedSong[k])cur[k]=seedSong[k];}
+        if(seedSong.mrUrl&&!cur.mrEdited){for(const k of ['mrUrl','mrTitle','mrChannel','mrNote','mrSource'])cur[k]=seedSong[k];}
+        else if(!cur.mrUrl && seedSong.mrUrl){for(const k of ['mrUrl','mrTitle','mrChannel','mrNote','mrSource'])cur[k]=seedSong[k];}
         if(Array.isArray(cur.sourceIndices)){
           if(!cur.sourceIndices.length && seedSong.sourceIndices.length)cur.sourceIndices=seedSong.sourceIndices.slice();
           else for(const n of seedSong.sourceIndices) if(!cur.sourceIndices.includes(n)) cur.sourceIndices.push(n);

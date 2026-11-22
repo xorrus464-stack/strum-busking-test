@@ -135,7 +135,7 @@ for s in songs:
         assert not s['videoUrl'], s['id']
 
 # 10) 메타 집계
-assert meta['seedVersion'] == 13
+assert meta['seedVersion'] == 14
 assert meta['videoLinkCount'] == 201 and meta['videoLinkFilledCount'] == 36
 assert meta['playlistCollectedCount'] == 210
 assert meta['playlistPublicVideoCount'] == 168

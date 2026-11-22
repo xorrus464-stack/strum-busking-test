@@ -25,7 +25,7 @@ BASE = pathlib.Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(BASE))
 from tools.mr_search import oembed, marker_score  # noqa: E402
 
-SEED_VERSION = 13
+SEED_VERSION = 14
 
 # 사람이 직접 확인한 링크 (검색 결과 + ZIP 자료). 값: (videoId, 근거)
 OVERRIDES = {
