@@ -353,7 +353,7 @@
     "tags": [
       "입문 후보"
     ],
-    "notes": "공개 영상 확인(2026-11-22): 재생목록 #105 「우효(OOHYO) - 민들레 (Cover by 하현상 Ha Hyunsang)」 (Qw48FXivjYY). 원곡자가 아닌 커버 영상.",
+    "notes": "공개 영상 확인(2026-11-22): 재생목록 #105 「우효(OOHYO) - 민들레 (Cover by 하현상 Ha Hyunsang)」 (Qw48FXivjYY). 원곡자가 아닌 커버 영상. 2026-11-23 남자키 MR 교체: 기존 「[싱잇 노래방] 민들레 - 우효 I 고퀄리티MR I Singit Premium Karaoke Instrumental」 대신 B.B Factory 「우효 - 민들레 (Single ver.) (남자 ver.) [Acoustic Inst / MR / Piano MR / 남자 키 / 남자 key」(iQG-zBBCnDE)로 바꿨습니다(원곡이 여성 키인 곡).",
     "setlist": false,
     "videoStatus": "공개 영상(커버)",
     "chartStatus": "ready",
@@ -709,10 +709,10 @@
     "timeSignature": "4/4",
     "chartStage": 3,
     "category": "chart",
-    "mrUrl": "https://www.youtube.com/watch?v=B5m_oKO2sn0",
-    "mrTitle": "[싱잇 노래방] 민들레 - 우효 I 고퀄리티MR I Singit Premium Karaoke Instrumental",
-    "mrChannel": "싱잇 Singit",
-    "mrNote": "싱잇 Singit · 대체 반주(임베드 재생 확인) · YouTube oEmbed 200 + 임베드 재생 확인(2026-11-22)",
+    "mrUrl": "https://www.youtube.com/watch?v=iQG-zBBCnDE",
+    "mrTitle": "우효 - 민들레 (Single ver.) (남자 ver.) [Acoustic Inst / MR / Piano MR / 남자 키 / 남자 key",
+    "mrChannel": "B.B Factory",
+    "mrNote": "B.B Factory · 남자 버전 반주(B.B Factory, Acoustic Inst/MR) · YouTube oEmbed 200 + 임베드 재생 확인(2026-11-23)",
     "mrSource": "youtube"
   },
   {
@@ -1701,7 +1701,7 @@
       6
     ],
     "verification": "user-verified",
-    "videoUrl": "https://www.youtube.com/watch?v=5iSlfF8TQ9k",
+    "videoUrl": "https://www.youtube.com/watch?v=FP67e2l_KJs",
     "audioUrl": "",
     "key": "Ab",
     "maleKey": "Eb",
@@ -1716,9 +1716,9 @@
     "tags": [
       "오른손 1단계"
     ],
-    "notes": "공식 영상 확인(2026-11-22): YouTube oEmbed 200 · 「LEE HI - '한숨 (BREATHE)' M/V」 · OfficialLEEHI (5iSlfF8TQ9k). 원본 #6 묶음 영상은 현재 재생목록에서 이 곡으로 확인되지 않아 영상 링크를 연결하지 않음.",
+    "notes": "공식 영상 확인(2026-11-22): YouTube oEmbed 200 · 「LEE HI - '한숨 (BREATHE)' M/V」 · OfficialLEEHI (5iSlfF8TQ9k). 원본 #6 묶음 영상은 현재 재생목록에서 이 곡으로 확인되지 않아 영상 링크를 연결하지 않음. 2026-11-23 남자키 MR 교체: 기존 「한숨 - 이하이 / Singit Karaoke (고퀄리티 MRㅣ멜로디 미포함 | 가사 Kor+Rom) 싱잇 노래방, Singit Karaoke」 대신 금영 노래방 공식 유튜브 채널 「[남자키] 한숨 - 이하이 (KY.78657) / KY Karaoke」(VnSBIixg7hY)로 바꿨습니다(원곡이 여성 키인 곡). 2026-11-23 음악 영상 교체: 여자 보컬·쇼츠/맛보기 영상(5iSlfF8TQ9k) 대신 남자 풀커버 FP67e2l_KJs 로 바꿨습니다.",
     "setlist": false,
-    "videoStatus": "공개 영상(공식 MV)",
+    "videoStatus": "공개 영상(남자 커버)",
     "chartStatus": "ready",
     "chart": {
       "status": "ready",
@@ -1970,10 +1970,10 @@
     "timeSignature": "4/4",
     "chartStage": 1,
     "category": "chart",
-    "mrUrl": "https://www.youtube.com/watch?v=IkF6QIQ0Q0A",
-    "mrTitle": "한숨 - 이하이 / Singit Karaoke (고퀄리티 MRㅣ멜로디 미포함 | 가사 Kor+Rom) 싱잇 노래방, Singit Karaoke",
-    "mrChannel": "싱잇 Singit",
-    "mrNote": "싱잇 Singit · 대체 반주(임베드 재생 확인) · YouTube oEmbed 200 + 임베드 재생 확인(2026-11-22)",
+    "mrUrl": "https://www.youtube.com/watch?v=VnSBIixg7hY",
+    "mrTitle": "[남자키] 한숨 - 이하이 (KY.78657) / KY Karaoke",
+    "mrChannel": "금영 노래방 공식 유튜브 채널",
+    "mrNote": "금영 노래방 공식 유튜브 채널 · 금영 공식 남자키 노래방(KY.78657) · YouTube oEmbed 200 + 임베드 재생 확인(2026-11-23)",
     "mrSource": "youtube"
   },
   {
@@ -3417,7 +3417,7 @@
       6
     ],
     "verification": "user-verified",
-    "videoUrl": "https://www.youtube.com/watch?v=GOS6C2jXTa8",
+    "videoUrl": "https://www.youtube.com/watch?v=YtHsa4eC388",
     "audioUrl": "",
     "key": "G",
     "maleKey": "D",
@@ -3430,9 +3430,9 @@
     "vocalDifficulty": "미확인",
     "level": "미착수",
     "tags": [],
-    "notes": "공식 영상 확인(2026-11-22): YouTube oEmbed 200 · 「선우정아 (SWJA) - 도망가자 (Run With Me) [MV]」 · MAGIC STRAWBERRY SOUND (GOS6C2jXTa8). 원본 #6 묶음 영상은 현재 재생목록에서 이 곡으로 확인되지 않아 영상 링크를 연결하지 않음.",
+    "notes": "공식 영상 확인(2026-11-22): YouTube oEmbed 200 · 「선우정아 (SWJA) - 도망가자 (Run With Me) [MV]」 · MAGIC STRAWBERRY SOUND (GOS6C2jXTa8). 원본 #6 묶음 영상은 현재 재생목록에서 이 곡으로 확인되지 않아 영상 링크를 연결하지 않음. 2026-11-23 남자키 MR 교체: 기존 「[KPOP MR 노래방] 도망가자  - 선우정아  (b1 Ver.)ㆍRun With Me - sunwoojunga」 대신 MR. Acoustic 「선우정아 - 도망가자 (남Key)(Key : Db)(Acoustic MR)(Acoustic Inst)(Piano MR)」(oJp_AdZ3wXw)로 바꿨습니다(원곡이 여성 키인 곡). 2026-11-23 음악 영상 교체: 여자 보컬·쇼츠/맛보기 영상(GOS6C2jXTa8) 대신 남자 풀커버 YtHsa4eC388 로 바꿨습니다.",
     "setlist": false,
-    "videoStatus": "공개 영상(공식 MV)",
+    "videoStatus": "공개 영상(남자 커버)",
     "chartStatus": "ready",
     "chart": {
       "status": "ready",
@@ -3708,10 +3708,10 @@
     "timeSignature": "4/4",
     "chartStage": 2,
     "category": "chart",
-    "mrUrl": "https://www.youtube.com/watch?v=4F2Uwd0-gVI",
-    "mrTitle": "[KPOP MR 노래방] 도망가자  - 선우정아  (b1 Ver.)ㆍRun With Me - sunwoojunga",
-    "mrChannel": "MR 노래방 l MR karaoke",
-    "mrNote": "MR 노래방 l MR karaoke · 대체 반주(임베드 재생 확인) · YouTube oEmbed 200 + 임베드 재생 확인(2026-11-22)",
+    "mrUrl": "https://www.youtube.com/watch?v=oJp_AdZ3wXw",
+    "mrTitle": "선우정아 - 도망가자 (남Key)(Key : Db)(Acoustic MR)(Acoustic Inst)(Piano MR)",
+    "mrChannel": "MR. Acoustic",
+    "mrNote": "MR. Acoustic · 남자키 어쿠스틱 MR(MR. Acoustic, Key D♭) · YouTube oEmbed 200 + 임베드 재생 확인(2026-11-23)",
     "mrSource": "youtube"
   },
   {
@@ -4451,7 +4451,7 @@
       65
     ],
     "verification": "user-verified",
-    "videoUrl": "https://www.youtube.com/watch?v=8PCQyS6BBmg",
+    "videoUrl": "https://www.youtube.com/watch?v=JrFMYs2PU_s",
     "audioUrl": "",
     "key": "D",
     "maleKey": "A",
@@ -4464,9 +4464,9 @@
     "vocalDifficulty": "미확인",
     "level": "미착수",
     "tags": [],
-    "notes": "공개 영상 확인(2026-11-22): 재생목록 #65 「사별 死別」 (8PCQyS6BBmg).",
+    "notes": "공개 영상 확인(2026-11-22): 재생목록 #65 「사별 死別」 (8PCQyS6BBmg). 2026-11-23 음악 영상 교체: 여자 보컬·쇼츠/맛보기 영상(8PCQyS6BBmg) 대신 남자 풀커버 JrFMYs2PU_s 로 바꿨습니다.",
     "setlist": false,
-    "videoStatus": "공개 영상(커버)",
+    "videoStatus": "공개 영상(남자키 커버)",
     "chartStatus": "ready",
     "chartNote": "",
     "category": "chart",
@@ -4836,7 +4836,7 @@
     "mrUrl": "https://www.youtube.com/watch?v=cLUNCLUE7pk",
     "mrTitle": "死別(사별) | feat. GUMI - シャノン(샤논)  노래방  カラオケ",
     "mrChannel": "LKARA",
-    "mrNote": "노래방 カラオケ(LKARA) · YouTube oEmbed 200 + 임베드 재생 확인(2026-11-22)",
+    "mrNote": "노래방 カラオケ(LKARA) · YouTube oEmbed 200 + 임베드 재생 확인(2026-11-22) [원키 MR · -5키 필요]",
     "mrSource": "youtube"
   },
   {
@@ -6343,7 +6343,7 @@
       165
     ],
     "verification": "user-verified",
-    "videoUrl": "https://www.youtube.com/watch?v=35w8SrlepLc",
+    "videoUrl": "https://www.youtube.com/watch?v=xp6M9wtMIxM",
     "audioUrl": "",
     "key": "C",
     "maleKey": "G",
@@ -6356,9 +6356,9 @@
     "vocalDifficulty": "미확인",
     "level": "미착수",
     "tags": [],
-    "notes": "공식 영상 확인(2026-11-22): YouTube oEmbed 200 · 「최유리 - 생각을 멈추다 보면 (Live)」 · 최유리 Choi Yu Ree (35w8SrlepLc). 원본 #165 슬롯의 현재 영상은 「내 손을 잡아 레전드 파트…」로 이 곡이 아님. 관련 영상은 #170·#174(박진영 파트)뿐이며 원곡 영상은 확인되지 않음.",
+    "notes": "공식 영상 확인(2026-11-22): YouTube oEmbed 200 · 「최유리 - 생각을 멈추다 보면 (Live)」 · 최유리 Choi Yu Ree (35w8SrlepLc). 원본 #165 슬롯의 현재 영상은 「내 손을 잡아 레전드 파트…」로 이 곡이 아님. 관련 영상은 #170·#174(박진영 파트)뿐이며 원곡 영상은 확인되지 않음. 2026-11-23 음악 영상 교체: 여자 보컬·쇼츠/맛보기 영상(35w8SrlepLc) 대신 남자 풀커버 xp6M9wtMIxM 로 바꿨습니다.",
     "setlist": false,
-    "videoStatus": "공개 영상(공식 라이브)",
+    "videoStatus": "공개 영상(남자 커버)",
     "chartStatus": "ready",
     "chartNote": "",
     "category": "chart",
@@ -6532,7 +6532,7 @@
     "mrUrl": "https://www.youtube.com/watch?v=Jp4uNTmxiAY",
     "mrTitle": "최유리 - 생각을 멈추다 보면 | 원곡노래방 Karaoke MR 가사",
     "mrChannel": "원곡노래방",
-    "mrNote": "원곡노래방 · 대체 반주(임베드 재생 확인) · YouTube oEmbed 200 + 임베드 재생 확인(2026-11-22)",
+    "mrNote": "원곡노래방 · 대체 반주(임베드 재생 확인) · YouTube oEmbed 200 + 임베드 재생 확인(2026-11-22) [원키 MR · -5키 필요]",
     "mrSource": "youtube"
   },
   {
@@ -9748,8 +9748,8 @@
       96
     ],
     "verification": "user-confirmed-playlist",
-    "videoUrl": "https://www.youtube.com/watch?v=HOwqzalMrXc",
-    "videoStatus": "공개 영상(커버)",
+    "videoUrl": "https://www.youtube.com/watch?v=HDe9zjs6ajQ",
+    "videoStatus": "공개 영상(남자 커버)",
     "audioUrl": "",
     "key": "Dm",
     "maleKey": "Am",
@@ -9762,7 +9762,7 @@
     "vocalDifficulty": "미확인",
     "level": "미착수",
     "tags": [],
-    "notes": "사용자 확인(2026-11-22): 헤이즈 (Heize) - And July. 원본 영상은 재생 불가(계정 해지), 영상 ID l0d0eJI01Aw. 가짜 영상 URL은 넣지 않음. 아카이브된 썸네일에 \"And July\" 문구가 남아 있었음. 공개 영상 #17(서재민 커버)을 이 곡의 영상으로 함께 연결.",
+    "notes": "사용자 확인(2026-11-22): 헤이즈 (Heize) - And July. 원본 영상은 재생 불가(계정 해지), 영상 ID l0d0eJI01Aw. 가짜 영상 URL은 넣지 않음. 아카이브된 썸네일에 \"And July\" 문구가 남아 있었음. 공개 영상 #17(서재민 커버)을 이 곡의 영상으로 함께 연결. 2026-11-23 음악 영상 교체: 여자 보컬·쇼츠/맛보기 영상(HOwqzalMrXc) 대신 남자 풀커버 HDe9zjs6ajQ 로 바꿨습니다.",
     "setlist": false,
     "chartStatus": "ready",
     "chart": {
@@ -9979,8 +9979,8 @@
       100
     ],
     "verification": "archive-restored",
-    "videoUrl": "https://www.youtube.com/watch?v=i7kRQsCIvv0",
-    "videoStatus": "공개 영상(공식 MV)",
+    "videoUrl": "https://www.youtube.com/watch?v=aJIGwku9UlE",
+    "videoStatus": "공개 영상(남자 커버)",
     "audioUrl": "",
     "key": "C",
     "maleKey": "G",
@@ -9995,7 +9995,7 @@
     "tags": [
       "오른손 1단계"
     ],
-    "notes": "공식 영상 확인(2026-11-22): YouTube oEmbed 200 · 「冨岡 愛 - グッバイバイ (Music Video)」 · 冨岡 愛 (i7kRQsCIvv0). 아카이브 복원(2026-11-22): 원 제목 「도경수 (D.O.) \"Good Bye-Bye(グッバイバイ)\" AI Remix | Org. Tomioka Ai」 · 채널 EarlGrey(@Earlgrey0820). 원본 영상은 재생 불가(계정 해지), 영상 ID o2--Pg6hBwE. 가짜 영상 URL은 넣지 않음.",
+    "notes": "공식 영상 확인(2026-11-22): YouTube oEmbed 200 · 「冨岡 愛 - グッバイバイ (Music Video)」 · 冨岡 愛 (i7kRQsCIvv0). 아카이브 복원(2026-11-22): 원 제목 「도경수 (D.O.) \"Good Bye-Bye(グッバイバイ)\" AI Remix | Org. Tomioka Ai」 · 채널 EarlGrey(@Earlgrey0820). 원본 영상은 재생 불가(계정 해지), 영상 ID o2--Pg6hBwE. 가짜 영상 URL은 넣지 않음. 2026-11-23 남자키 MR 교체: 기존 「[Inst Ver. / MR] Ai Tomioka - Good bye-bye グッバイバイ | 冨岡 愛 | 토미오카 아이」 대신 TOMIOKA AI - Topic 「グッバイバイ (Instrumental)」(YVbcUiPMBPM)로 바꿨습니다(원곡이 여성 키인 곡). 2026-11-23 음악 영상 교체: 여자 보컬·쇼츠/맛보기 영상(i7kRQsCIvv0) 대신 남자 풀커버 aJIGwku9UlE 로 바꿨습니다.",
     "setlist": false,
     "chartStatus": "ready",
     "chartNote": "",
@@ -10438,10 +10438,10 @@
     },
     "timeSignature": "4/4",
     "chartStage": 1,
-    "mrUrl": "https://www.youtube.com/watch?v=af7zgjWVBc0",
-    "mrTitle": "[Inst Ver. / MR] Ai Tomioka - Good bye-bye グッバイバイ | 冨岡 愛 | 토미오카 아이",
-    "mrChannel": "Rendezvous 18.6y",
-    "mrNote": "Rendezvous 18.6y · 검색 'Tomioka Ai Good Bye-Bye (グッバイバイ) inst' · YouTube oEmbed 200 + 임베드 재생 확인(2026-11-22)",
+    "mrUrl": "https://www.youtube.com/watch?v=YVbcUiPMBPM",
+    "mrTitle": "グッバイバイ (Instrumental)",
+    "mrChannel": "TOMIOKA AI - Topic",
+    "mrNote": "TOMIOKA AI - Topic · 공식 인스트루멘탈(원키·가이드멜로디 없음) · YouTube oEmbed 200 + 임베드 재생 확인(2026-11-23) [원키 MR · -5키 필요]",
     "mrSource": "youtube"
   },
   {
@@ -10674,8 +10674,8 @@
       119
     ],
     "verification": "archive-restored",
-    "videoUrl": "https://www.youtube.com/watch?v=afxLaQiLu-o",
-    "videoStatus": "공개 영상(공식 MV)",
+    "videoUrl": "https://www.youtube.com/watch?v=a9KDWjTi6OA",
+    "videoStatus": "공개 영상(남자 커버)",
     "audioUrl": "",
     "key": "C#m",
     "maleKey": "Abm",
@@ -10688,7 +10688,7 @@
     "vocalDifficulty": "미확인",
     "level": "미착수",
     "tags": [],
-    "notes": "공식 영상 확인(2026-11-22): YouTube oEmbed 200 · 「헤이즈 (Heize) - 비도 오고 그래서 (You, Clouds, Rain) (Feat. 신용재 (Shin Yong Jae)) MV」 · STONE MUSIC (afxLaQiLu-o). 아카이브 복원(2026-11-22): 원 제목 「도경수 X 원필 D.O. X WONPIL \"비도 오고 그래서 (You, Clouds, Rain)\" ai remix by 헤이즈 HEIZE」 · 채널 EarlGrey(@Earlgrey0820). 원본 영상은 재생 불가(계정 해지), 영상 ID Py1XQFAVNkI. 가짜 영상 URL은 넣지 않음.",
+    "notes": "공식 영상 확인(2026-11-22): YouTube oEmbed 200 · 「헤이즈 (Heize) - 비도 오고 그래서 (You, Clouds, Rain) (Feat. 신용재 (Shin Yong Jae)) MV」 · STONE MUSIC (afxLaQiLu-o). 아카이브 복원(2026-11-22): 원 제목 「도경수 X 원필 D.O. X WONPIL \"비도 오고 그래서 (You, Clouds, Rain)\" ai remix by 헤이즈 HEIZE」 · 채널 EarlGrey(@Earlgrey0820). 원본 영상은 재생 불가(계정 해지), 영상 ID Py1XQFAVNkI. 가짜 영상 URL은 넣지 않음. 2026-11-23 남자키 MR 교체: 기존 「헤이즈 (Heize) - 비도 오고 그래서 (You, Clouds, Rain) (Feat. 신용재 (Shin Yong Jae))_악보_MR」 대신 여기MR 노래방 Karaoke music 「비도 오고 그래서 (Feat. 신용재) - 헤이즈 (Heize) (남자키G#m/-5) 여기MR / Karaoke / Music / 노래방」(zXIkIg9S_yE)로 바꿨습니다(원곡이 여성 키인 곡). 2026-11-23 음악 영상 교체: 여자 보컬·쇼츠/맛보기 영상(afxLaQiLu-o) 대신 남자 풀커버 a9KDWjTi6OA 로 바꿨습니다.",
     "setlist": false,
     "chartStatus": "ready",
     "chart": {
@@ -10923,10 +10923,10 @@
     "timeSignature": "4/4",
     "chartStage": 3,
     "category": "chart",
-    "mrUrl": "https://www.youtube.com/watch?v=7oHHMyQlbAc",
-    "mrTitle": "헤이즈 (Heize) - 비도 오고 그래서 (You, Clouds, Rain) (Feat. 신용재 (Shin Yong Jae))_악보_MR",
-    "mrChannel": "황용우 / 황선생 기타교실",
-    "mrNote": "황용우 / 황선생 기타교실 · 대체 반주(임베드 재생 확인) · YouTube oEmbed 200 + 임베드 재생 확인(2026-11-22)",
+    "mrUrl": "https://www.youtube.com/watch?v=zXIkIg9S_yE",
+    "mrTitle": "비도 오고 그래서 (Feat. 신용재) - 헤이즈 (Heize) (남자키G#m/-5) 여기MR / Karaoke / Music / 노래방",
+    "mrChannel": "여기MR 노래방 Karaoke music",
+    "mrNote": "여기MR 노래방 Karaoke music · 남자키 MR(여기MR, G♯m/-5) · YouTube oEmbed 200 + 임베드 재생 확인(2026-11-23)",
     "mrSource": "youtube"
   },
   {
@@ -11686,8 +11686,8 @@
       128
     ],
     "verification": "archive-restored",
-    "videoUrl": "https://www.youtube.com/watch?v=m3DZsBw5bnE",
-    "videoStatus": "공개 영상(공식 MV)",
+    "videoUrl": "https://www.youtube.com/watch?v=9wBlRkKYlzs",
+    "videoStatus": "공개 영상(남자 커버)",
     "audioUrl": "",
     "key": "F",
     "maleKey": "C",
@@ -11702,7 +11702,7 @@
     "tags": [
       "오른손 1단계"
     ],
-    "notes": "공식 영상 확인(2026-11-22): YouTube oEmbed 200 · 「AKMU - '어떻게 이별까지 사랑하겠어, 널 사랑하는 거지(How can I love the heartbreak, you`re the one I love)' M/V」 · AKMU (m3DZsBw5bnE). 아카이브 복원(2026-11-22): 원 제목 「도경수 D.O. \"어떻게 이별까지 사랑하겠어, 널 사랑하는 거지 (How can I love the heartbreak, you're the one I love)\" ai remix」 · 채널 EarlGrey(@Earlgrey0820). 원본 영상은 재생 불가(계정 해지), 영상 ID xOkbf7NJClM. 가짜 영상 URL은 넣지 않음.",
+    "notes": "공식 영상 확인(2026-11-22): YouTube oEmbed 200 · 「AKMU - '어떻게 이별까지 사랑하겠어, 널 사랑하는 거지(How can I love the heartbreak, you`re the one I love)' M/V」 · AKMU (m3DZsBw5bnE). 아카이브 복원(2026-11-22): 원 제목 「도경수 D.O. \"어떻게 이별까지 사랑하겠어, 널 사랑하는 거지 (How can I love the heartbreak, you're the one I love)\" ai remix」 · 채널 EarlGrey(@Earlgrey0820). 원본 영상은 재생 불가(계정 해지), 영상 ID xOkbf7NJClM. 가짜 영상 URL은 넣지 않음. 2026-11-23 음악 영상 교체: 여자 보컬·쇼츠/맛보기 영상(m3DZsBw5bnE) 대신 남자 풀커버 9wBlRkKYlzs 로 바꿨습니다.",
     "setlist": false,
     "chartStatus": "ready",
     "chartNote": "",
@@ -11925,8 +11925,8 @@
       130
     ],
     "verification": "archive-restored",
-    "videoUrl": "https://www.youtube.com/watch?v=6rS7OUGXUik",
-    "videoStatus": "공개 영상(공식 음원)",
+    "videoUrl": "https://www.youtube.com/watch?v=2OBF8S_BQu0",
+    "videoStatus": "공개 영상(남자 커버)",
     "audioUrl": "",
     "key": "Fm",
     "maleKey": "Cm",
@@ -11939,7 +11939,7 @@
     "vocalDifficulty": "미확인",
     "level": "미착수",
     "tags": [],
-    "notes": "공식 영상 확인(2026-11-22): YouTube oEmbed 200 · 「[도깨비 OST Part 9] 에일리 (Ailee) - 첫눈처럼 너에게 가겠다 (I will go to you like the first snow) (Official Audio)」 · STONE MUSIC (6rS7OUGXUik). 아카이브 복원(2026-11-22): 원 제목 「도경수 (D.O.) \"첫눈처럼 너에게 가겠다 (I will go to you like the first snow)\" AI Remix | Org. 에일리 AILEE」 · 채널 EarlGrey(@Earlgrey0820). 원본 영상은 재생 불가(계정 해지), 영상 ID GnL-ZfSpTAU. 가짜 영상 URL은 넣지 않음.",
+    "notes": "공식 영상 확인(2026-11-22): YouTube oEmbed 200 · 「[도깨비 OST Part 9] 에일리 (Ailee) - 첫눈처럼 너에게 가겠다 (I will go to you like the first snow) (Official Audio)」 · STONE MUSIC (6rS7OUGXUik). 아카이브 복원(2026-11-22): 원 제목 「도경수 (D.O.) \"첫눈처럼 너에게 가겠다 (I will go to you like the first snow)\" AI Remix | Org. 에일리 AILEE」 · 채널 EarlGrey(@Earlgrey0820). 원본 영상은 재생 불가(계정 해지), 영상 ID GnL-ZfSpTAU. 가짜 영상 URL은 넣지 않음. 2026-11-23 남자키 MR 교체: 기존 「첫눈처럼 너에게 가겠다 (드라마\"도깨비\") - 에일리 (KY.76229) / KY Karaoke」 대신 금영 노래방 공식 유튜브 채널 「[남자키] 첫눈처럼 너에게 가겠다 (드라마'도깨비')-에일리(I will go to you like the first snow -Ailee)(KY.76229)/ KY Karaoke」(rVbefGSL9NY)로 바꿨습니다(원곡이 여성 키인 곡). 2026-11-23 음악 영상 교체: 여자 보컬·쇼츠/맛보기 영상(6rS7OUGXUik) 대신 남자 풀커버 2OBF8S_BQu0 로 바꿨습니다.",
     "setlist": false,
     "chartStatus": "ready",
     "chart": {
@@ -12114,10 +12114,10 @@
     "timeSignature": "4/4",
     "chartStage": 3,
     "category": "chart",
-    "mrUrl": "https://www.youtube.com/watch?v=Ps3n1d8ojb0",
-    "mrTitle": "첫눈처럼 너에게 가겠다 (드라마\"도깨비\") - 에일리 (KY.76229) / KY Karaoke",
+    "mrUrl": "https://www.youtube.com/watch?v=rVbefGSL9NY",
+    "mrTitle": "[남자키] 첫눈처럼 너에게 가겠다 (드라마'도깨비')-에일리(I will go to you like the first snow -Ailee)(KY.76229)/ KY Karaoke",
     "mrChannel": "금영 노래방 공식 유튜브 채널",
-    "mrNote": "금영 노래방 공식 유튜브 채널 · 대체 반주(임베드 재생 확인) · YouTube oEmbed 200 + 임베드 재생 확인(2026-11-22)",
+    "mrNote": "금영 노래방 공식 유튜브 채널 · 금영 공식 남자키(KY.76229) · YouTube oEmbed 200 + 임베드 재생 확인(2026-11-23)",
     "mrSource": "youtube"
   },
   {
@@ -12128,8 +12128,8 @@
       131
     ],
     "verification": "archive-restored",
-    "videoUrl": "https://www.youtube.com/watch?v=_Ngk-DCHfD0",
-    "videoStatus": "공개 영상(공식 MV)",
+    "videoUrl": "https://www.youtube.com/watch?v=spQmMNSaxZQ",
+    "videoStatus": "공개 영상(남자 커버)",
     "audioUrl": "",
     "key": "A",
     "maleKey": "E",
@@ -12142,7 +12142,7 @@
     "vocalDifficulty": "미확인",
     "level": "미착수",
     "tags": [],
-    "notes": "공식 영상 확인(2026-11-22): YouTube oEmbed 200 · 「[MV] 한로로 (HANRORO) - 0+0」 · 한로로 HANRORO (_Ngk-DCHfD0). 아카이브 복원(2026-11-22): 원 제목 「도경수 (D.O.) \"0+0\" AI Remix | Org. 한로로 HANRORO」 · 채널 EarlGrey(@Earlgrey0820). 원본 영상은 재생 불가(계정 해지), 영상 ID Ri3XiTNxb-4. 가짜 영상 URL은 넣지 않음.",
+    "notes": "공식 영상 확인(2026-11-22): YouTube oEmbed 200 · 「[MV] 한로로 (HANRORO) - 0+0」 · 한로로 HANRORO (_Ngk-DCHfD0). 아카이브 복원(2026-11-22): 원 제목 「도경수 (D.O.) \"0+0\" AI Remix | Org. 한로로 HANRORO」 · 채널 EarlGrey(@Earlgrey0820). 원본 영상은 재생 불가(계정 해지), 영상 ID Ri3XiTNxb-4. 가짜 영상 URL은 넣지 않음. 2026-11-23 남자키 MR 교체: 기존 「0+0 - 한로로 (HANRORO) (원키-2/G) 여기MR / KPOP / Karaoke / Music / 노래방」 대신 여기MR 노래방 Karaoke music 「0+0 - 한로로 (HANRORO) (남자키E/-5) 여기MR / KPOP / Karaoke / Music / 노래방 영영」(6tFsFWLy2wk)로 바꿨습니다(원곡이 여성 키인 곡). 2026-11-23 음악 영상 교체: 여자 보컬·쇼츠/맛보기 영상(_Ngk-DCHfD0) 대신 남자 풀커버 spQmMNSaxZQ 로 바꿨습니다.",
     "setlist": false,
     "chartStatus": "ready",
     "chart": {
@@ -12287,10 +12287,10 @@
     "timeSignature": "4/4",
     "chartStage": 2,
     "category": "chart",
-    "mrUrl": "https://www.youtube.com/watch?v=1cULERNO29Q",
-    "mrTitle": "0+0 - 한로로 (HANRORO) (원키-2/G) 여기MR / KPOP / Karaoke / Music / 노래방",
+    "mrUrl": "https://www.youtube.com/watch?v=6tFsFWLy2wk",
+    "mrTitle": "0+0 - 한로로 (HANRORO) (남자키E/-5) 여기MR / KPOP / Karaoke / Music / 노래방 영영",
     "mrChannel": "여기MR 노래방 Karaoke music",
-    "mrNote": "여기MR 노래방 Karaoke music · 대체 반주(임베드 재생 확인) · YouTube oEmbed 200 + 임베드 재생 확인(2026-11-22)",
+    "mrNote": "여기MR 노래방 Karaoke music · 남자키 MR(여기MR, E/-5) · YouTube oEmbed 200 + 임베드 재생 확인(2026-11-23)",
     "mrSource": "youtube"
   },
   {
@@ -12301,8 +12301,8 @@
       132
     ],
     "verification": "archive-restored",
-    "videoUrl": "https://www.youtube.com/watch?v=h0KIWaUEIgQ",
-    "videoStatus": "공개 영상(공식 MV)",
+    "videoUrl": "https://www.youtube.com/watch?v=49pBS6s8avc",
+    "videoStatus": "공개 영상(남자 커버)",
     "audioUrl": "",
     "key": "G",
     "maleKey": "D",
@@ -12317,7 +12317,7 @@
     "tags": [
       "오른손 1단계"
     ],
-    "notes": "공식 영상 확인(2026-11-22): YouTube oEmbed 200 · 「[MV] 한로로 (HANRORO) - 사랑하게 될 거야 (Landing in Love)」 · 한로로 HANRORO (h0KIWaUEIgQ). 아카이브 복원(2026-11-22): 원 제목 「도경수 (D.O.) \"사랑하게 될 거야\" AI Remix | Orig. 한로로」 · 채널 EarlGrey(@Earlgrey0820). 원본 영상은 재생 불가(계정 해지), 영상 ID gorgDvDa1t0. 가짜 영상 URL은 넣지 않음.",
+    "notes": "공식 영상 확인(2026-11-22): YouTube oEmbed 200 · 「[MV] 한로로 (HANRORO) - 사랑하게 될 거야 (Landing in Love)」 · 한로로 HANRORO (h0KIWaUEIgQ). 아카이브 복원(2026-11-22): 원 제목 「도경수 (D.O.) \"사랑하게 될 거야\" AI Remix | Orig. 한로로」 · 채널 EarlGrey(@Earlgrey0820). 원본 영상은 재생 불가(계정 해지), 영상 ID gorgDvDa1t0. 가짜 영상 URL은 넣지 않음. 2026-11-23 남자키 MR 교체: 기존 「사랑하게 될 거야 - 한로로 (원키-2/F) 여기MR / KPOP / Karaoke / Music / 노래방」 대신 여기MR 노래방 Karaoke music 「사랑하게 될 거야 - 한로로 (남자키D/-5) 여기MR / KPOP / Karaoke / Music / 노래방」(z1Hec1DHN6c)로 바꿨습니다(원곡이 여성 키인 곡). 2026-11-23 음악 영상 교체: 여자 보컬·쇼츠/맛보기 영상(h0KIWaUEIgQ) 대신 남자 풀커버 49pBS6s8avc 로 바꿨습니다.",
     "setlist": false,
     "chartStatus": "ready",
     "chart": {
@@ -12459,10 +12459,10 @@
     "timeSignature": "4/4",
     "chartStage": 1,
     "category": "chart",
-    "mrUrl": "https://www.youtube.com/watch?v=pxBa1GVlS6M",
-    "mrTitle": "사랑하게 될 거야 - 한로로 (원키-2/F) 여기MR / KPOP / Karaoke / Music / 노래방",
+    "mrUrl": "https://www.youtube.com/watch?v=z1Hec1DHN6c",
+    "mrTitle": "사랑하게 될 거야 - 한로로 (남자키D/-5) 여기MR / KPOP / Karaoke / Music / 노래방",
     "mrChannel": "여기MR 노래방 Karaoke music",
-    "mrNote": "여기MR 노래방 Karaoke music · 대체 반주(임베드 재생 확인) · YouTube oEmbed 200 + 임베드 재생 확인(2026-11-22)",
+    "mrNote": "여기MR 노래방 Karaoke music · 남자키 MR(여기MR, D/-5) · YouTube oEmbed 200 + 임베드 재생 확인(2026-11-23)",
     "mrSource": "youtube"
   },
   {
@@ -14836,8 +14836,8 @@
       151
     ],
     "verification": "archive-restored",
-    "videoUrl": "https://www.youtube.com/watch?v=5n4V3lGEyG4",
-    "videoStatus": "공개 영상(공식 MV)",
+    "videoUrl": "https://www.youtube.com/watch?v=_cOPV_XTpqs",
+    "videoStatus": "공개 영상(남자 커버)",
     "audioUrl": "",
     "key": "E",
     "maleKey": "B",
@@ -14850,7 +14850,7 @@
     "vocalDifficulty": "미확인",
     "level": "미착수",
     "tags": [],
-    "notes": "공식 영상 확인(2026-11-22): YouTube oEmbed 200 · 「2NE1 - LONELY M/V」 · 2NE1 (5n4V3lGEyG4). 아카이브 복원(2026-11-22): 원 제목 「백현 X 도경수 (BAEKHYUN X D.O.) \"Lonely\" [AI REMIX By 2NE1]」 · 채널 EarlGrey(@Earlgrey0820). 원본 영상은 재생 불가(계정 해지), 영상 ID xB0M2xRnm10. 가짜 영상 URL은 넣지 않음.",
+    "notes": "공식 영상 확인(2026-11-22): YouTube oEmbed 200 · 「2NE1 - LONELY M/V」 · 2NE1 (5n4V3lGEyG4). 아카이브 복원(2026-11-22): 원 제목 「백현 X 도경수 (BAEKHYUN X D.O.) \"Lonely\" [AI REMIX By 2NE1]」 · 채널 EarlGrey(@Earlgrey0820). 원본 영상은 재생 불가(계정 해지), 영상 ID xB0M2xRnm10. 가짜 영상 URL은 넣지 않음. 2026-11-23 남자키 MR 교체: 기존 「Lonely - 2NE1(투애니원) 노래방 (금영.76914) / MUZEN Roland SC-88」 대신 Pinoy Karaoke 2019 「Lonely by 2ne1 (Karaoke : Male Key)」(TH5oJvKPmRw)로 바꿨습니다(원곡이 여성 키인 곡). 2026-11-23 음악 영상 교체: 여자 보컬·쇼츠/맛보기 영상(5n4V3lGEyG4) 대신 남자 풀커버 _cOPV_XTpqs 로 바꿨습니다.",
     "setlist": false,
     "chartStatus": "ready",
     "chart": {
@@ -14993,10 +14993,10 @@
     "timeSignature": "4/4",
     "chartStage": 2,
     "category": "chart",
-    "mrUrl": "https://www.youtube.com/watch?v=OEY5q8XBzkc",
-    "mrTitle": "Lonely - 2NE1(투애니원) 노래방 (금영.76914) / MUZEN Roland SC-88",
-    "mrChannel": "바사",
-    "mrNote": "바사 · 대체 반주(임베드 재생 확인) · YouTube oEmbed 200 + 임베드 재생 확인(2026-11-22)",
+    "mrUrl": "https://www.youtube.com/watch?v=TH5oJvKPmRw",
+    "mrTitle": "Lonely by 2ne1 (Karaoke : Male Key)",
+    "mrChannel": "Pinoy Karaoke 2019",
+    "mrNote": "Pinoy Karaoke 2019 · 남자키 노래방(Karaoke : Male Key) · YouTube oEmbed 200 + 임베드 재생 확인(2026-11-23)",
     "mrSource": "youtube"
   },
   {
@@ -15505,8 +15505,8 @@
       4
     ],
     "verification": "playlist-public-video",
-    "videoUrl": "https://www.youtube.com/watch?v=vuLK0wI9s2k",
-    "videoStatus": "공개 영상",
+    "videoUrl": "https://www.youtube.com/watch?v=k6lxnKSTkcs",
+    "videoStatus": "공개 영상(남자 커버)",
     "audioUrl": "",
     "key": "D",
     "maleKey": "A",
@@ -15521,7 +15521,7 @@
     "tags": [
       "커버 영상"
     ],
-    "notes": "원본 재생목록 #4 · 영상 ID vuLK0wI9s2k · 채널 Beginagain 비긴어게인 · 유튜브 제목 그대로. 가수 필드는 채널명을 표기했으며 원곡 가수·코드·남자 키·BPM은 확인 전이라 비움.",
+    "notes": "원본 재생목록 #4 · 영상 ID vuLK0wI9s2k · 채널 Beginagain 비긴어게인 · 유튜브 제목 그대로. 가수 필드는 채널명을 표기했으며 원곡 가수·코드·남자 키·BPM은 확인 전이라 비움. 2026-11-23 남자키 MR 교체: 기존 「[싱잇 노래방] AKMU (악뮤) - 후라이의 꿈 I 고퀄리티MR I Singit Premium Karaoke Instrumental」 대신 볼트 「[-5키 / 남자키 / MR] 악동뮤지션(AKMU) - 후라이의 꿈 ㅣ Lyrics / 가사」(A0Oco_fYmmE)로 바꿨습니다(원곡이 여성 키인 곡). 2026-11-23 음악 영상 교체: 여자 보컬·쇼츠/맛보기 영상(vuLK0wI9s2k) 대신 남자 풀커버 k6lxnKSTkcs 로 바꿨습니다.",
     "setlist": false,
     "chartStatus": "ready",
     "chartNote": "",
@@ -15664,10 +15664,10 @@
     },
     "timeSignature": "4/4",
     "chartStage": 2,
-    "mrUrl": "https://www.youtube.com/watch?v=CG8SUGDR_OE",
-    "mrTitle": "[싱잇 노래방] AKMU (악뮤) - 후라이의 꿈 I 고퀄리티MR I Singit Premium Karaoke Instrumental",
-    "mrChannel": "싱잇 Singit",
-    "mrNote": "싱잇 Singit · 대체 반주(임베드 재생 확인) · YouTube oEmbed 200 + 임베드 재생 확인(2026-11-22)",
+    "mrUrl": "https://www.youtube.com/watch?v=A0Oco_fYmmE",
+    "mrTitle": "[-5키 / 남자키 / MR] 악동뮤지션(AKMU) - 후라이의 꿈 ㅣ Lyrics / 가사",
+    "mrChannel": "볼트",
+    "mrNote": "볼트 · 남자키 MR(볼트, -5키) · YouTube oEmbed 200 + 임베드 재생 확인(2026-11-23)",
     "mrSource": "youtube"
   },
   {
@@ -19387,7 +19387,7 @@
     "tags": [
       "커버 영상"
     ],
-    "notes": "원본 재생목록 #31 · 영상 ID rzF83CHYr-g · 채널 김쭌원 노래방 · 유튜브 제목 그대로. 가수 필드는 채널명을 표기했으며 원곡 가수·코드·남자 키·BPM은 확인 전이라 비움.",
+    "notes": "원본 재생목록 #31 · 영상 ID rzF83CHYr-g · 채널 김쭌원 노래방 · 유튜브 제목 그대로. 가수 필드는 채널명을 표기했으며 원곡 가수·코드·남자 키·BPM은 확인 전이라 비움. 2026-11-23 남자키 MR 교체: 기존 「밤하늘의 별을(2020) - 경서  (고퀄리티 MRㅣ멜로디 포함 | 가사 Kor+Rom) 싱잇 노래방, Singit Karaoke」 대신 금영 노래방 공식 유튜브 채널 「[남자키] 밤하늘의 별을(2020) - 경서 (Shiny Star(2020) - Kyoung Seo) (KY.22298) / KY Karaoke」(GHQf2rXz8p8)로 바꿨습니다(원곡이 여성 키인 곡).",
     "setlist": false,
     "chartStatus": "ready",
     "chartNote": "",
@@ -19639,10 +19639,10 @@
     },
     "timeSignature": "4/4",
     "chartStage": 3,
-    "mrUrl": "https://www.youtube.com/watch?v=4YDnqz5TGZg",
-    "mrTitle": "밤하늘의 별을(2020) - 경서  (고퀄리티 MRㅣ멜로디 포함 | 가사 Kor+Rom) 싱잇 노래방, Singit Karaoke",
-    "mrChannel": "싱잇 Singit",
-    "mrNote": "싱잇 Singit · 대체 반주(임베드 재생 확인) · YouTube oEmbed 200 + 임베드 재생 확인(2026-11-22)",
+    "mrUrl": "https://www.youtube.com/watch?v=GHQf2rXz8p8",
+    "mrTitle": "[남자키] 밤하늘의 별을(2020) - 경서 (Shiny Star(2020) - Kyoung Seo) (KY.22298) / KY Karaoke",
+    "mrChannel": "금영 노래방 공식 유튜브 채널",
+    "mrNote": "금영 노래방 공식 유튜브 채널 · 금영 공식 남자키(KY.22298) · YouTube oEmbed 200 + 임베드 재생 확인(2026-11-23)",
     "mrSource": "youtube"
   },
   {
@@ -19653,8 +19653,8 @@
       32
     ],
     "verification": "playlist-public-video",
-    "videoUrl": "https://www.youtube.com/watch?v=h07Dc3E8sAQ",
-    "videoStatus": "공개 영상",
+    "videoUrl": "https://www.youtube.com/watch?v=8TAYDUleGBQ",
+    "videoStatus": "공개 영상(남자 커버)",
     "audioUrl": "",
     "key": "Eb",
     "maleKey": "Bb",
@@ -19669,7 +19669,7 @@
     "tags": [
       "커버 영상"
     ],
-    "notes": "원본 재생목록 #32 · 영상 ID h07Dc3E8sAQ · 채널 헌일Hun-il · 유튜브 제목 그대로. 가수 필드는 채널명을 표기했으며 원곡 가수·코드·남자 키·BPM은 확인 전이라 비움.",
+    "notes": "원본 재생목록 #32 · 영상 ID h07Dc3E8sAQ · 채널 헌일Hun-il · 유튜브 제목 그대로. 가수 필드는 채널명을 표기했으며 원곡 가수·코드·남자 키·BPM은 확인 전이라 비움. 2026-11-23 남자키 MR 교체: 기존 「MR노래방ㆍ-1 Key] 나의 X에게 - 경서 ㆍTo my X - Kyoung Seo ㆍMR Karaoke」 대신 여기MR 노래방 Karaoke music 「나의 X에게 - 경서 (남자키Bb/-5) 여기MR / Karaoke / Music / 노래방」(6gxt0c8dMNw)로 바꿨습니다(원곡이 여성 키인 곡). 2026-11-23 음악 영상 교체: 여자 보컬·쇼츠/맛보기 영상(h07Dc3E8sAQ) 대신 남자 풀커버 8TAYDUleGBQ 로 바꿨습니다.",
     "setlist": false,
     "chartStatus": "ready",
     "chartNote": "",
@@ -19852,10 +19852,10 @@
     },
     "timeSignature": "4/4",
     "chartStage": 3,
-    "mrUrl": "https://www.youtube.com/watch?v=VGDazIb1MnY",
-    "mrTitle": "MR노래방ㆍ-1 Key] 나의 X에게 - 경서 ㆍTo my X - Kyoung Seo ㆍMR Karaoke",
-    "mrChannel": "MR 노래방 l MR karaoke",
-    "mrNote": "MR 노래방 l MR karaoke · 대체 반주(임베드 재생 확인) · YouTube oEmbed 200 + 임베드 재생 확인(2026-11-22)",
+    "mrUrl": "https://www.youtube.com/watch?v=6gxt0c8dMNw",
+    "mrTitle": "나의 X에게 - 경서 (남자키Bb/-5) 여기MR / Karaoke / Music / 노래방",
+    "mrChannel": "여기MR 노래방 Karaoke music",
+    "mrNote": "여기MR 노래방 Karaoke music · 남자키 MR(여기MR, B♭/-5) · YouTube oEmbed 200 + 임베드 재생 확인(2026-11-23)",
     "mrSource": "youtube"
   },
   {
@@ -19882,7 +19882,7 @@
     "tags": [
       "커버 영상"
     ],
-    "notes": "원본 재생목록 #33 · 영상 ID WND_nyPbeQY · 채널 방쏭 bangssong · 유튜브 제목 그대로. 가수 필드는 채널명을 표기했으며 원곡 가수·코드·남자 키·BPM은 확인 전이라 비움.",
+    "notes": "원본 재생목록 #33 · 영상 ID WND_nyPbeQY · 채널 방쏭 bangssong · 유튜브 제목 그대로. 가수 필드는 채널명을 표기했으며 원곡 가수·코드·남자 키·BPM은 확인 전이라 비움. 2026-11-23 남자키 MR 교체: 기존 「MR노래방ㆍ-1 Key] 나의 X에게 - 경서 ㆍTo my X - Kyoung Seo ㆍMR Karaoke」 대신 여기MR 노래방 Karaoke music 「나의 X에게 - 경서 (남자키Bb/-5) 여기MR / Karaoke / Music / 노래방」(6gxt0c8dMNw)로 바꿨습니다(원곡이 여성 키인 곡).",
     "setlist": false,
     "chartStatus": "ready",
     "chartNote": "",
@@ -20065,10 +20065,10 @@
     },
     "timeSignature": "4/4",
     "chartStage": 3,
-    "mrUrl": "https://www.youtube.com/watch?v=VGDazIb1MnY",
-    "mrTitle": "MR노래방ㆍ-1 Key] 나의 X에게 - 경서 ㆍTo my X - Kyoung Seo ㆍMR Karaoke",
-    "mrChannel": "MR 노래방 l MR karaoke",
-    "mrNote": "MR 노래방 l MR karaoke · 대체 반주(임베드 재생 확인) · YouTube oEmbed 200 + 임베드 재생 확인(2026-11-22)",
+    "mrUrl": "https://www.youtube.com/watch?v=6gxt0c8dMNw",
+    "mrTitle": "나의 X에게 - 경서 (남자키Bb/-5) 여기MR / Karaoke / Music / 노래방",
+    "mrChannel": "여기MR 노래방 Karaoke music",
+    "mrNote": "여기MR 노래방 Karaoke music · 남자키 MR(여기MR, B♭/-5) · YouTube oEmbed 200 + 임베드 재생 확인(2026-11-23)",
     "mrSource": "youtube"
   },
   {
@@ -20240,7 +20240,7 @@
     "tags": [
       "커버 영상"
     ],
-    "notes": "원본 재생목록 #35 · 영상 ID KtpE4p22T18 · 채널 HUP! · 유튜브 제목 그대로. 가수 필드는 채널명을 표기했으며 원곡 가수·코드·남자 키·BPM은 확인 전이라 비움.",
+    "notes": "원본 재생목록 #35 · 영상 ID KtpE4p22T18 · 채널 HUP! · 유튜브 제목 그대로. 가수 필드는 채널명을 표기했으며 원곡 가수·코드·남자 키·BPM은 확인 전이라 비움. 2026-11-23 남자키 MR 교체: 기존 「권진아 - 운이 좋았지 노래방 Karaoke LaLa Kpop」 대신 MR. Acoustic 「권진아 - 운이좋았지 (남Key)(Key : Eb)(Acoustic MR)(Acoustic Inst)(Piano MR)」(bqsDbTmxzOM)로 바꿨습니다(원곡이 여성 키인 곡).",
     "setlist": false,
     "chartStatus": "ready",
     "chartNote": "",
@@ -20438,10 +20438,10 @@
     },
     "timeSignature": "4/4",
     "chartStage": 2,
-    "mrUrl": "https://www.youtube.com/watch?v=2-C08GJm8ks",
-    "mrTitle": "권진아 - 운이 좋았지 노래방 Karaoke LaLa Kpop",
-    "mrChannel": "라라노래방LaLa Karaoke",
-    "mrNote": "라라노래방LaLa Karaoke · 대체 반주(임베드 재생 확인) · YouTube oEmbed 200 + 임베드 재생 확인(2026-11-22)",
+    "mrUrl": "https://www.youtube.com/watch?v=bqsDbTmxzOM",
+    "mrTitle": "권진아 - 운이좋았지 (남Key)(Key : Eb)(Acoustic MR)(Acoustic Inst)(Piano MR)",
+    "mrChannel": "MR. Acoustic",
+    "mrNote": "MR. Acoustic · 남자키 어쿠스틱 MR(MR. Acoustic, Key E♭) · YouTube oEmbed 200 + 임베드 재생 확인(2026-11-23)",
     "mrSource": "youtube"
   },
   {
@@ -20468,7 +20468,7 @@
     "tags": [
       "커버 영상"
     ],
-    "notes": "원본 재생목록 #36 · 영상 ID TYNd5jcaa9M · 채널 전상근 JEON SANG KEUN · 유튜브 제목 그대로. 가수 필드는 채널명을 표기했으며 원곡 가수·코드·남자 키·BPM은 확인 전이라 비움.",
+    "notes": "원본 재생목록 #36 · 영상 ID TYNd5jcaa9M · 채널 전상근 JEON SANG KEUN · 유튜브 제목 그대로. 가수 필드는 채널명을 표기했으며 원곡 가수·코드·남자 키·BPM은 확인 전이라 비움. 2026-11-23 남자키 MR 교체: 기존 「권진아 - 운이 좋았지 노래방 Karaoke LaLa Kpop」 대신 MR. Acoustic 「권진아 - 운이좋았지 (남Key)(Key : Eb)(Acoustic MR)(Acoustic Inst)(Piano MR)」(bqsDbTmxzOM)로 바꿨습니다(원곡이 여성 키인 곡).",
     "setlist": false,
     "chartStatus": "ready",
     "chartNote": "",
@@ -20666,10 +20666,10 @@
     },
     "timeSignature": "4/4",
     "chartStage": 2,
-    "mrUrl": "https://www.youtube.com/watch?v=2-C08GJm8ks",
-    "mrTitle": "권진아 - 운이 좋았지 노래방 Karaoke LaLa Kpop",
-    "mrChannel": "라라노래방LaLa Karaoke",
-    "mrNote": "라라노래방LaLa Karaoke · 대체 반주(임베드 재생 확인) · YouTube oEmbed 200 + 임베드 재생 확인(2026-11-22)",
+    "mrUrl": "https://www.youtube.com/watch?v=bqsDbTmxzOM",
+    "mrTitle": "권진아 - 운이좋았지 (남Key)(Key : Eb)(Acoustic MR)(Acoustic Inst)(Piano MR)",
+    "mrChannel": "MR. Acoustic",
+    "mrNote": "MR. Acoustic · 남자키 어쿠스틱 MR(MR. Acoustic, Key E♭) · YouTube oEmbed 200 + 임베드 재생 확인(2026-11-23)",
     "mrSource": "youtube"
   },
   {
@@ -24276,8 +24276,8 @@
       54
     ],
     "verification": "playlist-public-video",
-    "videoUrl": "https://www.youtube.com/watch?v=nuUSmMZXgxI",
-    "videoStatus": "공개 영상",
+    "videoUrl": "https://www.youtube.com/watch?v=1hz2rEp_D8s",
+    "videoStatus": "공개 영상(남자 커버)",
     "audioUrl": "",
     "key": "Bb",
     "maleKey": "F",
@@ -24292,7 +24292,7 @@
     "tags": [
       "커버 영상"
     ],
-    "notes": "원본 재생목록 #54 · 영상 ID nuUSmMZXgxI · 채널 Hello, My Music Player · 유튜브 제목 그대로. 가수 필드는 채널명을 표기했으며 원곡 가수·코드·남자 키·BPM은 확인 전이라 비움.",
+    "notes": "원본 재생목록 #54 · 영상 ID nuUSmMZXgxI · 채널 Hello, My Music Player · 유튜브 제목 그대로. 가수 필드는 채널명을 표기했으며 원곡 가수·코드·남자 키·BPM은 확인 전이라 비움. 2026-11-23 남자키 MR 교체: 기존 「[inst] Kassy(케이시) '진심이 담긴 노래' (True Song) Acoustic Guitar instrumental mr 기타 반주」 대신 콘텐츠웨딩 「[영상MR]케이시 - 진심이 담긴 노래(-5키 자막 동영상 MR)」(Zo5Gegjm7sk)로 바꿨습니다(원곡이 여성 키인 곡). 2026-11-23 음악 영상 교체: 여자 보컬·쇼츠/맛보기 영상(nuUSmMZXgxI) 대신 남자 풀커버 1hz2rEp_D8s 로 바꿨습니다.",
     "setlist": false,
     "chartStatus": "ready",
     "chartNote": "",
@@ -24422,10 +24422,10 @@
     },
     "timeSignature": "4/4",
     "chartStage": 3,
-    "mrUrl": "https://www.youtube.com/watch?v=tpipeWYySjQ",
-    "mrTitle": "[inst] Kassy(케이시) '진심이 담긴 노래' (True Song) Acoustic Guitar instrumental mr 기타 반주",
-    "mrChannel": "니즈기타NEEZ GUITAR",
-    "mrNote": "니즈기타NEEZ GUITAR · 검색 '케이시 진심이 담긴 노래 (True Song) inst' · YouTube oEmbed 200 + 임베드 재생 확인(2026-11-22)",
+    "mrUrl": "https://www.youtube.com/watch?v=Zo5Gegjm7sk",
+    "mrTitle": "[영상MR]케이시 - 진심이 담긴 노래(-5키 자막 동영상 MR)",
+    "mrChannel": "콘텐츠웨딩",
+    "mrNote": "콘텐츠웨딩 · 남자키(-5키) 영상 MR · YouTube oEmbed 200 + 임베드 재생 확인(2026-11-23)",
     "mrSource": "youtube"
   },
   {
@@ -25819,7 +25819,7 @@
       "가수 미확인",
       "오른손 1단계"
     ],
-    "notes": "원본 재생목록 #62 · 영상 ID MhcIU1X3o6k · 채널 나의 노래 메모장 · 유튜브 제목 그대로. 가수 필드는 채널명을 표기했으며 원곡 가수·코드·남자 키·BPM은 확인 전이라 비움.",
+    "notes": "원본 재생목록 #62 · 영상 ID MhcIU1X3o6k · 채널 나의 노래 메모장 · 유튜브 제목 그대로. 가수 필드는 채널명을 표기했으며 원곡 가수·코드·남자 키·BPM은 확인 전이라 비움. 2026-11-23 남자키 MR 교체: 기존 「사랑하게 될 거야 - 한로로 (원키-2/F) 여기MR / KPOP / Karaoke / Music / 노래방」 대신 여기MR 노래방 Karaoke music 「사랑하게 될 거야 - 한로로 (남자키D/-5) 여기MR / KPOP / Karaoke / Music / 노래방」(z1Hec1DHN6c)로 바꿨습니다(원곡이 여성 키인 곡).",
     "setlist": false,
     "chartStatus": "ready",
     "chartNote": "같은 곡의 악보를 그대로 연결했습니다.",
@@ -25965,10 +25965,10 @@
     "category": "chart",
     "timeSignature": "4/4",
     "chartStage": 1,
-    "mrUrl": "https://www.youtube.com/watch?v=pxBa1GVlS6M",
-    "mrTitle": "사랑하게 될 거야 - 한로로 (원키-2/F) 여기MR / KPOP / Karaoke / Music / 노래방",
+    "mrUrl": "https://www.youtube.com/watch?v=z1Hec1DHN6c",
+    "mrTitle": "사랑하게 될 거야 - 한로로 (남자키D/-5) 여기MR / KPOP / Karaoke / Music / 노래방",
     "mrChannel": "여기MR 노래방 Karaoke music",
-    "mrNote": "여기MR 노래방 Karaoke music · 대체 반주(임베드 재생 확인) · YouTube oEmbed 200 + 임베드 재생 확인(2026-11-22)",
+    "mrNote": "여기MR 노래방 Karaoke music · 남자키 MR(여기MR, D/-5) · YouTube oEmbed 200 + 임베드 재생 확인(2026-11-23)",
     "mrSource": "youtube"
   },
   {
@@ -27915,7 +27915,7 @@
     "tags": [
       "커버 영상"
     ],
-    "notes": "원본 재생목록 #73 · 영상 ID bRXJfcd799g · 채널 나의 노래 메모장 · 유튜브 제목 그대로. 가수 필드는 채널명을 표기했으며 원곡 가수·코드·남자 키·BPM은 확인 전이라 비움.",
+    "notes": "원본 재생목록 #73 · 영상 ID bRXJfcd799g · 채널 나의 노래 메모장 · 유튜브 제목 그대로. 가수 필드는 채널명을 표기했으며 원곡 가수·코드·남자 키·BPM은 확인 전이라 비움. 2026-11-23 남자키 MR 교체: 기존 「練習用カラオケ♬ 真夜中のドア〜stay with me - 松原みき 【ガイドメロディ付】 インスト BGM, 歌詞」 대신 entame rise 「真夜中のドア　Stay With Me / 松原みき　[男性キー-2]　(offvocal　歌詞あり　ガイドメロディーなし　昭和　1979年　オフボーカル　家カラ　karaoke)」(eZJN3qCT0Iw)로 바꿨습니다(원곡이 여성 키인 곡).",
     "setlist": false,
     "chartStatus": "ready",
     "chartNote": "",
@@ -28623,10 +28623,10 @@
     },
     "timeSignature": "4/4",
     "chartStage": 3,
-    "mrUrl": "https://www.youtube.com/watch?v=Sz324IIiuiI",
-    "mrTitle": "練習用カラオケ♬ 真夜中のドア〜stay with me - 松原みき 【ガイドメロディ付】 インスト BGM, 歌詞",
-    "mrChannel": "EdKara",
-    "mrNote": "EdKara · 검색 '真夜中のドア〜Stay With Me カラオケ' · YouTube oEmbed 200 + 임베드 재생 확인(2026-11-22)",
+    "mrUrl": "https://www.youtube.com/watch?v=eZJN3qCT0Iw",
+    "mrTitle": "真夜中のドア　Stay With Me / 松原みき　[男性キー-2]　(offvocal　歌詞あり　ガイドメロディーなし　昭和　1979年　オフボーカル　家カラ　karaoke)",
+    "mrChannel": "entame rise",
+    "mrNote": "entame rise · 남자키(-2) 오프보컬(가이드멜로디 없음) · YouTube oEmbed 200 + 임베드 재생 확인(2026-11-23)",
     "mrSource": "youtube"
   },
   {
@@ -28653,7 +28653,7 @@
     "tags": [
       "커버 영상"
     ],
-    "notes": "원본 재생목록 #75 · 영상 ID 9r5N-1UYxdY · 채널 나의 노래 메모장 · 유튜브 제목 그대로. 가수 필드는 채널명을 표기했으며 원곡 가수·코드·남자 키·BPM은 확인 전이라 비움.",
+    "notes": "원본 재생목록 #75 · 영상 ID 9r5N-1UYxdY · 채널 나의 노래 메모장 · 유튜브 제목 그대로. 가수 필드는 채널명을 표기했으며 원곡 가수·코드·남자 키·BPM은 확인 전이라 비움. 2026-11-23 남자키 MR 교체: 기존 「(offvocal )RADWIMPS / すずめ feat. 十明 リアルカラオケ(Instrumental) 映画「すずめの戸締まり」主題歌」 대신 하다지 MR 「[하다지노래방] RADWIMPS - すずめ / Suzume feat. Toaka(토아카) (Am 남자key) /  하다지 MR」(1jM1_kzfFc4)로 바꿨습니다(원곡이 여성 키인 곡).",
     "setlist": false,
     "chartStatus": "ready",
     "chartNote": "",
@@ -29390,10 +29390,10 @@
     },
     "timeSignature": "4/4",
     "chartStage": 3,
-    "mrUrl": "https://www.youtube.com/watch?v=2nKNMFrSSno",
-    "mrTitle": "(offvocal )RADWIMPS / すずめ feat. 十明 リアルカラオケ(Instrumental) 映画「すずめの戸締まり」主題歌",
-    "mrChannel": "ミライカラオケ⛤",
-    "mrNote": "ミライカラオケ⛤ · 검색 'RADWIMPS すずめ inst' · YouTube oEmbed 200 + 임베드 재생 확인(2026-11-22)",
+    "mrUrl": "https://www.youtube.com/watch?v=1jM1_kzfFc4",
+    "mrTitle": "[하다지노래방] RADWIMPS - すずめ / Suzume feat. Toaka(토아카) (Am 남자key) /  하다지 MR",
+    "mrChannel": "하다지 MR",
+    "mrNote": "하다지 MR · 남자키 MR(하다지, A단조) · YouTube oEmbed 200 + 임베드 재생 확인(2026-11-23)",
     "mrSource": "youtube"
   },
   {
@@ -30177,8 +30177,8 @@
       84
     ],
     "verification": "playlist-public-video",
-    "videoUrl": "https://www.youtube.com/watch?v=RGEDc8NYIGE",
-    "videoStatus": "공개 영상",
+    "videoUrl": "https://www.youtube.com/watch?v=WzI1qz1wZY4",
+    "videoStatus": "공개 영상(남자 커버)",
     "audioUrl": "",
     "key": "D",
     "maleKey": "A",
@@ -30193,7 +30193,7 @@
     "tags": [
       "커버 영상"
     ],
-    "notes": "원본 재생목록 #84 · 영상 ID RGEDc8NYIGE · 채널 연리 · 유튜브 제목 그대로. 가수 필드는 채널명을 표기했으며 원곡 가수·코드·남자 키·BPM은 확인 전이라 비움.",
+    "notes": "원본 재생목록 #84 · 영상 ID RGEDc8NYIGE · 채널 연리 · 유튜브 제목 그대로. 가수 필드는 채널명을 표기했으며 원곡 가수·코드·남자 키·BPM은 확인 전이라 비움. 2026-11-23 남자키 MR 교체: 기존 「[싱잇 노래방] 숲 - 최유리 I 고퀄리티MR I Singit Premium Karaoke Instrumental」 대신 금영 노래방 공식 유튜브 채널 「[남자키] 숲 - 최유리(Forest - Choi Yu Ri) (KY.24277) / KY Karaoke」(BtzJ_S98gWQ)로 바꿨습니다(원곡이 여성 키인 곡). 2026-11-23 음악 영상 교체: 여자 보컬·쇼츠/맛보기 영상(RGEDc8NYIGE) 대신 남자 풀커버 WzI1qz1wZY4 로 바꿨습니다.",
     "setlist": false,
     "chartStatus": "ready",
     "chartNote": "",
@@ -30369,10 +30369,10 @@
     },
     "timeSignature": "6/8",
     "chartStage": 2,
-    "mrUrl": "https://www.youtube.com/watch?v=56Fll3pSbTM",
-    "mrTitle": "[싱잇 노래방] 숲 - 최유리 I 고퀄리티MR I Singit Premium Karaoke Instrumental",
-    "mrChannel": "싱잇 Singit",
-    "mrNote": "싱잇 Singit · 대체 반주(임베드 재생 확인) · YouTube oEmbed 200 + 임베드 재생 확인(2026-11-22)",
+    "mrUrl": "https://www.youtube.com/watch?v=BtzJ_S98gWQ",
+    "mrTitle": "[남자키] 숲 - 최유리(Forest - Choi Yu Ri) (KY.24277) / KY Karaoke",
+    "mrChannel": "금영 노래방 공식 유튜브 채널",
+    "mrNote": "금영 노래방 공식 유튜브 채널 · 금영 공식 남자키(KY.24277) · YouTube oEmbed 200 + 임베드 재생 확인(2026-11-23)",
     "mrSource": "youtube"
   },
   {
@@ -30399,7 +30399,7 @@
     "tags": [
       "커버 영상"
     ],
-    "notes": "원본 재생목록 #85 · 영상 ID 0EsuOs2nvpU · 채널 DEARYOUTH · 유튜브 제목 그대로. 가수 필드는 채널명을 표기했으며 원곡 가수·코드·남자 키·BPM은 확인 전이라 비움.",
+    "notes": "원본 재생목록 #85 · 영상 ID 0EsuOs2nvpU · 채널 DEARYOUTH · 유튜브 제목 그대로. 가수 필드는 채널명을 표기했으며 원곡 가수·코드·남자 키·BPM은 확인 전이라 비움. 2026-11-23 남자키 MR 교체: 기존 「[싱잇 노래방] 숲 - 최유리 I 고퀄리티MR I Singit Premium Karaoke Instrumental」 대신 금영 노래방 공식 유튜브 채널 「[남자키] 숲 - 최유리(Forest - Choi Yu Ri) (KY.24277) / KY Karaoke」(BtzJ_S98gWQ)로 바꿨습니다(원곡이 여성 키인 곡).",
     "setlist": false,
     "chartStatus": "ready",
     "chartNote": "",
@@ -30575,10 +30575,10 @@
     },
     "timeSignature": "6/8",
     "chartStage": 2,
-    "mrUrl": "https://www.youtube.com/watch?v=56Fll3pSbTM",
-    "mrTitle": "[싱잇 노래방] 숲 - 최유리 I 고퀄리티MR I Singit Premium Karaoke Instrumental",
-    "mrChannel": "싱잇 Singit",
-    "mrNote": "싱잇 Singit · 대체 반주(임베드 재생 확인) · YouTube oEmbed 200 + 임베드 재생 확인(2026-11-22)",
+    "mrUrl": "https://www.youtube.com/watch?v=BtzJ_S98gWQ",
+    "mrTitle": "[남자키] 숲 - 최유리(Forest - Choi Yu Ri) (KY.24277) / KY Karaoke",
+    "mrChannel": "금영 노래방 공식 유튜브 채널",
+    "mrNote": "금영 노래방 공식 유튜브 채널 · 금영 공식 남자키(KY.24277) · YouTube oEmbed 200 + 임베드 재생 확인(2026-11-23)",
     "mrSource": "youtube"
   },
   {
@@ -31781,7 +31781,7 @@
     "tags": [
       "커버 영상"
     ],
-    "notes": "원본 재생목록 #92 · 영상 ID Tpdj_LZOl1c · 채널 전상근 JEON SANG KEUN · 유튜브 제목 그대로. 가수 필드는 채널명을 표기했으며 원곡 가수·코드·남자 키·BPM은 확인 전이라 비움.",
+    "notes": "원본 재생목록 #92 · 영상 ID Tpdj_LZOl1c · 채널 전상근 JEON SANG KEUN · 유튜브 제목 그대로. 가수 필드는 채널명을 표기했으며 원곡 가수·코드·남자 키·BPM은 확인 전이라 비움. 2026-11-23 남자키 MR 교체: 기존 「봄 내음보다 너를 - 김나영 (고퀄리티 MRㅣ멜로디 미포함 | 가사 Kor+Rom) 싱잇 노래방, Singit Karaoke」 대신 금영 노래방 공식 유튜브 채널 「[남자키] 봄 내음보다 너를 - 김나영(A Letter For You - Kim Na Young) (KY.22807) / KY Karaoke」(--TRRB1SfLw)로 바꿨습니다(원곡이 여성 키인 곡).",
     "setlist": false,
     "chartStatus": "ready",
     "chartNote": "",
@@ -31959,10 +31959,10 @@
     },
     "timeSignature": "4/4",
     "chartStage": 3,
-    "mrUrl": "https://www.youtube.com/watch?v=xP_Qg1c_nW8",
-    "mrTitle": "봄 내음보다 너를 - 김나영 (고퀄리티 MRㅣ멜로디 미포함 | 가사 Kor+Rom) 싱잇 노래방, Singit Karaoke",
-    "mrChannel": "싱잇 Singit",
-    "mrNote": "싱잇 Singit · 대체 반주(임베드 재생 확인) · YouTube oEmbed 200 + 임베드 재생 확인(2026-11-22)",
+    "mrUrl": "https://www.youtube.com/watch?v=--TRRB1SfLw",
+    "mrTitle": "[남자키] 봄 내음보다 너를 - 김나영(A Letter For You - Kim Na Young) (KY.22807) / KY Karaoke",
+    "mrChannel": "금영 노래방 공식 유튜브 채널",
+    "mrNote": "금영 노래방 공식 유튜브 채널 · 금영 공식 남자키(KY.22807) · YouTube oEmbed 200 + 임베드 재생 확인(2026-11-23)",
     "mrSource": "youtube"
   },
   {
@@ -32422,7 +32422,7 @@
     "tags": [
       "커버 영상"
     ],
-    "notes": "원본 재생목록 #111 · 영상 ID sIKCotYE7bA · 채널 노래하는 보디빌더고강민 · 유튜브 제목 그대로. 가수 필드는 채널명을 표기했으며 원곡 가수·코드·남자 키·BPM은 확인 전이라 비움.",
+    "notes": "원본 재생목록 #111 · 영상 ID sIKCotYE7bA · 채널 노래하는 보디빌더고강민 · 유튜브 제목 그대로. 가수 필드는 채널명을 표기했으며 원곡 가수·코드·남자 키·BPM은 확인 전이라 비움. 2026-11-23 남자키 MR 교체: 기존 「[고음질 MR] 언젠가는 - 이상은 (KY.1812) / KY Karaoke」 대신 금영 노래방 공식 유튜브 채널 「[남자키] 언젠가는 - 이상은 (KY.1812) / KY Karaoke」(Zh0tkyRV5vw)로 바꿨습니다(원곡이 여성 키인 곡).",
     "setlist": false,
     "chartStatus": "ready",
     "chartNote": "",
@@ -32715,10 +32715,10 @@
     },
     "timeSignature": "4/4",
     "chartStage": 2,
-    "mrUrl": "https://www.youtube.com/watch?v=LV_e29nHg8k",
-    "mrTitle": "[고음질 MR] 언젠가는 - 이상은 (KY.1812) / KY Karaoke",
+    "mrUrl": "https://www.youtube.com/watch?v=Zh0tkyRV5vw",
+    "mrTitle": "[남자키] 언젠가는 - 이상은 (KY.1812) / KY Karaoke",
     "mrChannel": "금영 노래방 공식 유튜브 채널",
-    "mrNote": "금영 노래방 공식 유튜브 채널 · 대체 반주(임베드 재생 확인) · YouTube oEmbed 200 + 임베드 재생 확인(2026-11-22)",
+    "mrNote": "금영 노래방 공식 유튜브 채널 · 금영 공식 남자키(KY.1812) · YouTube oEmbed 200 + 임베드 재생 확인(2026-11-23)",
     "mrSource": "youtube"
   },
   {
@@ -35980,7 +35980,7 @@
       "재생목록 영상",
       "가수 미확인"
     ],
-    "notes": "원본 재생목록 #156 · 영상 ID bVp6tXFoCVs · 채널 정승환 Jung Seung Hwan · 유튜브 제목 그대로. 가수 필드는 채널명을 표기했으며 원곡 가수·코드·남자 키·BPM은 확인 전이라 비움.",
+    "notes": "원본 재생목록 #156 · 영상 ID bVp6tXFoCVs · 채널 정승환 Jung Seung Hwan · 유튜브 제목 그대로. 가수 필드는 채널명을 표기했으며 원곡 가수·코드·남자 키·BPM은 확인 전이라 비움. 2026-11-23 남자키 MR 교체: 기존 「0+0 - 한로로 (HANRORO) (원키-2/G) 여기MR / KPOP / Karaoke / Music / 노래방」 대신 여기MR 노래방 Karaoke music 「0+0 - 한로로 (HANRORO) (남자키E/-5) 여기MR / KPOP / Karaoke / Music / 노래방 영영」(6tFsFWLy2wk)로 바꿨습니다(원곡이 여성 키인 곡).",
     "setlist": false,
     "chartStatus": "ready",
     "chartNote": "같은 곡의 악보를 그대로 연결했습니다.",
@@ -36129,10 +36129,10 @@
     "category": "chart",
     "timeSignature": "4/4",
     "chartStage": 2,
-    "mrUrl": "https://www.youtube.com/watch?v=1cULERNO29Q",
-    "mrTitle": "0+0 - 한로로 (HANRORO) (원키-2/G) 여기MR / KPOP / Karaoke / Music / 노래방",
+    "mrUrl": "https://www.youtube.com/watch?v=6tFsFWLy2wk",
+    "mrTitle": "0+0 - 한로로 (HANRORO) (남자키E/-5) 여기MR / KPOP / Karaoke / Music / 노래방 영영",
     "mrChannel": "여기MR 노래방 Karaoke music",
-    "mrNote": "여기MR 노래방 Karaoke music · 대체 반주(임베드 재생 확인) · YouTube oEmbed 200 + 임베드 재생 확인(2026-11-22)",
+    "mrNote": "여기MR 노래방 Karaoke music · 남자키 MR(여기MR, E/-5) · YouTube oEmbed 200 + 임베드 재생 확인(2026-11-23)",
     "mrSource": "youtube"
   },
   {
@@ -37726,7 +37726,7 @@
     "mrUrl": "https://www.youtube.com/watch?v=ige-TSCG5vc",
     "mrTitle": "서, 어른 (inst.)",
     "mrChannel": "Kisum - Topic",
-    "mrNote": "공식 inst. (ZIP 자료 · Kisum - Topic) · YouTube oEmbed 200 + 임베드 재생 확인(2026-11-22)",
+    "mrNote": "공식 inst. (ZIP 자료 · Kisum - Topic) · YouTube oEmbed 200 + 임베드 재생 확인(2026-11-22) [원키 MR · -5키 필요]",
     "mrSource": "zip"
   },
   {
@@ -37754,7 +37754,7 @@
       "커버 영상",
       "오른손 1단계"
     ],
-    "notes": "원본 재생목록 #160 · 영상 ID -2nJ_R2_80I · 채널 보컬준 · 유튜브 제목 그대로. 가수 필드는 채널명을 표기했으며 원곡 가수·코드·남자 키·BPM은 확인 전이라 비움.",
+    "notes": "원본 재생목록 #160 · 영상 ID -2nJ_R2_80I · 채널 보컬준 · 유튜브 제목 그대로. 가수 필드는 채널명을 표기했으며 원곡 가수·코드·남자 키·BPM은 확인 전이라 비움. 2026-11-23 남자키 MR 교체: 기존 「입춘 - 한로로 (원키-2/Eb) 여기MR / KPOP / Karaoke / Music / 노래방」 대신 금영 노래방 공식 유튜브 채널 「[남자키] 입춘 - 한로로 (KY.80672) / KY KARAOKE」(RWwVa_wLJnc)로 바꿨습니다(원곡이 여성 키인 곡).",
     "setlist": false,
     "chartStatus": "ready",
     "chartNote": "",
@@ -37832,10 +37832,10 @@
     },
     "timeSignature": "4/4",
     "chartStage": 1,
-    "mrUrl": "https://www.youtube.com/watch?v=EVwPqejAXbA",
-    "mrTitle": "입춘 - 한로로 (원키-2/Eb) 여기MR / KPOP / Karaoke / Music / 노래방",
-    "mrChannel": "여기MR 노래방 Karaoke music",
-    "mrNote": "여기MR 노래방 Karaoke music · 대체 반주(임베드 재생 확인) · YouTube oEmbed 200 + 임베드 재생 확인(2026-11-22)",
+    "mrUrl": "https://www.youtube.com/watch?v=RWwVa_wLJnc",
+    "mrTitle": "[남자키] 입춘 - 한로로 (KY.80672) / KY KARAOKE",
+    "mrChannel": "금영 노래방 공식 유튜브 채널",
+    "mrNote": "금영 노래방 공식 유튜브 채널 · 금영 공식 남자키(KY.80672) · YouTube oEmbed 200 + 임베드 재생 확인(2026-11-23)",
     "mrSource": "youtube"
   },
   {
@@ -38067,8 +38067,8 @@
       165
     ],
     "verification": "playlist-public-video",
-    "videoUrl": "https://www.youtube.com/watch?v=agmwEA4kWlA",
-    "videoStatus": "공개 영상",
+    "videoUrl": "https://www.youtube.com/watch?v=xblo0lg5rPE",
+    "videoStatus": "공개 영상(남자 커버)",
     "audioUrl": "",
     "key": "A",
     "maleKey": "E",
@@ -38083,7 +38083,7 @@
     "tags": [
       "커버 영상"
     ],
-    "notes": "원본 재생목록 #165 · 영상 ID agmwEA4kWlA · 채널 첫소절 · 유튜브 제목 그대로. 가수 필드는 채널명을 표기했으며 원곡 가수·코드·남자 키·BPM은 확인 전이라 비움.",
+    "notes": "원본 재생목록 #165 · 영상 ID agmwEA4kWlA · 채널 첫소절 · 유튜브 제목 그대로. 가수 필드는 채널명을 표기했으며 원곡 가수·코드·남자 키·BPM은 확인 전이라 비움. 2026-11-23 남자키 MR 교체: 기존 「IU(아이유) - 내 손을 잡아 Acoustic Guitar Instrumental, Karaoke, MR, 멜로디제거, 어쿠스틱버전」 대신 볼트 「[-5키 / 남자키] 아이유 내 손을 잡아 노래방」(-rmv-QSH-r0)로 바꿨습니다(원곡이 여성 키인 곡). 2026-11-23 음악 영상 교체: 여자 보컬·쇼츠/맛보기 영상(agmwEA4kWlA) 대신 남자 풀커버 xblo0lg5rPE 로 바꿨습니다.",
     "setlist": false,
     "chartStatus": "ready",
     "chartNote": "",
@@ -38275,10 +38275,10 @@
     },
     "timeSignature": "4/4",
     "chartStage": 2,
-    "mrUrl": "https://www.youtube.com/watch?v=5hkdHuMzupo",
-    "mrTitle": "IU(아이유) - 내 손을 잡아 Acoustic Guitar Instrumental, Karaoke, MR, 멜로디제거, 어쿠스틱버전",
-    "mrChannel": "Rami Guitar 라미기타",
-    "mrNote": "Rami Guitar 라미기타 · 검색 '아이유 내 손을 잡아 inst' · YouTube oEmbed 200 + 임베드 재생 확인(2026-11-22)",
+    "mrUrl": "https://www.youtube.com/watch?v=-rmv-QSH-r0",
+    "mrTitle": "[-5키 / 남자키] 아이유 내 손을 잡아 노래방",
+    "mrChannel": "볼트",
+    "mrNote": "볼트 · 남자키(-5키) 노래방 · YouTube oEmbed 200 + 임베드 재생 확인(2026-11-23)",
     "mrSource": "youtube"
   },
   {
@@ -38289,8 +38289,8 @@
       166
     ],
     "verification": "playlist-public-video",
-    "videoUrl": "https://www.youtube.com/watch?v=EfGDB7oo1dI",
-    "videoStatus": "공개 영상",
+    "videoUrl": "https://www.youtube.com/watch?v=O_ezc_3D7iE",
+    "videoStatus": "공개 영상(남자 그룹 라이브 커버)",
     "audioUrl": "",
     "key": "Ab",
     "maleKey": "Eb",
@@ -38305,7 +38305,7 @@
     "tags": [
       "커버 영상"
     ],
-    "notes": "원본 재생목록 #166 · 영상 ID EfGDB7oo1dI · 채널 CCS TWICE · 유튜브 제목 그대로. 가수 필드는 채널명을 표기했으며 원곡 가수·코드·남자 키·BPM은 확인 전이라 비움.",
+    "notes": "원본 재생목록 #166 · 영상 ID EfGDB7oo1dI · 채널 CCS TWICE · 유튜브 제목 그대로. 가수 필드는 채널명을 표기했으며 원곡 가수·코드·남자 키·BPM은 확인 전이라 비움. 2026-11-23 남자키 MR 교체: 기존 「Feel Special (Sad Ver.)」 대신 MR 노래방 l MR karaoke 「[KPOP MR 노래방] Feel special - 트와이스 (Man Ver.)ㆍFeel special - TWICE」(cbkluSvv758)로 바꿨습니다(원곡이 여성 키인 곡). 2026-11-23 음악 영상 교체: 여자 보컬·쇼츠/맛보기 영상(EfGDB7oo1dI) 대신 남자 풀커버 O_ezc_3D7iE 로 바꿨습니다.",
     "setlist": false,
     "chartStatus": "partial",
     "chartNote": "원키 Ab·129bpm 확인. 정식 기타 코드표가 없어 코드 분석 사이트(Mazmazika)의 코드 진행 순서 중 앞부분 16개를 그대로 옮겼습니다.",
@@ -38519,10 +38519,10 @@
     },
     "timeSignature": "4/4",
     "chartStage": 3,
-    "mrUrl": "https://www.youtube.com/watch?v=ivGDPOgJhnc",
-    "mrTitle": "Feel Special (Sad Ver.)",
-    "mrChannel": "DooPiano - Topic",
-    "mrNote": "DooPiano - Topic · 주성 님 지정 · 피아노 연주 반주(Sad Ver.) · YouTube oEmbed 200 + 임베드 재생 확인(2026-11-23)",
+    "mrUrl": "https://www.youtube.com/watch?v=cbkluSvv758",
+    "mrTitle": "[KPOP MR 노래방] Feel special - 트와이스 (Man Ver.)ㆍFeel special - TWICE",
+    "mrChannel": "MR 노래방 l MR karaoke",
+    "mrNote": "MR 노래방 l MR karaoke · 남자키 MR(Man Ver.) · YouTube oEmbed 200 + 임베드 재생 확인(2026-11-23)",
     "mrSource": "youtube"
   },
   {
@@ -38820,8 +38820,8 @@
       170
     ],
     "verification": "playlist-public-video",
-    "videoUrl": "https://www.youtube.com/watch?v=JfbNlwe7xAM",
-    "videoStatus": "공개 영상",
+    "videoUrl": "https://www.youtube.com/watch?v=b9nbgXmYjBI",
+    "videoStatus": "공개 영상(남자 답가 커버)",
     "audioUrl": "",
     "key": "C",
     "maleKey": "G",
@@ -38836,7 +38836,7 @@
     "tags": [
       "커버 영상"
     ],
-    "notes": "원본 재생목록 #170 · 영상 ID JfbNlwe7xAM · 채널 icecafelatteplz · 유튜브 제목 그대로. 가수 필드는 채널명을 표기했으며 원곡 가수·코드·남자 키·BPM은 확인 전이라 비움.",
+    "notes": "원본 재생목록 #170 · 영상 ID JfbNlwe7xAM · 채널 icecafelatteplz · 유튜브 제목 그대로. 가수 필드는 채널명을 표기했으며 원곡 가수·코드·남자 키·BPM은 확인 전이라 비움. 2026-11-23 음악 영상 교체: 여자 보컬·쇼츠/맛보기 영상(JfbNlwe7xAM) 대신 남자 풀커버 b9nbgXmYjBI 로 바꿨습니다.",
     "setlist": false,
     "chartStatus": "ready",
     "chartNote": "",
@@ -39015,7 +39015,7 @@
     "mrUrl": "https://www.youtube.com/watch?v=Jp4uNTmxiAY",
     "mrTitle": "최유리 - 생각을 멈추다 보면 | 원곡노래방 Karaoke MR 가사",
     "mrChannel": "원곡노래방",
-    "mrNote": "원곡노래방 · 대체 반주(임베드 재생 확인) · YouTube oEmbed 200 + 임베드 재생 확인(2026-11-22)",
+    "mrNote": "원곡노래방 · 대체 반주(임베드 재생 확인) · YouTube oEmbed 200 + 임베드 재생 확인(2026-11-22) [원키 MR · -5키 필요]",
     "mrSource": "youtube"
   },
   {
@@ -39855,8 +39855,8 @@
       174
     ],
     "verification": "playlist-public-video",
-    "videoUrl": "https://www.youtube.com/watch?v=7WmQYYHkCqg",
-    "videoStatus": "공개 영상",
+    "videoUrl": "https://www.youtube.com/watch?v=to3sjq-CAvA",
+    "videoStatus": "공개 영상(진영&최유리 풀버전)",
     "audioUrl": "",
     "key": "C",
     "maleKey": "G",
@@ -39871,7 +39871,7 @@
     "tags": [
       "커버 영상"
     ],
-    "notes": "원본 재생목록 #174 · 영상 ID 7WmQYYHkCqg · 채널 🧡Dive_Nyoung🧡 · 유튜브 제목 그대로. 가수 필드는 채널명을 표기했으며 원곡 가수·코드·남자 키·BPM은 확인 전이라 비움.",
+    "notes": "원본 재생목록 #174 · 영상 ID 7WmQYYHkCqg · 채널 🧡Dive_Nyoung🧡 · 유튜브 제목 그대로. 가수 필드는 채널명을 표기했으며 원곡 가수·코드·남자 키·BPM은 확인 전이라 비움. 2026-11-23 음악 영상 교체: 여자 보컬·쇼츠/맛보기 영상(7WmQYYHkCqg) 대신 남자 풀커버 to3sjq-CAvA 로 바꿨습니다.",
     "setlist": false,
     "chartStatus": "ready",
     "chartNote": "",
@@ -40050,7 +40050,7 @@
     "mrUrl": "https://www.youtube.com/watch?v=Jp4uNTmxiAY",
     "mrTitle": "최유리 - 생각을 멈추다 보면 | 원곡노래방 Karaoke MR 가사",
     "mrChannel": "원곡노래방",
-    "mrNote": "원곡노래방 · 대체 반주(임베드 재생 확인) · YouTube oEmbed 200 + 임베드 재생 확인(2026-11-22)",
+    "mrNote": "원곡노래방 · 대체 반주(임베드 재생 확인) · YouTube oEmbed 200 + 임베드 재생 확인(2026-11-22) [원키 MR · -5키 필요]",
     "mrSource": "youtube"
   },
   {
@@ -40061,8 +40061,8 @@
       175
     ],
     "verification": "playlist-public-video",
-    "videoUrl": "https://www.youtube.com/watch?v=vEVzyYbLsFo",
-    "videoStatus": "공개 영상",
+    "videoUrl": "https://www.youtube.com/watch?v=NE7TPaHWs5Q",
+    "videoStatus": "공개 영상(남자 커버)",
     "audioUrl": "",
     "key": "Ab",
     "maleKey": "Eb",
@@ -40078,7 +40078,7 @@
       "커버 영상",
       "오른손 1단계"
     ],
-    "notes": "원본 재생목록 #175 · 영상 ID vEVzyYbLsFo · 채널 명한 · 유튜브 제목 그대로. 가수 필드는 채널명을 표기했으며 원곡 가수·코드·남자 키·BPM은 확인 전이라 비움.",
+    "notes": "원본 재생목록 #175 · 영상 ID vEVzyYbLsFo · 채널 명한 · 유튜브 제목 그대로. 가수 필드는 채널명을 표기했으며 원곡 가수·코드·남자 키·BPM은 확인 전이라 비움. 2026-11-23 남자키 MR 교체: 기존 「만찬가(반산카) - 츠키 (晩餐歌 - tuki.) (KY.57828) / KY Karaoke」 대신 금영 노래방 공식 유튜브 채널 「[남자키] 만찬가(반산카) - 츠키 (晩餐歌 - tuki.) (KY.57828) / KY Karaoke」(ffEQBhegrlo)로 바꿨습니다(원곡이 여성 키인 곡). 2026-11-23 음악 영상 교체: 여자 보컬·쇼츠/맛보기 영상(vEVzyYbLsFo) 대신 남자 풀커버 NE7TPaHWs5Q 로 바꿨습니다.",
     "setlist": false,
     "chartStatus": "ready",
     "chartNote": "",
@@ -40339,10 +40339,10 @@
     },
     "timeSignature": "4/4",
     "chartStage": 1,
-    "mrUrl": "https://www.youtube.com/watch?v=FMppPoOfm9E",
-    "mrTitle": "만찬가(반산카) - 츠키 (晩餐歌 - tuki.) (KY.57828) / KY Karaoke",
+    "mrUrl": "https://www.youtube.com/watch?v=ffEQBhegrlo",
+    "mrTitle": "[남자키] 만찬가(반산카) - 츠키 (晩餐歌 - tuki.) (KY.57828) / KY Karaoke",
     "mrChannel": "금영 노래방 공식 유튜브 채널",
-    "mrNote": "금영 노래방 공식 유튜브 채널 · 검색 'tuki. 만찬가 inst' · YouTube oEmbed 200 + 임베드 재생 확인(2026-11-22)",
+    "mrNote": "금영 노래방 공식 유튜브 채널 · 금영 공식 남자키(KY.57828) · YouTube oEmbed 200 + 임베드 재생 확인(2026-11-23)",
     "mrSource": "youtube"
   },
   {
@@ -43452,7 +43452,7 @@
     "tags": [
       "커버 영상"
     ],
-    "notes": "원본 재생목록 #188 · 영상 ID S955hAlAkP0 · 채널 유스데스크 YOO'S DESK. · 유튜브 제목 그대로. 가수 필드는 채널명을 표기했으며 원곡 가수·코드·남자 키·BPM은 확인 전이라 비움.",
+    "notes": "원본 재생목록 #188 · 영상 ID S955hAlAkP0 · 채널 유스데스크 YOO'S DESK. · 유튜브 제목 그대로. 가수 필드는 채널명을 표기했으며 원곡 가수·코드·남자 키·BPM은 확인 전이라 비움. 2026-11-23 남자키 MR 교체: 기존 「MR노래방ㆍ-1 Key] 나의 X에게 - 경서 ㆍTo my X - Kyoung Seo ㆍMR Karaoke」 대신 여기MR 노래방 Karaoke music 「나의 X에게 - 경서 (남자키Bb/-5) 여기MR / Karaoke / Music / 노래방」(6gxt0c8dMNw)로 바꿨습니다(원곡이 여성 키인 곡).",
     "setlist": false,
     "chartStatus": "ready",
     "chartNote": "",
@@ -43635,10 +43635,10 @@
     },
     "timeSignature": "4/4",
     "chartStage": 3,
-    "mrUrl": "https://www.youtube.com/watch?v=VGDazIb1MnY",
-    "mrTitle": "MR노래방ㆍ-1 Key] 나의 X에게 - 경서 ㆍTo my X - Kyoung Seo ㆍMR Karaoke",
-    "mrChannel": "MR 노래방 l MR karaoke",
-    "mrNote": "MR 노래방 l MR karaoke · 대체 반주(임베드 재생 확인) · YouTube oEmbed 200 + 임베드 재생 확인(2026-11-22)",
+    "mrUrl": "https://www.youtube.com/watch?v=6gxt0c8dMNw",
+    "mrTitle": "나의 X에게 - 경서 (남자키Bb/-5) 여기MR / Karaoke / Music / 노래방",
+    "mrChannel": "여기MR 노래방 Karaoke music",
+    "mrNote": "여기MR 노래방 Karaoke music · 남자키 MR(여기MR, B♭/-5) · YouTube oEmbed 200 + 임베드 재생 확인(2026-11-23)",
     "mrSource": "youtube"
   },
   {
@@ -45163,7 +45163,7 @@
       "커버 영상",
       "오른손 1단계"
     ],
-    "notes": "원본 재생목록 #194 · 영상 ID B4G6uDNi6hM · 채널 덕구 DuckGoo · 유튜브 제목 그대로. 가수 필드는 채널명을 표기했으며 원곡 가수·코드·남자 키·BPM은 확인 전이라 비움.",
+    "notes": "원본 재생목록 #194 · 영상 ID B4G6uDNi6hM · 채널 덕구 DuckGoo · 유튜브 제목 그대로. 가수 필드는 채널명을 표기했으며 원곡 가수·코드·남자 키·BPM은 확인 전이라 비움. 2026-11-23 남자키 MR 교체: 기존 「[싱잇 노래방] 나는 아픈 건 딱 질색이니까 - (여자)아이들 I 고퀄리티MR I Singit Premium Karaoke Instrumental」 대신 금영 노래방 공식 유튜브 채널 「[남자키] 나는 아픈 건 딱 질색이니까 - (여자)아이들 (KY.80872) / KY KARAOKE」(8cpfnHf-Gmw)로 바꿨습니다(원곡이 여성 키인 곡).",
     "setlist": false,
     "chartStatus": "ready",
     "chartNote": "",
@@ -45333,10 +45333,10 @@
     },
     "timeSignature": "4/4",
     "chartStage": 1,
-    "mrUrl": "https://www.youtube.com/watch?v=CKfgduZCj8M",
-    "mrTitle": "[싱잇 노래방] 나는 아픈 건 딱 질색이니까 - (여자)아이들 I 고퀄리티MR I Singit Premium Karaoke Instrumental",
-    "mrChannel": "싱잇 Singit",
-    "mrNote": "싱잇 Singit · 대체 반주(임베드 재생 확인) · YouTube oEmbed 200 + 임베드 재생 확인(2026-11-22)",
+    "mrUrl": "https://www.youtube.com/watch?v=8cpfnHf-Gmw",
+    "mrTitle": "[남자키] 나는 아픈 건 딱 질색이니까 - (여자)아이들 (KY.80872) / KY KARAOKE",
+    "mrChannel": "금영 노래방 공식 유튜브 채널",
+    "mrNote": "금영 노래방 공식 유튜브 채널 · 금영 공식 남자키(KY.80872) · YouTube oEmbed 200 + 임베드 재생 확인(2026-11-23)",
     "mrSource": "youtube"
   },
   {
@@ -48631,7 +48631,7 @@
     "tags": [
       "커버 영상"
     ],
-    "notes": "원본 재생목록 #208 · 영상 ID 7EHv6DRVIXI · 채널 경서 · 유튜브 제목 그대로. 가수 필드는 채널명을 표기했으며 원곡 가수·코드·남자 키·BPM은 확인 전이라 비움. 같은 영상이 #208에도 중복 포함되어 두 슬롯을 한 곡에 연결.",
+    "notes": "원본 재생목록 #208 · 영상 ID 7EHv6DRVIXI · 채널 경서 · 유튜브 제목 그대로. 가수 필드는 채널명을 표기했으며 원곡 가수·코드·남자 키·BPM은 확인 전이라 비움. 같은 영상이 #208에도 중복 포함되어 두 슬롯을 한 곡에 연결. 2026-11-23 남자키 MR 교체: 기존 「MR노래방ㆍ-1 Key] 나의 X에게 - 경서 ㆍTo my X - Kyoung Seo ㆍMR Karaoke」 대신 여기MR 노래방 Karaoke music 「나의 X에게 - 경서 (남자키Bb/-5) 여기MR / Karaoke / Music / 노래방」(6gxt0c8dMNw)로 바꿨습니다(원곡이 여성 키인 곡).",
     "setlist": false,
     "chartStatus": "ready",
     "chartNote": "",
@@ -48814,10 +48814,10 @@
     },
     "timeSignature": "4/4",
     "chartStage": 3,
-    "mrUrl": "https://www.youtube.com/watch?v=VGDazIb1MnY",
-    "mrTitle": "MR노래방ㆍ-1 Key] 나의 X에게 - 경서 ㆍTo my X - Kyoung Seo ㆍMR Karaoke",
-    "mrChannel": "MR 노래방 l MR karaoke",
-    "mrNote": "MR 노래방 l MR karaoke · 대체 반주(임베드 재생 확인) · YouTube oEmbed 200 + 임베드 재생 확인(2026-11-22)",
+    "mrUrl": "https://www.youtube.com/watch?v=6gxt0c8dMNw",
+    "mrTitle": "나의 X에게 - 경서 (남자키Bb/-5) 여기MR / Karaoke / Music / 노래방",
+    "mrChannel": "여기MR 노래방 Karaoke music",
+    "mrNote": "여기MR 노래방 Karaoke music · 남자키 MR(여기MR, B♭/-5) · YouTube oEmbed 200 + 임베드 재생 확인(2026-11-23)",
     "mrSource": "youtube"
   },
   {

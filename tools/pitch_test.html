@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="ko"><head><meta charset="utf-8"><title>pitch worklet test</title></head>
+<body>
+<pre id="out">RUNNING</pre>
+<script>
+const SR = 48000;
+const lines = [];
+let failures = 0;
+function check(name, ok, detail) {
+  lines.push((ok ? 'PASS' : 'FAIL') + '  ' + name + (detail ? ' — ' + detail : ''));
+  if (!ok) failures++;
+}
+function zcFreq(sig, from, to) {
+  let cross = 0;
+  for (let i = from + 1; i < to; i++) if ((sig[i - 1] <= 0) !== (sig[i] <= 0)) cross++;
+  return cross / 2 / ((to - from) / SR);
+}
+
+(async () => {
+  const src = await (await fetch('../src/pitch-worklet.js')).text();
+  let Processor = null;
+  class AWP { constructor() { this.port = { onmessage: null, postMessage() { } }; } }
+  // worklet 파일을 같은 방식(registerProcessor)으로 실행
+  new Function('registerProcessor', 'AudioWorkletProcessor', 'sampleRate', src + '\n//# sourceURL=pitch-worklet.js')(
+    (name, cls) => { Processor = cls; }, AWP, SR);
+  if (!Processor) { document.getElementById('out').textContent = 'FAIL  registerProcessor 없음'; return; }
+
+  function run(input, ratio, block = 128) {
+    const p = new Processor();
+    p.port.onmessage({ data: { type: 'ratio', value: ratio } });
+    const out = new Float32Array(input.length);
+    const inBuf = new Float32Array(block), outBuf = new Float32Array(block);
+    for (let off = 0; off < input.length; off += block) {
+      const len = Math.min(block, input.length - off);
+      inBuf.fill(0); outBuf.fill(0);
+      inBuf.set(input.subarray(off, off + len));
+      p.process([[inBuf]], [[outBuf]], { ratio: new Float32Array([ratio]) });
+      out.set(outBuf.subarray(0, len), off);
+    }
+    return out;
+  }
+
+  const secs = 6;
+  const input = new Float32Array(SR * secs);
+  for (let i = 0; i < input.length; i++) input[i] = 0.5 * Math.sin(2 * Math.PI * 440 * i / SR);
+
+  const up = run(input, Math.pow(2, 2 / 12));
+  const fUp = zcFreq(up, SR * 2, SR * 4);
+  check('2반음 올림 → 493.9Hz', Math.abs(fUp - 493.88) < 12, fUp.toFixed(1) + 'Hz');
+
+  const down = run(input, Math.pow(2, -5 / 12));
+  const fDown = zcFreq(down, SR * 2, SR * 4);
+  check('-5반음 내림 → 329.6Hz', Math.abs(fDown - 329.63) < 10, fDown.toFixed(1) + 'Hz');
+
+  check('출력 길이 = 입력 길이(템포 유지)', up.length === input.length, String(up.length));
+
+  // 두 읽기 헤드의 위상차 때문에 순음에서는 진폭이 조금 흔들린다(창 가중치 합은 1).
+  // 실제 반주(여러 주파수)에서는 흔들림이 훨씬 작다. 여기서는 크게 줄지 않는지만 본다.
+  let rms = 0, cnt = 0, lo = 1, hi = 0;
+  for (let w = 0; w < 10; w++) {
+    let acc = 0, n = 0;
+    for (let i = SR * 2 + w * 4800; i < SR * 2 + (w + 1) * 4800; i++) { acc += up[i] * up[i]; n++; }
+    const r = Math.sqrt(acc / n);
+    lo = Math.min(lo, r); hi = Math.max(hi, r);
+  }
+  for (let i = SR * 2; i < SR * 3; i++) { rms += up[i] * up[i]; cnt++; }
+  rms = Math.sqrt(rms / cnt);
+  check('출력 음량이 크게 줄지 않음(두 헤드 위상차로 ±10% 흔들림)', rms > 0.28 && hi < 0.42,
+        'rms ' + rms.toFixed(3) + ' · 0.1초 창 ' + lo.toFixed(2) + '~' + hi.toFixed(2));
+
+  const same = run(input, 1);
+  let maxDiff = 0;
+  for (let i = 0; i < input.length; i++) maxDiff = Math.max(maxDiff, Math.abs(same[i] - input[i]));
+  check('0키(ratio 1)는 원음 그대로', maxDiff < 1e-6, 'maxDiff ' + maxDiff.toExponential(2));
+
+  const top = run(input, Math.pow(2, 6 / 12));
+  let bad = 0, peak = 0;
+  for (let i = 0; i < top.length; i++) { if (!Number.isFinite(top[i])) bad++; peak = Math.max(peak, Math.abs(top[i])); }
+  check('+6반음에서 NaN 없음·클리핑 없음', bad === 0 && peak < 0.75, 'peak ' + peak.toFixed(2));
+
+  // 실제 AudioWorklet 로딩 경로도 확인(브라우저가 AudioWorklet 지원 시)
+  try {
+    const ctx = new (window.AudioContext || window.webkitAudioContext)();
+    await ctx.audioWorklet.addModule('../src/pitch-worklet.js');
+    const node = new AudioWorkletNode(ctx, 'strum-pitch', { parameterData: { ratio: 1.06 } });
+    check('AudioWorklet 모듈 등록·노드 생성', !!node, node.constructor.name);
+    ctx.close();
+  } catch (e) {
+    check('AudioWorklet 모듈 등록·노드 생성', false, String(e));
+  }
+
+  lines.push(failures ? 'RESULT FAIL ' + failures : 'RESULT PASS');
+  document.getElementById('out').textContent = lines.join('\n');
+})();
+</script>
+</body></html>

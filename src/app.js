@@ -33,6 +33,10 @@
   let seedMerged=false;
   /* 하단 도킹 미니 플레이어 상태 — render()가 #app을 다시 그려도 살아남도록 body에 붙인 별도 루트를 쓴다 */
   let mini=null;
+  /* MR 음원(MP3) 실시간 키 조절 상태 — 곡별 반음(-6~+6)과 Web Audio 그래프 */
+  const MR_SHIFT_LIMIT=6;
+  const mrShiftBySong=new Map();
+  let pitchGraph=null;
   const miniRoot=(()=>{try{const el=document.createElement('div');el.id='mini-player-root';document.body.appendChild(el);return el;}catch(err){return null;}})();
   try { const saved=JSON.parse(localStorage.getItem(LS)||'null'); if(saved && Array.isArray(saved.songs) && Array.isArray(saved.sources)){ state={...defaultState(),...saved,settings:{...defaultState().settings,...saved.settings}}; state.seedVersion=Number(saved.seedVersion||0); seedMerged=mergeSeed(state); } }
   catch(err) { console.warn('기존 데이터 손상. 복원 파일을 가져오세요.',err); }
@@ -414,15 +418,69 @@
     if(!isAudio&&!vid){notice(mode==='mr'?'MR 링크가 없습니다. MR 없음 버튼으로 등록할 수 있습니다.':'재생할 영상 링크가 없습니다.');return;}
     mini={kind:kind,songId:s.id,videoId:vid,audioUrl:kind==='audio'?safeHttp(s.audioUrl):kind==='mraudio'?mrAudioOf(s):'',title:displayTitle(s),sub:displayArtist(s),badge:mode==='mr'?'MR':mode==='music'?'음악':kind==='audio'?'음악':'영상',collapsed:false};
     renderMini();
+    if(kind==='mraudio'&&mrShiftOf(s.id)!==0)setTimeout(()=>applyMrShift(mrShiftOf(s.id)),350);
     notice(mode==='mr'?`${s.title} · MR(반주)를 미니 플레이어에서 재생합니다.`:`${s.title} · ${mini.badge} 재생 중 — 악보로 이동해도 꺼지지 않습니다.`);
   }
-  function closeMini(){try{get('mini-audio')?.pause();}catch(err){}if(trackObjectURL){URL.revokeObjectURL(trackObjectURL);trackObjectURL=null;}mini=null;renderMini();}
+  function closeMini(){try{get('mini-audio')?.pause();}catch(err){}teardownPitch();if(trackObjectURL){URL.revokeObjectURL(trackObjectURL);trackObjectURL=null;}mini=null;renderMini();}
+  /* ── MR 음원 실시간 키 조절(피치 시프트) ─────────────────────────
+     유튜브 iframe 재생은 키를 바꿀 수 없어서, 저장소 media/*.mp3 같은 음원 파일에서만 쓴다.
+     노래방처럼 -6~+6반음. 템포는 그대로 두고 음높이만 바꾼다(src/pitch-worklet.js). */
+  const mrShiftOf=id=>mrShiftBySong.get(id)||0;
+  const mrShiftLabel=n=>n>0?`+${n}키`:`${n}키`;
+  function teardownPitch(){if(!pitchGraph)return;try{pitchGraph.ctx.close();}catch(err){}pitchGraph=null;}
+  async function ensurePitch(audioEl){
+    if(!audioEl)return null;
+    if(pitchGraph&&pitchGraph.el===audioEl)return pitchGraph;
+    teardownPitch();
+    const AC=window.AudioContext||window.webkitAudioContext;
+    if(!AC||!audioEl.src)return null;
+    let ctx=null,src=null;
+    try{
+      ctx=new AC();
+      await ctx.audioWorklet.addModule('src/pitch-worklet.js?v=20');
+      src=ctx.createMediaElementSource(audioEl);
+      const node=new AudioWorkletNode(ctx,'strum-pitch',{parameterData:{ratio:1}});
+      src.connect(node);node.connect(ctx.destination);
+      pitchGraph={ctx,node,el:audioEl};
+      const reset=()=>{try{node.port.postMessage({type:'reset'});}catch(err){}};
+      audioEl.addEventListener('seeking',reset);
+      audioEl.addEventListener('emptied',reset);
+      await ctx.resume?.();
+      return pitchGraph;
+    }catch(err){
+      /* AudioWorklet 을 못 쓰는 브라우저: 원래대로 그냥 재생되게 둔다 */
+      try{if(src)src.disconnect();}catch(e){}
+      try{if(ctx&&!src){ctx.close();}}catch(e){}
+      if(src){try{src.connect((ctx||new AC()).destination);}catch(e){}}
+      pitchGraph=null;
+      return null;
+    }
+  }
+  async function applyMrShift(semis){
+    if(!mini||mini.kind!=='mraudio')return;
+    const n=Math.max(-MR_SHIFT_LIMIT,Math.min(MR_SHIFT_LIMIT,semis));
+    mrShiftBySong.set(mini.songId,n);
+    const audio=get('mini-audio');
+    const label=get('mini-key-label');
+    if(label)label.textContent=mrShiftLabel(n);
+    if(!audio)return;
+    const g=await ensurePitch(audio);
+    if(!g){notice('이 브라우저에서는 키 조절을 쓸 수 없습니다. 원음으로 재생합니다.');if(label)label.textContent='0키';mrShiftBySong.set(mini.songId,0);return;}
+    const ratio=n===0?1:Math.pow(2,n/12);
+    try{g.node.parameters.get('ratio').value=ratio;}catch(err){}
+    try{await g.ctx.resume?.();}catch(err){}
+    if(n!==0){const songName=mini.title||'';notice(`${songName} · ${mrShiftLabel(n)} (반주 템포는 그대로)`);}
+  }
   function renderMini(){
     if(!miniRoot)return;
     if(!mini){miniRoot.innerHTML='';try{document.body.classList?.remove('has-mini');document.body.style.paddingBottom='';document.documentElement?.style&&document.documentElement.style.setProperty('--mini-h','0px');}catch(err){}return;}
     const s=song(mini.songId);
     const watch=s?((mini.kind==='mr'?s.mrUrl:s.videoUrl)||''):'';
     const isAudio=mini.kind==='audio'||mini.kind==='mraudio';
+    const shift=mini.kind==='mraudio'?mrShiftOf(mini.songId):0;
+    const keyBar=mini.kind==='mraudio'
+      ?`<div class="mini-key" id="mini-key" role="group" aria-label="키 조절"><button type="button" class="mini-btn" data-act="mini-shift:-1" aria-label="반음 내리기" title="반음 내리기">−</button><b class="mini-key-label" id="mini-key-label">${mrShiftLabel(shift)}</b><button type="button" class="mini-btn" data-act="mini-shift:1" aria-label="반음 올리기" title="반음 올리기">＋</button><span class="mini-key-hint">−6~+6반음 · 템포 유지</span></div>`
+      :(mini.collapsed?'':`<span class="mini-key-note">YouTube 재생 중에는 키 조절을 쓸 수 없습니다(MP3 반주에서만)</span>`);
     const body=isAudio
       ?`<audio class="mini-audio" id="mini-audio" controls autoplay preload="none" src="${esc(mini.audioUrl)}"></audio>`
       :`<div class="mini-frame"><iframe src="${esc(ytEmbed(mini.videoId))}" title="${esc(mini.title)} ${esc(mini.badge)} 재생" allow="autoplay; encrypted-media; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe></div>`;
@@ -431,6 +489,7 @@
     miniRoot.innerHTML=`<section class="mini-player ${mini.collapsed?'collapsed':''}" id="mini-player" aria-label="하단 미니 플레이어">
       <div class="mini-info"><span class="mini-badge">${esc(mini.badge)}</span><div class="mini-text"><b>${esc(mini.title)}</b><span>${esc(mini.sub)}</span></div></div>
       ${body}
+      ${keyBar}
       <div class="mini-tools"><button type="button" class="mini-btn" data-act="mini-local" title="휴대폰에 저장한 오디오 파일 재생">내 파일</button><a class="mini-btn" href="${link}" target="_blank" rel="noopener noreferrer">${linkLabel}</a><button type="button" class="mini-btn" data-act="mini-collapse" aria-label="${mini.collapsed?'펼치기':'접기'}" title="${mini.collapsed?'펼치기':'접기'}">${mini.collapsed?'▴':'▾'}</button><button type="button" class="mini-btn mini-close" data-act="mini-close" aria-label="미니 플레이어 닫기" title="닫기">×</button></div>
       <input id="mini-file" type="file" accept="audio/*" class="hide" />
     </section>`;
@@ -505,6 +564,7 @@
     case 'mini-close':closeMini();return;
     case 'mini-collapse':if(mini){mini.collapsed=!mini.collapsed;renderMini();}return;
     case 'mini-local':get('mini-file')?.click();return;
+    case 'mini-shift':{const step=Number(value)||0;applyMrShift(mrShiftOf(mini?mini.songId:'')+step);return;}
     case 'close':case 'dismiss':closeModal();return;
     case 'source':modal={kind:'source',index:+value};render();return;
     case 'youtube-search':{const s=song(value);if(s)openTab(youtubeSearch(s));return;}

@@ -135,7 +135,7 @@ for s in songs:
         assert not s['videoUrl'], s['id']
 
 # 10) 메타 집계
-assert meta['seedVersion'] == 19
+assert meta['seedVersion'] == 20
 assert meta['videoLinkCount'] == 201 and meta['videoLinkFilledCount'] == 36
 assert meta['playlistCollectedCount'] == 210
 assert meta['playlistPublicVideoCount'] == 168
@@ -317,7 +317,7 @@ assert by_id['verified-004']['title'] == 'Ten Thousand Hours' and by_id['verifie
 # 12) MR(반주) 링크 정합성 (seed v13)
 MR_MARK = re.compile(r'inst|instrumental|karaoke|노래방|카라오케|m\.?\s?r\.?|(?<![a-z])mr(?![a-z])|반주|カラオケ|インスト|オフボーカル', re.I)
 # 주성 님이 직접 지정한 MR 중 제목에 MR·Inst 표기가 없는 링크(피아노 연주 반주 등) — mrNote 에 '주성 님 지정'으로 근거를 남긴 경우만 예외
-USER_PICKED_MR_IDS = {'playlist-166'}
+USER_PICKED_MR_IDS = set()
 # 저장소에 함께 올린 MR 음원 파일 — 곡 id → (파일, 제목에 있어야 할 곡명, 최소 크기)
 LOCAL_MR_FILES = {
     'playlist-157': ('media/pikpik-mr.mp3', '픽픽', 1_000_000),
@@ -380,7 +380,7 @@ assert by_id['verified-024']['mrUrl'].endswith('wfBXXKRdtlk')      # 임베드 �
 assert by_id['playlist-159']['mrUrl'].endswith('ige-TSCG5vc')      # ZIP 자료 공식 inst.
 assert by_id['added-10000-hours']['mrUrl'].endswith('vBLCXuDeQO8')  # MrEntertainerKaraoke 실연주 가라오케(임베드 재생 확인)
 assert '밈' in by_id['added-10000-hours']['notes'] and 'vBLCXuDeQO8' in by_id['added-10000-hours']['notes']  # 2026-11-23 교체 근거
-assert by_id['verified-007']['mrUrl'].endswith('IkF6QIQ0Q0A')
+assert by_id['verified-007']['mrUrl'].endswith('VnSBIixg7hY')      # 2026-11-23 여성 원곡 → 금영 남자키 MR
 # 2026-11-23 주성 님 지정: 「잠깐 시간 될까」 두 항목 같은 YouTube MR + 로꼬 「픽픽」 녹화 MR 음원 파일
 for sid in ('playlist-057', 'playlist-058'):
     assert by_id[sid]['mrUrl'].endswith('_aJasCmlQC8'), (sid, by_id[sid]['mrUrl'])
@@ -418,6 +418,41 @@ assert by_id['playlist-173']['chart']['bpm'] == 74 and '74.1' in by_id['playlist
 assert by_id['verified-021']['chart']['bpm'] == 90 and '90.00' in by_id['verified-021']['chart']['bpmNote']
 assert sum(len(x['bars']) for x in by_id['verified-021']['chart']['sections']) == 70
 assert meta['mrDisclosure'] and 'oEmbed' in meta['mrDisclosure']
+
+# 13) 2026-11-23 여자 원곡 → 남자키 MR·남자 풀커버 영상 정리 (seed v20)
+FEMALE = [s for s in songs if s['category'] != 'reference' and s.get('key') != s.get('maleKey')]
+assert len(FEMALE) == 43, len(FEMALE)
+MALE_MARK = re.compile(r'남자키|남자 키|남키|남Key|남자 ver|남자 버전|Male Key|male key|Man Ver|남자key|男性キー', re.I)
+# 「잠깐 시간 될까」는 원곡자(이무진)가 남자라 이미 남자 키 반주를 쓰고 있다(주성 님 지정).
+MALE_ORIGINAL_KEEP = {'playlist-057', 'playlist-058'}
+for s in FEMALE:
+    note = s.get('mrNote') or ''
+    if s.get('mrUrl'):
+        if s['id'] in MALE_ORIGINAL_KEEP:
+            assert '주성 님 지정' in note, (s['id'], note)
+        else:
+            assert MALE_MARK.search(s['mrTitle']) or MALE_MARK.search(note) or '원키 MR' in note, (s['id'], s['mrTitle'], note)
+    else:
+        assert s.get('mrAudioUrl'), s['id']
+    # 원키로 남겨 둔 곡은 -5키가 필요하다는 표시가 있어야 한다
+    if '원키 MR' in note:
+        assert '5키 필요' in note, (s['id'], note)
+    assert s.get('videoUrl'), s['id']
+# 남자키 MR로 바꾼 대표 항목 (2026-11-23 검증: oEmbed 200 + 임베드 재생 확인)
+for sid, vid in (('verified-007', 'VnSBIixg7hY'), ('restored-119', 'zXIkIg9S_yE'),
+                 ('playlist-032', '6gxt0c8dMNw'), ('playlist-194', '8cpfnHf-Gmw'),
+                 ('restored-131', '6tFsFWLy2wk'), ('playlist-166', 'cbkluSvv758')):
+    assert by_id[sid]['mrUrl'].endswith(vid), (sid, by_id[sid]['mrUrl'])
+assert by_id['restored-131']['mrUrl'] == by_id['playlist-156']['mrUrl']
+assert by_id['restored-132']['mrUrl'] == by_id['playlist-062']['mrUrl']
+for sid in ('playlist-032', 'playlist-033', 'playlist-188', 'playlist-208'):
+    assert by_id[sid]['mrUrl'] == by_id['playlist-032']['mrUrl'], sid
+# 남자 풀커버로 바꾼 대표 항목
+for sid, vid in (('verified-007', 'FP67e2l_KJs'), ('restored-130', '2OBF8S_BQu0'),
+                 ('playlist-084', 'WzI1qz1wZY4'), ('restored-128', '9wBlRkKYlzs')):
+    assert by_id[sid]['videoUrl'].endswith(vid), (sid, by_id[sid]['videoUrl'])
+    assert by_id[sid]['videoStatus'].startswith('공개 영상'), (sid, by_id[sid]['videoStatus'])
+
 print(f"OK: MR 링크 {len(with_mr)}개 곡(서로 다른 곡 {len(works)}) · oEmbed 확인 제목 표기·중복 없음 · 참고 영상 제외")
 
 print('OK: 곡 200 (기존 25 + 복원·확인 19 + 공개 영상 155 + 추천 1)')
