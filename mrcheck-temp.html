@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="ko"><head><meta charset="utf-8"><title>MR embed check (temp)</title>
+<style>body{font-family:monospace;background:#111;color:#eee;margin:12px}
+#out{white-space:pre;font-size:14px;margin-bottom:12px}
+.cell{display:inline-block;margin:6px;vertical-align:top}
+</style></head>
+<body>
+<div id="out">START</div>
+<div id="players"></div>
+<script>
+const ids = (new URLSearchParams(location.search).get('ids') || '').split(',').filter(Boolean);
+const out = document.getElementById('out');
+const result = {};
+window.onYouTubeIframeAPIReady = function () {
+  ids.forEach((vid) => {
+    const host = document.createElement('div');
+    host.className = 'cell';
+    document.getElementById('players').appendChild(host);
+    const player = new YT.Player(host, {
+      height: '135', width: '240', videoId: vid,
+      playerVars: { autoplay: 1, playsinline: 1, rel: 0 },
+      events: {
+        onReady: (e) => { try { e.target.mute(); e.target.playVideo(); } catch (err) { result[vid] = 'READY_ERR'; render(); } },
+        onStateChange: (e) => {
+          const st = e.data;
+          if (st === YT.PlayerState.PLAYING) { result[vid] = 'PLAYS'; render(); }
+          else if (!result[vid] && st === YT.PlayerState.BUFFERING) { result[vid] = 'BUFFERING'; render(); }
+        },
+        onError: (e) => { result[vid] = 'ERROR' + e.data; render(); }
+      }
+    });
+  });
+  setTimeout(() => { ids.forEach(v => { if (!result[v]) result[v] = 'TIMEOUT'; }); render(); }, 18000);
+};
+function render() {
+  out.textContent = ids.map(v => v + ' ' + (result[v] || '-')).join('\n');
+}
+</script>
+<script src="https://www.youtube.com/iframe_api"></script>
+</body></html>
