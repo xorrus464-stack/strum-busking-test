@@ -49263,7 +49263,7 @@
     "tags": [
       "음원 분석"
     ],
-    "notes": "공식 영상 확인(2026-11-22): YouTube oEmbed 200 · 「Dan + Shay, Justin Bieber - 10,000 Hours (Official Music Video)」 · Dan + Shay (Y2E71oe0aSM). 주성 님이 올린 기타 MR 화면 녹화(2026-11-22, 2분 57초)에서 분석한 곡입니다. 원본 재생목록 211개 영상 번호와 연결된 것이 확인되지 않아 원본 번호를 비웠습니다. Macklemore & Ryan Lewis의 「Ten Thousand Hours」(verified-004)와는 다른 곡이라 그 항목에 합치지 않았습니다. 2026-11-22 음원 분석: 올린 ZIP·화면 녹화에서 키·BPM·코드 후보를 뽑아 4박 마디 악보를 채웠습니다(청음 검수 전).",
+    "notes": "공식 영상 확인(2026-11-22): YouTube oEmbed 200 · 「Dan + Shay, Justin Bieber - 10,000 Hours (Official Music Video)」 · Dan + Shay (Y2E71oe0aSM). 주성 님이 올린 기타 MR 화면 녹화(2026-11-22, 2분 57초)에서 분석한 곡입니다. 원본 재생목록 211개 영상 번호와 연결된 것이 확인되지 않아 원본 번호를 비웠습니다. Macklemore & Ryan Lewis의 「Ten Thousand Hours」(verified-004)와는 다른 곡이라 그 항목에 합치지 않았습니다. 2026-11-22 음원 분석: 올린 ZIP·화면 녹화에서 키·BPM·코드 후보를 뽑아 4박 마디 악보를 채웠습니다(청음 검수 전). 2026-11-23 MR 교체: 기존 ChaoticBrooke 「10,000 hours by Dan And Shay(Karaoke Version)」(Gt636FM6Ayc)는 반주가 아닌 밈·스킷 영상이라, 실제 악기로 만든 MrEntertainerKaraoke 가라오케(vBLCXuDeQO8, 3:03)로 바꿨습니다. 앱 하단 미니 플레이어에서 재생되는 것을 확인했습니다. 악보는 주성 님이 올린 MR(A장조·86.1 BPM)에 맞춰져 있어, 원곡 키(B♭)·템포(90) 기준 가라오케와는 1반음·약 4 BPM 차이가 날 수 있습니다(청음 확인 전).",
     "setlist": false,
     "videoStatus": "공개 영상(공식 MV)",
     "chartStatus": "partial",
@@ -50119,10 +50119,10 @@
     "chartNote": "Dan + Shay feat. Justin Bieber 「10,000 Hours」의 기타 MR 녹화(2분 57초)를 자동 분석한 초안입니다. ZIP의 2마디 구절 32개를 마디 64개로 펴서 10개 구간에 배치했고, 마지막 아웃트로의 끝 마디는 녹화가 4.2초에서 끊겨 1.5마디 길이입니다. 올린 MR은 A장조·86.1 BPM·4/4이고, 원곡 악보는 B♭·90으로 1반음·약 4 BPM 차이가 있습니다. 악보는 실제로 칠 MR(A/86.1)에 맞췄고 원곡 수치는 근거에 같이 남겼습니다. 브리지 C# 계열(1:55~2:06)은 장·단 확정 불가, A/Amaj7·D/Dsus2도 후보입니다. Macklemore & Ryan Lewis의 「Ten Thousand Hours」와는 다른 곡이라 기존 항목과 합치지 않았습니다. 청음 검수 전입니다.",
     "timeSignature": "4/4",
     "chartStage": 2,
-    "mrUrl": "https://www.youtube.com/watch?v=Gt636FM6Ayc",
-    "mrTitle": "10,000 hours by Dan And Shay(Karaoke Version)🔥",
-    "mrChannel": "ChaoticBrooke",
-    "mrNote": "ChaoticBrooke · 대체 반주(임베드 재생 확인) · YouTube oEmbed 200 + 임베드 재생 확인(2026-11-22)",
+    "mrUrl": "https://www.youtube.com/watch?v=vBLCXuDeQO8",
+    "mrTitle": "10,000 Hours - Dan + Shay & Justin Bieber (KARAOKE)",
+    "mrChannel": "MrEntertainerKaraoke",
+    "mrNote": "MrEntertainerKaraoke · 실제 악기로 만든 원키 가라오케(3:03) · YouTube oEmbed 200 + 임베드 재생 확인(2026-11-23)",
     "mrSource": "youtube"
   }
 ]

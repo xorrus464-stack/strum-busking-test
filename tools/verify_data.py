@@ -135,7 +135,7 @@ for s in songs:
         assert not s['videoUrl'], s['id']
 
 # 10) 메타 집계
-assert meta['seedVersion'] == 18
+assert meta['seedVersion'] == 19
 assert meta['videoLinkCount'] == 201 and meta['videoLinkFilledCount'] == 36
 assert meta['playlistCollectedCount'] == 210
 assert meta['playlistPublicVideoCount'] == 168
@@ -378,7 +378,8 @@ for (t, _a), u in works.items():
 # 대표 확인 링크(2026-11-22 oEmbed 200)
 assert by_id['verified-024']['mrUrl'].endswith('wfBXXKRdtlk')      # 임베드 차단된 TJ 대신 여기MR 원키
 assert by_id['playlist-159']['mrUrl'].endswith('ige-TSCG5vc')      # ZIP 자료 공식 inst.
-assert by_id['added-10000-hours']['mrUrl'].endswith('Gt636FM6Ayc')  # Acoustic karaoke(임베드 재생 확인)
+assert by_id['added-10000-hours']['mrUrl'].endswith('vBLCXuDeQO8')  # MrEntertainerKaraoke 실연주 가라오케(임베드 재생 확인)
+assert '밈' in by_id['added-10000-hours']['notes'] and 'vBLCXuDeQO8' in by_id['added-10000-hours']['notes']  # 2026-11-23 교체 근거
 assert by_id['verified-007']['mrUrl'].endswith('IkF6QIQ0Q0A')
 # 2026-11-23 주성 님 지정: 「잠깐 시간 될까」 두 항목 같은 YouTube MR + 로꼬 「픽픽」 녹화 MR 음원 파일
 for sid in ('playlist-057', 'playlist-058'):
