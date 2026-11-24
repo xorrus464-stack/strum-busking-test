@@ -93,21 +93,42 @@ def run(pw, name, viewport, mobile=False):
     check(f'{name}: 악보 모달 가로 넘침 없음', o['sw'] <= o['cw'] + 1, str(o))
     page.screenshot(path=str(SHOTS / f'chart-{name}.png'))
 
-    # SimplifyChord 슬롯
+    # 14버튼 완주 곡: 손으로 잡을 코드가 없다
+    check(f'{name}: 완주 곡 손 코드 없음 안내', '손으로 잡을 코드 없음' in page.content())
     page.click('button:has-text("SimplifyChord")')
-    page.wait_for_selector('.slot-board')
-    check(f'{name}: 슬롯 보드 5칸 이상', page.locator('.slot').count() >= 5)
+    check(f'{name}: 완주 곡 손 코드 0개', '손으로 잡는 코드' in page.content() and page.locator('.dex-card').count() == 0)
     page.click('button:has-text("스트로크·퍼커시브")')
     check(f'{name}: 퍼커시브 단계', '4단계로 만드는 퍼커시브' in page.content())
     page.click('button:has-text("근거")')
     check(f'{name}: 근거 링크', page.locator('ul.ev a').count() >= 2)
     page.click('[data-act="close"]')
 
-    # 슬롯 있는 곡
+    # 손 코드(슬롯)가 있는 곡 — 희재: 카포 +4에서 D가 B♭ 모양(1프렛 바레)
     page.locator('.song-row', has_text='희재').first.locator('button', has_text='악보').click()
     page.wait_for_selector('.chart-modal')
+    check(f'{name}: 손 코드 운지표 카드', page.locator('.dex-card').count() == 1, str(page.locator('.dex-card').count()))
+    check(f'{name}: 코드 다이어그램(점·바레·뮤트)', page.locator('.fret-diagram .fd-dot').count() >= 2
+          and page.locator('.fret-diagram .fd-barre').count() >= 1
+          and page.locator('.fret-diagram .fd-mark').count() >= 1)
+    code = page.locator('.dex-code').first.inner_text().strip()
+    check(f'{name}: 운지 코드 x13331', code == 'x13331', code)
+    fing = page.locator('.dex-fing').first.inner_text()
+    check(f'{name}: 손가락 번호 안내', '1:5~1번줄 1프렛 바레' in fing and '2:4번줄3프렛' in fing, fing)
+    check(f'{name}: 실제 코드 이름 표시', page.locator('.cc.is-slot .cc-btn').first.inner_text().strip() == 'D')
+    check(f'{name}: 슬롯 기호(S1) 대신 모양 표시', 'B♭ 모양' in page.locator('.cc.is-slot').first.inner_text())
+    dexbox = page.locator('.dex-card').first.bounding_box() or {}
+    modalbox = page.locator('.chart-modal').bounding_box() or {}
+    check(f'{name}: 운지 카드가 모달 안에 들어옴', (dexbox.get('x', 0) >= modalbox.get('x', 0) - 1)
+          and (dexbox.get('x', 0) + dexbox.get('width', 0) <= modalbox.get('x', 0) + modalbox.get('width', 0) + 1),
+          f'card={dexbox} modal={modalbox}')
+    o = overflow(page)
+    check(f'{name}: 운지표 가로 넘침 없음', o['sw'] <= o['cw'] + 1, str(o))
+    page.screenshot(path=str(SHOTS / f'chord-dex-{name}.png'))
     page.click('button:has-text("SimplifyChord")')
-    check(f'{name}: 슬롯 세팅 가이드', '이렇게 세팅하세요' in page.content())
+    page.wait_for_selector('.dex-card')
+    check(f'{name}: SimplifyChord 탭 운지표', page.locator('.fret-diagram').count() >= 1
+          and '에어로밴드에 넣는 방법' in page.content())
+    check(f'{name}: 손 코드 읽는 법 안내', '실제로 울리는 코드' in page.content())
     page.screenshot(path=str(SHOTS / f'simplify-{name}.png'))
     page.click('[data-act="close"]')
 
@@ -386,7 +407,7 @@ def run_merge(pw):
     check('merge: 남자키 배지 병합', page.locator('.song-row', has_text='오늘').first.inner_text().find('남자키') >= 0)
     state = json.loads(page.evaluate("() => localStorage.getItem('strum-busking-v2')"))
     song = [s for s in state['songs'] if s['id'] == 'verified-001'][0]
-    check('merge: seedVersion 22', state['seedVersion'] == 22, str(state['seedVersion']))
+    check('merge: seedVersion 23', state['seedVersion'] == 23, str(state['seedVersion']))
     check('merge: MR 링크 병합', song.get('mrUrl', '').endswith('hwZqHCMmjUM'), str(song.get('mrUrl')))
     check('merge: 숙련도 보존', song['level'] == '버스킹 가능', song['level'])
     check('merge: 사용자 메모 보존', song['notes'] == '내 메모', song['notes'])

@@ -1,161 +1,162 @@
-﻿id,title,artist,원키,남자키,Capo,폼/설정,박자,BPM,원터치 매핑,코드 수,슬롯,단계,상태
-verified-001,오늘,오왠 (O.WHEN),E,E,4,C폼 · Capo +4,4/4,70,7,8,1,3,ready
-verified-002,민들레,우효 (OOHYO),D,A,4,F폼 · Capo +4,4/4,120,7,10,3,3,ready
-verified-003,Thank You,Dido,B,B,4,G폼 · Capo +4,4/4,79,4,6,2,1,ready
-verified-004,Ten Thousand Hours,Macklemore & Ryan Lewis,Ebm,Ebm,6,Capo +6,4/4,83,3,4,1,1,partial
-verified-005,추억이면,부활,Ab,Ab,3,F폼 · Capo +3,4/4,74,5,7,2,3,ready
-verified-006,희재,성시경,E,E,4,C폼 · Capo +4,4/4,64,6,9,3,3,ready
-verified-007,한숨,이하이,Ab,Eb,3,C폼 · Capo +3,4/4,62,6,7,1,1,ready
-verified-008,내가 너의 곁에 잠시 살았다는 걸,토이,C,C,0,C폼 · Capo +0,4/4,65,6,7,1,3,ready
-verified-009,예뻤어,DAY6,Eb,Eb,3,C폼 · Capo +3,4/4,84,9,13,4,2,ready
-verified-010,도망가자,선우정아,G,D,2,C폼 · Capo +2,4/4,65,6,7,1,2,ready
-verified-011,청혼,노을,E,E,4,C폼 · Capo +4,4/4,70,8,10,2,3,partial
-verified-012,TOMBOY,혁오,Eb,Eb,3,C폼 · Capo +3,4/4,74,5,6,1,2,ready
-verified-013,Flower,오반,A,A,2,G폼 · Capo +2,4/4,88,4,4,0,1,ready
-verified-014,死別 (feat. GUMI),Shannon,D,A,6,Capo +6,4/4,92,8,12,4,3,ready
-verified-015,Englishman in New York,Sting,Bm,Bm,2,Capo +2,4/4,102,6,7,1,2,ready
-verified-016,How To Cry,Sam Smith,E,E,4,C폼 · Capo +4,4/4,90,4,5,1,2,ready
-verified-017,나는 버려질 장난감,아소 · 아날로그소년,Db,Db,1,C폼 · Capo +1,4/4,49,9,10,2,3,partial
-verified-018,たぶん (아마도),YOASOBI,F,F,5,C폼 · Capo +5,4/4,90,5,6,1,3,ready
-verified-019,생각을 멈추다 보면,최유리,C,G,0,G폼 · Capo +0,6/8,129,4,5,1,2,ready
-verified-020,오르막길,윤종신,A,A,2,G폼 · Capo +2,4/4,68,4,5,1,2,ready
-verified-021,날씨가 좋고 바람도 좋아,가수 미확인,A,A,2,G폼 · Capo +2,4/4,90,5,9,4,3,partial
-verified-022,세상이 그대를 속일지라도,김장훈,C#,C#,6,G폼 · Capo +6,4/4,70,10,13,3,3,ready
-verified-024,닮은사람,이기찬,D,D,2,C폼 · Capo +2,4/4,64,10,15,5,3,partial
-verified-025,히로인,back number,G,G,0,G폼 · Capo +0,4/4,77,9,11,2,3,ready
-restored-093,無題 (무제),지드래곤 (G-DRAGON),E,E,4,C폼 · Capo +4,4/4,80,4,4,0,1,ready
-restored-096,And July,헤이즈 (Heize),Dm,Am,5,Em폼 · Capo +5,4/4,100,5,7,2,3,ready
-restored-100,Good Bye-Bye (グッバイバイ),Tomioka Ai,C,G,2,F폼 · Capo +2,4/4,89,4,5,1,1,ready
-restored-102,눈이 오잖아 (When it snows),이무진 X 헤이즈,Eb,Eb,3,C폼 · Capo +3,4/4,96,4,6,2,3,ready
-restored-119,"비도 오고 그래서 (You, Clouds, Rain)",헤이즈 (HEIZE),C#m,Abm,1,Gm폼 · Capo +1,4/4,79,4,6,2,3,ready
-restored-122,Vancouver,BIG Naughty (서동현),C#m,C#m,4,Capo +4,4/4,90,3,4,1,1,ready
-restored-123,안아줘 (hug me),정준일 (Jung Joonil),C,C,0,C폼 · Capo +0,4/4,68,6,7,1,2,ready
-restored-125,미안해 미워해 사랑해 (Love You With All My Heart),크러쉬 (CRUSH),E,E,4,C폼 · Capo +4,4/4,65,4,5,1,2,ready
-restored-128,"어떻게 이별까지 사랑하겠어, 널 사랑하는 거지",원곡 가수 미확인,F,C,5,G폼 · Capo +5,4/4,65,4,4,0,1,ready
-restored-130,첫눈처럼 너에게 가겠다 (I will go to you like the first snow),에일리 (AILEE),Fm,Cm,5,Gm폼 · Capo +5,4/4,67,4,5,1,3,ready
-restored-131,0+0,한로로 (HANRORO),A,E,4,C폼 · Capo +4,4/4,68,6,7,1,2,ready
-restored-132,사랑하게 될 거야,한로로,G,D,2,C폼 · Capo +2,4/4,93,4,5,1,1,ready
-restored-140,예뻤어 (You were beautiful),데이식스 DAY6,Eb,Eb,3,C폼 · Capo +3,4/4,84,9,13,4,2,ready
-restored-142,청혼하지 않을 이유를 못 찾았어 (Propose),이무진 (LEE MUJIN),D,D,2,C폼 · Capo +2,4/4,96,5,6,1,2,ready
-restored-144,기억을 걷는 시간 (Time Spent Walking Through Memories),넬 (NELL),Eb,Eb,3,C폼 · Capo +3,4/4,89,4,4,0,1,ready
-restored-146,Way Back Home,Shaun,Bb,Bb,3,G폼 · Capo +3,4/4,100,4,4,0,1,ready
-restored-150,WHAT IS LOVE (2026.ver),EXO-K,Eb,Eb,1,D폼 · Capo +1,4/4,66,5,7,2,2,partial
-restored-151,Lonely,2NE1,E,B,6,F폼 · Capo +6,4/4,95,6,7,1,2,ready
-restored-201,HER,블락비 (Block B),Cm,Cm,5,Gm폼 · Capo +5,4/4,162,4,6,2,4,partial
-playlist-001,운명의 상대를 만난다면 머릿속에서 이 노래가 들릴 겁니다 | Past Lives (cover by Jon Poppii),MUFLIX 뮤플릭스,Eb,Eb,3,C폼 · Capo +3,4/4,116,3,3,0,1,partial
-playlist-004,벤(BEN)의 깜찍한 매력에 퐁당💛 '후라이의 꿈'♬｜비긴어게인 오픈마이크,Beginagain 비긴어게인,D,A,2,G폼 · Capo +2,4/4,125,5,6,1,2,ready
-playlist-009,mashiroji - 그 아픔까지 사랑한거야 (조정현 cover),mashiroji,Bb,Bb,3,G폼 · Capo +3,4/4,74,4,6,2,3,ready
-playlist-010,[Blue Night] BIGBANG - 'BLUE' cover by Blue.D,Blue.D /블루디,Em,Em,0,Em폼 · Capo +0,4/4,125,3,4,1,1,ready
-playlist-011,(위너) 한 폭의 그림 같은 랩 가사 #봄여름가을겨울 #커버 #빅뱅,덕아일체,Ab,Ab,1,G폼 · Capo +1,4/4,59,5,7,2,3,ready
-playlist-012,진심 봄여름가을겨울 커버곡 중 1순위임 #최여원,딩고 뮤직,Ab,Ab,1,G폼 · Capo +1,4/4,59,5,7,2,3,ready
-playlist-015,빈 실기실에서 빅뱅(BIGBANG) - 꽃 길 #빅뱅 #꽃길 #kpop #한림예고 #06,서재민,E,E,4,C폼 · Capo +4,4/4,95,4,4,0,1,ready
-playlist-016,so low - shiloh dynasty #singing #covers #guitarcover,kyu.,Cm,Cm,3,Capo +3,미확인,94,4,5,1,2,partial
-playlist-018,"로이킴 (Roy Kim) - 2024 ROY KIM CONCERT [R♥y actually] LMD : 잘 지내자, 우리",로이킴 Roy Kim,B,B,4,G폼 · Capo +4,4/4,75,4,5,1,2,ready
-playlist-024,에아오 #dynamicduo #aeao,INSU 인수,F#m,F#m,7,Capo +7,미확인,77,3,4,1,2,partial
-playlist-025,"개코-될 대로 되라고 해, 20191208 DYNAMICDUO DUTY FREE 2019 CONCERT",젼티비티 jiyeontivity,Em,Em,0,Em폼 · Capo +0,4/4,127,4,5,1,2,partial
-playlist-027,탁재훈이 말아주는 명동콜링🌙 (리허설.ver) #Shorts #신발벗고돌싱포맨 | SBSNOW,SBS,Bb,Bb,3,G폼 · Capo +3,4/4,96,4,5,1,2,ready
-playlist-030,바닷가에서 '너를 생각해' 불러주는 주시크,romanticfactory,Bb,Bb,0,Capo +0,4/4,92,6,8,2,3,ready
-playlist-031,이무진#밤하늘의별을(2020),김쭌원 노래방,Eb,Bb,0,Capo +0,4/4,77,6,8,2,3,ready
-playlist-032,나의 X에게 1분안에 마스터하기,헌일Hun-il,Eb,Bb,3,G폼 · Capo +3,4/4,94,4,6,2,3,ready
-playlist-033,경서 - 나의 X에게 cover 방쏭,방쏭 bangssong,Eb,Bb,3,G폼 · Capo +3,4/4,94,4,6,2,3,ready
-playlist-034,(한계-넬) 하동균 vs 양요섭 vs 김성규 vs 효정 내 최애 목소리는? 비교듣기,MusicPick,G,G,0,G폼 · Capo +0,미확인,144,4,5,1,2,partial
-playlist-035,정승환이 부르는 '운이 좋았지',HUP!,A,E,4,C폼 · Capo +4,4/4,66,4,5,1,2,ready
-playlist-036,전상근(Jeon Sang Keun) - 운이 좋았지 (원곡: 권진아),전상근 JEON SANG KEUN,A,E,4,C폼 · Capo +4,4/4,66,4,5,1,2,ready
-playlist-037,도경수(D.O)-popcorn #kpop #music #exo #지하주차장 #cover #노래 #도경수 #popcorn @weareoneEXO,고글고글용규맨,D,D,0,D폼 · Capo +0,4/4,132,2,3,1,1,ready
-playlist-038,도경수 영원해,나뚜뚜,A,A,2,G폼 · Capo +2,미확인,68,4,4,0,2,partial
-playlist-040,크러쉬는 라이브를 찢어.. #크러쉬 #Crush #Beautiful #리얼라이브,1theK Originals - 원더케이 오리지널,Bb,Bb,3,G폼 · Capo +3,4/4,55,3,4,1,1,ready
-playlist-041,크러쉬(CRUSH) ' Beautiful (무반주 ver.) ' 라이브 LIVE /180503[키스 더 라디오],KBS CoolFM,Bb,Bb,3,G폼 · Capo +3,4/4,55,3,4,1,1,ready
-playlist-042,250531 크러쉬(Crush) - 미워 #크러쉬 #crush #서울재즈페스티벌 #서재페2025,chillwoops,Bb,Bb,5,F폼 · Capo +5,4/4,100,4,4,0,2,partial
-playlist-043,[LIVE] Crush & JayPark - Don't forget (잊어버리지마) lyric  #잊어버리지마#crush #jaypark  #lyrics #livemusic,Knock Knock Knovk,C,C,0,C폼 · Capo +0,4/4,94,4,4,0,1,ready
-playlist-044,잊어버리지마 - 소수빈 vs 박재범 vs 이무진 vs 크러쉬 (원곡 크러쉬 feat.태연 / 도입부 동일 파트 커버 비교),금은동 뮤직,C,C,0,C폼 · Capo +0,4/4,94,4,4,0,1,ready
-playlist-045,역주행 중인 조승연 상병 Drowning,웅키,Ab,Ab,1,G폼 · Capo +1,4/4,114,5,6,1,2,ready
-playlist-046,[RIIZE] 🎵Make Up (Feat. Crush) - 샘김(Sam Kim)노래 같이 부르는 밤똘즈 #RIIZE #라이즈  #SUNGCHAN #SOHEE #성찬 #소희,밤비모먼트 Bambi Moment,C,C,0,C폼 · Capo +0,4/4,62,4,6,2,3,ready
-playlist-047,[내일 그대와] 샘김(Sam Kim) - 향기,디글 :Diggle,Gb,Gb,1,F폼 · Capo +1,4/4,70,5,5,0,2,partial
-playlist-049,"샘김 - 여름비, 우리모모콘",novemberrain,Gb,Gb,1,F폼 · Capo +1,6/8,108,3,4,1,1,ready
-playlist-050,"눈 올 때 들으면 좋은 눈처럼 녹아내리는 음색 #shorts | 샘김 (Sam Kim) - Love Me Like That | 알고있지만, OST | GOGOSING",고고씽 GOGOSING,A,A,4,F폼 · Capo +4,4/4,79,5,7,2,2,ready
-playlist-051,"충치 생길 정도로 달달한 숨은 미드 감성 OST #shorts | 샘김 (Sam Kim) - Love Me Like That | 알고있지만, OST | GOGOSING",고고씽 GOGOSING,A,A,4,F폼 · Capo +4,4/4,79,5,7,2,2,ready
-playlist-052,Who Are You🎵 by Sam Kim & Jung Seung-hwan🎤 #shorts,Engsublyrics,A,A,2,G폼 · Capo +2,4/4,66,4,5,1,2,ready
-playlist-053,[세로] 샘 킴X박보검 - 그 여름밤 [더 시즌즈-박보검의 칸타빌레] | KBS 250620 방송,KBS Kpop,G,G,2,F폼 · Capo +2,4/4,63,5,6,1,2,ready
-playlist-054,케이시 (Kassy) - 진심이 담긴 노래 (True Song) | 가사,"Hello, My Music Player",Bb,F,5,C폼 · Capo +5,4/4,70,3,5,2,3,ready
-playlist-056,(유스케 LIVE) 이무진 - 과제곡,KBS StarTV: 인물사전,Am,Am,5,Em폼 · Capo +5,4/4,126,3,4,1,1,ready
-playlist-057,윈터 - 잠깐 시간 될까,마이들아 웃으라고,C,G,7,C폼 · Capo +7,4/4,106,5,7,2,3,ready
-playlist-058,(잠깐 시간 될까?) 응!! (만날 수 있을까?) 응응!!,Beginagain 비긴어게인,C,G,7,C폼 · Capo +7,4/4,106,5,7,2,3,ready
-playlist-059,이무진이 찐 감동한 후이의 청춘만화 편곡 버전,펜더곰 PENDEOGOM,G,G,7,C폼 · Capo +7,4/4,95,7,8,1,3,ready
-playlist-060,지금 날씨랑 찰떡♪ 이무진의 '에피소드',Beginagain 비긴어게인,D,D,2,C폼 · Capo +2,4/4,118,4,6,2,3,ready
-playlist-061,(유스케 LIVE) 이무진 - 신호등,KBS StarTV: 인물사전,B,B,4,G폼 · Capo +4,4/4,97,5,6,1,2,ready
-playlist-063,오반 - 행복 커버,나의 노래 메모장,E,E,4,C폼 · Capo +4,4/4,120,3,4,1,1,ready
-playlist-068,[1m 직캠📸] 10CM - pet #10CM #십센치 #pet #아임라이브 #ImLIVE #1m직캠,I'm LIVE | 아임라이브,D,D,2,C폼 · Capo +2,4/4,106,3,3,0,1,ready
-playlist-069,너의 이름은 OST 꿈의등불 커버,나의 노래 메모장,Eb,Eb,3,C폼 · Capo +3,4/4,172,9,12,3,3,ready
-playlist-073,Stay With Me[真夜中のドア] Cover,나의 노래 메모장,F,C,0,C폼 · Capo +0,4/4,108,11,17,6,3,ready
-playlist-075,스즈메의 문단속 - 참새 남자커버,나의 노래 메모장,F,C,0,C폼 · Capo +0,4/4,78,9,12,3,3,ready
-playlist-077,"[풀버전] 음색천재들이 콜라보하면 벌어지는 일.. BIG Naughty (서동현), 권진아 '사랑이라 믿었던 것들은'🎵 | SBS [더 리슨: 오늘, 너에게 닿다]",스튜디오:D,C,C,0,C폼 · Capo +0,4/4,127,7,11,4,3,partial
-playlist-083,극악 난이도인 한번 더 이별 레전드 커버 모음,케이팝덕후,B,B,4,G폼 · Capo +4,4/4,66,7,9,2,3,ready
-playlist-084,정국 X 최유리 ‘숲’ 커버 ㄹㅇ레전드 맛보기,연리,D,A,2,G폼 · Capo +2,6/8,115,4,5,1,2,ready
-playlist-085,백현이 부르는 최유리님의 숲,DEARYOUTH,D,A,2,G폼 · Capo +2,6/8,115,4,5,1,2,ready
-playlist-086,"힙합보단 사랑, 사랑보단 돈(Feat.베이식) - 노아주다 #노래커버 #커버영상 #코일노래방 #발라드 #노아주다 #힙합보단사랑사랑보단돈 #베이식 #스공환영",정남도입니다.,F,F,0,F폼 · Capo +0,미확인,77,5,6,1,2,partial
-playlist-087,이찬혁 그는... #악뮤 #악동뮤지션 #akmu #이찬혁 #멸종위기사랑 #멸종위기사랑커버 #멸종위기사랑cover #인디 #인디뮤지션 #멸종위기사랑 #노래 #노래커버 #어쿠스틱,개똥 (류진),Ab,Ab,1,G폼 · Capo +1,4/4,115,4,6,2,3,ready
-playlist-089,【#복면가왕클린】양요섭(Yang Yoseop) - 어른(Adult) | 클린버전 | 무자막 | 무대 오디오 Only | #TVPP,TV-People,A,E,2,D폼 · Capo +2,4/4,61,2,3,1,1,ready
-playlist-090,1티어_정승환이 부르는 '어른'  COVER,Underlight,A,E,2,D폼 · Capo +2,4/4,61,2,3,1,1,ready
-playlist-091,나 오늘 이 노래로 고백 급발진 받음.. 🎧 우디 - 사막에서 꽃을 피우듯,오드리,Db,Db,1,C폼 · Capo +1,4/4,62,5,6,1,2,ready
-playlist-092,전상근(Jeon Sang Keun) - 봄 내음보다 너를 (원곡: 김나영),전상근 JEON SANG KEUN,G,D,2,C폼 · Capo +2,4/4,68,7,8,1,3,ready
-playlist-103,멜로 장인 플레이브가 말아주는 멜로 영화 OST♥️[PLAVE - 이 밤을 빌려 말해요 (12/29 6PM 발매)],나만 듣기 아까운 노래,D,D,2,C폼 · Capo +2,4/4,67,5,6,1,2,ready
-playlist-107,DAY6(데이식스) - congratulations 신촌 버스킹 cover,위시보이스 창민 CHANGMIN,Eb,Eb,3,C폼 · Capo +3,4/4,85,3,3,0,1,ready
-playlist-111,언젠가는/이상은 노래하는보디빌더 고강민,노래하는 보디빌더고강민,G,D,2,C폼 · Capo +2,4/4,66,5,6,1,2,ready
-playlist-112,🎧 규현 vs 김경남 vs 박재정 vs 정승환 vs 내 최애는? ('김동률' 사랑한다 말해도),MusicPick,E,E,4,C폼 · Capo +4,4/4,64,4,6,2,3,ready
-playlist-113,정승환 '어른' COVER | Jung Seung Hwan 'Grown Ups' (원곡 : Sondia),안테나 Antenna,A,E,2,D폼 · Capo +2,4/4,61,2,3,1,1,ready
-playlist-116,D.O (디오) - Somebody [가사],Music Time | 뮤직 타임,Db,Db,1,C폼 · Capo +1,미확인,89,4,4,0,2,partial
-playlist-117,디오 (D.O.) - 괜찮아도 괜찮아 (That's okay) // 가사,KKumu Music,G,G,7,C폼 · Capo +7,4/4,65,5,6,1,2,ready
-playlist-118,디오 (D.O) -  나의 아버지 (Dad) 가사 (Korean Lyrics),Loonytixc,B,B,4,G폼 · Capo +4,4/4,70,4,5,1,3,partial
-playlist-120,D.O (디오) - 별 떨어진다 (I Do) [가사],Music Time | 뮤직 타임,B,B,4,G폼 · Capo +4,4/4,105,2,3,1,1,ready
-playlist-124,도경수(D.O.) - 영원해 [언젠가는 슬기로울 전공의생활 OST Part 6] / 가사 Audio Lyrics,365 MUSIC,A,A,2,G폼 · Capo +2,미확인,68,4,4,0,2,partial
-playlist-126,D.O. (도경수) - 내일을 너에게 (I’ll Be There) [가사],Music Time | 뮤직 타임,B,B,4,G폼 · Capo +4,미확인,0,4,4,0,2,partial
-playlist-134,D.O. 'Ordinary Days' Lyrics (디오 내일의 우리 가사) (Color Coded Lyrics),Jendukie,Gb,Gb,6,C폼 · Capo +6,4/4,67,4,5,1,2,ready
-playlist-136,도경수 Doh Kyung Soo 'Popcorn' MV,컴퍼니수수 Company Soosoo,D,D,0,D폼 · Capo +0,4/4,132,2,3,1,1,ready
-playlist-138,너의 모든 순간 풀버전 plz…,니넨 도경수 없지?,Bb,Bb,5,F폼 · Capo +5,4/4,70,7,10,3,3,ready
-playlist-139,편안하고 담백한 보컬의 대명사 도경수 💿 도경수(D.O.) - 기대,오이뮤직 - 오늘 이 음악,Eb,Eb,1,D폼 · Capo +1,4/4,100,7,14,7,3,partial
-playlist-143,D.O (디오) - 기적 (Wonder) [가사],Music Time | 뮤직 타임,E,E,4,C폼 · Capo +4,미확인,143,3,4,1,2,partial
-playlist-152,D.O. (도경수) - 기억의 온기 (Where You Were) [가사],Music Time | 뮤직 타임,F#,F#,1,F폼 · Capo +1,미확인,0,2,2,0,1,partial
-playlist-153,"드디어 나왔다 ㄷㄷ 임한별의 감성 발라드 💿 임한별 - 다시, 별 아래",오이뮤직 - 오늘 이 음악,G,G,0,G폼 · Capo +0,미확인,67,5,5,0,2,partial
-playlist-154,피아노 치면서 각잡고 임한별 신곡 부르는 진성이형 ㄷㄷ,발라드의 모든 것 𝑨𝒍𝒍 𝑨𝒃𝒐𝒖𝒕 𝑩𝒂𝒍𝒍𝒂𝒅,G,G,0,G폼 · Capo +0,미확인,67,5,5,0,2,partial
-playlist-157,나약함을 고백하는 행위가 가장 강인한 행동 #로꼬 #픽픽 #쇼츠,올데뮤AllDayMusic,Eb,Eb,3,C폼 · Capo +3,4/4,83,5,6,1,3,partial
-playlist-158,AI 탑이 부르는 로꼬 - 시간이 들겠지 #탑 #AI,주드래곤,Eb,Eb,3,C폼 · Capo +3,4/4,120,6,8,2,3,ready
-playlist-159,"Kisum (키썸) - 30 (서, 어른) ENG/KR/MGL Lyrics",GeGee Edu,C,G,0,G폼 · Capo +0,4/4,86,3,4,1,2,partial
-playlist-160,봄이 빨리 오길 바라며.. 한로로 - 입춘           #한로로 #입춘 #커버 #노래방 #엠씨더맥스,보컬준,F,C,0,C폼 · Capo +0,4/4,80,3,3,0,1,ready
-playlist-161,"테이 - 지금 이대로만 (원곡 : 박재정, 설윤)",너에게들려주고싶었던BGM,D,D,2,C폼 · Capo +2,미확인,68,7,7,0,3,partial
-playlist-165,내 손을 잡아 '레전드 파트' 부른 여가수 비교 #아이유 #김채원 #츄,첫소절,A,E,4,C폼 · Capo +4,4/4,96,4,5,1,2,ready
-playlist-166,몸과 마음이 지쳤던 트와이스를 위한 노래 'Feel Special',CCS TWICE,Ab,Eb,3,C폼 · Capo +3,4/4,129,5,6,1,3,partial
-playlist-169,[하이라이트] 소수빈 - 더 아름다워져 [더 시즌즈-성시경의 고막남친] | KBS 방송,KBS Kpop,Eb,Eb,4,Capo +4,4/4,62,7,8,1,3,ready
-playlist-170,박진영이 부르는 최유리-생각을 멈추다 보면 (풀버전은 [들어봐!유리의숲] 에서!),icecafelatteplz,C,G,0,G폼 · Capo +0,6/8,129,4,5,1,2,ready
-playlist-173,괜히 보고 싶은 사실이 조금은 다행인 시간(prod.jehoda)#shorts #shortsmusic #jehoda #jehoda #음악 #공감 #위로 #노래 #kpop #음악추천,jehoda,Bb,Bb,5,F폼 · Capo +5,4/4,76,7,10,3,3,partial
-playlist-174,생각을 멈추다 보면 - 박진영 part 연속재생,🧡Dive_Nyoung🧡,C,G,0,G폼 · Capo +0,6/8,129,4,5,1,2,ready
-playlist-175,만찬가-한국어버전!! 커버 #cover #coversong #tuki #jpop #kpop #taeyeon #쇼츠 #태연 #커버곡 #만찬가 #리센느 #rescene,명한,Ab,Eb,3,C폼 · Capo +3,4/4,102,3,4,1,1,ready
-playlist-176,[첸 CHEN] 사월이 지나면 우리 헤어져요 라이브#shorts #첸,첸들레'w',Eb,Eb,3,C폼 · Capo +3,4/4,65,3,3,0,1,ready
-playlist-177,[세로] CrushX성시경 - Beautiful (드라마 ＜도깨비＞ OST) (시경 CAM) [더 시즌즈-성시경의 고막남친] | KBS 260717 방송,KBS Kpop,Bb,Bb,3,G폼 · Capo +3,4/4,55,3,4,1,1,ready
-playlist-178,나만 듣기 아까운 달달한 죠지 띵곡🎧 [죠지 - 좋아해.. (웹툰 '바른연애 길잡이'OST)],나만 듣기 아까운 노래,A,A,2,G폼 · Capo +2,4/4,65,6,8,2,3,ready
-playlist-179,죠지 (george) - 바라봐줘요 look at me [Lyric Video],워너뮤직코리아 (Warner Music Korea),Db,Db,6,G폼 · Capo +6,4/4,62,7,10,3,3,ready
-playlist-180,즉석 요청에도 완벽한 죠지 '바라봐줘요'♬,Beginagain 비긴어게인,Db,Db,6,G폼 · Capo +6,4/4,62,7,10,3,3,ready
-playlist-181,[MV] 죠지 (george) - Boat / Official Music Video (Re-upload),SEOUL MUSIC,A,A,2,G폼 · Capo +2,4/4,70,2,4,2,1,ready
-playlist-182,평범한 줄 알았던 회사 직원의 반전 노래 실력에 놀란 주변 반응ㄷㄷ 전우성 - 축가,SOONIGROUP [수니그룹],F,F,5,C폼 · Capo +5,4/4,68,6,7,1,3,ready
-playlist-184,달리 표현할 수 없어요. 오현우 축가ver,오현우,F,F,5,C폼 · Capo +5,4/4,68,6,7,1,3,ready
-playlist-185,축가로도 좋은 곡🤍 | 로이킴 - 달리 표현할 수 없어요,딩고 뮤직,Db,Db,1,C폼 · Capo +1,4/4,68,4,5,1,2,ready
-playlist-186,[Official Audio] 정영원 - 오늘도 날씨는 흐리네,OGAM Entertainment,C,C,0,C폼 · Capo +0,4/4,65,15,19,4,3,partial
-playlist-187,음색 깡패 김필의 '다시 사랑한다면..',엠빅뉴스,Ab,Ab,1,G폼 · Capo +1,4/4,75,4,6,2,3,ready
-playlist-188,지 X대로 부르는 ”나의 X에게“,유스데스크 YOO'S DESK.,Eb,Bb,3,G폼 · Capo +3,4/4,94,4,6,2,3,ready
-playlist-190,임승부  🐳  어떤이별     (가사),못됐다사랑,C,C,0,C폼 · Capo +0,4/4,62,7,13,6,3,partial
-playlist-191,독보적인 보이스 김필 다시 사랑한다면  #shorts #playlist #live,띵플레이어,Ab,Ab,1,G폼 · Capo +1,4/4,75,4,6,2,3,ready
-playlist-193,임영웅이 부른 김광석 '거리에서' 듣던 차승원 반응 ㄷㄷ,오감만족,Am,Am,2,Gm폼 · Capo +2,4/4,65,5,7,2,3,ready
-playlist-194,랩까지 잘해버리는 이무진의 아픈건 딱 질색이니까,덕구 DuckGoo,C,G,0,G폼 · Capo +0,4/4,115,4,4,0,1,ready
-playlist-195,'케이윌 - 내 생에 아름다운' 가수 음색 비교,보컬줍줍,Eb,Eb,3,C폼 · Capo +3,4/4,64,3,4,1,1,ready
-playlist-198,뭐라할까 진짜,유스데스크 YOO'S DESK.,Bm,Bm,7,Em폼 · Capo +7,4/4,78,4,4,0,1,ready
-playlist-203,꿈꾸던 어른이 되었나요? - 머무르 커버,동누농,Gb,Gb,6,C폼 · Capo +6,4/4,71,5,6,1,2,ready
-playlist-204,"유영우, 산들 - 뭐라할까 / 내가 들으려고 편집한 노래",gamtree,Bm,Bm,7,Em폼 · Capo +7,4/4,78,4,4,0,1,ready
-playlist-205,"유영우, 허각 - 안녕 너희 / 내가 들으려고 편집한 노래",gamtree,A,A,2,G폼 · Capo +2,4/4,81,9,12,3,3,partial
-playlist-206,"유영우, 허각 - 나를 사랑하지 말아요 / 내가 들으려고 편집한 노래",gamtree,F#,F#,6,C폼 · Capo +6,4/4,66,17,20,3,3,partial
-playlist-207,꿈꾸던 어른이 되었나요?,머무르 MEOMURU,Gb,Gb,6,C폼 · Capo +6,4/4,71,5,6,1,2,ready
-playlist-208,[경서의 x에게] 발라드 농가 다 살리는 코미디언 유영우,경서,Eb,Bb,3,G폼 · Capo +3,4/4,94,4,6,2,3,ready
-suggested-stand-by-me,Stand by Me,Ben E. King,A,A,2,G폼 · Capo +2,4/4,119,4,4,0,1,ready
-added-10000-hours,"10,000 Hours",Dan + Shay feat. Justin Bieber,A,A,2,G폼 · Capo +2,4/4,86,4,5,1,2,partial
-playlist-029,Flower,오반,A,A,2,G폼 · Capo +2,4/4,88,4,4,0,1,ready
-playlist-039,미안해 미워해 사랑해 (Love You With All My Heart),크러쉬 (CRUSH),E,E,4,C폼 · Capo +4,4/4,65,4,5,1,2,ready
-playlist-062,사랑하게 될 거야,한로로,G,D,2,C폼 · Capo +2,4/4,93,4,5,1,1,ready
-playlist-156,0+0,한로로 (HANRORO),A,E,4,C폼 · Capo +4,4/4,68,6,7,1,2,ready
+id,title,artist,원키,남자키,Capo,폼/설정,박자,BPM,원터치 매핑,코드 수,슬롯,단계,상태,남는 코드,손 모양 운지
+verified-001,오늘,오왠 (O.WHEN),E,E,4,C폼 · Capo +4,4/4,70,8,8,0,3,ready,,
+verified-002,민들레,우효 (OOHYO),D,A,9,C폼 · Capo +9,4/4,120,10,10,0,3,ready,,
+verified-003,Thank You,Dido,B,B,4,G폼 · Capo +4,4/4,79,6,6,0,1,ready,,
+verified-004,Ten Thousand Hours,Macklemore & Ryan Lewis,Ebm,Ebm,6,Am폼 · Capo +6,4/4,83,4,4,0,1,partial,,
+verified-005,추억이면,부활,Ab,Ab,1,G폼 · Capo +1,4/4,74,7,7,0,3,ready,,
+verified-006,희재,성시경,E,E,4,C폼 · Capo +4,4/4,64,8,9,1,3,ready,D,D=Bb(x13331)
+verified-007,한숨,이하이,Ab,Eb,3,C폼 · Capo +3,4/4,62,7,7,0,1,ready,,
+verified-008,내가 너의 곁에 잠시 살았다는 걸,토이,C,C,0,C폼 · Capo +0,4/4,65,7,7,0,3,ready,,
+verified-009,예뻤어,DAY6,Eb,Eb,8,G폼 · Capo +8,4/4,84,10,13,3,2,ready,Am|G|Gb,Am=C#m(x46654) ;; G=B(x24442) ;; Gb=Bb(x13331)
+verified-010,도망가자,선우정아,G,D,2,C폼 · Capo +2,4/4,65,7,7,0,2,ready,,
+verified-011,청혼,노을,E,E,4,C폼 · Capo +4,4/4,70,8,10,2,3,partial,Bbm7b5|Eb/G,Bbm7b5=Gbm7♭5(2x221x) ;; Eb/G=B(x24442)
+verified-012,TOMBOY,혁오,Eb,Eb,3,C폼 · Capo +3,4/4,74,6,6,0,2,ready,,
+verified-013,Flower,오반,A,A,2,G폼 · Capo +2,4/4,88,4,4,0,1,ready,,
+verified-014,死別 (feat. GUMI),Shannon,D,A,9,C폼 · Capo +9,4/4,92,10,12,2,3,ready,Bb|Eb,Bb=Db(x46664) ;; Eb=Gb(244322)
+verified-015,Englishman in New York,Sting,Bm,Bm,2,Am폼 · Capo +2,4/4,102,7,7,0,2,ready,,
+verified-016,How To Cry,Sam Smith,E,E,4,C폼 · Capo +4,4/4,90,5,5,0,2,ready,,
+verified-017,나는 버려질 장난감,아소 · 아날로그소년,Db,Db,1,C폼 · Capo +1,4/4,49,9,10,1,3,partial,Faug,Faug=Eaug(xx2110)
+verified-018,たぶん (아마도),YOASOBI,F,F,5,C폼 · Capo +5,4/4,90,6,6,0,3,ready,,
+verified-019,생각을 멈추다 보면,최유리,C,G,0,G폼 · Capo +0,6/8,129,5,5,0,2,ready,,
+verified-020,오르막길,윤종신,A,A,2,G폼 · Capo +2,4/4,68,5,5,0,2,ready,,
+verified-021,날씨가 좋고 바람도 좋아,가수 미확인,A,A,2,G폼 · Capo +2,4/4,90,8,9,1,3,partial,C#7,C#7=B7(x21202)
+verified-022,세상이 그대를 속일지라도,김장훈,C#,C#,6,G폼 · Capo +6,4/4,70,13,13,0,3,ready,,
+verified-024,닮은사람,이기찬,D,D,7,G폼 · Capo +7,4/4,64,13,15,2,3,partial,Bb|C#m,Bb=Eb(x68886) ;; C#m=F#m(244222)
+verified-025,히로인,back number,G,G,0,G폼 · Capo +0,4/4,77,11,11,0,3,ready,,
+restored-093,無題 (무제),지드래곤 (G-DRAGON),E,E,4,C폼 · Capo +4,4/4,80,4,4,0,1,ready,,
+restored-096,And July,헤이즈 (Heize),Dm,Am,5,Em폼 · Capo +5,4/4,100,6,7,1,3,ready,E7,E7=B7(x21202)
+restored-100,Good Bye-Bye (グッバイバイ),Tomioka Ai,C,G,2,F폼 · Capo +2,4/4,89,5,5,0,1,ready,,
+restored-102,눈이 오잖아 (When it snows),이무진 X 헤이즈,Eb,Eb,3,C폼 · Capo +3,4/4,96,6,6,0,3,ready,,
+restored-119,"비도 오고 그래서 (You, Clouds, Rain)",헤이즈 (HEIZE),C#m,Abm,4,Em폼 · Capo +4,4/4,79,6,6,0,2,ready,,
+restored-122,Vancouver,BIG Naughty (서동현),C#m,C#m,4,Am폼 · Capo +4,4/4,90,4,4,0,1,ready,,
+restored-123,안아줘 (hug me),정준일 (Jung Joonil),C,C,0,C폼 · Capo +0,4/4,68,7,7,0,2,ready,,
+restored-125,미안해 미워해 사랑해 (Love You With All My Heart),크러쉬 (CRUSH),E,E,4,C폼 · Capo +4,4/4,65,5,5,0,2,ready,,
+restored-128,"어떻게 이별까지 사랑하겠어, 널 사랑하는 거지",원곡 가수 미확인,F,C,5,G폼 · Capo +5,4/4,65,4,4,0,1,ready,,
+restored-130,첫눈처럼 너에게 가겠다 (I will go to you like the first snow),에일리 (AILEE),Fm,Cm,3,Am폼 · Capo +3,4/4,67,5,5,0,2,ready,,
+restored-131,0+0,한로로 (HANRORO),A,E,4,C폼 · Capo +4,4/4,68,7,7,0,2,ready,,
+restored-132,사랑하게 될 거야,한로로,G,D,2,C폼 · Capo +2,4/4,93,5,5,0,1,ready,,
+restored-140,예뻤어 (You were beautiful),데이식스 DAY6,Eb,Eb,8,G폼 · Capo +8,4/4,84,10,13,3,2,ready,Am|G|Gb,Am=C#m(x46654) ;; G=B(x24442) ;; Gb=Bb(x13331)
+restored-142,청혼하지 않을 이유를 못 찾았어 (Propose),이무진 (LEE MUJIN),D,D,2,C폼 · Capo +2,4/4,96,6,6,0,2,ready,,
+restored-144,기억을 걷는 시간 (Time Spent Walking Through Memories),넬 (NELL),Eb,Eb,3,C폼 · Capo +3,4/4,89,4,4,0,1,ready,,
+restored-146,Way Back Home,Shaun,Bb,Bb,3,G폼 · Capo +3,4/4,100,4,4,0,1,ready,,
+restored-150,WHAT IS LOVE (2026.ver),EXO-K,Eb,Eb,1,D폼 · Capo +1,4/4,66,7,7,0,2,partial,,
+restored-151,Lonely,2NE1,E,B,6,F폼 · Capo +6,4/4,95,7,7,0,2,ready,,
+restored-201,HER,블락비 (Block B),Cm,Cm,3,Am폼 · Capo +3,4/4,162,6,6,0,4,partial,,
+playlist-001,운명의 상대를 만난다면 머릿속에서 이 노래가 들릴 겁니다 | Past Lives (cover by Jon Poppii),MUFLIX 뮤플릭스,Eb,Eb,3,C폼 · Capo +3,4/4,116,3,3,0,1,partial,,
+playlist-004,벤(BEN)의 깜찍한 매력에 퐁당💛 '후라이의 꿈'♬｜비긴어게인 오픈마이크,Beginagain 비긴어게인,D,A,9,C폼 · Capo +9,4/4,125,6,6,0,2,ready,,
+playlist-009,mashiroji - 그 아픔까지 사랑한거야 (조정현 cover),mashiroji,Bb,Bb,3,G폼 · Capo +3,4/4,74,6,6,0,2,ready,,
+playlist-010,[Blue Night] BIGBANG - 'BLUE' cover by Blue.D,Blue.D /블루디,Em,Em,7,Am폼 · Capo +7,4/4,125,4,4,0,1,ready,,
+playlist-011,(위너) 한 폭의 그림 같은 랩 가사 #봄여름가을겨울 #커버 #빅뱅,덕아일체,Ab,Ab,1,G폼 · Capo +1,4/4,59,7,7,0,3,ready,,
+playlist-012,진심 봄여름가을겨울 커버곡 중 1순위임 #최여원,딩고 뮤직,Ab,Ab,1,G폼 · Capo +1,4/4,59,7,7,0,3,ready,,
+playlist-015,빈 실기실에서 빅뱅(BIGBANG) - 꽃 길 #빅뱅 #꽃길 #kpop #한림예고 #06,서재민,E,E,4,C폼 · Capo +4,4/4,95,4,4,0,1,ready,,
+playlist-016,so low - shiloh dynasty #singing #covers #guitarcover,kyu.,Cm,Cm,3,Am폼 · Capo +3,미확인,94,5,5,0,2,partial,,
+playlist-018,"로이킴 (Roy Kim) - 2024 ROY KIM CONCERT [R♥y actually] LMD : 잘 지내자, 우리",로이킴 Roy Kim,B,B,4,G폼 · Capo +4,4/4,75,5,5,0,2,ready,,
+playlist-024,에아오 #dynamicduo #aeao,INSU 인수,F#m,F#m,7,Bm폼 · Capo +7,미확인,77,3,4,1,2,partial,Abm7,Abm7=Dbm7(x46454)
+playlist-025,"개코-될 대로 되라고 해, 20191208 DYNAMICDUO DUTY FREE 2019 CONCERT",젼티비티 jiyeontivity,Em,Em,0,Em폼 · Capo +0,4/4,127,5,5,0,2,partial,,
+playlist-027,탁재훈이 말아주는 명동콜링🌙 (리허설.ver) #Shorts #신발벗고돌싱포맨 | SBSNOW,SBS,Bb,Bb,10,C폼 · Capo +10,4/4,96,5,5,0,2,ready,,
+playlist-029,로이킴이 부른 오반의 'Flower',romanticfactory,A,A,2,G폼 · Capo +2,4/4,88,4,4,0,1,ready,,
+playlist-030,바닷가에서 '너를 생각해' 불러주는 주시크,romanticfactory,Bb,Bb,10,C폼 · Capo +10,4/4,92,8,8,0,3,ready,,
+playlist-031,이무진#밤하늘의별을(2020),김쭌원 노래방,Eb,Bb,10,C폼 · Capo +10,4/4,77,7,8,1,3,ready,E,E=F#(244322)
+playlist-032,나의 X에게 1분안에 마스터하기,헌일Hun-il,Eb,Bb,10,C폼 · Capo +10,4/4,94,6,6,0,2,ready,,
+playlist-033,경서 - 나의 X에게 cover 방쏭,방쏭 bangssong,Eb,Bb,10,C폼 · Capo +10,4/4,94,6,6,0,2,ready,,
+playlist-034,(한계-넬) 하동균 vs 양요섭 vs 김성규 vs 효정 내 최애 목소리는? 비교듣기,MusicPick,G,G,7,C폼 · Capo +7,미확인,144,5,5,0,2,partial,,
+playlist-035,정승환이 부르는 '운이 좋았지',HUP!,A,E,4,C폼 · Capo +4,4/4,66,5,5,0,2,ready,,
+playlist-036,전상근(Jeon Sang Keun) - 운이 좋았지 (원곡: 권진아),전상근 JEON SANG KEUN,A,E,4,C폼 · Capo +4,4/4,66,5,5,0,2,ready,,
+playlist-037,도경수(D.O)-popcorn #kpop #music #exo #지하주차장 #cover #노래 #도경수 #popcorn @weareoneEXO,고글고글용규맨,D,D,0,D폼 · Capo +0,4/4,132,3,3,0,1,ready,,
+playlist-038,도경수 영원해,나뚜뚜,A,A,2,G폼 · Capo +2,미확인,68,4,4,0,2,partial,,
+playlist-039,라이브가 더 좋은 크러쉬 - 미안해 미워해 사랑해,wavve 웨이브,E,E,4,C폼 · Capo +4,4/4,65,5,5,0,2,ready,,
+playlist-040,크러쉬는 라이브를 찢어.. #크러쉬 #Crush #Beautiful #리얼라이브,1theK Originals - 원더케이 오리지널,Bb,Bb,3,G폼 · Capo +3,4/4,55,4,4,0,1,ready,,
+playlist-041,크러쉬(CRUSH) ' Beautiful (무반주 ver.) ' 라이브 LIVE /180503[키스 더 라디오],KBS CoolFM,Bb,Bb,3,G폼 · Capo +3,4/4,55,4,4,0,1,ready,,
+playlist-042,250531 크러쉬(Crush) - 미워 #크러쉬 #crush #서울재즈페스티벌 #서재페2025,chillwoops,Bb,Bb,5,F폼 · Capo +5,4/4,100,4,4,0,2,partial,,
+playlist-043,[LIVE] Crush & JayPark - Don't forget (잊어버리지마) lyric  #잊어버리지마#crush #jaypark  #lyrics #livemusic,Knock Knock Knovk,C,C,0,C폼 · Capo +0,4/4,94,4,4,0,1,ready,,
+playlist-044,잊어버리지마 - 소수빈 vs 박재범 vs 이무진 vs 크러쉬 (원곡 크러쉬 feat.태연 / 도입부 동일 파트 커버 비교),금은동 뮤직,C,C,0,C폼 · Capo +0,4/4,94,4,4,0,1,ready,,
+playlist-045,역주행 중인 조승연 상병 Drowning,웅키,Ab,Ab,1,G폼 · Capo +1,4/4,114,6,6,0,2,ready,,
+playlist-046,[RIIZE] 🎵Make Up (Feat. Crush) - 샘김(Sam Kim)노래 같이 부르는 밤똘즈 #RIIZE #라이즈  #SUNGCHAN #SOHEE #성찬 #소희,밤비모먼트 Bambi Moment,C,C,3,A폼 · Capo +3,4/4,62,5,6,1,2,ready,Em,Em=C#m(x46654)
+playlist-047,[내일 그대와] 샘김(Sam Kim) - 향기,디글 :Diggle,Gb,Gb,1,F폼 · Capo +1,4/4,70,5,5,0,2,partial,,
+playlist-049,"샘김 - 여름비, 우리모모콘",novemberrain,Gb,Gb,4,D폼 · Capo +4,6/8,108,4,4,0,1,ready,,
+playlist-050,"눈 올 때 들으면 좋은 눈처럼 녹아내리는 음색 #shorts | 샘김 (Sam Kim) - Love Me Like That | 알고있지만, OST | GOGOSING",고고씽 GOGOSING,A,A,2,G폼 · Capo +2,4/4,79,7,7,0,2,ready,,
+playlist-051,"충치 생길 정도로 달달한 숨은 미드 감성 OST #shorts | 샘김 (Sam Kim) - Love Me Like That | 알고있지만, OST | GOGOSING",고고씽 GOGOSING,A,A,2,G폼 · Capo +2,4/4,79,7,7,0,2,ready,,
+playlist-052,Who Are You🎵 by Sam Kim & Jung Seung-hwan🎤 #shorts,Engsublyrics,A,A,2,G폼 · Capo +2,4/4,66,5,5,0,2,ready,,
+playlist-053,[세로] 샘 킴X박보검 - 그 여름밤 [더 시즌즈-박보검의 칸타빌레] | KBS 250620 방송,KBS Kpop,G,G,2,F폼 · Capo +2,4/4,63,6,6,0,2,ready,,
+playlist-054,케이시 (Kassy) - 진심이 담긴 노래 (True Song) | 가사,"Hello, My Music Player",Bb,F,5,C폼 · Capo +5,4/4,70,4,5,1,2,ready,Db,Db=Ab(466544)
+playlist-056,(유스케 LIVE) 이무진 - 과제곡,KBS StarTV: 인물사전,Am,Am,0,Am폼 · Capo +0,4/4,126,4,4,0,1,ready,,
+playlist-057,윈터 - 잠깐 시간 될까,마이들아 웃으라고,C,G,7,C폼 · Capo +7,4/4,106,6,7,1,3,ready,C#,C#=F#(244322)
+playlist-058,(잠깐 시간 될까?) 응!! (만날 수 있을까?) 응응!!,Beginagain 비긴어게인,C,G,7,C폼 · Capo +7,4/4,106,6,7,1,3,ready,C#,C#=F#(244322)
+playlist-059,이무진이 찐 감동한 후이의 청춘만화 편곡 버전,펜더곰 PENDEOGOM,G,G,7,C폼 · Capo +7,4/4,95,8,8,0,3,ready,,
+playlist-060,지금 날씨랑 찰떡♪ 이무진의 '에피소드',Beginagain 비긴어게인,D,D,2,C폼 · Capo +2,4/4,118,5,6,1,2,ready,Bb,Bb=Ab(466544)
+playlist-061,(유스케 LIVE) 이무진 - 신호등,KBS StarTV: 인물사전,B,B,9,D폼 · Capo +9,4/4,97,5,6,1,2,ready,G,G=Bb(x13331)
+playlist-062,사랑하게 될 거야 남자 커버,나의 노래 메모장,G,D,2,C폼 · Capo +2,4/4,93,5,5,0,1,ready,,
+playlist-063,오반 - 행복 커버,나의 노래 메모장,E,E,4,C폼 · Capo +4,4/4,120,4,4,0,1,ready,,
+playlist-068,[1m 직캠📸] 10CM - pet #10CM #십센치 #pet #아임라이브 #ImLIVE #1m직캠,I'm LIVE | 아임라이브,D,D,2,C폼 · Capo +2,4/4,106,3,3,0,1,ready,,
+playlist-069,너의 이름은 OST 꿈의등불 커버,나의 노래 메모장,Eb,Eb,1,D폼 · Capo +1,4/4,172,12,12,0,3,ready,,
+playlist-072,내 첫 자작곡이야ㅎ 제목은 커피,나의 노래 메모장,Db,Db,1,C폼 · Capo +1,4/4,98,5,5,0,2,original,,
+playlist-073,Stay With Me[真夜中のドア] Cover,나의 노래 메모장,F,C,0,C폼 · Capo +0,4/4,108,12,17,5,3,ready,AbM7|Abaug|Gbm7-5|Bb/C|EbM7,AbM7=AbM7(465544) ;; Abaug=Abaug(x32110) ;; Gbm7-5=Gbm7♭5(2x221x) ;; Bb/C=Bb(x13331) ;; EbM7=EbM7(x68786)
+playlist-075,스즈메의 문단속 - 참새 남자커버,나의 노래 메모장,F,C,0,C폼 · Capo +0,4/4,78,11,12,1,3,ready,Gbm7-5,Gbm7-5=Gbm7♭5(2x221x)
+playlist-077,"[풀버전] 음색천재들이 콜라보하면 벌어지는 일.. BIG Naughty (서동현), 권진아 '사랑이라 믿었던 것들은'🎵 | SBS [더 리슨: 오늘, 너에게 닿다]",스튜디오:D,C,C,10,D폼 · Capo +10,4/4,127,8,11,3,3,partial,C#|Ab|F#,C#=Eb(x68886) ;; Ab=Bb(x13331) ;; F#=Ab(466544)
+playlist-083,극악 난이도인 한번 더 이별 레전드 커버 모음,케이팝덕후,B,B,4,G폼 · Capo +4,4/4,66,9,9,0,3,ready,,
+playlist-084,정국 X 최유리 ‘숲’ 커버 ㄹㅇ레전드 맛보기,연리,D,A,2,G폼 · Capo +2,6/8,115,5,5,0,2,ready,,
+playlist-085,백현이 부르는 최유리님의 숲,DEARYOUTH,D,A,2,G폼 · Capo +2,6/8,115,5,5,0,2,ready,,
+playlist-086,"힙합보단 사랑, 사랑보단 돈(Feat.베이식) - 노아주다 #노래커버 #커버영상 #코일노래방 #발라드 #노아주다 #힙합보단사랑사랑보단돈 #베이식 #스공환영",정남도입니다.,F,F,3,D폼 · Capo +3,미확인,77,6,6,0,2,partial,,
+playlist-087,이찬혁 그는... #악뮤 #악동뮤지션 #akmu #이찬혁 #멸종위기사랑 #멸종위기사랑커버 #멸종위기사랑cover #인디 #인디뮤지션 #멸종위기사랑 #노래 #노래커버 #어쿠스틱,개똥 (류진),Ab,Ab,1,G폼 · Capo +1,4/4,115,6,6,0,2,ready,,
+playlist-089,【#복면가왕클린】양요섭(Yang Yoseop) - 어른(Adult) | 클린버전 | 무자막 | 무대 오디오 Only | #TVPP,TV-People,A,E,2,D폼 · Capo +2,4/4,61,3,3,0,1,ready,,
+playlist-090,1티어_정승환이 부르는 '어른'  COVER,Underlight,A,E,2,D폼 · Capo +2,4/4,61,3,3,0,1,ready,,
+playlist-091,나 오늘 이 노래로 고백 급발진 받음.. 🎧 우디 - 사막에서 꽃을 피우듯,오드리,Db,Db,1,C폼 · Capo +1,4/4,62,6,6,0,2,ready,,
+playlist-092,전상근(Jeon Sang Keun) - 봄 내음보다 너를 (원곡: 김나영),전상근 JEON SANG KEUN,G,D,2,C폼 · Capo +2,4/4,68,8,8,0,3,ready,,
+playlist-103,멜로 장인 플레이브가 말아주는 멜로 영화 OST♥️[PLAVE - 이 밤을 빌려 말해요 (12/29 6PM 발매)],나만 듣기 아까운 노래,D,D,2,C폼 · Capo +2,4/4,67,6,6,0,2,ready,,
+playlist-107,DAY6(데이식스) - congratulations 신촌 버스킹 cover,위시보이스 창민 CHANGMIN,Eb,Eb,3,C폼 · Capo +3,4/4,85,3,3,0,1,ready,,
+playlist-111,언젠가는/이상은 노래하는보디빌더 고강민,노래하는 보디빌더고강민,G,D,2,C폼 · Capo +2,4/4,66,6,6,0,2,ready,,
+playlist-112,🎧 규현 vs 김경남 vs 박재정 vs 정승환 vs 내 최애는? ('김동률' 사랑한다 말해도),MusicPick,E,E,4,C폼 · Capo +4,4/4,64,6,6,0,2,ready,,
+playlist-113,정승환 '어른' COVER | Jung Seung Hwan 'Grown Ups' (원곡 : Sondia),안테나 Antenna,A,E,2,D폼 · Capo +2,4/4,61,3,3,0,1,ready,,
+playlist-116,D.O (디오) - Somebody [가사],Music Time | 뮤직 타임,Db,Db,1,C폼 · Capo +1,미확인,89,4,4,0,2,partial,,
+playlist-117,디오 (D.O.) - 괜찮아도 괜찮아 (That's okay) // 가사,KKumu Music,G,G,7,C폼 · Capo +7,4/4,65,6,6,0,2,ready,,
+playlist-118,디오 (D.O) -  나의 아버지 (Dad) 가사 (Korean Lyrics),Loonytixc,B,B,4,G폼 · Capo +4,4/4,70,5,5,0,2,partial,,
+playlist-120,D.O (디오) - 별 떨어진다 (I Do) [가사],Music Time | 뮤직 타임,B,B,4,G폼 · Capo +4,4/4,105,3,3,0,1,ready,,
+playlist-124,도경수(D.O.) - 영원해 [언젠가는 슬기로울 전공의생활 OST Part 6] / 가사 Audio Lyrics,365 MUSIC,A,A,2,G폼 · Capo +2,미확인,68,4,4,0,2,partial,,
+playlist-126,D.O. (도경수) - 내일을 너에게 (I’ll Be There) [가사],Music Time | 뮤직 타임,B,B,4,G폼 · Capo +4,미확인,0,4,4,0,2,partial,,
+playlist-134,D.O. 'Ordinary Days' Lyrics (디오 내일의 우리 가사) (Color Coded Lyrics),Jendukie,Gb,Gb,6,C폼 · Capo +6,4/4,67,5,5,0,2,ready,,
+playlist-136,도경수 Doh Kyung Soo 'Popcorn' MV,컴퍼니수수 Company Soosoo,D,D,0,D폼 · Capo +0,4/4,132,3,3,0,1,ready,,
+playlist-138,너의 모든 순간 풀버전 plz…,니넨 도경수 없지?,Bb,Bb,5,F폼 · Capo +5,4/4,70,8,10,2,3,ready,Db|Eb,Db=Ab(466544) ;; Eb=Bb(x13331)
+playlist-139,편안하고 담백한 보컬의 대명사 도경수 💿 도경수(D.O.) - 기대,오이뮤직 - 오늘 이 음악,Eb,Eb,1,D폼 · Capo +1,4/4,100,11,14,3,3,partial,A|B|E,A=Ab(466544) ;; B=Bb(x13331) ;; E=Eb(x68886)
+playlist-143,D.O (디오) - 기적 (Wonder) [가사],Music Time | 뮤직 타임,E,E,4,C폼 · Capo +4,미확인,143,4,4,0,1,partial,,
+playlist-152,D.O. (도경수) - 기억의 온기 (Where You Were) [가사],Music Time | 뮤직 타임,F#,F#,1,F폼 · Capo +1,미확인,0,2,2,0,1,partial,,
+playlist-153,"드디어 나왔다 ㄷㄷ 임한별의 감성 발라드 💿 임한별 - 다시, 별 아래",오이뮤직 - 오늘 이 음악,G,G,0,G폼 · Capo +0,미확인,67,5,5,0,2,partial,,
+playlist-154,피아노 치면서 각잡고 임한별 신곡 부르는 진성이형 ㄷㄷ,발라드의 모든 것 𝑨𝒍𝒍 𝑨𝒃𝒐𝒖𝒕 𝑩𝒂𝒍𝒍𝒂𝒅,G,G,0,G폼 · Capo +0,미확인,67,5,5,0,2,partial,,
+playlist-156,정승환 '0+0' Cover (원곡 : 한로로) | SeungTUDIO,정승환 Jung Seung Hwan,A,E,4,C폼 · Capo +4,4/4,68,7,7,0,2,ready,,
+playlist-157,나약함을 고백하는 행위가 가장 강인한 행동 #로꼬 #픽픽 #쇼츠,올데뮤AllDayMusic,Eb,Eb,3,C폼 · Capo +3,4/4,83,6,6,0,2,partial,,
+playlist-158,AI 탑이 부르는 로꼬 - 시간이 들겠지 #탑 #AI,주드래곤,Eb,Eb,3,C폼 · Capo +3,4/4,120,7,8,1,3,ready,Bm,Bm=Abm(466444)
+playlist-159,"Kisum (키썸) - 30 (서, 어른) ENG/KR/MGL Lyrics",GeGee Edu,C,G,0,G폼 · Capo +0,4/4,86,4,4,0,1,partial,,
+playlist-160,봄이 빨리 오길 바라며.. 한로로 - 입춘           #한로로 #입춘 #커버 #노래방 #엠씨더맥스,보컬준,F,C,0,C폼 · Capo +0,4/4,80,3,3,0,1,ready,,
+playlist-161,"테이 - 지금 이대로만 (원곡 : 박재정, 설윤)",너에게들려주고싶었던BGM,D,D,2,C폼 · Capo +2,미확인,68,7,7,0,3,partial,,
+playlist-165,내 손을 잡아 '레전드 파트' 부른 여가수 비교 #아이유 #김채원 #츄,첫소절,A,E,4,C폼 · Capo +4,4/4,96,5,5,0,2,ready,,
+playlist-166,몸과 마음이 지쳤던 트와이스를 위한 노래 'Feel Special',CCS TWICE,Ab,Eb,3,C폼 · Capo +3,4/4,129,6,6,0,2,partial,,
+playlist-169,[하이라이트] 소수빈 - 더 아름다워져 [더 시즌즈-성시경의 고막남친] | KBS 방송,KBS Kpop,Eb,Eb,4,Capo +4,4/4,62,8,8,0,3,ready,,
+playlist-170,박진영이 부르는 최유리-생각을 멈추다 보면 (풀버전은 [들어봐!유리의숲] 에서!),icecafelatteplz,C,G,0,G폼 · Capo +0,6/8,129,5,5,0,2,ready,,
+playlist-173,괜히 보고 싶은 사실이 조금은 다행인 시간(prod.jehoda)#shorts #shortsmusic #jehoda #jehoda #음악 #공감 #위로 #노래 #kpop #음악추천,jehoda,Bb,Bb,10,C폼 · Capo +10,4/4,74,9,10,1,3,partial,Em,Em=F#m(244222)
+playlist-174,생각을 멈추다 보면 - 박진영 part 연속재생,🧡Dive_Nyoung🧡,C,G,0,G폼 · Capo +0,6/8,129,5,5,0,2,ready,,
+playlist-175,만찬가-한국어버전!! 커버 #cover #coversong #tuki #jpop #kpop #taeyeon #쇼츠 #태연 #커버곡 #만찬가 #리센느 #rescene,명한,Ab,Eb,3,C폼 · Capo +3,4/4,102,4,4,0,1,ready,,
+playlist-176,[첸 CHEN] 사월이 지나면 우리 헤어져요 라이브#shorts #첸,첸들레'w',Eb,Eb,3,C폼 · Capo +3,4/4,65,3,3,0,1,ready,,
+playlist-177,[세로] CrushX성시경 - Beautiful (드라마 ＜도깨비＞ OST) (시경 CAM) [더 시즌즈-성시경의 고막남친] | KBS 260717 방송,KBS Kpop,Bb,Bb,3,G폼 · Capo +3,4/4,55,4,4,0,1,ready,,
+playlist-178,나만 듣기 아까운 달달한 죠지 띵곡🎧 [죠지 - 좋아해.. (웹툰 '바른연애 길잡이'OST)],나만 듣기 아까운 노래,A,A,2,G폼 · Capo +2,4/4,65,8,8,0,3,ready,,
+playlist-179,죠지 (george) - 바라봐줘요 look at me [Lyric Video],워너뮤직코리아 (Warner Music Korea),Db,Db,6,G폼 · Capo +6,4/4,62,9,10,1,3,ready,A,A=Eb(x68886)
+playlist-180,즉석 요청에도 완벽한 죠지 '바라봐줘요'♬,Beginagain 비긴어게인,Db,Db,6,G폼 · Capo +6,4/4,62,9,10,1,3,ready,A,A=Eb(x68886)
+playlist-181,[MV] 죠지 (george) - Boat / Official Music Video (Re-upload),SEOUL MUSIC,A,A,2,G폼 · Capo +2,4/4,70,4,4,0,1,ready,,
+playlist-182,평범한 줄 알았던 회사 직원의 반전 노래 실력에 놀란 주변 반응ㄷㄷ 전우성 - 축가,SOONIGROUP [수니그룹],F,F,5,C폼 · Capo +5,4/4,68,7,7,0,3,ready,,
+playlist-184,달리 표현할 수 없어요. 오현우 축가ver,오현우,F,F,5,C폼 · Capo +5,4/4,68,7,7,0,3,ready,,
+playlist-185,축가로도 좋은 곡🤍 | 로이킴 - 달리 표현할 수 없어요,딩고 뮤직,Db,Db,1,C폼 · Capo +1,4/4,68,5,5,0,2,ready,,
+playlist-186,[Official Audio] 정영원 - 오늘도 날씨는 흐리네,OGAM Entertainment,C,C,5,G폼 · Capo +5,4/4,65,18,19,1,3,partial,Bm7b5,Bm7b5=Gbm7♭5(2x221x)
+playlist-187,음색 깡패 김필의 '다시 사랑한다면..',엠빅뉴스,Ab,Ab,1,G폼 · Capo +1,4/4,75,6,6,0,2,ready,,
+playlist-188,지 X대로 부르는 ”나의 X에게“,유스데스크 YOO'S DESK.,Eb,Bb,10,C폼 · Capo +10,4/4,94,6,6,0,2,ready,,
+playlist-190,임승부  🐳  어떤이별     (가사),못됐다사랑,C,C,5,G폼 · Capo +5,4/4,62,10,13,3,3,partial,F#m|Ab|Bm,F#m=C#m(x46654) ;; Ab=Eb(x68886) ;; Bm=F#m(244222)
+playlist-191,독보적인 보이스 김필 다시 사랑한다면  #shorts #playlist #live,띵플레이어,Ab,Ab,1,G폼 · Capo +1,4/4,75,6,6,0,2,ready,,
+playlist-193,임영웅이 부른 김광석 '거리에서' 듣던 차승원 반응 ㄷㄷ,오감만족,Am,Am,7,Dm폼 · Capo +7,4/4,65,6,7,1,3,ready,Ab,Ab=Db(x46664)
+playlist-194,랩까지 잘해버리는 이무진의 아픈건 딱 질색이니까,덕구 DuckGoo,C,G,0,G폼 · Capo +0,4/4,115,4,4,0,1,ready,,
+playlist-195,'케이윌 - 내 생에 아름다운' 가수 음색 비교,보컬줍줍,Eb,Eb,3,C폼 · Capo +3,4/4,64,4,4,0,1,ready,,
+playlist-198,뭐라할까 진짜,유스데스크 YOO'S DESK.,Bm,Bm,7,Em폼 · Capo +7,4/4,78,4,4,0,1,ready,,
+playlist-203,꿈꾸던 어른이 되었나요? - 머무르 커버,동누농,Gb,Gb,6,C폼 · Capo +6,4/4,71,6,6,0,2,ready,,
+playlist-204,"유영우, 산들 - 뭐라할까 / 내가 들으려고 편집한 노래",gamtree,Bm,Bm,7,Em폼 · Capo +7,4/4,78,4,4,0,1,ready,,
+playlist-205,"유영우, 허각 - 안녕 너희 / 내가 들으려고 편집한 노래",gamtree,A,A,2,G폼 · Capo +2,4/4,81,12,12,0,3,partial,,
+playlist-206,"유영우, 허각 - 나를 사랑하지 말아요 / 내가 들으려고 편집한 노래",gamtree,F#,F#,6,C폼 · Capo +6,4/4,66,20,20,0,3,partial,,
+playlist-207,꿈꾸던 어른이 되었나요?,머무르 MEOMURU,Gb,Gb,6,C폼 · Capo +6,4/4,71,6,6,0,2,ready,,
+playlist-208,[경서의 x에게] 발라드 농가 다 살리는 코미디언 유영우,경서,Eb,Bb,10,C폼 · Capo +10,4/4,94,6,6,0,2,ready,,
+suggested-stand-by-me,Stand by Me,Ben E. King,A,A,2,G폼 · Capo +2,4/4,119,4,4,0,1,ready,,
+added-10000-hours,"10,000 Hours",Dan + Shay feat. Justin Bieber,A,A,2,G폼 · Capo +2,4/4,86,5,5,0,2,partial,,

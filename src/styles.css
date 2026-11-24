@@ -53,6 +53,37 @@
 .cc-sound{font-size:9px;opacity:.85;font-weight:700}
 .cc-orig{font-size:8px;opacity:.7}
 .cc.is-slot{background:#7e7d6f;border:1px dashed #fff6}
+.cc-shape{font-size:8px;opacity:.9;font-weight:700;line-height:1.1}
+.cc-fret{font-size:8px;opacity:.8;letter-spacing:.04em;font-variant-numeric:tabular-nums}
+/* 코드 운지표(다이어그램) */
+.chord-dex{margin:0 0 14px;border:1px solid #e4e0d2;border-radius:14px;background:#fbf9f2;padding:12px 13px}
+.chord-dex.empty{background:#f4f7ef;border-color:#dbe3d2;display:flex;flex-direction:column;gap:3px;font-size:12px;color:#5d6a54}
+.chord-dex.empty b{font-size:13px;color:#3d4a36}
+.dex-head{display:flex;flex-direction:column;gap:2px;margin-bottom:10px}
+.dex-head b{font-size:13px;letter-spacing:-.02em}
+.dex-head span{font-size:10px;color:#8b8b7a;line-height:1.4}
+.dex-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,190px));gap:10px;justify-content:start}
+.dex-grid.wide{grid-template-columns:repeat(auto-fill,minmax(160px,210px))}
+.dex-card{display:flex;flex-direction:column;align-items:center;gap:4px;border:1px solid #e6e2d4;border-radius:12px;background:#fff;padding:10px 8px;text-align:center}
+.dex-top{display:flex;flex-direction:column;gap:1px}
+.dex-top b{font-size:18px;letter-spacing:-.03em;line-height:1.1}
+.dex-top span{font-size:10px;color:#8a8778;font-weight:700}
+.fret-diagram{display:block;overflow:visible}
+.fd-string{stroke:#cfc9b6;stroke-width:1}
+.fd-fret{stroke:#d8d2bf;stroke-width:1}
+.fd-nut{stroke:#4a4a3e;stroke-width:3.2}
+.fd-base{font-size:9px;fill:#8a8778;font-weight:800}
+.fd-mark{font-size:11px;fill:#8a8778;font-weight:800}
+.fd-open{fill:none;stroke:#5d6152;stroke-width:1.6}
+.fd-dot{fill:#2f3a31}
+.fd-barre{fill:#2f3a31}
+.fd-finger{font-size:9px;fill:#fff;font-weight:900}
+.fd-finger.in{dominant-baseline:middle}
+.dex-code{font-size:12px;font-weight:900;letter-spacing:.06em;font-variant-numeric:tabular-nums;color:#3c463b}
+.dex-fing{font-size:10px;color:#6f7164;line-height:1.45}
+.dex-tip{font-size:10px;color:#7c5a34;background:#fdf6e8;border:1px solid #efe2c8;border-radius:8px;padding:5px 7px;line-height:1.45;text-align:left}
+.dex-why{font-size:9.5px;color:#8b8b7a;line-height:1.45}
+.dex-where{font-size:9.5px;color:#5d6a54;background:#f2f5ec;border-radius:7px;padding:3px 6px}
 .stroke-strip{margin-top:10px;padding:10px 13px;border-radius:12px;background:#f3efe2;font-size:13px;display:flex;gap:9px;align-items:center}
 .stroke-strip b{font-size:11px;color:#7d7a68;letter-spacing:.1em}
 .subtabs{display:flex;gap:5px;margin:14px 0 12px;background:#eceade;padding:4px;border-radius:12px;overflow-x:auto}
@@ -113,6 +144,11 @@ ul.ev span{display:block;color:#8b8b7a;font-size:11px}
   .ot-grid{gap:4px}
   .ot-btn{min-height:36px;font-size:11px;border-radius:7px}
   .slot{min-height:104px}
+  .dex-grid,.dex-grid.wide{grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;justify-content:stretch}
+  .dex-grid>.dex-card{max-width:none}
+  .dex-card{padding:8px 6px}
+  .dex-top b{font-size:16px}
+  .chord-dex{padding:10px 9px}
   .song-chip{max-width:100%;flex:1 1 46%}
   .capo-callout{font-size:12px}
   .capo-callout .hl{font-size:15px}

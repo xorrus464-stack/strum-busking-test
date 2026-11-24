@@ -12,7 +12,7 @@
   "additionalRecommendedSongCount": 1,
   "originalPlaylist": "https://www.youtube.com/playlist?list=PLdOy20BJp9XElDHDvAJI6mUG48BmfDX-y",
   "playlistId": "PLdOy20BJp9XElDHDvAJI6mUG48BmfDX-y",
-  "seedVersion": 22,
+  "seedVersion": 23,
   "playlistCollectedCount": 210,
   "playlistPublicVideoCount": 168,
   "playlistInaccessibleVideoCount": 42,
@@ -22,7 +22,7 @@
   "chartReadyCount": 124,
   "chartPartialCount": 37,
   "chartPendingCount": 0,
-  "chartDisclosure": "남자키는 남성 원곡이면 원키 그대로(이조 0반음), 여성 원곡이면 -5반음으로 잡고 그 목표 키를 AeroBand 원터치 버튼에 맞추도록 카포를 골랐습니다. 남자키·박자·BPM·코드 진행은 2026-11-22 웹 검색으로 확인한 코드표·악보 메타데이터와, 주성 님이 직접 올린 음원·화면 녹화 (#108 · #172 · #202 이기찬 ‘닮은 사람’ MR · 이번 11곡: 픽픽·될 대로 되라고 해·어떤이별·오늘도 날씨는 흐리네·안녕 너희·서, 어른·나의 아버지·괜히 보고 싶은 사실…·나를 사랑하지 말아요·Coffee·10,000 Hours)의 오디오 분석에서 옮겼습니다. 악보 준비 완료 124곡(서로 다른 곡 134곡), 부분 확인 37곡, 검수 대기 0곡, 비음악·참고 영상 39개, 자작곡 1개. 마디 배치는 코드표 순서를 4박 카드로 정리한 연습용이며, 원곡 세부 마디와 다를 수 있습니다. 음원 분석 곡(#108 · #172 · #202 · 이번 11곡)과 자동분석 후보 곡은 청음 검수를 권장합니다. 키·코드가 확인되지 않은 곡은 추측값을 넣지 않고 검수 대기로 두되, 확인된 BPM·키와 근거 링크만 곡 정보 화면에 남겼습니다. 원터치 14버튼에도 없는 코드는 SimplifyChord 슬롯(최대 8개)으로 안내합니다. 2026-11-25: 에어로밴드 앱 Easy Chord → 고급 설정 화면에서 확인한 실제 버튼 14개(C·Dm·Em·F·G·Am·Bdim / Cm·D·E·Fm·Gm·A·Bm)로 전곡 악보를 다시 매핑했습니다. 기존 10버튼에서는 슬롯으로 빠지던 Am·A·Bm과 감5화음 계열(m7♭5)까지 버튼으로 잡히므로, 곡마다 Capo(0~7)를 다시 골라 슬롯을 최소화했습니다. 남자키와 실제로 울리는 코드(sound)는 그대로입니다. 악보 161개 중 슬롯 없이 14버튼만으로 완주하는 곡이 124개, 남은 슬롯 합계 62개(이전 10버튼 기준 228개)입니다. 증5화음(aug)처럼 3화음 버튼으로 대신할 수 없는 코드만 SimplifyChord 슬롯(최대 8개)에 남겼습니다.",
+  "chartDisclosure": "남자키는 남성 원곡이면 원키 그대로(이조 0반음), 여성 원곡이면 -5반음으로 잡고 그 목표 키를 AeroBand 원터치 버튼에 맞추도록 카포를 골랐습니다. 남자키·박자·BPM·코드 진행은 2026-11-22 웹 검색으로 확인한 코드표·악보 메타데이터와, 주성 님이 직접 올린 음원·화면 녹화 (#108 · #172 · #202 이기찬 ‘닮은 사람’ MR · 이번 11곡: 픽픽·될 대로 되라고 해·어떤이별·오늘도 날씨는 흐리네·안녕 너희·서, 어른·나의 아버지·괜히 보고 싶은 사실…·나를 사랑하지 말아요·Coffee·10,000 Hours)의 오디오 분석에서 옮겼습니다. 악보 준비 완료 124곡(서로 다른 곡 134곡), 부분 확인 37곡, 검수 대기 0곡, 비음악·참고 영상 39개, 자작곡 1개. 마디 배치는 코드표 순서를 4박 카드로 정리한 연습용이며, 원곡 세부 마디와 다를 수 있습니다. 음원 분석 곡(#108 · #172 · #202 · 이번 11곡)과 자동분석 후보 곡은 청음 검수를 권장합니다. 키·코드가 확인되지 않은 곡은 추측값을 넣지 않고 검수 대기로 두되, 확인된 BPM·키와 근거 링크만 곡 정보 화면에 남겼습니다. 원터치 14버튼에도 없는 코드는 SimplifyChord 슬롯(최대 8개)으로 안내합니다. 2026-11-25: 에어로밴드 앱 Easy Chord → 고급 설정 화면에서 확인한 실제 버튼 14개(C·Dm·Em·F·G·Am·Bdim / Cm·D·E·Fm·Gm·A·Bm)로 전곡 악보를 다시 매핑했습니다. 기존 10버튼에서는 슬롯으로 빠지던 Am·A·Bm과 감5화음 계열(m7♭5)까지 버튼으로 잡히므로, 곡마다 Capo(0~7)를 다시 골라 슬롯을 최소화했습니다. 남자키와 실제로 울리는 코드(sound)는 그대로입니다. 악보 161개 중 슬롯 없이 14버튼만으로 완주하는 곡이 124개, 남은 슬롯 합계 62개(이전 10버튼 기준 228개)입니다. 증5화음(aug)처럼 3화음 버튼으로 대신할 수 없는 코드만 SimplifyChord 슬롯(최대 8개)에 남겼습니다. 2026-11-25 추가: 14버튼에도 없는 코드가 남는 곡은 카포를 다시 계산해 ① 남는 코드 종류 ② 나오는 마디 수 ③ 손 모양 난이도(오픈 < 미니 바레 < 바레) 순으로 가장 편한 카포를 골랐습니다. 남는 코드는 S1·S2 대신 진짜 코드 이름과 기타 운지(6→1번줄 프렛·손가락·바레, 카포 기준)를 표시하고, 모든 운지는 실제 음정으로 검증했습니다(근음·3음 포함, 코드 밖 음 없음).",
   "nonMusicCount": 39,
   "originalWorkCount": 1,
   "uniqueChartSongCount": 134,
@@ -62,10 +62,24 @@
     "date": "2026-11-25",
     "buttons": "C / Dm / Em / F / G / Am / Bdim / Cm / D / E / Fm / Gm / A / Bm",
     "chartCount": 161,
-    "zeroSlotCount": 124,
-    "slotChartCount": 37,
-    "slotTotal": 62,
+    "zeroSlotCount": 132,
+    "slotChartCount": 29,
+    "slotTotal": 47,
     "prevSlotTotal": 228,
     "capoChangedCount": 12
+  },
+  "capoOptimize": {
+    "date": "2026-11-25",
+    "chartCount": 161,
+    "prevZeroSlotCharts": 124,
+    "zeroSlotCharts": 132,
+    "prevSlotTotal": 62,
+    "slotTotal": 47,
+    "capoChangedCount": 20,
+    "stageChangedCount": 1,
+    "capoRange": [
+      0,
+      11
+    ]
   }
 }

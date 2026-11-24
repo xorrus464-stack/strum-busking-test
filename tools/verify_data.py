@@ -6,7 +6,7 @@
 
 실행: python3 tools/verify_data.py
 """
-import json, pathlib, re, unicodedata
+import json, pathlib, re, sys, unicodedata
 
 BASE = pathlib.Path(__file__).resolve().parents[1]
 songs = json.loads((BASE / 'data' / 'songs.seed.json').read_text(encoding='utf-8'))
@@ -135,7 +135,7 @@ for s in songs:
         assert not s['videoUrl'], s['id']
 
 # 10) 메타 집계
-assert meta['seedVersion'] == 22, meta['seedVersion']
+assert meta['seedVersion'] == 23, meta['seedVersion']
 assert meta['buttonCount'] == 14 and len(meta['buttonSet']) == 14, meta.get('buttonCount')
 assert meta['chartVersion'] == '2026-11-25', meta['chartVersion']
 assert meta['videoLinkCount'] == 201 and meta['videoLinkFilledCount'] == 36
@@ -206,7 +206,7 @@ for s in ready:
     assert c['timeSignature'] in ('4/4', '3/4', '6/8'), (s['id'], c['timeSignature'])
     assert 40 <= c['bpm'] <= 180, (s['id'], c['bpm'])
     assert c['originalKey'] and c['maleKey'], s['id']
-    assert 0 <= c['capo'] <= 7, (s['id'], c['capo'])
+    assert 0 <= c['capo'] <= 11, (s['id'], c['capo'])
     assert 1 <= c['stage'] <= 4, s['id']
     assert c['sections'], s['id']
     assert c['stroke'] and c['basis'], s['id']
@@ -235,6 +235,73 @@ for s in ready:
                     assert not any((BTN_SHAPE[b][0] + c['capo']) % 12 == pc_of(cell['sound'])
                                    and BTN_SHAPE[b][1] == chord_quality(cell['sound'])
                                    for b in BTNS), (s['id'], cell['sound'], '버튼 가능 코드가 슬롯에')
+# 11-2) 손으로 잡는 코드(slot)의 운지 검증 — 실제 음정으로 확인한다(2026-11-25)
+sys.path.insert(0, str(pathlib.Path(__file__).resolve().parent))
+from chord_shapes import parse as parse_chord_name, chord_tones, INTERVALS  # noqa: E402
+OPEN_PC = [4, 9, 2, 7, 11, 4]
+slot_total = 0
+chart_songs = [s for s in songs if (s.get('chart') or {}).get('sections')]
+for s in chart_songs:
+    c = s['chart']
+    slots = c.get('slots') or []
+    slot_total += len(slots)
+    # 14버튼 완주였던 곡은 이번 카포 재계산에서도 완주여야 한다(기존 124곡 보호).
+    remap = c.get('remap') or {}
+    if remap.get('slotsFrom') == 0:
+        assert not slots, (s['id'], '완주 곡에 슬롯이 생김')
+        assert remap.get('slotsTo') == 0, s['id']
+    assert remap.get('capoTo') == c['capo'] and remap.get('slotsTo') == len(slots), s['id']
+    for sl in slots:
+        info = parse_chord_name(sl['chord'])
+        tones = chord_tones(info['root_pc'], info['family'])
+        frets = sl['frets']
+        assert len(frets) == 6 and len(sl['fingers']) == 6, (s['id'], sl['slot'], '운지 6줄')
+        assert sl['capo'] == c['capo'], (s['id'], '카포 불일치')
+        assert 1 <= sl['base'] <= 12, (s['id'], sl['base'])
+        played = set()
+        for i, fr in enumerate(frets):
+            assert fr == -1 or 0 <= fr <= 15, (s['id'], sl['slot'], fr)
+            if fr > 0:
+                # 프렛은 카포를 0프렛으로 본 위치 → 실제 울리는 음은 카포만큼 올라간다.
+                played.add((OPEN_PC[i] + fr + c['capo']) % 12)
+        assert played and played <= tones, (s['id'], sl['chord'], '코드 밖 음', sorted(played - tones))
+        assert info['root_pc'] in played, (s['id'], sl['chord'], '근음 없음')
+        if info['family'] in ('maj', 'min', '7', 'm7', 'maj7', 'm6', 'm7b5', '6'):
+            third = (info['root_pc'] + (3 if info['family'] in ('min', 'm7', 'm6', 'm7b5') else 4)) % 12
+            assert third in played, (s['id'], sl['chord'], '3음 없음')
+        # 바레는 from~to번줄이 모두 같은 프렛·1번 손가락이어야 한다.
+        b = sl.get('barre')
+        if b:
+            assert 1 <= b['to'] <= b['from'] <= 6, (s['id'], b)
+            for string in range(b['to'], b['from'] + 1):
+                idx = 6 - string
+                # 바레는 그 줄들을 1번 손가락으로 누르고, 다른 손가락이 더 높은 프렛을 잡을 수 있다.
+                assert frets[idx] >= b['fret'], (s['id'], sl['slot'], '바레 프렛 아래')
+                if frets[idx] == b['fret']:
+                    assert sl['fingers'][idx] == 1, (s['id'], sl['slot'], '바레 손가락')
+        # 화면에 쓰는 운지 문자열은 프렛 코드로 시작하고, 코드 이름·모양 이름이 비어 있지 않다.
+        code = ''.join('x' if f < 0 else str(f) for f in frets)
+        assert sl['fingering'].startswith(code), (s['id'], sl['slot'], sl['fingering'])
+        assert sl['chord'] and sl['shape'], s['id']
+        # 모양(shape)은 카포를 뺀 코드여야 한다.
+        assert (parse_chord_name(sl['shape'])['root_pc'] - info['root_pc'] + c['capo']) % 12 == 0, \
+            (s['id'], sl['chord'], sl['shape'], c['capo'])
+        assert not sl.get('approximate') or '근사' in (sl.get('tip') or ''), (s['id'], '근사 안내 누락')
+        # 슬롯 코드는 이 카포에서 14버튼으로 잡을 수 없어야 한다(위 루프와 같은 규칙).
+        fam = info['family']
+        q = (None if fam == 'aug' else 'dim' if fam in ('dim', 'dim7', 'm7b5')
+             else 'min' if fam in ('min', 'm7', 'm6') else 'maj')
+        assert q is None or not any((BTN_SHAPE[b_][0] + c['capo']) % 12 == info['root_pc']
+                                    and BTN_SHAPE[b_][1] == q
+                                    for b_ in BTNS), (s['id'], sl['chord'], '버튼 가능 코드가 슬롯에')
+
+assert meta['capoOptimize']['slotTotal'] == slot_total, (meta['capoOptimize']['slotTotal'], slot_total)
+assert meta['capoOptimize']['chartCount'] == len(chart_songs)
+assert meta['capoOptimize']['zeroSlotCharts'] == len([s for s in chart_songs if not (s['chart'].get('slots') or [])])
+assert meta['capoOptimize']['prevZeroSlotCharts'] == 124, meta['capoOptimize']['prevZeroSlotCharts']
+assert meta['capoOptimize']['zeroSlotCharts'] >= 124, '완주 곡이 줄면 안 된다'
+assert meta['btn14']['slotTotal'] == slot_total
+
 for s in partial:
     assert s['chart']['status'] == 'partial' and s.get('chartNote'), s['id']
 for s in pending:
@@ -276,10 +343,11 @@ assert by_id['verified-004']['chart']['originalKey'] == 'Ebm' and by_id['verifie
 # 이기찬 ‘닮은 사람’ MR 오디오 실측(2026-11-22): 4/4 · 64bpm · 원키 D · C폼 카포 2
 _n24 = by_id['verified-024']['chart']
 assert (_n24['originalKey'], _n24['maleKey'], _n24['bpm'], _n24['timeSignature']) == ('D', 'D', 64, '4/4')
-assert _n24['capo'] == 2 and _n24['formText'] == 'C폼 · Capo +2' and _n24['status'] == 'partial'
-# 2026-11-25 14버튼 재매핑: 같은 카포 2에서 슬롯 5 → 2개(C·B♭만 남음)
+# 2026-11-25 손 코드까지 편한 카포 재계산: C폼 +2 → G폼 +7(남는 코드가 편해짐), 슬롯 2개 유지
+assert _n24['capo'] == 7 and _n24['formText'] == 'G폼 · Capo +7' and _n24['status'] == 'partial'
 assert len(_n24['sections']) == 9 and len(_n24['slots']) == 2
-assert [x['chord'] for x in _n24['slots']] == ['C', 'Bb'], [x['chord'] for x in _n24['slots']]
+assert [x['chord'] for x in _n24['slots']] == ['Bb', 'C#m'], [x['chord'] for x in _n24['slots']]
+assert [x['shape'] for x in _n24['slots']] == ['Eb', 'F#m'], [x['shape'] for x in _n24['slots']]
 assert by_id['playlist-077']['workArtist'].startswith('BIG Naughty') and '권진아' not in by_id['playlist-077']['workArtist']
 assert by_id['playlist-139']['workArtist'] == '나윤권'
 assert by_id['playlist-126']['chart']['capo'] == 4 and by_id['playlist-126']['chart']['originalKey'] == 'B'
@@ -303,14 +371,14 @@ for s in ready:
 NEW11 = {
     'playlist-157': ('Eb', 'Eb', 83, 3, 4),
     'playlist-025': ('Em', 'Em', 127, 0, 8),
-    'playlist-190': ('C', 'C', 62, 0, 5),
-    'playlist-186': ('C', 'C', 65, 0, 5),
+    'playlist-190': ('C', 'C', 62, 5, 5),
+    'playlist-186': ('C', 'C', 65, 5, 5),
     'added-10000-hours': ('A', 'A', 86, 2, 10),
     'playlist-205': ('A', 'A', 81, 2, 6),
     'playlist-159': ('C', 'G', 86, 0, 4),
     'playlist-118': ('B', 'B', 70, 4, 4),
     'playlist-072': ('Db', 'Db', 98, 1, 5),
-    'playlist-173': ('Bb', 'Bb', 74, 5, 6),
+    'playlist-173': ('Bb', 'Bb', 74, 10, 6),
     'playlist-206': ('F#', 'F#', 66, 6, 4),
 }
 for sid, (ok, mk, bpm, capo, nsec) in NEW11.items():
@@ -520,9 +588,11 @@ assert len(entry) == 45, len(entry)
 print(f"OK: 전체 {len(songs)}개 항목 — 악보 완료 {len(ready)}(서로 다른 곡 {meta['uniqueChartSongCount']}) · 부분 확인 {len(partial)} · 검수 대기 {len(pending)} · "
       f"비음악·참고 {meta['nonMusicCount']} · 자작곡 {meta['originalWorkCount']}")
 print(f"OK: 곡으로 등록된 {len(entry)}곡 중 악보 준비 {len([s for s in entry if s['chartStatus'] == 'ready'])}곡")
-print('OK: 박자 4/4·3/4·6/8, BPM 40~180, 남자키 이조·카포 0~7, 원터치 버튼(14개) 음정·화음 성질 일치, SimplifyChord 슬롯 ≤8, 근거 URL 존재')
+print('OK: 박자 4/4·3/4·6/8, BPM 40~180, 남자키 이조·카포 0~11, 원터치 버튼(14개) 음정·화음 성질 일치, SimplifyChord 슬롯 ≤8, 근거 URL 존재')
 zero_slot = [s for s in songs if isinstance(s.get('chart'), dict) and (s['chart'].get('sections')) and not (s['chart'].get('slots') or [])]
-print(f"OK: 원터치 14버튼 재매핑 — 악보 {meta['btn14']['chartCount']}개 중 슬롯 없이 완주 {len(zero_slot)}개 · 남은 슬롯 합계 {meta['btn14']['slotTotal']}개(이전 {meta['btn14']['prevSlotTotal']}개) · 카포 변경 {meta['btn14']['capoChangedCount']}곡")
+print(f"OK: 원터치 14버튼 재매핑 — 악보 {meta['btn14']['chartCount']}개 중 슬롯 없이 완주 {len(zero_slot)}개 · 남은 슬롯 합계 {meta['btn14']['slotTotal']}개(14버튼 도입 전 {meta['btn14']['prevSlotTotal']}개)")
+print(f"OK: 손 코드 카포 최적화 — 슬롯 {meta['capoOptimize']['prevSlotTotal']} → {meta['capoOptimize']['slotTotal']}개 · 완주 {meta['capoOptimize']['prevZeroSlotCharts']} → {meta['capoOptimize']['zeroSlotCharts']}곡 · 카포 변경 {meta['capoOptimize']['capoChangedCount']}곡")
+print(f"OK: 슬롯 운지 {slot_total}개 — 6줄 프렛·손가락·바레·카포 기준 모양을 실제 음정으로 검증(근음·3음 포함, 코드 밖 음 없음)")
 print('OK: 슬롯 211 (공개 168 · 접근 불가 42 · 제외 1 · 미확인 1), #6 7곡 · #65 2곡 · #163 제외 · #172 가수 미확인 유지')
 print('OK: 복원 17 + 사용자 확인 2, 접근 불가 사유 계정해지 37/비공개 3/저작권 1/업로더 1, 공개 영상 URL 168개')
 print(f"OK: 곡 영상 링크 {len(urls)}개(중복 0) — 2026-11-22 공식 영상 36곡 보강(oEmbed 200 확인)")

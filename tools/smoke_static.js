@@ -130,15 +130,16 @@ const way=songs.find(x=>x.id==='restored-146').chart;
 act(handlers, 'chart:restored-146');
 [`Capo ${way.capo}`, way.formButton+'폼', 'Way Back Home', '원터치 악보', 'SimplifyChord', '퍼커시브', '--c:#'].forEach(t => assert(root.innerHTML.includes(t), '악보: ' + t));
 assert(/class="cc /.test(root.innerHTML), '마디 카드');
-// 4) SimplifyChord 탭 — 슬롯이 없는 곡은 '완주 가능' 안내
+// 4) 손으로 잡는 코드 — 슬롯이 없는 곡은 '손 코드 없음' 안내
 act(handlers, 'chart-tab:slots');
-assert(root.innerHTML.includes('slot-board') && root.innerHTML.includes('슬롯 없이'), '슬롯 없음 안내');
+assert(root.innerHTML.includes('손으로 잡을 코드 없음') && root.innerHTML.includes('손으로 잡는 코드'), '손 코드 없음 안내');
 act(handlers, 'close');
-// 4-1) 슬롯이 있는 곡: 5칸 보드 + 세팅 가이드
+// 4-1) 슬롯이 있는 곡: 진짜 코드 이름 + 코드 다이어그램(SVG) + 운지 한 줄
 act(handlers, 'chart:verified-006');
+assert(root.innerHTML.includes('fret-diagram') && root.innerHTML.includes('x13331'), '운지표(SVG)');
+assert(root.innerHTML.includes('B♭ 모양') && !root.innerHTML.includes('>S1<'), '슬롯 기호 대신 실제 코드');
 act(handlers, 'chart-tab:slots');
-assert(root.innerHTML.includes('이렇게 세팅하세요') && root.innerHTML.includes('S1'), '슬롯 가이드');
-assert((root.innerHTML.match(/class="slot /g) || []).length === 5, '슬롯 5칸');
+assert(root.innerHTML.includes('에어로밴드에 넣는 방법') && root.innerHTML.includes('dex-card'), '손 코드 안내');
 // 5) 스트로크·퍼커시브 탭
 act(handlers, 'chart-tab:perc');
 assert(root.innerHTML.includes('4단계로 만드는 퍼커시브') && root.innerHTML.includes('STRUM'), '퍼커시브 가이드');
@@ -189,7 +190,7 @@ const legacy = {
 };
 ({ root, handlers, created } = boot(legacy));
 const saved = JSON.parse(store['strum-busking-v2']);
-assert(saved.seedVersion === 18, 'seedVersion 18 로 업그레이드');
+assert(saved.seedVersion === meta.seedVersion, `seedVersion ${meta.seedVersion} 로 업그레이드`);
 assert(saved.logs.length === 1 && saved.logs[0].minutes === 33, '기존 연습 기록 보존');
 const mine = saved.songs.find(s => s.id === 'verified-001');
 assert(mine.level === '거의 가능', '숙련도 보존');

@@ -21,6 +21,7 @@
   const esc = v => String(v ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
   const clone = v => JSON.parse(JSON.stringify(v));
   const norm = v => String(v ?? '').trim().toLocaleLowerCase();
+  const pretty = v => String(v ?? '').replace(/([A-G])b/g, '$1♭');
   const fmt = n => new Intl.NumberFormat('ko-KR').format(n || 0);
   const dateKey = (d = new Date()) => [d.getFullYear(), String(d.getMonth()+1).padStart(2,'0'), String(d.getDate()).padStart(2,'0')].join('-');
   const mins = n => String(Math.floor(Math.max(0,n) / 60)).padStart(2,'0')+':'+String(Math.max(0,n)%60).padStart(2,'0');
@@ -234,21 +235,79 @@
       <section class="card stack"><h3>사용 환경</h3><div class="field"><label>일주일 연습 목표</label><select id="weekly-goal" class="input">${[3,4,5,6,7].map(n=>`<option ${state.settings.weeklyGoal===n?'selected':''} value="${n}">${n}일</option>`).join('')}</select></div><div class="field"><label>기본 연습 경로</label>${selectField('mode',MODE_OPTIONS,state.settings.mode)}</div><div class="field"><label>기본 박자</label>${selectField('ts',[['4/4','4/4'],['3/4','3/4'],['6/8','6/8']],state.settings.timeSignature)}</div><div class="divider"></div><h3>악보 데이터</h3><p class="tiny">남자키·박자·BPM·원터치 악보 ${readySongs().length}곡 · 부분 확인 ${state.songs.filter(s=>s.chartStatus==='partial').length}곡 · 검수 대기 ${pendingSongs().length}곡</p><p class="tiny">${esc(seed.meta.chartDisclosure||'')}</p><div class="divider"></div><h3>기존 프로젝트 정보</h3><p>기존 게시 사이트: <a class="footer-link" target="_blank" rel="noopener noreferrer" href="${esc(seed.meta.originalSite)}">STRUM 원본 열기</a></p><p class="tiny">원본 211영상 슬롯 · 재생목록 210개 항목 확인(공개 168·접근 불가 42) · 곡 라이브러리 ${songCount()}개</p><p class="notice tiny">※ 이 파일은 원본 프로젝트의 정확한 소스코드 덤프가 아닌 기능 재구현입니다.</p><div class="divider"></div><h3>기존 연습 데이터 안전하게 관리</h3><p class="tiny">브라우저 저장소가 초기화되면 데이터가 사라질 수 있습니다. 주기적으로 전체 JSON 백업을 받으세요.</p>${action('clear-data','복원본 데이터 초기화','btn danger')}</section></div>`;}
 
   /* ── 곡 상세: 원터치 컬러 악보 / SimplifyChord / 퍼커시브 / 근거 ── */
-  function chordCell(cell,beats){
+  /* ── 코드 다이어그램(SVG): 6→1번줄 프렛·손가락·바레를 그린다 ── */
+  function fretDiagram(sl,size){
+    if(!sl||!sl.frets||!sl.frets.length) return '';
+    const frets=sl.frets, fingers=sl.fingers||[], barre=sl.barre, base=Math.max(1,Number(sl.base)||1);
+    const positive=frets.filter(f=>f>0);
+    const maxFret=positive.length?Math.max(...positive):base;
+    const rows=Math.max(4,Math.min(6,maxFret-base+1));
+    const w=size?Number(size):96, padX=11, top=17, bottom=5, fretH=(w-padX*2)/5.2, innerW=w-padX*2, rowH=Math.max(15,(w-innerW)/1.6);
+    const h=top+rows*rowH+bottom;
+    const X=i=>padX+i*(innerW/5), Y=r=>top+(r+0.5)*rowH, F=f=>Y(f-base);
+    const parts=[];
+    parts.push(`<svg class="fret-diagram" viewBox="0 0 ${w} ${h}" width="${w}" height="${h}" role="img" aria-label="${esc(sl.chord)} 코드 운지표 ${esc(sl.fingering||'')}" focusable="false">`);
+    // 지판(세로줄 6개, 가로줄 rows+1개)
+    for(let i=0;i<6;i++) parts.push(`<line class="fd-string" x1="${X(i).toFixed(1)}" y1="${top}" x2="${X(i).toFixed(1)}" y2="${top+rows*rowH}"/>`);
+    for(let r=0;r<=rows;r++) parts.push(`<line class="fd-fret ${base===1&&r===0?'fd-nut':''}" x1="${padX}" y1="${(top+r*rowH).toFixed(1)}" x2="${(padX+innerW).toFixed(1)}" y2="${(top+r*rowH).toFixed(1)}"/>`);
+    if(base>1) parts.push(`<text class="fd-base" x="${padX-3}" y="${(top+rowH*0.72).toFixed(1)}" text-anchor="end">${base}</text>`);
+    // 줄 위 표시: x(뮤트) / o(개방)
+    frets.forEach((f,i)=>{
+      if(f<0) parts.push(`<text class="fd-mark" x="${X(i).toFixed(1)}" y="${top-5}" text-anchor="middle">×</text>`);
+      else if(f===0) parts.push(`<circle class="fd-open" cx="${X(i).toFixed(1)}" cy="${top-8}" r="3.1"/>`);
+    });
+    // 바레
+    if(barre){
+      const fIndex=barre.fret-base;
+      if(fIndex>=0&&fIndex<rows){
+        const a=Math.min(1,6), bx=X(6-barre.from), bx2=X(6-barre.to);
+        parts.push(`<rect class="fd-barre" x="${(Math.min(bx,bx2)-6).toFixed(1)}" y="${(F(barre.fret)-rowH*0.26).toFixed(1)}" width="${(Math.abs(bx2-bx)+12).toFixed(1)}" height="${(rowH*0.52).toFixed(1)}" rx="${(rowH*0.26).toFixed(1)}"/>`);
+      }
+    }
+    // 손가락 점
+    frets.forEach((f,i)=>{
+      if(f<=0) return;
+      const r=f-base;
+      if(r<0||r>=rows) return;
+      const covered=barre&&fingers[i]===1&&f===barre.fret&&barre.from>=(6-i)&&barre.to<=(6-i);
+      if(covered) return;
+      parts.push(`<circle class="fd-dot" cx="${X(i).toFixed(1)}" cy="${F(f).toFixed(1)}" r="${Math.min(7.5,rowH*0.34).toFixed(1)}"/>`);
+      if(fingers[i]) parts.push(`<text class="fd-finger in" x="${X(i).toFixed(1)}" y="${(F(f)+3.4).toFixed(1)}" text-anchor="middle">${fingers[i]}</text>`);
+    });
+    parts.push('</svg>');
+    return parts.join('');
+  }
+  const fretCode=sl=>String((sl&&sl.fingering)||'').split(' · ')[0];
+  const fretNotes=sl=>String((sl&&sl.fingering)||'').split(' · ').slice(1).join(' · ');
+  function chordDex(c){
+    const slots=c.slots||[];
+    if(!slots.length) return `<div class="chord-dex empty"><b>손으로 잡을 코드 없음</b><span>이 곡은 원터치 14버튼만으로 끝까지 칩니다. 7th·sus 같은 꾸밈음은 버튼 3화음으로 근사합니다.</span></div>`;
+    return `<div class="chord-dex"><div class="dex-head"><b>손으로 잡는 코드 ${slots.length}개</b><span>카포 +${c.capo} 기준 · 큰 글씨 = 실제 울리는 코드, 작은 글씨 = 카포를 뺀 손 모양</span></div>
+      <div class="dex-grid">${slots.map(sl=>`<article class="dex-card">
+        <div class="dex-top"><b>${esc(pretty(sl.chord))}</b><span>${esc(pretty(sl.shape))} 모양</span></div>
+        ${fretDiagram(sl,96)}
+        <div class="dex-code">${esc(fretCode(sl))}</div>
+        <div class="dex-fing">${esc(fretNotes(sl))}</div>
+        ${sl.tip?`<div class="dex-tip">${esc(sl.tip)}</div>`:''}
+      </article>`).join('')}</div></div>`;
+  }
+  function chordCell(cell,beats,slotMap){
     const isSlot=!cell.btn;
-    const color=isSlot?'#8b8b7a':BTN_COLOR[cell.btn]||'#8b8b7a';
-    const label=isSlot?`S${cell.slot}`:cell.btn;
-    const sub=isSlot?`${esc(cell.sound)}`:`${esc(cell.btn)}`;
-    return `<div class="cc ${isSlot?'is-slot':''}" style="--c:${color};--beats:${beats/cell.__span||beats}"><div class="cc-btn">${esc(label)}</div><div class="cc-sound">${esc(cell.sound)}</div>${cell.orig&&norm(cell.orig)!==norm(cell.sound)?`<div class="cc-orig">원곡 ${esc(cell.orig)}</div>`:''}</div>`;
+    const color=isSlot?'#7e7d6f':BTN_COLOR[cell.btn]||'#8b8b7a';
+    if(!isSlot) return `<div class="cc" style="--c:${color};--beats:${beats/cell.__span||beats}"><div class="cc-btn">${esc(cell.btn)}</div><div class="cc-sound">${esc(pretty(cell.sound))}</div>${cell.orig&&norm(cell.orig)!==norm(cell.sound)?`<div class="cc-orig">원곡 ${esc(pretty(cell.orig))}</div>`:''}</div>`;
+    const sl=(slotMap&&slotMap[cell.slot])||{};
+    const shape=sl.shape&&norm(sl.shape)!==norm(cell.sound)?`${pretty(sl.shape)} 모양`:'손 코드';
+    return `<div class="cc is-slot" style="--c:${color};--beats:${beats/cell.__span||beats}"><div class="cc-btn">${esc(pretty(cell.sound))}</div><div class="cc-sound cc-shape">${esc(shape)}</div>${sl.fingering?`<div class="cc-fret">${esc(fretCode(sl))}</div>`:''}</div>`;
   }
   function extraNote(c){
     const ext=c.sections.some(sec=>sec.bars.some(b=>b.some(x=>/[0-9]|maj|sus|add|dim|aug/i.test(x.orig||''))));
-    return ext?`<p class="tiny" style="margin-top:6px">7th·sus·add·dim 코드는 원터치 버튼의 3화음으로 근사합니다. 각 마디 카드 아래 ‘원곡 …’으로 원래 코드를 함께 적었습니다.</p>`:'';
+    return ext?`<p class="tiny" style="margin-top:6px">7th·sus·add·dim 코드는 원터치 버튼의 3화음으로 근사하고, 각 마디 카드에 ‘원곡 …’으로 원래 코드를 함께 적었습니다. 손으로 잡는 코드(회색 카드)는 실제 코드 이름과 운지법을 그대로 표시합니다.</p>`:'';
   }
   function chartSections(c,ts){
     const beats=beatCount(ts);
+    const slotMap={}; (c.slots||[]).forEach(sl=>{slotMap[sl.slot]=sl;});
     return c.sections.map(sec=>`<div class="chart-sec"><div class="row between sec-head"><h4>${esc(sec.name)}</h4><span class="tiny">${sec.bars.length}마디</span></div>
-      <div class="bar-row">${sec.bars.map((bar,bi)=>`<div class="bar" aria-label="${bi+1}마디"><div class="bar-beats">${Array.from({length:beats},(_,i)=>`<i class="${i===0?'on':''}"></i>`).join('')}</div><div class="bar-cells">${bar.map(cell=>chordCell(cell,beats)).join('')}</div><div class="bar-num">${bi+1}</div></div>`).join('')}</div></div>`).join('');
+      <div class="bar-row">${sec.bars.map((bar,bi)=>`<div class="bar" aria-label="${bi+1}마디"><div class="bar-beats">${Array.from({length:beats},(_,i)=>`<i class="${i===0?'on':''}"></i>`).join('')}</div><div class="bar-cells">${bar.map(cell=>chordCell(cell,beats,slotMap)).join('')}</div><div class="bar-num">${bi+1}</div></div>`).join('')}</div></div>`).join('');
   }
   function chartModal(s){
     const c=(s.chart&&s.chart.status!=='pending')?s.chart:null;const tab=modal.tab||'chart';
@@ -270,9 +329,11 @@
     }
     if(tab==='chart'){
       const used=BTNS.filter(b=>c.sections.some(sec=>sec.bars.some(b_=>b_.some(x=>x.btn===b))));
+      const handCount=(c.slots||[]).length;
       return `${head0}${tabs}${partialStrip}
-        <div class="capo-callout"><b>에어로밴드 앱 하단 <span class="hl">Capo ${c.capo}</span>로 맞추고, 원터치 코드를 켜세요.</b><span>${esc(c.maleKey)}키 · ${esc(c.formText)} · ${used.length}개 버튼 사용 · CAPO+/CAPO− 버튼으로도 조옮김</span></div>
+        <div class="capo-callout"><b>에어로밴드 앱 하단 <span class="hl">Capo ${c.capo}</span>로 맞추고, 원터치 코드를 켜세요.</b><span>${esc(c.maleKey)}키 · ${esc(c.formText)} · ${used.length}개 버튼 사용${handCount?` · 손으로 잡는 코드 ${handCount}개`:''} · CAPO+/CAPO− 버튼으로도 조옮김</span></div>
         <div class="legend">${BTNS.map(b=>`<span class="lg ${used.includes(b)?'on':''}" style="--c:${BTN_COLOR[b]}"><i></i>${b}</span>`).join('')}</div>
+        ${chordDex(c)}
         ${chartSections(c,c.timeSignature)}
         <div class="stroke-strip"><b>오른손</b> ${esc(c.stroke||'↓ ↓↑ ↑↓↑')}</div>
         ${extraNote(c)}
@@ -282,14 +343,23 @@
       const slots=c.slots||[];
       const slotUse=[];
       c.sections.forEach(sec=>sec.bars.forEach((bar,bi)=>bar.forEach(x=>{if(x.slot)slotUse.push({sec:sec.name,bar:bi+1,slot:x.slot,chord:x.sound});})));
+      const bySlot=n=>slotUse.filter(x=>x.slot===n);
       return `${head0}${tabs}
-        <div class="capo-callout"><b>에어로밴드 앱 → 원손 단순화 → <span class="hl">SimplifyChord 켜기</span></b><span>${slots.length?`${slots.length}개 슬롯에 아래 코드를 등록하세요`:'이 곡은 슬롯 없이 원터치 14버튼만으로 완주할 수 있습니다'}${c.remap?` · 원터치 14버튼 재매핑: 슬롯 ${c.remap.fromSlots}개 → ${slots.length}개`:''}</span></div>
-        <div class="slot-board">${Array.from({length:Math.max(5,slots.length)},(_,i)=>i+1).map(n=>{const sl=slots.find(x=>x.slot===n);return `<div class="slot ${sl?'filled':''}"><div class="fret">${Array.from({length:5},(_,i)=>`<i></i>`).join('')}</div><div class="slot-no">S${n}</div><b>${sl?esc(sl.chord):'—'}</b><span>${sl?esc(sl.alt||''):'비어 있음'}</span></div>`;}).join('')}</div>
-        ${slots.length?`<div class="slot-guide"><h4>이렇게 세팅하세요</h4><ol>${slots.map(sl=>`<li><b>S${sl.slot} · ${esc(sl.chord)}</b> <span class="tiny">(원곡 ${esc(sl.orig)})</span> ${sl.alt?`— 약식 대안: ${esc(sl.alt)}`:''}</li>`).join('')}</ol>
-          <h4>교체 연습법</h4><p class="tiny">① 슬롯만 단독으로 4마디 반복(코드 잡기 확인) → ② 원터치 버튼 ↔ 슬롯 교차 8마디 → ③ 해당 마디만 30초 반복 → ④ 곡 전체를 70% 템포로. 슬롯에 넣은 코드가 손에 붙으면 같은 코드를 정식 운지로 바꿔 3단계로 넘어갑니다.</p></div>`:''}
-        ${slotUse.length?`<div class="hint"><b>슬롯이 나오는 마디</b> · ${slotUse.slice(0,12).map(x=>`${esc(x.sec)} ${x.bar}마디 S${x.slot}(${esc(x.chord)})`).join(' · ')}${slotUse.length>12?' …':''}</div>`:''}
-        <div class="hint" style="margin-top:10px"><b>등록할 때 확인할 것</b> · 슬롯에는 남자키 기준 코드 이름(예: Bm)을 등록하세요. 앱이 카포만큼 자동으로 이조하지 않는다면, 카포 수만큼 낮춘 이름(예: Capo 2에서 Bm → Am)을 등록하면 같은 소리가 납니다. 에어로밴드 공식 안내로는 SimplifyChord를 최대 12개(프렛마다 1개)까지 등록할 수 있어, 화면에 표시한 8칸을 넘겨도 됩니다.</div>
-        <p class="tiny">원터치 버튼은 기본 C·Dm·Em·F·G / Cm·D·E·Fm·Gm 10개에, 고급 설정 Am·Bdim / A·Bm 4개를 더한 14개입니다. 그 밖의 코드는 SimplifyChord 슬롯으로 옮깁니다.</p>`;
+        <div class="capo-callout"><b>손으로 잡는 코드 <span class="hl">${slots.length}개</span>${slots.length?' — 진짜 코드 이름과 운지법':''}</b><span>${slots.length?'아래 그림의 프렛·손가락 번호 그대로 잡으면 됩니다. 1=검지 2=중지 3=약지 4=소지, ×는 치지 않는 줄, ○는 개방현이에요.':'이 곡은 14버튼만으로 끝까지 칩니다. 손으로 잡을 코드가 없어요.'}${c.remap?` · 카포 +${c.remap.capoFrom} → +${c.remap.capoTo}, 슬롯 ${c.remap.slotsFrom} → ${c.remap.slotsTo}`:''}</span></div>
+        ${slots.length?`<div class="dex-grid wide">${slots.map(sl=>{const uses=bySlot(sl.slot);return `<article class="dex-card">
+          <div class="dex-top"><b>${esc(pretty(sl.chord))}</b><span>${esc(pretty(sl.shape))} 모양 · 카포 +${sl.capo}</span></div>
+          ${fretDiagram(sl,104)}
+          <div class="dex-code">${esc(fretCode(sl))}</div>
+          <div class="dex-fing">${esc(fretNotes(sl))}</div>
+          ${sl.tip?`<div class="dex-tip">${esc(sl.tip)}</div>`:''}
+          <div class="dex-why">${esc(sl.why||'')}</div>
+          ${uses.length?`<div class="dex-where">${esc(uses.slice(0,4).map(x=>`${x.sec} ${x.bar}마디`).join(' · '))}${uses.length>4?' …':''}</div>`:''}
+        </article>`;}).join('')}</div>`:''}
+        ${slots.length?`<div class="slot-guide"><h4>에어로밴드에 넣는 방법</h4><ol>${slots.map(sl=>`<li><b>${esc(pretty(sl.chord))}</b> <span class="tiny">(${esc(pretty(sl.shape))} 모양 · ${esc(fretCode(sl))})</span></li>`).join('')}</ol>
+          <p class="tiny">에어로밴드 앱 → 원손 단순화 → <b>SimplifyChord</b>에 위 코드 이름을 등록하면 버튼처럼 누를 수 있어요. 앱이 카포만큼 자동으로 이조하지 않는다면 카포 수만큼 낮춘 이름(예: 카포 +2에서 B♭ → A♭)으로 등록하세요. 손으로 직접 잡는 연습은 위 운지표를 보고 하면 됩니다.</p>
+          <h4>교체 연습법</h4><p class="tiny">① 손 코드만 단독으로 4마디 반복(코드 잡기 확인) → ② 원터치 버튼 ↔ 손 코드 교차 8마디 → ③ 해당 마디만 30초 반복 → ④ 곡 전체를 70% 템포로. 손 코드가 손에 붙으면 같은 코드를 버튼으로 바꿔 3단계로 넘어갑니다.</p></div>`:''}
+        <div class="hint" style="margin-top:10px"><b>읽는 법</b> · 마디 카드의 큰 글씨는 <b>실제로 울리는 코드</b>, 작은 글씨는 <b>카포를 뺀 손 모양</b>입니다. 예: 카포 +7에서 <b>B♭</b>는 <b>E♭ 모양</b>(6프렛 바레)을 잡으면 B♭이 울립니다. 버튼 카드는 큰 글씨가 버튼 이름, 작은 글씨가 실제 울리는 코드예요.</div>
+        <p class="tiny">원터치 버튼은 C·Dm·Em·F·G·Am·Bdim / Cm·D·E·Fm·Gm·A·Bm 14개입니다. 카포를 바꿔도 이 14개(3화음)에 끝내 안 들어오는 코드만 손으로 잡습니다.</p>`;
     }
     if(tab==='perc'){
       return `${head0}${tabs}
@@ -574,7 +644,7 @@
   function exportCsv(records,columns,name){const rows=[columns.join(','),...records.map(r=>columns.map(c=>csvEscape(r[c])).join(','))];download(name,'\uFEFF'+rows.join('\r\n'),'text/csv;charset=utf-8');}
   function parseCsv(t){const data=[];let row=[],field='',quoted=false;for(let i=0;i<t.length;i++){let c=t[i];if(quoted){if(c==='"'&&t[i+1]==='"'){field+='"';i++;}else if(c==='"')quoted=false;else field+=c;}else if(c==='"')quoted=true;else if(c===','){row.push(field);field='';}else if(c==='\n'){row.push(field.replace(/\r$/,''));data.push(row);row=[];field='';}else field+=c;}if(row.length||field) {row.push(field);data.push(row);}const header=(data.shift()||[]).map(s=>s.replace(/^\uFEFF/,'').trim());return data.filter(x=>x.some(v=>v.trim())).map(row=>Object.fromEntries(header.map((h,i)=>[h,row[i]||''])));}
   const csvRows=() => state.songs.map(s=>({id:s.id,title:s.title,artist:s.artist,sourceIndices:(s.sourceIndices||[]).join('|'),verification:s.verification,videoUrl:s.videoUrl,videoStatus:s.videoStatus||'',audioUrl:s.audioUrl,key:s.key,maleKey:s.maleKey,bpm:s.bpm||'',timeSignature:(s.chart&&s.chart.timeSignature)||s.timeSignature||'',capo:(s.chart&&Number.isFinite(s.chart.capo))?s.chart.capo:'',chords:s.chords,chordStatus:s.chordStatus,strumming:s.strumming,level:s.level,notes:s.notes,setlist:s.setlist?'true':'false'}));
-  const chartRows=() => state.songs.filter(s=>chartOf(s)).map(s=>{const c=chartOf(s);return {id:s.id,title:s.title,artist:s.artist,originalKey:c.originalKey,maleKey:c.maleKey,shift:c.maleShift,capo:c.capo,form:c.formText,timeSignature:c.timeSignature,bpm:c.bpm,stage:c.stage,slots:(c.slots||[]).map(x=>x.slot+':'+x.chord).join('|'),mapped:c.coverage.mapped+'/'+c.coverage.total,stroke:c.stroke};});
+  const chartRows=() => state.songs.filter(s=>chartOf(s)).map(s=>{const c=chartOf(s);return {id:s.id,title:s.title,artist:s.artist,originalKey:c.originalKey,maleKey:c.maleKey,shift:c.maleShift,capo:c.capo,form:c.formText,timeSignature:c.timeSignature,bpm:c.bpm,stage:c.stage,slots:(c.slots||[]).map(x=>x.slot+':'+x.chord).join('|'),fingering:(c.slots||[]).map(x=>x.chord+'='+x.shape+'('+fretCode(x)+')').join(' ; '),mapped:c.coverage.mapped+'/'+c.coverage.total,stroke:c.stroke};});
   const sourceRows=()=>state.sources.map(s=>({index:s.index,status:s.status,url:s.url,title:s.title||'',channel:s.channel||'',reason:s.reason||'',note:s.note,songIds:s.songs.join('|')}));
   function mergedSongs(incoming){let updated=0,added=0;for(const o of incoming){if(!o||!String(o.title||'').trim()||!String(o.artist||'').trim())continue;let id=String(o.id||'').trim(),ex=state.songs.find(s=>s.id===id)||state.songs.find(s=>norm(s.title)===norm(o.title)&&norm(s.artist)===norm(o.artist));let base=ex||{...clone(seed.songs.at(-1)),id:uniqueId(),sourceIndices:[],level:'미착수',verification:'imported',tags:[],notes:'',setlist:false};let indices=Array.isArray(o.sourceIndices)?o.sourceIndices:String(o.sourceIndices||'').split(/[|,]/).map(v=>+v.trim()).filter(n=>n>=1&&n<=211);let filled=Object.fromEntries(Object.entries(o).filter(([k,v])=>v!==''&&v!==null&&v!==undefined));let record={...base,...filled,id:ex?.id||id||base.id,title:String(o.title).trim(),artist:String(o.artist).trim(),sourceIndices:o.sourceIndices!==undefined&&String(o.sourceIndices)!==''?indices:base.sourceIndices,level:LEVELS.includes(o.level)?o.level:base.level,setlist:typeof o.setlist==='boolean'?o.setlist:(o.setlist==='true'?true:o.setlist==='false'?false:base.setlist),tags:Array.isArray(o.tags)?o.tags:base.tags};if(ex){Object.assign(ex,record);updated++;}else{state.songs.push(record);added++;}}
     updateSongRecords();return {updated,added};}
@@ -643,7 +713,7 @@
     case 'more-sources':showAllSources=true;render();return;
     case 'export-json':download('STRUM_full_backup_'+dateKey()+'.json',JSON.stringify(state,null,2),'application/json;charset=utf-8');notice('전체 백업 파일을 생성했습니다.');return;
     case 'export-csv':exportCsv(csvRows(),['id','title','artist','sourceIndices','verification','videoUrl','videoStatus','audioUrl','key','maleKey','bpm','timeSignature','capo','chords','chordStatus','strumming','level','notes','setlist'],'STRUM_songs_'+dateKey()+'.csv');return;
-    case 'export-charts':exportCsv(chartRows(),['id','title','artist','originalKey','maleKey','shift','capo','form','timeSignature','bpm','stage','slots','mapped','stroke'],'STRUM_charts_'+dateKey()+'.csv');return;
+    case 'export-charts':exportCsv(chartRows(),['id','title','artist','originalKey','maleKey','shift','capo','form','timeSignature','bpm','stage','slots','fingering','mapped','stroke'],'STRUM_charts_'+dateKey()+'.csv');return;
     case 'export-sources':exportCsv(sourceRows(),['index','status','url','title','channel','reason','note','songIds'],'STRUM_211_sources_'+dateKey()+'.csv');return;
     case 'import-file':importFile();return;
     case 'delete-song':if(confirm('이 곡을 목록에서 삭제할까요? 기존 연습 기록은 유지됩니다.')){state.songs=state.songs.filter(s=>s.id!==value);if(/^(verified|playlist|restored)-/.test(value))state.removedSeedIds=[...new Set([...(state.removedSeedIds||[]),value])];updateSongRecords();save();modal=null;render();notice('삭제했습니다.');}return;
