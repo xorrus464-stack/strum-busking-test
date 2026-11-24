@@ -9,9 +9,9 @@
   const OLD_SEED_NOTES = new Set(['확인된 7곡을 각각 분리 관리','확인된 2곡을 각각 분리 관리','이전 요청에 따라 선별 목록에서 제외']);
   const levels = LEVELS;
   const MODE_OPTIONS = [['easy','원터치 코드 (Easy Chord)'],['standard','정식 코드']];
-  /* AeroBand 원터치 버튼 10개 — 앱 화면(2행 5열)과 같은 색 */
-  const BTNS = ['C','Dm','Em','F','G','Cm','D','E','Fm','Gm'];
-  const BTN_COLOR = {C:'#2f9e6e',Dm:'#2f6df6',Em:'#ea5a35',F:'#a855f7',G:'#3aa8dc',Cm:'#1f7a4d',D:'#1d4fd8',E:'#c9402a',Fm:'#8b34e0',Gm:'#1f8fb5'};
+  /* AeroBand Easy Chord 14버튼 — 주성 님 앱 '고급 설정' 화면(2026-11-25)과 같은 2행 7열·같은 색 */
+  const BTNS = ['C','Dm','Em','F','G','Am','Bdim','Cm','D','E','Fm','Gm','A','Bm'];
+  const BTN_COLOR = {C:'#2f9e6e',Dm:'#2f6df6',Em:'#ea5a35',F:'#a855f7',G:'#3aa8dc',Am:'#b8860b',Bdim:'#8c7a20',Cm:'#1f7a4d',D:'#1d4fd8',E:'#c9402a',Fm:'#8b34e0',Gm:'#1f8fb5',A:'#8f8244',Bm:'#a8556f'};
   const STAGES = [
     {n:1, title:'오른손 마스터', sub:'원터치 코드 + 4/4·3/4·6/8 기본 스트로크', color:'#417356'},
     {n:2, title:'코드 전환 & SimplifyChord', sub:'오픈 코드와 바레 코드 5슬롯 매핑', color:'#39718d'},
@@ -201,7 +201,7 @@
       ${c?`<div class="focus-strip"><div><b>오늘의 곡 · ${esc(focus.title)}</b><div class="tiny">${esc(c.maleKey)}키 · Capo +${c.capo} · ${esc(c.timeSignature)} · ${c.bpm}BPM</div></div>${action('chart:'+focus.id,'악보 보기','btn small')}</div>`:''}
       <div class="row between" style="margin-top:14px"><div class="segmented">${[20,25,30].map(v=>`<button data-act="minutes:${v}" class="${state.settings.minutes===v?'selected':''}">${v}분</button>`).join('')}</div><div class="segmented"><button data-act="mode:easy" class="${state.settings.mode==='easy'?'selected':''}">원터치</button><button data-act="mode:standard" class="${state.settings.mode==='standard'?'selected':''}">정식 코드</button></div></div>
       <div class="routine-steps">${tasks.map(([title,description,time],i)=>`<label class="task"><input type="checkbox" data-step="${i}" ${state.completedStages.includes(i)?'checked':''}/><div class="grow"><b>${esc(title)}</b><div class="small-desc">${esc(description)}</div></div><span class="minute">${time}분</span></label>`).join('')}</div>
-      <div class="hint">원터치 코드(Easy Chord)와 SimplifyChord(손가락 수를 줄인 코드)는 서로 다른 기능입니다. 원터치는 화면 버튼 10개, SimplifyChord는 프렛마다 코드 하나를 등록합니다(공식 안내 기준 최대 12개, 화면에는 8칸까지 표시).</div></div>
+      <div class="hint">원터치 코드(Easy Chord)와 SimplifyChord(손가락 수를 줄인 코드)는 서로 다른 기능입니다. 원터치는 화면 버튼 14개(기본 10 + 고급 설정 4), SimplifyChord는 프렛마다 코드 하나를 등록합니다(공식 안내 기준 최대 12개, 화면에는 8칸까지 표시).</div></div>
       <div class="stack"><div class="card meter"><div class="eyebrow">FOCUS TIMER</div><h3>나의 집중 타이머</h3><div class="timer" id="timer-display">${mins(remaining)}</div><div class="row" style="justify-content:center;flex-wrap:wrap">${action('timer-toggle',sessionRunning?'일시정지':'연습 시작','btn primary')}${action('timer-reset','초기화','btn outline')}</div>
       <div class="divider"></div>
       <div class="row between"><div><h3>나의 메트로놈</h3><p class="tiny">${esc(state.settings.timeSignature)} · ${state.settings.timeSignature==='6/8'?'8분음표 6번, 1·4박 강세':'1박 강세'}</p></div><span id="bpm-label" style="font-size:23px;font-weight:900">${state.settings.bpm} BPM</span></div>
@@ -209,7 +209,7 @@
       <p class="tiny" style="margin:6px 0 0">악보에 표시된 박자를 기준으로 연습하세요. 확인된 곡은 대부분 4/4이고, 박자표를 확인하지 못한 곡은 4/4로 단정하지 않았습니다. 3/4·6/8은 왈츠·겹박자 기본 스트로크를 따로 연습할 때 쓰세요.</p>
       <div class="beat-dots" id="beat-dots">${Array.from({length:beatCount(state.settings.timeSignature)},(_,i)=>`<i class="${i===0?'accent':''}"></i>`).join('')}</div>
       <input id="bpm-range" type="range" min="40" max="180" step="1" value="${state.settings.bpm}" aria-label="BPM" style="width:100%;margin:12px 0" /><div class="row between">${action('bpm-down','−5','btn outline small')}${action('metro-toggle',metronome?'메트로놈 정지':'메트로놈 켜기','btn primary small')}${action('bpm-up','+5','btn outline small')}</div></div>
-      <div class="card"><h3>원터치 버튼 10개</h3><p class="tiny" style="margin:4px 0 12px">에어로밴드 앱과 같은 색으로 표시합니다.</p><div class="ot-grid">${BTNS.map(b=>`<div class="ot-btn" style="--c:${BTN_COLOR[b]}">${b}</div>`).join('')}</div></div></div></section>
+      <div class="card"><h3>원터치 버튼 14개 (고급 설정 포함)</h3><p class="tiny" style="margin:4px 0 12px">에어로밴드 앱 고급 설정과 같은 2행 7열·같은 색으로 표시합니다. 윗줄 C·Dm·Em·F·G·Am·Bdim / 아랫줄 Cm·D·E·Fm·Gm·A·Bm</p><div class="ot-grid">${BTNS.map(b=>`<div class="ot-btn" style="--c:${BTN_COLOR[b]}">${b}</div>`).join('')}</div></div></div></section>
     ${head('PRACTICE LOG','오늘의 연습 기록','연습 종료 후 저장하면 이번 주 출석에 반영됩니다.')}
     <div class="card"><form id="practice-form" class="stack"><div class="field-grid"><div class="field"><label>연습한 곡</label><select name="songId" class="input"><option value="">기초 코드 연습 (곡 선택 없음)</option>${ordered().map(s=>`<option value="${esc(s.id)}" ${s.id===state.settings.focusSongId?'selected':''}>${esc(s.title)} — ${esc(s.artist)}</option>`).join('')}</select></div><div class="field"><label>실제 연습 시간 (분)</label><input type="number" name="minutes" value="${state.settings.minutes}" min="1" max="480" required /></div><div class="field"><label>연습 코드</label><input name="chords" placeholder="예: Em, Am, G, D" value="${c?esc(c.sections[1]?.bars.flat().map(x=>x.sound).join(', ')||''):''}" /></div><div class="field"><label>오늘 스트로크/리듬</label><input name="strum" placeholder="예: 다운 스트로크 60 BPM" value="${c?esc(c.stroke||''):''}" /></div></div><div class="field"><label>잘 안된 부분 · 다음에 할 일</label><textarea name="memo" placeholder="Em→Am 전환할 때 2박 늦음. 내일 55BPM에서 다시 연습"></textarea></div><button class="btn primary" type="submit">오늘 연습 저장하기</button></form></div>`;
   }
@@ -283,13 +283,13 @@
       const slotUse=[];
       c.sections.forEach(sec=>sec.bars.forEach((bar,bi)=>bar.forEach(x=>{if(x.slot)slotUse.push({sec:sec.name,bar:bi+1,slot:x.slot,chord:x.sound});})));
       return `${head0}${tabs}
-        <div class="capo-callout"><b>에어로밴드 앱 → 원손 단순화 → <span class="hl">SimplifyChord 켜기</span></b><span>${slots.length?`${slots.length}개 슬롯에 아래 코드를 등록하세요`:'이 곡은 슬롯 없이 원터치 10버튼만으로 완주할 수 있습니다'}</span></div>
+        <div class="capo-callout"><b>에어로밴드 앱 → 원손 단순화 → <span class="hl">SimplifyChord 켜기</span></b><span>${slots.length?`${slots.length}개 슬롯에 아래 코드를 등록하세요`:'이 곡은 슬롯 없이 원터치 14버튼만으로 완주할 수 있습니다'}${c.remap?` · 원터치 14버튼 재매핑: 슬롯 ${c.remap.fromSlots}개 → ${slots.length}개`:''}</span></div>
         <div class="slot-board">${Array.from({length:Math.max(5,slots.length)},(_,i)=>i+1).map(n=>{const sl=slots.find(x=>x.slot===n);return `<div class="slot ${sl?'filled':''}"><div class="fret">${Array.from({length:5},(_,i)=>`<i></i>`).join('')}</div><div class="slot-no">S${n}</div><b>${sl?esc(sl.chord):'—'}</b><span>${sl?esc(sl.alt||''):'비어 있음'}</span></div>`;}).join('')}</div>
         ${slots.length?`<div class="slot-guide"><h4>이렇게 세팅하세요</h4><ol>${slots.map(sl=>`<li><b>S${sl.slot} · ${esc(sl.chord)}</b> <span class="tiny">(원곡 ${esc(sl.orig)})</span> ${sl.alt?`— 약식 대안: ${esc(sl.alt)}`:''}</li>`).join('')}</ol>
           <h4>교체 연습법</h4><p class="tiny">① 슬롯만 단독으로 4마디 반복(코드 잡기 확인) → ② 원터치 버튼 ↔ 슬롯 교차 8마디 → ③ 해당 마디만 30초 반복 → ④ 곡 전체를 70% 템포로. 슬롯에 넣은 코드가 손에 붙으면 같은 코드를 정식 운지로 바꿔 3단계로 넘어갑니다.</p></div>`:''}
         ${slotUse.length?`<div class="hint"><b>슬롯이 나오는 마디</b> · ${slotUse.slice(0,12).map(x=>`${esc(x.sec)} ${x.bar}마디 S${x.slot}(${esc(x.chord)})`).join(' · ')}${slotUse.length>12?' …':''}</div>`:''}
         <div class="hint" style="margin-top:10px"><b>등록할 때 확인할 것</b> · 슬롯에는 남자키 기준 코드 이름(예: Bm)을 등록하세요. 앱이 카포만큼 자동으로 이조하지 않는다면, 카포 수만큼 낮춘 이름(예: Capo 2에서 Bm → Am)을 등록하면 같은 소리가 납니다. 에어로밴드 공식 안내로는 SimplifyChord를 최대 12개(프렛마다 1개)까지 등록할 수 있어, 화면에 표시한 8칸을 넘겨도 됩니다.</div>
-        <p class="tiny">원터치 버튼은 C·Dm·Em·F·G / Cm·D·E·Fm·Gm 10개입니다. 그 밖의 코드는 SimplifyChord 슬롯으로 옮깁니다.</p>`;
+        <p class="tiny">원터치 버튼은 기본 C·Dm·Em·F·G / Cm·D·E·Fm·Gm 10개에, 고급 설정 Am·Bdim / A·Bm 4개를 더한 14개입니다. 그 밖의 코드는 SimplifyChord 슬롯으로 옮깁니다.</p>`;
     }
     if(tab==='perc'){
       return `${head0}${tabs}
@@ -302,7 +302,7 @@
     return `${head0}${tabs}${partialStrip}
       <div class="card"><h3>확인한 값</h3><div class="kv"><div><span>원곡 키</span><b>${esc(c.originalKey)}</b></div><div><span>${c.maleShift ? `남자키(${c.maleShift}반음 ↓)` : '남자키(원키 그대로)'}</span><b>${esc(c.maleKey)}</b></div><div><span>AeroBand Capo</span><b>+${c.capo}</b></div><div><span>운지 폼</span><b>${esc(c.formText)}</b></div><div><span>박자</span><b>${esc(c.timeSignature)}</b><small>${esc(c.timeNote||'')}</small></div><div><span>BPM</span><b>${c.bpm||'—'}</b><small>${esc(c.bpmNote||'')}</small></div><div><span>원터치 매핑</span><b>${c.coverage.mapped}/${c.coverage.total}</b><small>슬롯 ${(c.slots||[]).length}개</small></div></div>
       <div class="divider"></div><h4>근거 자료</h4><ul class="ev">${ev.map(e=>`<li><a href="${esc(e.url)}" target="_blank" rel="noopener noreferrer">${esc(e.label)}</a><span class="tiny">${esc(e.note)}</span></li>`).join('')||'<li>근거 링크 없음</li>'}</ul>
-      <p class="tiny">${esc(c.basis||'')} 남자키는 남성 원곡이면 원키 그대로(이조 0반음), 여성 원곡이면 −5반음으로 잡고, 그 목표 키를 AeroBand 원터치 10버튼(C·Dm·Em·F·G / Cm·D·E·Fm·Gm)에 맞추도록 카포를 골랐습니다. 에어로밴드 공식 안내에 따르면 CAPO+/CAPO− 버튼으로 조옮김하며 카포는 25키까지 지원됩니다(2026-11-22 확인).</p></div>`;
+      <p class="tiny">${esc(c.basis||'')} 남자키는 남성 원곡이면 원키 그대로(이조 0반음), 여성 원곡이면 −5반음으로 잡고, 그 목표 키를 AeroBand 원터치 14버튼(C·Dm·Em·F·G·Am·Bdim / Cm·D·E·Fm·Gm·A·Bm)에 맞추도록 카포를 골랐습니다. 에어로밴드 공식 안내에 따르면 CAPO+/CAPO− 버튼으로 조옮김하며 카포는 25키까지 지원됩니다(2026-11-22 확인).</p></div>`;
   }
   function chartModalShell(s){
     return `<div class="modal-layer" data-act="dismiss"><section class="modal chart-modal" role="dialog" aria-modal="true" aria-label="${esc(displayTitle(s))} 악보"><header class="modal-head"><div><div class="eyebrow">ONE-TOUCH CHART</div><h2>${esc(displayTitle(s))}</h2><div class="tiny">${esc(displayArtist(s))}${s.sourceIndices?.length?` · 원본 #${s.sourceIndices.join(', #')}`:''}</div></div><button class="icon-btn" aria-label="닫기" data-act="close">×</button></header>${chartModal(s)}</section></div>`;

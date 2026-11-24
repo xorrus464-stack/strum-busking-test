@@ -135,7 +135,9 @@ for s in songs:
         assert not s['videoUrl'], s['id']
 
 # 10) 메타 집계
-assert meta['seedVersion'] == 21
+assert meta['seedVersion'] == 22, meta['seedVersion']
+assert meta['buttonCount'] == 14 and len(meta['buttonSet']) == 14, meta.get('buttonCount')
+assert meta['chartVersion'] == '2026-11-25', meta['chartVersion']
 assert meta['videoLinkCount'] == 201 and meta['videoLinkFilledCount'] == 36
 assert meta['playlistCollectedCount'] == 210
 assert meta['playlistPublicVideoCount'] == 168
@@ -146,8 +148,28 @@ assert meta['songEntryCount'] == len(songs) == 201
 # 11) 악보(남자키·박자·BPM·원터치 매핑) 정합성
 PC = {'C': 0, 'C#': 1, 'Db': 1, 'D': 2, 'D#': 3, 'Eb': 3, 'E': 4, 'F': 5, 'F#': 6,
       'Gb': 6, 'G': 7, 'G#': 8, 'Ab': 8, 'A': 9, 'A#': 10, 'Bb': 10, 'B': 11}
-BTN_PC = {'C': 0, 'D': 2, 'E': 4, 'F': 5, 'G': 7, 'Cm': 0, 'Dm': 2, 'Em': 4, 'Fm': 5, 'Gm': 7}
-BTNS = set(BTN_PC)
+# 에어로밴드 Easy Chord 고급 설정 14버튼(2026-11-25 주성 님 앱 화면 확인) — (근음, 화음 성질)
+BTN_SHAPE = {'C': (0, 'maj'), 'Dm': (2, 'min'), 'Em': (4, 'min'), 'F': (5, 'maj'), 'G': (7, 'maj'),
+             'Am': (9, 'min'), 'Bdim': (11, 'dim'), 'Cm': (0, 'min'), 'D': (2, 'maj'),
+             'E': (4, 'maj'), 'Fm': (5, 'min'), 'Gm': (7, 'min'), 'A': (9, 'maj'), 'Bm': (11, 'min')}
+BTNS = set(BTN_SHAPE)
+assert len(BTNS) == 14, len(BTNS)
+
+
+def chord_quality(chord):
+    """버튼 3화음으로 잡을 때의 성질. aug는 버튼이 없어 None."""
+    t = str(chord).split('/')[0]
+    i = 1
+    while i < len(t) and t[i] in '#b':
+        i += 1
+    low = t[i:].lower()
+    if 'aug' in low or '+' in low:
+        return None
+    if 'dim' in low or 'b5' in low or '-5' in low or 'ø' in t[i:]:
+        return 'dim'
+    if low.startswith('m') and not low.startswith('maj'):
+        return 'min'
+    return 'maj'
 
 
 def pc_of(chord):
@@ -201,12 +223,18 @@ for s in ready:
             for cell in bar:
                 if cell['btn'] is not None:
                     assert cell['btn'] in BTNS, (s['id'], cell['btn'])
-                    expect = (BTN_PC[cell['btn']] + c['capo']) % 12
+                    shape_pc, shape_q = BTN_SHAPE[cell['btn']]
+                    expect = (shape_pc + c['capo']) % 12
                     assert expect == pc_of(cell['sound']), (s['id'], cell['btn'], cell['sound'], c['capo'])
+                    assert shape_q == chord_quality(cell['sound']), (s['id'], cell['btn'], cell['sound'])
                 else:
                     assert 1 <= cell['slot'] <= 8, s['id']
                     assert cell['slot'] in slot_ids, (s['id'], '슬롯 누락')
                     assert cell['sound'] == next(x['chord'] for x in c['slots'] if x['slot'] == cell['slot']), s['id']
+                    # 슬롯에 남는 코드는 이 곡의 카포에서 14버튼으로 잡을 수 없어야 한다.
+                    assert not any((BTN_SHAPE[b][0] + c['capo']) % 12 == pc_of(cell['sound'])
+                                   and BTN_SHAPE[b][1] == chord_quality(cell['sound'])
+                                   for b in BTNS), (s['id'], cell['sound'], '버튼 가능 코드가 슬롯에')
 for s in partial:
     assert s['chart']['status'] == 'partial' and s.get('chartNote'), s['id']
 for s in pending:
@@ -249,7 +277,9 @@ assert by_id['verified-004']['chart']['originalKey'] == 'Ebm' and by_id['verifie
 _n24 = by_id['verified-024']['chart']
 assert (_n24['originalKey'], _n24['maleKey'], _n24['bpm'], _n24['timeSignature']) == ('D', 'D', 64, '4/4')
 assert _n24['capo'] == 2 and _n24['formText'] == 'C폼 · Capo +2' and _n24['status'] == 'partial'
-assert len(_n24['sections']) == 9 and len(_n24['slots']) == 5
+# 2026-11-25 14버튼 재매핑: 같은 카포 2에서 슬롯 5 → 2개(C·B♭만 남음)
+assert len(_n24['sections']) == 9 and len(_n24['slots']) == 2
+assert [x['chord'] for x in _n24['slots']] == ['C', 'Bb'], [x['chord'] for x in _n24['slots']]
 assert by_id['playlist-077']['workArtist'].startswith('BIG Naughty') and '권진아' not in by_id['playlist-077']['workArtist']
 assert by_id['playlist-139']['workArtist'] == '나윤권'
 assert by_id['playlist-126']['chart']['capo'] == 4 and by_id['playlist-126']['chart']['originalKey'] == 'B'
@@ -490,7 +520,9 @@ assert len(entry) == 45, len(entry)
 print(f"OK: 전체 {len(songs)}개 항목 — 악보 완료 {len(ready)}(서로 다른 곡 {meta['uniqueChartSongCount']}) · 부분 확인 {len(partial)} · 검수 대기 {len(pending)} · "
       f"비음악·참고 {meta['nonMusicCount']} · 자작곡 {meta['originalWorkCount']}")
 print(f"OK: 곡으로 등록된 {len(entry)}곡 중 악보 준비 {len([s for s in entry if s['chartStatus'] == 'ready'])}곡")
-print('OK: 박자 4/4·3/4·6/8, BPM 40~180, 남자키 이조·카포 0~7, 원터치 버튼(10개) 음정 일치, SimplifyChord 슬롯 ≤8, 근거 URL 존재')
+print('OK: 박자 4/4·3/4·6/8, BPM 40~180, 남자키 이조·카포 0~7, 원터치 버튼(14개) 음정·화음 성질 일치, SimplifyChord 슬롯 ≤8, 근거 URL 존재')
+zero_slot = [s for s in songs if isinstance(s.get('chart'), dict) and (s['chart'].get('sections')) and not (s['chart'].get('slots') or [])]
+print(f"OK: 원터치 14버튼 재매핑 — 악보 {meta['btn14']['chartCount']}개 중 슬롯 없이 완주 {len(zero_slot)}개 · 남은 슬롯 합계 {meta['btn14']['slotTotal']}개(이전 {meta['btn14']['prevSlotTotal']}개) · 카포 변경 {meta['btn14']['capoChangedCount']}곡")
 print('OK: 슬롯 211 (공개 168 · 접근 불가 42 · 제외 1 · 미확인 1), #6 7곡 · #65 2곡 · #163 제외 · #172 가수 미확인 유지')
 print('OK: 복원 17 + 사용자 확인 2, 접근 불가 사유 계정해지 37/비공개 3/저작권 1/업로더 1, 공개 영상 URL 168개')
 print(f"OK: 곡 영상 링크 {len(urls)}개(중복 0) — 2026-11-22 공식 영상 36곡 보강(oEmbed 200 확인)")

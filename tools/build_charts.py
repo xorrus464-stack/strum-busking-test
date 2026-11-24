@@ -22,9 +22,14 @@ FLAT_OF = {'D#': 'Eb', 'G#': 'Ab', 'A#': 'Bb'}
 PC = {'C': 0, 'C#': 1, 'Db': 1, 'D': 2, 'D#': 3, 'Eb': 3, 'E': 4, 'F': 5, 'F#': 6,
       'Gb': 6, 'G': 7, 'G#': 8, 'Ab': 8, 'A': 9, 'A#': 10, 'Bb': 10, 'B': 11,
       'Cb': 11, 'Fb': 4}
+# 에어로밴드 Easy Chord 14버튼 — 기본 10(C·Dm·Em·F·G / Cm·D·E·Fm·Gm) + 고급 설정 4(Am·Bdim / A·Bm)
+# 2026-11-25 주성 님 앱 화면(고급 설정) 확인. 카포·슬롯 재계산은 tools/remap_btns14_2026_11_25.py가 맡는다.
 SHAPES = {'C': (0, 'maj'), 'D': (2, 'maj'), 'E': (4, 'maj'), 'F': (5, 'maj'), 'G': (7, 'maj'),
-          'Cm': (0, 'min'), 'Dm': (2, 'min'), 'Em': (4, 'min'), 'Fm': (5, 'min'), 'Gm': (7, 'min')}
-ONE_TOUCH_ORDER = ['C', 'Dm', 'Em', 'F', 'G', 'Cm', 'D', 'E', 'Fm', 'Gm']
+          'A': (9, 'maj'),
+          'Cm': (0, 'min'), 'Dm': (2, 'min'), 'Em': (4, 'min'), 'Fm': (5, 'min'), 'Gm': (7, 'min'),
+          'Am': (9, 'min'), 'Bm': (11, 'min'),
+          'Bdim': (11, 'dim')}
+ONE_TOUCH_ORDER = ['C', 'Dm', 'Em', 'F', 'G', 'Am', 'Bdim', 'Cm', 'D', 'E', 'Fm', 'Gm', 'A', 'Bm']
 MAX_SLOTS = 8  # SimplifyChord는 프렛마다 1개(공식 안내 최대 12개) → 화면에는 8개까지 안내
 # 원터치 버튼에 없는 코드를 슬롯에 넣을 때 흔히 쓰는 약식 대안(사실 기반 제안, 연주자 선택)
 EASY_ALT = {
@@ -55,7 +60,12 @@ def parse_chord(text):
     root, suffix = t[:i], t[i:]
     if root not in PC:
         raise ValueError('unknown chord root: ' + text)
-    quality = 'min' if (suffix.startswith('m') and not suffix.startswith('maj')) else 'maj'
+    if any(k in suffix.lower() for k in ('dim', 'b5', '-5')) or '°' in suffix:
+        quality = 'dim'          # Bdim 버튼으로 근사
+    elif suffix.startswith('m') and not suffix.startswith('maj'):
+        quality = 'min'
+    else:
+        quality = 'maj'
     return {'root': root, 'suffix': suffix, 'quality': quality, 'text': text, 'bass': bass}
 
 
@@ -207,8 +217,9 @@ def build_chart(sid, data):
                 pc_ = parse_chord(c)
                 male_chord = p['male'][c]
                 btn = find_button(p['male_pc'][c], pc_['quality'], p['capo'])
-                # 증5화음(aug)·감5화음(dim)은 3화음 버튼으로 대신할 수 없어 슬롯으로 넘긴다
-                if any(k in pc_['suffix'] for k in ('aug', 'dim', 'b5', '°', '-5')):
+                # 증5화음(aug)은 3화음 버튼으로 대신할 수 없어 슬롯으로 넘긴다.
+                # 감5화음 계열(m7♭5·dim7)은 Bdim 버튼(3화음)으로 근사한다(7th만 생략).
+                if any(k in pc_['suffix'] for k in ('aug',)):
                     btn = None
                 if btn is None:
                     if c not in slot_map:

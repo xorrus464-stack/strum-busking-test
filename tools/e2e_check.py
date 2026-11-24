@@ -305,7 +305,8 @@ def run(pw, name, viewport, mobile=False):
     page.click('[data-act="metro-toggle"]')
     page.click('[data-act="ts:3/4"]')
     check(f'{name}: 3/4 비트 점 3개', page.locator('#beat-dots i').count() == 3)
-    check(f'{name}: 원터치 버튼 10개', page.locator('.ot-btn').count() == 10)
+    check(f'{name}: 원터치 버튼 14개', page.locator('.ot-btn').count() == 14)
+    check(f'{name}: 원터치 14버튼 안내', '원터치 버튼 14개 (고급 설정 포함)' in page.content())
     o = overflow(page)
     check(f'{name}: 연습 화면 가로 넘침 없음', o['sw'] <= o['cw'] + 1, str(o))
     page.screenshot(path=str(SHOTS / f'practice-{name}.png'), full_page=not mobile)
@@ -385,7 +386,7 @@ def run_merge(pw):
     check('merge: 남자키 배지 병합', page.locator('.song-row', has_text='오늘').first.inner_text().find('남자키') >= 0)
     state = json.loads(page.evaluate("() => localStorage.getItem('strum-busking-v2')"))
     song = [s for s in state['songs'] if s['id'] == 'verified-001'][0]
-    check('merge: seedVersion 21', state['seedVersion'] == 21, str(state['seedVersion']))
+    check('merge: seedVersion 22', state['seedVersion'] == 22, str(state['seedVersion']))
     check('merge: MR 링크 병합', song.get('mrUrl', '').endswith('hwZqHCMmjUM'), str(song.get('mrUrl')))
     check('merge: 숙련도 보존', song['level'] == '버스킹 가능', song['level'])
     check('merge: 사용자 메모 보존', song['notes'] == '내 메모', song['notes'])
