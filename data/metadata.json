@@ -12,7 +12,7 @@
   "additionalRecommendedSongCount": 1,
   "originalPlaylist": "https://www.youtube.com/playlist?list=PLdOy20BJp9XElDHDvAJI6mUG48BmfDX-y",
   "playlistId": "PLdOy20BJp9XElDHDvAJI6mUG48BmfDX-y",
-  "seedVersion": 20,
+  "seedVersion": 21,
   "playlistCollectedCount": 210,
   "playlistPublicVideoCount": 168,
   "playlistInaccessibleVideoCount": 42,
@@ -36,8 +36,9 @@
   "originalWorks": [],
   "videoLinkCount": 201,
   "videoLinkFilledCount": 36,
-  "mrVersion": "2026-11-23",
+  "mrVersion": "2026-11-24",
   "mrLinkCount": 162,
   "mrWorkCount": 135,
-  "mrDisclosure": "2026-11-23: 여자 원곡 항목은 「남자키 MR」 기준으로 다시 맞췄습니다. 곡별로 YouTube 검색 → oEmbed 200 → 앱과 같은 iframe 플레이어 임베드 재생 확인을 거쳐 남자키 MR을 찾은 곡은 교체했고(금영 공식 남자키·여기MR 남자키·MR. Acoustic 남Key 등), TJ노래방 공식 채널은 임베드가 막혀(오류 150) 제외했습니다. 끝내 남자키 MR이 없는 곡은 기존 반주를 두고 mrNote 에 \"[원키 MR · -5키 필요]\"를 적었습니다. 남자 풀커버 영상이 있는 곡은 음악 영상도 남자 완창 영상으로 바꿨습니다. 2026-11-23: 「10,000 Hours」의 MR 이 반주가 아닌 밈·스킷 영상(ChaoticBrooke Gt636FM6Ayc)이어서 실제 악기로 만든 MrEntertainerKaraoke 가라오케(vBLCXuDeQO8, oEmbed 200 + 임베드 재생 확인)로 교체했습니다. 같은 날 후보 6건을 앱과 같은 iframe 플레이어로 확인해 Sing King·Sing2Guitar·KaraFun 은 임베드 차단(오류 150), YAYY 는 재생 확인 실패로 제외했습니다. 2026-11-23에는 주성 님이 AI 보컬 제거로 뽑아 보낸 반주 2건(#108 「나는 버려질 장난감」 · media/toy-mr.mp3, #172 「날씨가 좋고 바람도 좋아」 · media/weather-mr.mp3)을 추가해 MR 음원 파일 5건이 되었고, 이로써 음악 항목 162개 전부(100%)에 재생되는 반주가 연결됐습니다. MR(반주) 링크는 YouTube 검색 결과에서 제목에 MR·Inst·노래방·반주 표기가 있고 YouTube oEmbed HTTP 200으로 존재를 확인한 뒤, 앱과 같은 iframe 플레이어로 임베드 재생까지 확인한 영상만 연결했습니다. TJ노래방 공식 채널은 임베드 재생을 막아(플레이어 오류 150) 금영(KY)·엠알샵·싱잇·MR노래방·여기MR·아티스트 공식 inst. 등 재생되는 반주로 바꿨습니다. 2026-11-23에는 주성 님이 직접 보내준 4건(#77 사랑이라 믿었던 것들은 · #144 기억을 걷는 시간 · #24 에아오 · #166 Feel Special 피아노 반주)을 같은 방식으로 확인해 추가했고, 이어 「잠깐 시간 될까」 두 항목에 LEE MU JIN Ordinary Confession Instrumental(Rockstar Beats)을 연결했습니다. 주성 님이 직접 올린 녹화에서 오디오만 추출한 반주(로꼬 픽픽 · media/pikpik-mr.mp3)는 MR 음원 파일로 연결해 미니 플레이어 안에서 바로 재생합니다. 2026-11-23에는 주성 님이 AI 보컬 제거 사이트에서 직접 뽑은 반주 2건(jehoda 「괜히 보고 싶은 사실이 조금은 다행인 시간」 · media/jehoda-mr.mp3, nanome 「커피」 · media/coffee-mr.mp3)을 MR 음원 파일로 연결했습니다. 곡 162개(서로 다른 곡 135개, YouTube MR 영상 157개 항목 + MR 음원 파일 5개 항목)에 연결했고, 재생되는 반주가 확인되지 않은 곡은 비워 두어 화면에서 MR 없음으로 표시한 뒤 YouTube MR 검색과 URL 붙여넣기로 직접 등록할 수 있게 했습니다."
+  "mrDisclosure": "2026-11-24: 남자키 MR을 찾지 못해 [원키 MR · -5키 필요]로 두었던 4곡 6개 항목(Shannon 「死別」· 최유리 「생각을 멈추다 보면」 3개 항목 · Tomioka Ai 「Good Bye-Bye」· 키썸 「서, 어른」)은 주성 님이 올린 화면 녹화에서 오디오만 뽑아 tempo를 유지한 채 -5반음(남자키)으로 낮춘 MP3 반주(media/ 4개 파일)로 넣었습니다. 미니 플레이어에서 바로 재생되며 -6~+6반음 실시간 키 조절도 됩니다. 2026-11-23: 여자 원곡 항목은 「남자키 MR」 기준으로 다시 맞췄습니다. 곡별로 YouTube 검색 → oEmbed 200 → 앱과 같은 iframe 플레이어 임베드 재생 확인을 거쳐 남자키 MR을 찾은 곡은 교체했고(금영 공식 남자키·여기MR 남자키·MR. Acoustic 남Key 등), TJ노래방 공식 채널은 임베드가 막혀(오류 150) 제외했습니다. 끝내 남자키 MR이 없는 곡은 기존 반주를 두고 mrNote 에 \"[원키 MR · -5키 필요]\"를 적었습니다. 남자 풀커버 영상이 있는 곡은 음악 영상도 남자 완창 영상으로 바꿨습니다. 2026-11-23: 「10,000 Hours」의 MR 이 반주가 아닌 밈·스킷 영상(ChaoticBrooke Gt636FM6Ayc)이어서 실제 악기로 만든 MrEntertainerKaraoke 가라오케(vBLCXuDeQO8, oEmbed 200 + 임베드 재생 확인)로 교체했습니다. 같은 날 후보 6건을 앱과 같은 iframe 플레이어로 확인해 Sing King·Sing2Guitar·KaraFun 은 임베드 차단(오류 150), YAYY 는 재생 확인 실패로 제외했습니다. 2026-11-23에는 주성 님이 AI 보컬 제거로 뽑아 보낸 반주 2건(#108 「나는 버려질 장난감」 · media/toy-mr.mp3, #172 「날씨가 좋고 바람도 좋아」 · media/weather-mr.mp3)을 추가해 MR 음원 파일 5건이 되었고, 이로써 음악 항목 162개 전부(100%)에 재생되는 반주가 연결됐습니다. MR(반주) 링크는 YouTube 검색 결과에서 제목에 MR·Inst·노래방·반주 표기가 있고 YouTube oEmbed HTTP 200으로 존재를 확인한 뒤, 앱과 같은 iframe 플레이어로 임베드 재생까지 확인한 영상만 연결했습니다. TJ노래방 공식 채널은 임베드 재생을 막아(플레이어 오류 150) 금영(KY)·엠알샵·싱잇·MR노래방·여기MR·아티스트 공식 inst. 등 재생되는 반주로 바꿨습니다. 2026-11-23에는 주성 님이 직접 보내준 4건(#77 사랑이라 믿었던 것들은 · #144 기억을 걷는 시간 · #24 에아오 · #166 Feel Special 피아노 반주)을 같은 방식으로 확인해 추가했고, 이어 「잠깐 시간 될까」 두 항목에 LEE MU JIN Ordinary Confession Instrumental(Rockstar Beats)을 연결했습니다. 주성 님이 직접 올린 녹화에서 오디오만 추출한 반주(로꼬 픽픽 · media/pikpik-mr.mp3)는 MR 음원 파일로 연결해 미니 플레이어 안에서 바로 재생합니다. 2026-11-23에는 주성 님이 AI 보컬 제거 사이트에서 직접 뽑은 반주 2건(jehoda 「괜히 보고 싶은 사실이 조금은 다행인 시간」 · media/jehoda-mr.mp3, nanome 「커피」 · media/coffee-mr.mp3)을 MR 음원 파일로 연결했습니다. 곡 162개(서로 다른 곡 135개, YouTube MR 영상 157개 항목 + MR 음원 파일 5개 항목)에 연결했고, 재생되는 반주가 확인되지 않은 곡은 비워 두어 화면에서 MR 없음으로 표시한 뒤 YouTube MR 검색과 URL 붙여넣기로 직접 등록할 수 있게 했습니다.",
+  "mrAudioFileCount": 11
 }

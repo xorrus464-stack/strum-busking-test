@@ -255,7 +255,10 @@ def run(pw, name, viewport, mobile=False):
 
     # 2026-11-23 MR (seed v17): AI 보컬 제거 추출 MR 음원 2건 — jehoda · nanome 커피
     for fname, expect_sec, label in (('jehoda-mr.mp3', 235, '괜히 보고 싶은 사실'), ('coffee-mr.mp3', 182, '내 첫 자작곡'),
-                                     ('toy-mr.mp3', 242, '나는 버려질 장난감'), ('weather-mr.mp3', 189, '날씨가 좋고 바람도 좋아')):
+                                     ('toy-mr.mp3', 242, '나는 버려질 장난감'), ('weather-mr.mp3', 189, '날씨가 좋고 바람도 좋아'),
+                                     # 2026-11-24 주성 님 녹화 → -5반음(남자키) MP3
+                                     ('shannon-sabyeol-mr.mp3', 215, '死別'), ('choiyuri-saenggak-mr.mp3', 197, '생각을 멈추다 보면'),
+                                     ('goodbye-bye-mr.mp3', 195, 'Good Bye-Bye'), ('kisum-seo-eoreun-mr.mp3', 168, '서, 어른')):
         head = page.request.get(f'http://127.0.0.1:{PORT}/media/{fname}')
         check(f'{name}: MR 음원 서빙(media/{fname})',
               head.status == 200 and int(head.headers.get('content-length', 0)) > 1_000_000,
@@ -382,7 +385,7 @@ def run_merge(pw):
     check('merge: 남자키 배지 병합', page.locator('.song-row', has_text='오늘').first.inner_text().find('남자키') >= 0)
     state = json.loads(page.evaluate("() => localStorage.getItem('strum-busking-v2')"))
     song = [s for s in state['songs'] if s['id'] == 'verified-001'][0]
-    check('merge: seedVersion 20', state['seedVersion'] == 20, str(state['seedVersion']))
+    check('merge: seedVersion 21', state['seedVersion'] == 21, str(state['seedVersion']))
     check('merge: MR 링크 병합', song.get('mrUrl', '').endswith('hwZqHCMmjUM'), str(song.get('mrUrl')))
     check('merge: 숙련도 보존', song['level'] == '버스킹 가능', song['level'])
     check('merge: 사용자 메모 보존', song['notes'] == '내 메모', song['notes'])
@@ -394,10 +397,17 @@ def run_merge(pw):
     check('merge: 악보 설명 갱신(순수 MR)', '순수 MR' in ([x for x in state['songs'] if x['id'] == 'verified-017'][0].get('chartNote') or ''),
           ([x for x in state['songs'] if x['id'] == 'verified-017'][0].get('chartNote') or '')[:40])
     for sid, fname in (('playlist-173', 'media/jehoda-mr.mp3'), ('playlist-072', 'media/coffee-mr.mp3'),
-                       ('verified-017', 'media/toy-mr.mp3'), ('verified-021', 'media/weather-mr.mp3')):
+                       ('verified-017', 'media/toy-mr.mp3'), ('verified-021', 'media/weather-mr.mp3'),
+                       ('verified-014', 'media/shannon-sabyeol-mr.mp3'), ('verified-019', 'media/choiyuri-saenggak-mr.mp3'),
+                       ('playlist-170', 'media/choiyuri-saenggak-mr.mp3'), ('playlist-174', 'media/choiyuri-saenggak-mr.mp3'),
+                       ('restored-100', 'media/goodbye-bye-mr.mp3'), ('playlist-159', 'media/kisum-seo-eoreun-mr.mp3')):
         item = [s for s in state['songs'] if s['id'] == sid][0]
         check(f'merge: MR 음원 병합({sid})', item.get('mrAudioUrl') == fname, str(item.get('mrAudioUrl')))
-        check(f'merge: MR 음원 출처({sid})', item.get('mrSource') == 'user-recording' and 'AI 보컬 제거' in (item.get('mrNote') or ''), str(item.get('mrNote')))
+        check(f'merge: MR 음원 출처({sid})',
+              item.get('mrSource') == 'user-recording' and ('AI 보컬 제거' in (item.get('mrNote') or '') or '남자키(-5키)' in (item.get('mrTitle') or '')),
+              str(item.get('mrNote'))[:60])
+        if sid in ('verified-014', 'verified-019', 'playlist-170', 'playlist-174', 'restored-100', 'playlist-159'):
+            check(f'merge: 원키 YouTube MR 비움({sid})', not item.get('mrUrl'), str(item.get('mrUrl')))
     browser.close()
 
 

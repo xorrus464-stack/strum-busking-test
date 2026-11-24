@@ -437,7 +437,7 @@
     let ctx=null,src=null;
     try{
       ctx=new AC();
-      await ctx.audioWorklet.addModule('src/pitch-worklet.js?v=20');
+      await ctx.audioWorklet.addModule('src/pitch-worklet.js?v=21');
       src=ctx.createMediaElementSource(audioEl);
       const node=new AudioWorkletNode(ctx,'strum-pitch',{parameterData:{ratio:1}});
       src.connect(node);node.connect(ctx.destination);

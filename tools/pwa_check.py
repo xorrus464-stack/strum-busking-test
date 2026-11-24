@@ -78,11 +78,13 @@ check('manifest icon svg any', has_icon('icon.svg', 'any', 'any'))
 
 # ── 3) index.html ───────────────────────────────────────────
 html = (BASE / 'index.html').read_text(encoding='utf-8')
+seed_ver = re.search(r'seedVersion":(\d+)', (BASE / 'src' / 'seed.js').read_text(encoding='utf-8'))
+CUR_VER = seed_ver.group(1) if seed_ver else '0'
 check('index: manifest 링크', 'rel="manifest" href="manifest.webmanifest"' in html)
 check('index: icon.svg 링크', 'rel="icon" type="image/svg+xml" href="icon.svg"' in html)
 check('index: icon-192 링크', 'rel="icon" type="image/png" sizes="192x192" href="icon-192.png"' in html)
 check('index: apple-touch-icon 180', 'rel="apple-touch-icon" sizes="180x180" href="icon-180.png"' in html)
-check('index: ?v=18 유지', html.count('?v=18') == 3 and '?v=19' not in html, str(html.count('?v=18')))
+check(f'index: ?v={CUR_VER} 유지', html.count(f'?v={CUR_VER}') == 3, str(html.count(f'?v={CUR_VER}')))
 
 # ── 4) sw.js + 등록 코드 ────────────────────────────────────
 sw = (BASE / 'sw.js').read_text(encoding='utf-8')
@@ -92,7 +94,7 @@ check('sw.js: 앱 셸 프리캐시', "'./src/app.js'" not in sw and "'./index.ht
 app = (BASE / 'src' / 'app.js').read_text(encoding='utf-8')
 check('app.js: sw.js 등록', "navigator.serviceWorker.register('./sw.js')" in app)
 seed_ver = re.search(r'seedVersion":(\d+)', (BASE / 'src' / 'seed.js').read_text(encoding='utf-8'))
-check('seed.js seedVersion 18 유지', seed_ver and seed_ver.group(1) == '18', seed_ver.group(1) if seed_ver else 'none')
+check(f'seed.js seedVersion {CUR_VER}', seed_ver and seed_ver.group(1) == CUR_VER, seed_ver.group(1) if seed_ver else 'none')
 
 # ── 6) 실제 구동 ────────────────────────────────────────────
 class Handler(http.server.SimpleHTTPRequestHandler):

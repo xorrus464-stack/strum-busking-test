@@ -135,7 +135,7 @@ for s in songs:
         assert not s['videoUrl'], s['id']
 
 # 10) 메타 집계
-assert meta['seedVersion'] == 20
+assert meta['seedVersion'] == 21
 assert meta['videoLinkCount'] == 201 and meta['videoLinkFilledCount'] == 36
 assert meta['playlistCollectedCount'] == 210
 assert meta['playlistPublicVideoCount'] == 168
@@ -325,12 +325,19 @@ LOCAL_MR_FILES = {
     'playlist-072': ('media/coffee-mr.mp3', '커피', 2_000_000),
     'verified-017': ('media/toy-mr.mp3', '나는 버려질 장난감', 3_600_000),
     'verified-021': ('media/weather-mr.mp3', '날씨가 좋고 바람도 좋아', 2_800_000),
+    # 2026-11-24 주성 님 화면 녹화 → -5반음 피치 시프트(템포 유지) 남자키 MP3 반주
+    'verified-014': ('media/shannon-sabyeol-mr.mp3', '死別', 4_000_000),
+    'verified-019': ('media/choiyuri-saenggak-mr.mp3', '생각을 멈추다 보면', 3_500_000),
+    'playlist-170': ('media/choiyuri-saenggak-mr.mp3', '생각을 멈추다 보면', 3_500_000),
+    'playlist-174': ('media/choiyuri-saenggak-mr.mp3', '생각을 멈추다 보면', 3_500_000),
+    'restored-100': ('media/goodbye-bye-mr.mp3', 'Good Bye-Bye', 3_500_000),
+    'playlist-159': ('media/kisum-seo-eoreun-mr.mp3', '서, 어른', 3_000_000),
 }
 with_yt = [s for s in songs if s.get('mrUrl')]
 with_local = [s for s in songs if s.get('mrAudioUrl')]
 with_mr = [s for s in songs if s.get('mrUrl') or s.get('mrAudioUrl')]
 assert len(with_mr) == meta['mrLinkCount'] == 162, (len(with_mr), meta['mrLinkCount'])
-assert len(with_yt) == 157 and len(with_local) == 5, (len(with_yt), len(with_local))
+assert len(with_yt) == 151 and len(with_local) == 11, (len(with_yt), len(with_local))
 works = {}
 for s in with_yt:
     m = re.fullmatch(r'https://www\.youtube\.com/watch\?v=([A-Za-z0-9_-]{11})', s['mrUrl'])
@@ -357,14 +364,14 @@ for s in with_local:
     assert s['mrAudioUrl'] == fname, (s['id'], s['mrAudioUrl'])
     assert s.get('mrSource') == 'user-recording', (s['id'], s.get('mrSource'))
     assert s.get('mrTitle') and word in s['mrTitle'], (s['id'], s.get('mrTitle'))
-    assert s.get('mrNote') and '2026-11-23' in s['mrNote'], (s['id'], 'MR 음원 등록 근거 없음')
+    assert s.get('mrNote') and ('2026-11-23' in s['mrNote'] or '2026-11-24' in s['mrNote']), (s['id'], 'MR 음원 등록 근거 없음')
     assert s['category'] != 'reference', (s['id'], '참고 영상에 MR 금지')
     key = (s.get('workTitle') or s['title'], s.get('workArtist') or s['artist'])
     sig = 'audio:' + s['mrAudioUrl']
     if key in works:
         assert works[key] == sig, (s['id'], '같은 곡은 같은 MR')
     works[key] = sig
-assert len([s for s in with_local if s['id'] in LOCAL_MR_FILES]) == len(LOCAL_MR_FILES) == 5, 'MR 음원 5건 누락'
+assert len([s for s in with_local if s['id'] in LOCAL_MR_FILES]) == len(LOCAL_MR_FILES) == 11, 'MR 음원 11건 누락'
 assert len(works) == meta['mrWorkCount'] == 135, (len(works), meta['mrWorkCount'])
 # 같은 곡이 표기만 달리해 두 항목으로 있는 경우(예: '예뻤어'/'예뻤어 (You were beautiful)')만 같은 MR 허용
 def _nt(t):
@@ -377,7 +384,7 @@ for (t, _a), u in works.items():
     by_url[u] = t
 # 대표 확인 링크(2026-11-22 oEmbed 200)
 assert by_id['verified-024']['mrUrl'].endswith('wfBXXKRdtlk')      # 임베드 차단된 TJ 대신 여기MR 원키
-assert by_id['playlist-159']['mrUrl'].endswith('ige-TSCG5vc')      # ZIP 자료 공식 inst.
+assert by_id['playlist-159']['mrAudioUrl'] == 'media/kisum-seo-eoreun-mr.mp3'  # 2026-11-24 -5반음 MP3 (원본 ige-TSCG5vc)
 assert by_id['added-10000-hours']['mrUrl'].endswith('vBLCXuDeQO8')  # MrEntertainerKaraoke 실연주 가라오케(임베드 재생 확인)
 assert '밈' in by_id['added-10000-hours']['notes'] and 'vBLCXuDeQO8' in by_id['added-10000-hours']['notes']  # 2026-11-23 교체 근거
 assert by_id['verified-007']['mrUrl'].endswith('VnSBIixg7hY')      # 2026-11-23 여성 원곡 → 금영 남자키 MR
@@ -400,7 +407,27 @@ assert coffee['mrAudioUrl'] == 'media/coffee-mr.mp3' and coffee['mrSource'] == '
 assert 'AI 보컬 제거' in coffee['mrNote'] and 'UVR Online MDX VocFT' in coffee['mrNote'], coffee['mrNote']
 assert not coffee.get('mrUrl'), 'MR 음원으로 연결한 곡은 YouTube MR 비움'
 assert coffee['category'] == 'original', coffee['category']
-assert meta['mrVersion'] == '2026-11-23'
+assert meta['mrVersion'] == '2026-11-24'
+# 2026-11-24 -5반음(남자키) MP3 반주 4곡 6개 항목: 원키 YouTube MR 태그를 지우고 mrAudioUrl 로 교체
+MOVED_TO_LOCAL = {
+    'verified-014': ('media/shannon-sabyeol-mr.mp3', '死別', 'cLUNCLUE7pk'),
+    'verified-019': ('media/choiyuri-saenggak-mr.mp3', '생각을 멈추다 보면', 'Jp4uNTmxiAY'),
+    'playlist-170': ('media/choiyuri-saenggak-mr.mp3', '생각을 멈추다 보면', 'Jp4uNTmxiAY'),
+    'playlist-174': ('media/choiyuri-saenggak-mr.mp3', '생각을 멈추다 보면', 'Jp4uNTmxiAY'),
+    'restored-100': ('media/goodbye-bye-mr.mp3', 'Good Bye-Bye', 'YVbcUiPMBPM'),
+    'playlist-159': ('media/kisum-seo-eoreun-mr.mp3', '서, 어른', 'ige-TSCG5vc'),
+}
+for sid, (fname, word, src_vid) in MOVED_TO_LOCAL.items():
+    item = by_id[sid]
+    assert item['mrAudioUrl'] == fname and item['mrSource'] == 'user-recording', (sid, item.get('mrAudioUrl'))
+    assert not item.get('mrUrl'), (sid, 'MR 음원으로 연결한 곡은 YouTube MR 비움')
+    assert '남자키(-5키)' in item['mrTitle'] and word in item['mrTitle'], (sid, item['mrTitle'])
+    assert '-5반음' in item['mrNote'] and '템포' in item['mrNote'], (sid, item['mrNote'])
+    assert src_vid in item['mrNote'], (sid, '녹화 출처 링크 누락')
+    assert '5키 필요' not in item['mrNote'], (sid, '원키 MR 표시가 남아 있음')
+    assert '남자키 MP3 반주' in item['notes'] and '2026-11-24' in item['notes'], (sid, '반영 근거 누락')
+assert by_id['verified-019']['mrAudioUrl'] == by_id['playlist-170']['mrAudioUrl'] == by_id['playlist-174']['mrAudioUrl']
+assert len({by_id[sid]['mrAudioUrl'] for sid in MOVED_TO_LOCAL}) == 4
 # 2026-11-23 순수 MR 재검수(seed v18): AI 보컬 제거 반주 2건을 MR 음원 파일로 연결
 for sid, fname, min_bar in (('verified-017', 'media/toy-mr.mp3', 49), ('verified-021', 'media/weather-mr.mp3', 70)):
     item = by_id[sid]
@@ -427,6 +454,8 @@ MALE_MARK = re.compile(r'남자키|남자 키|남키|남Key|남자 ver|남자 �
 MALE_ORIGINAL_KEEP = {'playlist-057', 'playlist-058'}
 for s in FEMALE:
     note = s.get('mrNote') or ''
+    if s.get('mrAudioUrl'):
+        assert '남자키(-5키)' in s['mrTitle'], (s['id'], s['mrTitle'])
     if s.get('mrUrl'):
         if s['id'] in MALE_ORIGINAL_KEEP:
             assert '주성 님 지정' in note, (s['id'], note)

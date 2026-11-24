@@ -4464,7 +4464,7 @@
     "vocalDifficulty": "미확인",
     "level": "미착수",
     "tags": [],
-    "notes": "공개 영상 확인(2026-11-22): 재생목록 #65 「사별 死別」 (8PCQyS6BBmg). 2026-11-23 음악 영상 교체: 여자 보컬·쇼츠/맛보기 영상(8PCQyS6BBmg) 대신 남자 풀커버 JrFMYs2PU_s 로 바꿨습니다.",
+    "notes": "공개 영상 확인(2026-11-22): 재생목록 #65 「사별 死別」 (8PCQyS6BBmg). 2026-11-23 음악 영상 교체: 여자 보컬·쇼츠/맛보기 영상(8PCQyS6BBmg) 대신 남자 풀커버 JrFMYs2PU_s 로 바꿨습니다. 2026-11-24 남자키 MP3 반주: 주성 님이 올린 화면 녹화에서 오디오만 추출해 -5반음(템포 유지)으로 낮춰 media/shannon-sabyeol-mr.mp3 로 넣었습니다(기존 https://www.youtube.com/watch?v=cLUNCLUE7pk 대체).",
     "setlist": false,
     "videoStatus": "공개 영상(남자키 커버)",
     "chartStatus": "ready",
@@ -4833,11 +4833,10 @@
     },
     "timeSignature": "4/4",
     "chartStage": 3,
-    "mrUrl": "https://www.youtube.com/watch?v=cLUNCLUE7pk",
-    "mrTitle": "死別(사별) | feat. GUMI - シャノン(샤논)  노래방  カラオケ",
-    "mrChannel": "LKARA",
-    "mrNote": "노래방 カラオケ(LKARA) · YouTube oEmbed 200 + 임베드 재생 확인(2026-11-22) [원키 MR · -5키 필요]",
-    "mrSource": "youtube"
+    "mrTitle": "Shannon - 死別 (feat. GUMI) 남자키(-5키) MR (주성 님 녹화)",
+    "mrNote": "주성 님 2026-11-24 화면 녹화(유튜브 「死別(사별) | feat. GUMI - シャノン(샤논) 노래방 カラオケ」 · @LKARAMUSIC · 3분 40초)에서 오디오만 추출 → -5반음 피치 시프트(템포·길이 그대로) · media/shannon-sabyeol-mr.mp3 (4.9MB) · 미니 플레이어에서 바로 재생, -6~+6반음 실시간 키 조절(2026-11-24) · 원본 영상 https://www.youtube.com/watch?v=cLUNCLUE7pk",
+    "mrSource": "user-recording",
+    "mrAudioUrl": "media/shannon-sabyeol-mr.mp3"
   },
   {
     "id": "verified-015",
@@ -6356,7 +6355,7 @@
     "vocalDifficulty": "미확인",
     "level": "미착수",
     "tags": [],
-    "notes": "공식 영상 확인(2026-11-22): YouTube oEmbed 200 · 「최유리 - 생각을 멈추다 보면 (Live)」 · 최유리 Choi Yu Ree (35w8SrlepLc). 원본 #165 슬롯의 현재 영상은 「내 손을 잡아 레전드 파트…」로 이 곡이 아님. 관련 영상은 #170·#174(박진영 파트)뿐이며 원곡 영상은 확인되지 않음. 2026-11-23 음악 영상 교체: 여자 보컬·쇼츠/맛보기 영상(35w8SrlepLc) 대신 남자 풀커버 xp6M9wtMIxM 로 바꿨습니다.",
+    "notes": "공식 영상 확인(2026-11-22): YouTube oEmbed 200 · 「최유리 - 생각을 멈추다 보면 (Live)」 · 최유리 Choi Yu Ree (35w8SrlepLc). 원본 #165 슬롯의 현재 영상은 「내 손을 잡아 레전드 파트…」로 이 곡이 아님. 관련 영상은 #170·#174(박진영 파트)뿐이며 원곡 영상은 확인되지 않음. 2026-11-23 음악 영상 교체: 여자 보컬·쇼츠/맛보기 영상(35w8SrlepLc) 대신 남자 풀커버 xp6M9wtMIxM 로 바꿨습니다. 2026-11-24 남자키 MP3 반주: 주성 님이 올린 화면 녹화에서 오디오만 추출해 -5반음(템포 유지)으로 낮춰 media/choiyuri-saenggak-mr.mp3 로 넣었습니다(기존 https://www.youtube.com/watch?v=Jp4uNTmxiAY 대체).",
     "setlist": false,
     "videoStatus": "공개 영상(남자 커버)",
     "chartStatus": "ready",
@@ -6529,11 +6528,10 @@
     },
     "timeSignature": "6/8",
     "chartStage": 2,
-    "mrUrl": "https://www.youtube.com/watch?v=Jp4uNTmxiAY",
-    "mrTitle": "최유리 - 생각을 멈추다 보면 | 원곡노래방 Karaoke MR 가사",
-    "mrChannel": "원곡노래방",
-    "mrNote": "원곡노래방 · 대체 반주(임베드 재생 확인) · YouTube oEmbed 200 + 임베드 재생 확인(2026-11-22) [원키 MR · -5키 필요]",
-    "mrSource": "youtube"
+    "mrTitle": "최유리 - 생각을 멈추다 보면 남자키(-5키) MR (주성 님 녹화)",
+    "mrNote": "주성 님 2026-11-24 화면 녹화(유튜브 「생각을 멈추다 보면」 노래방 MR 영상 · 3분 21초)에서 오디오만 추출 → -5반음 피치 시프트(템포·길이 그대로) · media/choiyuri-saenggak-mr.mp3 (4.5MB) · 미니 플레이어에서 바로 재생, -6~+6반음 실시간 키 조절(2026-11-24) · 원본 영상 https://www.youtube.com/watch?v=Jp4uNTmxiAY",
+    "mrSource": "user-recording",
+    "mrAudioUrl": "media/choiyuri-saenggak-mr.mp3"
   },
   {
     "id": "verified-020",
@@ -9995,7 +9993,7 @@
     "tags": [
       "오른손 1단계"
     ],
-    "notes": "공식 영상 확인(2026-11-22): YouTube oEmbed 200 · 「冨岡 愛 - グッバイバイ (Music Video)」 · 冨岡 愛 (i7kRQsCIvv0). 아카이브 복원(2026-11-22): 원 제목 「도경수 (D.O.) \"Good Bye-Bye(グッバイバイ)\" AI Remix | Org. Tomioka Ai」 · 채널 EarlGrey(@Earlgrey0820). 원본 영상은 재생 불가(계정 해지), 영상 ID o2--Pg6hBwE. 가짜 영상 URL은 넣지 않음. 2026-11-23 남자키 MR 교체: 기존 「[Inst Ver. / MR] Ai Tomioka - Good bye-bye グッバイバイ | 冨岡 愛 | 토미오카 아이」 대신 TOMIOKA AI - Topic 「グッバイバイ (Instrumental)」(YVbcUiPMBPM)로 바꿨습니다(원곡이 여성 키인 곡). 2026-11-23 음악 영상 교체: 여자 보컬·쇼츠/맛보기 영상(i7kRQsCIvv0) 대신 남자 풀커버 aJIGwku9UlE 로 바꿨습니다.",
+    "notes": "공식 영상 확인(2026-11-22): YouTube oEmbed 200 · 「冨岡 愛 - グッバイバイ (Music Video)」 · 冨岡 愛 (i7kRQsCIvv0). 아카이브 복원(2026-11-22): 원 제목 「도경수 (D.O.) \"Good Bye-Bye(グッバイバイ)\" AI Remix | Org. Tomioka Ai」 · 채널 EarlGrey(@Earlgrey0820). 원본 영상은 재생 불가(계정 해지), 영상 ID o2--Pg6hBwE. 가짜 영상 URL은 넣지 않음. 2026-11-23 남자키 MR 교체: 기존 「[Inst Ver. / MR] Ai Tomioka - Good bye-bye グッバイバイ | 冨岡 愛 | 토미오카 아이」 대신 TOMIOKA AI - Topic 「グッバイバイ (Instrumental)」(YVbcUiPMBPM)로 바꿨습니다(원곡이 여성 키인 곡). 2026-11-23 음악 영상 교체: 여자 보컬·쇼츠/맛보기 영상(i7kRQsCIvv0) 대신 남자 풀커버 aJIGwku9UlE 로 바꿨습니다. 2026-11-24 남자키 MP3 반주: 주성 님이 올린 화면 녹화에서 오디오만 추출해 -5반음(템포 유지)으로 낮춰 media/goodbye-bye-mr.mp3 로 넣었습니다(기존 https://www.youtube.com/watch?v=YVbcUiPMBPM 대체).",
     "setlist": false,
     "chartStatus": "ready",
     "chartNote": "",
@@ -10438,11 +10436,10 @@
     },
     "timeSignature": "4/4",
     "chartStage": 1,
-    "mrUrl": "https://www.youtube.com/watch?v=YVbcUiPMBPM",
-    "mrTitle": "グッバイバイ (Instrumental)",
-    "mrChannel": "TOMIOKA AI - Topic",
-    "mrNote": "TOMIOKA AI - Topic · 공식 인스트루멘탈(원키·가이드멜로디 없음) · YouTube oEmbed 200 + 임베드 재생 확인(2026-11-23) [원키 MR · -5키 필요]",
-    "mrSource": "youtube"
+    "mrTitle": "Tomioka Ai - Good Bye-Bye 남자키(-5키) MR (주성 님 녹화)",
+    "mrNote": "주성 님 2026-11-24 화면 녹화(유튜브 「[Inst Ver. / MR] Ai Tomioka - Good bye...」 · @rendezvous18.6y6 · 3분 22초)에서 오디오만 추출 → -5반음 피치 시프트(템포·길이 그대로) · media/goodbye-bye-mr.mp3 (4.5MB) · 미니 플레이어에서 바로 재생, -6~+6반음 실시간 키 조절(2026-11-24) · 원본 영상 https://www.youtube.com/watch?v=YVbcUiPMBPM",
+    "mrSource": "user-recording",
+    "mrAudioUrl": "media/goodbye-bye-mr.mp3"
   },
   {
     "id": "restored-102",
@@ -37112,7 +37109,7 @@
       "커버 영상",
       "음원 분석"
     ],
-    "notes": "원본 재생목록 #159 · 영상 ID s-1QwV9ZTWk · 채널 GeGee Edu · 유튜브 제목 그대로. 2026-11-22 음원 분석: 올린 ZIP·화면 녹화에서 키·BPM·코드 후보를 뽑아 4박 마디 악보를 채웠습니다(청음 검수 전).",
+    "notes": "원본 재생목록 #159 · 영상 ID s-1QwV9ZTWk · 채널 GeGee Edu · 유튜브 제목 그대로. 2026-11-22 음원 분석: 올린 ZIP·화면 녹화에서 키·BPM·코드 후보를 뽑아 4박 마디 악보를 채웠습니다(청음 검수 전). 2026-11-24 남자키 MP3 반주: 주성 님이 올린 화면 녹화에서 오디오만 추출해 -5반음(템포 유지)으로 낮춰 media/kisum-seo-eoreun-mr.mp3 로 넣었습니다(기존 https://www.youtube.com/watch?v=ige-TSCG5vc 대체).",
     "setlist": false,
     "chartStatus": "partial",
     "chartNote": "키썸 「서, 어른(inst.)」 공식 inst. 녹화(2분 51초)를 자동 분석한 초안입니다. 86.1 BPM은 제 beat 추적(172.3의 절반)과 같고 C장조 후보도 코드 분포와 맞습니다. 다만 처음 8.6초는 마디 배치가 불확실해 코드를 비웠고, C/Cmaj7·F/Fmaj7·Am7/Dm7은 구성음이 겹쳐 서로 오인식될 수 있습니다. 여성 원곡 규칙(-5반음)을 적용해 남자키 G로 적었습니다. 청음 검수 전입니다.",
@@ -37723,11 +37720,10 @@
     },
     "timeSignature": "4/4",
     "chartStage": 2,
-    "mrUrl": "https://www.youtube.com/watch?v=ige-TSCG5vc",
-    "mrTitle": "서, 어른 (inst.)",
-    "mrChannel": "Kisum - Topic",
-    "mrNote": "공식 inst. (ZIP 자료 · Kisum - Topic) · YouTube oEmbed 200 + 임베드 재생 확인(2026-11-22) [원키 MR · -5키 필요]",
-    "mrSource": "zip"
+    "mrTitle": "키썸 (Kisum) - 서, 어른 남자키(-5키) MR (주성 님 녹화)",
+    "mrNote": "주성 님 2026-11-24 틱톡 녹화(@kisumthink 「서, 어른 (inst.)」 · 2분 51초)에서 오디오만 추출 → -5반음 피치 시프트(템포·길이 그대로) · media/kisum-seo-eoreun-mr.mp3 (3.9MB) · 미니 플레이어에서 바로 재생, -6~+6반음 실시간 키 조절(2026-11-24) · 원본 영상 https://www.youtube.com/watch?v=ige-TSCG5vc",
+    "mrSource": "user-recording",
+    "mrAudioUrl": "media/kisum-seo-eoreun-mr.mp3"
   },
   {
     "id": "playlist-160",
@@ -38836,7 +38832,7 @@
     "tags": [
       "커버 영상"
     ],
-    "notes": "원본 재생목록 #170 · 영상 ID JfbNlwe7xAM · 채널 icecafelatteplz · 유튜브 제목 그대로. 가수 필드는 채널명을 표기했으며 원곡 가수·코드·남자 키·BPM은 확인 전이라 비움. 2026-11-23 음악 영상 교체: 여자 보컬·쇼츠/맛보기 영상(JfbNlwe7xAM) 대신 남자 풀커버 b9nbgXmYjBI 로 바꿨습니다.",
+    "notes": "원본 재생목록 #170 · 영상 ID JfbNlwe7xAM · 채널 icecafelatteplz · 유튜브 제목 그대로. 가수 필드는 채널명을 표기했으며 원곡 가수·코드·남자 키·BPM은 확인 전이라 비움. 2026-11-23 음악 영상 교체: 여자 보컬·쇼츠/맛보기 영상(JfbNlwe7xAM) 대신 남자 풀커버 b9nbgXmYjBI 로 바꿨습니다. 2026-11-24 남자키 MP3 반주: 주성 님이 올린 화면 녹화에서 오디오만 추출해 -5반음(템포 유지)으로 낮춰 media/choiyuri-saenggak-mr.mp3 로 넣었습니다(기존 https://www.youtube.com/watch?v=Jp4uNTmxiAY 대체).",
     "setlist": false,
     "chartStatus": "ready",
     "chartNote": "",
@@ -39012,11 +39008,10 @@
     },
     "timeSignature": "6/8",
     "chartStage": 2,
-    "mrUrl": "https://www.youtube.com/watch?v=Jp4uNTmxiAY",
-    "mrTitle": "최유리 - 생각을 멈추다 보면 | 원곡노래방 Karaoke MR 가사",
-    "mrChannel": "원곡노래방",
-    "mrNote": "원곡노래방 · 대체 반주(임베드 재생 확인) · YouTube oEmbed 200 + 임베드 재생 확인(2026-11-22) [원키 MR · -5키 필요]",
-    "mrSource": "youtube"
+    "mrTitle": "최유리 - 생각을 멈추다 보면 남자키(-5키) MR (주성 님 녹화)",
+    "mrNote": "주성 님 2026-11-24 화면 녹화(유튜브 「생각을 멈추다 보면」 노래방 MR 영상 · 3분 21초)에서 오디오만 추출 → -5반음 피치 시프트(템포·길이 그대로) · media/choiyuri-saenggak-mr.mp3 (4.5MB) · 미니 플레이어에서 바로 재생, -6~+6반음 실시간 키 조절(2026-11-24) · 원본 영상 https://www.youtube.com/watch?v=Jp4uNTmxiAY",
+    "mrSource": "user-recording",
+    "mrAudioUrl": "media/choiyuri-saenggak-mr.mp3"
   },
   {
     "id": "playlist-172",
@@ -39871,7 +39866,7 @@
     "tags": [
       "커버 영상"
     ],
-    "notes": "원본 재생목록 #174 · 영상 ID 7WmQYYHkCqg · 채널 🧡Dive_Nyoung🧡 · 유튜브 제목 그대로. 가수 필드는 채널명을 표기했으며 원곡 가수·코드·남자 키·BPM은 확인 전이라 비움. 2026-11-23 음악 영상 교체: 여자 보컬·쇼츠/맛보기 영상(7WmQYYHkCqg) 대신 남자 풀커버 to3sjq-CAvA 로 바꿨습니다.",
+    "notes": "원본 재생목록 #174 · 영상 ID 7WmQYYHkCqg · 채널 🧡Dive_Nyoung🧡 · 유튜브 제목 그대로. 가수 필드는 채널명을 표기했으며 원곡 가수·코드·남자 키·BPM은 확인 전이라 비움. 2026-11-23 음악 영상 교체: 여자 보컬·쇼츠/맛보기 영상(7WmQYYHkCqg) 대신 남자 풀커버 to3sjq-CAvA 로 바꿨습니다. 2026-11-24 남자키 MP3 반주: 주성 님이 올린 화면 녹화에서 오디오만 추출해 -5반음(템포 유지)으로 낮춰 media/choiyuri-saenggak-mr.mp3 로 넣었습니다(기존 https://www.youtube.com/watch?v=Jp4uNTmxiAY 대체).",
     "setlist": false,
     "chartStatus": "ready",
     "chartNote": "",
@@ -40047,11 +40042,10 @@
     },
     "timeSignature": "6/8",
     "chartStage": 2,
-    "mrUrl": "https://www.youtube.com/watch?v=Jp4uNTmxiAY",
-    "mrTitle": "최유리 - 생각을 멈추다 보면 | 원곡노래방 Karaoke MR 가사",
-    "mrChannel": "원곡노래방",
-    "mrNote": "원곡노래방 · 대체 반주(임베드 재생 확인) · YouTube oEmbed 200 + 임베드 재생 확인(2026-11-22) [원키 MR · -5키 필요]",
-    "mrSource": "youtube"
+    "mrTitle": "최유리 - 생각을 멈추다 보면 남자키(-5키) MR (주성 님 녹화)",
+    "mrNote": "주성 님 2026-11-24 화면 녹화(유튜브 「생각을 멈추다 보면」 노래방 MR 영상 · 3분 21초)에서 오디오만 추출 → -5반음 피치 시프트(템포·길이 그대로) · media/choiyuri-saenggak-mr.mp3 (4.5MB) · 미니 플레이어에서 바로 재생, -6~+6반음 실시간 키 조절(2026-11-24) · 원본 영상 https://www.youtube.com/watch?v=Jp4uNTmxiAY",
+    "mrSource": "user-recording",
+    "mrAudioUrl": "media/choiyuri-saenggak-mr.mp3"
   },
   {
     "id": "playlist-175",
