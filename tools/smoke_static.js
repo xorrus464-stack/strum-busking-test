@@ -159,11 +159,12 @@ assert(root.innerHTML.includes('안 질리는 연습 순서'), '커리큘럼');
 assert((root.innerHTML.match(/class="song-chip"/g) || []).length > 10, '단계별 곡 칩');
 assert(root.innerHTML.includes('퍼커시브 단계 순서'), '퍼커시브 순서');
 
-// 9) 오늘의 연습: 박자 메트로놈 + 원터치 버튼 10개
+// 9) 오늘의 연습: 박자 메트로놈 + 원터치 버튼 14개(기본 10 + 고급 설정 4)
 nav(handlers, 'practice');
 assert(root.innerHTML.includes('나의 집중 타이머'));
 ['4/4', '3/4', '6/8'].forEach(t => assert(root.innerHTML.includes(`data-act="ts:${t}"`), '박자 버튼 ' + t));
-assert((root.innerHTML.match(/class="ot-btn"/g) || []).length === 10, '원터치 10버튼');
+assert((root.innerHTML.match(/class="ot-btn"/g) || []).length === 14, '원터치 14버튼');
+assert(root.innerHTML.includes('원터치 버튼 14개 (고급 설정 포함)'), '14버튼 안내');
 act(handlers, 'ts:6/8');
 assert(root.innerHTML.includes('8분음표 6번'), '6/8 설명');
 

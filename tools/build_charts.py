@@ -243,7 +243,7 @@ def build_chart(sid, data):
             'chord': p['male'][c],
             'orig': c,
             'alt': EASY_ALT.get(p['male'][c], EASY_ALT.get(c, '')),
-            'why': '원터치 10버튼에 없는 코드(바레/전위 등)',
+            'why': '원터치 14버튼에도 없는 코드(증5화음·반음계 등)',
         })
     male_key = name((PC[parse_chord(org)['root']] - p['shift']) % 12, p['prefer_flat'])
     if parse_chord(org)['quality'] == 'min':
