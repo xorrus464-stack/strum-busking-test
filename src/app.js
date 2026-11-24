@@ -427,34 +427,97 @@
      노래방처럼 -6~+6반음. 템포는 그대로 두고 음높이만 바꾼다(src/pitch-worklet.js). */
   const mrShiftOf=id=>mrShiftBySong.get(id)||0;
   const mrShiftLabel=n=>n>0?`+${n}키`:`${n}키`;
-  function teardownPitch(){if(!pitchGraph)return;try{pitchGraph.ctx.close();}catch(err){}pitchGraph=null;}
-  async function ensurePitch(audioEl){
-    if(!audioEl)return null;
-    if(pitchGraph&&pitchGraph.el===audioEl)return pitchGraph;
-    teardownPitch();
+  /* 2026-11-25(v22) 수정 — 모바일 크롬·인앱(커스텀탭/WebView)에서 "이 브라우저에서는 키 조절을
+     쓸 수 없습니다" 가 뜨던 문제.
+     · AudioContext 는 앱 전체가 1개만 만든다(요소마다 createMediaElementSource 는 한 번만).
+       예전에는 키 조절을 켤 때마다 새 컨텍스트를 만들고 닫아서, 두 번째 호출에서
+       같은 <audio> 로 createMediaElementSource 를 또 하다가 InvalidStateError 로 죽었다.
+     · AudioWorklet 이 없는/막힌 브라우저(안드로이드 WebView·커스텀탭·오래된 캐시)에서는
+       ScriptProcessorNode 자동 폴백으로 같은 알고리즘을 돌린다 → 키 조절이 그대로 동작.
+     · 그래프는 <audio> 요소별로 WeakMap 에 보관해 재호출해도 중복 생성하지 않는다. */
+  const pitchGraphs=new WeakMap();
+  let pitchCtx=null,pitchCorePromise=null;
+  function pitchContext(){
+    if(pitchCtx&&pitchCtx.state!=='closed')return pitchCtx;
     const AC=window.AudioContext||window.webkitAudioContext;
-    if(!AC||!audioEl.src)return null;
-    let ctx=null,src=null;
-    try{
-      ctx=new AC();
-      await ctx.audioWorklet.addModule('src/pitch-worklet.js?v=21');
-      src=ctx.createMediaElementSource(audioEl);
-      const node=new AudioWorkletNode(ctx,'strum-pitch',{parameterData:{ratio:1}});
-      src.connect(node);node.connect(ctx.destination);
-      pitchGraph={ctx,node,el:audioEl};
-      const reset=()=>{try{node.port.postMessage({type:'reset'});}catch(err){}};
-      audioEl.addEventListener('seeking',reset);
-      audioEl.addEventListener('emptied',reset);
-      await ctx.resume?.();
-      return pitchGraph;
-    }catch(err){
-      /* AudioWorklet 을 못 쓰는 브라우저: 원래대로 그냥 재생되게 둔다 */
-      try{if(src)src.disconnect();}catch(e){}
-      try{if(ctx&&!src){ctx.close();}}catch(e){}
-      if(src){try{src.connect((ctx||new AC()).destination);}catch(e){}}
-      pitchGraph=null;
-      return null;
+    if(!AC)return null;
+    try{pitchCtx=new AC();}catch(err){pitchCtx=null;}
+    return pitchCtx;
+  }
+  function loadPitchCore(){
+    if(window.StrumPitchCore)return Promise.resolve(window.StrumPitchCore);
+    if(pitchCorePromise)return pitchCorePromise;
+    pitchCorePromise=new Promise((resolve,reject)=>{
+      const s=document.createElement('script');
+      s.src='src/pitch-grain.js?v=22';s.async=true;
+      s.onload=()=>window.StrumPitchCore?resolve(window.StrumPitchCore):reject(new Error('pitch-grain missing'));
+      s.onerror=()=>reject(new Error('pitch-grain load failed'));
+      document.head.appendChild(s);
+    });
+    pitchCorePromise.catch(()=>{pitchCorePromise=null;});
+    return pitchCorePromise;
+  }
+  function wirePitch(g){
+    try{g.src.disconnect();}catch(err){}
+    try{g.node.disconnect();}catch(err){}
+    try{g.src.connect(g.node);}catch(err){}
+    try{g.node.connect(g.ctx.destination);}catch(err){}
+    g.wired=true;
+  }
+  function unwirePitch(g){                                     /* 그래프는 살려 두고 원음으로 */
+    if(!g||!g.wired)return;
+    try{g.node.disconnect();}catch(err){}
+    try{g.src.disconnect();}catch(err){}
+    try{g.src.connect(g.ctx.destination);}catch(err){}
+    g.wired=false;
+  }
+  function teardownPitch(){
+    if(!pitchGraph)return;
+    unwirePitch(pitchGraph);
+    pitchGraph=null;
+    try{if(pitchCtx&&pitchCtx.state==='running')pitchCtx.suspend?.();}catch(err){}
+  }
+  function setPitchRatio(g,ratio){
+    if(!g)return null;
+    g.ratio=ratio;
+    if(g.mode==='script'){try{g.node.__ratio=ratio;}catch(err){}return g;}
+    try{g.node.parameters.get('ratio').value=ratio;}catch(err){}
+    try{g.node.port.postMessage({type:'ratio',value:ratio});}catch(err){}
+    return g;
+  }
+  async function ensurePitch(audioEl){
+    if(!audioEl||!audioEl.src)return null;
+    const ctx=pitchContext();
+    if(!ctx)return null;
+    const cached=pitchGraphs.get(audioEl);
+    if(cached){if(!cached.wired)wirePitch(cached);pitchGraph=cached;try{await ctx.resume?.();}catch(err){}return cached;}
+    let src=null;
+    try{src=ctx.createMediaElementSource(audioEl);}catch(err){return null;}   /* 이미 다른 그래프에 묶인 요소 */
+    let g=null;
+    if(ctx.audioWorklet&&typeof ctx.audioWorklet.addModule==='function'){
+      try{
+        await ctx.audioWorklet.addModule('src/pitch-worklet.js?v=22');
+        const node=new AudioWorkletNode(ctx,'strum-pitch',{numberOfInputs:1,numberOfOutputs:1,outputChannelCount:[2],parameterData:{ratio:1}});
+        g={ctx,src,node,mode:'worklet',el:audioEl,ratio:1,wired:false};
+      }catch(err){g=null;}
     }
+    if(!g){
+      /* AudioWorklet 을 못 쓰는 브라우저 → ScriptProcessor 로 같은 알고리즘을 돌린다 */
+      try{
+        const Core=await loadPitchCore();
+        const node=Core.createScriptPitchNode(ctx,2048);
+        g={ctx,src,node,mode:'script',el:audioEl,ratio:1,wired:false};
+      }catch(err){g=null;}
+    }
+    if(!g){try{src.connect(ctx.destination);}catch(err){}return null;}   /* 정말 안 되면 원음 그대로 */
+    pitchGraphs.set(audioEl,g);
+    pitchGraph=g;
+    wirePitch(g);
+    const reset=()=>{try{if(g.mode==='script')g.node.__reset&&g.node.__reset();else g.node.port.postMessage({type:'reset'});}catch(err){}};
+    audioEl.addEventListener('seeking',reset);
+    audioEl.addEventListener('emptied',reset);
+    try{await ctx.resume?.();}catch(err){}
+    return g;
   }
   async function applyMrShift(semis){
     if(!mini||mini.kind!=='mraudio')return;
@@ -466,8 +529,7 @@
     if(!audio)return;
     const g=await ensurePitch(audio);
     if(!g){notice('이 브라우저에서는 키 조절을 쓸 수 없습니다. 원음으로 재생합니다.');if(label)label.textContent='0키';mrShiftBySong.set(mini.songId,0);return;}
-    const ratio=n===0?1:Math.pow(2,n/12);
-    try{g.node.parameters.get('ratio').value=ratio;}catch(err){}
+    setPitchRatio(g,n===0?1:Math.pow(2,n/12));
     try{await g.ctx.resume?.();}catch(err){}
     if(n!==0){const songName=mini.title||'';notice(`${songName} · ${mrShiftLabel(n)} (반주 템포는 그대로)`);}
   }

@@ -161,3 +161,6 @@ body.has-mini .modal-layer{padding-bottom:calc(var(--mini-h,120px) + 16px)}
   .song-actions .btn{padding:5px 2px;font-size:10px;min-height:30px;white-space:nowrap;min-width:0}
 }
 body.has-mini .modal{max-height:calc(91vh - var(--mini-h,120px))}
+
+/* v22: 안내 토스트가 아래 버튼(키 조절 −/+)의 탭을 가로막지 않게 한다 */
+.toast{pointer-events:none}

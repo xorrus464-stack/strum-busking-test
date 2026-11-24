@@ -78,8 +78,11 @@ check('manifest icon svg any', has_icon('icon.svg', 'any', 'any'))
 
 # ── 3) index.html ───────────────────────────────────────────
 html = (BASE / 'index.html').read_text(encoding='utf-8')
+# v22: 캐시 버전(sw.js CACHE)으로 자산 ?v= 를 검사한다. seedVersion 은 곡 데이터 버전이라
+#       코드만 고쳐 배포할 때는 올리지 않는다(올리면 불필요한 시드 재병합 안내가 뜬다).
+cache_ver = re.search(r'strum-busking-test-v(\d+)', (BASE / 'sw.js').read_text(encoding='utf-8'))
 seed_ver = re.search(r'seedVersion":(\d+)', (BASE / 'src' / 'seed.js').read_text(encoding='utf-8'))
-CUR_VER = seed_ver.group(1) if seed_ver else '0'
+CUR_VER = cache_ver.group(1) if cache_ver else '0'
 check('index: manifest 링크', 'rel="manifest" href="manifest.webmanifest"' in html)
 check('index: icon.svg 링크', 'rel="icon" type="image/svg+xml" href="icon.svg"' in html)
 check('index: icon-192 링크', 'rel="icon" type="image/png" sizes="192x192" href="icon-192.png"' in html)
@@ -94,7 +97,8 @@ check('sw.js: 앱 셸 프리캐시', "'./src/app.js'" not in sw and "'./index.ht
 app = (BASE / 'src' / 'app.js').read_text(encoding='utf-8')
 check('app.js: sw.js 등록', "navigator.serviceWorker.register('./sw.js')" in app)
 seed_ver = re.search(r'seedVersion":(\d+)', (BASE / 'src' / 'seed.js').read_text(encoding='utf-8'))
-check(f'seed.js seedVersion {CUR_VER}', seed_ver and seed_ver.group(1) == CUR_VER, seed_ver.group(1) if seed_ver else 'none')
+check('seed.js seedVersion <= 자산 버전', seed_ver and int(seed_ver.group(1)) <= int(CUR_VER),
+      f"seed {seed_ver.group(1) if seed_ver else 'none'} / asset {CUR_VER}")
 
 # ── 6) 실제 구동 ────────────────────────────────────────────
 class Handler(http.server.SimpleHTTPRequestHandler):
