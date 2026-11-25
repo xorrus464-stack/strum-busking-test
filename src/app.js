@@ -519,7 +519,7 @@
     if(pitchCorePromise)return pitchCorePromise;
     pitchCorePromise=new Promise((resolve,reject)=>{
       const s=document.createElement('script');
-      s.src='src/pitch-grain.js?v=22';s.async=true;
+      s.src='src/pitch-grain.js?v=25';s.async=true;
       s.onload=()=>window.StrumPitchCore?resolve(window.StrumPitchCore):reject(new Error('pitch-grain missing'));
       s.onerror=()=>reject(new Error('pitch-grain load failed'));
       document.head.appendChild(s);
@@ -566,7 +566,7 @@
     let g=null;
     if(ctx.audioWorklet&&typeof ctx.audioWorklet.addModule==='function'){
       try{
-        await ctx.audioWorklet.addModule('src/pitch-worklet.js?v=22');
+        await ctx.audioWorklet.addModule('src/pitch-worklet.js?v=25');
         const node=new AudioWorkletNode(ctx,'strum-pitch',{numberOfInputs:1,numberOfOutputs:1,outputChannelCount:[2],parameterData:{ratio:1}});
         g={ctx,src,node,mode:'worklet',el:audioEl,ratio:1,wired:false};
       }catch(err){g=null;}

@@ -135,7 +135,7 @@ for s in songs:
         assert not s['videoUrl'], s['id']
 
 # 10) 메타 집계
-assert meta['seedVersion'] == 23, meta['seedVersion']
+assert meta['seedVersion'] == 24, meta['seedVersion']
 assert meta['buttonCount'] == 14 and len(meta['buttonSet']) == 14, meta.get('buttonCount')
 assert meta['chartVersion'] == '2026-11-25', meta['chartVersion']
 assert meta['videoLinkCount'] == 201 and meta['videoLinkFilledCount'] == 36
@@ -543,6 +543,13 @@ assert by_id['playlist-173']['chart']['bpm'] == 74 and '74.1' in by_id['playlist
 assert by_id['verified-021']['chart']['bpm'] == 90 and '90.00' in by_id['verified-021']['chart']['bpmNote']
 assert sum(len(x['bars']) for x in by_id['verified-021']['chart']['sections']) == 70
 assert meta['mrDisclosure'] and 'oEmbed' in meta['mrDisclosure']
+
+# 12-b) 2026-11-26 restored-100 악보 키 정정: 원곡 B♭ · 남자키 F · Capo 0 (이전 악보 G)
+_c = by_id['restored-100']['chart']
+assert _c['originalKey'] == 'Bb' and _c['maleKey'] == 'F' and _c['capo'] == 0, (_c['originalKey'], _c['maleKey'], _c['capo'])
+assert by_id['restored-100']['maleKey'] == 'F' and by_id['restored-100']['key'] == 'Bb'
+_sounds = {cell['sound'] for sec in _c['sections'] for bar in sec['bars'] for cell in bar}
+assert _sounds <= {'F', 'G', 'Em', 'Am', 'C'}, _sounds
 
 # 13) 2026-11-23 여자 원곡 → 남자키 MR·남자 풀커버 영상 정리 (seed v20)
 FEMALE = [s for s in songs if s['category'] != 'reference' and s.get('key') != s.get('maleKey')]
