@@ -10525,9 +10525,9 @@
     "videoStatus": "공개 영상(남자 커버)",
     "audioUrl": "",
     "key": "Bb",
-    "maleKey": "F",
+    "maleKey": "Bb",
     "bpm": 89,
-    "chords": "Bb C / Am Dm / Bb C / Am Dm / Bb C / Am Dm / Bb C / Am Dm / Bb Dm / F C / Bb Dm / F C / Bb / C Am / Dm Bb / C F / Bb C / Am Dm / Bb C / F / Bb Dm / Bb Dm / C / Bb F",
+    "chords": "Eb F / Dm Gm / Eb F / Dm Gm / Eb F / Dm Gm / Eb F / Dm Gm / Eb Gm / Bb F / Eb Gm / Bb F / Eb F / Dm Gm / Eb F / Bb / Eb F / Dm Gm / Eb F / Bb / Eb / Gm / Eb Gm / F / Eb / Bb / Eb F / Bb",
     "chordStatus": "웹 자료 검수 완료",
     "strumming": "↓ ↓↑ ↑↓ ↑ (8분 스트럼, 89bpm)",
     "difficultyEasy": "미확인",
@@ -10537,89 +10537,89 @@
     "tags": [
       "오른손 1단계"
     ],
-    "notes": "공식 영상 확인(2026-11-22): YouTube oEmbed 200 · 「冨岡 愛 - グッバイバイ (Music Video)」 · 冨岡 愛 (i7kRQsCIvv0). 아카이브 복원(2026-11-22): 원 제목 「도경수 (D.O.) \"Good Bye-Bye(グッバイバイ)\" AI Remix | Org. Tomioka Ai」 · 채널 EarlGrey(@Earlgrey0820). 원본 영상은 재생 불가(계정 해지), 영상 ID o2--Pg6hBwE. 가짜 영상 URL은 넣지 않음. 2026-11-23 남자키 MR 교체: 기존 「[Inst Ver. / MR] Ai Tomioka - Good bye-bye グッバイバイ | 冨岡 愛 | 토미오카 아이」 대신 TOMIOKA AI - Topic 「グッバイバイ (Instrumental)」(YVbcUiPMBPM)로 바꿨습니다(원곡이 여성 키인 곡). 2026-11-23 음악 영상 교체: 여자 보컬·쇼츠/맛보기 영상(i7kRQsCIvv0) 대신 남자 풀커버 aJIGwku9UlE 로 바꿨습니다. 2026-11-24 남자키 MP3 반주: 주성 님이 올린 화면 녹화에서 오디오만 추출해 -5반음(템포 유지)으로 낮춰 media/goodbye-bye-mr.mp3 로 넣었습니다(기존 https://www.youtube.com/watch?v=YVbcUiPMBPM 대체).",
+    "notes": "공식 영상 확인(2026-11-22): YouTube oEmbed 200 · 「冨岡 愛 - グッバイバイ (Music Video)」 · 冨岡 愛 (i7kRQsCIvv0). 아카이브 복원(2026-11-22): 원 제목 「도경수 (D.O.) \"Good Bye-Bye(グッバイバイ)\" AI Remix | Org. Tomioka Ai」 · 채널 EarlGrey(@Earlgrey0820). 원본 영상은 재생 불가(계정 해지), 영상 ID o2--Pg6hBwE. 가짜 영상 URL은 넣지 않음. 2026-11-23 남자키 MR 교체: 기존 「[Inst Ver. / MR] Ai Tomioka - Good bye-bye グッバイバイ | 冨岡 愛 | 토미오카 아이」 대신 TOMIOKA AI - Topic 「グッバイバイ (Instrumental)」(YVbcUiPMBPM)로 바꿨습니다(원곡이 여성 키인 곡). 2026-11-23 음악 영상 교체: 여자 보컬·쇼츠/맛보기 영상(i7kRQsCIvv0) 대신 남자 풀커버 aJIGwku9UlE 로 바꿨습니다. 2026-11-24 남자키 MP3 반주: 주성 님이 올린 화면 녹화에서 오디오만 추출해 -5반음(템포 유지)으로 낮춰 media/goodbye-bye-mr.mp3 로 넣었습니다(기존 https://www.youtube.com/watch?v=YVbcUiPMBPM 대체). 2026-11-26 녹화 음원 반영: 주성 님이 보낸 화면 녹화(DCS | Dallas Cover Studio 남자 커버)에서 음악·MR을 뽑아 등록하고, 실측 키 B♭(89.10bpm)에 맞춰 악보를 C폼 Capo +3으로 다시 세팅했습니다.",
     "setlist": false,
     "chartStatus": "ready",
-    "chartNote": "2026-11-26 악보 키 정정: 원곡이 B♭장조로 확인돼(원곡 음원 실측 · 공개 코드표) 남자키 -5반음 = F장조로 악보·Capo를 다시 계산했습니다. 이전 악보는 C를 원곡 키로 잘못 잡아 실제 반주(F)보다 2반음 높은 G로 울렸습니다. 버튼 F·G·Em·Am 그대로 Capo 2 → 0.",
+    "chartNote": "2026-11-26 녹화 음원 반영: 주성 님이 보낸 화면 녹화(DCS | Dallas Cover Studio 남자 커버, 4분 11초)에서 오디오를 뽑아 실측한 결과 이 녹음은 **B♭장조 · 89.10bpm · 4/4**입니다(원곡과 같은 조). 그래서 악보를 이 녹음에 맞춰 B♭로 올렸습니다 — 버튼 C·D·Bm·Em·G(14버튼)에 Capo +3, 실제로 울리는 코드는 E♭·F·Dm·Gm·B♭이고 손으로 잡을 코드는 0개입니다. 이전 악보(F장조 · F폼 Capo 0)는 이 녹음보다 5반음 낮아 반주에 맞춰 치면 조가 어긋났습니다.",
     "category": "chart",
     "chart": {
       "status": "ready",
       "timeSignature": "4/4",
-      "timeNote": "",
+      "timeNote": "녹음 실측 4/4 (89.10bpm)",
       "bpm": 89,
-      "bpmNote": "",
+      "bpmNote": "녹음 실측 89.10bpm (2026-11-26)",
       "originalKey": "Bb",
-      "maleKey": "F",
-      "maleShift": 5,
-      "capo": 0,
-      "formButton": "F",
+      "maleKey": "Bb",
+      "maleShift": 0,
+      "capo": 3,
+      "formButton": "C",
       "formKey": "Bb",
-      "formText": "F폼 · Capo +0",
+      "formText": "C폼 · Capo +3",
       "sections": [
         {
           "name": "Intro",
           "bars": [
             [
               {
-                "btn": "F",
+                "btn": "C",
                 "slot": 0,
-                "sound": "F",
-                "orig": "Bb",
+                "sound": "Eb",
+                "orig": "Eb",
                 "quality": "maj"
               },
               {
-                "btn": "G",
+                "btn": "D",
                 "slot": 0,
-                "sound": "G",
-                "orig": "C",
+                "sound": "F",
+                "orig": "F",
                 "quality": "maj"
               }
             ],
             [
+              {
+                "btn": "Bm",
+                "slot": 0,
+                "sound": "Dm",
+                "orig": "Dm",
+                "quality": "min"
+              },
               {
                 "btn": "Em",
                 "slot": 0,
-                "sound": "Em",
-                "orig": "Am",
-                "quality": "min"
-              },
-              {
-                "btn": "Am",
-                "slot": 0,
-                "sound": "Am",
-                "orig": "Dm",
+                "sound": "Gm",
+                "orig": "Gm",
                 "quality": "min"
               }
             ],
             [
               {
-                "btn": "F",
+                "btn": "C",
+                "slot": 0,
+                "sound": "Eb",
+                "orig": "Eb",
+                "quality": "maj"
+              },
+              {
+                "btn": "D",
                 "slot": 0,
                 "sound": "F",
-                "orig": "Bb",
-                "quality": "maj"
-              },
-              {
-                "btn": "G",
-                "slot": 0,
-                "sound": "G",
-                "orig": "C",
+                "orig": "F",
                 "quality": "maj"
               }
             ],
             [
+              {
+                "btn": "Bm",
+                "slot": 0,
+                "sound": "Dm",
+                "orig": "Dm",
+                "quality": "min"
+              },
               {
                 "btn": "Em",
                 "slot": 0,
-                "sound": "Em",
-                "orig": "Am",
-                "quality": "min"
-              },
-              {
-                "btn": "Am",
-                "slot": 0,
-                "sound": "Am",
-                "orig": "Dm",
+                "sound": "Gm",
+                "orig": "Gm",
                 "quality": "min"
               }
             ]
@@ -10630,65 +10630,65 @@
           "bars": [
             [
               {
-                "btn": "F",
+                "btn": "C",
                 "slot": 0,
-                "sound": "F",
-                "orig": "Bb",
+                "sound": "Eb",
+                "orig": "Eb",
                 "quality": "maj"
               },
               {
-                "btn": "G",
+                "btn": "D",
                 "slot": 0,
-                "sound": "G",
-                "orig": "C",
+                "sound": "F",
+                "orig": "F",
                 "quality": "maj"
               }
             ],
             [
+              {
+                "btn": "Bm",
+                "slot": 0,
+                "sound": "Dm",
+                "orig": "Dm",
+                "quality": "min"
+              },
               {
                 "btn": "Em",
                 "slot": 0,
-                "sound": "Em",
-                "orig": "Am",
-                "quality": "min"
-              },
-              {
-                "btn": "Am",
-                "slot": 0,
-                "sound": "Am",
-                "orig": "Dm",
+                "sound": "Gm",
+                "orig": "Gm",
                 "quality": "min"
               }
             ],
             [
               {
-                "btn": "F",
+                "btn": "C",
+                "slot": 0,
+                "sound": "Eb",
+                "orig": "Eb",
+                "quality": "maj"
+              },
+              {
+                "btn": "D",
                 "slot": 0,
                 "sound": "F",
-                "orig": "Bb",
-                "quality": "maj"
-              },
-              {
-                "btn": "G",
-                "slot": 0,
-                "sound": "G",
-                "orig": "C",
+                "orig": "F",
                 "quality": "maj"
               }
             ],
             [
+              {
+                "btn": "Bm",
+                "slot": 0,
+                "sound": "Dm",
+                "orig": "Dm",
+                "quality": "min"
+              },
               {
                 "btn": "Em",
                 "slot": 0,
-                "sound": "Em",
-                "orig": "Am",
-                "quality": "min"
-              },
-              {
-                "btn": "Am",
-                "slot": 0,
-                "sound": "Am",
-                "orig": "Dm",
+                "sound": "Gm",
+                "orig": "Gm",
                 "quality": "min"
               }
             ]
@@ -10699,65 +10699,65 @@
           "bars": [
             [
               {
-                "btn": "F",
+                "btn": "C",
                 "slot": 0,
-                "sound": "F",
+                "sound": "Eb",
+                "orig": "Eb",
+                "quality": "maj"
+              },
+              {
+                "btn": "Em",
+                "slot": 0,
+                "sound": "Gm",
+                "orig": "Gm",
+                "quality": "min"
+              }
+            ],
+            [
+              {
+                "btn": "G",
+                "slot": 0,
+                "sound": "Bb",
                 "orig": "Bb",
                 "quality": "maj"
               },
               {
-                "btn": "Am",
+                "btn": "D",
                 "slot": 0,
-                "sound": "Am",
-                "orig": "Dm",
-                "quality": "min"
+                "sound": "F",
+                "orig": "F",
+                "quality": "maj"
               }
             ],
             [
               {
                 "btn": "C",
                 "slot": 0,
-                "sound": "C",
-                "orig": "F",
+                "sound": "Eb",
+                "orig": "Eb",
                 "quality": "maj"
               },
               {
-                "btn": "G",
+                "btn": "Em",
                 "slot": 0,
-                "sound": "G",
-                "orig": "C",
-                "quality": "maj"
-              }
-            ],
-            [
-              {
-                "btn": "F",
-                "slot": 0,
-                "sound": "F",
-                "orig": "Bb",
-                "quality": "maj"
-              },
-              {
-                "btn": "Am",
-                "slot": 0,
-                "sound": "Am",
-                "orig": "Dm",
+                "sound": "Gm",
+                "orig": "Gm",
                 "quality": "min"
               }
             ],
             [
               {
-                "btn": "C",
+                "btn": "G",
                 "slot": 0,
-                "sound": "C",
-                "orig": "F",
+                "sound": "Bb",
+                "orig": "Bb",
                 "quality": "maj"
               },
               {
-                "btn": "G",
+                "btn": "D",
                 "slot": 0,
-                "sound": "G",
-                "orig": "C",
+                "sound": "F",
+                "orig": "F",
                 "quality": "maj"
               }
             ]
@@ -10768,106 +10768,58 @@
           "bars": [
             [
               {
-                "btn": "F",
-                "slot": 0,
-                "sound": "F",
-                "orig": "Bb",
-                "quality": "maj"
-              }
-            ],
-            [
-              {
-                "btn": "G",
-                "slot": 0,
-                "sound": "G",
-                "orig": "C",
-                "quality": "maj"
-              },
-              {
-                "btn": "Em",
-                "slot": 0,
-                "sound": "Em",
-                "orig": "Am",
-                "quality": "min"
-              }
-            ],
-            [
-              {
-                "btn": "Am",
-                "slot": 0,
-                "sound": "Am",
-                "orig": "Dm",
-                "quality": "min"
-              },
-              {
-                "btn": "F",
-                "slot": 0,
-                "sound": "F",
-                "orig": "Bb",
-                "quality": "maj"
-              }
-            ],
-            [
-              {
-                "btn": "G",
-                "slot": 0,
-                "sound": "G",
-                "orig": "C",
-                "quality": "maj"
-              },
-              {
                 "btn": "C",
                 "slot": 0,
-                "sound": "C",
+                "sound": "Eb",
+                "orig": "Eb",
+                "quality": "maj"
+              },
+              {
+                "btn": "D",
+                "slot": 0,
+                "sound": "F",
                 "orig": "F",
                 "quality": "maj"
               }
             ],
             [
               {
-                "btn": "F",
+                "btn": "Bm",
                 "slot": 0,
-                "sound": "F",
-                "orig": "Bb",
-                "quality": "maj"
+                "sound": "Dm",
+                "orig": "Dm",
+                "quality": "min"
               },
-              {
-                "btn": "G",
-                "slot": 0,
-                "sound": "G",
-                "orig": "C",
-                "quality": "maj"
-              }
-            ],
-            [
               {
                 "btn": "Em",
                 "slot": 0,
-                "sound": "Em",
-                "orig": "Am",
-                "quality": "min"
-              },
-              {
-                "btn": "Am",
-                "slot": 0,
-                "sound": "Am",
-                "orig": "Dm",
+                "sound": "Gm",
+                "orig": "Gm",
                 "quality": "min"
               }
             ],
             [
               {
-                "btn": "F",
+                "btn": "C",
                 "slot": 0,
-                "sound": "F",
-                "orig": "Bb",
+                "sound": "Eb",
+                "orig": "Eb",
                 "quality": "maj"
               },
               {
+                "btn": "D",
+                "slot": 0,
+                "sound": "F",
+                "orig": "F",
+                "quality": "maj"
+              }
+            ],
+            [
+              {
                 "btn": "G",
                 "slot": 0,
-                "sound": "G",
-                "orig": "C",
+                "sound": "Bb",
+                "orig": "Bb",
                 "quality": "maj"
               }
             ],
@@ -10875,8 +10827,56 @@
               {
                 "btn": "C",
                 "slot": 0,
-                "sound": "C",
+                "sound": "Eb",
+                "orig": "Eb",
+                "quality": "maj"
+              },
+              {
+                "btn": "D",
+                "slot": 0,
+                "sound": "F",
                 "orig": "F",
+                "quality": "maj"
+              }
+            ],
+            [
+              {
+                "btn": "Bm",
+                "slot": 0,
+                "sound": "Dm",
+                "orig": "Dm",
+                "quality": "min"
+              },
+              {
+                "btn": "Em",
+                "slot": 0,
+                "sound": "Gm",
+                "orig": "Gm",
+                "quality": "min"
+              }
+            ],
+            [
+              {
+                "btn": "C",
+                "slot": 0,
+                "sound": "Eb",
+                "orig": "Eb",
+                "quality": "maj"
+              },
+              {
+                "btn": "D",
+                "slot": 0,
+                "sound": "F",
+                "orig": "F",
+                "quality": "maj"
+              }
+            ],
+            [
+              {
+                "btn": "G",
+                "slot": 0,
+                "sound": "Bb",
+                "orig": "Bb",
                 "quality": "maj"
               }
             ]
@@ -10887,58 +10887,92 @@
           "bars": [
             [
               {
-                "btn": "F",
+                "btn": "C",
                 "slot": 0,
-                "sound": "F",
-                "orig": "Bb",
+                "sound": "Eb",
+                "orig": "Eb",
                 "quality": "maj"
-              },
+              }
+            ],
+            [
               {
-                "btn": "Am",
+                "btn": "Em",
                 "slot": 0,
-                "sound": "Am",
-                "orig": "Dm",
+                "sound": "Gm",
+                "orig": "Gm",
                 "quality": "min"
               }
             ],
             [
               {
-                "btn": "F",
+                "btn": "C",
                 "slot": 0,
-                "sound": "F",
-                "orig": "Bb",
+                "sound": "Eb",
+                "orig": "Eb",
                 "quality": "maj"
               },
               {
-                "btn": "Am",
+                "btn": "Em",
                 "slot": 0,
-                "sound": "Am",
-                "orig": "Dm",
+                "sound": "Gm",
+                "orig": "Gm",
                 "quality": "min"
+              }
+            ],
+            [
+              {
+                "btn": "D",
+                "slot": 0,
+                "sound": "F",
+                "orig": "F",
+                "quality": "maj"
+              }
+            ],
+            [
+              {
+                "btn": "C",
+                "slot": 0,
+                "sound": "Eb",
+                "orig": "Eb",
+                "quality": "maj"
               }
             ],
             [
               {
                 "btn": "G",
                 "slot": 0,
-                "sound": "G",
-                "orig": "C",
+                "sound": "Bb",
+                "orig": "Bb",
+                "quality": "maj"
+              }
+            ]
+          ]
+        },
+        {
+          "name": "Outro",
+          "bars": [
+            [
+              {
+                "btn": "C",
+                "slot": 0,
+                "sound": "Eb",
+                "orig": "Eb",
+                "quality": "maj"
+              },
+              {
+                "btn": "D",
+                "slot": 0,
+                "sound": "F",
+                "orig": "F",
                 "quality": "maj"
               }
             ],
             [
               {
-                "btn": "F",
+                "btn": "G",
                 "slot": 0,
-                "sound": "F",
+                "sound": "Bb",
                 "orig": "Bb",
-                "quality": "maj"
-              },
-              {
-                "btn": "C",
-                "slot": 0,
-                "sound": "C",
-                "orig": "F",
                 "quality": "maj"
               }
             ]
@@ -10950,53 +10984,61 @@
       "percussiveReady": false,
       "stroke": "↓ ↓↑ ↑↓ ↑ (8분 스트럼, 89bpm)",
       "percussive": "",
-      "why": "B♭ 원곡을 -5반음 내린 F키. F·G·Em·Am 네 코드가 계속 돌아가고 모두 14버튼 안에 있어 Capo 0에서 슬롯 없이 완주합니다.",
+      "why": "이 녹음은 B♭장조라서 C폼에 Capo +3을 대면 C·D·Bm·Em·G 다섯 버튼이 E♭·F·Dm·Gm·B♭로 울립니다. 곡에 나오는 코드가 모두 14버튼 안에 있어 Capo +3에서 슬롯 없이 끝까지 칩니다.",
       "coverage": {
         "mapped": 5,
         "total": 5,
         "unmapped": 0
       },
-      "basis": "코드표 순서를 4박 마디 카드로 정리한 연습용 배치입니다. 원곡의 세부 마디 배치와 다를 수 있습니다.",
+      "basis": "공개 코드표(GuitarTabsExplorer · Capo 3 · Key C — Cadd9·Dsus·Bm·Em·G)의 절 순서를 4박 마디 카드로 정리하고, 2026-11-26 녹화 실측 코드 어휘(B♭·E♭·F·Gm·Dm·Cm)와 맞는지 확인한 연습용 배치입니다. 원곡의 세부 마디 배치와 다를 수 있습니다.",
       "evidence": [
         {
-          "label": "GuitarTabsExplorer (Capo 3, Key C)",
-          "url": "https://www.guitartabsexplorer.com/ai-tomioka/good-bye-bye-chords",
-          "note": "Cadd9 Dsus Bm Em / G, Chorus 코드 진행"
+          "label": "2026-11-26 주성 님 녹화 실측(DCS 남자 커버)",
+          "url": "https://youtu.be/aJIGwku9UlE",
+          "note": "B♭장조(보컬 스템 크로마 상관 B♭장조 0.81 · 반주 0.57) · 89.10bpm · 4/4 · 코드 어휘 B♭·E♭·F·Gm·Dm·Cm · 곡이 B♭으로 끝남"
         },
         {
-          "label": "Chord Of The Rinne (原曲BPM 89)",
-          "url": "https://www.chord-rinne.jp/scode.php?id=6110",
-          "note": "key C (Am) · 原曲BPM 89"
+          "label": "GuitarTabsExplorer 코드표 (Capo 3 · Key C)",
+          "url": "https://www.guitartabsexplorer.com/ai-tomioka/good-bye-bye-chords",
+          "note": "Cadd9·Dsus·Bm·Em·G — Capo 3에서 E♭·F·Dm·Gm·B♭로 울려 이 녹음과 같은 폼"
+        },
+        {
+          "label": "kokomu · ChordU (원곡 B♭장조)",
+          "url": "https://chordu.com/chords-tabs-ai-tomioka-good-bye-bye",
+          "note": "In Key Bb — 코드 F·E♭·Gm·B♭·Dm (2026-11-26 이전 조사 기록 유지)"
         },
         {
           "label": "원곡 조성 실측(주성 님 2026-11-24 반주 녹화)",
           "url": "https://youtu.be/i7kRQsCIvv0",
-          "note": "B♭장조 — 마지막 6초 크로마 A♯ 0.99 · 저음 루트 A♯ 0.40 (kokomu B♭長調 · ChordU Key Bb 와 일치)"
+          "note": "B♭장조 — 마지막 6초 크로마 A♯ 0.99 · 저음 루트 A♯ 0.40"
         }
       ],
       "remap": {
         "btnSet": 14,
-        "date": "2026-11-25",
+        "date": "2026-11-26",
         "mode": "easy-leftover",
-        "capoFrom": 2,
-        "capoTo": 0,
+        "capoFrom": 0,
+        "capoTo": 3,
         "slotsFrom": 0,
         "slotsTo": 0,
-        "keyFix": "2026-11-26 G → F (Capo 2 → 0)"
+        "keyFix": "2026-11-26 악보를 이 녹음 키(B♭)로 — F폼 Capo 0 → C폼 Capo +3"
       },
       "shapeInfo": {
-        "capo": 0,
+        "capo": 3,
         "chords": [],
         "note": "14버튼만으로 완주 — 손으로 잡을 코드가 없습니다."
       },
-      "keyNote": "2026-11-26 악보 키 정정: 원곡이 B♭장조로 확인돼(원곡 음원 실측 · 공개 코드표) 남자키 -5반음 = F장조로 악보·Capo를 다시 계산했습니다. 이전 악보는 C를 원곡 키로 잘못 잡아 실제 반주(F)보다 2반음 높은 G로 울렸습니다. 버튼 F·G·Em·Am 그대로 Capo 2 → 0."
+      "keyNote": "2026-11-26 녹화 음원 반영: 주성 님이 보낸 화면 녹화(DCS | Dallas Cover Studio 남자 커버, 4분 11초)에서 오디오를 뽑아 실측한 결과 이 녹음은 **B♭장조 · 89.10bpm · 4/4**입니다(원곡과 같은 조). 그래서 악보를 이 녹음에 맞춰 B♭로 올렸습니다 — 버튼 C·D·Bm·Em·G(14버튼)에 Capo +3, 실제로 울리는 코드는 E♭·F·Dm·Gm·B♭이고 손으로 잡을 코드는 0개입니다. 이전 악보(F장조 · F폼 Capo 0)는 이 녹음보다 5반음 낮아 반주에 맞춰 치면 조가 어긋났습니다."
     },
     "timeSignature": "4/4",
     "chartStage": 1,
-    "mrTitle": "Tomioka Ai - Good Bye-Bye 남자키(-5키) MR (주성 님 녹화)",
-    "mrNote": "주성 님 2026-11-24 화면 녹화(유튜브 「[Inst Ver. / MR] Ai Tomioka - Good bye...」 · @rendezvous18.6y6 · 3분 22초)에서 오디오만 추출 → -5반음 피치 시프트(템포·길이 그대로) · media/goodbye-bye-mr.mp3 (4.5MB) · 미니 플레이어에서 바로 재생, -6~+6반음 실시간 키 조절(2026-11-24) · 원본 영상 https://www.youtube.com/watch?v=YVbcUiPMBPM",
+    "mrTitle": "Good Bye-Bye 남자 커버 반주 (기타 살린 MR) · 주성 님 녹화",
+    "mrNote": "주성 님 2026-11-26 화면 녹화(유튜브 DCS | Dallas Cover Studio 「【グッバイバイ】冨岡愛 - Intimate Acoustic Pop (Male Cover)」 · 4분 11초)에서 오디오만 추출 → UVR MDX-NET Inst_HQ_5로 보컬 분리 + 기타 보존 후처리(보컬이 없는 구간은 원음 그대로, 4.5kHz 이상은 보컬을 55%만 제거해 기타의 밝기 유지) · 실측 B♭장조 89.10bpm · media/goodbye-bye-mr.mp3 (5.9MB · 4분 6.6초 · 192kbps · -17.2 LUFS) · 미니 플레이어에서 바로 재생, -6~+6반음 실시간 키 조절(템포 유지)",
     "mrSource": "user-recording",
-    "mrAudioUrl": "media/goodbye-bye-mr.mp3"
+    "mrAudioUrl": "media/goodbye-bye-mr.mp3",
+    "fullAudioUrl": "media/goodbye-bye-full.mp3",
+    "fullNote": "주성 님 2026-11-26 화면 녹화에서 오디오만 추출(앞 4.0초 무음·끝 페이드 정리, 길이·템포 그대로) · media/goodbye-bye-full.mp3 (5.9MB · 4분 6.6초 · 192kbps · -17.2 LUFS) · 같은 녹화에서 만든 MR과 같은 키(B♭장조)",
+    "mrUrl": ""
   },
   {
     "id": "restored-102",

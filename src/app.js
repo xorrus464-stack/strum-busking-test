@@ -75,6 +75,9 @@
      mrAudioUrl 은 'media/xxx.mp3' 같은 상대 경로(저장소 안 파일)나 https 음원 주소만 허용한다. */
   const mrAudioUrlOf = v => { const t=String(v||'').trim(); if(/^https?:\/\//i.test(t))return t; return /^[\w./-]+\.(mp3|m4a|wav|ogg)$/i.test(t)?t:''; };
   const mrAudioOf = s => mrAudioUrlOf(s&&s.mrAudioUrl);
+  /* 음악(원곡·풀트랙)도 같은 규칙으로 저장소 media/ 파일을 지원한다(2026-11-26).
+     fullAudioUrl 은 주성 님이 보낸 녹화에서 뽑은 연습용 음원 — MR과 같은 실시간 키 조절기를 쓴다. */
+  const fullAudioOf = s => mrAudioUrlOf(s&&s.fullAudioUrl);
   const hasMr = s => !!(s && (String(s.mrUrl||'').trim() || mrAudioOf(s)));
   const PLAYLIST_URL = seed.meta.originalPlaylist;
   const PLAYLIST_ID = seed.meta.playlistId;
@@ -393,7 +396,7 @@
       content=video?`<div class="player"><iframe title="${esc(s.title)} 영상 보기" src="https://www.youtube-nocookie.com/embed/${video}?rel=0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe></div><p class="tiny" style="margin-top:11px">재생이 제한되면 YouTube에서 직접 보기를 이용하세요.</p>`:`<div class="empty"><strong>${unavailable?'원본 영상을 재생할 수 없습니다.':'저장된 영상 링크가 없습니다.'}</strong>${unavailable?esc(status)+' — 원본 영상이 삭제·비공개·채널 해지되어 사이트에서 재생할 수 없습니다. 아래 YouTube 검색으로 곡명을 확인하세요.':'영상이 아직 확인되지 않았습니다. 검색 후 정확한 유튜브 주소를 곡 편집 화면에 저장하면 여기서 바로 재생됩니다.'}</div>`;
       content+=`<div class="row" style="flex-wrap:wrap;margin-top:14px"><button class="btn primary" data-act="youtube-search:${s.id}">YouTube에서 영상 찾기 ↗</button>${video?`<button class="btn outline" data-act="youtube-open:${s.id}">YouTube 직접 보기</button>`:''}${action('edit:'+s.id,'영상 주소 수정','btn outline')}</div>`;
     }else if(modal.kind==='music'){
-      let url=safeHttp(s.audioUrl);content=`<p class="tiny">음악 듣기는 소유하거나 이용 권한이 있는 MP3·오디오 URL 또는 휴대폰에 저장된 음원 파일로 재생합니다. YouTube 영상에서 음원을 무단 추출하거나 숨김 재생하지 않습니다.</p><div class="field" style="margin:13px 0"><label>휴대폰/PC에 저장한 오디오 파일 재생</label><input id="local-audio" type="file" class="input" accept="audio/*" /></div><div id="audio-mount">${url?`<audio class="audio-player" id="song-audio" controls preload="none" src="${esc(url)}"></audio>`:'<div class="hint">등록된 직접 재생용 음원 링크가 없습니다. 위에서 파일을 선택하거나 아래 버튼으로 음악 서비스를 이용하세요.</div>'}</div><div class="row" style="flex-wrap:wrap;margin-top:15px"><button class="btn primary" data-act="music-search:${s.id}">YouTube Music에서 찾기 ↗</button>${action('edit:'+s.id,'음원 URL 등록','btn outline')}</div>`;
+      let url=safeHttp(s.audioUrl)||fullAudioOf(s);content=`<p class="tiny">음악 듣기는 소유하거나 이용 권한이 있는 MP3·오디오 URL 또는 휴대폰에 저장된 음원 파일로 재생합니다. YouTube 영상에서 음원을 무단 추출하거나 숨김 재생하지 않습니다.${fullAudioOf(s)?' 이 곡은 주성 님이 보낸 녹화에서 오디오만 뽑아 둔 연습용 음원(media/)으로 재생합니다 — 실시간 키 조절도 됩니다.':''}</p><div class="field" style="margin:13px 0"><label>휴대폰/PC에 저장한 오디오 파일 재생</label><input id="local-audio" type="file" class="input" accept="audio/*" /></div><div id="audio-mount">${url?`<audio class="audio-player" id="song-audio" controls preload="none" src="${esc(url)}"></audio>`:'<div class="hint">등록된 직접 재생용 음원 링크가 없습니다. 위에서 파일을 선택하거나 아래 버튼으로 음악 서비스를 이용하세요.</div>'}</div><div class="row" style="flex-wrap:wrap;margin-top:15px"><button class="btn primary" data-act="music-search:${s.id}">YouTube Music에서 찾기 ↗</button>${action('edit:'+s.id,'음원 URL 등록','btn outline')}</div>`;
     }
     return `<div class="modal-layer" data-act="dismiss"><section class="modal ${modal.kind==='edit'||modal.kind==='new'?'wide':''}" role="dialog" aria-modal="true" aria-label="${esc(s?.title||'편집')}"><header class="modal-head"><div><div class="eyebrow">${modal.kind==='music'?'AUDIO PLAYER':modal.kind==='video'?'WATCH VIDEO':modal.kind==='mr'?'MR REGISTER':'EDIT DATA'}</div><h2>${modal.kind==='new'?'새 곡 등록':modal.kind==='source'?'원본 #'+modal.index+' 수정':modal.kind==='mr'?'MR 등록 — '+esc(s?.title||''):esc(s?.title||'곡 수정')}</h2>${s?.artist?`<div class="tiny">${esc(s.artist)}</div>`:''}</div><button class="icon-btn" aria-label="닫기" data-act="close">×</button></header>${content}</section></div>`;
   }
@@ -415,6 +418,8 @@
         /* MR 음원 파일(mrAudioUrl, 저장소 media/)도 같은 규칙으로 병합한다 */
         if(seedSong.mrAudioUrl&&!cur.mrEdited){for(const k of ['mrAudioUrl','mrTitle','mrNote','mrSource'])cur[k]=seedSong[k];}
         else if(!cur.mrAudioUrl && seedSong.mrAudioUrl){for(const k of ['mrAudioUrl','mrTitle','mrNote','mrSource'])cur[k]=seedSong[k];}
+        /* 음악(풀트랙) 음원 파일(fullAudioUrl, 저장소 media/)도 같은 규칙으로 병합한다 */
+        if(seedSong.fullAudioUrl&&!cur.fullAudioUrl){for(const k of ['fullAudioUrl','fullNote'])cur[k]=seedSong[k];}
         if(Array.isArray(cur.sourceIndices)){
           if(!cur.sourceIndices.length && seedSong.sourceIndices.length)cur.sourceIndices=seedSong.sourceIndices.slice();
           else for(const n of seedSong.sourceIndices) if(!cur.sourceIndices.includes(n)) cur.sourceIndices.push(n);
@@ -480,13 +485,13 @@
     if(!s)return;
     let kind=mode, url='';
     if(mode==='mr'){if(mrAudioOf(s))kind='mraudio';else url=s.mrUrl||'';}
-    else if(mode==='music'){if(safeHttp(s.audioUrl))kind='audio';else url=s.videoUrl;}
+    else if(mode==='music'){if(fullAudioOf(s))kind='mraudio';else if(safeHttp(s.audioUrl))kind='audio';else url=s.videoUrl;}
     else {url=s.videoUrl;}
     if(kind==='audio'){if(!safeHttp(s.audioUrl)){notice('등록된 음원이 없어 영상으로 재생합니다.');kind='music';url=s.videoUrl;}}
     const isAudio=kind==='audio'||kind==='mraudio';
     const vid=isAudio?'':ytId(url);
     if(!isAudio&&!vid){notice(mode==='mr'?'MR 링크가 없습니다. MR 없음 버튼으로 등록할 수 있습니다.':'재생할 영상 링크가 없습니다.');return;}
-    mini={kind:kind,songId:s.id,videoId:vid,audioUrl:kind==='audio'?safeHttp(s.audioUrl):kind==='mraudio'?mrAudioOf(s):'',title:displayTitle(s),sub:displayArtist(s),badge:mode==='mr'?'MR':mode==='music'?'음악':kind==='audio'?'음악':'영상',collapsed:false};
+    mini={kind:kind,songId:s.id,videoId:vid,audioUrl:kind==='audio'?safeHttp(s.audioUrl):kind==='mraudio'?(mode==='music'?fullAudioOf(s):mrAudioOf(s)):'',title:displayTitle(s),sub:displayArtist(s),badge:mode==='mr'?'MR':mode==='music'?'음악':kind==='audio'?'음악':'영상',collapsed:false};
     renderMini();
     if(kind==='mraudio'&&mrShiftOf(s.id)!==0)setTimeout(()=>applyMrShift(mrShiftOf(s.id)),350);
     notice(mode==='mr'?`${s.title} · MR(반주)를 미니 플레이어에서 재생합니다.`:`${s.title} · ${mini.badge} 재생 중 — 악보로 이동해도 꺼지지 않습니다.`);
@@ -519,7 +524,7 @@
     if(pitchCorePromise)return pitchCorePromise;
     pitchCorePromise=new Promise((resolve,reject)=>{
       const s=document.createElement('script');
-      s.src='src/pitch-grain.js?v=25';s.async=true;
+      s.src='src/pitch-grain.js?v=26';s.async=true;
       s.onload=()=>window.StrumPitchCore?resolve(window.StrumPitchCore):reject(new Error('pitch-grain missing'));
       s.onerror=()=>reject(new Error('pitch-grain load failed'));
       document.head.appendChild(s);
@@ -566,7 +571,7 @@
     let g=null;
     if(ctx.audioWorklet&&typeof ctx.audioWorklet.addModule==='function'){
       try{
-        await ctx.audioWorklet.addModule('src/pitch-worklet.js?v=25');
+        await ctx.audioWorklet.addModule('src/pitch-worklet.js?v=26');
         const node=new AudioWorkletNode(ctx,'strum-pitch',{numberOfInputs:1,numberOfOutputs:1,outputChannelCount:[2],parameterData:{ratio:1}});
         g={ctx,src,node,mode:'worklet',el:audioEl,ratio:1,wired:false};
       }catch(err){g=null;}
@@ -617,7 +622,7 @@
       ?`<audio class="mini-audio" id="mini-audio" controls autoplay preload="none" src="${esc(mini.audioUrl)}"></audio>`
       :`<div class="mini-frame"><iframe src="${esc(ytEmbed(mini.videoId))}" title="${esc(mini.title)} ${esc(mini.badge)} 재생" allow="autoplay; encrypted-media; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe></div>`;
     const link=mini.kind==='audio'?musicSearch(s||{title:mini.title,artist:mini.sub}):mini.kind==='mraudio'?esc(mini.audioUrl):esc(watch);
-    const linkLabel=mini.kind==='mraudio'?'MR 음원 ↗':'YouTube ↗';
+    const linkLabel=mini.badge==='MR'?'MR 음원 ↗':mini.kind==='mraudio'?'음원 파일 ↗':'YouTube ↗';
     miniRoot.innerHTML=`<section class="mini-player ${mini.collapsed?'collapsed':''}" id="mini-player" aria-label="하단 미니 플레이어">
       <div class="mini-info"><span class="mini-badge">${esc(mini.badge)}</span><div class="mini-text"><b>${esc(mini.title)}</b><span>${esc(mini.sub)}</span></div></div>
       ${body}
@@ -691,7 +696,7 @@
     case 'chart':modal={kind:'chart',id:value,tab:'chart'};render();return;
     case 'chart-tab':if(modal){modal.tab=value;render();}return;
     case 'metro-song':{const s=song(value),c=s&&chartOf(s);if(c){state.settings.bpm=Math.max(40,Math.min(180,Math.round(c.bpm||state.settings.bpm)));state.settings.timeSignature=c.timeSignature||state.settings.timeSignature;state.settings.focusSongId=s.id;save();if(metronome){stopMetro();}modal=null;setTab('practice');notice(`${s.title} · ${state.settings.bpm}BPM · ${state.settings.timeSignature} 메트로놈으로 연습을 준비했습니다.`);}else notice('이 곡은 아직 악보 검수 대기입니다.');return;}
-    case 'video':case 'music':{const s=song(value);if(!s)return;if(cmd==='music'&&!safeHttp(s.audioUrl)&&!s.videoUrl){audioStop();modal={kind:'music',id:value};render();return;}openMini(cmd,s);return;}
+    case 'video':case 'music':{const s=song(value);if(!s)return;if(cmd==='music'&&!safeHttp(s.audioUrl)&&!fullAudioOf(s)&&!s.videoUrl){audioStop();modal={kind:'music',id:value};render();return;}openMini(cmd,s);return;}
     case 'mr':{const s=song(value);if(!s)return;if(hasMr(s)){openMini('mr',s);return;}modal={kind:'mr',id:value,from:modal&&modal.kind==='chart'?'chart':''};render();return;}
     case 'mini-close':closeMini();return;
     case 'mini-collapse':if(mini){mini.collapsed=!mini.collapsed;renderMini();}return;

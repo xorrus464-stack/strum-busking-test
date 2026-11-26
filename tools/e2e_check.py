@@ -279,7 +279,7 @@ def run(pw, name, viewport, mobile=False):
                                      ('toy-mr.mp3', 242, '나는 버려질 장난감'), ('weather-mr.mp3', 189, '날씨가 좋고 바람도 좋아'),
                                      # 2026-11-24 주성 님 녹화 → -5반음(남자키) MP3
                                      ('shannon-sabyeol-mr.mp3', 215, '死別'), ('choiyuri-saenggak-mr.mp3', 197, '생각을 멈추다 보면'),
-                                     ('goodbye-bye-mr.mp3', 195, 'Good Bye-Bye'), ('kisum-seo-eoreun-mr.mp3', 168, '서, 어른')):
+                                     ('goodbye-bye-mr.mp3', 247, 'Good Bye-Bye'), ('kisum-seo-eoreun-mr.mp3', 168, '서, 어른')):
         head = page.request.get(f'http://127.0.0.1:{PORT}/media/{fname}')
         check(f'{name}: MR 음원 서빙(media/{fname})',
               head.status == 200 and int(head.headers.get('content-length', 0)) > 1_000_000,
@@ -305,6 +305,44 @@ def run(pw, name, viewport, mobile=False):
         page.click('[data-act="mini-close"]')
         page.fill('#song-search', '')
         page.wait_for_timeout(150)
+
+    # 2026-11-26 Good Bye-Bye: 음악(풀트랙)도 저장소 media/ 음원으로 재생 + 실시간 키 조절 + 악보 B♭ Capo +3
+    head = page.request.get(f'http://127.0.0.1:{PORT}/media/goodbye-bye-full.mp3')
+    check(f'{name}: 음악 음원 서빙(media/goodbye-bye-full.mp3)',
+          head.status == 200 and int(head.headers.get('content-length', 0)) > 5_000_000,
+          f"{head.status} {head.headers.get('content-length')}")
+    page.fill('#song-search', 'Good Bye-Bye')
+    page.wait_for_timeout(300)
+    gb = page.locator('.song-row', has_text='Good Bye-Bye').first
+    gb_txt = gb.inner_text()
+    check(f'{name}: Good Bye-Bye 카드 키 표기(Bb · Capo +3)', 'Bb' in gb_txt and 'Capo +3' in gb_txt, gb_txt[:120])
+    gb.locator('button', has_text='음악').click()
+    page.wait_for_selector('.mini-player audio#mini-audio')
+    f_src = page.locator('.mini-player audio#mini-audio').get_attribute('src') or ''
+    check(f'{name}: Good Bye-Bye 음악 = 로컬 음원 <audio>', 'media/goodbye-bye-full.mp3' in f_src, f_src)
+    check(f'{name}: Good Bye-Bye 음악 배지', page.locator('.mini-badge').inner_text().strip() == '음악')
+    check(f'{name}: Good Bye-Bye 음악도 실시간 키 조절 표시', page.locator('#mini-key').count() == 1)
+    page.wait_for_function(
+        "() => { const a = document.querySelector('#mini-audio'); return !!a && a.readyState >= 1 && a.duration > 200; }",
+        timeout=20000)
+    furl = page.evaluate("() => document.querySelector('#mini-audio').duration")
+    check(f'{name}: Good Bye-Bye 음악 길이 확인(247초)', abs(furl - 247) < 8, str(furl))
+    page.click('[data-act="mini-shift:-1"]')
+    page.wait_for_timeout(400)
+    check(f'{name}: Good Bye-Bye 음악 -1키 표시', page.locator('#mini-key-label').inner_text().strip() == '-1키',
+          page.locator('#mini-key-label').inner_text())
+    page.click('[data-act="mini-close"]')
+    page.fill('#song-search', 'Good Bye-Bye')
+    page.wait_for_timeout(250)
+    page.locator('.song-row', has_text='Good Bye-Bye').first.locator('button', has_text='악보').click()
+    page.wait_for_selector('.chart-modal')
+    cm = page.locator('.chart-modal').inner_text()
+    check(f'{name}: Good Bye-Bye 악보 C폼 · Capo +3', 'Capo +3' in cm and 'C폼' in cm, cm[:200])
+    check(f'{name}: Good Bye-Bye 악보 원곡·남자키 Bb', ('B♭' in cm or 'Bb' in cm), cm[:200])
+    check(f'{name}: Good Bye-Bye 슬롯 0 안내', '슬롯' not in cm or '손으로 잡을 코드 없음' in cm or '14버튼만으로' in cm, cm[:200])
+    page.click('[data-act="close"]')
+    page.fill('#song-search', '')
+    page.wait_for_timeout(200)
 
     page.click('[data-nav="roadmap"]')
     body = page.content()
@@ -407,7 +445,7 @@ def run_merge(pw):
     check('merge: 남자키 배지 병합', page.locator('.song-row', has_text='오늘').first.inner_text().find('남자키') >= 0)
     state = json.loads(page.evaluate("() => localStorage.getItem('strum-busking-v2')"))
     song = [s for s in state['songs'] if s['id'] == 'verified-001'][0]
-    check('merge: seedVersion 24', state['seedVersion'] == 24, str(state['seedVersion']))
+    check('merge: seedVersion 25', state['seedVersion'] == 25, str(state['seedVersion']))
     check('merge: MR 링크 병합', song.get('mrUrl', '').endswith('hwZqHCMmjUM'), str(song.get('mrUrl')))
     check('merge: 숙련도 보존', song['level'] == '버스킹 가능', song['level'])
     check('merge: 사용자 메모 보존', song['notes'] == '내 메모', song['notes'])
@@ -426,7 +464,7 @@ def run_merge(pw):
         item = [s for s in state['songs'] if s['id'] == sid][0]
         check(f'merge: MR 음원 병합({sid})', item.get('mrAudioUrl') == fname, str(item.get('mrAudioUrl')))
         check(f'merge: MR 음원 출처({sid})',
-              item.get('mrSource') == 'user-recording' and ('AI 보컬 제거' in (item.get('mrNote') or '') or '남자키(-5키)' in (item.get('mrTitle') or '')),
+              item.get('mrSource') == 'user-recording' and ('AI 보컬 제거' in (item.get('mrNote') or '') or '남자키(-5키)' in (item.get('mrTitle') or '') or 'MDX-NET' in (item.get('mrNote') or '')),
               str(item.get('mrNote'))[:60])
         if sid in ('verified-014', 'verified-019', 'playlist-170', 'playlist-174', 'restored-100', 'playlist-159'):
             check(f'merge: 원키 YouTube MR 비움({sid})', not item.get('mrUrl'), str(item.get('mrUrl')))

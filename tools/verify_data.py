@@ -135,7 +135,7 @@ for s in songs:
         assert not s['videoUrl'], s['id']
 
 # 10) 메타 집계
-assert meta['seedVersion'] == 24, meta['seedVersion']
+assert meta['seedVersion'] == 25, meta['seedVersion']
 assert meta['buttonCount'] == 14 and len(meta['buttonSet']) == 14, meta.get('buttonCount')
 assert meta['chartVersion'] == '2026-11-25', meta['chartVersion']
 assert meta['videoLinkCount'] == 201 and meta['videoLinkFilledCount'] == 36
@@ -428,7 +428,7 @@ LOCAL_MR_FILES = {
     'verified-019': ('media/choiyuri-saenggak-mr.mp3', '생각을 멈추다 보면', 3_500_000),
     'playlist-170': ('media/choiyuri-saenggak-mr.mp3', '생각을 멈추다 보면', 3_500_000),
     'playlist-174': ('media/choiyuri-saenggak-mr.mp3', '생각을 멈추다 보면', 3_500_000),
-    'restored-100': ('media/goodbye-bye-mr.mp3', 'Good Bye-Bye', 3_500_000),
+    'restored-100': ('media/goodbye-bye-mr.mp3', 'Good Bye-Bye', 5_000_000),
     'playlist-159': ('media/kisum-seo-eoreun-mr.mp3', '서, 어른', 3_000_000),
 }
 with_yt = [s for s in songs if s.get('mrUrl')]
@@ -462,7 +462,7 @@ for s in with_local:
     assert s['mrAudioUrl'] == fname, (s['id'], s['mrAudioUrl'])
     assert s.get('mrSource') == 'user-recording', (s['id'], s.get('mrSource'))
     assert s.get('mrTitle') and word in s['mrTitle'], (s['id'], s.get('mrTitle'))
-    assert s.get('mrNote') and ('2026-11-23' in s['mrNote'] or '2026-11-24' in s['mrNote']), (s['id'], 'MR 음원 등록 근거 없음')
+    assert s.get('mrNote') and ('2026-11-23' in s['mrNote'] or '2026-11-24' in s['mrNote'] or '2026-11-26' in s['mrNote']), (s['id'], 'MR 음원 등록 근거 없음')
     assert s['category'] != 'reference', (s['id'], '참고 영상에 MR 금지')
     key = (s.get('workTitle') or s['title'], s.get('workArtist') or s['artist'])
     sig = 'audio:' + s['mrAudioUrl']
@@ -505,14 +505,13 @@ assert coffee['mrAudioUrl'] == 'media/coffee-mr.mp3' and coffee['mrSource'] == '
 assert 'AI 보컬 제거' in coffee['mrNote'] and 'UVR Online MDX VocFT' in coffee['mrNote'], coffee['mrNote']
 assert not coffee.get('mrUrl'), 'MR 음원으로 연결한 곡은 YouTube MR 비움'
 assert coffee['category'] == 'original', coffee['category']
-assert meta['mrVersion'] == '2026-11-24'
+assert meta['mrVersion'] == '2026-11-26'
 # 2026-11-24 -5반음(남자키) MP3 반주 4곡 6개 항목: 원키 YouTube MR 태그를 지우고 mrAudioUrl 로 교체
 MOVED_TO_LOCAL = {
     'verified-014': ('media/shannon-sabyeol-mr.mp3', '死別', 'cLUNCLUE7pk'),
     'verified-019': ('media/choiyuri-saenggak-mr.mp3', '생각을 멈추다 보면', 'Jp4uNTmxiAY'),
     'playlist-170': ('media/choiyuri-saenggak-mr.mp3', '생각을 멈추다 보면', 'Jp4uNTmxiAY'),
     'playlist-174': ('media/choiyuri-saenggak-mr.mp3', '생각을 멈추다 보면', 'Jp4uNTmxiAY'),
-    'restored-100': ('media/goodbye-bye-mr.mp3', 'Good Bye-Bye', 'YVbcUiPMBPM'),
     'playlist-159': ('media/kisum-seo-eoreun-mr.mp3', '서, 어른', 'ige-TSCG5vc'),
 }
 for sid, (fname, word, src_vid) in MOVED_TO_LOCAL.items():
@@ -525,7 +524,7 @@ for sid, (fname, word, src_vid) in MOVED_TO_LOCAL.items():
     assert '5키 필요' not in item['mrNote'], (sid, '원키 MR 표시가 남아 있음')
     assert '남자키 MP3 반주' in item['notes'] and '2026-11-24' in item['notes'], (sid, '반영 근거 누락')
 assert by_id['verified-019']['mrAudioUrl'] == by_id['playlist-170']['mrAudioUrl'] == by_id['playlist-174']['mrAudioUrl']
-assert len({by_id[sid]['mrAudioUrl'] for sid in MOVED_TO_LOCAL}) == 4
+assert len({by_id[sid]['mrAudioUrl'] for sid in MOVED_TO_LOCAL}) == 3
 # 2026-11-23 순수 MR 재검수(seed v18): AI 보컬 제거 반주 2건을 MR 음원 파일로 연결
 for sid, fname, min_bar in (('verified-017', 'media/toy-mr.mp3', 49), ('verified-021', 'media/weather-mr.mp3', 70)):
     item = by_id[sid]
@@ -544,16 +543,47 @@ assert by_id['verified-021']['chart']['bpm'] == 90 and '90.00' in by_id['verifie
 assert sum(len(x['bars']) for x in by_id['verified-021']['chart']['sections']) == 70
 assert meta['mrDisclosure'] and 'oEmbed' in meta['mrDisclosure']
 
-# 12-b) 2026-11-26 restored-100 악보 키 정정: 원곡 B♭ · 남자키 F · Capo 0 (이전 악보 G)
+# 12-b) 2026-11-26 restored-100: 주성 님 녹화 음원 실측 B♭장조(89.10bpm)에 악보를 맞춤 — C폼 · Capo +3
 _c = by_id['restored-100']['chart']
-assert _c['originalKey'] == 'Bb' and _c['maleKey'] == 'F' and _c['capo'] == 0, (_c['originalKey'], _c['maleKey'], _c['capo'])
-assert by_id['restored-100']['maleKey'] == 'F' and by_id['restored-100']['key'] == 'Bb'
+_ITEM = by_id['restored-100']
+assert _c['originalKey'] == 'Bb' and _c['maleKey'] == 'Bb' and _c['capo'] == 3, (_c['originalKey'], _c['maleKey'], _c['capo'])
+assert _c['maleShift'] == 0 and _c['formButton'] == 'C' and _c['formKey'] == 'Bb' and 'Capo +3' in _c['formText'], _c['formText']
+assert _ITEM['maleKey'] == 'Bb' and _ITEM['key'] == 'Bb'
+assert _c['bpm'] == 89 and '89.10' in _c['bpmNote'], _c['bpmNote']
+BUTTONS14 = set(meta['buttonSet'])
 _sounds = {cell['sound'] for sec in _c['sections'] for bar in sec['bars'] for cell in bar}
-assert _sounds <= {'F', 'G', 'Em', 'Am', 'C'}, _sounds
+_btns = {cell['btn'] for sec in _c['sections'] for bar in sec['bars'] for cell in bar}
+assert _sounds == {'Bb', 'Eb', 'F', 'Gm', 'Dm'}, _sounds          # 녹음 실측 코드 어휘와 일치
+assert _btns <= BUTTONS14 and _btns == {'C', 'D', 'Bm', 'Em', 'G'}, _btns
+assert not _c['slots'], '슬롯 0으로 완주해야 함'
+for sec in _c['sections']:
+    for bar in sec['bars']:
+        for cell in bar:
+            assert cell['slot'] == 0
+            assert pc_of(cell['btn']) is not None and (pc_of(cell['btn']) + 3) % 12 == pc_of(cell['sound']), (cell['btn'], cell['sound'])
+            assert cell['orig'] == cell['sound'], cell          # 녹음이 원곡과 같은 조
+assert sum(len(x['bars']) for x in _c['sections']) == 28, '마디 28개'
+assert _c['coverage']['mapped'] == 5 and _c['coverage']['unmapped'] == 0, _c['coverage']
+assert '2026-11-26' in _c['keyNote'] and 'B♭' in _c['keyNote'], _c['keyNote'][:40]
+
+# 12-c) 2026-11-26 녹화 음원: 음악(풀트랙) + MR 둘 다 저장소 media/ 파일
+assert _ITEM['fullAudioUrl'] == 'media/goodbye-bye-full.mp3' and _ITEM['fullNote']
+assert _ITEM['mrAudioUrl'] == 'media/goodbye-bye-mr.mp3' and _ITEM['mrSource'] == 'user-recording'
+assert '2026-11-26' in _ITEM['mrNote'] and 'MDX-NET' in _ITEM['mrNote'] and 'B♭' in _ITEM['mrNote'], _ITEM['mrNote'][:60]
+assert 'Good Bye-Bye' in _ITEM['mrTitle'], _ITEM['mrTitle']
+assert not _ITEM.get('mrUrl'), 'MR 음원으로 연결한 곡은 YouTube MR 비움'
+for _f, _min in (('media/goodbye-bye-full.mp3', 5_000_000), ('media/goodbye-bye-mr.mp3', 5_000_000)):
+    _p = BASE / _f
+    assert _p.exists() and _p.stat().st_size >= _min, (_f, _p.stat().st_size if _p.exists() else 'missing')
+assert len([s for s in songs if s.get('fullAudioUrl')]) == 1, '음악 로컬 음원은 이 곡 하나'
+for s in songs:
+    if s.get('fullAudioUrl'):
+        assert re.fullmatch(r'media/[\w.\-]+\.(mp3|m4a|ogg|wav)', s['fullAudioUrl']), (s['id'], s['fullAudioUrl'])
 
 # 13) 2026-11-23 여자 원곡 → 남자키 MR·남자 풀커버 영상 정리 (seed v20)
 FEMALE = [s for s in songs if s['category'] != 'reference' and s.get('key') != s.get('maleKey')]
-assert len(FEMALE) == 43, len(FEMALE)
+# 2026-11-26 restored-100 은 녹음이 원곡과 같은 조(B♭)라 key == maleKey 가 됐다 → 43 → 42
+assert len(FEMALE) == 42, len(FEMALE)
 MALE_MARK = re.compile(r'남자키|남자 키|남키|남Key|남자 ver|남자 버전|Male Key|male key|Man Ver|남자key|男性キー', re.I)
 # 「잠깐 시간 될까」는 원곡자(이무진)가 남자라 이미 남자 키 반주를 쓰고 있다(주성 님 지정).
 MALE_ORIGINAL_KEEP = {'playlist-057', 'playlist-058'}

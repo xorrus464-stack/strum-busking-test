@@ -114,6 +114,8 @@ STRUM_busking_source/
 - `audioUrl`: 본인이 사용권을 가진 오디오 링크(없으면 빈 문자열)
 - `mrUrl`: MR/Inst/노래방 반주 YouTube 링크(YouTube oEmbed 200 + 제목 표기 확인, 없으면 빈 값)
 - `mrTitle`, `mrChannel`, `mrNote`, `mrSource`: 확인한 MR 영상 제목·채널·근거(`youtube`/`zip`/`user`)
+- `mrAudioUrl`: 저장소에 함께 올린 MR 음원 파일 경로(예: `media/goodbye-bye-mr.mp3`). 있으면 MR 버튼이 YouTube 대신 이 파일을 하단 미니 플레이어 `<audio>`로 재생하고 **-6~+6반음 실시간 키 조절**을 쓴다(2026-11-23~).
+- `fullAudioUrl`, `fullNote`: 같은 방식의 **음악(풀트랙)** 로컬 음원 경로와 근거(2026-11-26). 있으면 `음악` 버튼도 YouTube 대신 이 파일을 재생하며 키 조절이 된다.
 - `key`, `maleKey`, `bpm`, `timeSignature`: 원곡 키 / 남자키 / 템포 / 박자(모르면 '미확정' 또는 null)
 - `chart`: 원터치 악보 데이터 — `originalKey`, `maleKey`, `maleShift`, `capo`, `formText`, `timeSignature`, `bpm`,
   `sections[{name, bars[[{btn, slot, sound, orig}]]}]`, `slots[{slot, chord, orig, alt}]`, `stage`, `percussiveReady`,
@@ -152,6 +154,7 @@ CSV 열은 `title,artist` 필수이며 `sourceIndices`는 `6|65`처럼 복수 �
 ## 버전/작업 성격
 
 - 2026-11-22 · 피클 인계 독립 복원본 v3 (seed v14 · 미니 플레이어·MR)
+- 2026-11-26 · seed v25 · 캐시 v26 — Good Bye-Bye(restored-100)에 주성 님 녹화 음원(음악·MR) 연결, 실측 B♭장조에 맞춰 악보 C폼 Capo +3으로 재세팅(`docs/굿바이바이_녹화음원_MR_2026-11-26.md`)
 - 브라우저 데이터 키 `strum-busking-v2`를 사용합니다.
 - 기타 학습 내용을 복원했지만 **원본 Sites에서 기존에 저장한 사용자의 데이터는 불러오지 못한 상태**입니다.
 
