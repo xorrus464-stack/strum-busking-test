@@ -1198,7 +1198,14 @@
     if(e.target.name==='mode'&&currentTab==='settings'){state.settings.mode=e.target.value;save();return;}
     if(e.target.name==='ts'&&currentTab==='settings'){state.settings.timeSignature=e.target.value;save();if(metronome){stopMetro();startMetro();}else render();return;}
   });
-  document.addEventListener('keydown',e=>{if(e.key==='Escape'&&modal)closeModal();});
+  document.addEventListener('keydown',e=>{
+    if(e.key==='Escape'&&modal){closeModal();return;}
+    /* 악보 마디는 tabindex 로도 열 수 있게 — Enter/Space 로 그 마디부터 재생 */
+    if(e.key==='Enter'||e.key===' '){
+      const bar=e.target&&e.target.closest?e.target.closest('.bar[data-act]'):null;
+      if(bar){e.preventDefault();handleAction(bar.dataset.act);}
+    }
+  });
   window.addEventListener('resize',()=>{if(mini)syncMiniHeight();});
   window.addEventListener('beforeunload',()=>{stopMetro();});
   /* 홈 화면에 추가 / 앱 설치(PWA) — 서비스 워커 등록. 실패해도 앱 동작에는 영향 없음. */

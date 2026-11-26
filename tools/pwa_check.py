@@ -96,6 +96,11 @@ check('sw.js: network-first(fetch 후 catch에서 캐시)', 'fetch(req).then' in
 check('sw.js: 앱 셸 프리캐시', "'./src/app.js'" not in sw and "'./index.html'" in sw)
 app = (BASE / 'src' / 'app.js').read_text(encoding='utf-8')
 check('app.js: sw.js 등록', "navigator.serviceWorker.register('./sw.js')" in app)
+# 2026-11-27 새 기능(14버튼 배치표·마디 싱크·배속)도 앱 셸과 함께 배포되는지
+css = (BASE / 'src' / 'styles.css').read_text(encoding='utf-8')
+check('app.js: 14버튼 배치표·마디 싱크', "aeroPad" in app and "aero-strip" in app and "seek-bar" in app and "mini-rate" in app)
+check('styles.css: 배치표·타임라인·배속 스타일', ".aero-pad" in css and ".aero-strip" in css and ".mini-rate" in css and ".timing-strip" in css)
+check('seed.js: 최적 14버튼(B·Bdim 아님)', '"buttonSet":["C","Dm","Em","F","G","Am","B"' in (BASE / 'src' / 'seed.js').read_text(encoding='utf-8'))
 seed_ver = re.search(r'seedVersion":(\d+)', (BASE / 'src' / 'seed.js').read_text(encoding='utf-8'))
 check('seed.js seedVersion <= 자산 버전', seed_ver and int(seed_ver.group(1)) <= int(CUR_VER),
       f"seed {seed_ver.group(1) if seed_ver else 'none'} / asset {CUR_VER}")
@@ -143,6 +148,11 @@ with sync_playwright() as pw:
 
     app_ok = page.evaluate("() => document.querySelector('#app').textContent.length > 200")
     check('앱 렌더 정상(SW 등록 후)', app_ok)
+    # 2026-11-27 새 기능(14버튼 배치표)도 서비스 워커가 제어하는 페이지에서 그려지는지
+    page.click('[data-nav="practice"]')
+    page.wait_for_selector('.aero-pad .pad-btn', timeout=8000)
+    pad_n = page.locator('.aero-pad .pad-btn').count()
+    check('14버튼 배치표 14개(SW 등록 후)', pad_n == 14, str(pad_n))
     check('콘솔 에러 0', len(errors) == 0, str(errors[:3]))
     browser.close()
 
