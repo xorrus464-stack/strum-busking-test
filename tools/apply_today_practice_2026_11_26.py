@@ -4,7 +4,7 @@
 - data/week-plan.json 이 원본이다(각 Day 의 chords/chordsNote 추가분 포함).
 - src/app.js 의 CHORD_SHAPES 에 있는 코드만 Day 코드로 쓸 수 있는지 확인한다.
 - seed.js 끝의 lessons/weekPlan 블록을 다시 쓰고, meta.seedVersion 26 → 27.
-- index.html 의 ?v=27 → ?v=28, sw.js 의 캐시 이름 v27 → v28 도 함께 올린다.
+- index.html 의 ?v= 를 올리고, sw.js 의 캐시 이름도 같은 번호로 올린다.
 
 실행: python3 tools/apply_today_practice_2026_11_26.py
 """
@@ -15,7 +15,7 @@ import re
 BASE = pathlib.Path(__file__).resolve().parents[1]
 MARK = '\n/* 주간 연습 · 오른손 주법 강좌 (2026-11-26) */\n'
 NEXT_SEED = 27
-NEXT_CACHE = 28
+NEXT_CACHE = 29
 
 lessons = json.loads((BASE / 'data' / 'lessons.json').read_text(encoding='utf-8'))
 week = json.loads((BASE / 'data' / 'week-plan.json').read_text(encoding='utf-8'))
