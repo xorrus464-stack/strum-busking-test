@@ -203,7 +203,7 @@
   const weekDoneCount = () => {const p=weekState();return Object.keys(p.days).filter(k=>p.days[k]).length;};
   const goalSong = () => {const p=weekState();return song(p.goalSongId) || (WEEK_PLAN.recommended&&WEEK_PLAN.recommended[0] ? song(WEEK_PLAN.recommended[0].songId) : null);};
   /* 목표곡 후보 — 14버튼만으로 완주(슬롯 0)하고 MR이 연결된 곡만 */
-  const zeroSlotMrSongs = () => ordered().filter(s=>{const c=chartOf(s);return !!(c && (c.slots||[]).length===0 && hasMr(s));});
+  const zeroSlotMrSongs = () => ordered().filter(s=>{const c=chartOf(s);return !!(c && (c.slots||[]).length===0 && hasMr(s) && Number.isFinite(c.bpm) && c.bpm>0);});
   const ytWatch = id => 'https://www.youtube.com/watch?v='+id;
   const lessonUrl = l => ytWatch(l.video.id);
   function weekDayCard(d,p,goal,gc){
@@ -230,14 +230,14 @@
     const p=weekState(),days=WEEK_PLAN.days||[],done=weekDoneCount(),goal=goalSong(),gc=goal?chartOf(goal):null;
     const recCards=(WEEK_PLAN.recommended||[]).map(r=>{const s=song(r.songId);if(!s)return '';const c=chartOf(s);const on=p.goalSongId===s.id;return `<button type="button" class="week-rec ${on?'on':''}" data-act="week-goal:${esc(s.id)}"><span class="week-rec-lv">${esc(r.label)}</span><b>${esc(displayTitle(s))}</b><span class="tiny">${esc(displayArtist(s))}${c?` · ${esc(c.maleKey)}키 · Capo +${c.capo} · ${c.bpm}BPM`:''}</span><small>${esc(r.why)}</small></button>`;}).join('');
     const options=zeroSlotMrSongs();
-    const goalLine=goal&&gc?`<div class="focus-strip"><div><b>이번 주 목표곡 · ${esc(displayTitle(goal))}</b><div class="tiny">${esc(displayArtist(goal))} · ${esc(gc.maleKey)}키 · Capo +${gc.capo} · ${esc(gc.timeSignature)} · ${gc.bpm}BPM · 14버튼만으로 완주</div></div><div class="row" style="flex-wrap:wrap;gap:6px">${action('chart:'+goal.id,'악보','btn small')}${action('mr:'+goal.id,'MR','btn accent small')}</div></div>`:'<p class="tiny">목표곡을 고르면 여기에 악보·MR 버튼이 나옵니다.</p>';
+    const goalLine=goal&&gc?`<div class="focus-strip"><div><b>이번 주 목표곡 · ${esc(displayTitle(goal))}</b><div class="tiny">${esc(displayArtist(goal))} · ${esc(gc.maleKey)}키${Number.isFinite(gc.capo)?` · Capo +${gc.capo}`:''} · ${esc(gc.timeSignature||'4/4')}${gc.bpm?` · ${gc.bpm}BPM`:''} · 14버튼만으로 완주</div></div><div class="row" style="flex-wrap:wrap;gap:6px">${action('chart:'+goal.id,'악보','btn small')}${action('mr:'+goal.id,'MR','btn accent small')}</div></div>`:'<p class="tiny">목표곡을 고르면 여기에 악보·MR 버튼이 나옵니다.</p>';
     return `${head('WEEKLY PLAN','주간 연습 · Day 1~7','한 주 동안 오른손 주법을 하나씩 얹어 목표곡을 완주합니다.')}
     <div class="alert" style="margin-bottom:14px">${esc(WEEK_PLAN.intro||'')}</div>
     <div class="week-top">
       <div class="card week-goal-card"><div class="row between"><h3>이번 주 완성 목표곡</h3><span class="tag">14버튼 · MR 있음</span></div>
         <p class="tiny" style="margin:4px 0 12px">버튼 14개만으로 끝까지 칠 수 있고 MR이 연결된 곡만 골랐습니다. 하나 고르고 7일 동안 같은 곡을 씁니다.</p>
         <div class="week-recs">${recCards}</div>
-        <div class="field" style="margin-top:12px"><label>다른 곡에서 고르기 · ${options.length}곡</label><select id="week-goal-select" class="input"><option value="">곡 선택</option>${options.map(s=>{const c=chartOf(s);return `<option value="${esc(s.id)}" ${p.goalSongId===s.id?'selected':''}>${esc(displayTitle(s))} — ${esc(displayArtist(s))}${c?` · ${c.bpm}BPM`:''}</option>`;}).join('')}</select></div>
+        <div class="field" style="margin-top:12px"><label>다른 곡에서 고르기 · ${options.length}곡</label><select id="week-goal-select" class="input"><option value="">곡 선택</option>${options.map(s=>{const c=chartOf(s);return `<option value="${esc(s.id)}" ${p.goalSongId===s.id?'selected':''}>${esc(displayTitle(s))} — ${esc(displayArtist(s))}${c&&c.bpm?` · ${c.bpm}BPM`:''}</option>`;}).join('')}</select></div>
         ${goalLine}
       </div>
       <div class="card week-progress-card"><div class="eyebrow">THIS WEEK</div><div class="metric">${done}<span> / ${days.length}일</span></div><div class="progress" style="margin:8px 0 10px"><i style="width:${Math.min(100,Math.round(done/Math.max(1,days.length)*100))}%"></i></div><p class="tiny">${p.startedAt?`${esc(p.startedAt)} 시작`:'아직 시작 전'} · 체크는 이 브라우저에 저장됩니다.</p><div class="divider"></div><div class="week-days-mini">${days.map(d=>`<span class="${p.days[d.day]?'done':''}">D${d.day}</span>`).join('')}</div><div class="row" style="margin-top:12px;flex-wrap:wrap;gap:6px">${action('start-practice','오늘의 연습 열기','btn primary small')}${done?action('week-reset','이번 주 초기화','btn outline small'):''}</div></div>
