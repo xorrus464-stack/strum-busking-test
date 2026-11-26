@@ -39,9 +39,10 @@ if MARK in text:
     text = text[:text.index(MARK)]
 text = text.rstrip('\n')
 
-before = text.count('"seedVersion":25')
-assert before == 1, before
-text = text.replace('"seedVersion":25', '"seedVersion":26', 1)
+# 이미 26 이면 그대로 둔다(재실행해도 안전)
+if '"seedVersion":25' in text:
+    text = text.replace('"seedVersion":25', '"seedVersion":26', 1)
+assert '"seedVersion":26' in text
 
 block = (
     MARK
@@ -60,7 +61,7 @@ meta['lessonVersion'] = lessons['version']
 meta['lessonNote'] = (
     '2026-11-26 주간 연습(Day 1~7)과 오른손 주법 강좌 9개를 추가했습니다. 강좌 영상은 '
     'YouTube oEmbed HTTP 200으로 제목·채널을 확인한 실제 레슨 영상이고, 커버·연주 영상은 넣지 않았습니다. '
-    '서버 IP가 유튜브 임베드(오류 153)를 막아 사이트 안 재생 여부는 확인하지 못해 모든 카드에 YouTube 직접 열기 링크를 함께 둡니다.'
+    '라이브 사이트에서 대표 영상 5개(채널별 1개)를 미니 플레이어로 직접 재생해 임베드 재생까지 확인했고, 모든 카드에 YouTube 직접 열기 링크도 함께 둡니다.'
 )
 meta['weekPlanDays'] = len(week['days'])
 meta_path.write_text(json.dumps(meta, ensure_ascii=False, indent=2) + '\n', encoding='utf-8')
