@@ -135,7 +135,7 @@ for s in songs:
         assert not s['videoUrl'], s['id']
 
 # 10) 메타 집계
-assert meta['seedVersion'] == 27, meta['seedVersion']
+assert meta['seedVersion'] == 28, meta['seedVersion']
 assert meta['buttonCount'] == 14 and len(meta['buttonSet']) == 14, meta.get('buttonCount')
 assert meta['chartVersion'] == '2026-11-25', meta['chartVersion']
 assert meta['videoLinkCount'] == 201 and meta['videoLinkFilledCount'] == 36
@@ -198,7 +198,7 @@ for barre in ('F', 'Bm', 'Bb'):
 assert 'SimplifyChord 약식 폼' in app_js
 idx = (BASE / 'index.html').read_text(encoding='utf-8')
 sw = (BASE / 'sw.js').read_text(encoding='utf-8')
-assert '?v=29' in idx and 'strum-busking-test-v29' in sw
+assert '?v=30' in idx and 'strum-busking-test-v30' in sw
 
 for r in week['recommended']:
     s = by_id[r['songId']]
@@ -209,12 +209,35 @@ for r in week['recommended']:
 # 11) 악보(남자키·박자·BPM·원터치 매핑) 정합성
 PC = {'C': 0, 'C#': 1, 'Db': 1, 'D': 2, 'D#': 3, 'Eb': 3, 'E': 4, 'F': 5, 'F#': 6,
       'Gb': 6, 'G': 7, 'G#': 8, 'Ab': 8, 'A': 9, 'A#': 10, 'Bb': 10, 'B': 11}
-# 에어로밴드 Easy Chord 고급 설정 14버튼(2026-11-25 주성 님 앱 화면 확인) — (근음, 화음 성질)
-BTN_SHAPE = {'C': (0, 'maj'), 'Dm': (2, 'min'), 'Em': (4, 'min'), 'F': (5, 'maj'), 'G': (7, 'maj'),
-             'Am': (9, 'min'), 'Bdim': (11, 'dim'), 'Cm': (0, 'min'), 'D': (2, 'maj'),
-             'E': (4, 'maj'), 'Fm': (5, 'min'), 'Gm': (7, 'min'), 'A': (9, 'maj'), 'Bm': (11, 'min')}
+# 최적 14버튼(2026-11-27) — meta.buttonSet에서 (근음, 화음 성질)을 계산한다.
+#   7개 루트 열 C·D·E·F·G·A·B 마다 2개, 각 열은 그 루트 코드 안에서만.
+def _btn_shape(name):
+    i = 1
+    while i < len(name) and name[i] in '#b':
+        i += 1
+    root, suf = name[:i], name[i:].lower()
+    if 'dim' in suf:
+        q = 'dim'
+    elif suf.startswith('m') and not suf.startswith('maj'):
+        q = 'min'
+    else:
+        q = 'maj'
+    return PC[root], q
+
+
+BTN_SHAPE = {b: _btn_shape(b) for b in meta['buttonSet']}
 BTNS = set(BTN_SHAPE)
 assert len(BTNS) == 14, len(BTNS)
+assert meta['buttonSet'] == ['C', 'Dm', 'Em', 'F', 'G', 'Am', 'B', 'Cm', 'D', 'E', 'Fm', 'Gm', 'A', 'Bm'], meta['buttonSet']
+assert 'Bdim' not in BTNS, 'Bdim(161곡 0회) → B 로 교체'
+LAYOUT = meta['btn14']['layout']
+assert len(LAYOUT) == 2 and all(len(r) == 7 for r in LAYOUT), LAYOUT
+for col, (top, bottom) in enumerate(zip(*LAYOUT)):
+    root = 'CDEFGAB'[col]
+    assert top in BTNS and bottom in BTNS, LAYOUT
+    assert top.startswith(root) and bottom.startswith(root), (root, top, bottom)
+    assert {BTN_SHAPE[top][1], BTN_SHAPE[bottom][1]} == {'maj', 'min'}, (root, top, bottom)
+assert sorted(LAYOUT[0] + LAYOUT[1]) == sorted(meta['buttonSet']), '배치표와 buttonSet 불일치'
 
 
 def chord_quality(chord):
@@ -356,12 +379,102 @@ for s in chart_songs:
                                     and BTN_SHAPE[b_][1] == q
                                     for b_ in BTNS), (s['id'], sl['chord'], '버튼 가능 코드가 슬롯에')
 
-assert meta['capoOptimize']['slotTotal'] == slot_total, (meta['capoOptimize']['slotTotal'], slot_total)
-assert meta['capoOptimize']['chartCount'] == len(chart_songs)
-assert meta['capoOptimize']['zeroSlotCharts'] == len([s for s in chart_songs if not (s['chart'].get('slots') or [])])
+zero_slot_charts = [s for s in chart_songs if not (s['chart'].get('slots') or [])]
+# capoOptimize 는 2026-11-25 시점의 기록이다(역사 값은 그대로 둔다).
+assert meta['capoOptimize']['slotTotal'] == 47, meta['capoOptimize']['slotTotal']
 assert meta['capoOptimize']['prevZeroSlotCharts'] == 124, meta['capoOptimize']['prevZeroSlotCharts']
-assert meta['capoOptimize']['zeroSlotCharts'] >= 124, '완주 곡이 줄면 안 된다'
-assert meta['btn14']['slotTotal'] == slot_total
+assert meta['capoOptimize']['zeroSlotCharts'] == 132, meta['capoOptimize']['zeroSlotCharts']
+# 현재 값은 btn14 / btnOptimize 가 들고 있다.
+assert meta['btn14']['slotTotal'] == slot_total, (meta['btn14']['slotTotal'], slot_total)
+assert meta['btn14']['chartCount'] == len(chart_songs)
+assert meta['btn14']['zeroSlotCount'] == len(zero_slot_charts)
+assert meta['btn14']['zeroSlotCount'] >= 132, '완주 곡이 줄면 안 된다'
+bt = meta['btnOptimize']
+assert bt['chosenSlotTotal'] == slot_total and bt['chosenZeroSlotSongs'] == len(zero_slot_charts), bt
+assert bt['chosenZeroSlotSongs'] >= bt['prevZeroSlotSongs'] and bt['chosenSlotTotal'] <= bt['prevSlotTotal'], bt
+assert bt['capo0to7ZeroSlotSongs'] >= bt['prevZeroSlotSongs'], '카포 0~7에서도 기존보다 나빠지면 안 된다'
+assert len(bt['top5']) == 5 and set(bt['top5'][0]['buttons'].split(' / ')) == set(bt['chosen'].split(' / ')), bt['top5'][:1]
+assert bt['method'] and '2187' in bt['method'], bt['method']
+assert bt['counterfactual']['plainB_bars'] > bt['counterfactual']['seventhB_bars'], bt['counterfactual']
+assert sum(1 for i in chart_songs if (i['chart'].get('remap') or {}).get('btnSet') == 14) == len(chart_songs)
+
+# 11-3) 마디 타임라인(2026-11-27) — MR 재생 시각과 마디·코드 색깔을 맞추는 데이터
+from collections import Counter as _C
+_tm = meta['chartTiming']
+assert _tm['chartCount'] == len(chart_songs), _tm['chartCount']
+_modes = _C(s['chart']['timing']['mode'] for s in chart_songs)
+assert _tm['modes'] == dict(_modes), (_tm['modes'], dict(_modes))
+assert _tm['sectionBased'] and _tm['localAudio'] and _tm['estimated'], _tm
+assert '녹화 음원' in _tm['badge'], _tm['badge']
+
+
+def _beats(ts):
+    return 6 if ts == '6/8' else 3 if ts == '3/4' else 4
+
+
+for s in chart_songs:
+    t = s['chart']['timing']
+    n = sum(len(sec['bars']) for sec in s['chart']['sections'])
+    assert t['bars'] == n, (s['id'], t['bars'], n)
+    assert t['mode'] in ('section', 'bpm-local', 'bpm-yt', 'none'), (s['id'], t['mode'])
+    if t['mode'] == 'none':
+        assert not t.get('barTimes'), s['id']
+        continue
+    assert t['beats'] == _beats(t['timeSignature']), (s['id'], t['beats'], t['timeSignature'])
+    assert t['barSec'] > 0 and t['barTimes'], s['id']
+    assert len(t['barTimes']) >= n, (s['id'], len(t['barTimes']), n)
+    prev = -1.0
+    for st, en in t['barTimes']:
+        assert st < en and st >= prev - 0.02, (s['id'], st, prev)
+        prev = en
+    if t['mode'] == 'bpm-yt':
+        # 유튜브 MR은 BPM·박자 추정 + 오차 안내 문구(계획서 조건)
+        assert len(t['barTimes']) == n, s['id']
+        assert t['badge'] and '유튜브 MR은 전주' in t['badge'] and '녹화 음원' in t['badge'], (s['id'], t['badge'])
+    else:
+        assert len(t['barTimes']) >= n, s['id']
+    if t['durationSec']:
+        # 저장소 음원 곡 — 실제 파일이 있고, 마디 격자가 파일 길이를 넘지 않는다
+        assert t['audio'] and (BASE / t['audio']).exists(), (s['id'], t['audio'])
+        span = t['barTimes'][-1][1] - t['barTimes'][0][0]
+        assert span <= t['durationSec'] + 1.5, (s['id'], round(span, 1), t['durationSec'])
+        assert t['barTimes'][0][0] < t['durationSec'], s['id']
+# 소절 실측(섹션 이름의 구간) 곡은 barSec 이 BPM과 30% 안에서 맞는다
+for s in chart_songs:
+    t = s['chart']['timing']
+    if t['mode'] != 'section' or not t['bpm']:
+        continue
+    expect = t['beats'] * 60 / t['bpm']
+    assert abs(t['barSec'] - expect) / expect < 0.3, (s['id'], t['barSec'], expect)
+# 저장소 음원 곡은 첫 박 오프셋까지 실측으로 잡는다
+_local = [s for s in chart_songs if s['chart']['timing']['mode'] == 'bpm-local']
+assert len(_local) == 5, [s['id'] for s in _local]
+for s in _local:
+    t = s['chart']['timing']
+    assert t['durationSec'] and t['source'] and '음원' in t['source'], s['id']
+    assert t['cycle'] == (len(t['barTimes']) > t['bars']), (s['id'], t['cycle'])
+# 3곡 이상은 곡이 악보보다 길어 '반복 표시' 안내가 붙는다
+assert sum(1 for s in chart_songs if s['chart']['timing'].get('cycle')) >= 3
+
+# 11-4) stage 1 오른손 주법 강좌 연결(2026-11-27)
+_lesson_keys = [l['key'] for l in lessons['lessons']]
+_stage1 = [s for s in chart_songs if s['chart'].get('stage') == 1]
+assert len(_stage1) == 44, len(_stage1)
+assert meta['rhythmLesson']['stage1Songs'] == len(_stage1), meta['rhythmLesson']
+assert meta['rhythmLesson']['rules']
+for s in chart_songs:
+    c = s['chart']
+    m = c.get('lessonMatch') or {}
+    if c.get('stage') == 1:
+        assert c.get('lessonKey') in _lesson_keys, (s['id'], c.get('lessonKey'))
+        assert m.get('key') == c['lessonKey'], s['id']
+        assert m.get('name') and m.get('confidence') in ('문구 일치', '주법 단서 없음 → 기본'), (s['id'], m)
+        if m['confidence'] == '문구 일치':
+            assert m['matched'] and m['matched'] in m['from'], (s['id'], m)
+    else:
+        assert not c.get('lessonKey'), (s['id'], 'stage 1이 아닌 곡에 주법 연결')
+assert meta['rhythmLesson']['counts'] == dict(_C(s['chart']['lessonKey'] for s in _stage1)), meta['rhythmLesson']['counts']
+
 
 for s in partial:
     assert s['chart']['status'] == 'partial' and s.get('chartNote'), s['id']

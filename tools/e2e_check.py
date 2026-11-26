@@ -7,7 +7,9 @@
 """
 import http.server
 import json
+import os
 import pathlib
+import re
 import socketserver
 import threading
 
@@ -22,11 +24,41 @@ results = []
 
 
 class Handler(http.server.SimpleHTTPRequestHandler):
+    """정적 파일 서버. GitHub Pages 처럼 Range 요청(206)을 지원해 오디오 '마디 이동'을 실제로 검증한다."""
+
     def __init__(self, *a, **kw):
         super().__init__(*a, directory=str(BASE), **kw)
 
     def log_message(self, *a):
         pass
+
+    def do_GET(self):
+        rng = self.headers.get('Range')
+        path = self.translate_path(self.path)
+        if not rng or not os.path.isfile(path):
+            return super().do_GET()
+        m = re.match(r'bytes=(\d*)-(\d*)$', rng.strip())
+        if not m:
+            return super().do_GET()
+        size = os.path.getsize(path)
+        start = int(m.group(1)) if m.group(1) else 0
+        end = int(m.group(2)) if m.group(2) else size - 1
+        end = min(end, size - 1)
+        if start > end or start >= size:
+            self.send_response(416)
+            self.send_header('Content-Range', f'bytes */{size}')
+            self.end_headers()
+            return
+        with open(path, 'rb') as f:
+            f.seek(start)
+            chunk = f.read(end - start + 1)
+        self.send_response(206)
+        self.send_header('Content-Type', self.guess_type(path))
+        self.send_header('Accept-Ranges', 'bytes')
+        self.send_header('Content-Range', f'bytes {start}-{end}/{size}')
+        self.send_header('Content-Length', str(len(chunk)))
+        self.end_headers()
+        self.wfile.write(chunk)
 
 
 def check(name, cond, detail=''):
@@ -344,6 +376,98 @@ def run(pw, name, viewport, mobile=False):
     page.fill('#song-search', '')
     page.wait_for_timeout(200)
 
+    # ── 2026-11-27 최적 14버튼 배치 · 마디 색깔 싱크 · 마디 이동 · 배속 · 주법 연결 ──
+    page.fill('#song-search', 'Good Bye-Bye')
+    page.wait_for_timeout(300)
+    page.locator('.song-row', has_text='Good Bye-Bye').first.locator('button', has_text='악보').click()
+    page.wait_for_selector('.chart-modal')
+    pad = page.locator('.aero-pad .pad-btn')
+    pad_txt = [x.strip() for x in pad.all_inner_texts()]
+    check(f'{name}: 14버튼 배치표 14개', pad.count() == 14, str(pad.count()))
+    check(f'{name}: 배치표 열 순서(C·D·E·F·G·A·B 두 줄)',
+          pad_txt == ['C', 'Cm', 'Dm', 'D', 'Em', 'E', 'F', 'Fm', 'G', 'Gm', 'Am', 'A', 'B', 'Bm'], str(pad_txt))
+    check(f'{name}: 같은 열은 같은 루트 코드',
+          all(top[0] == bottom[0] for top, bottom in zip(pad_txt[0::2], pad_txt[1::2])), str(pad_txt))
+    check(f'{name}: Bdim 빠짐(최적 배치)', 'Bdim' not in page.content())
+    cols_color = page.evaluate("() => [...document.querySelectorAll('.aero-pad .pad-col')].map(c => getComputedStyle(c).getPropertyValue('--c').trim())")
+    check(f'{name}: 7열 색 7가지', len(cols_color) == 7 and len(set(cols_color)) == 7, str(cols_color))
+    same_col = page.evaluate("""() => [...document.querySelectorAll('.aero-pad .pad-col')].every(c => {
+        const b = c.querySelectorAll('.pad-btn');
+        return getComputedStyle(b[0]).backgroundColor === getComputedStyle(b[1]).backgroundColor; })""")
+    check(f'{name}: 한 열 두 버튼 같은 색', same_col)
+    bars = page.locator('#chart-bars .bar')
+    check(f'{name}: 마디 28개', bars.count() == 28, str(bars.count()))
+    check(f'{name}: 마디 시작 시각 표기', page.locator('#chart-bars .bar-time').count() == 28,
+          str(page.locator('#chart-bars .bar-time').count()))
+    check(f'{name}: 실측 타임라인', '마디 타임라인 · 실측' in page.locator('#chart-timing').inner_text(),
+          page.locator('#chart-timing').inner_text()[:80])
+    page.locator('.chart-modal').locator('button', has_text='MR 듣기').click()
+    page.wait_for_selector('.mini-player audio#mini-audio')
+    page.wait_for_function("() => { const a = document.querySelector('#mini-audio'); return !!a && a.readyState >= 1 && a.duration > 200; }", timeout=20000)
+    check(f'{name}: 배속 버튼 4개', page.locator('.mini-rate .rate-btn').count() == 4,
+          str(page.locator('.mini-rate .rate-btn').count()))
+    page.click('.mini-rate .rate-btn[data-rate="0.5"]')
+    page.wait_for_timeout(350)
+    rate = page.evaluate("() => document.querySelector('#mini-audio').playbackRate")
+    check(f'{name}: 0.5배속(음정 유지)', abs(rate - 0.5) < 0.01, str(rate))
+    check(f'{name}: 배속 중 음정 보존 설정', page.evaluate("() => { const a=document.querySelector('#mini-audio'); return a.preservesPitch !== false; }"))
+    page.click('.mini-rate .rate-btn[data-rate="0.7"]')
+    page.wait_for_timeout(250)
+    rate = page.evaluate("() => document.querySelector('#mini-audio').playbackRate")
+    check(f'{name}: 0.7배속', abs(rate - 0.7) < 0.01, str(rate))
+    page.click('.mini-rate .rate-btn[data-rate="1"]')
+    page.wait_for_timeout(250)
+    bars.nth(5).click()
+    page.wait_for_timeout(900)
+    t_now = page.evaluate("() => document.querySelector('#mini-audio').currentTime")
+    check(f'{name}: 6마디 클릭 → 그 마디(14초대)부터 재생', 13.2 <= t_now <= 18.5, str(t_now))
+    check(f'{name}: 재생 중 마디 하나만 빛남', page.locator('#chart-bars .bar.now').count() == 1,
+          str(page.locator('#chart-bars .bar.now').count()))
+    check(f'{name}: 그 코드 버튼도 빛남(배치표)', page.locator('.aero-pad .pad-btn.now').count() == 1,
+          str(page.locator('.aero-pad .pad-btn.now').count()))
+    check(f'{name}: 악보 위 14버튼 바', page.locator('#aero-strip .pad-btn').count() == 14,
+          str(page.locator('#aero-strip .pad-btn').count()))
+    check(f'{name}: 위 14버튼 바에서도 같은 버튼이 빛남', page.locator('#aero-strip .pad-btn.now').count() == 1,
+          str(page.locator('#aero-strip .pad-btn.now').count()))
+    now_label = page.locator('#chart-now-label').inner_text()
+    check(f'{name}: 지금 마디 표시', '마디' in now_label and '재생 중' in now_label, now_label)
+    o = overflow(page)
+    check(f'{name}: 악보(14버튼·타임라인) 가로 넘침 없음', o['sw'] <= o['cw'] + 1, str(o))
+    page.screenshot(path=str(SHOTS / f'chart-sync-{name}.png'))
+    page.click('[data-act="mini-close"]')
+    page.click('[data-act="close"]')
+    # 유튜브 MR 곡: 추정 타임라인 + 오차 안내 배지
+    page.fill('#song-search', '희재')
+    page.wait_for_timeout(300)
+    page.locator('.song-row', has_text='희재').first.locator('button', has_text='악보').click()
+    page.wait_for_selector('.chart-modal')
+    cm_yt = page.locator('.chart-modal').inner_text()
+    check(f'{name}: 유튜브 MR 추정 안내 배지', '유튜브 MR은 전주' in cm_yt and '녹화 음원' in cm_yt, cm_yt[:160])
+    check(f'{name}: 추정 타임라인 표기', '추정' in page.locator('#chart-timing').inner_text())
+    page.click('[data-act="close"]')
+    # stage 1 곡: 오른손 주법 강좌 자동 연결
+    page.fill('#song-search', 'Thank You')
+    page.wait_for_timeout(300)
+    page.locator('.song-row', has_text='Thank You').first.locator('button', has_text='악보').click()
+    page.wait_for_selector('.chart-modal')
+    check(f'{name}: stage1 주법 배우기 버튼', page.locator('.lesson-link button', has_text='이 곡 오른손 주법 배우기').count() == 1)
+    check(f'{name}: stage1 주법 이름(8비트)', '8비트 기본 스트로크' in page.locator('.lesson-link').inner_text(),
+          page.locator('.lesson-link').inner_text()[:80])
+    page.locator('.lesson-link button', has_text='이 곡 오른손 주법 배우기').click()
+    page.wait_for_selector('.mini-player iframe', timeout=20000)
+    l_src = page.locator('.mini-player iframe').first.get_attribute('src') or ''
+    check(f'{name}: 주법 강좌 영상 연결(xP4IkqOP1yE)', 'xP4IkqOP1yE' in l_src, l_src[:90])
+    check(f'{name}: 주법 강좌 배지', '강좌' in page.locator('.mini-player .mini-badge').first.inner_text())
+    page.click('.mini-rate .rate-btn[data-rate="0.7"]')
+    page.wait_for_timeout(300)
+    check(f'{name}: YouTube 배속 0.7→0.75 안내', '0.75x' in page.locator('#mini-rate-live').inner_text(),
+          page.locator('#mini-rate-live').inner_text())
+    page.click('.mini-rate .rate-btn[data-rate="1"]')
+    page.click('[data-act="mini-close"]')
+    page.click('[data-act="close"]')
+    page.fill('#song-search', '')
+    page.wait_for_timeout(200)
+
     page.click('[data-nav="roadmap"]')
     body = page.content()
     for n in (1, 2, 3, 4):
@@ -395,8 +519,9 @@ def run(pw, name, viewport, mobile=False):
     page.click('[data-act="metro-toggle"]')
     page.click('[data-act="ts:3/4"]')
     check(f'{name}: 3/4 비트 점 3개', page.locator('#beat-dots i').count() == 3)
-    check(f'{name}: 원터치 버튼 14개', page.locator('.ot-btn').count() == 14)
-    check(f'{name}: 원터치 14버튼 안내', '원터치 버튼 14개 (고급 설정 포함)' in page.content())
+    check(f'{name}: 14버튼 배치표', page.locator('.aero-pad .pad-btn').count() == 14,
+          str(page.locator('.aero-pad .pad-btn').count()))
+    check(f'{name}: 14버튼 배치표 안내', '에어로밴드 14버튼 배치' in page.content() and '고급 설정' in page.content())
     o = overflow(page)
     check(f'{name}: 연습 화면 가로 넘침 없음', o['sw'] <= o['cw'] + 1, str(o))
     page.screenshot(path=str(SHOTS / f'practice-{name}.png'), full_page=not mobile)
@@ -555,7 +680,9 @@ def run_merge(pw):
     check('merge: 남자키 배지 병합', page.locator('.song-row', has_text='오늘').first.inner_text().find('남자키') >= 0)
     state = json.loads(page.evaluate("() => localStorage.getItem('strum-busking-v2')"))
     song = [s for s in state['songs'] if s['id'] == 'verified-001'][0]
-    check('merge: seedVersion 27', state['seedVersion'] == 27, str(state['seedVersion']))
+    check('merge: seedVersion 28', state['seedVersion'] == 28, str(state['seedVersion']))
+    check('merge: 마디 타임라인 병합', bool(song.get('chart', {}).get('timing', {}).get('barTimes')),
+          str(song.get('chart', {}).get('timing', {}).get('mode')))
     check('merge: MR 링크 병합', song.get('mrUrl', '').endswith('hwZqHCMmjUM'), str(song.get('mrUrl')))
     check('merge: 숙련도 보존', song['level'] == '버스킹 가능', song['level'])
     check('merge: 사용자 메모 보존', song['notes'] == '내 메모', song['notes'])

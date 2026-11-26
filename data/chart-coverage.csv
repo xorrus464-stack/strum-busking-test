@@ -7,9 +7,9 @@ verified-005,추억이면,부활,Ab,Ab,1,G폼 · Capo +1,4/4,74,7,7,0,3,ready,,
 verified-006,희재,성시경,E,E,4,C폼 · Capo +4,4/4,64,8,9,1,3,ready,D,D=Bb(x13331)
 verified-007,한숨,이하이,Ab,Eb,3,C폼 · Capo +3,4/4,62,7,7,0,1,ready,,
 verified-008,내가 너의 곁에 잠시 살았다는 걸,토이,C,C,0,C폼 · Capo +0,4/4,65,7,7,0,3,ready,,
-verified-009,예뻤어,DAY6,Eb,Eb,8,G폼 · Capo +8,4/4,84,10,13,3,2,ready,Am|G|Gb,Am=C#m(x46654) ;; G=B(x24442) ;; Gb=Bb(x13331)
+verified-009,예뻤어,DAY6,Eb,Eb,8,G폼 · Capo +8,4/4,84,11,13,2,2,ready,Am|Gb,Am=C#m(x46654) ;; Gb=Bb(x13331)
 verified-010,도망가자,선우정아,G,D,2,C폼 · Capo +2,4/4,65,7,7,0,2,ready,,
-verified-011,청혼,노을,E,E,4,C폼 · Capo +4,4/4,70,8,10,2,3,partial,Bbm7b5|Eb/G,Bbm7b5=Gbm7♭5(2x221x) ;; Eb/G=B(x24442)
+verified-011,청혼,노을,E,E,4,C폼 · Capo +4,4/4,70,9,10,1,3,partial,Bbm7b5,Bbm7b5=Gbm7♭5(2x221x)
 verified-012,TOMBOY,혁오,Eb,Eb,3,C폼 · Capo +3,4/4,74,6,6,0,2,ready,,
 verified-013,Flower,오반,A,A,2,G폼 · Capo +2,4/4,88,4,4,0,1,ready,,
 verified-014,死別 (feat. GUMI),Shannon,D,A,9,C폼 · Capo +9,4/4,92,10,12,2,3,ready,Bb|Eb,Bb=Db(x46664) ;; Eb=Gb(244322)
@@ -19,13 +19,13 @@ verified-017,나는 버려질 장난감,아소 · 아날로그소년,Db,Db,1,C�
 verified-018,たぶん (아마도),YOASOBI,F,F,5,C폼 · Capo +5,4/4,90,6,6,0,3,ready,,
 verified-019,생각을 멈추다 보면,최유리,C,G,0,G폼 · Capo +0,6/8,129,5,5,0,2,ready,,
 verified-020,오르막길,윤종신,A,A,2,G폼 · Capo +2,4/4,68,5,5,0,2,ready,,
-verified-021,날씨가 좋고 바람도 좋아,가수 미확인,A,A,2,G폼 · Capo +2,4/4,90,8,9,1,3,partial,C#7,C#7=B7(x21202)
+verified-021,날씨가 좋고 바람도 좋아,가수 미확인,A,A,2,G폼 · Capo +2,4/4,90,9,9,0,3,partial,,
 verified-022,세상이 그대를 속일지라도,김장훈,C#,C#,6,G폼 · Capo +6,4/4,70,13,13,0,3,ready,,
 verified-024,닮은사람,이기찬,D,D,7,G폼 · Capo +7,4/4,64,13,15,2,3,partial,Bb|C#m,Bb=Eb(x68886) ;; C#m=F#m(244222)
 verified-025,히로인,back number,G,G,0,G폼 · Capo +0,4/4,77,11,11,0,3,ready,,
 restored-093,無題 (무제),지드래곤 (G-DRAGON),E,E,4,C폼 · Capo +4,4/4,80,4,4,0,1,ready,,
-restored-096,And July,헤이즈 (Heize),Dm,Am,5,Em폼 · Capo +5,4/4,100,6,7,1,3,ready,E7,E7=B7(x21202)
-restored-100,Good Bye-Bye (グッバイバイ),Tomioka Ai,C,G,2,F폼 · Capo +2,4/4,89,5,5,0,1,ready,,
+restored-096,And July,헤이즈 (Heize),Dm,Am,5,Em폼 · Capo +5,4/4,100,7,7,0,3,ready,,
+restored-100,Good Bye-Bye (グッバイバイ),Tomioka Ai,Bb,Bb,3,C폼 · Capo +3,4/4,89,5,5,0,1,ready,,
 restored-102,눈이 오잖아 (When it snows),이무진 X 헤이즈,Eb,Eb,3,C폼 · Capo +3,4/4,96,6,6,0,3,ready,,
 restored-119,"비도 오고 그래서 (You, Clouds, Rain)",헤이즈 (HEIZE),C#m,Abm,4,Em폼 · Capo +4,4/4,79,6,6,0,2,ready,,
 restored-122,Vancouver,BIG Naughty (서동현),C#m,C#m,4,Am폼 · Capo +4,4/4,90,4,4,0,1,ready,,
@@ -35,7 +35,7 @@ restored-128,"어떻게 이별까지 사랑하겠어, 널 사랑하는 거지",�
 restored-130,첫눈처럼 너에게 가겠다 (I will go to you like the first snow),에일리 (AILEE),Fm,Cm,3,Am폼 · Capo +3,4/4,67,5,5,0,2,ready,,
 restored-131,0+0,한로로 (HANRORO),A,E,4,C폼 · Capo +4,4/4,68,7,7,0,2,ready,,
 restored-132,사랑하게 될 거야,한로로,G,D,2,C폼 · Capo +2,4/4,93,5,5,0,1,ready,,
-restored-140,예뻤어 (You were beautiful),데이식스 DAY6,Eb,Eb,8,G폼 · Capo +8,4/4,84,10,13,3,2,ready,Am|G|Gb,Am=C#m(x46654) ;; G=B(x24442) ;; Gb=Bb(x13331)
+restored-140,예뻤어 (You were beautiful),데이식스 DAY6,Eb,Eb,8,G폼 · Capo +8,4/4,84,11,13,2,2,ready,Am|Gb,Am=C#m(x46654) ;; Gb=Bb(x13331)
 restored-142,청혼하지 않을 이유를 못 찾았어 (Propose),이무진 (LEE MUJIN),D,D,2,C폼 · Capo +2,4/4,96,6,6,0,2,ready,,
 restored-144,기억을 걷는 시간 (Time Spent Walking Through Memories),넬 (NELL),Eb,Eb,3,C폼 · Capo +3,4/4,89,4,4,0,1,ready,,
 restored-146,Way Back Home,Shaun,Bb,Bb,3,G폼 · Capo +3,4/4,100,4,4,0,1,ready,,
@@ -90,9 +90,9 @@ playlist-063,오반 - 행복 커버,나의 노래 메모장,E,E,4,C폼 · Capo +
 playlist-068,[1m 직캠📸] 10CM - pet #10CM #십센치 #pet #아임라이브 #ImLIVE #1m직캠,I'm LIVE | 아임라이브,D,D,2,C폼 · Capo +2,4/4,106,3,3,0,1,ready,,
 playlist-069,너의 이름은 OST 꿈의등불 커버,나의 노래 메모장,Eb,Eb,1,D폼 · Capo +1,4/4,172,12,12,0,3,ready,,
 playlist-072,내 첫 자작곡이야ㅎ 제목은 커피,나의 노래 메모장,Db,Db,1,C폼 · Capo +1,4/4,98,5,5,0,2,original,,
-playlist-073,Stay With Me[真夜中のドア] Cover,나의 노래 메모장,F,C,0,C폼 · Capo +0,4/4,108,12,17,5,3,ready,AbM7|Abaug|Gbm7-5|Bb/C|EbM7,AbM7=AbM7(465544) ;; Abaug=Abaug(x32110) ;; Gbm7-5=Gbm7♭5(2x221x) ;; Bb/C=Bb(x13331) ;; EbM7=EbM7(x68786)
+playlist-073,Stay With Me[真夜中のドア] Cover,나의 노래 메모장,F,C,5,G폼 · Capo +5,4/4,108,13,17,4,3,ready,AbM7|Abaug|Gbm7-5|EbM7,AbM7=EbM7(x68786) ;; Abaug=Ebaug(xx100x) ;; Gbm7-5=Dbm7♭5(x4545x) ;; EbM7=BbM7(x13231)
 playlist-075,스즈메의 문단속 - 참새 남자커버,나의 노래 메모장,F,C,0,C폼 · Capo +0,4/4,78,11,12,1,3,ready,Gbm7-5,Gbm7-5=Gbm7♭5(2x221x)
-playlist-077,"[풀버전] 음색천재들이 콜라보하면 벌어지는 일.. BIG Naughty (서동현), 권진아 '사랑이라 믿었던 것들은'🎵 | SBS [더 리슨: 오늘, 너에게 닿다]",스튜디오:D,C,C,10,D폼 · Capo +10,4/4,127,8,11,3,3,partial,C#|Ab|F#,C#=Eb(x68886) ;; Ab=Bb(x13331) ;; F#=Ab(466544)
+playlist-077,"[풀버전] 음색천재들이 콜라보하면 벌어지는 일.. BIG Naughty (서동현), 권진아 '사랑이라 믿었던 것들은'🎵 | SBS [더 리슨: 오늘, 너에게 닿다]",스튜디오:D,C,C,3,A폼 · Capo +3,4/4,127,9,11,2,3,partial,C#|F#,C#=Bb(x13331) ;; F#=Eb(x68886)
 playlist-083,극악 난이도인 한번 더 이별 레전드 커버 모음,케이팝덕후,B,B,4,G폼 · Capo +4,4/4,66,9,9,0,3,ready,,
 playlist-084,정국 X 최유리 ‘숲’ 커버 ㄹㅇ레전드 맛보기,연리,D,A,2,G폼 · Capo +2,6/8,115,5,5,0,2,ready,,
 playlist-085,백현이 부르는 최유리님의 숲,DEARYOUTH,D,A,2,G폼 · Capo +2,6/8,115,5,5,0,2,ready,,
@@ -115,7 +115,7 @@ playlist-124,도경수(D.O.) - 영원해 [언젠가는 슬기로울 전공의생
 playlist-126,D.O. (도경수) - 내일을 너에게 (I’ll Be There) [가사],Music Time | 뮤직 타임,B,B,4,G폼 · Capo +4,미확인,0,4,4,0,2,partial,,
 playlist-134,D.O. 'Ordinary Days' Lyrics (디오 내일의 우리 가사) (Color Coded Lyrics),Jendukie,Gb,Gb,6,C폼 · Capo +6,4/4,67,5,5,0,2,ready,,
 playlist-136,도경수 Doh Kyung Soo 'Popcorn' MV,컴퍼니수수 Company Soosoo,D,D,0,D폼 · Capo +0,4/4,132,3,3,0,1,ready,,
-playlist-138,너의 모든 순간 풀버전 plz…,니넨 도경수 없지?,Bb,Bb,5,F폼 · Capo +5,4/4,70,8,10,2,3,ready,Db|Eb,Db=Ab(466544) ;; Eb=Bb(x13331)
+playlist-138,너의 모든 순간 풀버전 plz…,니넨 도경수 없지?,Bb,Bb,10,C폼 · Capo +10,4/4,70,9,10,1,3,ready,Db,Db=Eb(x68886)
 playlist-139,편안하고 담백한 보컬의 대명사 도경수 💿 도경수(D.O.) - 기대,오이뮤직 - 오늘 이 음악,Eb,Eb,1,D폼 · Capo +1,4/4,100,11,14,3,3,partial,A|B|E,A=Ab(466544) ;; B=Bb(x13331) ;; E=Eb(x68886)
 playlist-143,D.O (디오) - 기적 (Wonder) [가사],Music Time | 뮤직 타임,E,E,4,C폼 · Capo +4,미확인,143,4,4,0,1,partial,,
 playlist-152,D.O. (도경수) - 기억의 온기 (Where You Were) [가사],Music Time | 뮤직 타임,F#,F#,1,F폼 · Capo +1,미확인,0,2,2,0,1,partial,,

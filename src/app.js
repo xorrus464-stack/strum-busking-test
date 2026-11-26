@@ -9,9 +9,19 @@
   const OLD_SEED_NOTES = new Set(['확인된 7곡을 각각 분리 관리','확인된 2곡을 각각 분리 관리','이전 요청에 따라 선별 목록에서 제외']);
   const levels = LEVELS;
   const MODE_OPTIONS = [['easy','원터치 코드 (Easy Chord)'],['standard','정식 코드']];
-  /* AeroBand Easy Chord 14버튼 — 주성 님 앱 '고급 설정' 화면(2026-11-25)과 같은 2행 7열·같은 색 */
-  const BTNS = ['C','Dm','Em','F','G','Am','Bdim','Cm','D','E','Fm','Gm','A','Bm'];
-  const BTN_COLOR = {C:'#2f9e6e',Dm:'#2f6df6',Em:'#ea5a35',F:'#a855f7',G:'#3aa8dc',Am:'#b8860b',Bdim:'#8c7a20',Cm:'#1f7a4d',D:'#1d4fd8',E:'#c9402a',Fm:'#8b34e0',Gm:'#1f8fb5',A:'#8f8244',Bm:'#a8556f'};
+  /* AeroBand Easy Chord 14버튼 — 2026-11-27 최적 배치(seed.meta.buttonSet)
+     7개 루트 열(C·D·E·F·G·A·B)마다 2개 버튼, 각 열은 그 루트 코드만. 161곡 전수 계산으로 확정. */
+  const BTNS = (seed.meta.buttonSet && seed.meta.buttonSet.length === 14)
+    ? seed.meta.buttonSet.slice()
+    : ['C','Dm','Em','F','G','Am','B','Cm','D','E','Fm','Gm','A','Bm'];
+  const PAD_ROWS = (seed.meta.buttonLayout && Array.isArray(seed.meta.buttonLayout.rows) && seed.meta.buttonLayout.rows.length === 2)
+    ? seed.meta.buttonLayout.rows
+    : [['C','Dm','Em','F','G','Am','B'],['Cm','D','E','Fm','Gm','A','Bm']];
+  /* 에어로밴드 앱 7열 고정 색 — C 초록 · D 파랑 · E 주황 · F 보라 · G 청록 · A 노랑 · B 분홍 */
+  const ROOTS = ['C','D','E','F','G','A','B'];
+  const ROOT_COLOR = {C:'#2f9e6e',D:'#2f6df6',E:'#ea5a35',F:'#a855f7',G:'#3aa8dc',A:'#b8860b',B:'#d1558a'};
+  const rootOf = b => { const m = String(b || '').match(/^[A-G]/); return m ? m[0] : ''; };
+  const BTN_COLOR = Object.fromEntries(BTNS.map(b => [b, ROOT_COLOR[rootOf(b)] || '#8b8b7a']));
   const STAGES = [
     {n:1, title:'오른손 마스터', sub:'원터치 코드 + 4/4·3/4·6/8 기본 스트로크', color:'#417356'},
     {n:2, title:'코드 전환 & SimplifyChord', sub:'오픈 코드와 바레 코드 5슬롯 매핑', color:'#39718d'},
@@ -195,6 +205,8 @@
   const WEEK_PLAN = (seed.weekPlan && Array.isArray(seed.weekPlan.days)) ? seed.weekPlan : {days:[],recommended:[],intro:''};
   const LESSONS = (seed.lessons && Array.isArray(seed.lessons.lessons)) ? seed.lessons.lessons : [];
   const lessonOf = k => LESSONS.find(l=>l.key===k) || null;
+  /* stage 1 곡의 오른손 주법 매칭(chart.lessonMatch, 2026-11-27) → 강좌 */
+  const lessonFor = c => { const k=(c&&(c.lessonKey||(c.lessonMatch&&c.lessonMatch.key)))||''; return k?lessonOf(k):null; };
   const weekState = () => {
     if(!state.weekPlan || typeof state.weekPlan!=='object') state.weekPlan={days:{},goalSongId:'',startedAt:'',activeDay:0,activeDayDate:''};
     if(!state.weekPlan.days || typeof state.weekPlan.days!=='object') state.weekPlan.days={};
@@ -368,7 +380,7 @@
       <div class="segmented ts-pick" style="margin-top:10px">${['4/4','3/4','6/8'].map(t=>`<button data-act="ts:${t}" class="${state.settings.timeSignature===t?'selected':''}">${t}</button>`).join('')}</div>
       <div class="beat-dots" id="beat-dots">${Array.from({length:beatCount(state.settings.timeSignature)},(_,i)=>`<i class="${i===0?'accent':''}"></i>`).join('')}</div>
       <input id="bpm-range" type="range" min="40" max="180" step="1" value="${state.settings.bpm}" aria-label="BPM" style="width:100%;margin:12px 0" /><div class="row between">${action('bpm-down','−5','btn outline small')}${action('metro-toggle',metronome?'메트로놈 정지':'메트로놈 켜기','btn primary small')}${action('bpm-up','+5','btn outline small')}</div></div>
-      <div class="card"><h3>원터치 버튼 14개 (고급 설정 포함)</h3><p class="tiny" style="margin:4px 0 12px">에어로밴드 앱 고급 설정과 같은 2행 7열·같은 색으로 표시합니다. 윗줄 C·Dm·Em·F·G·Am·Bdim / 아랫줄 Cm·D·E·Fm·Gm·A·Bm</p><div class="ot-grid">${BTNS.map(b=>`<div class="ot-btn" style="--c:${BTN_COLOR[b]}">${b}</div>`).join('')}</div></div></div>
+      <div class="card" id="aero-setup"><div class="eyebrow">AEROBAND SETUP</div>${aeroPad({})}</div></div>
     </section>
     ${head('PRACTICE LOG','오늘의 연습 기록','연습 종료 후 저장하면 이번 주 출석에 반영됩니다.')}
     <div class="card" id="practice-log"><form id="practice-form" class="stack"><div class="field-grid"><div class="field"><label>연습한 곡</label><select name="songId" class="input"><option value="">기초 코드 연습 (곡 선택 없음)</option>${ordered().map(s=>`<option value="${esc(s.id)}" ${s.id===(goal?goal.id:'')?'selected':''}>${esc(s.title)} — ${esc(s.artist)}</option>`).join('')}</select></div><div class="field"><label>실제 연습 시간 (분)</label><input type="number" name="minutes" value="${(day&&Number(day.minutes))||state.settings.minutes}" min="1" max="480" required /></div><div class="field"><label>연습 코드</label><input name="chords" placeholder="예: C, G, Am" value="${esc(chords.join(', '))}" /></div><div class="field"><label>오늘 스트로크/리듬</label><input name="strum" placeholder="예: 다운 스트로크 60 BPM" value="${esc((lesson&&lesson.name)||(gc&&gc.stroke)||'')}" /></div></div><div class="field"><label>잘 안된 부분 · 다음에 할 일</label><textarea name="memo" placeholder="예: C→Am 바꿀 때 2박 늦음. 내일 60BPM에서 다시"></textarea></div><button class="btn primary" type="submit">오늘 연습 저장하기</button></form></div>`;
@@ -462,11 +474,18 @@
     const ext=c.sections.some(sec=>sec.bars.some(b=>b.some(x=>/[0-9]|maj|sus|add|dim|aug/i.test(x.orig||''))));
     return ext?`<p class="tiny" style="margin-top:6px">7th·sus·add·dim 코드는 원터치 버튼의 3화음으로 근사하고, 각 마디 카드에 ‘원곡 …’으로 원래 코드를 함께 적었습니다. 손으로 잡는 코드(회색 카드)는 실제 코드 이름과 운지법을 그대로 표시합니다.</p>`:'';
   }
-  function chartSections(c,ts){
+  function chartSections(c,ts,songId){
     const beats=beatCount(ts);
     const slotMap={}; (c.slots||[]).forEach(sl=>{slotMap[sl.slot]=sl;});
-    return c.sections.map(sec=>`<div class="chart-sec"><div class="row between sec-head"><h4>${esc(sec.name)}</h4><span class="tiny">${sec.bars.length}마디</span></div>
-      <div class="bar-row">${sec.bars.map((bar,bi)=>`<div class="bar" aria-label="${bi+1}마디"><div class="bar-beats">${Array.from({length:beats},(_,i)=>`<i class="${i===0?'on':''}"></i>`).join('')}</div><div class="bar-cells">${bar.map(cell=>chordCell(cell,beats,slotMap)).join('')}</div><div class="bar-num">${bi+1}</div></div>`).join('')}</div></div>`).join('');
+    const t=timingOf(c);
+    let n=0;
+    return `<div id="chart-bars" class="chart-bars">`+c.sections.map(sec=>`<div class="chart-sec"><div class="row between sec-head"><h4>${esc(sec.name)}</h4><span class="tiny">${sec.bars.length}마디</span></div>
+      <div class="bar-row">${sec.bars.map(bar=>{const idx=n++; const first=bar[0]||{}; const color=first.btn?(BTN_COLOR[first.btn]||'#8b8b7a'):'#7e7d6f';
+        const start=t?barStartAt(t,idx):null;
+        return `<div class="bar" data-bar="${idx}" data-btn="${esc(first.btn||'')}" style="--c:${color}" role="button" tabindex="0" data-act="seek-bar:${esc(songId||'')}:${idx}" aria-label="${idx+1}마디${start!==null?' · '+clock(start)+'부터 재생':''}">
+          <div class="bar-beats">${Array.from({length:beats},(_,i)=>`<i class="${i===0?'on':''}"></i>`).join('')}</div>
+          <div class="bar-cells">${bar.map(cell=>chordCell(cell,beats,slotMap)).join('')}</div>
+          <div class="bar-num">${idx+1}${start!==null?`<span class="bar-time">${clock(start)}</span>`:''}</div></div>`;}).join('')}</div></div>`).join('')+`</div>`;
   }
   function chartModal(s){
     const c=(s.chart&&s.chart.status!=='pending')?s.chart:null;const tab=modal.tab||'chart';
@@ -489,11 +508,27 @@
     if(tab==='chart'){
       const used=BTNS.filter(b=>c.sections.some(sec=>sec.bars.some(b_=>b_.some(x=>x.btn===b))));
       const handCount=(c.slots||[]).length;
+      const tm=timingOf(c);
+      const lesson=lessonFor(c);
+      const timingStrip=tm?`<div class="timing-strip ${tm.mode==='bpm-yt'?'est':''}" id="chart-timing">
+        <div class="row between" style="flex-wrap:wrap;gap:6px">
+          <div class="timing-note"><b>${tm.mode==='bpm-yt'?'마디 타임라인 · 추정':'마디 타임라인 · 실측'}</b><span>${esc(tm.note||'')}${tm.cycle?' · 악보가 곡보다 짧아 마디가 반복 표시됩니다.':''}</span></div>
+          <div class="row" style="gap:6px"><span class="chart-now" id="chart-now-label" aria-live="polite"></span><button type="button" class="chip-btn on" id="chart-follow-btn" data-act="chart-follow" aria-pressed="true">따라가기 켜짐</button></div>
+        </div>
+        ${tm.mode==='bpm-yt'?`<div class="timing-badge">${esc(tm.badge||'유튜브 MR은 전주·간주 길이에 따라 오차가 날 수 있어요. 녹화 음원을 주시면 정확히 맞춰드립니다.')}</div>`:''}
+        <p class="tiny" style="margin:6px 0 0">마디를 누르면 그 마디 시작 시각으로 이동해 MR이 바로 재생됩니다. 재생 중에는 지금 마디와 그 코드 버튼이 <b>열 색</b>으로 빛납니다.</p>
+      </div>`:'';
+      const lessonCard=lesson?`<div class="lesson-link">
+        <div><span class="eyebrow">RIGHT HAND</span><b>${esc(lesson.name)}</b><small>${c.lessonMatch&&c.lessonMatch.confidence==='문구 일치'?`이 곡 표기 «${esc(c.lessonMatch.matched)}»에 맞춰 고른 주법이에요.`:'이 곡은 주법 표기가 없어 스트로크 기초부터 봅니다.'}</small></div>
+        ${action('lesson-play:'+lesson.key,'▶ 이 곡 오른손 주법 배우기','btn accent small')}</div>`:'';
       return `${head0}${tabs}${partialStrip}
         <div class="capo-callout"><b>에어로밴드 앱 하단 <span class="hl">Capo ${c.capo}</span>로 맞추고, 원터치 코드를 켜세요.</b><span>${esc(c.maleKey)}키 · ${esc(c.formText)} · ${used.length}개 버튼 사용${handCount?` · 손으로 잡는 코드 ${handCount}개`:''} · CAPO+/CAPO− 버튼으로도 조옮김</span></div>
-        <div class="legend">${BTNS.map(b=>`<span class="lg ${used.includes(b)?'on':''}" style="--c:${BTN_COLOR[b]}"><i></i>${b}</span>`).join('')}</div>
+        ${aeroPad({used:new Set(used),capo:c.capo})}
+        ${timingStrip}
+        ${lessonCard}
         ${chordDex(c)}
-        ${chartSections(c,c.timeSignature)}
+        ${aeroStrip()}
+        ${chartSections(c,c.timeSignature,s.id)}
         <div class="stroke-strip"><b>오른손</b> ${esc(c.stroke||'↓ ↓↑ ↑↓↑')}</div>
         ${extraNote(c)}
         <p class="tiny">${esc(c.basis||'')}</p>`;
@@ -518,10 +553,12 @@
           <p class="tiny">에어로밴드 앱 → 원손 단순화 → <b>SimplifyChord</b>에 위 코드 이름을 등록하면 버튼처럼 누를 수 있어요. 앱이 카포만큼 자동으로 이조하지 않는다면 카포 수만큼 낮춘 이름(예: 카포 +2에서 B♭ → A♭)으로 등록하세요. 손으로 직접 잡는 연습은 위 운지표를 보고 하면 됩니다.</p>
           <h4>교체 연습법</h4><p class="tiny">① 손 코드만 단독으로 4마디 반복(코드 잡기 확인) → ② 원터치 버튼 ↔ 손 코드 교차 8마디 → ③ 해당 마디만 30초 반복 → ④ 곡 전체를 70% 템포로. 손 코드가 손에 붙으면 같은 코드를 버튼으로 바꿔 3단계로 넘어갑니다.</p></div>`:''}
         <div class="hint" style="margin-top:10px"><b>읽는 법</b> · 마디 카드의 큰 글씨는 <b>실제로 울리는 코드</b>, 작은 글씨는 <b>카포를 뺀 손 모양</b>입니다. 예: 카포 +7에서 <b>B♭</b>는 <b>E♭ 모양</b>(6프렛 바레)을 잡으면 B♭이 울립니다. 버튼 카드는 큰 글씨가 버튼 이름, 작은 글씨가 실제 울리는 코드예요.</div>
-        <p class="tiny">원터치 버튼은 C·Dm·Em·F·G·Am·Bdim / Cm·D·E·Fm·Gm·A·Bm 14개입니다. 카포를 바꿔도 이 14개(3화음)에 끝내 안 들어오는 코드만 손으로 잡습니다.</p>`;
+        <p class="tiny">원터치 버튼은 C·Dm·Em·F·G·Am·B / Cm·D·E·Fm·Gm·A·Bm 14개입니다(2026-11-27 최적 배치). 카포를 바꿔도 이 14개(3화음)에 끝내 안 들어오는 코드만 손으로 잡습니다.</p>`;
     }
     if(tab==='perc'){
+      const percLesson=lessonFor(c);
       return `${head0}${tabs}
+        ${percLesson?`<div class="lesson-link"><div><span class="eyebrow">RIGHT HAND</span><b>${esc(percLesson.name)}</b><small>${c.lessonMatch&&c.lessonMatch.confidence==='문구 일치'?`이 곡 표기 «${esc(c.lessonMatch.matched)}»에 맞춘 강좌입니다.`:'스트로크 기초부터 차례로 보세요.'}</small></div>${action('lesson-play:'+percLesson.key,'▶ 이 곡 오른손 주법 배우기','btn accent small')}</div>`:''}
         <div class="two-col"><div class="card"><div class="eyebrow">STRUM</div><h3>오른손 스트로크</h3><div class="stroke-big">${esc(c.stroke||'↓ ↓↑ ↑↓↑').split(' ').map(x=>`<span>${esc(x)}</span>`).join('')}</div><p class="tiny">${esc(c.timeSignature)} · ${c.bpm}BPM 기준. 60BPM에서 4마디 정확히 친 뒤 5씩 올립니다.</p></div>
         <div class="card"><div class="eyebrow">PERCUSSIVE</div><h3>퍼커시브 포인트</h3><p>${esc(c.percussive||'2·4박에 손날로 바디를 톡 치는 것부터 시작합니다.')}</p></div></div>
         <div class="card" style="margin-top:12px"><h3>4단계로 만드는 퍼커시브</h3><div class="perc-steps">${[['① 컷','4박 뒤 손바닥으로 줄을 막았다 놓기. 60BPM 4마디'],['② 척킹(X)','2·4박에 손날로 줄만 막아 짧은 소리. 스트로크 사이에 넣기'],['③ 바디 톡','브릿지 옆을 엄지 옆면으로. 2·4박에만'],['④ 조합','Verse 컷 → Chorus 톡 → 마지막 마디 X']].map(([t,d])=>`<div><b>${t}</b><span>${esc(d)}</span></div>`).join('')}</div></div>
@@ -531,7 +568,7 @@
     return `${head0}${tabs}${partialStrip}
       <div class="card"><h3>확인한 값</h3><div class="kv"><div><span>원곡 키</span><b>${esc(c.originalKey)}</b></div><div><span>${c.maleShift ? `남자키(${c.maleShift}반음 ↓)` : '남자키(원키 그대로)'}</span><b>${esc(c.maleKey)}</b></div><div><span>AeroBand Capo</span><b>+${c.capo}</b></div><div><span>운지 폼</span><b>${esc(c.formText)}</b></div><div><span>박자</span><b>${esc(c.timeSignature)}</b><small>${esc(c.timeNote||'')}</small></div><div><span>BPM</span><b>${c.bpm||'—'}</b><small>${esc(c.bpmNote||'')}</small></div><div><span>원터치 매핑</span><b>${c.coverage.mapped}/${c.coverage.total}</b><small>슬롯 ${(c.slots||[]).length}개</small></div></div>
       <div class="divider"></div><h4>근거 자료</h4><ul class="ev">${ev.map(e=>`<li><a href="${esc(e.url)}" target="_blank" rel="noopener noreferrer">${esc(e.label)}</a><span class="tiny">${esc(e.note)}</span></li>`).join('')||'<li>근거 링크 없음</li>'}</ul>
-      <p class="tiny">${esc(c.basis||'')} 남자키는 남성 원곡이면 원키 그대로(이조 0반음), 여성 원곡이면 −5반음으로 잡고, 그 목표 키를 AeroBand 원터치 14버튼(C·Dm·Em·F·G·Am·Bdim / Cm·D·E·Fm·Gm·A·Bm)에 맞추도록 카포를 골랐습니다. 에어로밴드 공식 안내에 따르면 CAPO+/CAPO− 버튼으로 조옮김하며 카포는 25키까지 지원됩니다(2026-11-22 확인).</p></div>`;
+      <p class="tiny">${esc(c.basis||'')} 남자키는 남성 원곡이면 원키 그대로(이조 0반음), 여성 원곡이면 −5반음으로 잡고, 그 목표 키를 AeroBand 원터치 14버튼(C·Dm·Em·F·G·Am·B / Cm·D·E·Fm·Gm·A·Bm, 2026-11-27 161곡 전수 계산)에 맞추도록 카포를 골랐습니다. 에어로밴드 공식 안내에 따르면 CAPO+/CAPO− 버튼으로 조옮김하며 카포는 25키까지 지원됩니다(2026-11-22 확인).</p></div>`;
   }
   function chartModalShell(s){
     return `<div class="modal-layer" data-act="dismiss"><section class="modal chart-modal" role="dialog" aria-modal="true" aria-label="${esc(displayTitle(s))} 악보"><header class="modal-head"><div><div class="eyebrow">ONE-TOUCH CHART</div><h2>${esc(displayTitle(s))}</h2><div class="tiny">${esc(displayArtist(s))}${s.sourceIndices?.length?` · 원본 #${s.sourceIndices.join(', #')}`:''}</div></div><button class="icon-btn" aria-label="닫기" data-act="close">×</button></header>${chartModal(s)}</section></div>`;
@@ -647,12 +684,23 @@
     const isAudio=kind==='audio'||kind==='mraudio';
     const vid=isAudio?'':ytId(url);
     if(!isAudio&&!vid){notice(mode==='mr'?'MR 링크가 없습니다. MR 없음 버튼으로 등록할 수 있습니다.':'재생할 영상 링크가 없습니다.');return;}
-    mini={kind:kind,songId:s.id,videoId:vid,audioUrl:kind==='audio'?safeHttp(s.audioUrl):kind==='mraudio'?(mode==='music'?fullAudioOf(s):mrAudioOf(s)):'',title:displayTitle(s),sub:displayArtist(s),badge:mode==='mr'?'MR':mode==='music'?'음악':mode==='lesson'?'강좌':kind==='audio'?'음악':'영상',collapsed:false,watch:url};
+    mini={kind:kind,songId:s.id,videoId:vid,audioUrl:kind==='audio'?safeHttp(s.audioUrl):kind==='mraudio'?(mode==='music'?fullAudioOf(s):mrAudioOf(s)):'',title:displayTitle(s),sub:displayArtist(s),badge:mode==='mr'?'MR':mode==='music'?'음악':mode==='lesson'?'강좌':kind==='audio'?'음악':'영상',collapsed:false,watch:url,rate:miniRate};
+    chartNowIdx=-1;pendingSeek=null;
     renderMini();
+    startChartTick();
     if(kind==='mraudio'&&mrShiftOf(s.id)!==0)setTimeout(()=>applyMrShift(mrShiftOf(s.id)),350);
     notice(mode==='mr'?`${s.title} · MR(반주)를 미니 플레이어에서 재생합니다.`:mode==='lesson'?`${s.title} · 오른손 주법 강좌를 미니 플레이어에서 재생합니다.`:`${s.title} · ${mini.badge} 재생 중 — 악보로 이동해도 꺼지지 않습니다.`);
   }
-  function closeMini(){try{get('mini-audio')?.pause();}catch(err){}teardownPitch();if(trackObjectURL){URL.revokeObjectURL(trackObjectURL);trackObjectURL=null;}mini=null;renderMini();}
+  function closeMini(){
+    try{get('mini-audio')?.pause();}catch(err){}
+    try{if(ytPlayer&&ytPlayer.destroy)ytPlayer.destroy();}catch(err){}
+    ytPlayer=null;ytReady=false;
+    if(chartRaf!=null){cancelAnimationFrame(chartRaf);chartRaf=null;}
+    chartNowIdx=-1;
+    teardownPitch();
+    if(trackObjectURL){URL.revokeObjectURL(trackObjectURL);trackObjectURL=null;}
+    mini=null;renderMini();
+  }
   /* ── MR 음원 실시간 키 조절(피치 시프트) ─────────────────────────
      유튜브 iframe 재생은 키를 바꿀 수 없어서, 저장소 media/*.mp3 같은 음원 파일에서만 쓴다.
      노래방처럼 -6~+6반음. 템포는 그대로 두고 음높이만 바꾼다(src/pitch-worklet.js). */
@@ -764,6 +812,203 @@
     try{await g.ctx.resume?.();}catch(err){}
     if(n!==0){const songName=mini.title||'';notice(`${songName} · ${mrShiftLabel(n)} (반주 템포는 그대로)`);}
   }
+  /* ── 14버튼 배치표 · 마디 타임라인 · 색깔 싱크 · 배속 (2026-11-27) ──────────
+     · 앱에서 그대로 따라 세팅할 수 있게 2행 7열 배치표를 7열 색과 함께 보여준다.
+     · MR 재생 시각 → 마디 → 그 마디의 코드 버튼을 같은 열 색으로 빛나게 한다.
+     · 마디를 누르면 그 마디 시작 시각으로 점프해 재생한다.
+     · 배속 0.5x/0.7x/0.85x/1.0x — 로컬 MP3는 audio.playbackRate(음정 유지),
+       YouTube는 IFrame API setPlaybackRate(0.5·0.75·1배만 지원). */
+  const RATE_STEPS = [0.5, 0.7, 0.85, 1];
+  const YT_RATES = [0.25, 0.5, 0.75, 1, 1.25, 1.5, 2];
+  let chartRaf = null, chartNowIdx = -1, chartFollow = true, pendingSeek = null;
+  let ytPlayer = null, ytApiPromise = null, ytReady = false, miniRate = 1;
+
+  const clock = s => { const t = Math.max(0, Math.round(Number(s) || 0)); return Math.floor(t / 60) + ':' + String(t % 60).padStart(2, '0'); };
+  const miniIsAudio = m => !!m && (m.kind === 'audio' || m.kind === 'mraudio');
+  function padButton(b, cls) {
+    return `<div class="pad-btn ${cls || ''}" data-btn="${esc(b)}" style="--c:${BTN_COLOR[b] || '#8b8b7a'}" title="${esc(b)} · ${esc(rootOf(b))}열">${esc(b)}</div>`;
+  }
+  function aeroPad(opts) {
+    opts = opts || {};
+    const active = opts.active || '';
+    const used = opts.used || null;                 /* 이 곡이 쓰는 버튼 집합(없으면 표시 안 함) */
+    const capo = Number.isFinite(opts.capo) ? opts.capo : null;
+    return `<div class="aero-pad">
+      <div class="pad-head"><b>에어로밴드 14버튼 배치</b><span>앱 <b>Easy Chord → 고급 설정</b>에서 왼쪽부터 C·D·E·F·G·A·B 열 순서, 위 줄·아래 줄 그대로 맞추세요. 각 열에는 그 루트 코드만 넣습니다.${capo !== null ? ` 이 곡은 <b>Capo ${capo >= 0 ? '+' : ''}${capo}</b>.` : ''}</span></div>
+      <div class="pad-grid">${ROOTS.map((r, i) => `<div class="pad-col" style="--c:${ROOT_COLOR[r]}">
+        <span class="pad-root">${r}</span>
+        ${padButton(PAD_ROWS[0][i], [active === PAD_ROWS[0][i] ? 'now' : '', used && !used.has(PAD_ROWS[0][i]) ? 'dim' : ''].join(' '))}
+        ${padButton(PAD_ROWS[1][i], [active === PAD_ROWS[1][i] ? 'now' : '', used && !used.has(PAD_ROWS[1][i]) ? 'dim' : ''].join(' '))}
+      </div>`).join('')}</div>
+      <p class="pad-note">열 색: C 초록 · D 파랑 · E 주황 · F 보라 · G 청록 · A 노랑 · B 분홍. 161곡을 카포 0~11로 돌려 손으로 잡을 코드(슬롯)가 가장 적게 남는 배치입니다.</p>
+    </div>`;
+  }
+  /* 악보 위에 붙어 있는 작은 14버튼 바 — 스크롤해도 지금 코드 버튼이 함께 보인다. */
+  function aeroStrip() {
+    return `<div class="aero-strip" id="aero-strip" aria-label="지금 코드 버튼(14버튼)">
+      ${ROOTS.map((r, i) => `<div class="strip-col" style="--c:${ROOT_COLOR[r]}"><span>${r}</span>
+        ${padButton(PAD_ROWS[0][i], 'sm')}${padButton(PAD_ROWS[1][i], 'sm')}</div>`).join('')}
+    </div>`;
+  }
+  const timingOf = c => (c && c.timing && (Array.isArray(c.timing.barTimes) || c.timing.barSec)) ? c.timing : null;
+  const totalBarsOf = c => (c && c.sections ? c.sections : []).reduce((n, sec) => n + sec.bars.length, 0);
+  function barStartAt(t, i) {
+    if (!t) return 0;
+    if (t.barTimes && t.barTimes[i]) return Number(t.barTimes[i][0]) || 0;
+    return (Number(t.offsetSec) || 0) + i * (Number(t.barSec) || 0);
+  }
+  function audioBarAt(t, sec) {
+    const list = t.barTimes || [];
+    if (!list.length) return Math.floor((sec - (Number(t.offsetSec) || 0)) / (Number(t.barSec) || 1));
+    if (sec < Number(list[0][0])) return -1;
+    let lo = 0, hi = list.length - 1;
+    while (lo < hi) { const mid = (lo + hi + 1) >> 1; if (Number(list[mid][0]) <= sec) lo = mid; else hi = mid - 1; }
+    return lo;
+  }
+  function chartBarAt(c, sec) {
+    const t = timingOf(c); if (!t) return -1;
+    const k = audioBarAt(t, sec); if (k < 0) return -1;
+    const n = totalBarsOf(c) || t.bars || 0; if (!n) return -1;
+    if (k < n) return k;
+    return t.cycle ? k % n : -1;
+  }
+  function paintChartNow(sec) {
+    if (!modal || modal.kind !== 'chart') return;
+    const s = song(modal.id); if (!s) return;
+    const c = chartOf(s); if (!c) return;
+    const host = get('chart-bars'); if (!host) return;
+    const idx = chartBarAt(c, sec);
+    if (idx === chartNowIdx) return;
+    chartNowIdx = idx;
+    const bars = host.querySelectorAll('.bar');
+    let btn = '';
+    bars.forEach((el, i) => {
+      const on = i === idx;
+      el.classList.toggle('now', on);
+      el.classList.toggle('past', idx >= 0 && i < idx);
+      if (on) btn = el.dataset.btn || '';
+    });
+    host.querySelectorAll('.cc').forEach(cc => cc.classList.toggle('now', !!cc.closest('.bar.now')));
+    document.querySelectorAll('.aero-pad .pad-btn, .aero-strip .pad-btn').forEach(b => b.classList.toggle('now', !!btn && b.dataset.btn === btn));
+    const label = get('chart-now-label');
+    if (label) label.textContent = idx >= 0 ? `${idx + 1}마디${btn ? ' · ' + btn : ''} 재생 중` : '';
+    if (chartFollow && idx >= 0 && bars[idx]) {
+      try { bars[idx].scrollIntoView({ block: 'nearest', inline: 'nearest', behavior: 'smooth' }); } catch (err) { }
+    }
+  }
+  function miniTime() {
+    if (!mini) return 0;
+    if (miniIsAudio(mini)) { const a = get('mini-audio'); return a ? Number(a.currentTime) || 0 : 0; }
+    if (ytPlayer && ytReady && ytPlayer.getCurrentTime) { try { return Number(ytPlayer.getCurrentTime()) || 0; } catch (err) { return 0; } }
+    return 0;
+  }
+  function miniPlaying() {
+    if (!mini) return false;
+    if (miniIsAudio(mini)) { const a = get('mini-audio'); return !!a && !a.paused && !a.ended; }
+    if (ytPlayer && ytReady && ytPlayer.getPlayerState) { try { return ytPlayer.getPlayerState() === 1; } catch (err) { return false; } }
+    return false;
+  }
+  function chartTick() {
+    chartRaf = null;
+    if (!mini || !modal || modal.kind !== 'chart' || mini.songId !== modal.id) { chartNowIdx = -1; return; }
+    paintChartNow(miniTime());
+    if (miniPlaying()) chartRaf = requestAnimationFrame(chartTick);
+  }
+  function startChartTick() { if (chartRaf == null) chartRaf = requestAnimationFrame(chartTick); }
+  /* 오디오 구간 이동: 아직 seekable 범위가 없으면(파일을 다 못 받았거나 서버가 Range 를 안 줄 때)
+     짧게 기다렸다가 다시 시도한다. */
+  function seekAudioTo(a, t, tries) {
+    if (!a) return false;
+    let canSeek = false;
+    try { canSeek = a.seekable && a.seekable.length > 0 && a.seekable.end(a.seekable.length - 1) > Math.max(0.5, t - 0.5); } catch (err) { canSeek = false; }
+    if (!canSeek && tries > 0) { setTimeout(() => seekAudioTo(a, t, tries - 1), 250); return false; }
+    try { a.currentTime = t; a.play().catch(() => { }); return true; } catch (err) { return false; }
+  }
+  function seekMini(sec) {
+    if (!mini) return false;
+    const t = Math.max(0, Number(sec) || 0);
+    if (miniIsAudio(mini)) {
+      const a = get('mini-audio');
+      if (!a || a.readyState < 1) { pendingSeek = { songId: mini.songId, sec: t }; return false; }
+      seekAudioTo(a, t, 8);
+      return true;
+    }
+    if (ytPlayer && ytReady && ytPlayer.seekTo) {
+      try { ytPlayer.seekTo(t, true); if (ytPlayer.playVideo) ytPlayer.playVideo(); return true; } catch (err) { return false; }
+    }
+    pendingSeek = { songId: mini.songId, sec: t };
+    return false;
+  }
+  const nearestYtRate = r => YT_RATES.reduce((a, b) => Math.abs(b - r) < Math.abs(a - r) ? b : a, 1);
+  function paintRate() {
+    const r = Number(mini && mini.rate) || 1;
+    document.querySelectorAll('.mini-rate .rate-btn').forEach(b => {
+      const on = Math.abs(Number(b.dataset.rate) - r) < 0.001;
+      b.classList.toggle('on', on);
+      b.setAttribute('aria-pressed', on ? 'true' : 'false');
+    });
+    const live = get('mini-rate-live');
+    if (live && mini) {
+      const applied = miniIsAudio(mini) ? r : nearestYtRate(r);
+      live.textContent = `${applied}x` + (miniIsAudio(mini) ? '' : ' · YouTube');
+    }
+  }
+  function applyMiniRate() {
+    if (!mini) return;
+    const r = Number(mini.rate) || 1;
+    if (miniIsAudio(mini)) {
+      const a = get('mini-audio');
+      if (a) { try { a.preservesPitch = true; a.mozPreservesPitch = true; a.webkitPreservesPitch = true; a.playbackRate = r; } catch (err) { } }
+    } else if (ytPlayer && ytReady && ytPlayer.setPlaybackRate) {
+      try { ytPlayer.setPlaybackRate(nearestYtRate(r)); } catch (err) { }
+    }
+    paintRate();
+  }
+  function loadYtApi() {
+    if (window.YT && window.YT.Player) return Promise.resolve(window.YT);
+    if (ytApiPromise) return ytApiPromise;
+    ytApiPromise = new Promise((resolve, reject) => {
+      let done = false;
+      const finish = ok => { if (done) return; done = true; if (ok) resolve(window.YT); else { ytApiPromise = null; reject(new Error('yt-api')); } };
+      const prev = window.onYouTubeIframeAPIReady;
+      window.onYouTubeIframeAPIReady = () => { try { if (typeof prev === 'function') prev(); } catch (err) { } finish(true); };
+      const s = document.createElement('script');
+      s.src = 'https://www.youtube.com/iframe_api'; s.async = true;
+      s.onerror = () => finish(false);
+      document.head.appendChild(s);
+      setTimeout(() => { if (window.YT && window.YT.Player) finish(true); else finish(false); }, 8000);
+    });
+    return ytApiPromise;
+  }
+  function mountYtPlayer(videoId) {
+    const host = get('yt-host'); if (!host) return;
+    ytReady = false; ytPlayer = null;
+    loadYtApi().then(YT => {
+      if (!mini || miniIsAudio(mini) || mini.videoId !== videoId) return;
+      host.innerHTML = '';
+      const node = document.createElement('div');
+      host.appendChild(node);
+      ytPlayer = new YT.Player(node, {
+        videoId: videoId,
+        host: 'https://www.youtube-nocookie.com',
+        playerVars: { autoplay: 1, rel: 0, playsinline: 1, modestbranding: 1 },
+        events: {
+          onReady: () => {
+            ytReady = true;
+            if (Number(mini && mini.rate) !== 1) applyMiniRate();
+            if (pendingSeek && mini && pendingSeek.songId === mini.songId) { try { ytPlayer.seekTo(pendingSeek.sec, true); } catch (err) { } pendingSeek = null; }
+            startChartTick();
+          },
+          onStateChange: () => startChartTick()
+        }
+      });
+    }).catch(() => {
+      if (!mini || miniIsAudio(mini) || mini.videoId !== videoId) return;
+      const h = get('yt-host');
+      if (h) h.innerHTML = `<iframe src="${esc(ytEmbed(videoId))}" title="${esc(mini.title)} 재생" allow="autoplay; encrypted-media; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>`;
+      notice('YouTube 플레이어를 불러오지 못했습니다. 영상은 그대로 재생되지만 마디 이동·배속은 MP3 반주에서만 됩니다.');
+    });
+  }
   function renderMini(){
     if(!miniRoot)return;
     if(!mini){miniRoot.innerHTML='';try{document.body.classList?.remove('has-mini');document.body.style.paddingBottom='';document.documentElement?.style&&document.documentElement.style.setProperty('--mini-h','0px');}catch(err){}return;}
@@ -775,21 +1020,45 @@
       ?`<div class="mini-key" id="mini-key" role="group" aria-label="키 조절"><button type="button" class="mini-btn" data-act="mini-shift:-1" aria-label="반음 내리기" title="반음 내리기">−</button><b class="mini-key-label" id="mini-key-label">${mrShiftLabel(shift)}</b><button type="button" class="mini-btn" data-act="mini-shift:1" aria-label="반음 올리기" title="반음 올리기">＋</button><span class="mini-key-hint">−6~+6반음 · 템포 유지</span></div>`
       :(mini.collapsed||mini.kind==='lesson'?'':`<span class="mini-key-note">YouTube 재생 중에는 키 조절을 쓸 수 없습니다(MP3 반주에서만)</span>`);
     const body=isAudio
-      ?`<audio class="mini-audio" id="mini-audio" controls autoplay preload="none" src="${esc(mini.audioUrl)}"></audio>`
-      :`<div class="mini-frame"><iframe src="${esc(ytEmbed(mini.videoId))}" title="${esc(mini.title)} ${esc(mini.badge)} 재생" allow="autoplay; encrypted-media; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe></div>`;
+      ?`<audio class="mini-audio" id="mini-audio" controls autoplay preload="metadata" src="${esc(mini.audioUrl)}"></audio>`
+      :`<div class="mini-frame"><div class="yt-host" id="yt-host"></div></div>`;
+    const rateBar=`<div class="mini-rate" id="mini-rate" role="group" aria-label="배속 조절">${RATE_STEPS.map(r=>`<button type="button" class="mini-btn rate-btn ${(Number(mini.rate)||1)===r?'on':''}" data-act="mini-rate:${r}" data-rate="${r}" aria-pressed="${(Number(mini.rate)||1)===r?'true':'false'}" title="${r}x 배속 (음정 유지)">${r===1?'1.0':r}x</button>`).join('')}<span class="mini-rate-live" id="mini-rate-live">${(Number(mini.rate)||1)}x</span></div>`;
     const link=mini.kind==='audio'?musicSearch(s||{title:mini.title,artist:mini.sub}):mini.kind==='mraudio'?esc(mini.audioUrl):esc(watch);
     const linkLabel=mini.badge==='MR'?'MR 음원 ↗':mini.kind==='mraudio'?'음원 파일 ↗':'YouTube ↗';
     miniRoot.innerHTML=`<section class="mini-player ${mini.collapsed?'collapsed':''}" id="mini-player" aria-label="하단 미니 플레이어">
       <div class="mini-info"><span class="mini-badge">${esc(mini.badge)}</span><div class="mini-text"><b>${esc(mini.title)}</b><span>${esc(mini.sub)}</span></div></div>
       ${body}
       ${keyBar}
+      ${rateBar}
       <div class="mini-tools"><button type="button" class="mini-btn" data-act="mini-local" title="휴대폰에 저장한 오디오 파일 재생">내 파일</button><a class="mini-btn" href="${link}" target="_blank" rel="noopener noreferrer">${linkLabel}</a><button type="button" class="mini-btn" data-act="mini-collapse" aria-label="${mini.collapsed?'펼치기':'접기'}" title="${mini.collapsed?'펼치기':'접기'}">${mini.collapsed?'▴':'▾'}</button><button type="button" class="mini-btn mini-close" data-act="mini-close" aria-label="미니 플레이어 닫기" title="닫기">×</button></div>
       <input id="mini-file" type="file" accept="audio/*" class="hide" />
     </section>`;
     try{document.body.classList?.add('has-mini');}catch(err){}
+    const audioEl=get('mini-audio');
+    if(audioEl){
+      audioEl.addEventListener('loadedmetadata',()=>{
+        applyMiniRate();
+        if(pendingSeek&&mini&&pendingSeek.songId===mini.songId){const sec=pendingSeek.sec;pendingSeek=null;seekAudioTo(audioEl,sec,8);}
+        startChartTick();
+      });
+      audioEl.addEventListener('progress',()=>{
+        if(pendingSeek&&mini&&pendingSeek.songId===mini.songId){const sec=pendingSeek.sec;pendingSeek=null;seekAudioTo(audioEl,sec,4);}
+      });
+      audioEl.addEventListener('timeupdate',()=>paintChartNow(audioEl.currentTime));
+      audioEl.addEventListener('play',()=>startChartTick());
+      audioEl.addEventListener('seeked',()=>paintChartNow(audioEl.currentTime));
+      applyMiniRate();
+    }else if(!isAudio&&mini.videoId){
+      mountYtPlayer(mini.videoId);
+    }
     syncMiniHeight();
   }
-  function closeModal(){audioStop();modal=null;render();}
+  function closeModal(){
+    audioStop();
+    if(chartRaf!=null){cancelAnimationFrame(chartRaf);chartRaf=null;}
+    chartNowIdx=-1;
+    modal=null;render();
+  }
   function editSong(id){modal={kind:id?'edit':'new',id};render();}
   function setSettingsField(name,value){state.settings[name]=value;save();render();}
   function changeBpm(amount){state.settings.bpm=Math.max(40,Math.min(180,state.settings.bpm+amount));save();if(metronome){stopMetro();startMetro();}render();}
@@ -857,7 +1126,7 @@
     case 'go-sources':setTab('sources');return;
     case 'new-song':editSong(null);return;
     case 'edit':editSong(value);return;
-    case 'chart':modal={kind:'chart',id:value,tab:'chart'};render();return;
+    case 'chart':modal={kind:'chart',id:value,tab:'chart'};chartNowIdx=-1;render();if(mini&&mini.songId===value)startChartTick();return;
     case 'chart-tab':if(modal){modal.tab=value;render();}return;
     case 'metro-song':{const s=song(value),c=s&&chartOf(s);if(c){state.settings.bpm=Math.max(40,Math.min(180,Math.round(c.bpm||state.settings.bpm)));state.settings.timeSignature=c.timeSignature||state.settings.timeSignature;state.settings.focusSongId=s.id;{const p=weekState();if(!p.goalSongId){p.goalSongId=s.id;if(!p.startedAt)p.startedAt=dateKey();}}save();if(metronome){stopMetro();}modal=null;setTab('practice');notice(`${s.title} · ${state.settings.bpm}BPM · ${state.settings.timeSignature} 메트로놈으로 연습을 준비했습니다.`);}else notice('이 곡은 아직 악보 검수 대기입니다.');return;}
     case 'video':case 'music':{const s=song(value);if(!s)return;if(cmd==='music'&&!safeHttp(s.audioUrl)&&!fullAudioOf(s)&&!s.videoUrl){audioStop();modal={kind:'music',id:value};render();return;}openMini(cmd,s);return;}
@@ -866,6 +1135,26 @@
     case 'mini-collapse':if(mini){mini.collapsed=!mini.collapsed;renderMini();}return;
     case 'mini-local':get('mini-file')?.click();return;
     case 'mini-shift':{const step=Number(value)||0;applyMrShift(mrShiftOf(mini?mini.songId:'')+step);return;}
+    case 'mini-rate':{const r=Number(value)||1;miniRate=r;if(mini){mini.rate=r;applyMiniRate();}else notice('먼저 MR이나 음악을 재생하세요.');return;}
+    case 'chart-follow':{chartFollow=!chartFollow;const b=get('chart-follow-btn');if(b){b.classList.toggle('on',chartFollow);b.setAttribute('aria-pressed',chartFollow?'true':'false');b.textContent=chartFollow?'따라가기 켜짐':'따라가기 꺼짐';}return;}
+    case 'seek-bar':{
+      const pos=value.lastIndexOf(':');const sid=value.slice(0,pos),idx=Math.max(0,Number(value.slice(pos+1))||0);
+      const s=song(sid);if(!s)return;
+      const c=chartOf(s);const tm=timingOf(c);
+      if(!tm){notice('이 곡은 BPM이 없어 마디 타임라인을 만들 수 없습니다.');return;}
+      const sec=barStartAt(tm,idx);
+      if(!mini||mini.songId!==s.id){
+        if(hasMr(s))openMini('mr',s);
+        else if(fullAudioOf(s)||safeHttp(s.audioUrl))openMini('music',s);
+        else{notice('이 곡은 MR이 없어 마디 이동을 할 수 없습니다. MR을 등록하면 그 마디부터 재생됩니다.');return;}
+      }
+      pendingSeek={songId:s.id,sec:sec};
+      chartNowIdx=-1;
+      seekMini(sec);
+      paintChartNow(sec);
+      startChartTick();
+      notice(`${idx+1}마디(${clock(sec)})부터 재생합니다.`);
+      return;}
     case 'close':case 'dismiss':closeModal();return;
     case 'source':modal={kind:'source',index:+value};render();return;
     case 'youtube-search':{const s=song(value);if(s)openTab(youtubeSearch(s));return;}
