@@ -465,6 +465,47 @@ def run(pw, name, viewport, mobile=False):
     page.click('.mini-rate .rate-btn[data-rate="1"]')
     page.click('[data-act="mini-close"]')
     page.click('[data-act="close"]')
+    # YouTube 경로(IFrame API → seekTo·setPlaybackRate) — 테스트 더블로 호출을 실제로 확인한다.
+    page.evaluate("""() => {
+      window.__yt = {calls: [], t: 0, rate: 1, player: null};
+      window.YT = { Player: function (node, cfg) {
+        const self = this; window.__yt.player = self;
+        self.getCurrentTime = () => window.__yt.t;
+        self.getPlayerState = () => 1;
+        self.seekTo = (s, allow) => { window.__yt.calls.push(['seek', s, allow]); window.__yt.t = s; };
+        self.playVideo = () => window.__yt.calls.push(['play']);
+        self.setPlaybackRate = r => { window.__yt.calls.push(['rate', r]); window.__yt.rate = r; };
+        self.getPlaybackRate = () => window.__yt.rate;
+        setTimeout(() => cfg.events && cfg.events.onReady && cfg.events.onReady({target: self}), 60);
+      }};
+    }""")
+    page.fill('#song-search', '희재')
+    page.wait_for_timeout(300)
+    page.locator('.song-row', has_text='희재').first.locator('button', has_text='악보').click()
+    page.wait_for_selector('.chart-modal')
+    yt_bars = page.locator('#chart-bars .bar')
+    yt_bar2 = page.evaluate("() => Number(document.querySelectorAll('#chart-bars .bar')[7].dataset.bar)")
+    page.locator('.chart-modal').locator('button', has_text='MR 듣기').click()
+    page.wait_for_timeout(600)
+    yt_bars.nth(7).click()
+    page.wait_for_timeout(500)
+    calls = page.evaluate("() => window.__yt.calls")
+    seeks = [c for c in calls if c[0] == 'seek']
+    expect_sec = float(page.evaluate("() => { const t = window.STRUM_SEED.songs.find(s => s.id === 'verified-006').chart.timing; return t.barTimes[7][0]; }"))
+    check(f'{name}: YouTube 마디 클릭 → seekTo(마디 시작, 즉시)', bool(seeks) and abs(seeks[-1][1] - expect_sec) < 0.2 and seeks[-1][2] is True,
+          f'{seeks[-1] if seeks else None} vs {expect_sec}')
+    page.click('.mini-rate .rate-btn[data-rate="0.7"]')
+    page.wait_for_timeout(300)
+    calls = page.evaluate("() => window.__yt.calls")
+    rates = [c[1] for c in calls if c[0] == 'rate']
+    check(f'{name}: YouTube 배속 0.7 → setPlaybackRate(0.75)', 0.75 in rates, str(rates))
+    page.evaluate("() => { window.__yt.t = 40; }")
+    page.wait_for_timeout(700)
+    check(f'{name}: YouTube 재생 위치가 마디 표시에 반영', '마디' in page.locator('#chart-now-label').inner_text(),
+          page.locator('#chart-now-label').inner_text())
+    page.click('[data-act="mini-close"]')
+    page.click('[data-act="close"]')
+    page.evaluate("() => { delete window.YT; window.__yt = null; }")
     page.fill('#song-search', '')
     page.wait_for_timeout(200)
 
