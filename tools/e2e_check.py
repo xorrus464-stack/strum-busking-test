@@ -401,6 +401,85 @@ def run(pw, name, viewport, mobile=False):
     check(f'{name}: 연습 화면 가로 넘침 없음', o['sw'] <= o['cw'] + 1, str(o))
     page.screenshot(path=str(SHOTS / f'practice-{name}.png'), full_page=not mobile)
 
+    # 2026-11-26 오늘의 연습 개편 — 한눈에 보는 3가지 · Day 연동 · 실제 코드 운지표
+    page.click('[data-nav="practice"]')
+    page.wait_for_selector('.today-step')
+    check(f'{name}: 오늘 할 일 3가지 카드', page.locator('.today-step').count() == 3, str(page.locator('.today-step').count()))
+    check(f'{name}: Day 칩 7개', page.locator('.day-chip').count() == 7, str(page.locator('.day-chip').count()))
+    check(f'{name}: 루틴 5단계 연결 버튼', page.locator('.routine-steps .task-act').count() == 5,
+          str(page.locator('.routine-steps .task-act').count()))
+    check(f'{name}: 실제 코드 운지표 SVG', page.locator('#today-chords svg.fret-diagram').count() >= 2,
+          str(page.locator('#today-chords svg.fret-diagram').count()))
+    # 주간 연습에서 1일차를 체크했으므로 오늘은 2일차
+    check(f'{name}: 체크한 다음 Day가 오늘 연습', page.locator('.day-chip.on').inner_text().startswith('D2'),
+          page.locator('.day-chip.on').inner_text())
+    check(f'{name}: 오늘 코드(D2) C·G·Am',
+          [x.strip() for x in page.locator('#today-chords .chord-mini b').all_inner_texts()] == ['C', 'G', 'Am'],
+          str(page.locator('#today-chords .chord-mini b').all_inner_texts()))
+    check(f'{name}: 목표곡 카드에 곡·키·Capo·BPM',
+          all(k in page.locator('.today-step').first.inner_text() for k in ('민들레', '남자키', 'Capo +', 'BPM')),
+          page.locator('.today-step').first.inner_text()[:120])
+    check(f'{name}: ② 오른손 주법 카드', '8비트' in page.locator('.today-step').nth(1).inner_text(),
+          page.locator('.today-step').nth(1).inner_text()[:80])
+    # Day 3 = C·G·F, F는 바레 대신 약식(xx3211)을 먼저 보여준다
+    page.locator('.day-chip').nth(2).click()
+    page.wait_for_timeout(150)
+    check(f'{name}: Day 3 코드 C·G·F', [x.strip() for x in page.locator('#today-chords .chord-mini b').all_inner_texts()] == ['C', 'G', 'F약식'],
+          str(page.locator('#today-chords .chord-mini b').all_inner_texts()))
+    check(f'{name}: F 약식 운지 xx3211', 'xx3211' in page.locator('#today-chords').inner_text(),
+          page.locator('#today-chords').inner_text()[:160])
+    check(f'{name}: 바레 대신 SimplifyChord 안내', 'SimplifyChord' in page.locator('.step-barre').inner_text())
+    # ② 주법 영상 보기 → 하단 미니 플레이어
+    page.locator('.today-step').nth(1).locator('[data-act^="lesson-play:"]').click()
+    page.wait_for_selector('.mini-player iframe')
+    v_src = page.locator('.mini-player iframe').first.get_attribute('src') or ''
+    check(f'{name}: ② 주법 영상 재생', 'youtube-nocookie.com/embed/' in v_src, v_src)
+    page.click('[data-act="mini-close"]')
+    # ① 악보 열기 → 악보 모달
+    page.locator('.today-step').first.locator('[data-act^="chart:"]').click()
+    page.wait_for_selector('.chart-modal')
+    check(f'{name}: ① 악보 열기 모달', '원터치' in page.locator('.chart-modal').inner_text())
+    page.click('[data-act="close"]')
+    # 5단계 루틴 버튼: 메트로놈 켜기(목표곡 템포)
+    page.locator('.routine-steps .task-act').nth(0).click()
+    page.wait_for_timeout(400)
+    check(f'{name}: 루틴 ① 메트로놈 켜기', '정지' in page.locator('[data-act="metro-toggle"]').inner_text(),
+          page.locator('[data-act="metro-toggle"]').inner_text())
+    check(f'{name}: 목표곡 BPM으로 메트로놈', page.locator('#bpm-label').inner_text().startswith('120'),
+          page.locator('#bpm-label').inner_text())
+    page.locator('[data-act="metro-toggle"]').click()
+    # 루틴 ⑤ 기록 입력 → 기록 폼으로 이동
+    page.locator('.routine-steps .task-act').nth(4).click()
+    page.wait_for_timeout(600)
+    check(f'{name}: 루틴 ⑤ 기록 입력으로 이동', page.evaluate(
+        "()=>{const r=document.getElementById('practice-log').getBoundingClientRect();return r.top>-40&&r.top<innerHeight;}"))
+    page.evaluate("() => window.scrollTo(0, 0)")
+    # 주간 연습 DAY 카드의 '오늘의 연습으로 바로 가기'
+    page.click('[data-nav="week"]')
+    check(f'{name}: DAY 카드 바로가기 7개', page.locator('.week-day [data-act^="week-day:"]').count() == 7,
+          str(page.locator('.week-day [data-act^="week-day:"]').count()))
+    page.locator('.week-day').first.locator('[data-act^="week-day:"]').click()
+    page.wait_for_timeout(200)
+    check(f'{name}: DAY 1 바로가기 → 오늘 연습 D1', page.locator('.day-chip.on').inner_text().startswith('D1'),
+          page.locator('.day-chip.on').inner_text())
+    check(f'{name}: DAY 1 코드 C·G', [x.strip() for x in page.locator('#today-chords .chord-mini b').all_inner_texts()] == ['C', 'G'],
+          str(page.locator('#today-chords .chord-mini b').all_inner_texts()))
+    # 홈 히어로 '오늘의 연습 시작' — 장식(.hero:after)이 버튼을 덮어 클릭이 막히던 문제
+    page.click('[data-nav="home"]')
+    page.wait_for_selector('[data-act="start-practice"]')
+    box = page.evaluate("""()=>{const b=document.querySelector('[data-act="start-practice"]');b.scrollIntoView({block:'center'});
+        const r=b.getBoundingClientRect();return {x:r.left+r.width/2,y:r.top+r.height/2};}""")
+    page.wait_for_timeout(150)
+    top = page.evaluate("([x,y])=>{const e=document.elementFromPoint(x,y);return e?e.tagName:'none';}", [box['x'], box['y']])
+    check(f'{name}: 히어로 버튼 위를 덮는 요소 없음', top == 'BUTTON', top)
+    if mobile:
+        page.touchscreen.tap(box['x'], box['y'])
+    else:
+        page.mouse.click(box['x'], box['y'])
+    page.wait_for_timeout(300)
+    check(f'{name}: 히어로 버튼 탭 → 오늘의 연습', page.locator('.nav button.active').inner_text() == '오늘의 연습',
+          page.locator('.nav button.active').inner_text())
+
     # 곡 템포로 연습
     page.click('[data-nav="songs"]')
     page.locator('.song-row', has_text='Thank You').first.locator('button', has_text='악보').click()
@@ -409,7 +488,7 @@ def run(pw, name, viewport, mobile=False):
     page.wait_for_timeout(200)
     body = page.content()
     check(f'{name}: 곡 BPM 넘김', '79 BPM' in body or '79' in body, 'bpm')
-    check(f'{name}: 오늘의 곡 표시', '오늘의 곡' in body)
+    check(f'{name}: 오늘 할 일 3가지 표시', '오늘 할 일 3가지' in body and 'Thank You' in body)
 
     # 연습 기록 저장
     page.fill('input[name="minutes"]', '12')
@@ -476,7 +555,7 @@ def run_merge(pw):
     check('merge: 남자키 배지 병합', page.locator('.song-row', has_text='오늘').first.inner_text().find('남자키') >= 0)
     state = json.loads(page.evaluate("() => localStorage.getItem('strum-busking-v2')"))
     song = [s for s in state['songs'] if s['id'] == 'verified-001'][0]
-    check('merge: seedVersion 26', state['seedVersion'] == 26, str(state['seedVersion']))
+    check('merge: seedVersion 27', state['seedVersion'] == 27, str(state['seedVersion']))
     check('merge: MR 링크 병합', song.get('mrUrl', '').endswith('hwZqHCMmjUM'), str(song.get('mrUrl')))
     check('merge: 숙련도 보존', song['level'] == '버스킹 가능', song['level'])
     check('merge: 사용자 메모 보존', song['notes'] == '내 메모', song['notes'])

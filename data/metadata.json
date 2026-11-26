@@ -12,7 +12,7 @@
   "additionalRecommendedSongCount": 1,
   "originalPlaylist": "https://www.youtube.com/playlist?list=PLdOy20BJp9XElDHDvAJI6mUG48BmfDX-y",
   "playlistId": "PLdOy20BJp9XElDHDvAJI6mUG48BmfDX-y",
-  "seedVersion": 26,
+  "seedVersion": 27,
   "playlistCollectedCount": 210,
   "playlistPublicVideoCount": 168,
   "playlistInaccessibleVideoCount": 42,
@@ -84,5 +84,7 @@
   },
   "lessonVersion": "2026-11-26",
   "lessonNote": "2026-11-26 주간 연습(Day 1~7)과 오른손 주법 강좌 9개를 추가했습니다. 강좌 영상은 YouTube oEmbed HTTP 200으로 제목·채널을 확인한 실제 레슨 영상이고, 커버·연주 영상은 넣지 않았습니다. 라이브 사이트에서 대표 영상 5개(채널별 1개)를 미니 플레이어로 직접 재생해 임베드 재생까지 확인했고, 모든 카드에 YouTube 직접 열기 링크도 함께 둡니다.",
-  "weekPlanDays": 7
+  "weekPlanDays": 7,
+  "todayPracticeVersion": "2026-11-26",
+  "todayPracticeNote": "홈·상단 메뉴의 '오늘의 연습'이 모바일에서 눌리지 않던 원인은 히어로 배경 장식(.hero:after)이 버튼 위를 덮고 있었기 때문입니다. 장식에 pointer-events:none 을 주고, 모바일 상단 메뉴에서 '오늘의 연습'을 맨 앞으로 옮겼습니다. 오늘의 연습 화면은 주간 연습의 해당 Day(미시작이면 Day 1)와 목표곡을 묶어 '오늘 할 일 3가지'(① 목표곡 악보·MR 80%, ② 오른손 주법 영상, ③ 실제 코드 2~3개 운지표 20%)를 맨 위에 두고, 5단계 루틴 각 줄에 관련 기능 버튼을 붙였습니다."
 }

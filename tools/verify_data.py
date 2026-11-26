@@ -135,7 +135,7 @@ for s in songs:
         assert not s['videoUrl'], s['id']
 
 # 10) 메타 집계
-assert meta['seedVersion'] == 26, meta['seedVersion']
+assert meta['seedVersion'] == 27, meta['seedVersion']
 assert meta['buttonCount'] == 14 and len(meta['buttonSet']) == 14, meta.get('buttonCount')
 assert meta['chartVersion'] == '2026-11-25', meta['chartVersion']
 assert meta['videoLinkCount'] == 201 and meta['videoLinkFilledCount'] == 36
@@ -149,7 +149,8 @@ assert meta['songEntryCount'] == len(songs) == 201
 lessons = json.loads((BASE / 'data' / 'lessons.json').read_text(encoding='utf-8'))
 week = json.loads((BASE / 'data' / 'week-plan.json').read_text(encoding='utf-8'))
 seed_js = (BASE / 'src' / 'seed.js').read_text(encoding='utf-8')
-assert meta['lessonVersion'] == lessons['version'] == week['version'] == '2026-11-26'
+assert meta['lessonVersion'] == lessons['version'] == '2026-11-26'
+assert week['version'].startswith('2026-11-26'), week['version']
 assert meta['weekPlanDays'] == 7
 assert 'STRUM_SEED.lessons' in seed_js and 'STRUM_SEED.weekPlan' in seed_js, 'seed.js 에 강좌·주간 플랜 누락'
 lesson_keys = [l['key'] for l in lessons['lessons']]
@@ -176,6 +177,29 @@ for d in week['days']:
     assert set(d['lessons']) <= set(lesson_keys), d['day']
     covered.update(d['lessons'])
 assert covered == set(lesson_keys), (sorted(set(lesson_keys) - covered), '연습일에 연결되지 않은 강좌')
+# 10-c) 오늘의 연습: Day 별 실제 코드(2~3개)와 운지표(CHORD_SHAPES) · 터치 막힘 수정 (2026-11-26)
+app_js = (BASE / 'src' / 'app.js').read_text(encoding='utf-8')
+css = (BASE / 'src' / 'styles.css').read_text(encoding='utf-8')
+shapes = set(re.findall(r"^    ([A-G][#b]?\w*):\{form:", app_js, re.M))
+assert len(shapes) >= 18, sorted(shapes)
+for d in week['days']:
+    assert 2 <= len(d.get('chords') or []) <= 3, (d['day'], d.get('chords'))
+    assert d.get('chordsNote'), d['day']
+    for c in d['chords']:
+        assert c in shapes, (d['day'], c)
+assert '오늘 할 일 3가지' in app_js and 'today-three' in app_js
+assert 'today-step' in css and 'day-chip' in css
+# 모바일에서 히어로 버튼을 덮어 클릭이 막히던 장식(.hero:after) — pointer-events:none 필수
+hero_after = re.search(r"\.hero:after\{[^}]*\}", css)
+assert hero_after and 'pointer-events:none' in hero_after.group(0), hero_after and hero_after.group(0)
+# 바레 코드는 약식(simplify) 폼을 먼저 보여준다
+for barre in ('F', 'Bm', 'Bb'):
+    assert re.search(r"^    %s:\{form:[\s\S]{0,700}?simple:\{" % barre, app_js, re.M), barre
+assert 'SimplifyChord 약식 폼' in app_js
+idx = (BASE / 'index.html').read_text(encoding='utf-8')
+sw = (BASE / 'sw.js').read_text(encoding='utf-8')
+assert '?v=28' in idx and 'strum-busking-test-v28' in sw
+
 for r in week['recommended']:
     s = by_id[r['songId']]
     c = s.get('chart') or {}

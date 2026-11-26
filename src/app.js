@@ -28,7 +28,7 @@
   const get = id => document.getElementById(id);
   const root = get('app');
   const SEED_VERSION = Number(seed.meta.seedVersion || 0);
-  const defaultState = () => ({version:2,seedVersion:SEED_VERSION,removedSeedIds:[],songs:clone(seed.songs),sources:clone(seed.sources),logs:[],settings:{mode:'easy',minutes:25,bpm:60,weeklyGoal:5,timeSignature:'4/4',focusSongId:''},selectedRoutine:[],completedStages:[],weekPlan:{days:{},goalSongId:'',startedAt:''},lastChanged:new Date().toISOString()});
+  const defaultState = () => ({version:2,seedVersion:SEED_VERSION,removedSeedIds:[],songs:clone(seed.songs),sources:clone(seed.sources),logs:[],settings:{mode:'easy',minutes:25,bpm:60,weeklyGoal:5,timeSignature:'4/4',focusSongId:''},selectedRoutine:[],completedStages:[],weekPlan:{days:{},goalSongId:'',startedAt:'',activeDay:0,activeDayDate:''},lastChanged:new Date().toISOString()});
   let state = defaultState(), currentTab='home', modal=null, searchQuery='', statusFilter='all', sourceQuery='', sourceFilter='known', showAllSources=false;
   let trackAudio=null, trackObjectURL=null, metronome=null, bpmTimer=null, practiceInterval=null, remaining=25*60, sessionRunning=false, lastTime=0, toastTimeout=null;
   let seedMerged=false;
@@ -196,12 +196,15 @@
   const LESSONS = (seed.lessons && Array.isArray(seed.lessons.lessons)) ? seed.lessons.lessons : [];
   const lessonOf = k => LESSONS.find(l=>l.key===k) || null;
   const weekState = () => {
-    if(!state.weekPlan || typeof state.weekPlan!=='object') state.weekPlan={days:{},goalSongId:'',startedAt:''};
+    if(!state.weekPlan || typeof state.weekPlan!=='object') state.weekPlan={days:{},goalSongId:'',startedAt:'',activeDay:0,activeDayDate:''};
     if(!state.weekPlan.days || typeof state.weekPlan.days!=='object') state.weekPlan.days={};
+    if(state.weekPlan.activeDay===undefined) state.weekPlan.activeDay=0;
+    if(!state.weekPlan.activeDayDate) state.weekPlan.activeDayDate='';
     return state.weekPlan;
   };
   const weekDoneCount = () => {const p=weekState();return Object.keys(p.days).filter(k=>p.days[k]).length;};
-  const goalSong = () => {const p=weekState();return song(p.goalSongId) || (WEEK_PLAN.recommended&&WEEK_PLAN.recommended[0] ? song(WEEK_PLAN.recommended[0].songId) : null);};
+  /* 이번 주 목표곡 → (없으면) 마지막으로 '이 곡 템포로 연습'한 곡 → 추천 1번 */
+  const goalSong = () => {const p=weekState();return song(p.goalSongId) || song(state.settings.focusSongId) || (WEEK_PLAN.recommended&&WEEK_PLAN.recommended[0] ? song(WEEK_PLAN.recommended[0].songId) : null);};
   /* 목표곡 후보 — 14버튼만으로 완주(슬롯 0)하고 MR이 연결된 곡만 */
   const zeroSlotMrSongs = () => ordered().filter(s=>{const c=chartOf(s);return !!(c && (c.slots||[]).length===0 && hasMr(s) && Number.isFinite(c.bpm) && c.bpm>0);});
   const ytWatch = id => 'https://www.youtube.com/watch?v='+id;
@@ -213,7 +216,7 @@
       <div class="week-tasks">${d.tasks.map(t=>`<div><b>${esc(t.title)}</b> <span class="tiny">${esc(t.min)}분</span><div class="tiny">${esc(t.desc)}</div></div>`).join('')}</div>
       <div class="week-foot"><div class="week-song"><b>목표곡</b> ${esc(d.songFocus)}${goal?` <span class="tiny">· ${esc(displayTitle(goal))}</span>`:''}</div>
       <div class="week-lessons">${d.lessons.map(k=>{const l=lessonOf(k);if(!l)return '';return `<button type="button" class="week-lesson" data-act="lesson-focus:${l.key}"><b>${esc(l.name)}</b><span>${esc(l.video.channel)} · ${esc(l.video.length)}</span></button>`;}).join('')}</div></div>
-      <div class="week-done-line"><span class="tiny">완료 기준 · ${esc(d.done)}</span>${goal&&gc?action('chart:'+goal.id,'이 곡 악보','btn outline small'):''}</div>
+      <div class="week-done-line"><span class="tiny">완료 기준 · ${esc(d.done)}</span><span class="row" style="gap:6px;flex-wrap:wrap">${action('week-day:'+d.day,'오늘의 연습으로 바로 가기','btn primary small')}${goal&&gc?action('chart:'+goal.id,'이 곡 악보','btn outline small'):''}</span></div>
     </article>`;
   }
   function lessonCard(l){
@@ -250,32 +253,127 @@
   }
 
   /* ── 오늘의 연습 ─────────────────────────────────────────── */
-  function stageTasks(){const mode=state.settings.mode,base=mode==='easy'?'원터치 코드 전환':'정식 코드 운지 연습';const focus=song(state.settings.focusSongId);const c=focus?chartOf(focus):null;return [
-    ['손 풀기 & 준비',c?`${focus.title} · Capo +${c.capo} 설정 확인 · ${c.timeSignature} 메트로놈`:'어깨 힘 빼기 · 에어로밴드 연결 및 볼륨 확인',3],
-    [base,mode==='easy'?'원터치 버튼 위치 확인, Em↔Am 전환':'정식 Em·Am·C·D의 손가락 위치 연습',5],
-    ['리듬 & 스트로크',c?`${c.stroke||'8분 다운 스트로크'}`:'60 BPM부터 · 한 박에 한 번 다운',5],
-    ['후렴 네 마디 연결','멈추지 않고 네 마디 연결 · 필요하면 템포 낮추기',Math.max(5,state.settings.minutes-15)],
-    ['오늘의 기록','실수, 코드, 다음 목표 한 줄 기록하기',2]
-  ];}
-  function practicePage(){const tasks=stageTasks(),done=state.completedStages.length;const focus=song(state.settings.focusSongId);const c=focus?chartOf(focus):null;
-    return `${head('TODAY’S SESSION','오늘의 '+state.settings.minutes+'분 루틴','원터치 코드부터 퍼커시브까지, 오늘 쓸 곡 하나만 정해서')}
-    <section class="two-col"><div class="card"><div class="row between"><h3>나의 연습 루틴</h3><span class="pill">${done}/5 완료</span></div>
-      ${c?`<div class="focus-strip"><div><b>오늘의 곡 · ${esc(focus.title)}</b><div class="tiny">${esc(c.maleKey)}키 · Capo +${c.capo} · ${esc(c.timeSignature)} · ${c.bpm}BPM</div></div>${action('chart:'+focus.id,'악보 보기','btn small')}</div>`:''}
-      <div class="row between" style="margin-top:14px"><div class="segmented">${[20,25,30].map(v=>`<button data-act="minutes:${v}" class="${state.settings.minutes===v?'selected':''}">${v}분</button>`).join('')}</div><div class="segmented"><button data-act="mode:easy" class="${state.settings.mode==='easy'?'selected':''}">원터치</button><button data-act="mode:standard" class="${state.settings.mode==='standard'?'selected':''}">정식 코드</button></div></div>
-      <div class="routine-steps">${tasks.map(([title,description,time],i)=>`<label class="task"><input type="checkbox" data-step="${i}" ${state.completedStages.includes(i)?'checked':''}/><div class="grow"><b>${esc(title)}</b><div class="small-desc">${esc(description)}</div></div><span class="minute">${time}분</span></label>`).join('')}</div>
-      <div class="hint">원터치 코드(Easy Chord)와 SimplifyChord(손가락 수를 줄인 코드)는 서로 다른 기능입니다. 원터치는 화면 버튼 14개(기본 10 + 고급 설정 4), SimplifyChord는 프렛마다 코드 하나를 등록합니다(공식 안내 기준 최대 12개, 화면에는 8칸까지 표시).</div></div>
-      <div class="stack"><div class="card meter"><div class="eyebrow">FOCUS TIMER</div><h3>나의 집중 타이머</h3><div class="timer" id="timer-display">${mins(remaining)}</div><div class="row" style="justify-content:center;flex-wrap:wrap">${action('timer-toggle',sessionRunning?'일시정지':'연습 시작','btn primary')}${action('timer-reset','초기화','btn outline')}</div>
+  /* 실제 코드 연습용 기본 운지표 — tools/chord_shapes.py 의 describe() 로 만든 값(카포 0).
+     frets 는 6번줄 → 1번줄 순서, -1 = 뮤트(x), 0 = 개방현(o). fretDiagram() 이 그대로 그립니다. */
+  const CHORD_SHAPES = {
+    C:{form:'C 개방',frets:[-1, 3, 2, 0, 1, 0],fingers:[0, 3, 2, 0, 1, 0],barre:null,base:1,fingering:'x32010 · 3:5번줄3프렛 2:4번줄2프렛 3번줄 O 1:2번줄1프렛 1번줄 O'},
+    G:{form:'G 개방',frets:[3, 2, 0, 0, 0, 3],fingers:[3, 2, 0, 0, 0, 4],barre:null,base:1,fingering:'320003 · 3:6번줄3프렛 2:5번줄2프렛 4번줄 O 3번줄 O 2번줄 O 4:1번줄3프렛'},
+    Am:{form:'Am폼',frets:[-1, 0, 2, 2, 1, 0],fingers:[0, 0, 2, 3, 1, 0],barre:null,base:1,fingering:'x02210 · 5번줄 O 2:4번줄2프렛 3:3번줄2프렛 1:2번줄1프렛 1번줄 O'},
+    Em:{form:'Em폼',frets:[0, 2, 2, 0, 0, 0],fingers:[0, 2, 3, 0, 0, 0],barre:null,base:1,fingering:'022000 · 6번줄 O 2:5번줄2프렛 3:4번줄2프렛 3번줄 O 2번줄 O 1번줄 O'},
+    D:{form:'D 개방',frets:[-1, -1, 0, 2, 3, 2],fingers:[0, 0, 0, 1, 3, 2],barre:null,base:1,fingering:'xx0232 · 4번줄 O 1:3번줄2프렛 3:2번줄3프렛 2:1번줄2프렛'},
+    Dm:{form:'Dm 개방',frets:[-1, -1, 0, 2, 3, 1],fingers:[0, 0, 0, 2, 3, 1],barre:null,base:1,fingering:'xx0231 · 4번줄 O 2:3번줄2프렛 3:2번줄3프렛 1:1번줄1프렛'},
+    Dm7:{form:'Dm7 개방',frets:[-1, -1, 0, 2, 1, 1],fingers:[0, 0, 0, 2, 1, 1],barre:null,base:1,fingering:'xx0211 · 2:3번줄2프렛 1:2번줄1프렛 1:1번줄1프렛'},
+    A:{form:'A폼',frets:[-1, 0, 2, 2, 2, 0],fingers:[0, 0, 1, 2, 3, 0],barre:null,base:1,fingering:'x02220 · 5번줄 O 1:4번줄2프렛 2:3번줄2프렛 3:2번줄2프렛 1번줄 O'},
+    E:{form:'E폼',frets:[0, 2, 2, 1, 0, 0],fingers:[0, 2, 3, 1, 0, 0],barre:null,base:1,fingering:'022100 · 6번줄 O 2:5번줄2프렛 3:4번줄2프렛 1:3번줄1프렛 2번줄 O 1번줄 O'},
+    /* F·Bm·B♭ 처럼 바레가 필요한 코드는 약식(simplify) 폼을 먼저 보여준다 — 에어로밴드 SimplifyChord 로 대신 잡는 모양 */
+    F:{form:'E폼(바레)',frets:[1, 3, 3, 2, 1, 1],fingers:[1, 3, 4, 2, 1, 1],barre:{fret:1,from:6,to:1,finger:1},base:1,fingering:'133211 · 1:6~1번줄 1프렛 바레 3:5번줄3프렛 4:4번줄3프렛 2:3번줄2프렛',
+       simple:{form:'F 약식(4현)',frets:[-1,-1,3,2,1,1],fingers:[0,0,3,2,1,1],barre:{fret:1,from:2,to:1,finger:1},base:1,fingering:'xx3211 · 3:4번줄3프렛 2:3번줄2프렛 1:2번줄1프렛 1:1번줄1프렛'}},
+    Fmaj7:{form:'Fmaj7 개방',frets:[-1, -1, 3, 2, 1, 0],fingers:[0, 0, 3, 2, 1, 0],barre:null,base:1,fingering:'xx3210 · 3:4번줄3프렛 2:3번줄2프렛 1:2번줄1프렛 1번줄 O'},
+    G7:{form:'G7 개방',frets:[3, 2, 0, 0, 0, 1],fingers:[3, 2, 0, 0, 0, 1],barre:null,base:1,fingering:'320001 · 3:6번줄3프렛 2:5번줄2프렛 4번줄 O 3번줄 O 2번줄 O 1:1번줄1프렛'},
+    C7:{form:'C7 개방',frets:[-1, 3, 2, 3, 1, 0],fingers:[0, 3, 2, 4, 1, 0],barre:null,base:1,fingering:'x32310 · 3:5번줄3프렛 2:4번줄2프렛 4:3번줄3프렛 1:2번줄1프렛 1번줄 O'},
+    D7:{form:'D7 개방',frets:[-1, -1, 0, 2, 1, 2],fingers:[0, 0, 0, 2, 1, 3],barre:null,base:1,fingering:'xx0212 · 4번줄 O 2:3번줄2프렛 1:2번줄1프렛 3:1번줄2프렛'},
+    B7:{form:'B7 개방',frets:[-1, 2, 1, 2, 0, 2],fingers:[0, 2, 1, 3, 0, 4],barre:null,base:1,fingering:'x21202 · 2:5번줄2프렛 1:4번줄1프렛 3:3번줄2프렛 2번줄 O 4:1번줄2프렛'},
+    Bm:{form:'Bm 개방(바레)',frets:[-1, 2, 4, 4, 3, 2],fingers:[0, 1, 3, 4, 2, 1],barre:{fret:2,from:5,to:1,finger:1},base:1,fingering:'x24432 · 1:1~5번줄 2프렛 바레 3:4번줄4프렛 4:3번줄4프렛 2:2번줄3프렛',
+       simple:{form:'Bm7 약식',frets:[-1,2,0,2,0,2],fingers:[0,1,0,2,0,3],barre:null,base:1,fingering:'x20202 · 1:5번줄2프렛 2:3번줄2프렛 3:1번줄2프렛'}},
+    Bb:{form:'A폼(바레)',frets:[-1, 1, 3, 3, 3, 1],fingers:[0, 1, 2, 3, 4, 1],barre:{fret:1,from:5,to:1,finger:1},base:1,fingering:'x13331 · 1:5~1번줄 1프렛 바레 2:4번줄3프렛 3:3번줄3프렛 4:2번줄3프렛',
+       simple:{form:'B♭ 약식',frets:[-1,1,0,3,3,1],fingers:[0,1,0,3,4,1],barre:null,base:1,fingering:'x10331 · 1:5번줄1프렛 3:3번줄3프렛 4:2번줄3프렛 1:1번줄1프렛'}},
+    Am7:{form:'Am7폼',frets:[-1, 0, 2, 0, 1, 0],fingers:[0, 0, 2, 0, 1, 0],barre:null,base:1,fingering:'x02010 · 5번줄 O 2:4번줄2프렛 3번줄 O 1:2번줄1프렛 1번줄 O'},
+    Em7:{form:'Em7폼',frets:[0, 2, 0, 0, 0, 0],fingers:[0, 2, 0, 0, 0, 0],barre:null,base:1,fingering:'020000 · 6번줄 O 2:5번줄2프렛 4번줄 O 3번줄 O 2번줄 O 1번줄 O'},
+    Cmaj7:{form:'Cmaj7 개방',frets:[-1, 3, 2, 0, 0, 0],fingers:[0, 3, 2, 0, 0, 0],barre:null,base:1,fingering:'x32000 · 3:5번줄3프렛 2:4번줄2프렛 3번줄 O 2번줄 O 1번줄 O'}
+  };
+  /* 바레 코드는 약식(simplify) 폼을 먼저 보여주고, 풀바레는 '풀바레' 표기로만 알려 준다 */
+  const chordShape = n => {const s=CHORD_SHAPES[n];if(!s)return null;
+    const picked=s.simple?Object.assign({},s.simple,{simplified:true,fullForm:s.form}):s;
+    return Object.assign({chord:n},picked);};
+  const chordIsBarre = n => {const s=CHORD_SHAPES[n];return !!(s&&(s.simple||s.barre));};
+  const dayList = () => WEEK_PLAN.days || [];
+  const dayPlanOf = n => dayList().find(d=>d.day===n) || null;
+  const clampDay = n => {const ds=dayList();if(!ds.length)return 0;return Math.min(ds.length,Math.max(1,Math.round(Number(n)||1)));};
+  /* 오늘 연습할 DAY — 주간 연습에서 고른 Day(오늘 날짜에만 유효), 없으면 아직 안 한 첫 Day */
+  function todayDay(){
+    const p=weekState(),ds=dayList();if(!ds.length)return 0;
+    if(Number(p.activeDay)&&p.activeDayDate===dateKey())return clampDay(p.activeDay);
+    const undone=ds.find(d=>!p.days[d.day]);
+    return (undone||ds[ds.length-1]).day;
+  }
+  function setActiveDay(n){const p=weekState();p.activeDay=clampDay(n);p.activeDayDate=dateKey();if(!p.startedAt)p.startedAt=dateKey();save();}
+  const dayChords = d => {const c=(d&&Array.isArray(d.chords))?d.chords.filter(k=>CHORD_SHAPES[k]):[];return c.length?c:['C','G','Am'];};
+
+  function stageTasks(){
+    const day=dayPlanOf(todayDay());
+    const mode=state.settings.mode;
+    const goal=goalSong(), gc=goal?chartOf(goal):null;
+    const chords=dayChords(day);
+    const lesson=(day&&day.lessons&&day.lessons[0])?lessonOf(day.lessons[0]):null;
+    const total=(day&&Number(day.minutes))||state.settings.minutes||25;
+    const m1=Math.max(1,Math.round(total*0.12)),m2=Math.max(1,Math.round(total*0.2)),m3=Math.max(1,Math.round(total*0.28)),m5=Math.max(1,Math.round(total*0.1));
+    const m4=Math.max(1,total-m1-m2-m3-m5);
+    return [
+      ['손 풀기 & 준비', gc?`${displayTitle(goal)} · Capo +${gc.capo} 확인 · ${gc.timeSignature||'4/4'} ${gc.bpm?gc.bpm+'BPM':''} 맞추기`:'어깨 힘 빼기 · 에어로밴드 연결 및 볼륨 확인', m1, 'metro-goal', metronome?'메트로놈 정지':'메트로놈 켜기'],
+      [mode==='easy'?'원터치 버튼 전환':'실제 코드 손 모양', mode==='easy'?`${chords.join(' · ')} 버튼을 눈 감고 순서대로`:`${chords.join(' · ')} 손가락 위치를 한 번씩 또렷하게`, m2, 'scroll-to:today-chords', '코드 운지 보기'],
+      ['오른손 리듬', lesson?lesson.name:((gc&&gc.stroke)||'8분 다운 스트로크'), m3, lesson?('lesson-play:'+lesson.key):(goal?('chart:'+goal.id):'scroll-to:today-chords'), lesson?'▶ 주법 영상':'악보 보기'],
+      ['목표 구간 연결', `${(day&&day.songFocus)||'도입 8마디'} · 멈추지 않고 이어 치기`, m4, (goal&&hasMr(goal))?('mr:'+goal.id):(goal?('chart:'+goal.id):'go-week'), (goal&&hasMr(goal))?'MR 듣기':(goal?'악보 보기':'목표곡 고르기')],
+      ['오늘의 기록', '잘 된 것 한 줄 · 다음에 할 것 한 줄', m5, 'scroll-to:practice-log', '기록 입력']
+    ];
+  }
+
+  function practicePage(){
+    const done=state.completedStages.length;
+    const dayNo=todayDay(), day=dayPlanOf(dayNo), ds=dayList(), p=weekState();
+    const goal=goalSong(), gc=goal?chartOf(goal):null;
+    const chords=dayChords(day);
+    const lessons=((day&&day.lessons)||[]).map(lessonOf).filter(Boolean);
+    const lesson=lessons[0]||null;
+    const dayDone=!!(day&&p.days[day.day]);
+    const doneDays=ds.filter(d=>p.days[d.day]).length;
+    const tasks=stageTasks();
+    const title=(day&&day.focus)||`오늘의 ${state.settings.minutes}분 루틴`;
+    const step1=goal&&gc?`<h3>${esc(displayTitle(goal))}</h3>
+        <div class="tiny">${esc(displayArtist(goal))}</div>
+        <div class="meta-chips"><span class="meta-chip">남자키 ${esc(gc.maleKey)}</span><span class="meta-chip">Capo +${gc.capo}</span><span class="meta-chip">${esc(gc.timeSignature||'4/4')}</span>${gc.bpm?`<span class="meta-chip">${gc.bpm}BPM</span>`:''}</div>
+        <div class="step-focus">오늘 구간 · ${esc((day&&day.songFocus)||'처음부터')}</div>
+        <div class="step-btns">${action('chart:'+goal.id,'악보 열기','btn primary small')}${action('mr:'+goal.id,hasMr(goal)?'MR 듣기':'MR 등록','btn outline small')}</div>`
+      :`<h3>목표곡을 먼저 고르세요</h3><p class="step-one">주간 연습에서 이번 주 곡 하나를 고르면 여기에 악보·MR 버튼이 나옵니다.</p><div class="step-btns">${action('go-week','목표곡 고르기','btn primary small')}</div>`;
+    const step2=lesson?`<h3>${esc(lesson.name)}</h3>
+        <p class="step-one">${esc(lesson.summary)}</p>
+        <div class="step-btns">${action('lesson-play:'+lesson.key,'▶ 주법 영상 보기','btn primary small')}<a class="btn outline small" href="${esc(lessonUrl(lesson))}" target="_blank" rel="noopener noreferrer">YouTube ↗</a></div>
+        <div class="tiny">${esc(lesson.video.channel)} · ${esc(lesson.video.length)}</div>`
+      :`<h3>${esc((gc&&gc.stroke)||'8분 다운 스트로크')}</h3><p class="step-one">오늘 목표곡의 스트로크로 오른손을 맞춥니다.</p><div class="step-btns">${goal?action('chart:'+goal.id,'악보에서 보기','btn outline small'):action('go-week','목표곡 고르기','btn outline small')}</div>`;
+    const step3=`<h3>${esc(chords.join(' · '))}</h3>
+        <div class="chord-row">${chords.map(k=>{const sl=chordShape(k);return `<div class="chord-mini ${sl.simplified?'is-simple':''}"><b>${esc(k)}${sl.simplified?'<span class="chord-tag">약식</span>':''}</b>${fretDiagram(sl,72)}<span class="tiny">${esc(String(sl.fingering).split(' · ')[0])}</span></div>`;}).join('')}</div>
+        <p class="step-one">5분만 · ${esc((day&&day.chordsNote)||'60BPM에서 한 코드씩 또렷하게, 4번씩')}</p>
+        ${chords.some(chordIsBarre)?`<p class="step-barre">바레가 막힐 때는 에어로밴드 SimplifyChord 약식 폼으로 먼저 연습하세요.${chords.filter(k=>{const s=CHORD_SHAPES[k];return s&&s.simple;}).map(k=>` ${esc(k)} = ${esc(String(CHORD_SHAPES[k].simple.fingering).split(' · ')[0])}`).join(' · ')}</p>`:''}`;
+    return `${head('TODAY’S SESSION','오늘의 연습',day?`DAY ${dayNo} / ${ds.length} · ${esc(day.minutes)}분`:`오늘의 ${state.settings.minutes}분`,action('go-week','주간 연습','btn outline small'))}
+    <section class="card today-hero">
+      <div class="today-bar"><div class="day-strip">${ds.map(d=>`<button type="button" class="day-chip ${d.day===dayNo?'on':''} ${p.days[d.day]?'done':''}" data-act="week-day:${d.day}" aria-pressed="${d.day===dayNo}">D${d.day}${p.days[d.day]?' ✓':''}</button>`).join('')}</div><div class="today-count"><b>${doneDays}</b> / ${ds.length}일 완료</div></div>
+      <div class="today-head"><div class="eyebrow">DAY ${dayNo}${day?` · ${esc(day.minutes)}분`:' '}</div><h2>${esc(title)}</h2>${day?`<p class="today-why">${esc(day.why)}</p>`:''}</div>
+      <div class="three-head"><h3>오늘 할 일 3가지</h3><span class="tiny">① 곡 80% · ② 오른손 주법 · ③ 실제 코드 20%</span></div>
+      <div class="today-three">
+        <article class="today-step"><div class="step-top"><span class="step-no">1</span><span class="step-share">80% · 곡</span></div><div class="step-eyebrow">목표곡 · 원터치</div>${step1}</article>
+        <article class="today-step"><div class="step-top"><span class="step-no">2</span><span class="step-share">오른손</span></div><div class="step-eyebrow">오늘의 오른손 주법</div>${step2}</article>
+        <article class="today-step" id="today-chords"><div class="step-top"><span class="step-no">3</span><span class="step-share">20% · 5분</span></div><div class="step-eyebrow">실제 코드 곁들이기</div>${step3}</article>
+      </div>
+    </section>
+    <section class="two-col">
+      <div class="card">
+        <div class="row between"><h3>오늘의 5단계 루틴</h3><span class="pill">${done}/5 완료</span></div>
+        <div class="row between" style="margin-top:12px;flex-wrap:wrap;gap:8px"><div class="segmented">${[20,25,30].map(v=>`<button data-act="minutes:${v}" class="${state.settings.minutes===v?'selected':''}">${v}분</button>`).join('')}</div><div class="segmented"><button data-act="mode:easy" class="${state.settings.mode==='easy'?'selected':''}">원터치</button><button data-act="mode:standard" class="${state.settings.mode==='standard'?'selected':''}">정식 코드</button></div></div>
+        <div class="routine-steps">${tasks.map(([t,d,m,cmd,label],i)=>`<div class="task"><label class="task-check"><input type="checkbox" data-step="${i}" ${state.completedStages.includes(i)?'checked':''}/></label><div class="task-body"><b>${i+1}. ${esc(t)}</b><div class="small-desc">${esc(d)}</div></div><span class="minute">${m}분</span><button type="button" class="btn outline small task-act" data-act="${esc(cmd)}">${esc(label)}</button></div>`).join('')}</div>
+        <div class="row between" style="margin-top:12px;flex-wrap:wrap;gap:8px"><label class="week-check"><input type="checkbox" data-week="${dayNo}" ${dayDone?'checked':''}/><span>${dayDone?'DAY '+dayNo+' 완료':'DAY '+dayNo+' 완료 체크'}</span></label><span class="tiny">체크는 이번 주 진행에 저장됩니다.</span></div>
+        <details class="hint-fold"><summary>원터치 코드와 SimplifyChord 차이</summary><p class="tiny">원터치 코드(Easy Chord)와 SimplifyChord는 서로 다른 기능입니다. 원터치는 화면 버튼 14개(기본 10 + 고급 설정 4), SimplifyChord는 프렛마다 코드 하나를 등록합니다(공식 안내 기준 최대 12개, 화면에는 8칸까지 표시).</p></details>
+      </div>
+      <div class="stack"><div class="card meter" id="practice-metro"><div class="eyebrow">FOCUS TIMER</div><h3>나의 집중 타이머</h3><div class="timer" id="timer-display">${mins(remaining)}</div><div class="row" style="justify-content:center;flex-wrap:wrap">${action('timer-toggle',sessionRunning?'일시정지':'연습 시작','btn primary')}${action('timer-reset','초기화','btn outline')}</div>
       <div class="divider"></div>
       <div class="row between"><div><h3>나의 메트로놈</h3><p class="tiny">${esc(state.settings.timeSignature)} · ${state.settings.timeSignature==='6/8'?'8분음표 6번, 1·4박 강세':'1박 강세'}</p></div><span id="bpm-label" style="font-size:23px;font-weight:900">${state.settings.bpm} BPM</span></div>
       <div class="segmented ts-pick" style="margin-top:10px">${['4/4','3/4','6/8'].map(t=>`<button data-act="ts:${t}" class="${state.settings.timeSignature===t?'selected':''}">${t}</button>`).join('')}</div>
-      <p class="tiny" style="margin:6px 0 0">악보에 표시된 박자를 기준으로 연습하세요. 확인된 곡은 대부분 4/4이고, 박자표를 확인하지 못한 곡은 4/4로 단정하지 않았습니다. 3/4·6/8은 왈츠·겹박자 기본 스트로크를 따로 연습할 때 쓰세요.</p>
       <div class="beat-dots" id="beat-dots">${Array.from({length:beatCount(state.settings.timeSignature)},(_,i)=>`<i class="${i===0?'accent':''}"></i>`).join('')}</div>
       <input id="bpm-range" type="range" min="40" max="180" step="1" value="${state.settings.bpm}" aria-label="BPM" style="width:100%;margin:12px 0" /><div class="row between">${action('bpm-down','−5','btn outline small')}${action('metro-toggle',metronome?'메트로놈 정지':'메트로놈 켜기','btn primary small')}${action('bpm-up','+5','btn outline small')}</div></div>
-      <div class="card"><h3>원터치 버튼 14개 (고급 설정 포함)</h3><p class="tiny" style="margin:4px 0 12px">에어로밴드 앱 고급 설정과 같은 2행 7열·같은 색으로 표시합니다. 윗줄 C·Dm·Em·F·G·Am·Bdim / 아랫줄 Cm·D·E·Fm·Gm·A·Bm</p><div class="ot-grid">${BTNS.map(b=>`<div class="ot-btn" style="--c:${BTN_COLOR[b]}">${b}</div>`).join('')}</div></div></div></section>
+      <div class="card"><h3>원터치 버튼 14개 (고급 설정 포함)</h3><p class="tiny" style="margin:4px 0 12px">에어로밴드 앱 고급 설정과 같은 2행 7열·같은 색으로 표시합니다. 윗줄 C·Dm·Em·F·G·Am·Bdim / 아랫줄 Cm·D·E·Fm·Gm·A·Bm</p><div class="ot-grid">${BTNS.map(b=>`<div class="ot-btn" style="--c:${BTN_COLOR[b]}">${b}</div>`).join('')}</div></div></div>
+    </section>
     ${head('PRACTICE LOG','오늘의 연습 기록','연습 종료 후 저장하면 이번 주 출석에 반영됩니다.')}
-    <div class="card"><form id="practice-form" class="stack"><div class="field-grid"><div class="field"><label>연습한 곡</label><select name="songId" class="input"><option value="">기초 코드 연습 (곡 선택 없음)</option>${ordered().map(s=>`<option value="${esc(s.id)}" ${s.id===state.settings.focusSongId?'selected':''}>${esc(s.title)} — ${esc(s.artist)}</option>`).join('')}</select></div><div class="field"><label>실제 연습 시간 (분)</label><input type="number" name="minutes" value="${state.settings.minutes}" min="1" max="480" required /></div><div class="field"><label>연습 코드</label><input name="chords" placeholder="예: Em, Am, G, D" value="${c?esc(c.sections[1]?.bars.flat().map(x=>x.sound).join(', ')||''):''}" /></div><div class="field"><label>오늘 스트로크/리듬</label><input name="strum" placeholder="예: 다운 스트로크 60 BPM" value="${c?esc(c.stroke||''):''}" /></div></div><div class="field"><label>잘 안된 부분 · 다음에 할 일</label><textarea name="memo" placeholder="Em→Am 전환할 때 2박 늦음. 내일 55BPM에서 다시 연습"></textarea></div><button class="btn primary" type="submit">오늘 연습 저장하기</button></form></div>`;
+    <div class="card" id="practice-log"><form id="practice-form" class="stack"><div class="field-grid"><div class="field"><label>연습한 곡</label><select name="songId" class="input"><option value="">기초 코드 연습 (곡 선택 없음)</option>${ordered().map(s=>`<option value="${esc(s.id)}" ${s.id===(goal?goal.id:'')?'selected':''}>${esc(s.title)} — ${esc(s.artist)}</option>`).join('')}</select></div><div class="field"><label>실제 연습 시간 (분)</label><input type="number" name="minutes" value="${(day&&Number(day.minutes))||state.settings.minutes}" min="1" max="480" required /></div><div class="field"><label>연습 코드</label><input name="chords" placeholder="예: C, G, Am" value="${esc(chords.join(', '))}" /></div><div class="field"><label>오늘 스트로크/리듬</label><input name="strum" placeholder="예: 다운 스트로크 60 BPM" value="${esc((lesson&&lesson.name)||(gc&&gc.stroke)||'')}" /></div></div><div class="field"><label>잘 안된 부분 · 다음에 할 일</label><textarea name="memo" placeholder="예: C→Am 바꿀 때 2박 늦음. 내일 60BPM에서 다시"></textarea></div><button class="btn primary" type="submit">오늘 연습 저장하기</button></form></div>`;
   }
-  function logsPage(){let logs=[...state.logs].sort((a,b)=>(b.date||'').localeCompare(a.date||'')||(b.id||'').localeCompare(a.id||''));let total=state.logs.reduce((s,l)=>s+Number(l.minutes||0),0);
+    function logsPage(){let logs=[...state.logs].sort((a,b)=>(b.date||'').localeCompare(a.date||'')||(b.id||'').localeCompare(a.id||''));let total=state.logs.reduce((s,l)=>s+Number(l.minutes||0),0);
     return `${head('YOUR PROGRESS','나의 연습 기록','연습일 · 누적 시간 · 실수와 다음 목표를 돌아봅니다.')}<div class="cards3"><div class="card"><div class="metric-label">전체 연습 횟수</div><div class="metric">${state.logs.length}<span>회</span></div></div><div class="card"><div class="metric-label">전체 누적 시간</div><div class="metric">${total}<span>분</span></div></div><div class="card"><div class="metric-label">연습한 날짜</div><div class="metric">${new Set(state.logs.map(l=>l.date)).size}<span>일</span></div></div></div>
     ${head('PRACTICE HISTORY','날짜별 기록','','')}
     ${logs.length?`<div class="stack">${logs.map(l=>`<article class="card"><div class="row between"><div><b>${esc(l.date)}</b> <span class="tag">${esc(l.minutes)}분</span><p class="tiny">${esc(song(l.songId)?.title||'기초 코드 연습')} · ${l.mode==='standard'?'정식 코드':'원터치 코드'}</p></div>${action('delete-log:'+l.id,'삭제','btn danger small')}</div><div class="divider"></div><div class="tiny">연습 코드: ${esc(l.chords||'—')} · 스트로크: ${esc(l.strum||'—')}</div>${l.memo?`<p class="pre" style="margin-top:8px">${esc(l.memo)}</p>`:''}</article>`).join('')}</div>`:'<div class="empty"><strong>아직 기록이 없습니다.</strong>오늘 기타를 잡은 시간이 첫 번째 기록이 됩니다.</div>'}`;
@@ -748,6 +846,9 @@
     case 'filter-cat':statusFilter=value;setTab('songs');return;
     case 'go-roadmap':setTab('roadmap');return;
     case 'go-week':setTab('week');return;
+    case 'week-day':{setActiveDay(+value);currentTab='practice';modal=null;render();window.scrollTo({top:0,behavior:'auto'});notice(`DAY ${clampDay(+value)} 연습으로 열었습니다.`);return;}
+    case 'scroll-to':{const el=document.getElementById(value);if(!el)return;el.scrollIntoView({behavior:'smooth',block:'start'});if(value==='practice-log')setTimeout(()=>{const f=el.querySelector('textarea');if(f)f.focus({preventScroll:true});},420);return;}
+    case 'metro-goal':{const s=goalSong(),c=s?chartOf(s):null;if(c){state.settings.bpm=Math.max(40,Math.min(180,Math.round(c.bpm||state.settings.bpm)));state.settings.timeSignature=c.timeSignature||state.settings.timeSignature;state.settings.focusSongId=s.id;save();if(metronome)stopMetro();startMetro();notice(`${displayTitle(s)} · ${state.settings.bpm}BPM ${state.settings.timeSignature} 메트로놈을 켰습니다.`);}else{if(metronome)stopMetro();startMetro();notice(`${state.settings.bpm}BPM ${state.settings.timeSignature} 메트로놈을 켰습니다.`);}render();const el=document.getElementById('practice-metro');if(el)setTimeout(()=>el.scrollIntoView({behavior:'smooth',block:'center'}),60);return;}
     case 'week-goal':{const s=song(value);if(!s)return;const p=weekState();p.goalSongId=s.id;if(!p.startedAt)p.startedAt=dateKey();save();render();notice(`${s.title} · 이번 주 목표곡으로 정했습니다.`);return;}
     case 'week-reset':if(confirm('이번 주 완료 체크를 모두 지울까요? 목표곡은 그대로 둡니다.')){const p=weekState();p.days={};p.startedAt=dateKey();save();render();notice('이번 주 체크를 초기화했습니다.');}return;
     case 'lesson-play':{const l=lessonOf(value);if(!l)return;openMini('lesson',{id:'lesson-'+l.key,title:l.video.title,artist:l.video.channel,videoUrl:ytWatch(l.video.id)});return;}
@@ -758,7 +859,7 @@
     case 'edit':editSong(value);return;
     case 'chart':modal={kind:'chart',id:value,tab:'chart'};render();return;
     case 'chart-tab':if(modal){modal.tab=value;render();}return;
-    case 'metro-song':{const s=song(value),c=s&&chartOf(s);if(c){state.settings.bpm=Math.max(40,Math.min(180,Math.round(c.bpm||state.settings.bpm)));state.settings.timeSignature=c.timeSignature||state.settings.timeSignature;state.settings.focusSongId=s.id;save();if(metronome){stopMetro();}modal=null;setTab('practice');notice(`${s.title} · ${state.settings.bpm}BPM · ${state.settings.timeSignature} 메트로놈으로 연습을 준비했습니다.`);}else notice('이 곡은 아직 악보 검수 대기입니다.');return;}
+    case 'metro-song':{const s=song(value),c=s&&chartOf(s);if(c){state.settings.bpm=Math.max(40,Math.min(180,Math.round(c.bpm||state.settings.bpm)));state.settings.timeSignature=c.timeSignature||state.settings.timeSignature;state.settings.focusSongId=s.id;{const p=weekState();if(!p.goalSongId){p.goalSongId=s.id;if(!p.startedAt)p.startedAt=dateKey();}}save();if(metronome){stopMetro();}modal=null;setTab('practice');notice(`${s.title} · ${state.settings.bpm}BPM · ${state.settings.timeSignature} 메트로놈으로 연습을 준비했습니다.`);}else notice('이 곡은 아직 악보 검수 대기입니다.');return;}
     case 'video':case 'music':{const s=song(value);if(!s)return;if(cmd==='music'&&!safeHttp(s.audioUrl)&&!fullAudioOf(s)&&!s.videoUrl){audioStop();modal={kind:'music',id:value};render();return;}openMini(cmd,s);return;}
     case 'mr':{const s=song(value);if(!s)return;if(hasMr(s)){openMini('mr',s);return;}modal={kind:'mr',id:value,from:modal&&modal.kind==='chart'?'chart':''};render();return;}
     case 'mini-close':closeMini();return;
@@ -798,7 +899,8 @@
     if(e.target.id==='mini-file'){const file=e.target.files?.[0];if(!file)return;if(!file.type.startsWith('audio/')){notice('오디오 파일을 선택하세요.');return;}if(trackObjectURL)URL.revokeObjectURL(trackObjectURL);trackObjectURL=URL.createObjectURL(file);mini={kind:'audio',songId:mini?.songId||'',videoId:'',audioUrl:trackObjectURL,title:file.name,sub:'내 오디오 파일',badge:'내 파일',collapsed:false};renderMini();return;}
   });
   document.addEventListener('change',e=>{
-    if(e.target.dataset.week!==undefined){const p=weekState();const n=e.target.dataset.week;if(e.target.checked)p.days[n]=dateKey();else delete p.days[n];if(!p.startedAt)p.startedAt=dateKey();save();render();notice(e.target.checked?`${n}일차 완료로 체크했습니다.`:`${n}일차 체크를 풀었습니다.`);return;}
+    if(e.target.dataset.week!==undefined){const p=weekState();const n=e.target.dataset.week;if(e.target.checked)p.days[n]=dateKey();else delete p.days[n];if(!p.startedAt)p.startedAt=dateKey();
+      save();render();notice(e.target.checked?`${n}일차 완료로 체크했습니다. 다음 연습 날에는 ${Math.min(dayList().length||7,+n+1)}일차가 자동으로 열립니다.`:`${n}일차 체크를 풀었습니다.`);return;}
     if(e.target.dataset.step!==undefined){let i=+e.target.dataset.step;if(e.target.checked&&!state.completedStages.includes(i))state.completedStages.push(i);else if(!e.target.checked)state.completedStages=state.completedStages.filter(v=>v!==i);save();const checked=state.completedStages.length;let pill=e.target.closest('.card')?.querySelector('.pill');if(pill)pill.textContent=checked+'/5 완료';return;}
     if(e.target.id==='week-goal-select'){const v=e.target.value;if(!v)return;const s=song(v);if(s){const p=weekState();p.goalSongId=s.id;if(!p.startedAt)p.startedAt=dateKey();save();render();notice(`${s.title} · 이번 주 목표곡으로 정했습니다.`);}return;}
     if(e.target.id==='song-filter'){statusFilter=e.target.value;render();return;}
