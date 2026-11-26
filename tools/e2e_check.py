@@ -354,6 +354,37 @@ def run(pw, name, viewport, mobile=False):
     check(f'{name}: 로드맵 가로 넘침 없음', o['sw'] <= o['cw'] + 1, str(o))
     page.screenshot(path=str(SHOTS / f'roadmap-{name}.png'), full_page=not mobile)
 
+    # 주간 연습(DAY 1~7) + 오른손 주법 강좌
+    page.click('[data-nav="week"]')
+    body = page.content()
+    for n in range(1, 8):
+        check(f'{name}: 주간 연습 DAY {n}', f'DAY {n}' in body)
+    check(f'{name}: 목표곡 추천 3개', page.locator('.week-rec').count() == 3, str(page.locator('.week-rec').count()))
+    check(f'{name}: 주법 강좌 9개', page.locator('.lesson-card').count() == 9, str(page.locator('.lesson-card').count()))
+    check(f'{name}: 강좌 YouTube 링크', page.locator('.lesson-card a[href*="youtube.com/watch?v="]').count() >= 10,
+          str(page.locator('.lesson-card a[href*="youtube.com/watch?v="]').count()))
+    check(f'{name}: 주간 진행률 0/7', '/ 7일' in page.content(), 'progress')
+    page.select_option('#week-goal-select', 'verified-002')
+    page.wait_for_timeout(300)
+    check(f'{name}: 목표곡 변경(민들레)', '이번 주 목표곡' in page.content() and '민들레' in page.content(), 'goal')
+    page.locator('input[data-week="1"]').check()
+    page.wait_for_timeout(300)
+    st = json.loads(page.evaluate("() => localStorage.getItem('strum-busking-v2')"))
+    check(f'{name}: 1일차 체크 저장', bool(st.get('weekPlan', {}).get('days', {}).get('1')), str(st.get('weekPlan')))
+    page.reload(wait_until='networkidle')
+    page.click('[data-nav="week"]')
+    check(f'{name}: 새로고침 후 체크 유지', page.locator('input[data-week="1"]').is_checked())
+    page.locator('.lesson-card button', has_text='사이트에서 재생').first.click()
+    page.wait_for_selector('.mini-player iframe')
+    v_src = page.locator('.mini-player iframe').first.get_attribute('src') or ''
+    check(f'{name}: 주법 강좌 미니 플레이어 재생', 'youtube-nocookie.com/embed/YVBDvDvvrdg' in v_src, v_src)
+    check(f'{name}: 주법 강좌 배지', '강좌' in page.locator('.mini-player .mini-badge').first.inner_text(),
+          page.locator('.mini-player .mini-badge').first.inner_text())
+    page.click('[data-act="mini-close"]')
+    o = overflow(page)
+    check(f'{name}: 주간 연습 가로 넘침 없음', o['sw'] <= o['cw'] + 1, str(o))
+    page.screenshot(path=str(SHOTS / f'week-{name}.png'), full_page=not mobile)
+
     # 오늘의 연습 + 박자 메트로놈
     page.click('[data-nav="practice"]')
     page.click('[data-act="ts:6/8"]')
@@ -445,7 +476,7 @@ def run_merge(pw):
     check('merge: 남자키 배지 병합', page.locator('.song-row', has_text='오늘').first.inner_text().find('남자키') >= 0)
     state = json.loads(page.evaluate("() => localStorage.getItem('strum-busking-v2')"))
     song = [s for s in state['songs'] if s['id'] == 'verified-001'][0]
-    check('merge: seedVersion 25', state['seedVersion'] == 25, str(state['seedVersion']))
+    check('merge: seedVersion 26', state['seedVersion'] == 26, str(state['seedVersion']))
     check('merge: MR 링크 병합', song.get('mrUrl', '').endswith('hwZqHCMmjUM'), str(song.get('mrUrl')))
     check('merge: 숙련도 보존', song['level'] == '버스킹 가능', song['level'])
     check('merge: 사용자 메모 보존', song['notes'] == '내 메모', song['notes'])

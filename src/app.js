@@ -28,7 +28,7 @@
   const get = id => document.getElementById(id);
   const root = get('app');
   const SEED_VERSION = Number(seed.meta.seedVersion || 0);
-  const defaultState = () => ({version:2,seedVersion:SEED_VERSION,removedSeedIds:[],songs:clone(seed.songs),sources:clone(seed.sources),logs:[],settings:{mode:'easy',minutes:25,bpm:60,weeklyGoal:5,timeSignature:'4/4',focusSongId:''},selectedRoutine:[],completedStages:[],lastChanged:new Date().toISOString()});
+  const defaultState = () => ({version:2,seedVersion:SEED_VERSION,removedSeedIds:[],songs:clone(seed.songs),sources:clone(seed.sources),logs:[],settings:{mode:'easy',minutes:25,bpm:60,weeklyGoal:5,timeSignature:'4/4',focusSongId:''},selectedRoutine:[],completedStages:[],weekPlan:{days:{},goalSongId:'',startedAt:''},lastChanged:new Date().toISOString()});
   let state = defaultState(), currentTab='home', modal=null, searchQuery='', statusFilter='all', sourceQuery='', sourceFilter='known', showAllSources=false;
   let trackAudio=null, trackObjectURL=null, metronome=null, bpmTimer=null, practiceInterval=null, remaining=25*60, sessionRunning=false, lastTime=0, toastTimeout=null;
   let seedMerged=false;
@@ -60,7 +60,7 @@
   const pendingSongs = () => state.songs.filter(s=>s.category==='pending' || (songEntry(s) && !s.category && s.chartStatus!=='ready' && s.chartStatus!=='partial'));
   const categoryCount = n => state.songs.filter(s=>s.category===n).length;
   const entrySongs = () => state.songs.filter(songEntry);
-  const navs = [['home','대시보드'],['songs','곡 라이브러리'],['roadmap','성장 로드맵'],['playlist','유튜브 재생목록'],['practice','오늘의 연습'],['logs','연습 기록'],['sources','211개 원본'],['settings','백업·설정']];
+  const navs = [['home','대시보드'],['songs','곡 라이브러리'],['roadmap','성장 로드맵'],['week','주간 연습'],['playlist','유튜브 재생목록'],['practice','오늘의 연습'],['logs','연습 기록'],['sources','211개 원본'],['settings','백업·설정']];
   const action = (cmd,label,klass='btn small') => `<button type="button" class="${klass}" data-act="${cmd}">${label}</button>`;
   const stat = l => `<span class="status" data-level="${esc(l)}">${esc(l)}</span>`;
   const uniqueId = () => 'song-'+Math.random().toString(36).slice(2,9)+'-'+Date.now();
@@ -99,7 +99,7 @@
   function home(){let w=weekStats(), curated=songCount(), ready=buskingCount(),setlist=state.songs.filter(s=>s.setlist).slice(0,5);
     const charted=readySongs().length, pending=pendingSongs().length;
     return `<section class="hero"><div><div class="eyebrow">MAKE A LITTLE PROGRESS, EVERY DAY</div><h1>오늘도, 한 곡에<br>가까워지는 시간.</h1><p>하루 25분의 작은 연습이 낯선 도시의 첫 무대가 됩니다. 남자키로 바꾼 원터치 악보와 4단계 커리큘럼으로 쌓아갑니다.</p>${action('start-practice','오늘의 연습 시작 ↗','btn accent')}</div><div class="hero-badge"><div class="hero-num">${ready}<span> / 3</span></div><p>나의 첫 무대 준비된 곡</p></div></section>
-    <div class="playlist-callout"><div><b>🎸 남자키 원터치 악보 ${charted}곡 준비 완료</b><p class="tiny">남성 원곡은 원키 그대로, 여성 원곡만 -5키 · AeroBand Capo 값 · 4/4·3/4·6/8 박자 · BPM까지 넣었습니다. ${pending?`코드 검수 대기 ${pending}곡은 코드표를 확인한 뒤 채웁니다.`:'코드가 확인되지 않아 비워 둔 곡은 없습니다.'}</p></div>${action('go-roadmap','로드맵 열기','btn outline small')}</div>
+    <div class="playlist-callout"><div><b>🎸 남자키 원터치 악보 ${charted}곡 준비 완료</b><p class="tiny">남성 원곡은 원키 그대로, 여성 원곡만 -5키 · AeroBand Capo 값 · 4/4·3/4·6/8 박자 · BPM까지 넣었습니다. ${pending?`코드 검수 대기 ${pending}곡은 코드표를 확인한 뒤 채웁니다.`:'코드가 확인되지 않아 비워 둔 곡은 없습니다.'}</p></div><div class="row" style="flex-wrap:wrap;gap:6px">${action('go-week','주간 연습 열기','btn primary small')}${action('go-roadmap','로드맵 열기','btn outline small')}</div></div>
     ${head('THIS WEEK','이번 주의 리듬','주 5일 연습을 목표로, 적게라도 꾸준히.')}<section class="cards3"><div class="card"><div class="metric-label">이번 주 연습일</div><div class="metric">${w.days} <span>/ ${state.settings.weeklyGoal}일</span></div><div class="progress"><i style="width:${Math.min(100,Math.round(w.days/state.settings.weeklyGoal*100))}%"></i></div></div><div class="card"><div class="metric-label">누적 연습 시간</div><div class="metric">${w.total} <span>분</span></div></div><div class="card"><div class="metric-label">악보 준비된 곡</div><div class="metric">${charted} <span>/ ${curated}곡 정보</span></div><div class="tiny">원본 재생목록 210개 항목 반영</div></div></section>
     <section class="dashboard-grid" style="margin-top:15px"><div class="card"><div class="row between"><h3>이번 주 출석</h3><span class="tiny">오늘 ${new Intl.DateTimeFormat('ko-KR',{dateStyle:'medium'}).format(new Date())}</span></div><div class="weekdays">${daysView()}</div><div class="divider"></div><p class="tiny">오늘 단 20분이어도 기록하면 출석이 쌓입니다.</p></div><div class="card"><div class="eyebrow">YOUR NEXT FOCUS</div><h3 style="margin:5px 0 12px">지금 먼저 연습할 것</h3><div class="stack"><div>01 · <b>원터치 버튼 4개</b> <span class="muted">— Capo +2, C폼으로 5분</span></div><div>02 · <b>2·4박 척킹</b> <span class="muted">— 60 BPM에서 손날 뮤트 5분</span></div><div>03 · <b>후렴 연결</b> <span class="muted">— 멈추지 않고 4마디 10분</span></div></div></div></section>
     ${head('YOUR FIRST SETLIST','나의 첫 세트리스트','실제로 연주할 곡 3개부터 준비하세요.',action('go-songs','전체 곡 보기','btn outline small'))}
@@ -189,6 +189,64 @@
       ['verified-015','Englishman in New York','스카 척, 손날 뮤트의 정석','Stage 4']
     ];
     return order.filter(([id])=>song(id)).map(([id,t,r,k])=>({id,title:t,reason:r,kind:k}));
+  }
+
+  /* ── 주간 연습 (Day 1~7) · 오른손 주법 강좌 ──────────────── */
+  const WEEK_PLAN = (seed.weekPlan && Array.isArray(seed.weekPlan.days)) ? seed.weekPlan : {days:[],recommended:[],intro:''};
+  const LESSONS = (seed.lessons && Array.isArray(seed.lessons.lessons)) ? seed.lessons.lessons : [];
+  const lessonOf = k => LESSONS.find(l=>l.key===k) || null;
+  const weekState = () => {
+    if(!state.weekPlan || typeof state.weekPlan!=='object') state.weekPlan={days:{},goalSongId:'',startedAt:''};
+    if(!state.weekPlan.days || typeof state.weekPlan.days!=='object') state.weekPlan.days={};
+    return state.weekPlan;
+  };
+  const weekDoneCount = () => {const p=weekState();return Object.keys(p.days).filter(k=>p.days[k]).length;};
+  const goalSong = () => {const p=weekState();return song(p.goalSongId) || (WEEK_PLAN.recommended&&WEEK_PLAN.recommended[0] ? song(WEEK_PLAN.recommended[0].songId) : null);};
+  /* 목표곡 후보 — 14버튼만으로 완주(슬롯 0)하고 MR이 연결된 곡만 */
+  const zeroSlotMrSongs = () => ordered().filter(s=>{const c=chartOf(s);return !!(c && (c.slots||[]).length===0 && hasMr(s));});
+  const ytWatch = id => 'https://www.youtube.com/watch?v='+id;
+  const lessonUrl = l => ytWatch(l.video.id);
+  function weekDayCard(d,p,goal,gc){
+    const checked=!!(p.days&&p.days[d.day]);
+    return `<article class="card week-day ${checked?'done':''}">
+      <div class="week-day-head"><span class="day-no">DAY ${d.day}</span><div class="grow"><h3>${esc(d.focus)}</h3><p class="tiny">${esc(d.why)}</p></div><label class="week-check"><input type="checkbox" data-week="${d.day}" ${checked?'checked':''}/><span>${checked?'완료':'완료 체크'}</span></label></div>
+      <div class="week-tasks">${d.tasks.map(t=>`<div><b>${esc(t.title)}</b> <span class="tiny">${esc(t.min)}분</span><div class="tiny">${esc(t.desc)}</div></div>`).join('')}</div>
+      <div class="week-foot"><div class="week-song"><b>목표곡</b> ${esc(d.songFocus)}${goal?` <span class="tiny">· ${esc(displayTitle(goal))}</span>`:''}</div>
+      <div class="week-lessons">${d.lessons.map(k=>{const l=lessonOf(k);if(!l)return '';return `<button type="button" class="week-lesson" data-act="lesson-focus:${l.key}"><b>${esc(l.name)}</b><span>${esc(l.video.channel)} · ${esc(l.video.length)}</span></button>`;}).join('')}</div></div>
+      <div class="week-done-line"><span class="tiny">완료 기준 · ${esc(d.done)}</span>${goal&&gc?action('chart:'+goal.id,'이 곡 악보','btn outline small'):''}</div>
+    </article>`;
+  }
+  function lessonCard(l){
+    return `<article class="lesson-card" id="lesson-${esc(l.key)}">
+      <div class="row between lesson-head"><div><div class="eyebrow">${esc(l.tag)}</div><h3>${esc(l.name)}</h3></div><span class="tag">${esc(l.level)}</span></div>
+      <p class="tiny">${esc(l.summary)}</p>
+      <ul class="lesson-points">${l.points.map(pt=>`<li>${esc(pt)}</li>`).join('')}</ul>
+      <div class="lesson-video"><b>${esc(l.video.title)}</b><span>${esc(l.video.channel)} · ${esc(l.video.length)}</span>
+        <div class="row" style="flex-wrap:wrap;gap:6px;margin-top:8px"><button type="button" class="btn primary small" data-act="lesson-play:${l.key}">▶ 사이트에서 재생</button><a class="btn outline small" href="${esc(lessonUrl(l))}" target="_blank" rel="noopener noreferrer">YouTube에서 열기 ↗</a></div></div>
+      ${l.alt?`<div class="lesson-alt">다른 설명 · <a href="${esc(ytWatch(l.alt.id))}" target="_blank" rel="noopener noreferrer">${esc(l.alt.title)}</a> <span class="tiny">${esc(l.alt.channel)} · ${esc(l.alt.length)}</span></div>`:''}
+    </article>`;
+  }
+  function weekPage(){
+    const p=weekState(),days=WEEK_PLAN.days||[],done=weekDoneCount(),goal=goalSong(),gc=goal?chartOf(goal):null;
+    const recCards=(WEEK_PLAN.recommended||[]).map(r=>{const s=song(r.songId);if(!s)return '';const c=chartOf(s);const on=p.goalSongId===s.id;return `<button type="button" class="week-rec ${on?'on':''}" data-act="week-goal:${esc(s.id)}"><span class="week-rec-lv">${esc(r.label)}</span><b>${esc(displayTitle(s))}</b><span class="tiny">${esc(displayArtist(s))}${c?` · ${esc(c.maleKey)}키 · Capo +${c.capo} · ${c.bpm}BPM`:''}</span><small>${esc(r.why)}</small></button>`;}).join('');
+    const options=zeroSlotMrSongs();
+    const goalLine=goal&&gc?`<div class="focus-strip"><div><b>이번 주 목표곡 · ${esc(displayTitle(goal))}</b><div class="tiny">${esc(displayArtist(goal))} · ${esc(gc.maleKey)}키 · Capo +${gc.capo} · ${esc(gc.timeSignature)} · ${gc.bpm}BPM · 14버튼만으로 완주</div></div><div class="row" style="flex-wrap:wrap;gap:6px">${action('chart:'+goal.id,'악보','btn small')}${action('mr:'+goal.id,'MR','btn accent small')}</div></div>`:'<p class="tiny">목표곡을 고르면 여기에 악보·MR 버튼이 나옵니다.</p>';
+    return `${head('WEEKLY PLAN','주간 연습 · Day 1~7','한 주 동안 오른손 주법을 하나씩 얹어 목표곡을 완주합니다.')}
+    <div class="alert" style="margin-bottom:14px">${esc(WEEK_PLAN.intro||'')}</div>
+    <div class="week-top">
+      <div class="card week-goal-card"><div class="row between"><h3>이번 주 완성 목표곡</h3><span class="tag">14버튼 · MR 있음</span></div>
+        <p class="tiny" style="margin:4px 0 12px">버튼 14개만으로 끝까지 칠 수 있고 MR이 연결된 곡만 골랐습니다. 하나 고르고 7일 동안 같은 곡을 씁니다.</p>
+        <div class="week-recs">${recCards}</div>
+        <div class="field" style="margin-top:12px"><label>다른 곡에서 고르기 · ${options.length}곡</label><select id="week-goal-select" class="input"><option value="">곡 선택</option>${options.map(s=>{const c=chartOf(s);return `<option value="${esc(s.id)}" ${p.goalSongId===s.id?'selected':''}>${esc(displayTitle(s))} — ${esc(displayArtist(s))}${c?` · ${c.bpm}BPM`:''}</option>`;}).join('')}</select></div>
+        ${goalLine}
+      </div>
+      <div class="card week-progress-card"><div class="eyebrow">THIS WEEK</div><div class="metric">${done}<span> / ${days.length}일</span></div><div class="progress" style="margin:8px 0 10px"><i style="width:${Math.min(100,Math.round(done/Math.max(1,days.length)*100))}%"></i></div><p class="tiny">${p.startedAt?`${esc(p.startedAt)} 시작`:'아직 시작 전'} · 체크는 이 브라우저에 저장됩니다.</p><div class="divider"></div><div class="week-days-mini">${days.map(d=>`<span class="${p.days[d.day]?'done':''}">D${d.day}</span>`).join('')}</div><div class="row" style="margin-top:12px;flex-wrap:wrap;gap:6px">${action('start-practice','오늘의 연습 열기','btn primary small')}${done?action('week-reset','이번 주 초기화','btn outline small'):''}</div></div>
+    </div>
+    ${head('DAY BY DAY','1일차부터 7일차까지','하루 25분 기준입니다. 과제만 보고 바로 시작해도 됩니다.',action('go-roadmap','성장 로드맵','btn outline small'))}
+    <div class="week-list">${days.map(d=>weekDayCard(d,p,goal,gc)).join('')}</div>
+    ${head('RIGHT-HAND LESSONS','오른손 주법 강좌 · 검증한 영상','실제 기타 강사가 주법을 설명하는 유튜브 영상만 넣었습니다. 커버·연주 영상은 없습니다.')}
+    <div class="hint" style="margin-bottom:12px">영상은 <b>사이트 안 재생</b>과 <b>YouTube에서 열기</b> 둘 다 있습니다. 사이트 안 재생이 막히면 YouTube 링크로 보세요. 제목·채널은 YouTube oEmbed로 확인했습니다(2026-11-26).</div>
+    <div class="lesson-grid">${LESSONS.map(l=>lessonCard(l)).join('')}</div>`;
   }
 
   /* ── 오늘의 연습 ─────────────────────────────────────────── */
@@ -382,7 +440,7 @@
   }
 
   function centerActiveNav(){try{if(!document.querySelector)return;const nav=document.querySelector('.nav');if(!nav)return;const btn=nav.querySelector('button.active');if(!btn)return;if(nav.scrollWidth<=nav.clientWidth+1)return;const n=nav.getBoundingClientRect(),b=btn.getBoundingClientRect();if(b.left>=n.left-1&&b.right<=n.right+1)return;const reduce=!!(window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches);btn.scrollIntoView({inline:'center',block:'nearest',behavior:reduce?'auto':'smooth'});}catch{}}
-  function render(){root.innerHTML=`<div class="shell">${bar()}<main>${({home,songs:songsPage,roadmap:roadmapPage,playlist:playlistPage,practice:practicePage,logs:logsPage,sources:sourcesPage,settings:settingsPage}[currentTab]||home)()}</main><footer class="footer">STRUM · PLAY A LITTLE. GO A LITTLE FURTHER. · 독립 백업/복원 버전</footer></div>${modal?renderModal():''}`;centerActiveNav();if(mini)setTimeout(syncMiniHeight,0);}
+  function render(){root.innerHTML=`<div class="shell">${bar()}<main>${({home,songs:songsPage,roadmap:roadmapPage,week:weekPage,playlist:playlistPage,practice:practicePage,logs:logsPage,sources:sourcesPage,settings:settingsPage}[currentTab]||home)()}</main><footer class="footer">STRUM · PLAY A LITTLE. GO A LITTLE FURTHER. · 독립 백업/복원 버전</footer></div>${modal?renderModal():''}`;centerActiveNav();if(mini)setTimeout(syncMiniHeight,0);}
   function renderModal(){if(!modal)return '';if(modal.kind==='chart'){const s=song(modal.id);if(!s)return '';return chartModalShell(s);}let content='';let s=modal.id&&song(modal.id);
     if(modal.kind==='edit' || modal.kind==='new'){
       s=s||{id:'',title:'',artist:'',sourceIndices:[],verification:'added-by-user',videoUrl:'',audioUrl:'',mrUrl:'',key:'미확정',maleKey:'미확정',bpm:null,chords:'',chordStatus:'미확인',strumming:'',difficultyEasy:'미확인',difficultyStandard:'미확인',vocalDifficulty:'미확인',level:'미착수',tags:[],notes:'',setlist:false};
@@ -491,10 +549,10 @@
     const isAudio=kind==='audio'||kind==='mraudio';
     const vid=isAudio?'':ytId(url);
     if(!isAudio&&!vid){notice(mode==='mr'?'MR 링크가 없습니다. MR 없음 버튼으로 등록할 수 있습니다.':'재생할 영상 링크가 없습니다.');return;}
-    mini={kind:kind,songId:s.id,videoId:vid,audioUrl:kind==='audio'?safeHttp(s.audioUrl):kind==='mraudio'?(mode==='music'?fullAudioOf(s):mrAudioOf(s)):'',title:displayTitle(s),sub:displayArtist(s),badge:mode==='mr'?'MR':mode==='music'?'음악':kind==='audio'?'음악':'영상',collapsed:false};
+    mini={kind:kind,songId:s.id,videoId:vid,audioUrl:kind==='audio'?safeHttp(s.audioUrl):kind==='mraudio'?(mode==='music'?fullAudioOf(s):mrAudioOf(s)):'',title:displayTitle(s),sub:displayArtist(s),badge:mode==='mr'?'MR':mode==='music'?'음악':mode==='lesson'?'강좌':kind==='audio'?'음악':'영상',collapsed:false,watch:url};
     renderMini();
     if(kind==='mraudio'&&mrShiftOf(s.id)!==0)setTimeout(()=>applyMrShift(mrShiftOf(s.id)),350);
-    notice(mode==='mr'?`${s.title} · MR(반주)를 미니 플레이어에서 재생합니다.`:`${s.title} · ${mini.badge} 재생 중 — 악보로 이동해도 꺼지지 않습니다.`);
+    notice(mode==='mr'?`${s.title} · MR(반주)를 미니 플레이어에서 재생합니다.`:mode==='lesson'?`${s.title} · 오른손 주법 강좌를 미니 플레이어에서 재생합니다.`:`${s.title} · ${mini.badge} 재생 중 — 악보로 이동해도 꺼지지 않습니다.`);
   }
   function closeMini(){try{get('mini-audio')?.pause();}catch(err){}teardownPitch();if(trackObjectURL){URL.revokeObjectURL(trackObjectURL);trackObjectURL=null;}mini=null;renderMini();}
   /* ── MR 음원 실시간 키 조절(피치 시프트) ─────────────────────────
@@ -524,7 +582,7 @@
     if(pitchCorePromise)return pitchCorePromise;
     pitchCorePromise=new Promise((resolve,reject)=>{
       const s=document.createElement('script');
-      s.src='src/pitch-grain.js?v=26';s.async=true;
+      s.src='src/pitch-grain.js?v=27';s.async=true;
       s.onload=()=>window.StrumPitchCore?resolve(window.StrumPitchCore):reject(new Error('pitch-grain missing'));
       s.onerror=()=>reject(new Error('pitch-grain load failed'));
       document.head.appendChild(s);
@@ -571,7 +629,7 @@
     let g=null;
     if(ctx.audioWorklet&&typeof ctx.audioWorklet.addModule==='function'){
       try{
-        await ctx.audioWorklet.addModule('src/pitch-worklet.js?v=26');
+        await ctx.audioWorklet.addModule('src/pitch-worklet.js?v=27');
         const node=new AudioWorkletNode(ctx,'strum-pitch',{numberOfInputs:1,numberOfOutputs:1,outputChannelCount:[2],parameterData:{ratio:1}});
         g={ctx,src,node,mode:'worklet',el:audioEl,ratio:1,wired:false};
       }catch(err){g=null;}
@@ -612,12 +670,12 @@
     if(!miniRoot)return;
     if(!mini){miniRoot.innerHTML='';try{document.body.classList?.remove('has-mini');document.body.style.paddingBottom='';document.documentElement?.style&&document.documentElement.style.setProperty('--mini-h','0px');}catch(err){}return;}
     const s=song(mini.songId);
-    const watch=s?((mini.kind==='mr'?s.mrUrl:s.videoUrl)||''):'';
+    const watch=mini.watch||(s?((mini.kind==='mr'?s.mrUrl:s.videoUrl)||''):'');
     const isAudio=mini.kind==='audio'||mini.kind==='mraudio';
     const shift=mini.kind==='mraudio'?mrShiftOf(mini.songId):0;
     const keyBar=mini.kind==='mraudio'
       ?`<div class="mini-key" id="mini-key" role="group" aria-label="키 조절"><button type="button" class="mini-btn" data-act="mini-shift:-1" aria-label="반음 내리기" title="반음 내리기">−</button><b class="mini-key-label" id="mini-key-label">${mrShiftLabel(shift)}</b><button type="button" class="mini-btn" data-act="mini-shift:1" aria-label="반음 올리기" title="반음 올리기">＋</button><span class="mini-key-hint">−6~+6반음 · 템포 유지</span></div>`
-      :(mini.collapsed?'':`<span class="mini-key-note">YouTube 재생 중에는 키 조절을 쓸 수 없습니다(MP3 반주에서만)</span>`);
+      :(mini.collapsed||mini.kind==='lesson'?'':`<span class="mini-key-note">YouTube 재생 중에는 키 조절을 쓸 수 없습니다(MP3 반주에서만)</span>`);
     const body=isAudio
       ?`<audio class="mini-audio" id="mini-audio" controls autoplay preload="none" src="${esc(mini.audioUrl)}"></audio>`
       :`<div class="mini-frame"><iframe src="${esc(ytEmbed(mini.videoId))}" title="${esc(mini.title)} ${esc(mini.badge)} 재생" allow="autoplay; encrypted-media; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe></div>`;
@@ -689,6 +747,11 @@
     case 'go-songs':setTab('songs');return;
     case 'filter-cat':statusFilter=value;setTab('songs');return;
     case 'go-roadmap':setTab('roadmap');return;
+    case 'go-week':setTab('week');return;
+    case 'week-goal':{const s=song(value);if(!s)return;const p=weekState();p.goalSongId=s.id;if(!p.startedAt)p.startedAt=dateKey();save();render();notice(`${s.title} · 이번 주 목표곡으로 정했습니다.`);return;}
+    case 'week-reset':if(confirm('이번 주 완료 체크를 모두 지울까요? 목표곡은 그대로 둡니다.')){const p=weekState();p.days={};p.startedAt=dateKey();save();render();notice('이번 주 체크를 초기화했습니다.');}return;
+    case 'lesson-play':{const l=lessonOf(value);if(!l)return;openMini('lesson',{id:'lesson-'+l.key,title:l.video.title,artist:l.video.channel,videoUrl:ytWatch(l.video.id)});return;}
+    case 'lesson-focus':{const el=document.getElementById('lesson-'+value);if(el)el.scrollIntoView({behavior:'smooth',block:'center'});return;}
     case 'go-playlist':setTab('playlist');return;
     case 'go-sources':setTab('sources');return;
     case 'new-song':editSong(null);return;
@@ -735,7 +798,9 @@
     if(e.target.id==='mini-file'){const file=e.target.files?.[0];if(!file)return;if(!file.type.startsWith('audio/')){notice('오디오 파일을 선택하세요.');return;}if(trackObjectURL)URL.revokeObjectURL(trackObjectURL);trackObjectURL=URL.createObjectURL(file);mini={kind:'audio',songId:mini?.songId||'',videoId:'',audioUrl:trackObjectURL,title:file.name,sub:'내 오디오 파일',badge:'내 파일',collapsed:false};renderMini();return;}
   });
   document.addEventListener('change',e=>{
+    if(e.target.dataset.week!==undefined){const p=weekState();const n=e.target.dataset.week;if(e.target.checked)p.days[n]=dateKey();else delete p.days[n];if(!p.startedAt)p.startedAt=dateKey();save();render();notice(e.target.checked?`${n}일차 완료로 체크했습니다.`:`${n}일차 체크를 풀었습니다.`);return;}
     if(e.target.dataset.step!==undefined){let i=+e.target.dataset.step;if(e.target.checked&&!state.completedStages.includes(i))state.completedStages.push(i);else if(!e.target.checked)state.completedStages=state.completedStages.filter(v=>v!==i);save();const checked=state.completedStages.length;let pill=e.target.closest('.card')?.querySelector('.pill');if(pill)pill.textContent=checked+'/5 완료';return;}
+    if(e.target.id==='week-goal-select'){const v=e.target.value;if(!v)return;const s=song(v);if(s){const p=weekState();p.goalSongId=s.id;if(!p.startedAt)p.startedAt=dateKey();save();render();notice(`${s.title} · 이번 주 목표곡으로 정했습니다.`);}return;}
     if(e.target.id==='song-filter'){statusFilter=e.target.value;render();return;}
     if(e.target.id==='source-filter'){sourceFilter=e.target.value;showAllSources=false;render();return;}
     if(e.target.id==='weekly-goal'){state.settings.weeklyGoal=+e.target.value;save();notice('주간 목표 변경됨.');return;}

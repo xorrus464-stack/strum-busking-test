@@ -135,7 +135,7 @@ for s in songs:
         assert not s['videoUrl'], s['id']
 
 # 10) 메타 집계
-assert meta['seedVersion'] == 25, meta['seedVersion']
+assert meta['seedVersion'] == 26, meta['seedVersion']
 assert meta['buttonCount'] == 14 and len(meta['buttonSet']) == 14, meta.get('buttonCount')
 assert meta['chartVersion'] == '2026-11-25', meta['chartVersion']
 assert meta['videoLinkCount'] == 201 and meta['videoLinkFilledCount'] == 36
@@ -144,6 +144,43 @@ assert meta['playlistPublicVideoCount'] == 168
 assert meta['playlistInaccessibleVideoCount'] == 42
 assert meta['restoredSongCount'] == 19
 assert meta['songEntryCount'] == len(songs) == 201
+
+# 10-b) 주간 연습(Day 1~7) · 오른손 주법 강좌 (2026-11-26)
+lessons = json.loads((BASE / 'data' / 'lessons.json').read_text(encoding='utf-8'))
+week = json.loads((BASE / 'data' / 'week-plan.json').read_text(encoding='utf-8'))
+seed_js = (BASE / 'src' / 'seed.js').read_text(encoding='utf-8')
+assert meta['lessonVersion'] == lessons['version'] == week['version'] == '2026-11-26'
+assert meta['weekPlanDays'] == 7
+assert 'STRUM_SEED.lessons' in seed_js and 'STRUM_SEED.weekPlan' in seed_js, 'seed.js 에 강좌·주간 플랜 누락'
+lesson_keys = [l['key'] for l in lessons['lessons']]
+assert len(lesson_keys) == 9 == len(set(lesson_keys)), lesson_keys
+video_ids = []
+for l in lessons['lessons']:
+    assert l['name'] and l['summary'] and l['level'] and l['tag'], l['key']
+    assert len(l['points']) >= 3, l['key']
+    for v in [l['video']] + ([l['alt']] if l.get('alt') else []):
+        assert re.fullmatch(r'[A-Za-z0-9_-]{11}', v['id']), (l['key'], v['id'])
+        assert v['title'] and v['channel'] and v['length'], l['key']
+        video_ids.append(v['id'])
+        # 강좌 제목에 그 주법·강좌임이 드러나야 한다(커버·연주 영상 금지)
+        assert re.search(r'강|레슨|패턴|주법|스트로크|아르페지오|커팅|퍼커시브|손가락|오른손|피크|자세', v['title']), (l['key'], v['title'])
+    assert f'"id":"{l["video"]["id"]}"' in seed_js, l['key']
+assert len(video_ids) == len(set(video_ids)), '강좌 영상 중복'
+assert meta['lessonNote'] and 'oEmbed' in meta['lessonNote']
+assert len(week['days']) == 7 and [d['day'] for d in week['days']] == list(range(1, 8))
+covered = set()
+for d in week['days']:
+    assert d['focus'] and d['why'] and d['songFocus'] and d['done'], d['day']
+    assert len(d['tasks']) == 3 and sum(t['min'] for t in d['tasks']) == 25, d['day']
+    assert d['lessons'], d['day']
+    assert set(d['lessons']) <= set(lesson_keys), d['day']
+    covered.update(d['lessons'])
+assert covered == set(lesson_keys), (sorted(set(lesson_keys) - covered), '연습일에 연결되지 않은 강좌')
+for r in week['recommended']:
+    s = by_id[r['songId']]
+    c = s.get('chart') or {}
+    assert (c.get('slots') or []) == [], r['songId']
+    assert s.get('mrUrl') or s.get('mrAudioUrl'), r['songId']
 
 # 11) 악보(남자키·박자·BPM·원터치 매핑) 정합성
 PC = {'C': 0, 'C#': 1, 'Db': 1, 'D': 2, 'D#': 3, 'Eb': 3, 'E': 4, 'F': 5, 'F#': 6,

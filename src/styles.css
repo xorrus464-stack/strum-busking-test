@@ -202,3 +202,52 @@ body.has-mini .modal{max-height:calc(91vh - var(--mini-h,120px))}
 
 /* v22: 안내 토스트가 아래 버튼(키 조절 −/+)의 탭을 가로막지 않게 한다 */
 .toast{pointer-events:none}
+
+/* ── 2026-11-26: 주간 연습(Day 1~7) · 오른손 주법 강좌 ── */
+.week-top{display:grid;grid-template-columns:1.5fr 1fr;gap:14px;margin-bottom:6px}
+.week-recs{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+.week-rec{display:flex;flex-direction:column;align-items:flex-start;gap:2px;text-align:left;border:1px solid #e4e0d4;background:#fffdf7;border-radius:14px;padding:11px 12px;color:var(--ink);line-height:1.35}
+.week-rec:hover{border-color:#c9d2bd}
+.week-rec.on{background:#eff2e9;border-color:#9fb08e;box-shadow:inset 0 0 0 1px #9fb08e}
+.week-rec-lv{font-size:9px;font-weight:900;letter-spacing:.14em;color:#8a8b7d}
+.week-rec b{font-size:14px;letter-spacing:-.02em;overflow-wrap:anywhere}
+.week-rec small{font-size:11px;color:#7c7d6f;line-height:1.45;margin-top:3px}
+.week-progress-card .metric{margin-top:3px}
+.week-days-mini{display:flex;gap:5px;flex-wrap:wrap}
+.week-days-mini span{width:26px;height:26px;border-radius:50%;border:1px solid #dddcd1;display:grid;place-items:center;font-size:10px;font-weight:800;color:#8b8b7a}
+.week-days-mini span.done{background:var(--olive);border-color:var(--olive);color:#fff}
+.week-list{display:grid;gap:11px}
+.week-day{padding:18px 20px}
+.week-day.done{border-color:#b7c8a8;background:#fbfdf7}
+.week-day-head{display:flex;align-items:flex-start;gap:12px}
+.day-no{flex-shrink:0;background:var(--dark);color:#f6f2e7;border-radius:9px;padding:4px 8px;font-size:10px;font-weight:900;letter-spacing:.1em}
+.week-day-head h3{margin:1px 0 3px}
+.week-check{display:flex;align-items:center;gap:7px;flex-shrink:0;font-size:11px;font-weight:800;color:#5f6b55;cursor:pointer;background:#f2f4ec;border:1px solid #dfe4d6;border-radius:10px;padding:7px 10px}
+.week-check input{appearance:none;width:19px;height:19px;border:2px solid #adb5a3;border-radius:6px;margin:0;cursor:pointer;background:#fff}
+.week-check input:checked{background:var(--olive);border-color:var(--olive)}
+.week-check input:checked:after{content:'✓';display:block;text-align:center;line-height:15px;color:#fff;font-weight:900;font-size:12px}
+.week-tasks{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin:13px 0 11px}
+.week-tasks>div{background:#fcfaf3;border:1px solid #ebe7db;border-radius:12px;padding:9px 11px}
+.week-tasks b{font-size:12px;letter-spacing:-.01em}
+.week-tasks .tiny{margin-top:2px;line-height:1.5}
+.week-foot{display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap;border-top:1px dashed #e4e0d3;padding-top:10px}
+.week-song{font-size:12px;color:#5f6154}
+.week-song b{color:#8a8b7d;font-size:10px;letter-spacing:.1em;margin-right:5px}
+.week-lessons{display:flex;gap:6px;flex-wrap:wrap}
+.week-lesson{display:flex;flex-direction:column;align-items:flex-start;gap:0;border:1px solid #d6ddcf;background:#eff2e9;border-radius:10px;padding:6px 10px;text-align:left;color:#3f4a37;line-height:1.3}
+.week-lesson b{font-size:11px}
+.week-lesson span{font-size:9px;color:#7e8874}
+.week-done-line{display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap;margin-top:9px}
+.lesson-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:11px}
+.lesson-card{display:flex;flex-direction:column;gap:7px;border:1px solid #e6e2d4;background:var(--paper);border-radius:18px;padding:16px 17px}
+.lesson-head h3{font-size:15px;margin-top:2px}
+.lesson-card>p.tiny{line-height:1.6}
+.lesson-points{margin:0;padding-left:16px;display:grid;gap:4px;font-size:11.5px;color:#5d5f52;line-height:1.55}
+.lesson-points li::marker{color:#a8a894}
+.lesson-video{margin-top:auto;border-top:1px dashed #e4e0d3;padding-top:9px;display:flex;flex-direction:column;gap:1px}
+.lesson-video b{font-size:12px;letter-spacing:-.01em;line-height:1.4}
+.lesson-video>span{font-size:10px;color:#8b8b7a}
+.lesson-alt{font-size:10px;color:#8b8b7a;line-height:1.5}
+.lesson-alt a{color:#5f6b55;font-weight:700}
+@media(max-width:1040px){.week-top{grid-template-columns:1fr}.lesson-grid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:720px){.week-recs{grid-template-columns:1fr}.week-tasks{grid-template-columns:1fr}.week-day{padding:15px}.week-day-head{flex-wrap:wrap}.week-check{margin-left:auto}.lesson-grid{grid-template-columns:1fr}}
