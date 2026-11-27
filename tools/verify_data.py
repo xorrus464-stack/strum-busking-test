@@ -135,7 +135,7 @@ for s in songs:
         assert not s['videoUrl'], s['id']
 
 # 10) 메타 집계
-assert meta['seedVersion'] == 28, meta['seedVersion']
+assert meta['seedVersion'] == 29, meta['seedVersion']
 assert meta['buttonCount'] == 14 and len(meta['buttonSet']) == 14, meta.get('buttonCount')
 assert meta['chartVersion'] == '2026-11-25', meta['chartVersion']
 assert meta['videoLinkCount'] == 201 and meta['videoLinkFilledCount'] == 36
@@ -198,7 +198,7 @@ for barre in ('F', 'Bm', 'Bb'):
 assert 'SimplifyChord 약식 폼' in app_js
 idx = (BASE / 'index.html').read_text(encoding='utf-8')
 sw = (BASE / 'sw.js').read_text(encoding='utf-8')
-assert '?v=30' in idx and 'strum-busking-test-v30' in sw
+assert '?v=31' in idx and 'strum-busking-test-v31' in sw
 
 for r in week['recommended']:
     s = by_id[r['songId']]
@@ -416,7 +416,7 @@ for s in chart_songs:
     t = s['chart']['timing']
     n = sum(len(sec['bars']) for sec in s['chart']['sections'])
     assert t['bars'] == n, (s['id'], t['bars'], n)
-    assert t['mode'] in ('section', 'bpm-local', 'bpm-yt', 'none'), (s['id'], t['mode'])
+    assert t['mode'] in ('section', 'bpm-local', 'bpm-yt', 'recording', 'none'), (s['id'], t['mode'])
     if t['mode'] == 'none':
         assert not t.get('barTimes'), s['id']
         continue
@@ -455,6 +455,45 @@ for s in _local:
     assert t['cycle'] == (len(t['barTimes']) > t['bars']), (s['id'], t['cycle'])
 # 3곡 이상은 곡이 악보보다 길어 '반복 표시' 안내가 붙는다
 assert sum(1 for s in chart_songs if s['chart']['timing'].get('cycle')) >= 3
+
+# 11-3-b) 2026-11-27 주성 님 녹화 실측(Thank You) — 마디 56개 전곡 타임라인 + 노래방 가사 타임라인
+_ty = by_id['verified-003']
+_tyc = _ty['chart']
+_tyt = _tyc['timing']
+assert _tyt['mode'] == 'recording', _tyt['mode']
+assert _tyt['bpm'] == 80 and _tyt['timeSignature'] == '4/4' and _tyt['beats'] == 4, _tyt['bpm']
+assert _tyt['barSec'] == 3.0 and _tyt['offsetSec'] == 0.04, (_tyt['barSec'], _tyt['offsetSec'])
+assert _tyt['bars'] == 56 and len(_tyt['barTimes']) == 56, (_tyt['bars'], len(_tyt['barTimes']))
+assert _tyt['audio'] == 'media/thank-you-mr.mp3' and (_tyc['bpm'] == _ty['bpm'] == 80), _ty['bpm']
+assert _ty['mrAudioUrl'] == 'media/thank-you-mr.mp3' and not _ty.get('mrUrl'), 'MR 음원으로 연결한 곡은 YouTube MR 비움'
+assert _ty['mrSource'] == 'user-recording' and '2026-11-27' in _ty['mrNote'] and '80.0BPM' in _ty['mrNote'], _ty['mrNote'][:60]
+assert abs((_tyt['barTimes'][-1][1] - _tyt['barTimes'][0][0]) - 168.0) < 0.5, _tyt['barTimes'][-1]
+assert _tyt['durationSec'] and _tyt['durationSec'] > 168.0, _tyt['durationSec']
+# 악보: 10개 구간·56마디·손 코드 0개·14버튼 6개만 사용
+_ty_bars = sum(len(sec['bars']) for sec in _tyc['sections'])
+assert _ty_bars == 56 == len(_tyt['barTimes']), _ty_bars
+assert len(_tyc['sections']) == 10, len(_tyc['sections'])
+assert _tyc['sections'][0]['name'].startswith('도입') and _tyc['sections'][-1]['name'].startswith('아웃트로')
+assert not _tyc['slots'], '14버튼 완주 곡에 손 코드가 생김'
+assert {c['btn'] for sec in _tyc['sections'] for bar in sec['bars'] for c in bar} == {'Em', 'D', 'G', 'C', 'Bm', 'Am'}
+assert _tyc['coverage'] == {'mapped': 6, 'total': 6, 'unmapped': 0}, _tyc['coverage']
+assert _tyc['capo'] == 4 and _tyc['formText'] == 'G폼 · Capo +4', _tyc['formText']
+# 가사: 35줄, 마디/시각이 악보 범위 안에서 뒤로 가지 않는다
+_ly = _ty.get('lyrics') or {}
+_lyl = _ly.get('lines') or []
+assert len(_lyl) == 35, len(_lyl)
+assert _ly.get('language') == 'en' and _ly.get('source') and _ly.get('note'), _ly.keys()
+for _l in _lyl:
+    assert _l['text'] and 1 <= int(_l['bar']) <= 56, _l
+    assert 0 <= _l['startSec'] < _l['endSec'] <= _tyt['barTimes'][-1][1] + 0.01, _l
+    _b = int(_l['bar'])
+    assert abs(_l['startSec'] - _tyt['barTimes'][_b - 1][0]) < 0.01, (_l, _tyt['barTimes'][_b - 1])
+for _a, _b in zip(_lyl, _lyl[1:]):
+    assert _a['endSec'] <= _b['startSec'] + 0.01, (_a, _b)
+assert len({_l['section'] for _l in _lyl}) == 6, {_l['section'] for _l in _lyl}
+assert _lyl[0]['text'].startswith("My tea's gone cold") and _lyl[-1]['text'].startswith('Is having the best day')
+assert meta.get('lyrics', {}).get('songs') == ['verified-003'] and meta['lyrics']['lineCount'] == 35, meta.get('lyrics')
+print('OK: Thank You 2026-11-27 녹화 실측 — 56마디·80.0BPM·4/4·가사 35줄(6구간) · media/thank-you-mr.mp3 · 14버튼 6개로 완주')
 
 # 11-4) stage 1 오른손 주법 강좌 연결(2026-11-27)
 _lesson_keys = [l['key'] for l in lessons['lessons']]
@@ -604,12 +643,14 @@ LOCAL_MR_FILES = {
     'playlist-174': ('media/choiyuri-saenggak-mr.mp3', '생각을 멈추다 보면', 3_500_000),
     'restored-100': ('media/goodbye-bye-mr.mp3', 'Good Bye-Bye', 5_000_000),
     'playlist-159': ('media/kisum-seo-eoreun-mr.mp3', '서, 어른', 3_000_000),
+    # 2026-11-27 주성 님 화면 녹화(Sam Backing Tracks · Thank You Acoustic Karaoke) → 80.0BPM 실측 반주
+    'verified-003': ('media/thank-you-mr.mp3', 'Thank You', 3_500_000),
 }
 with_yt = [s for s in songs if s.get('mrUrl')]
 with_local = [s for s in songs if s.get('mrAudioUrl')]
 with_mr = [s for s in songs if s.get('mrUrl') or s.get('mrAudioUrl')]
 assert len(with_mr) == meta['mrLinkCount'] == 162, (len(with_mr), meta['mrLinkCount'])
-assert len(with_yt) == 151 and len(with_local) == 11, (len(with_yt), len(with_local))
+assert len(with_yt) == 150 and len(with_local) == 12, (len(with_yt), len(with_local))
 works = {}
 for s in with_yt:
     m = re.fullmatch(r'https://www\.youtube\.com/watch\?v=([A-Za-z0-9_-]{11})', s['mrUrl'])
@@ -636,14 +677,14 @@ for s in with_local:
     assert s['mrAudioUrl'] == fname, (s['id'], s['mrAudioUrl'])
     assert s.get('mrSource') == 'user-recording', (s['id'], s.get('mrSource'))
     assert s.get('mrTitle') and word in s['mrTitle'], (s['id'], s.get('mrTitle'))
-    assert s.get('mrNote') and ('2026-11-23' in s['mrNote'] or '2026-11-24' in s['mrNote'] or '2026-11-26' in s['mrNote']), (s['id'], 'MR 음원 등록 근거 없음')
+    assert s.get('mrNote') and ('2026-11-23' in s['mrNote'] or '2026-11-24' in s['mrNote'] or '2026-11-26' in s['mrNote'] or '2026-11-27' in s['mrNote']), (s['id'], 'MR 음원 등록 근거 없음')
     assert s['category'] != 'reference', (s['id'], '참고 영상에 MR 금지')
     key = (s.get('workTitle') or s['title'], s.get('workArtist') or s['artist'])
     sig = 'audio:' + s['mrAudioUrl']
     if key in works:
         assert works[key] == sig, (s['id'], '같은 곡은 같은 MR')
     works[key] = sig
-assert len([s for s in with_local if s['id'] in LOCAL_MR_FILES]) == len(LOCAL_MR_FILES) == 11, 'MR 음원 11건 누락'
+assert len([s for s in with_local if s['id'] in LOCAL_MR_FILES]) == len(LOCAL_MR_FILES) == 12, 'MR 음원 12건 누락'
 assert len(works) == meta['mrWorkCount'] == 135, (len(works), meta['mrWorkCount'])
 # 같은 곡이 표기만 달리해 두 항목으로 있는 경우(예: '예뻤어'/'예뻤어 (You were beautiful)')만 같은 MR 허용
 def _nt(t):

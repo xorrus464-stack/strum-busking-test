@@ -939,7 +939,7 @@
     "audioUrl": "",
     "key": "B",
     "maleKey": "B",
-    "bpm": 79,
+    "bpm": 80,
     "chords": "G#m / G#m / G#m F# / G#m F# / G#m F# / G#m G#m / B E / B E / B E / D#m C#m",
     "chordStatus": "웹 자료 검수 완료",
     "strumming": "↓ · ↓ ↑ · ↑ ↓ ↑ (8분 스트럼, 마디마다 코드 1개)",
@@ -951,32 +951,32 @@
       "입문 후보",
       "오른손 1단계"
     ],
-    "notes": "공개 영상 확인(2026-11-22): 재생목록 #28 「Dido - Thank You 남자커버」 (1QmhbcZPZZE).",
+    "notes": "공개 영상 확인(2026-11-22): 재생목록 #28 「Dido - Thank You 남자커버」 (1QmhbcZPZZE). / 2026-11-27: 주성 님 녹화(2:52, Sam Backing Tracks Acoustic Karaoke) 반주를 media/thank-you-mr.mp3로 연결, 악보를 56마디 전곡으로 재구성(80.0BPM·B장조·Capo +4), 영상 자막에서 전곡 가사 35줄을 마디에 매핑.",
     "setlist": false,
     "videoStatus": "공개 영상(커버)",
     "chartStatus": "ready",
     "chart": {
       "status": "ready",
       "timeSignature": "4/4",
-      "timeNote": "chordharbor·hooktheory 표기",
-      "bpm": 79,
-      "bpmNote": "hooktheory 79bpm",
+      "timeNote": "녹화 실측(80.0BPM · 4/4)",
+      "bpm": 80,
+      "bpmNote": "녹화 음원 실측 80.0BPM (공개 코드표 표기 79~80)",
       "originalKey": "B",
       "maleKey": "B",
       "maleShift": 0,
       "capo": 4,
       "formButton": "G",
-      "formKey": "E",
+      "formKey": "B",
       "formText": "G폼 · Capo +4",
       "sections": [
         {
-          "name": "Intro",
+          "name": "도입 · 0:00–0:06",
           "bars": [
             [
               {
                 "btn": "Em",
                 "slot": 0,
-                "sound": "Abm",
+                "sound": "G#m",
                 "orig": "G#m",
                 "quality": "min"
               }
@@ -985,7 +985,7 @@
               {
                 "btn": "Em",
                 "slot": 0,
-                "sound": "Abm",
+                "sound": "G#m",
                 "orig": "G#m",
                 "quality": "min"
               }
@@ -993,21 +993,30 @@
           ]
         },
         {
-          "name": "Verse",
+          "name": "1절 · 0:06–0:30",
           "bars": [
             [
               {
                 "btn": "Em",
                 "slot": 0,
-                "sound": "Abm",
+                "sound": "G#m",
                 "orig": "G#m",
                 "quality": "min"
-              },
+              }
+            ],
+            [
               {
                 "btn": "D",
                 "slot": 0,
                 "sound": "F#",
                 "orig": "F#",
+                "quality": "maj"
+              },
+              {
+                "btn": "G",
+                "slot": 0,
+                "sound": "B",
+                "orig": "B",
                 "quality": "maj"
               }
             ],
@@ -1015,15 +1024,24 @@
               {
                 "btn": "Em",
                 "slot": 0,
-                "sound": "Abm",
+                "sound": "G#m",
                 "orig": "G#m",
                 "quality": "min"
-              },
+              }
+            ],
+            [
               {
                 "btn": "D",
                 "slot": 0,
                 "sound": "F#",
                 "orig": "F#",
+                "quality": "maj"
+              },
+              {
+                "btn": "G",
+                "slot": 0,
+                "sound": "B",
+                "orig": "B",
                 "quality": "maj"
               }
             ],
@@ -1031,15 +1049,24 @@
               {
                 "btn": "Em",
                 "slot": 0,
-                "sound": "Abm",
+                "sound": "G#m",
                 "orig": "G#m",
                 "quality": "min"
-              },
+              }
+            ],
+            [
               {
                 "btn": "D",
                 "slot": 0,
                 "sound": "F#",
                 "orig": "F#",
+                "quality": "maj"
+              },
+              {
+                "btn": "G",
+                "slot": 0,
+                "sound": "B",
+                "orig": "B",
                 "quality": "maj"
               }
             ],
@@ -1047,14 +1074,16 @@
               {
                 "btn": "Em",
                 "slot": 0,
-                "sound": "Abm",
+                "sound": "G#m",
                 "orig": "G#m",
                 "quality": "min"
-              },
+              }
+            ],
+            [
               {
                 "btn": "Em",
                 "slot": 0,
-                "sound": "Abm",
+                "sound": "G#m",
                 "orig": "G#m",
                 "quality": "min"
               }
@@ -1062,7 +1091,156 @@
           ]
         },
         {
-          "name": "Chorus",
+          "name": "2절 · 0:30–0:54",
+          "bars": [
+            [
+              {
+                "btn": "Em",
+                "slot": 0,
+                "sound": "G#m",
+                "orig": "G#m",
+                "quality": "min"
+              }
+            ],
+            [
+              {
+                "btn": "Em",
+                "slot": 0,
+                "sound": "G#m",
+                "orig": "G#m",
+                "quality": "min"
+              }
+            ],
+            [
+              {
+                "btn": "Em",
+                "slot": 0,
+                "sound": "G#m",
+                "orig": "G#m",
+                "quality": "min"
+              },
+              {
+                "btn": "C",
+                "slot": 0,
+                "sound": "E",
+                "orig": "E",
+                "quality": "maj"
+              }
+            ],
+            [
+              {
+                "btn": "D",
+                "slot": 0,
+                "sound": "F#",
+                "orig": "F#",
+                "quality": "maj"
+              },
+              {
+                "btn": "G",
+                "slot": 0,
+                "sound": "B",
+                "orig": "B",
+                "quality": "maj"
+              }
+            ],
+            [
+              {
+                "btn": "Em",
+                "slot": 0,
+                "sound": "G#m",
+                "orig": "G#m",
+                "quality": "min"
+              },
+              {
+                "btn": "C",
+                "slot": 0,
+                "sound": "E",
+                "orig": "E",
+                "quality": "maj"
+              }
+            ],
+            [
+              {
+                "btn": "D",
+                "slot": 0,
+                "sound": "F#",
+                "orig": "F#",
+                "quality": "maj"
+              },
+              {
+                "btn": "G",
+                "slot": 0,
+                "sound": "B",
+                "orig": "B",
+                "quality": "maj"
+              }
+            ],
+            [
+              {
+                "btn": "Em",
+                "slot": 0,
+                "sound": "G#m",
+                "orig": "G#m",
+                "quality": "min"
+              },
+              {
+                "btn": "C",
+                "slot": 0,
+                "sound": "E",
+                "orig": "E",
+                "quality": "maj"
+              }
+            ],
+            [
+              {
+                "btn": "D",
+                "slot": 0,
+                "sound": "F#",
+                "orig": "F#",
+                "quality": "maj"
+              },
+              {
+                "btn": "G",
+                "slot": 0,
+                "sound": "B",
+                "orig": "B",
+                "quality": "maj"
+              }
+            ]
+          ]
+        },
+        {
+          "name": "간주 1 · 0:54–1:00",
+          "bars": [
+            [
+              {
+                "btn": "Em",
+                "slot": 0,
+                "sound": "G#m",
+                "orig": "G#m",
+                "quality": "min"
+              },
+              {
+                "btn": "C",
+                "slot": 0,
+                "sound": "E",
+                "orig": "E",
+                "quality": "maj"
+              }
+            ],
+            [
+              {
+                "btn": "C",
+                "slot": 0,
+                "sound": "E",
+                "orig": "E",
+                "quality": "maj"
+              }
+            ]
+          ]
+        },
+        {
+          "name": "후렴 1 · 1:00–1:24",
           "bars": [
             [
               {
@@ -1071,7 +1249,9 @@
                 "sound": "B",
                 "orig": "B",
                 "quality": "maj"
-              },
+              }
+            ],
+            [
               {
                 "btn": "C",
                 "slot": 0,
@@ -1087,7 +1267,9 @@
                 "sound": "B",
                 "orig": "B",
                 "quality": "maj"
-              },
+              }
+            ],
+            [
               {
                 "btn": "C",
                 "slot": 0,
@@ -1103,7 +1285,9 @@
                 "sound": "B",
                 "orig": "B",
                 "quality": "maj"
-              },
+              }
+            ],
+            [
               {
                 "btn": "C",
                 "slot": 0,
@@ -1116,10 +1300,12 @@
               {
                 "btn": "Bm",
                 "slot": 0,
-                "sound": "Ebm",
+                "sound": "D#m",
                 "orig": "D#m",
                 "quality": "min"
-              },
+              }
+            ],
+            [
               {
                 "btn": "Am",
                 "slot": 0,
@@ -1129,20 +1315,297 @@
               }
             ]
           ]
+        },
+        {
+          "name": "간주 2 · 1:24–1:30",
+          "bars": [
+            [
+              {
+                "btn": "G",
+                "slot": 0,
+                "sound": "B",
+                "orig": "B",
+                "quality": "maj"
+              }
+            ],
+            [
+              {
+                "btn": "C",
+                "slot": 0,
+                "sound": "E",
+                "orig": "E",
+                "quality": "maj"
+              }
+            ]
+          ]
+        },
+        {
+          "name": "3절 · 1:30–1:54",
+          "bars": [
+            [
+              {
+                "btn": "G",
+                "slot": 0,
+                "sound": "B",
+                "orig": "B",
+                "quality": "maj"
+              }
+            ],
+            [
+              {
+                "btn": "C",
+                "slot": 0,
+                "sound": "E",
+                "orig": "E",
+                "quality": "maj"
+              }
+            ],
+            [
+              {
+                "btn": "G",
+                "slot": 0,
+                "sound": "B",
+                "orig": "B",
+                "quality": "maj"
+              }
+            ],
+            [
+              {
+                "btn": "C",
+                "slot": 0,
+                "sound": "E",
+                "orig": "E",
+                "quality": "maj"
+              }
+            ],
+            [
+              {
+                "btn": "G",
+                "slot": 0,
+                "sound": "B",
+                "orig": "B",
+                "quality": "maj"
+              }
+            ],
+            [
+              {
+                "btn": "C",
+                "slot": 0,
+                "sound": "E",
+                "orig": "E",
+                "quality": "maj"
+              }
+            ],
+            [
+              {
+                "btn": "Bm",
+                "slot": 0,
+                "sound": "D#m",
+                "orig": "D#m",
+                "quality": "min"
+              }
+            ],
+            [
+              {
+                "btn": "Am",
+                "slot": 0,
+                "sound": "C#m",
+                "orig": "C#m",
+                "quality": "min"
+              }
+            ]
+          ]
+        },
+        {
+          "name": "후렴 2 · 1:54–2:18",
+          "bars": [
+            [
+              {
+                "btn": "G",
+                "slot": 0,
+                "sound": "B",
+                "orig": "B",
+                "quality": "maj"
+              }
+            ],
+            [
+              {
+                "btn": "C",
+                "slot": 0,
+                "sound": "E",
+                "orig": "E",
+                "quality": "maj"
+              }
+            ],
+            [
+              {
+                "btn": "G",
+                "slot": 0,
+                "sound": "B",
+                "orig": "B",
+                "quality": "maj"
+              }
+            ],
+            [
+              {
+                "btn": "C",
+                "slot": 0,
+                "sound": "E",
+                "orig": "E",
+                "quality": "maj"
+              }
+            ],
+            [
+              {
+                "btn": "G",
+                "slot": 0,
+                "sound": "B",
+                "orig": "B",
+                "quality": "maj"
+              }
+            ],
+            [
+              {
+                "btn": "C",
+                "slot": 0,
+                "sound": "E",
+                "orig": "E",
+                "quality": "maj"
+              }
+            ],
+            [
+              {
+                "btn": "Bm",
+                "slot": 0,
+                "sound": "D#m",
+                "orig": "D#m",
+                "quality": "min"
+              }
+            ],
+            [
+              {
+                "btn": "Am",
+                "slot": 0,
+                "sound": "C#m",
+                "orig": "C#m",
+                "quality": "min"
+              }
+            ]
+          ]
+        },
+        {
+          "name": "후렴 3 · 2:18–2:42",
+          "bars": [
+            [
+              {
+                "btn": "G",
+                "slot": 0,
+                "sound": "B",
+                "orig": "B",
+                "quality": "maj"
+              }
+            ],
+            [
+              {
+                "btn": "C",
+                "slot": 0,
+                "sound": "E",
+                "orig": "E",
+                "quality": "maj"
+              }
+            ],
+            [
+              {
+                "btn": "G",
+                "slot": 0,
+                "sound": "B",
+                "orig": "B",
+                "quality": "maj"
+              }
+            ],
+            [
+              {
+                "btn": "C",
+                "slot": 0,
+                "sound": "E",
+                "orig": "E",
+                "quality": "maj"
+              }
+            ],
+            [
+              {
+                "btn": "G",
+                "slot": 0,
+                "sound": "B",
+                "orig": "B",
+                "quality": "maj"
+              }
+            ],
+            [
+              {
+                "btn": "C",
+                "slot": 0,
+                "sound": "E",
+                "orig": "E",
+                "quality": "maj"
+              }
+            ],
+            [
+              {
+                "btn": "Bm",
+                "slot": 0,
+                "sound": "D#m",
+                "orig": "D#m",
+                "quality": "min"
+              }
+            ],
+            [
+              {
+                "btn": "Am",
+                "slot": 0,
+                "sound": "C#m",
+                "orig": "C#m",
+                "quality": "min"
+              }
+            ]
+          ]
+        },
+        {
+          "name": "아웃트로 · 2:42–2:48",
+          "bars": [
+            [
+              {
+                "btn": "G",
+                "slot": 0,
+                "sound": "B",
+                "orig": "B",
+                "quality": "maj"
+              }
+            ],
+            [
+              {
+                "btn": "G",
+                "slot": 0,
+                "sound": "B",
+                "orig": "B",
+                "quality": "maj"
+              }
+            ]
+          ]
         }
       ],
       "slots": [],
       "stage": 1,
       "percussiveReady": true,
-      "stroke": "↓ · ↓ ↑ · ↑ ↓ ↑ (8분 스트럼, 마디마다 코드 1개)",
-      "percussive": "Verse는 손바닥 뮤트로 조용히, Chorus 진입에 맞춰 2·4박 바디 톡.",
-      "why": "모든 코드가 한 마디씩, 4/4 8비트라 오른손을 처음 익히기에 가장 좋다.",
+      "stroke": "↓ · ↓ ↑ · ↑ ↓ ↑ (8분 스트럼, 마디마다 코드 1개 — 마디 안에서 코드가 바뀌는 곳은 2박씩)",
+      "percussive": "1절은 손바닥 뮤트로 조용히, 후렴 진입(1:00)에 맞춰 2·4박 바디 톡.",
+      "why": "B–E–B–E–B–E–D#m–C#m 후렴과 G#m–F#–B 1절이 모두 14버튼 안에서 끝나고, 4/4 8비트에 한 마디 한 코드라 오른손을 처음 익히기에 가장 좋다.",
       "coverage": {
         "mapped": 6,
         "total": 6,
         "unmapped": 0
       },
-      "basis": "코드표 순서를 4박 마디 카드로 정리한 연습용 배치입니다. 원곡의 세부 마디 배치와 다를 수 있습니다.",
+      "basis": "주성 님이 2026-11-27 보낸 2:52 화면 녹화(Sam Backing Tracks · Thank You - Dido Acoustic Karaoke)에서 오디오를 뽑아 80.0BPM · 4/4 · 56마디를 실측하고, 마디마다 베이스 음·크로마로 코드를 확인했습니다. 공개 코드표(chordharbor — B장조, G폼 Capo 4, 절 Em D Em D Em D Em Em / 후렴 G C G C G C Bm Am)와 같은 조·같은 진행입니다. 이 녹음은 3절도 후렴과 같은 코드(B–E–B–E–B–E–D#m–C#m) 위에 노래합니다. 마디 안에서 코드가 바뀌는 곳(1·2절 F#→B, G#m→E)은 2박씩 두 칸으로 표시했습니다. 실제로 울리는 코드 6개가 모두 14버튼에 들어가 손으로 잡을 코드는 없습니다.",
       "evidence": [
         {
           "label": "chordharbor 키·코드·BPM",
@@ -1153,6 +1616,11 @@
           "label": "Hooktheory",
           "url": "https://www.hooktheory.com/theorytab/view/dido/thank-you",
           "note": "Key G#m/B, Tempo 79, Meter 4/4"
+        },
+        {
+          "label": "녹화 음원(Sam Backing Tracks · Thank You - Dido Acoustic Karaoke)",
+          "url": "https://www.youtube.com/watch?v=DwI1pUessh8",
+          "note": "주성 님 2026-11-27 녹화 2:52 — 이 영상에서 반주만 뽑아 media/thank-you-mr.mp3(168.23초, -16.8 LUFS)로 넣었습니다."
         }
       ],
       "remap": {
@@ -1174,59 +1642,242 @@
         "date": "2026-11-27",
         "timeSignature": "4/4",
         "beats": 4,
-        "bars": 10,
-        "bpm": 79,
-        "audio": "",
-        "durationSec": null,
-        "mode": "bpm-yt",
-        "source": "BPM·박자 추정",
-        "barSec": 3.038,
-        "offsetSec": 0,
+        "bars": 56,
+        "bpm": 80.0,
+        "audio": "media/thank-you-mr.mp3",
+        "durationSec": 168.23,
+        "mode": "recording",
+        "source": "녹화 음원 실측(80.0BPM·4/4·첫 박 0.04초)",
+        "barSec": 3.0,
+        "offsetSec": 0.04,
         "barTimes": [
           [
-            0.0,
+            0.04,
             3.04
           ],
           [
             3.04,
-            6.08
+            6.04
           ],
           [
-            6.08,
-            9.11
+            6.04,
+            9.04
           ],
           [
-            9.11,
-            12.15
+            9.04,
+            12.04
           ],
           [
-            12.15,
-            15.19
+            12.04,
+            15.04
           ],
           [
-            15.19,
-            18.23
+            15.04,
+            18.04
           ],
           [
-            18.23,
-            21.27
+            18.04,
+            21.04
           ],
           [
-            21.27,
-            24.3
+            21.04,
+            24.04
           ],
           [
-            24.3,
-            27.34
+            24.04,
+            27.04
           ],
           [
-            27.34,
-            30.38
+            27.04,
+            30.04
+          ],
+          [
+            30.04,
+            33.04
+          ],
+          [
+            33.04,
+            36.04
+          ],
+          [
+            36.04,
+            39.04
+          ],
+          [
+            39.04,
+            42.04
+          ],
+          [
+            42.04,
+            45.04
+          ],
+          [
+            45.04,
+            48.04
+          ],
+          [
+            48.04,
+            51.04
+          ],
+          [
+            51.04,
+            54.04
+          ],
+          [
+            54.04,
+            57.04
+          ],
+          [
+            57.04,
+            60.04
+          ],
+          [
+            60.04,
+            63.04
+          ],
+          [
+            63.04,
+            66.04
+          ],
+          [
+            66.04,
+            69.04
+          ],
+          [
+            69.04,
+            72.04
+          ],
+          [
+            72.04,
+            75.04
+          ],
+          [
+            75.04,
+            78.04
+          ],
+          [
+            78.04,
+            81.04
+          ],
+          [
+            81.04,
+            84.04
+          ],
+          [
+            84.04,
+            87.04
+          ],
+          [
+            87.04,
+            90.04
+          ],
+          [
+            90.04,
+            93.04
+          ],
+          [
+            93.04,
+            96.04
+          ],
+          [
+            96.04,
+            99.04
+          ],
+          [
+            99.04,
+            102.04
+          ],
+          [
+            102.04,
+            105.04
+          ],
+          [
+            105.04,
+            108.04
+          ],
+          [
+            108.04,
+            111.04
+          ],
+          [
+            111.04,
+            114.04
+          ],
+          [
+            114.04,
+            117.04
+          ],
+          [
+            117.04,
+            120.04
+          ],
+          [
+            120.04,
+            123.04
+          ],
+          [
+            123.04,
+            126.04
+          ],
+          [
+            126.04,
+            129.04
+          ],
+          [
+            129.04,
+            132.04
+          ],
+          [
+            132.04,
+            135.04
+          ],
+          [
+            135.04,
+            138.04
+          ],
+          [
+            138.04,
+            141.04
+          ],
+          [
+            141.04,
+            144.04
+          ],
+          [
+            144.04,
+            147.04
+          ],
+          [
+            147.04,
+            150.04
+          ],
+          [
+            150.04,
+            153.04
+          ],
+          [
+            153.04,
+            156.04
+          ],
+          [
+            156.04,
+            159.04
+          ],
+          [
+            159.04,
+            162.04
+          ],
+          [
+            162.04,
+            165.04
+          ],
+          [
+            165.04,
+            168.04
           ]
         ],
         "cycle": false,
-        "badge": "유튜브 MR은 전주·간주 길이에 따라 오차가 날 수 있어요. 녹화 음원을 주시면 정확히 맞춰드립니다.",
-        "note": "MR 영상의 전주 길이를 몰라 0초부터 BPM으로 계산한 추정값입니다."
+        "note": "주성 님이 보낸 2:52 화면 녹화(Sam Backing Tracks · Acoustic Karaoke)에서 뽑은 반주로 마디 56개의 시작·끝 시각을 실측했습니다. 80.0BPM · 4/4 · 첫 박 0.04초, 1마디 3.00초."
       },
       "lessonKey": "beat8",
       "lessonMatch": {
@@ -1236,17 +1887,272 @@
         "confidence": "문구 일치",
         "from": "↓ · ↓ ↑ · ↑ ↓ ↑ (8분 스트럼, 마디마다 코드 1개) ↓ · ↓ ↑ · ↑ ↓ ↑ (8분 스트럼, 마디마다 코드 1개)",
         "date": "2026-11-27"
-      }
+      },
+      "chartNote": "악보를 이 녹화에 맞춰 도입~아웃트로 56마디로 다시 세웠습니다(이전 10마디 연습용 배치). 마디 시각·가사 싱크는 아래 타임라인과 같습니다."
     },
     "chartNote": "",
     "timeSignature": "4/4",
     "chartStage": 1,
     "category": "chart",
-    "mrUrl": "https://www.youtube.com/watch?v=DwI1pUessh8",
-    "mrTitle": "Thank You - Dido (Acoustic Karaoke)",
+    "mrUrl": "",
+    "mrTitle": "Thank You - Dido (Acoustic Karaoke) · Sam Backing Tracks (녹화)",
     "mrChannel": "Sam Backing Tracks",
-    "mrNote": "Sam Backing Tracks · 대체 반주(임베드 재생 확인) · YouTube oEmbed 200 + 임베드 재생 확인(2026-11-22)",
-    "mrSource": "youtube"
+    "mrNote": "2026-11-27 주성 님 녹화(2:52)에서 오디오만 추출 · 80.0BPM·4/4·56마디 실측 · -16.8 LUFS MP3(media/thank-you-mr.mp3) · 영상 자막으로 전곡 가사 35줄 연결",
+    "mrSource": "user-recording",
+    "lyrics": {
+      "version": "2026-11-27",
+      "language": "en",
+      "source": "영상 자막(1절 0:10.5 · 2절 0:34.0 · 후렴 1:03.7 · 3절 1:33.6 · 후렴 1:57.0) + 마디 그리드",
+      "note": "가사 줄은 영상에 표시된 구간 순서를 이 녹화의 마디(절 1줄=1마디, 후렴 1줄=2마디)에 맞춘 연습용 시각입니다. 노래 호흡에 따라 1초 안쪽으로 다를 수 있습니다.",
+      "lines": [
+        {
+          "section": "1절",
+          "bar": 3,
+          "startSec": 6.04,
+          "endSec": 9.04,
+          "text": "My tea's gone cold, I'm wondering why"
+        },
+        {
+          "section": "1절",
+          "bar": 4,
+          "startSec": 9.04,
+          "endSec": 12.04,
+          "text": "I got out of bed at all"
+        },
+        {
+          "section": "1절",
+          "bar": 5,
+          "startSec": 12.04,
+          "endSec": 15.04,
+          "text": "The morning rain clouds up my window"
+        },
+        {
+          "section": "1절",
+          "bar": 6,
+          "startSec": 15.04,
+          "endSec": 18.04,
+          "text": "And I can't see at all"
+        },
+        {
+          "section": "1절",
+          "bar": 7,
+          "startSec": 18.04,
+          "endSec": 21.04,
+          "text": "And even if I could, it'd all be gray"
+        },
+        {
+          "section": "1절",
+          "bar": 8,
+          "startSec": 21.04,
+          "endSec": 24.04,
+          "text": "But your picture on my wall"
+        },
+        {
+          "section": "1절",
+          "bar": 9,
+          "startSec": 24.04,
+          "endSec": 27.04,
+          "text": "It reminds me that it's not so bad"
+        },
+        {
+          "section": "1절",
+          "bar": 10,
+          "startSec": 27.04,
+          "endSec": 30.04,
+          "text": "It's not so bad"
+        },
+        {
+          "section": "2절",
+          "bar": 11,
+          "startSec": 30.04,
+          "endSec": 33.04,
+          "text": "I drank too much last night, got bills to pay"
+        },
+        {
+          "section": "2절",
+          "bar": 12,
+          "startSec": 33.04,
+          "endSec": 36.04,
+          "text": "My head just feels in pain"
+        },
+        {
+          "section": "2절",
+          "bar": 13,
+          "startSec": 36.04,
+          "endSec": 39.04,
+          "text": "I missed the bus and there'll be hell today"
+        },
+        {
+          "section": "2절",
+          "bar": 14,
+          "startSec": 39.04,
+          "endSec": 42.04,
+          "text": "I'm late for work again"
+        },
+        {
+          "section": "2절",
+          "bar": 15,
+          "startSec": 42.04,
+          "endSec": 45.04,
+          "text": "And even if I'm there, they'll all imply"
+        },
+        {
+          "section": "2절",
+          "bar": 16,
+          "startSec": 45.04,
+          "endSec": 48.04,
+          "text": "That I might not last the day"
+        },
+        {
+          "section": "2절",
+          "bar": 17,
+          "startSec": 48.04,
+          "endSec": 51.04,
+          "text": "And then you call me"
+        },
+        {
+          "section": "2절",
+          "bar": 18,
+          "startSec": 51.04,
+          "endSec": 54.04,
+          "text": "And it's not so bad, it's not so bad"
+        },
+        {
+          "section": "후렴 1",
+          "bar": 21,
+          "startSec": 60.04,
+          "endSec": 66.04,
+          "text": "And I want to thank you"
+        },
+        {
+          "section": "후렴 1",
+          "bar": 23,
+          "startSec": 66.04,
+          "endSec": 72.04,
+          "text": "For giving me the best day of my life"
+        },
+        {
+          "section": "후렴 1",
+          "bar": 25,
+          "startSec": 72.04,
+          "endSec": 78.04,
+          "text": "Oh, just to be with you"
+        },
+        {
+          "section": "후렴 1",
+          "bar": 27,
+          "startSec": 78.04,
+          "endSec": 84.04,
+          "text": "Is having the best day of my life"
+        },
+        {
+          "section": "3절",
+          "bar": 31,
+          "startSec": 90.04,
+          "endSec": 93.04,
+          "text": "Push the door, I'm home at last"
+        },
+        {
+          "section": "3절",
+          "bar": 32,
+          "startSec": 93.04,
+          "endSec": 96.04,
+          "text": "And I'm soaking through and through"
+        },
+        {
+          "section": "3절",
+          "bar": 33,
+          "startSec": 96.04,
+          "endSec": 99.04,
+          "text": "Then you handed me a towel"
+        },
+        {
+          "section": "3절",
+          "bar": 34,
+          "startSec": 99.04,
+          "endSec": 102.04,
+          "text": "And all I see is you"
+        },
+        {
+          "section": "3절",
+          "bar": 35,
+          "startSec": 102.04,
+          "endSec": 105.04,
+          "text": "And even if my house falls down now"
+        },
+        {
+          "section": "3절",
+          "bar": 36,
+          "startSec": 105.04,
+          "endSec": 108.04,
+          "text": "I wouldn't have a clue"
+        },
+        {
+          "section": "3절",
+          "bar": 37,
+          "startSec": 108.04,
+          "endSec": 114.04,
+          "text": "Because you're near me"
+        },
+        {
+          "section": "후렴 2",
+          "bar": 39,
+          "startSec": 114.04,
+          "endSec": 120.04,
+          "text": "And I want to thank you"
+        },
+        {
+          "section": "후렴 2",
+          "bar": 41,
+          "startSec": 120.04,
+          "endSec": 126.04,
+          "text": "For giving me the best day of my life"
+        },
+        {
+          "section": "후렴 2",
+          "bar": 43,
+          "startSec": 126.04,
+          "endSec": 132.04,
+          "text": "Oh, just to be with you"
+        },
+        {
+          "section": "후렴 2",
+          "bar": 45,
+          "startSec": 132.04,
+          "endSec": 138.04,
+          "text": "Is having the best day of my life"
+        },
+        {
+          "section": "후렴 3",
+          "bar": 47,
+          "startSec": 138.04,
+          "endSec": 144.04,
+          "text": "And I want to thank you"
+        },
+        {
+          "section": "후렴 3",
+          "bar": 49,
+          "startSec": 144.04,
+          "endSec": 150.04,
+          "text": "For giving me the best day of my life"
+        },
+        {
+          "section": "후렴 3",
+          "bar": 51,
+          "startSec": 150.04,
+          "endSec": 156.04,
+          "text": "Oh, just to be with you"
+        },
+        {
+          "section": "후렴 3",
+          "bar": 53,
+          "startSec": 156.04,
+          "endSec": 162.04,
+          "text": "Is having the best day of my life"
+        }
+      ]
+    },
+    "mrAudioUrl": "media/thank-you-mr.mp3"
   },
   {
     "id": "verified-004",

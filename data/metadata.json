@@ -12,7 +12,7 @@
   "additionalRecommendedSongCount": 1,
   "originalPlaylist": "https://www.youtube.com/playlist?list=PLdOy20BJp9XElDHDvAJI6mUG48BmfDX-y",
   "playlistId": "PLdOy20BJp9XElDHDvAJI6mUG48BmfDX-y",
-  "seedVersion": 28,
+  "seedVersion": 29,
   "playlistCollectedCount": 210,
   "playlistPublicVideoCount": 168,
   "playlistInaccessibleVideoCount": 42,
@@ -217,7 +217,8 @@
     "date": "2026-11-27",
     "chartCount": 161,
     "modes": {
-      "bpm-yt": 141,
+      "bpm-yt": 140,
+      "recording": 1,
       "bpm-local": 5,
       "section": 13,
       "none": 2
@@ -247,7 +248,6 @@
     "estimated": [
       "verified-001",
       "verified-002",
-      "verified-003",
       "verified-004",
       "verified-005",
       "verified-006",
@@ -392,7 +392,10 @@
       "playlist-152"
     ],
     "badge": "유튜브 MR은 전주·간주 길이에 따라 오차가 날 수 있어요. 녹화 음원을 주시면 정확히 맞춰드립니다.",
-    "note": "마디 타임스탬프는 섹션 실측 구간 → 저장소 음원 실측(BPM·첫 박) → 유튜브 추정 순으로 채웠습니다."
+    "note": "마디 타임스탬프는 ① 녹화 음원 실측(recording) → ② 섹션 실측 구간(section) → ③ 저장소 음원 길이·첫 박(bpm-local) → ④ 유튜브 추정(bpm-yt) 순으로 채웠습니다.",
+    "recording": [
+      "verified-003"
+    ]
   },
   "rhythmLesson": {
     "date": "2026-11-27",
@@ -405,5 +408,13 @@
     },
     "rules": "칼립소→calypso · 16비트→beat16 · 고고/2·4박→gogo · 아르페지오→arpeggio · 8비트/8분→beat8 · 단서 없음→stroke",
     "note": "stage 1(입문) 곡의 오른손 주법 문구를 강좌에 연결했습니다. 다른 단계 곡은 기존처럼 스트로크 표기만 보여줍니다."
+  },
+  "lyrics": {
+    "date": "2026-11-27",
+    "songs": [
+      "verified-003"
+    ],
+    "lineCount": 35,
+    "note": "가사 타임라인은 영상 자막 구간 + 마디 그리드 기준입니다(1초 안쪽 오차 가능)."
   }
 }

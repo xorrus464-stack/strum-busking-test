@@ -89,6 +89,21 @@
      fullAudioUrl 은 주성 님이 보낸 녹화에서 뽑은 연습용 음원 — MR과 같은 실시간 키 조절기를 쓴다. */
   const fullAudioOf = s => mrAudioUrlOf(s&&s.fullAudioUrl);
   const hasMr = s => !!(s && (String(s.mrUrl||'').trim() || mrAudioOf(s)));
+  /* 가사(노래방 싱크) — song.lyrics.lines[{section,bar,startSec,endSec,text}]
+     2026-11-27: 주성 님 녹화(Sam Backing Tracks · Thank You)에서 영상 자막 구간과 마디 그리드를 맞춘
+     타임라인. 미니 플레이어에 지금 줄·다음 줄을 띄우고, 악보 마디를 누르면 그 마디 가사로 바뀐다. */
+  const lyricsOf = s => (s && s.lyrics && Array.isArray(s.lyrics.lines) && s.lyrics.lines.length) ? s.lyrics : null;
+  function lyricIndexAt(ly, sec) {
+    if (!ly) return -1;
+    const L = ly.lines, t = Number(sec) || 0;
+    let lo = 0, hi = L.length - 1, ans = -1;
+    while (lo <= hi) { const mid = (lo + hi) >> 1; if (Number(L[mid].startSec) <= t) { ans = mid; lo = mid + 1; } else hi = mid - 1; }
+    if (ans < 0) return -1;
+    const line = L[ans];
+    if (line.endSec && t > Number(line.endSec) + 0.25) return -1;
+    return ans;
+  }
+  const lyricLinesAtBar = (ly, idx) => ly ? ly.lines.filter(l => Number(l.bar) === idx + 1) : [];
   const PLAYLIST_URL = seed.meta.originalPlaylist;
   const PLAYLIST_ID = seed.meta.playlistId;
   const youtubeSearch=s=>`https://www.youtube.com/results?search_query=${encodeURIComponent(s.title+' '+s.artist+' 라이브')}`;
@@ -339,12 +354,15 @@
     const dayDone=!!(day&&p.days[day.day]);
     const doneDays=ds.filter(d=>p.days[d.day]).length;
     const tasks=stageTasks();
+    const listening=(mini&&goal&&mini.songId===goal.id)?(mini.badge==='MR'?'mr':(mini.badge==='음악'||mini.badge==='내 파일'||mini.badge==='영상'?'music':'')):'';
     const title=(day&&day.focus)||`오늘의 ${state.settings.minutes}분 루틴`;
     const step1=goal&&gc?`<h3>${esc(displayTitle(goal))}</h3>
         <div class="tiny">${esc(displayArtist(goal))}</div>
         <div class="meta-chips"><span class="meta-chip">남자키 ${esc(gc.maleKey)}</span><span class="meta-chip">Capo +${gc.capo}</span><span class="meta-chip">${esc(gc.timeSignature||'4/4')}</span>${gc.bpm?`<span class="meta-chip">${gc.bpm}BPM</span>`:''}</div>
         <div class="step-focus">오늘 구간 · ${esc((day&&day.songFocus)||'처음부터')}</div>
-        <div class="step-btns">${action('chart:'+goal.id,'악보 열기','btn primary small')}${action('mr:'+goal.id,hasMr(goal)?'MR 듣기':'MR 등록','btn outline small')}</div>`
+        <div class="listen-toggle" role="group" aria-label="듣기 전환">${action('music:'+goal.id,'🎵 원곡(보컬) 듣기','btn '+(listening==='music'?'primary':'outline')+' small')}${action('mr:'+goal.id,'🎹 MR 듣기','btn '+(listening==='mr'?'primary':'outline')+' small')}</div>
+        ${listening?`<div class="tiny listen-now">지금 재생 중 · ${listening==='mr'?'MR(반주)':'원곡(보컬)'}${lyricsOf(goal)?' · 하단 미니 플레이어에 가사가 같이 뜼니다.':''}</div>`:''}
+        <div class="step-btns">${action('chart:'+goal.id,'악보 열기','btn primary small')}${action('chart-lyrics:'+goal.id,lyricsOf(goal)?'가사 보기':'악보 열기','btn outline small')}</div>`
       :`<h3>목표곡을 먼저 고르세요</h3><p class="step-one">주간 연습에서 이번 주 곡 하나를 고르면 여기에 악보·MR 버튼이 나옵니다.</p><div class="step-btns">${action('go-week','목표곡 고르기','btn primary small')}</div>`;
     const step2=lesson?`<h3>${esc(lesson.name)}</h3>
         <p class="step-one">${esc(lesson.summary)}</p>
@@ -478,13 +496,16 @@
     const beats=beatCount(ts);
     const slotMap={}; (c.slots||[]).forEach(sl=>{slotMap[sl.slot]=sl;});
     const t=timingOf(c);
+    const ly=lyricsOf(songId?song(songId):null);
     let n=0;
     return `<div id="chart-bars" class="chart-bars">`+c.sections.map(sec=>`<div class="chart-sec"><div class="row between sec-head"><h4>${esc(sec.name)}</h4><span class="tiny">${sec.bars.length}마디</span></div>
       <div class="bar-row">${sec.bars.map(bar=>{const idx=n++; const first=bar[0]||{}; const color=first.btn?(BTN_COLOR[first.btn]||'#8b8b7a'):'#7e7d6f';
         const start=t?barStartAt(t,idx):null;
+        const lyricText=lyricLinesAtBar(ly,idx).map(x=>x.text).join(' · ');
         return `<div class="bar" data-bar="${idx}" data-btn="${esc(first.btn||'')}" style="--c:${color}" role="button" tabindex="0" data-act="seek-bar:${esc(songId||'')}:${idx}" aria-label="${idx+1}마디${start!==null?' · '+clock(start)+'부터 재생':''}">
           <div class="bar-beats">${Array.from({length:beats},(_,i)=>`<i class="${i===0?'on':''}"></i>`).join('')}</div>
           <div class="bar-cells">${bar.map(cell=>chordCell(cell,beats,slotMap)).join('')}</div>
+          ${lyricText?`<div class="bar-lyric">${esc(lyricText)}</div>`:''}
           <div class="bar-num">${idx+1}${start!==null?`<span class="bar-time">${clock(start)}</span>`:''}</div></div>`;}).join('')}</div></div>`).join('')+`</div>`;
   }
   function chartModal(s){
@@ -498,7 +519,7 @@
       </div>
       <div class="row" style="flex-wrap:wrap">${hasMr(s)?action('mr:'+s.id,'MR 듣기','btn accent small'):action('mr:'+s.id,'MR 없음','btn outline small')}${c?action('metro-song:'+s.id,'이 곡 템포로 연습','btn primary small'):''}${action('edit:'+s.id,'곡 정보 수정','btn outline small')}</div></div>`;
     const partialStrip=((s.chartStatus==='partial'||s.chartStatus==='original')&&c&&s.chartNote)?`<div class="alert strip"><b>${s.chartStatus==='original'?'음원 분석':'부분 확인'}</b> · ${esc(s.chartNote)}</div>`:'';
-    const tabs=`<div class="subtabs">${[['chart','원터치 악보'],['slots','SimplifyChord'],['perc','스트로크·퍼커시브'],['basis','근거']].map(([k,l])=>`<button data-act="chart-tab:${k}" class="${tab===k?'active':''}">${l}</button>`).join('')}</div>`;
+    const tabs=`<div class="subtabs">${[['chart','원터치 악보'],['slots','SimplifyChord'],['perc','스트로크·퍼커시브'],...(lyricsOf(s)?[['lyrics','전체 가사']]:[]),['basis','근거']].map(([k,l])=>`<button data-act="chart-tab:${k}" class="${tab===k?'active':''}">${l}</button>`).join('')}</div>`;
     if(!c){
       const pc=s.chart||{};const pev=pc.evidence||[];
       const known=pev.length?`<div class="card" style="margin-top:12px"><h3>확인한 값</h3><div class="kv"><div><span>원곡 키</span><b>${esc(pc.originalKey||'미확인')}</b></div><div><span>박자</span><b>${esc(pc.timeSignature||'미확인')}</b><small>${esc(pc.timeNote||'')}</small></div><div><span>BPM</span><b>${pc.bpm||'—'}</b><small>${esc(pc.bpmNote||'')}</small></div></div><div class="divider"></div><h4>근거 자료</h4><ul class="ev">${pev.map(e=>`<li><a href="${esc(e.url)}" target="_blank" rel="noopener noreferrer">${esc(e.label)}</a><span class="tiny">${esc(e.note)}</span></li>`).join('')}</ul><p class="tiny">키·코드가 확인되지 않은 값은 비워 두었습니다. 위 링크에서 악보·코드표를 바로 열 수 있습니다.</p></div>`:'';
@@ -516,7 +537,7 @@
           <div class="row" style="gap:6px"><span class="chart-now" id="chart-now-label" aria-live="polite"></span><button type="button" class="chip-btn on" id="chart-follow-btn" data-act="chart-follow" aria-pressed="true">따라가기 켜짐</button></div>
         </div>
         ${tm.mode==='bpm-yt'?`<div class="timing-badge">${esc(tm.badge||'유튜브 MR은 전주·간주 길이에 따라 오차가 날 수 있어요. 녹화 음원을 주시면 정확히 맞춰드립니다.')}</div>`:''}
-        <p class="tiny" style="margin:6px 0 0">마디를 누르면 그 마디 시작 시각으로 이동해 MR이 바로 재생됩니다. 재생 중에는 지금 마디와 그 코드 버튼이 <b>열 색</b>으로 빛납니다.</p>
+        <p class="tiny" style="margin:6px 0 0">마디를 누르면 그 마디 시작 시각으로 이동해 MR이 바로 재생됩니다. 재생 중에는 지금 마디와 그 코드 버튼이 <b>열 색</b>으로 빛납니다.${lyricsOf(s)?' 가사가 있는 곡은 하단 미니 플레이어에 <b>지금 줄·다음 줄</b>이 함께 뜨고, 다른 마디를 누르면 가사도 그 마디로 즉시 바뀝니다.':''}</p>
       </div>`:'';
       const lessonCard=lesson?`<div class="lesson-link">
         <div><span class="eyebrow">RIGHT HAND</span><b>${esc(lesson.name)}</b><small>${c.lessonMatch&&c.lessonMatch.confidence==='문구 일치'?`이 곡 표기 «${esc(c.lessonMatch.matched)}»에 맞춰 고른 주법이에요.`:'이 곡은 주법 표기가 없어 스트로크 기초부터 봅니다.'}</small></div>
@@ -563,6 +584,24 @@
         <div class="card"><div class="eyebrow">PERCUSSIVE</div><h3>퍼커시브 포인트</h3><p>${esc(c.percussive||'2·4박에 손날로 바디를 톡 치는 것부터 시작합니다.')}</p></div></div>
         <div class="card" style="margin-top:12px"><h3>4단계로 만드는 퍼커시브</h3><div class="perc-steps">${[['① 컷','4박 뒤 손바닥으로 줄을 막았다 놓기. 60BPM 4마디'],['② 척킹(X)','2·4박에 손날로 줄만 막아 짧은 소리. 스트로크 사이에 넣기'],['③ 바디 톡','브릿지 옆을 엄지 옆면으로. 2·4박에만'],['④ 조합','Verse 컷 → Chorus 톡 → 마지막 마디 X']].map(([t,d])=>`<div><b>${t}</b><span>${esc(d)}</span></div>`).join('')}</div></div>
         <div class="hint">손목에 힘이 들어가면 소리가 죽습니다. 팔은 고정하고 손목만 돌린다는 느낌으로, 10분 이상 같은 동작을 붙잡지 마세요.</div>`;
+    }
+    if (tab === 'lyrics') {
+      const ly = lyricsOf(s);
+      if (ly) {
+        let last = '';
+        const rows = ly.lines.map((l, i) => {
+          const newSec = l.section && l.section !== last;
+          last = l.section || last;
+          return (newSec ? `<h4 class="lyr-sec">${esc(l.section)}</h4>` : '') +
+            `<button type="button" class="lyr-line" data-act="seek-line:${esc(s.id)}:${i}" title="${esc(l.section || '')} ${clock(l.startSec)}부터 재생">` +
+            `<span class="lyr-bar">${Number(l.bar) || ''}마디</span><span class="lyr-time">${clock(l.startSec)}</span>` +
+            `<span class="lyr-text">${esc(l.text)}</span></button>`;
+        }).join('');
+        return `${head0}${tabs}${partialStrip}<div class="lyrics-sheet" id="lyrics-sheet">
+          <div class="row between" style="flex-wrap:wrap;gap:6px"><div><b>전체 가사 ${ly.lines.length}줄</b><span class="tiny"> · 줄을 누르면 그 줄부터 반주가 재생되고, 지금 부르는 줄이 빛납니다.</span></div><span class="lyr-src">${esc(ly.source || '')}</span></div>
+          ${rows}
+          <p class="tiny" style="margin-top:10px">${esc(ly.note || '')}</p></div>`;
+      }
     }
     const ev=c.evidence||[];
     return `${head0}${tabs}${partialStrip}
@@ -624,6 +663,8 @@
         if(seedSong.chartStatus && !cur.chartEdited) cur.chartStatus=seedSong.chartStatus;
         /* 악보 설명(chartNote)도 시드가 갱신하면 함께 바꾼다. 사용자가 직접 고친 곡(chartEdited)은 그대로 둔다. */
         if(seedSong.chartNote && !cur.chartEdited) cur.chartNote=seedSong.chartNote;
+        /* 가사 타임라인(노래방 싱크)도 시드가 최신이면 함께 갱신한다 */
+        if(seedSong.lyrics) cur.lyrics=clone(seedSong.lyrics);
         for(const k of ['category','workTitle','workArtist','categoryNote','playlistKind']){
           if(seedSong[k] && !cur[k]) cur[k]=seedSong[k];
         }
@@ -696,6 +737,7 @@
     try{if(ytPlayer&&ytPlayer.destroy)ytPlayer.destroy();}catch(err){}
     ytPlayer=null;ytReady=false;
     if(chartRaf!=null){cancelAnimationFrame(chartRaf);chartRaf=null;}
+    if(miniTick){clearInterval(miniTick);miniTick=null;}
     chartNowIdx=-1;
     teardownPitch();
     if(trackObjectURL){URL.revokeObjectURL(trackObjectURL);trackObjectURL=null;}
@@ -820,7 +862,7 @@
        YouTube는 IFrame API setPlaybackRate(0.5·0.75·1배만 지원). */
   const RATE_STEPS = [0.5, 0.7, 0.85, 1];
   const YT_RATES = [0.25, 0.5, 0.75, 1, 1.25, 1.5, 2];
-  let chartRaf = null, chartNowIdx = -1, chartFollow = true, pendingSeek = null;
+  let chartRaf = null, chartNowIdx = -1, chartFollow = true, pendingSeek = null, miniTick = null;
   let ytPlayer = null, ytApiPromise = null, ytReady = false, miniRate = 1;
 
   const clock = s => { const t = Math.max(0, Math.round(Number(s) || 0)); return Math.floor(t / 60) + ':' + String(t % 60).padStart(2, '0'); };
@@ -872,7 +914,23 @@
     if (k < n) return k;
     return t.cycle ? k % n : -1;
   }
+  function paintMiniLyric(sec) {
+    const nowEl = get('mini-lyric-now');
+    if (!nowEl || !mini) return;
+    const ly = lyricsOf(song(mini.songId));
+    if (!ly) return;
+    const i = lyricIndexAt(ly, sec);
+    const cur = i >= 0 ? ly.lines[i] : null;
+    const next = i >= 0 ? ly.lines[i + 1] : ly.lines[0];
+    const tag = get('mini-lyric-tag'), nxt = get('mini-lyric-next');
+    nowEl.textContent = cur ? cur.text : (ly.lines[0] ? ly.lines[0].text : '—');
+    nowEl.classList.toggle('idle', !cur);
+    if (tag) tag.textContent = cur ? (cur.section || '가사') + (cur.startSec != null ? ' ' + clock(cur.startSec) : '') : '곧 시작';
+    if (nxt) nxt.textContent = (i >= 0 && next) ? '다음 · ' + next.text : '';
+    document.querySelectorAll('#lyrics-sheet .lyr-line').forEach((el, k) => el.classList.toggle('on', k === i));
+  }
   function paintChartNow(sec) {
+    paintMiniLyric(sec);
     if (!modal || modal.kind !== 'chart') return;
     const s = song(modal.id); if (!s) return;
     const c = chartOf(s); if (!c) return;
@@ -1028,6 +1086,7 @@
     miniRoot.innerHTML=`<section class="mini-player ${mini.collapsed?'collapsed':''}" id="mini-player" aria-label="하단 미니 플레이어">
       <div class="mini-info"><span class="mini-badge">${esc(mini.badge)}</span><div class="mini-text"><b>${esc(mini.title)}</b><span>${esc(mini.sub)}</span></div></div>
       ${body}
+      ${lyricsOf(s) ? `<div class="mini-lyric" id="mini-lyric" aria-live="polite"><span class="ly-tag" id="mini-lyric-tag">가사</span><b class="ly-now" id="mini-lyric-now"></b><span class="ly-next" id="mini-lyric-next"></span></div>` : ''}
       ${keyBar}
       ${rateBar}
       <div class="mini-tools"><button type="button" class="mini-btn" data-act="mini-local" title="휴대폰에 저장한 오디오 파일 재생">내 파일</button><a class="mini-btn" href="${link}" target="_blank" rel="noopener noreferrer">${linkLabel}</a><button type="button" class="mini-btn" data-act="mini-collapse" aria-label="${mini.collapsed?'펼치기':'접기'}" title="${mini.collapsed?'펼치기':'접기'}">${mini.collapsed?'▴':'▾'}</button><button type="button" class="mini-btn mini-close" data-act="mini-close" aria-label="미니 플레이어 닫기" title="닫기">×</button></div>
@@ -1052,6 +1111,12 @@
       mountYtPlayer(mini.videoId);
     }
     syncMiniHeight();
+    paintMiniLyric(miniTime());
+    if (miniTick) clearInterval(miniTick);
+    miniTick = setInterval(() => {
+      if (!mini) { clearInterval(miniTick); miniTick = null; return; }
+      paintMiniLyric(miniTime());
+    }, 500);
   }
   function closeModal(){
     audioStop();
@@ -1127,10 +1192,11 @@
     case 'new-song':editSong(null);return;
     case 'edit':editSong(value);return;
     case 'chart':modal={kind:'chart',id:value,tab:'chart'};chartNowIdx=-1;render();if(mini&&mini.songId===value)startChartTick();return;
+    case 'chart-lyrics':modal={kind:'chart',id:value,tab:'lyrics'};chartNowIdx=-1;render();if(mini&&mini.songId===value)startChartTick();return;
     case 'chart-tab':if(modal){modal.tab=value;render();}return;
     case 'metro-song':{const s=song(value),c=s&&chartOf(s);if(c){state.settings.bpm=Math.max(40,Math.min(180,Math.round(c.bpm||state.settings.bpm)));state.settings.timeSignature=c.timeSignature||state.settings.timeSignature;state.settings.focusSongId=s.id;{const p=weekState();if(!p.goalSongId){p.goalSongId=s.id;if(!p.startedAt)p.startedAt=dateKey();}}save();if(metronome){stopMetro();}modal=null;setTab('practice');notice(`${s.title} · ${state.settings.bpm}BPM · ${state.settings.timeSignature} 메트로놈으로 연습을 준비했습니다.`);}else notice('이 곡은 아직 악보 검수 대기입니다.');return;}
-    case 'video':case 'music':{const s=song(value);if(!s)return;if(cmd==='music'&&!safeHttp(s.audioUrl)&&!fullAudioOf(s)&&!s.videoUrl){audioStop();modal={kind:'music',id:value};render();return;}openMini(cmd,s);return;}
-    case 'mr':{const s=song(value);if(!s)return;if(hasMr(s)){openMini('mr',s);return;}modal={kind:'mr',id:value,from:modal&&modal.kind==='chart'?'chart':''};render();return;}
+    case 'video':case 'music':{const s=song(value);if(!s)return;if(cmd==='music'&&!safeHttp(s.audioUrl)&&!fullAudioOf(s)&&!s.videoUrl){audioStop();modal={kind:'music',id:value};render();return;}openMini(cmd,s);if(currentTab==='practice'&&!modal)render();return;}
+    case 'mr':{const s=song(value);if(!s)return;if(hasMr(s)){openMini('mr',s);if(currentTab==='practice'&&!modal)render();return;}modal={kind:'mr',id:value,from:modal&&modal.kind==='chart'?'chart':''};render();return;}
     case 'mini-close':closeMini();return;
     case 'mini-collapse':if(mini){mini.collapsed=!mini.collapsed;renderMini();}return;
     case 'mini-local':get('mini-file')?.click();return;
@@ -1154,6 +1220,20 @@
       paintChartNow(sec);
       startChartTick();
       notice(`${idx+1}마디(${clock(sec)})부터 재생합니다.`);
+      return;}
+    case 'seek-line':{
+      const pos=value.lastIndexOf(':');const sid=value.slice(0,pos),idx=Math.max(0,Number(value.slice(pos+1))||0);
+      const s=song(sid);if(!s)return;
+      const ly=lyricsOf(s);if(!ly||!ly.lines[idx])return;
+      const line=ly.lines[idx],sec=Number(line.startSec)||0;
+      if(!mini||mini.songId!==s.id){
+        if(hasMr(s))openMini('mr',s);
+        else if(fullAudioOf(s)||safeHttp(s.audioUrl))openMini('music',s);
+        else{notice('이 곡은 반주(MR)가 없어 가사 이동을 할 수 없습니다.');return;}
+      }
+      pendingSeek={songId:s.id,sec};chartNowIdx=-1;
+      seekMini(sec);paintChartNow(sec);startChartTick();
+      notice(`${line.section?'['+line.section+'] ':''}“${line.text}” ${clock(sec)}부터 재생합니다.`);
       return;}
     case 'close':case 'dismiss':closeModal();return;
     case 'source':modal={kind:'source',index:+value};render();return;

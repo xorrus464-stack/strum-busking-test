@@ -99,6 +99,15 @@ check('app.js: sw.js 등록', "navigator.serviceWorker.register('./sw.js')" in a
 # 2026-11-27 새 기능(14버튼 배치표·마디 싱크·배속)도 앱 셸과 함께 배포되는지
 css = (BASE / 'src' / 'styles.css').read_text(encoding='utf-8')
 check('app.js: 14버튼 배치표·마디 싱크', "aeroPad" in app and "aero-strip" in app and "seek-bar" in app and "mini-rate" in app)
+# 2026-11-27 노래방 가사 싱크(미니바 지금 줄·다음 줄) + 전체 가사 + 오늘의 연습 원곡/MR 전환
+check('app.js: 가사 싱크·전체 가사·듣기 전환', "mini-lyric" in app and "lyrics-sheet" in app and "seek-line" in app and "listen-toggle" in app)
+check('styles.css: 가사 싱크·전체 가사·듣기 전환 스타일', ".mini-lyric" in css and ".lyr-line" in css and ".listen-toggle" in css and ".bar-lyric" in css)
+check('media/thank-you-mr.mp3 존재(Thank You 녹화 반주)',
+      (BASE / 'media' / 'thank-you-mr.mp3').exists() and (BASE / 'media' / 'thank-you-mr.mp3').stat().st_size > 3_500_000,
+      str((BASE / 'media' / 'thank-you-mr.mp3').stat().st_size if (BASE / 'media' / 'thank-you-mr.mp3').exists() else 'missing'))
+_tyseed = (BASE / 'src' / 'seed.js').read_text(encoding='utf-8')
+check('seed.js: Thank You 가사 35줄·녹화 반주', '"lyrics":{"version":"2026-11-27"' in _tyseed
+      and 'media/thank-you-mr.mp3' in _tyseed and 'My tea' in _tyseed)
 check('styles.css: 배치표·타임라인·배속 스타일', ".aero-pad" in css and ".aero-strip" in css and ".mini-rate" in css and ".timing-strip" in css)
 check('seed.js: 최적 14버튼(B·Bdim 아님)', '"buttonSet":["C","Dm","Em","F","G","Am","B"' in (BASE / 'src' / 'seed.js').read_text(encoding='utf-8'))
 seed_ver = re.search(r'seedVersion":(\d+)', (BASE / 'src' / 'seed.js').read_text(encoding='utf-8'))
@@ -153,6 +162,8 @@ with sync_playwright() as pw:
     page.wait_for_selector('.aero-pad .pad-btn', timeout=8000)
     pad_n = page.locator('.aero-pad .pad-btn').count()
     check('14버튼 배치표 14개(SW 등록 후)', pad_n == 14, str(pad_n))
+    check('오늘의 연습 원곡/MR 전환 버튼(SW 등록 후)', page.locator('.listen-toggle .btn').count() == 2,
+          str(page.locator('.listen-toggle .btn').count()))
     check('콘솔 에러 0', len(errors) == 0, str(errors[:3]))
     browser.close()
 

@@ -218,6 +218,29 @@ ul.ev span{display:block;color:#8b8b7a;font-size:11px}
 .mini-btn:hover{background:rgba(255,255,255,.14)}
 .mini-close{color:#f0c58d}
 .mini-player.collapsed{gap:9px;padding-top:6px;padding-bottom:calc(6px + env(safe-area-inset-bottom))}
+/* 미니바 노래방 가사 — 지금 줄 + 다음 줄 (2026-11-27) */
+.mini-lyric{display:flex;flex-direction:column;gap:2px;min-width:0;flex:1 1 190px;max-width:34vw;padding:3px 10px;border-left:1px solid #55645a}
+.mini-lyric .ly-tag{font-size:9px;font-weight:900;letter-spacing:.08em;color:#a9b3a5}
+.mini-lyric .ly-now{font-size:13px;font-weight:900;color:#fbf6e4;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;letter-spacing:-.01em}
+.mini-lyric .ly-now.idle{color:#c3cabb;font-weight:700}
+.mini-lyric .ly-next{font-size:10px;color:#a9b3a5;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+/* 악보 마디 카드의 가사 한 줄 */
+.chart-bars .bar-lyric{margin-top:3px;font-size:9px;line-height:1.25;color:#7b7d6f;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+/* 전체 가사 보기 */
+.lyrics-sheet{margin:6px 0 4px}
+.lyrics-sheet .lyr-sec{margin:14px 0 5px;font-size:11px;letter-spacing:.07em;color:#7c6a3a;text-transform:uppercase}
+.lyr-line{display:grid;grid-template-columns:52px 44px minmax(0,1fr);gap:8px;align-items:baseline;width:100%;text-align:left;border:1px solid transparent;border-bottom:1px solid #eceae0;background:transparent;padding:7px 6px;border-radius:9px;font:inherit;color:inherit;cursor:pointer}
+.lyr-line:hover{background:#f4f2e8}
+.lyr-line:focus-visible{outline:2px solid #a38d4c;outline-offset:1px}
+.lyr-line.on{background:#fff8df;border-color:#e3cf94;box-shadow:inset 3px 0 0 #b99a3f}
+.lyr-bar{font-size:10px;font-weight:800;color:#a3a092}
+.lyr-time{font-size:10px;color:#a3a092;font-variant-numeric:tabular-nums}
+.lyr-text{font-size:14px;font-weight:700;letter-spacing:-.01em}
+.lyr-src{font-size:9px;color:#a3a092;max-width:60%;text-align:right}
+/* 오늘의 연습 — 원곡(보컬)/MR 전환 */
+.listen-toggle{display:flex;gap:7px;flex-wrap:wrap;margin:9px 0 4px}
+.listen-toggle .btn{flex:1 1 140px}
+.listen-now{color:#417356;font-weight:700;margin:2px 0 6px}
 .mini-player.collapsed .mini-frame{width:126px}
 .mini-player.collapsed .mini-text span{display:none}
 body.has-mini .toast{bottom:calc(var(--mini-h,120px) + 20px)}
@@ -229,6 +252,12 @@ body.has-mini .modal-layer{padding-bottom:calc(var(--mini-h,120px) + 16px)}
   .mini-player.collapsed .mini-frame{width:104px}
   .mini-audio{order:2;width:56vw;height:34px}
   .mini-key{order:2;flex:1 1 100%;justify-content:center;padding:2px 4px}
+  .mini-lyric{order:2;flex:1 1 100%;max-width:none;border-left:0;border-top:1px solid #55645a;padding:4px 2px 0}
+  .mini-lyric .ly-now{font-size:12px;white-space:normal}
+  .mini-lyric .ly-next{font-size:9px}
+  .lyr-line{grid-template-columns:44px 38px minmax(0,1fr);gap:6px}
+  .lyr-text{font-size:13px}
+  .lyr-src{display:none}
   .mini-key-hint{display:none}
   .mini-key-note{order:2;flex:1 1 100%;font-size:9px;white-space:normal}
   .mini-text b{font-size:12px}

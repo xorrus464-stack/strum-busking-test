@@ -465,6 +465,86 @@ def run(pw, name, viewport, mobile=False):
     page.click('.mini-rate .rate-btn[data-rate="1"]')
     page.click('[data-act="mini-close"]')
     page.click('[data-act="close"]')
+    # 2026-11-27 Thank You 녹화 반주 — 전곡 56마디 악보 · 노래방 가사 싱크 · 오늘의 연습 보컬/MR 전환
+    page.fill('#song-search', 'Thank You')
+    page.wait_for_timeout(300)
+    page.locator('.song-row', has_text='Thank You').first.locator('button', has_text='악보').click()
+    page.wait_for_selector('.chart-modal')
+    bars_ty = page.locator('#chart-bars .bar')
+    check(f'{name}: Thank You 전곡 56마디', bars_ty.count() == 56, str(bars_ty.count()))
+    check(f'{name}: Thank You 마디 시각 56개', page.locator('#chart-bars .bar-time').count() == 56,
+          str(page.locator('#chart-bars .bar-time').count()))
+    check(f'{name}: 녹화 실측 타임라인 표기', '마디 타임라인 · 실측' in page.locator('#chart-timing').inner_text())
+    check(f'{name}: 가사 싱크 안내 문구', '지금 줄·다음 줄' in page.locator('#chart-timing').inner_text(),
+          page.locator('#chart-timing').inner_text()[:100])
+    check(f'{name}: 마디 카드에 가사 35줄', page.locator('#chart-bars .bar-lyric').count() == 35,
+          str(page.locator('#chart-bars .bar-lyric').count()))
+    check(f'{name}: 전체 가사 탭', page.locator('.subtabs button', has_text='전체 가사').count() == 1)
+    page.locator('.subtabs button', has_text='전체 가사').click()
+    page.wait_for_timeout(200)
+    check(f'{name}: 전체 가사 35줄', page.locator('.lyr-line').count() == 35, str(page.locator('.lyr-line').count()))
+    check(f'{name}: 가사 첫 줄(1절 My tea\'s gone cold)', "My tea's gone cold" in page.locator('.lyr-line').first.inner_text(),
+          page.locator('.lyr-line').first.inner_text())
+    check(f'{name}: 가사 구간 6개(1·2절·후렴1·3절·후렴2·3)', page.locator('.lyr-sec').count() == 6,
+          str(page.locator('.lyr-sec').count()))
+    # 9번째 줄(2절 첫 줄, 11마디=30.04초) — 누르면 그 줄부터 반주가 재생되고 미니바 가사도 바뀐다
+    page.locator('.lyr-line').nth(8).click()
+    page.wait_for_selector('.mini-player audio#mini-audio')
+    check(f'{name}: Thank You 반주 음원 연결', 'thank-you-mr.mp3' in (page.locator('#mini-audio').get_attribute('src') or ''),
+          page.locator('#mini-audio').get_attribute('src') or '')
+    page.wait_for_function("() => { const a=document.querySelector('#mini-audio'); return !!a && a.readyState>=1 && a.duration>150; }",
+                           timeout=20000)
+    page.wait_for_timeout(1200)
+    t_now = page.evaluate("() => document.querySelector('#mini-audio').currentTime")
+    check(f'{name}: 가사 줄 클릭 → 30초대 이동', 29.5 <= t_now <= 36.5, str(t_now))
+    ly_now = page.locator('#mini-lyric-now').inner_text()
+    check(f'{name}: 미니바 현재 가사(2절 첫 줄)', ly_now.startswith('I drank too much'), ly_now)
+    check(f'{name}: 미니바 다음 가사 미리보기', 'My head just feels in pain' in page.locator('#mini-lyric-next').inner_text(),
+          page.locator('#mini-lyric-next').inner_text())
+    check(f'{name}: 가사 목록 현재 줄 표시', page.evaluate("[...document.querySelectorAll('.lyr-line')].findIndex(e=>e.classList.contains('on'))") == 8)
+    # 악보에서 후렴 21마디(60.04초)를 누르면 반주·가사가 함께 그 마디로
+    page.locator('.subtabs button', has_text='원터치 악보').click()
+    page.wait_for_timeout(200)
+    bars_ty.nth(20).click()
+    page.wait_for_timeout(1200)
+    t_now = page.evaluate("() => document.querySelector('#mini-audio').currentTime")
+    check(f'{name}: 21마디 클릭 → 60초대 재생', 59.5 <= t_now <= 67, str(t_now))
+    ly_now = page.locator('#mini-lyric-now').inner_text()
+    check(f'{name}: 마디 클릭 시 미니바 가사도 후렴으로', ly_now == 'And I want to thank you', ly_now)
+    check(f'{name}: 지금 마디 = 21마디', page.evaluate("[...document.querySelectorAll('#chart-bars .bar')].findIndex(e=>e.classList.contains('now'))") == 20)
+    check(f'{name}: 미니바 가사 태그(후렴 1)', '후렴 1' in page.locator('#mini-lyric-tag').inner_text(), page.locator('#mini-lyric-tag').inner_text())
+    o = overflow(page)
+    check(f'{name}: 가사·미니바 가로 넘침 없음', o['sw'] <= o['cw'] + 1, str(o))
+    page.screenshot(path=str(SHOTS / f'thank-you-lyrics-{name}.png'))
+    page.click('[data-act="mini-close"]')
+    page.click('[data-act="close"]')
+    # 오늘의 연습 — 원곡(보컬) / MR 전환 버튼
+    page.click('[data-nav="week"]')
+    page.wait_for_selector('#week-goal-select')
+    page.select_option('#week-goal-select', 'verified-003')
+    page.wait_for_timeout(300)
+    page.click('[data-nav="practice"]')
+    page.wait_for_selector('.listen-toggle .btn', timeout=8000)
+    labels = [x.strip() for x in page.locator('.listen-toggle .btn').all_inner_texts()]
+    check(f'{name}: 오늘의 연습 원곡/MR 전환 버튼', len(labels) == 2 and '원곡' in labels[0] and 'MR' in labels[1], str(labels))
+    check(f'{name}: 오늘의 목표곡 = Thank You', 'Thank You' in page.locator('.today-step').first.inner_text())
+    page.locator('.listen-toggle .btn', has_text='MR').click()
+    page.wait_for_selector('.mini-player audio#mini-audio')
+    check(f'{name}: 오늘의 연습 MR 재생(녹화 반주)', 'thank-you-mr.mp3' in (page.locator('#mini-audio').get_attribute('src') or ''))
+    check(f'{name}: MR 버튼 활성 표시', page.locator('.listen-toggle .btn.primary', has_text='MR').count() == 1)
+    check(f'{name}: 오늘의 연습 가사 표시', 'And I want to thank you' in page.locator('#mini-lyric-now').inner_text()
+          or 'My tea' in page.locator('#mini-lyric-now').inner_text(), page.locator('#mini-lyric-now').inner_text())
+    page.locator('.listen-toggle .btn', has_text='원곡').click()
+    page.wait_for_timeout(700)
+    check(f'{name}: 원곡(보컬) 전환 → YouTube 음악 재생', page.locator('.mini-player .mini-badge').first.inner_text().strip() == '음악',
+          page.locator('.mini-player .mini-badge').first.inner_text())
+    check(f'{name}: 원곡 버튼 활성 표시', page.locator('.listen-toggle .btn.primary', has_text='원곡').count() == 1)
+    o = overflow(page)
+    check(f'{name}: 오늘의 연습 가로 넘침 없음', o['sw'] <= o['cw'] + 1, str(o))
+    page.screenshot(path=str(SHOTS / f'today-listen-{name}.png'))
+    page.click('[data-act="mini-close"]')
+    page.click('[data-nav="songs"]')
+    page.wait_for_selector('#song-search')
     # YouTube 경로(IFrame API → seekTo·setPlaybackRate) — 테스트 더블로 호출을 실제로 확인한다.
     page.evaluate("""() => {
       window.__yt = {calls: [], t: 0, rate: 1, player: null};
@@ -721,9 +801,14 @@ def run_merge(pw):
     check('merge: 남자키 배지 병합', page.locator('.song-row', has_text='오늘').first.inner_text().find('남자키') >= 0)
     state = json.loads(page.evaluate("() => localStorage.getItem('strum-busking-v2')"))
     song = [s for s in state['songs'] if s['id'] == 'verified-001'][0]
-    check('merge: seedVersion 28', state['seedVersion'] == 28, str(state['seedVersion']))
+    check('merge: seedVersion 29', state['seedVersion'] == 29, str(state['seedVersion']))
     check('merge: 마디 타임라인 병합', bool(song.get('chart', {}).get('timing', {}).get('barTimes')),
           str(song.get('chart', {}).get('timing', {}).get('mode')))
+    ty = [s for s in state['songs'] if s['id'] == 'verified-003'][0]
+    check('merge: Thank You 가사 35줄·56마디 병합', len((ty.get('lyrics') or {}).get('lines') or []) == 35
+          and len(ty.get('chart', {}).get('timing', {}).get('barTimes') or []) == 56,
+          f"{len((ty.get('lyrics') or {}).get('lines') or [])}줄 / {len(ty.get('chart', {}).get('timing', {}).get('barTimes') or [])}마디")
+    check('merge: Thank You 녹화 반주 병합', ty.get('mrAudioUrl') == 'media/thank-you-mr.mp3', str(ty.get('mrAudioUrl')))
     check('merge: MR 링크 병합', song.get('mrUrl', '').endswith('hwZqHCMmjUM'), str(song.get('mrUrl')))
     check('merge: 숙련도 보존', song['level'] == '버스킹 가능', song['level'])
     check('merge: 사용자 메모 보존', song['notes'] == '내 메모', song['notes'])
@@ -738,13 +823,14 @@ def run_merge(pw):
                        ('verified-017', 'media/toy-mr.mp3'), ('verified-021', 'media/weather-mr.mp3'),
                        ('verified-014', 'media/shannon-sabyeol-mr.mp3'), ('verified-019', 'media/choiyuri-saenggak-mr.mp3'),
                        ('playlist-170', 'media/choiyuri-saenggak-mr.mp3'), ('playlist-174', 'media/choiyuri-saenggak-mr.mp3'),
-                       ('restored-100', 'media/goodbye-bye-mr.mp3'), ('playlist-159', 'media/kisum-seo-eoreun-mr.mp3')):
+                       ('restored-100', 'media/goodbye-bye-mr.mp3'), ('playlist-159', 'media/kisum-seo-eoreun-mr.mp3'),
+                       ('verified-003', 'media/thank-you-mr.mp3')):
         item = [s for s in state['songs'] if s['id'] == sid][0]
         check(f'merge: MR 음원 병합({sid})', item.get('mrAudioUrl') == fname, str(item.get('mrAudioUrl')))
         check(f'merge: MR 음원 출처({sid})',
-              item.get('mrSource') == 'user-recording' and ('AI 보컬 제거' in (item.get('mrNote') or '') or '남자키(-5키)' in (item.get('mrTitle') or '') or 'MDX-NET' in (item.get('mrNote') or '')),
+              item.get('mrSource') == 'user-recording' and ('AI 보컬 제거' in (item.get('mrNote') or '') or '남자키(-5키)' in (item.get('mrTitle') or '') or 'MDX-NET' in (item.get('mrNote') or '') or '2026-11-27' in (item.get('mrNote') or '')),
               str(item.get('mrNote'))[:60])
-        if sid in ('verified-014', 'verified-019', 'playlist-170', 'playlist-174', 'restored-100', 'playlist-159'):
+        if sid in ('verified-014', 'verified-019', 'playlist-170', 'playlist-174', 'restored-100', 'playlist-159', 'verified-003'):
             check(f'merge: 원키 YouTube MR 비움({sid})', not item.get('mrUrl'), str(item.get('mrUrl')))
     browser.close()
 
