@@ -1074,9 +1074,10 @@
     const watch=mini.watch||(s?((mini.kind==='mr'?s.mrUrl:s.videoUrl)||''):'');
     const isAudio=mini.kind==='audio'||mini.kind==='mraudio';
     const shift=mini.kind==='mraudio'?mrShiftOf(mini.songId):0;
+    const canLyric = !!lyricsOf(s) && (mini.kind === 'mraudio' || mini.kind === 'audio');
     const keyBar=mini.kind==='mraudio'
       ?`<div class="mini-key" id="mini-key" role="group" aria-label="키 조절"><button type="button" class="mini-btn" data-act="mini-shift:-1" aria-label="반음 내리기" title="반음 내리기">−</button><b class="mini-key-label" id="mini-key-label">${mrShiftLabel(shift)}</b><button type="button" class="mini-btn" data-act="mini-shift:1" aria-label="반음 올리기" title="반음 올리기">＋</button><span class="mini-key-hint">−6~+6반음 · 템포 유지</span></div>`
-      :(mini.collapsed||mini.kind==='lesson'?'':`<span class="mini-key-note">YouTube 재생 중에는 키 조절을 쓸 수 없습니다(MP3 반주에서만)</span>`);
+      :(mini.collapsed||mini.kind==='lesson'?'':`<span class="mini-key-note">YouTube 재생 중에는 키 조절·가사 싱크를 쓸 수 없습니다(반주 MP3에서만)</span>`);
     const body=isAudio
       ?`<audio class="mini-audio" id="mini-audio" controls autoplay preload="metadata" src="${esc(mini.audioUrl)}"></audio>`
       :`<div class="mini-frame"><div class="yt-host" id="yt-host"></div></div>`;
@@ -1086,7 +1087,7 @@
     miniRoot.innerHTML=`<section class="mini-player ${mini.collapsed?'collapsed':''}" id="mini-player" aria-label="하단 미니 플레이어">
       <div class="mini-info"><span class="mini-badge">${esc(mini.badge)}</span><div class="mini-text"><b>${esc(mini.title)}</b><span>${esc(mini.sub)}</span></div></div>
       ${body}
-      ${lyricsOf(s) ? `<div class="mini-lyric" id="mini-lyric" aria-live="polite"><span class="ly-tag" id="mini-lyric-tag">가사</span><b class="ly-now" id="mini-lyric-now"></b><span class="ly-next" id="mini-lyric-next"></span></div>` : ''}
+      ${canLyric ? `<div class="mini-lyric" id="mini-lyric" aria-live="polite"><span class="ly-tag" id="mini-lyric-tag">가사</span><b class="ly-now" id="mini-lyric-now"></b><span class="ly-next" id="mini-lyric-next"></span></div>` : ''}
       ${keyBar}
       ${rateBar}
       <div class="mini-tools"><button type="button" class="mini-btn" data-act="mini-local" title="휴대폰에 저장한 오디오 파일 재생">내 파일</button><a class="mini-btn" href="${link}" target="_blank" rel="noopener noreferrer">${linkLabel}</a><button type="button" class="mini-btn" data-act="mini-collapse" aria-label="${mini.collapsed?'펼치기':'접기'}" title="${mini.collapsed?'펼치기':'접기'}">${mini.collapsed?'▴':'▾'}</button><button type="button" class="mini-btn mini-close" data-act="mini-close" aria-label="미니 플레이어 닫기" title="닫기">×</button></div>
