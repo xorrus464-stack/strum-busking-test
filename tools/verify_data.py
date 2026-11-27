@@ -198,7 +198,7 @@ for barre in ('F', 'Bm', 'Bb'):
 assert 'SimplifyChord 약식 폼' in app_js
 idx = (BASE / 'index.html').read_text(encoding='utf-8')
 sw = (BASE / 'sw.js').read_text(encoding='utf-8')
-assert '?v=31' in idx and 'strum-busking-test-v31' in sw
+assert '?v=32' in idx and 'strum-busking-test-v32' in sw
 
 for r in week['recommended']:
     s = by_id[r['songId']]

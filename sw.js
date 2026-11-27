@@ -2,7 +2,7 @@
    · 네트워크 우선: 새로 배포한 index.html·src/seed.js·src/app.js·src/styles.css 가
      항상 먼저 보이고, 오프라인일 때만 캐시를 씁니다.
    · 반주 음원(media/*.mp3)과 범위 요청(Range)은 손대지 않고 그대로 통과시킵니다. */
-var CACHE = 'strum-busking-test-v31';
+var CACHE = 'strum-busking-test-v32';
 var SHELL = [
   './',
   './index.html',
